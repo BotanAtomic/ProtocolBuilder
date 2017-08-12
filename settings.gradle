@@ -1,0 +1,3 @@
+rootProject.name = 'Dofus 2'
+include 'protocol - builder'
+

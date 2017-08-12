@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="builder_main" target="1.8" />
+      <module name="builder_test" target="1.8" />
+      <module name="Dofus_2_main" target="1.8" />
+      <module name="Dofus_2_test" target="1.8" />
+      <module name="login_main" target="1.8" />
+      <module name="login_test" target="1.8" />
+      <module name="protocol_-_builder_main" target="1.8" />
+      <module name="protocol_-_builder_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
