@@ -1,2 +1,2 @@
 # ProtocolBuilder
-wtf
+Dofus 2.X protocol builder (Java output)
