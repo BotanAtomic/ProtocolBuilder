@@ -15,52 +15,22 @@ public class GameRolePlayCharacterInformations extends GameRolePlayHumanoidInfor
     private FuncTree _alignmentInfostree;
 
 
-    public int getTypeId() {
-         return 36;
-    }
-
-    public GameRolePlayCharacterInformations initGameRolePlayCharacterInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,String  param4,HumanInformations  param5,int  param6,ActorAlignmentInformations  param7) {
-         super.initGameRolePlayHumanoidInformations(param1,param2,param3,param4,param5,param6);
-         this.alignmentInfos = param7;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.alignmentInfos = new ActorAlignmentInformations();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameRolePlayCharacterInformations(param1);
-    }
-
-    public void serializeAs_GameRolePlayCharacterInformations(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayHumanoidInformations(param1);
+         super.serializeAs_GameRolePlayNamedActorInformations(param1);
+         param1.writeShort(this.humanoidInfo.getTypeId());
+         this.humanoidInfo.serialize(param1);
+         if(this.accountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
          this.alignmentInfos.serializeAs_ActorAlignmentInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameRolePlayCharacterInformations(param1);
-    }
-
-    public void deserializeAs_GameRolePlayCharacterInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
+         this.deserializeAs_GameRolePlayHumanoidInformations(param1);
          this.alignmentInfos = new ActorAlignmentInformations();
          this.alignmentInfos.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameRolePlayCharacterInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GameRolePlayCharacterInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._alignmentInfostree = param1.addChild(this._alignmentInfostreeFunc);
-    }
-
-    private void _alignmentInfostreeFunc(ICustomDataInput param1) {
-         this.alignmentInfos = new ActorAlignmentInformations();
-         this.alignmentInfos.deserializeAsync(this._alignmentInfostree);
     }
 
 }

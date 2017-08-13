@@ -9,30 +9,11 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class FightTeamInformations extends Abstract {
 
     private int protocolId = 33;
-    private Vector<FightTeamMemberInformations> teamMembers;
+    private FightTeamMemberInformations[] teamMembers;
     private FuncTree _teamMemberstree;
 
 
-    public int getTypeId() {
-         return 33;
-    }
-
-    public FightTeamInformations initFightTeamInformations(int param1,Number  param2,int  param3,int  param4,int  param5,Vector<FightTeamMemberInformations>  param6) {
-         super.initAbstractFightTeamInformations(param1,param2,param3,param4,param5);
-         this.teamMembers = param6;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.teamMembers = new Vector.<FightTeamMemberInformations>();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_FightTeamInformations(param1);
-    }
-
-    public void serializeAs_FightTeamInformations(ICustomDataOutput param1) {
          super.serializeAs_AbstractFightTeamInformations(param1);
          param1.writeShort(this.teamMembers.length);
          int _loc2_ = 0;
@@ -45,13 +26,18 @@ public class FightTeamInformations extends Abstract {
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_FightTeamInformations(param1);
-    }
-
-    public void deserializeAs_FightTeamInformations(ICustomDataInput param1) {
          int _loc4_ = 0;
          FightTeamMemberInformations _loc5_ = null;
-         super.deserialize(param1);
+         this.actionId = param1.readVarUhShort();
+         if(this.actionId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.actionId + ") on element of AbstractGameActionMessage.actionId.");
+         }
+         this.sourceId = param1.readDouble();
+         if(this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.sourceId + ") on element of AbstractGameActionMessage.sourceId.");
+         }
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
@@ -62,32 +48,6 @@ public class FightTeamInformations extends Abstract {
             this.teamMembers.push(_loc5_);
             _loc3_++;
          }
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_FightTeamInformations(param1);
-    }
-
-    public void deserializeAsyncAs_FightTeamInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._teamMemberstree = param1.addChild(this._teamMemberstreeFunc);
-    }
-
-    private void _teamMemberstreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._teamMemberstree.addChild(this._teamMembersFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _teamMembersFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         FightTeamMemberInformations _loc3_ = ProtocolTypeManager.getInstance(FightTeamMemberInformations,_loc2_);
-         _loc3_.deserialize(param1);
-         this.teamMembers.push(_loc3_);
     }
 
 }

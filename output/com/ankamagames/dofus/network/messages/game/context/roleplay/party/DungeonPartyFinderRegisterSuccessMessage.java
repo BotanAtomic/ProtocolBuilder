@@ -7,58 +7,16 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class DungeonPartyFinderRegisterSuccessMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 6241;
     private boolean _isInitialized = false;
-    private Vector<uint> dungeonIds;
+    private int[] dungeonIds;
     private FuncTree _dungeonIdstree;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6241;
-    }
-
-    public DungeonPartyFinderRegisterSuccessMessage initDungeonPartyFinderRegisterSuccessMessage(Vector<uint> param1) {
-         this.dungeonIds = param1;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.dungeonIds = new Vector.<uint>();
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_DungeonPartyFinderRegisterSuccessMessage(param1);
-    }
-
-    public void serializeAs_DungeonPartyFinderRegisterSuccessMessage(ICustomDataOutput param1) {
          param1.writeShort(this.dungeonIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.dungeonIds.length)
@@ -73,10 +31,6 @@ public class DungeonPartyFinderRegisterSuccessMessage extends NetworkMessage imp
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_DungeonPartyFinderRegisterSuccessMessage(param1);
-    }
-
-    public void deserializeAs_DungeonPartyFinderRegisterSuccessMessage(ICustomDataInput param1) {
          int _loc4_ = 0;
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
@@ -90,33 +44,6 @@ public class DungeonPartyFinderRegisterSuccessMessage extends NetworkMessage imp
             this.dungeonIds.push(_loc4_);
             _loc3_++;
          }
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_DungeonPartyFinderRegisterSuccessMessage(param1);
-    }
-
-    public void deserializeAsyncAs_DungeonPartyFinderRegisterSuccessMessage(FuncTree param1) {
-         this._dungeonIdstree = param1.addChild(this._dungeonIdstreeFunc);
-    }
-
-    private void _dungeonIdstreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._dungeonIdstree.addChild(this._dungeonIdsFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _dungeonIdsFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readVarUhShort();
-         if(_loc2_ < 0)
-         {
-            throw new Exception("Forbidden value (" + _loc2_ + ") on elements of dungeonIds.");
-         }
-         this.dungeonIds.push(_loc2_);
     }
 
 }

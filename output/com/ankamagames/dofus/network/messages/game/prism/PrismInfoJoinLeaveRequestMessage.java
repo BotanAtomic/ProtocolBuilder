@@ -14,67 +14,11 @@ public class PrismInfoJoinLeaveRequestMessage extends NetworkMessage implements 
     private boolean join = false;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 5844;
-    }
-
-    public PrismInfoJoinLeaveRequestMessage initPrismInfoJoinLeaveRequestMessage(boolean param1) {
-         this.join = param1;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.join = false;
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_PrismInfoJoinLeaveRequestMessage(param1);
-    }
-
-    public void serializeAs_PrismInfoJoinLeaveRequestMessage(ICustomDataOutput param1) {
          param1.writeBoolean(this.join);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_PrismInfoJoinLeaveRequestMessage(param1);
-    }
-
-    public void deserializeAs_PrismInfoJoinLeaveRequestMessage(ICustomDataInput param1) {
-         this._joinFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_PrismInfoJoinLeaveRequestMessage(param1);
-    }
-
-    public void deserializeAsyncAs_PrismInfoJoinLeaveRequestMessage(FuncTree param1) {
-         param1.addChild(this._joinFunc);
-    }
-
-    private void _joinFunc(ICustomDataInput param1) {
          this.join = param1.readBoolean();
     }
 

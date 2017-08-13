@@ -14,67 +14,11 @@ public class MountSterilizedMessage extends NetworkMessage implements INetworkMe
     private int mountId = 0;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 5977;
-    }
-
-    public MountSterilizedMessage initMountSterilizedMessage(int param1) {
-         this.mountId = param1;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.mountId = 0;
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_MountSterilizedMessage(param1);
-    }
-
-    public void serializeAs_MountSterilizedMessage(ICustomDataOutput param1) {
          param1.writeVarInt(this.mountId);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_MountSterilizedMessage(param1);
-    }
-
-    public void deserializeAs_MountSterilizedMessage(ICustomDataInput param1) {
-         this._mountIdFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_MountSterilizedMessage(param1);
-    }
-
-    public void deserializeAsyncAs_MountSterilizedMessage(FuncTree param1) {
-         param1.addChild(this._mountIdFunc);
-    }
-
-    private void _mountIdFunc(ICustomDataInput param1) {
          this.mountId = param1.readVarInt();
     }
 

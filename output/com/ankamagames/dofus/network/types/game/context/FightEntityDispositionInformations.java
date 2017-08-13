@@ -5,7 +5,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
 
 public class FightEntityDispositionInformations extends EntityDispositionInformations implements INetworkType {
 
@@ -13,26 +12,7 @@ public class FightEntityDispositionInformations extends EntityDispositionInforma
     private Number carryingCharacterId = 0;
 
 
-    public int getTypeId() {
-         return 217;
-    }
-
-    public FightEntityDispositionInformations initFightEntityDispositionInformations(int param1,int  param2,Number  param3) {
-         super.initEntityDispositionInformations(param1,param2);
-         this.carryingCharacterId = param3;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.carryingCharacterId = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_FightEntityDispositionInformations(param1);
-    }
-
-    public void serializeAs_FightEntityDispositionInformations(ICustomDataOutput param1) {
          super.serializeAs_EntityDispositionInformations(param1);
          if(this.carryingCharacterId < -9.007199254740992E15 || this.carryingCharacterId > 9.007199254740992E15)
          {
@@ -42,24 +22,16 @@ public class FightEntityDispositionInformations extends EntityDispositionInforma
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_FightEntityDispositionInformations(param1);
-    }
-
-    public void deserializeAs_FightEntityDispositionInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._carryingCharacterIdFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_FightEntityDispositionInformations(param1);
-    }
-
-    public void deserializeAsyncAs_FightEntityDispositionInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._carryingCharacterIdFunc);
-    }
-
-    private void _carryingCharacterIdFunc(ICustomDataInput param1) {
+         this.cellId = param1.readShort();
+         if(this.cellId < -1 || this.cellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.cellId + ") on element of EntityDispositionInformations.cellId.");
+         }
+         this.direction = param1.readByte();
+         if(this.direction < 0)
+         {
+            throw new Exception("Forbidden value (" + this.direction + ") on element of EntityDispositionInformations.direction.");
+         }
          this.carryingCharacterId = param1.readDouble();
          if(this.carryingCharacterId < -9.007199254740992E15 || this.carryingCharacterId > 9.007199254740992E15)
          {

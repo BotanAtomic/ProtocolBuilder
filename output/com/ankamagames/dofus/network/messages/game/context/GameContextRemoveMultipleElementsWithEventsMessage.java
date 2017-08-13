@@ -6,60 +6,16 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class GameContextRemoveMultipleElementsWithEventsMessage extends GameContextRemoveMultipleElementsMessage implements INetworkMessage {
 
     private int protocolId = 6416;
     private boolean _isInitialized = false;
-    private Vector<uint> elementEventIds;
+    private int[] elementEventIds;
     private FuncTree _elementEventIdstree;
 
 
-    public boolean isInitialized() {
-         return super.isInitialized && this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6416;
-    }
-
-    public GameContextRemoveMultipleElementsWithEventsMessage initGameContextRemoveMultipleElementsWithEventsMessage(Vector<Number> param1,Vector<uint>  param2) {
-         super.initGameContextRemoveMultipleElementsMessage(param1);
-         this.elementEventIds = param2;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.elementEventIds = new Vector.<uint>();
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameContextRemoveMultipleElementsWithEventsMessage(param1);
-    }
-
-    public void serializeAs_GameContextRemoveMultipleElementsWithEventsMessage(ICustomDataOutput param1) {
          super.serializeAs_GameContextRemoveMultipleElementsMessage(param1);
          param1.writeShort(this.elementEventIds.length);
          int _loc2_ = 0;
@@ -75,12 +31,20 @@ public class GameContextRemoveMultipleElementsWithEventsMessage extends GameCont
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameContextRemoveMultipleElementsWithEventsMessage(param1);
-    }
-
-    public void deserializeAs_GameContextRemoveMultipleElementsWithEventsMessage(ICustomDataInput param1) {
          int _loc4_ = 0;
-         super.deserialize(param1);
+         Object _loc4_ = NaN;
+         int _loc2_ = param1.readUnsignedShort();
+         int _loc3_ = 0;
+         while(_loc3_ < _loc2_)
+         {
+            _loc4_ = param1.readDouble();
+            if(_loc4_ < -9.007199254740992E15 || _loc4_ > 9.007199254740992E15)
+            {
+               throw new Exception("Forbidden value (" + _loc4_ + ") on elements of elementsIds.");
+            }
+            this.elementsIds.push(_loc4_);
+            _loc3_++;
+         }
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
@@ -93,34 +57,6 @@ public class GameContextRemoveMultipleElementsWithEventsMessage extends GameCont
             this.elementEventIds.push(_loc4_);
             _loc3_++;
          }
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameContextRemoveMultipleElementsWithEventsMessage(param1);
-    }
-
-    public void deserializeAsyncAs_GameContextRemoveMultipleElementsWithEventsMessage(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._elementEventIdstree = param1.addChild(this._elementEventIdstreeFunc);
-    }
-
-    private void _elementEventIdstreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._elementEventIdstree.addChild(this._elementEventIdsFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _elementEventIdsFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readByte();
-         if(_loc2_ < 0)
-         {
-            throw new Exception("Forbidden value (" + _loc2_ + ") on elements of elementEventIds.");
-         }
-         this.elementEventIds.push(_loc2_);
     }
 
 }

@@ -6,7 +6,6 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
 
 public class ZaapListMessage extends TeleportDestinationsListMessage implements INetworkMessage {
 
@@ -15,49 +14,7 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
     private int spawnMapId = 0;
 
 
-    public boolean isInitialized() {
-         return super.isInitialized && this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 1604;
-    }
-
-    public ZaapListMessage initZaapListMessage(int param1,Vector<uint>  param2,Vector<uint>  param3,Vector<uint>  param4,Vector<uint>  param5,int  param6) {
-         super.initTeleportDestinationsListMessage(param1,param2,param3,param4,param5);
-         this.spawnMapId = param6;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.spawnMapId = 0;
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_ZaapListMessage(param1);
-    }
-
-    public void serializeAs_ZaapListMessage(ICustomDataOutput param1) {
          super.serializeAs_TeleportDestinationsListMessage(param1);
          if(this.spawnMapId < 0)
          {
@@ -67,24 +24,63 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_ZaapListMessage(param1);
-    }
-
-    public void deserializeAs_ZaapListMessage(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._spawnMapIdFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_ZaapListMessage(param1);
-    }
-
-    public void deserializeAsyncAs_ZaapListMessage(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._spawnMapIdFunc);
-    }
-
-    private void _spawnMapIdFunc(ICustomDataInput param1) {
+         int _loc10_ = 0;
+         int _loc11_ = 0;
+         int _loc12_ = 0;
+         int _loc13_ = 0;
+         this.teleporterType = param1.readByte();
+         if(this.teleporterType < 0)
+         {
+            throw new Exception("Forbidden value (" + this.teleporterType + ") on element of TeleportDestinationsListMessage.teleporterType.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         int _loc3_ = 0;
+         while(_loc3_ < _loc2_)
+         {
+            _loc10_ = param1.readInt();
+            if(_loc10_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc10_ + ") on elements of mapIds.");
+            }
+            this.mapIds.push(_loc10_);
+            _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc11_ = param1.readVarUhShort();
+            if(_loc11_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc11_ + ") on elements of subAreaIds.");
+            }
+            this.subAreaIds.push(_loc11_);
+            _loc5_++;
+         }
+         int _loc6_ = param1.readUnsignedShort();
+         int _loc7_ = 0;
+         while(_loc7_ < _loc6_)
+         {
+            _loc12_ = param1.readVarUhShort();
+            if(_loc12_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc12_ + ") on elements of costs.");
+            }
+            this.costs.push(_loc12_);
+            _loc7_++;
+         }
+         int _loc8_ = param1.readUnsignedShort();
+         int _loc9_ = 0;
+         while(_loc9_ < _loc8_)
+         {
+            _loc13_ = param1.readByte();
+            if(_loc13_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc13_ + ") on elements of destTeleporterType.");
+            }
+            this.destTeleporterType.push(_loc13_);
+            _loc9_++;
+         }
          this.spawnMapId = param1.readInt();
          if(this.spawnMapId < 0)
          {

@@ -7,58 +7,16 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class RefreshFollowedQuestsOrderRequestMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 6722;
     private boolean _isInitialized = false;
-    private Vector<uint> quests;
+    private int[] quests;
     private FuncTree _queststree;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6722;
-    }
-
-    public RefreshFollowedQuestsOrderRequestMessage initRefreshFollowedQuestsOrderRequestMessage(Vector<uint> param1) {
-         this.quests = param1;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.quests = new Vector.<uint>();
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_RefreshFollowedQuestsOrderRequestMessage(param1);
-    }
-
-    public void serializeAs_RefreshFollowedQuestsOrderRequestMessage(ICustomDataOutput param1) {
          param1.writeShort(this.quests.length);
          int _loc2_ = 0;
          while(_loc2_ < this.quests.length)
@@ -73,10 +31,6 @@ public class RefreshFollowedQuestsOrderRequestMessage extends NetworkMessage imp
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_RefreshFollowedQuestsOrderRequestMessage(param1);
-    }
-
-    public void deserializeAs_RefreshFollowedQuestsOrderRequestMessage(ICustomDataInput param1) {
          int _loc4_ = 0;
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
@@ -90,33 +44,6 @@ public class RefreshFollowedQuestsOrderRequestMessage extends NetworkMessage imp
             this.quests.push(_loc4_);
             _loc3_++;
          }
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_RefreshFollowedQuestsOrderRequestMessage(param1);
-    }
-
-    public void deserializeAsyncAs_RefreshFollowedQuestsOrderRequestMessage(FuncTree param1) {
-         this._queststree = param1.addChild(this._queststreeFunc);
-    }
-
-    private void _queststreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._queststree.addChild(this._questsFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _questsFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readVarUhShort();
-         if(_loc2_ < 0)
-         {
-            throw new Exception("Forbidden value (" + _loc2_ + ") on elements of quests.");
-         }
-         this.quests.push(_loc2_);
     }
 
 }

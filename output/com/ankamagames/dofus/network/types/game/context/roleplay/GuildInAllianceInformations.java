@@ -6,7 +6,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
 
 public class GuildInAllianceInformations extends GuildInformations implements INetworkType {
 
@@ -14,26 +13,7 @@ public class GuildInAllianceInformations extends GuildInformations implements IN
     private int nbMembers = 0;
 
 
-    public int getTypeId() {
-         return 420;
-    }
-
-    public GuildInAllianceInformations initGuildInAllianceInformations(int param1,String  param2,int  param3,GuildEmblem  param4,int  param5) {
-         super.initGuildInformations(param1,param2,param3,param4);
-         this.nbMembers = param5;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.nbMembers = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GuildInAllianceInformations(param1);
-    }
-
-    public void serializeAs_GuildInAllianceInformations(ICustomDataOutput param1) {
          super.serializeAs_GuildInformations(param1);
          if(this.nbMembers < 1 || this.nbMembers > 240)
          {
@@ -43,24 +23,42 @@ public class GuildInAllianceInformations extends GuildInformations implements IN
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GuildInAllianceInformations(param1);
-    }
-
-    public void deserializeAs_GuildInAllianceInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._nbMembersFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GuildInAllianceInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GuildInAllianceInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._nbMembersFunc);
-    }
-
-    private void _nbMembersFunc(ICustomDataInput param1) {
+         this.abandonnedPaddock = param1.readBoolean();
+         this.level = param1.readUnsignedByte();
+         if(this.level < 0 || this.level > 255)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element of GuildInformationsGeneralMessage.level.");
+         }
+         this.expLevelFloor = param1.readVarUhLong();
+         if(this.expLevelFloor < 0 || this.expLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.expLevelFloor + ") on element of GuildInformationsGeneralMessage.expLevelFloor.");
+         }
+         this.experience = param1.readVarUhLong();
+         if(this.experience < 0 || this.experience > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experience + ") on element of GuildInformationsGeneralMessage.experience.");
+         }
+         this.expNextLevelFloor = param1.readVarUhLong();
+         if(this.expNextLevelFloor < 0 || this.expNextLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.expNextLevelFloor + ") on element of GuildInformationsGeneralMessage.expNextLevelFloor.");
+         }
+         this.creationDate = param1.readInt();
+         if(this.creationDate < 0)
+         {
+            throw new Exception("Forbidden value (" + this.creationDate + ") on element of GuildInformationsGeneralMessage.creationDate.");
+         }
+         this.nbTotalMembers = param1.readVarUhShort();
+         if(this.nbTotalMembers < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbTotalMembers + ") on element of GuildInformationsGeneralMessage.nbTotalMembers.");
+         }
+         this.nbConnectedMembers = param1.readVarUhShort();
+         if(this.nbConnectedMembers < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbConnectedMembers + ") on element of GuildInformationsGeneralMessage.nbConnectedMembers.");
+         }
          this.nbMembers = param1.readUnsignedByte();
          if(this.nbMembers < 1 || this.nbMembers > 240)
          {

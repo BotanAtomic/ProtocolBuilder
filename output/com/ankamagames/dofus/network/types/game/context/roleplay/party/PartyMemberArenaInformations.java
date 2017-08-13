@@ -8,7 +8,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
 
 public class PartyMemberArenaInformations extends PartyMemberInformations implements INetworkType {
 
@@ -16,27 +15,59 @@ public class PartyMemberArenaInformations extends PartyMemberInformations implem
     private int rank = 0;
 
 
-    public int getTypeId() {
-         return 391;
-    }
-
-    public PartyMemberArenaInformations initPartyMemberArenaInformations(Number param1,String  param2,int  param3,EntityLook  param4,int  param5,boolean  param6,int  param7,int  param8,int  param9,int  param10,int  param11,int  param12,int  param13,int  param14,int  param15,int  param16,PlayerStatus  param17,Vector<PartyCompanionMemberInformations>  param18,int  param19) {
-         super.initPartyMemberInformations(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10,param11,param12,param13,param14,param15,param16,param17,param18);
-         this.rank = param19;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.rank = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_PartyMemberArenaInformations(param1);
-    }
-
-    public void serializeAs_PartyMemberArenaInformations(ICustomDataOutput param1) {
-         super.serializeAs_PartyMemberInformations(param1);
+         super.serializeAs_CharacterBaseInformations(param1);
+         if(this.lifePoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+         }
+         param1.writeVarInt(this.lifePoints);
+         if(this.maxLifePoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+         }
+         param1.writeVarInt(this.maxLifePoints);
+         if(this.prospecting < 0)
+         {
+            throw new Exception("Forbidden value (" + this.prospecting + ") on element prospecting.");
+         }
+         param1.writeVarShort(this.prospecting);
+         if(this.regenRate < 0 || this.regenRate > 255)
+         {
+            throw new Exception("Forbidden value (" + this.regenRate + ") on element regenRate.");
+         }
+         param1.writeByte(this.regenRate);
+         if(this.initiative < 0)
+         {
+            throw new Exception("Forbidden value (" + this.initiative + ") on element initiative.");
+         }
+         param1.writeVarShort(this.initiative);
+         param1.writeByte(this.alignmentSide);
+         if(this.worldX < -255 || this.worldX > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
+         }
+         param1.writeShort(this.worldX);
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
+         }
+         param1.writeShort(this.worldY);
+         param1.writeInt(this.mapId);
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
+         param1.writeShort(this.status.getTypeId());
+         this.status.serialize(param1);
+         param1.writeShort(this.companions.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.companions.length)
+         {
+            (this.companions[_loc2_] as PartyCompanionMemberInformations).serializeAs_PartyCompanionMemberInformations(param1);
+            _loc2_++;
+         }
          if(this.rank < 0 || this.rank > 20000)
          {
             throw new Exception("Forbidden value (" + this.rank + ") on element rank.");
@@ -45,24 +76,7 @@ public class PartyMemberArenaInformations extends PartyMemberInformations implem
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_PartyMemberArenaInformations(param1);
-    }
-
-    public void deserializeAs_PartyMemberArenaInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._rankFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_PartyMemberArenaInformations(param1);
-    }
-
-    public void deserializeAsyncAs_PartyMemberArenaInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._rankFunc);
-    }
-
-    private void _rankFunc(ICustomDataInput param1) {
+         this.deserializeAs_PartyMemberInformations(param1);
          this.rank = param1.readVarUhShort();
          if(this.rank < 0 || this.rank > 20000)
          {

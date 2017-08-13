@@ -13,41 +13,21 @@ public class GameRolePlayActorInformations extends GameContextActorInformations 
     private int protocolId = 141;
 
 
-    public int getTypeId() {
-         return 141;
-    }
-
-    public GameRolePlayActorInformations initGameRolePlayActorInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3) {
-         super.initGameContextActorInformations(param1,param2,param3);
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameRolePlayActorInformations(param1);
-    }
-
-    public void serializeAs_GameRolePlayActorInformations(ICustomDataOutput param1) {
          super.serializeAs_GameContextActorInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameRolePlayActorInformations(param1);
-    }
-
-    public void deserializeAs_GameRolePlayActorInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameRolePlayActorInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GameRolePlayActorInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
+         this.contextualId = param1.readDouble();
+         if(this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.contextualId + ") on element of GameContextActorInformations.contextualId.");
+         }
+         this.look = new EntityLook();
+         this.look.deserialize(param1);
+         int _loc2_ = param1.readUnsignedShort();
+         this.disposition = ProtocolTypeManager.getInstance(EntityDispositionInformations,_loc2_);
+         this.disposition.deserialize(param1);
     }
 
 }

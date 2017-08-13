@@ -13,49 +13,22 @@ public class GameRolePlayNamedActorInformations extends GameRolePlayActorInforma
     private String name = "";
 
 
-    public int getTypeId() {
-         return 154;
-    }
-
-    public GameRolePlayNamedActorInformations initGameRolePlayNamedActorInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,String  param4) {
-         super.initGameRolePlayActorInformations(param1,param2,param3);
-         this.name = param4;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.name = "";
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameRolePlayNamedActorInformations(param1);
-    }
-
-    public void serializeAs_GameRolePlayNamedActorInformations(ICustomDataOutput param1) {
          super.serializeAs_GameRolePlayActorInformations(param1);
          param1.writeUTF(this.name);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameRolePlayNamedActorInformations(param1);
-    }
-
-    public void deserializeAs_GameRolePlayNamedActorInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._nameFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameRolePlayNamedActorInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GameRolePlayNamedActorInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._nameFunc);
-    }
-
-    private void _nameFunc(ICustomDataInput param1) {
+         this.contextualId = param1.readDouble();
+         if(this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.contextualId + ") on element of GameContextActorInformations.contextualId.");
+         }
+         this.look = new EntityLook();
+         this.look.deserialize(param1);
+         int _loc2_ = param1.readUnsignedShort();
+         this.disposition = ProtocolTypeManager.getInstance(EntityDispositionInformations,_loc2_);
+         this.disposition.deserialize(param1);
          this.name = param1.readUTF();
     }
 

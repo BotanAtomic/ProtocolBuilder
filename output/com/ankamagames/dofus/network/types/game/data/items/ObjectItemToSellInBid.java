@@ -6,7 +6,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
 
 public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkType {
 
@@ -14,26 +13,17 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
     private int unsoldDelay = 0;
 
 
-    public int getTypeId() {
-         return 164;
-    }
-
-    public ObjectItemToSellInBid initObjectItemToSellInBid(int param1,Vector<ObjectEffect>  param2,int  param3,int  param4,Number  param5,int  param6) {
-         super.initObjectItemToSell(param1,param2,param3,param4,param5);
-         this.unsoldDelay = param6;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.unsoldDelay = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_ObjectItemToSellInBid(param1);
-    }
-
-    public void serializeAs_ObjectItemToSellInBid(ICustomDataOutput param1) {
+         if(this.unsoldDelay < 0)
+         {
+            throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element unsoldDelay.");
+         }
+         param1.writeInt(this.unsoldDelay);
+         if(this.unsoldDelay < 0)
+         {
+            throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element unsoldDelay.");
+         }
+         param1.writeInt(this.unsoldDelay);
          super.serializeAs_ObjectItemToSell(param1);
          if(this.unsoldDelay < 0)
          {
@@ -43,24 +33,48 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_ObjectItemToSellInBid(param1);
-    }
-
-    public void deserializeAs_ObjectItemToSellInBid(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._unsoldDelayFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_ObjectItemToSellInBid(param1);
-    }
-
-    public void deserializeAsyncAs_ObjectItemToSellInBid(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._unsoldDelayFunc);
-    }
-
-    private void _unsoldDelayFunc(ICustomDataInput param1) {
+         int _loc4_ = 0;
+         ObjectEffect _loc5_ = null;
+         this.oldCellId = param1.readVarUhShort();
+         if(this.oldCellId < 0 || this.oldCellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.oldCellId + ") on element of PaddockMoveItemRequestMessage.oldCellId.");
+         }
+         this.newCellId = param1.readVarUhShort();
+         if(this.newCellId < 0 || this.newCellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.newCellId + ") on element of PaddockMoveItemRequestMessage.newCellId.");
+         }
+         this.objectGID = param1.readVarUhShort();
+         if(this.objectGID < 0)
+         {
+            throw new Exception("Forbidden value (" + this.objectGID + ") on element of ObjectItemToSell.objectGID.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         int _loc3_ = 0;
+         while(_loc3_ < _loc2_)
+         {
+            _loc4_ = param1.readUnsignedShort();
+            _loc5_ = ProtocolTypeManager.getInstance(ObjectEffect,_loc4_);
+            _loc5_.deserialize(param1);
+            this.effects.push(_loc5_);
+            _loc3_++;
+         }
+         this.objectUID = param1.readVarUhInt();
+         if(this.objectUID < 0)
+         {
+            throw new Exception("Forbidden value (" + this.objectUID + ") on element of ObjectItemToSell.objectUID.");
+         }
+         this.quantity = param1.readVarUhInt();
+         if(this.quantity < 0)
+         {
+            throw new Exception("Forbidden value (" + this.quantity + ") on element of ObjectItemToSell.quantity.");
+         }
+         this.objectPrice = param1.readVarUhLong();
+         if(this.objectPrice < 0 || this.objectPrice > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.objectPrice + ") on element of ObjectItemToSell.objectPrice.");
+         }
          this.unsoldDelay = param1.readInt();
          if(this.unsoldDelay < 0)
          {

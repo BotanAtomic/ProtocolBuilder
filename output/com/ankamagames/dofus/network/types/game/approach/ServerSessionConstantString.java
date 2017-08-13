@@ -11,49 +11,26 @@ public class ServerSessionConstantString extends ServerSessionConstant implement
     private String value = "";
 
 
-    public int getTypeId() {
-         return 436;
-    }
-
-    public ServerSessionConstantString initServerSessionConstantString(int param1,String  param2) {
-         super.initServerSessionConstant(param1);
-         this.value = param2;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.value = "";
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_ServerSessionConstantString(param1);
-    }
-
-    public void serializeAs_ServerSessionConstantString(ICustomDataOutput param1) {
+         param1.writeUTF(this.value);
+         param1.writeUTF(this.value);
          super.serializeAs_ServerSessionConstant(param1);
          param1.writeUTF(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_ServerSessionConstantString(param1);
-    }
-
-    public void deserializeAs_ServerSessionConstantString(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._valueFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_ServerSessionConstantString(param1);
-    }
-
-    public void deserializeAsyncAs_ServerSessionConstantString(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._valueFunc);
-    }
-
-    private void _valueFunc(ICustomDataInput param1) {
+         int _loc4_ = 0;
+         ServerSessionConstant _loc5_ = null;
+         int _loc2_ = param1.readUnsignedShort();
+         int _loc3_ = 0;
+         while(_loc3_ < _loc2_)
+         {
+            _loc4_ = param1.readUnsignedShort();
+            _loc5_ = ProtocolTypeManager.getInstance(ServerSessionConstant,_loc4_);
+            _loc5_.deserialize(param1);
+            this.variables.push(_loc5_);
+            _loc3_++;
+         }
          this.value = param1.readUTF();
     }
 

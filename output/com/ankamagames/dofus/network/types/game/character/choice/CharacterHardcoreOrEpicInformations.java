@@ -6,10 +6,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformations implements INetworkType {
 
@@ -19,30 +15,7 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
     private int deathMaxLevel = 0;
 
 
-    public int getTypeId() {
-         return 474;
-    }
-
-    public CharacterHardcoreOrEpicInformations initCharacterHardcoreOrEpicInformations(Number param1,String  param2,int  param3,EntityLook  param4,int  param5,boolean  param6,int  param7,int  param8,int  param9) {
-         super.initCharacterBaseInformations(param1,param2,param3,param4,param5,param6);
-         this.deathState = param7;
-         this.deathCount = param8;
-         this.deathMaxLevel = param9;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.deathState = 0;
-         this.deathCount = 0;
-         this.deathMaxLevel = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_CharacterHardcoreOrEpicInformations(param1);
-    }
-
-    public void serializeAs_CharacterHardcoreOrEpicInformations(ICustomDataOutput param1) {
          super.serializeAs_CharacterBaseInformations(param1);
          param1.writeByte(this.deathState);
          if(this.deathCount < 0)
@@ -58,44 +31,31 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_CharacterHardcoreOrEpicInformations(param1);
-    }
-
-    public void deserializeAs_CharacterHardcoreOrEpicInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._deathStateFunc(param1);
-         this._deathCountFunc(param1);
-         this._deathMaxLevelFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_CharacterHardcoreOrEpicInformations(param1);
-    }
-
-    public void deserializeAsyncAs_CharacterHardcoreOrEpicInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._deathStateFunc);
-         param1.addChild(this._deathCountFunc);
-         param1.addChild(this._deathMaxLevelFunc);
-    }
-
-    private void _deathStateFunc(ICustomDataInput param1) {
+         this.id = param1.readVarUhLong();
+         if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element of AbstractCharacterInformation.id.");
+         }
+         this.name = param1.readUTF();
+         this.level = param1.readUnsignedByte();
+         if(this.level < 1 || this.level > 206)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element of CharacterMinimalInformations.level.");
+         }
+         this.entityLook = new EntityLook();
+         this.entityLook.deserialize(param1);
+         this.breed = param1.readByte();
+         this.sex = param1.readBoolean();
          this.deathState = param1.readByte();
          if(this.deathState < 0)
          {
             throw new Exception("Forbidden value (" + this.deathState + ") on element of CharacterHardcoreOrEpicInformations.deathState.");
          }
-    }
-
-    private void _deathCountFunc(ICustomDataInput param1) {
          this.deathCount = param1.readVarUhShort();
          if(this.deathCount < 0)
          {
             throw new Exception("Forbidden value (" + this.deathCount + ") on element of CharacterHardcoreOrEpicInformations.deathCount.");
          }
-    }
-
-    private void _deathMaxLevelFunc(ICustomDataInput param1) {
          this.deathMaxLevel = param1.readUnsignedByte();
          if(this.deathMaxLevel < 1 || this.deathMaxLevel > 206)
          {

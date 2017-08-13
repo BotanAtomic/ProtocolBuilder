@@ -5,9 +5,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class GameFightFighterTaxCollectorLightInformations extends GameFightFighterLightInformations implements INetworkType {
 
@@ -16,28 +13,7 @@ public class GameFightFighterTaxCollectorLightInformations extends GameFightFigh
     private int lastNameId = 0;
 
 
-    public int getTypeId() {
-         return 457;
-    }
-
-    public GameFightFighterTaxCollectorLightInformations initGameFightFighterTaxCollectorLightInformations(Number param1,int  param2,int  param3,int  param4,boolean  param5,boolean  param6,int  param7,int  param8) {
-         super.initGameFightFighterLightInformations(param1,param2,param3,param4,param5,param6);
-         this.firstNameId = param7;
-         this.lastNameId = param8;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.firstNameId = 0;
-         this.lastNameId = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameFightFighterTaxCollectorLightInformations(param1);
-    }
-
-    public void serializeAs_GameFightFighterTaxCollectorLightInformations(ICustomDataOutput param1) {
          super.serializeAs_GameFightFighterLightInformations(param1);
          if(this.firstNameId < 0)
          {
@@ -52,34 +28,30 @@ public class GameFightFighterTaxCollectorLightInformations extends GameFightFigh
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameFightFighterTaxCollectorLightInformations(param1);
-    }
-
-    public void deserializeAs_GameFightFighterTaxCollectorLightInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._firstNameIdFunc(param1);
-         this._lastNameIdFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameFightFighterTaxCollectorLightInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GameFightFighterTaxCollectorLightInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._firstNameIdFunc);
-         param1.addChild(this._lastNameIdFunc);
-    }
-
-    private void _firstNameIdFunc(ICustomDataInput param1) {
+         int _loc2_ = param1.readByte();
+         this.sex = BooleanByteWrapper.getFlag(_loc2_,0);
+         this.alive = BooleanByteWrapper.getFlag(_loc2_,1);
+         this.id = param1.readDouble();
+         if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element of GameFightFighterLightInformations.id.");
+         }
+         this.wave = param1.readByte();
+         if(this.wave < 0)
+         {
+            throw new Exception("Forbidden value (" + this.wave + ") on element of GameFightFighterLightInformations.wave.");
+         }
+         this.level = param1.readVarUhShort();
+         if(this.level < 0)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element of GameFightFighterLightInformations.level.");
+         }
+         this.breed = param1.readByte();
          this.firstNameId = param1.readVarUhShort();
          if(this.firstNameId < 0)
          {
             throw new Exception("Forbidden value (" + this.firstNameId + ") on element of GameFightFighterTaxCollectorLightInformations.firstNameId.");
          }
-    }
-
-    private void _lastNameIdFunc(ICustomDataInput param1) {
          this.lastNameId = param1.readVarUhShort();
          if(this.lastNameId < 0)
          {

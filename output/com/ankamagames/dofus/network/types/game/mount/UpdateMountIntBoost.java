@@ -11,49 +11,25 @@ public class UpdateMountIntBoost extends UpdateMountBoost implements INetworkTyp
     private int value = 0;
 
 
-    public int getTypeId() {
-         return 357;
-    }
-
-    public UpdateMountIntBoost initUpdateMountIntBoost(int param1,int  param2) {
-         super.initUpdateMountBoost(param1);
-         this.value = param2;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.value = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_UpdateMountIntBoost(param1);
-    }
-
-    public void serializeAs_UpdateMountIntBoost(ICustomDataOutput param1) {
          super.serializeAs_UpdateMountBoost(param1);
          param1.writeInt(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_UpdateMountIntBoost(param1);
-    }
-
-    public void deserializeAs_UpdateMountIntBoost(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._valueFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_UpdateMountIntBoost(param1);
-    }
-
-    public void deserializeAsyncAs_UpdateMountIntBoost(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._valueFunc);
-    }
-
-    private void _valueFunc(ICustomDataInput param1) {
+         int _loc4_ = 0;
+         UpdateMountBoost _loc5_ = null;
+         this.rideId = param1.readVarInt();
+         int _loc2_ = param1.readUnsignedShort();
+         int _loc3_ = 0;
+         while(_loc3_ < _loc2_)
+         {
+            _loc4_ = param1.readUnsignedShort();
+            _loc5_ = ProtocolTypeManager.getInstance(UpdateMountBoost,_loc4_);
+            _loc5_.deserialize(param1);
+            this.boostToUpdateList.push(_loc5_);
+            _loc3_++;
+         }
          this.value = param1.readInt();
     }
 

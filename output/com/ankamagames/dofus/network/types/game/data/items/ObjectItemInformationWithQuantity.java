@@ -6,7 +6,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
 
 public class ObjectItemInformationWithQuantity extends ObjectItemMinimalInformation implements INetworkType {
 
@@ -14,27 +13,21 @@ public class ObjectItemInformationWithQuantity extends ObjectItemMinimalInformat
     private int quantity = 0;
 
 
-    public int getTypeId() {
-         return 387;
-    }
-
-    public ObjectItemInformationWithQuantity initObjectItemInformationWithQuantity(int param1,Vector<ObjectEffect>  param2,int  param3) {
-         super.initObjectItemMinimalInformation(param1,param2);
-         this.quantity = param3;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.quantity = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_ObjectItemInformationWithQuantity(param1);
-    }
-
-    public void serializeAs_ObjectItemInformationWithQuantity(ICustomDataOutput param1) {
-         super.serializeAs_ObjectItemMinimalInformation(param1);
+         super.serializeAs_Item(param1);
+         if(this.objectGID < 0)
+         {
+            throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
+         }
+         param1.writeVarShort(this.objectGID);
+         param1.writeShort(this.effects.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.effects.length)
+         {
+            param1.writeShort((this.effects[_loc2_] as ObjectEffect).getTypeId());
+            (this.effects[_loc2_] as ObjectEffect).serialize(param1);
+            _loc2_++;
+         }
          if(this.quantity < 0)
          {
             throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
@@ -43,24 +36,7 @@ public class ObjectItemInformationWithQuantity extends ObjectItemMinimalInformat
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_ObjectItemInformationWithQuantity(param1);
-    }
-
-    public void deserializeAs_ObjectItemInformationWithQuantity(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._quantityFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_ObjectItemInformationWithQuantity(param1);
-    }
-
-    public void deserializeAsyncAs_ObjectItemInformationWithQuantity(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._quantityFunc);
-    }
-
-    private void _quantityFunc(ICustomDataInput param1) {
+         this.deserializeAs_ObjectItemMinimalInformation(param1);
          this.quantity = param1.readVarUhInt();
          if(this.quantity < 0)
          {

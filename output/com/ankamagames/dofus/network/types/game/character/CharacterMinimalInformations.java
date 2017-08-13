@@ -5,7 +5,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
 
 public class CharacterMinimalInformations extends CharacterBasicMinimalInformations implements INetworkType {
 
@@ -13,26 +12,7 @@ public class CharacterMinimalInformations extends CharacterBasicMinimalInformati
     private int level = 0;
 
 
-    public int getTypeId() {
-         return 110;
-    }
-
-    public CharacterMinimalInformations initCharacterMinimalInformations(Number param1,String  param2,int  param3) {
-         super.initCharacterBasicMinimalInformations(param1,param2);
-         this.level = param3;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.level = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_CharacterMinimalInformations(param1);
-    }
-
-    public void serializeAs_CharacterMinimalInformations(ICustomDataOutput param1) {
          super.serializeAs_CharacterBasicMinimalInformations(param1);
          if(this.level < 1 || this.level > 206)
          {
@@ -42,24 +22,12 @@ public class CharacterMinimalInformations extends CharacterBasicMinimalInformati
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_CharacterMinimalInformations(param1);
-    }
-
-    public void deserializeAs_CharacterMinimalInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._levelFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_CharacterMinimalInformations(param1);
-    }
-
-    public void deserializeAsyncAs_CharacterMinimalInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._levelFunc);
-    }
-
-    private void _levelFunc(ICustomDataInput param1) {
+         this.id = param1.readVarUhLong();
+         if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element of AbstractCharacterInformation.id.");
+         }
+         this.name = param1.readUTF();
          this.level = param1.readUnsignedByte();
          if(this.level < 1 || this.level > 206)
          {

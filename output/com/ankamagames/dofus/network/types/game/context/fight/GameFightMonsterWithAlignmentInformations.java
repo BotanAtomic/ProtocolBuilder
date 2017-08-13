@@ -15,52 +15,25 @@ public class GameFightMonsterWithAlignmentInformations extends GameFightMonsterI
     private FuncTree _alignmentInfostree;
 
 
-    public int getTypeId() {
-         return 203;
-    }
-
-    public GameFightMonsterWithAlignmentInformations initGameFightMonsterWithAlignmentInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector<uint>  param8,int  param9,int  param10,ActorAlignmentInformations  param11) {
-         super.initGameFightMonsterInformations(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10);
-         this.alignmentInfos = param11;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.alignmentInfos = new ActorAlignmentInformations();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameFightMonsterWithAlignmentInformations(param1);
-    }
-
-    public void serializeAs_GameFightMonsterWithAlignmentInformations(ICustomDataOutput param1) {
          super.serializeAs_GameFightMonsterInformations(param1);
          this.alignmentInfos.serializeAs_ActorAlignmentInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameFightMonsterWithAlignmentInformations(param1);
-    }
-
-    public void deserializeAs_GameFightMonsterWithAlignmentInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
+         this.deserializeAs_GameFightFighterInformations(param1);
+         this.creatureGenericId = param1.readVarUhShort();
+         if(this.creatureGenericId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.creatureGenericId + ") on element of GameFightMonsterInformations.creatureGenericId.");
+         }
+         this.creatureGrade = param1.readByte();
+         if(this.creatureGrade < 0)
+         {
+            throw new Exception("Forbidden value (" + this.creatureGrade + ") on element of GameFightMonsterInformations.creatureGrade.");
+         }
          this.alignmentInfos = new ActorAlignmentInformations();
          this.alignmentInfos.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameFightMonsterWithAlignmentInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GameFightMonsterWithAlignmentInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._alignmentInfostree = param1.addChild(this._alignmentInfostreeFunc);
-    }
-
-    private void _alignmentInfostreeFunc(ICustomDataInput param1) {
-         this.alignmentInfos = new ActorAlignmentInformations();
-         this.alignmentInfos.deserializeAsync(this._alignmentInfostree);
     }
 
 }

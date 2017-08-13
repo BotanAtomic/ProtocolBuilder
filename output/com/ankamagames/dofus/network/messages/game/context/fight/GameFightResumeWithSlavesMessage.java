@@ -15,53 +15,11 @@ public class GameFightResumeWithSlavesMessage extends GameFightResumeMessage imp
 
     private int protocolId = 6215;
     private boolean _isInitialized = false;
-    private Vector<GameFightResumeSlaveInfo> slavesInfo;
+    private GameFightResumeSlaveInfo[] slavesInfo;
     private FuncTree _slavesInfotree;
 
 
-    public boolean isInitialized() {
-         return super.isInitialized && this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6215;
-    }
-
-    public GameFightResumeWithSlavesMessage initGameFightResumeWithSlavesMessage(Vector<FightDispellableEffectExtendedInformations> param1,Vector<GameActionMark>  param2,int  param3,int  param4,Vector<Idol>  param5,Vector<GameFightSpellCooldown>  param6,int  param7,int  param8,Vector<GameFightResumeSlaveInfo>  param9) {
-         super.initGameFightResumeMessage(param1,param2,param3,param4,param5,param6,param7,param8);
-         this.slavesInfo = param9;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.slavesInfo = new Vector.<GameFightResumeSlaveInfo>();
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameFightResumeWithSlavesMessage(param1);
-    }
-
-    public void serializeAs_GameFightResumeWithSlavesMessage(ICustomDataOutput param1) {
          super.serializeAs_GameFightResumeMessage(param1);
          param1.writeShort(this.slavesInfo.length);
          int _loc2_ = 0;
@@ -73,12 +31,28 @@ public class GameFightResumeWithSlavesMessage extends GameFightResumeMessage imp
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameFightResumeWithSlavesMessage(param1);
-    }
-
-    public void deserializeAs_GameFightResumeWithSlavesMessage(ICustomDataInput param1) {
          GameFightResumeSlaveInfo _loc4_ = null;
-         super.deserialize(param1);
+         GameFightSpellCooldown _loc4_ = null;
+         this.deserializeAs_GameFightSpectateMessage(param1);
+         int _loc2_ = param1.readUnsignedShort();
+         int _loc3_ = 0;
+         while(_loc3_ < _loc2_)
+         {
+            _loc4_ = new GameFightSpellCooldown();
+            _loc4_.deserialize(param1);
+            this.spellCooldowns.push(_loc4_);
+            _loc3_++;
+         }
+         this.summonCount = param1.readByte();
+         if(this.summonCount < 0)
+         {
+            throw new Exception("Forbidden value (" + this.summonCount + ") on element of GameFightResumeMessage.summonCount.");
+         }
+         this.bombCount = param1.readByte();
+         if(this.bombCount < 0)
+         {
+            throw new Exception("Forbidden value (" + this.bombCount + ") on element of GameFightResumeMessage.bombCount.");
+         }
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
@@ -88,31 +62,6 @@ public class GameFightResumeWithSlavesMessage extends GameFightResumeMessage imp
             this.slavesInfo.push(_loc4_);
             _loc3_++;
          }
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameFightResumeWithSlavesMessage(param1);
-    }
-
-    public void deserializeAsyncAs_GameFightResumeWithSlavesMessage(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._slavesInfotree = param1.addChild(this._slavesInfotreeFunc);
-    }
-
-    private void _slavesInfotreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._slavesInfotree.addChild(this._slavesInfoFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _slavesInfoFunc(ICustomDataInput param1) {
-         GameFightResumeSlaveInfo _loc2_ = new GameFightResumeSlaveInfo();
-         _loc2_.deserialize(param1);
-         this.slavesInfo.push(_loc2_);
     }
 
 }

@@ -16,61 +16,44 @@ public class GameFightFighterNamedInformations extends GameFightFighterInformati
     private FuncTree _statustree;
 
 
-    public int getTypeId() {
-         return 158;
-    }
-
-    public GameFightFighterNamedInformations initGameFightFighterNamedInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector<uint>  param8,String  param9,PlayerStatus  param10) {
-         super.initGameFightFighterInformations(param1,param2,param3,param4,param5,param6,param7,param8);
-         this.name = param9;
-         this.status = param10;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.name = "";
-         this.status = new PlayerStatus();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameFightFighterNamedInformations(param1);
-    }
-
-    public void serializeAs_GameFightFighterNamedInformations(ICustomDataOutput param1) {
          super.serializeAs_GameFightFighterInformations(param1);
          param1.writeUTF(this.name);
          this.status.serializeAs_PlayerStatus(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameFightFighterNamedInformations(param1);
-    }
-
-    public void deserializeAs_GameFightFighterNamedInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._nameFunc(param1);
+         int _loc5_ = 0;
+         this.deserializeAs_GameContextActorInformations(param1);
+         this.teamId = param1.readByte();
+         if(this.teamId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.teamId + ") on element of GameFightFighterInformations.teamId.");
+         }
+         this.wave = param1.readByte();
+         if(this.wave < 0)
+         {
+            throw new Exception("Forbidden value (" + this.wave + ") on element of GameFightFighterInformations.wave.");
+         }
+         this.alive = param1.readBoolean();
+         int _loc2_ = param1.readUnsignedShort();
+         this.stats = ProtocolTypeManager.getInstance(GameFightMinimalStats,_loc2_);
+         this.stats.deserialize(param1);
+         int _loc3_ = param1.readUnsignedShort();
+         int _loc4_ = 0;
+         while(_loc4_ < _loc3_)
+         {
+            _loc5_ = param1.readVarUhShort();
+            if(_loc5_ < 0 || _loc5_ > 559)
+            {
+               throw new Exception("Forbidden value (" + _loc5_ + ") on elements of previousPositions.");
+            }
+            this.previousPositions.push(_loc5_);
+            _loc4_++;
+         }
+         this.name = param1.readUTF();
          this.status = new PlayerStatus();
          this.status.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameFightFighterNamedInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GameFightFighterNamedInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._nameFunc);
-         this._statustree = param1.addChild(this._statustreeFunc);
-    }
-
-    private void _nameFunc(ICustomDataInput param1) {
-         this.name = param1.readUTF();
-    }
-
-    private void _statustreeFunc(ICustomDataInput param1) {
-         this.status = new PlayerStatus();
-         this.status.deserializeAsync(this._statustree);
     }
 
 }

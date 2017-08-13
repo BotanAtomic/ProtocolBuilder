@@ -14,52 +14,25 @@ public class TaxCollectorStaticExtendedInformations extends TaxCollectorStaticIn
     private FuncTree _allianceIdentitytree;
 
 
-    public int getTypeId() {
-         return 440;
-    }
-
-    public TaxCollectorStaticExtendedInformations initTaxCollectorStaticExtendedInformations(int param1,int  param2,GuildInformations  param3,AllianceInformations  param4) {
-         super.initTaxCollectorStaticInformations(param1,param2,param3);
-         this.allianceIdentity = param4;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.allianceIdentity = new AllianceInformations();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_TaxCollectorStaticExtendedInformations(param1);
-    }
-
-    public void serializeAs_TaxCollectorStaticExtendedInformations(ICustomDataOutput param1) {
-         super.serializeAs_TaxCollectorStaticInformations(param1);
+         if(this.firstNameId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.firstNameId + ") on element firstNameId.");
+         }
+         param1.writeVarShort(this.firstNameId);
+         if(this.lastNameId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
+         }
+         param1.writeVarShort(this.lastNameId);
+         this.guildIdentity.serializeAs_GuildInformations(param1);
          this.allianceIdentity.serializeAs_AllianceInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_TaxCollectorStaticExtendedInformations(param1);
-    }
-
-    public void deserializeAs_TaxCollectorStaticExtendedInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
+         this.deserializeAs_TaxCollectorStaticInformations(param1);
          this.allianceIdentity = new AllianceInformations();
          this.allianceIdentity.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_TaxCollectorStaticExtendedInformations(param1);
-    }
-
-    public void deserializeAsyncAs_TaxCollectorStaticExtendedInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._allianceIdentitytree = param1.addChild(this._allianceIdentitytreeFunc);
-    }
-
-    private void _allianceIdentitytreeFunc(ICustomDataInput param1) {
-         this.allianceIdentity = new AllianceInformations();
-         this.allianceIdentity.deserializeAsync(this._allianceIdentitytree);
     }
 
 }

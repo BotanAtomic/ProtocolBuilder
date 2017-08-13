@@ -12,54 +12,10 @@ public class MountHarnessDissociateRequestMessage extends NetworkMessage impleme
     private int protocolId = 6696;
 
 
-    public boolean isInitialized() {
-         return true;
-    }
-
-    public int getMessageId() {
-         return 6696;
-    }
-
-    public MountHarnessDissociateRequestMessage initMountHarnessDissociateRequestMessage() {
-         return this;
-    }
-
-    public void reset() {
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
     }
 
-    public void serializeAs_MountHarnessDissociateRequestMessage(ICustomDataOutput param1) {
-    }
-
     public void deserialize(ICustomDataInput param1) {
-    }
-
-    public void deserializeAs_MountHarnessDissociateRequestMessage(ICustomDataInput param1) {
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-    }
-
-    public void deserializeAsyncAs_MountHarnessDissociateRequestMessage(FuncTree param1) {
     }
 
 }

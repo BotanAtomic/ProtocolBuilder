@@ -16,55 +16,26 @@ public class GameRolePlayPrismInformations extends GameRolePlayActorInformations
     private FuncTree _prismtree;
 
 
-    public int getTypeId() {
-         return 161;
-    }
-
-    public GameRolePlayPrismInformations initGameRolePlayPrismInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,PrismInformation  param4) {
-         super.initGameRolePlayActorInformations(param1,param2,param3);
-         this.prism = param4;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.prism = new PrismInformation();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameRolePlayPrismInformations(param1);
-    }
-
-    public void serializeAs_GameRolePlayPrismInformations(ICustomDataOutput param1) {
          super.serializeAs_GameRolePlayActorInformations(param1);
          param1.writeShort(this.prism.getTypeId());
          this.prism.serialize(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameRolePlayPrismInformations(param1);
-    }
-
-    public void deserializeAs_GameRolePlayPrismInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
+         this.contextualId = param1.readDouble();
+         if(this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.contextualId + ") on element of GameContextActorInformations.contextualId.");
+         }
+         this.look = new EntityLook();
+         this.look.deserialize(param1);
+         int _loc2_ = param1.readUnsignedShort();
+         this.disposition = ProtocolTypeManager.getInstance(EntityDispositionInformations,_loc2_);
+         this.disposition.deserialize(param1);
          int _loc2_ = param1.readUnsignedShort();
          this.prism = ProtocolTypeManager.getInstance(PrismInformation,_loc2_);
          this.prism.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameRolePlayPrismInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GameRolePlayPrismInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._prismtree = param1.addChild(this._prismtreeFunc);
-    }
-
-    private void _prismtreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         this.prism = ProtocolTypeManager.getInstance(PrismInformation,_loc2_);
-         this.prism.deserializeAsync(this._prismtree);
     }
 
 }

@@ -22,75 +22,71 @@ public class MapComplementaryInformationsDataInHouseMessage extends MapComplemen
     private FuncTree _currentHousetree;
 
 
-    public boolean isInitialized() {
-         return super.isInitialized && this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6130;
-    }
-
-    public MapComplementaryInformationsDataInHouseMessage initMapComplementaryInformationsDataInHouseMessage(int param1,int  param2,Vector<HouseInformations>  param3,Vector<GameRolePlayActorInformations>  param4,Vector<InteractiveElement>  param5,Vector<StatedElement>  param6,Vector<MapObstacle>  param7,Vector<FightCommonInformations>  param8,boolean  param9,FightStartingPositions  param10,HouseInformationsInside  param11) {
-         super.initMapComplementaryInformationsDataMessage(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10);
-         this.currentHouse = param11;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.currentHouse = new HouseInformationsInside();
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_MapComplementaryInformationsDataInHouseMessage(param1);
-    }
-
-    public void serializeAs_MapComplementaryInformationsDataInHouseMessage(ICustomDataOutput param1) {
-         super.serializeAs_MapComplementaryInformationsDataMessage(param1);
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
+         if(this.mapId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
+         }
+         param1.writeInt(this.mapId);
+         param1.writeShort(this.houses.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.houses.length)
+         {
+            param1.writeShort((this.houses[_loc2_] as HouseInformations).getTypeId());
+            (this.houses[_loc2_] as HouseInformations).serialize(param1);
+            _loc2_++;
+         }
+         param1.writeShort(this.actors.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.actors.length)
+         {
+            param1.writeShort((this.actors[_loc3_] as GameRolePlayActorInformations).getTypeId());
+            (this.actors[_loc3_] as GameRolePlayActorInformations).serialize(param1);
+            _loc3_++;
+         }
+         param1.writeShort(this.interactiveElements.length);
+         int _loc4_ = 0;
+         while(_loc4_ < this.interactiveElements.length)
+         {
+            param1.writeShort((this.interactiveElements[_loc4_] as InteractiveElement).getTypeId());
+            (this.interactiveElements[_loc4_] as InteractiveElement).serialize(param1);
+            _loc4_++;
+         }
+         param1.writeShort(this.statedElements.length);
+         int _loc5_ = 0;
+         while(_loc5_ < this.statedElements.length)
+         {
+            (this.statedElements[_loc5_] as StatedElement).serializeAs_StatedElement(param1);
+            _loc5_++;
+         }
+         param1.writeShort(this.obstacles.length);
+         int _loc6_ = 0;
+         while(_loc6_ < this.obstacles.length)
+         {
+            (this.obstacles[_loc6_] as MapObstacle).serializeAs_MapObstacle(param1);
+            _loc6_++;
+         }
+         param1.writeShort(this.fights.length);
+         int _loc7_ = 0;
+         while(_loc7_ < this.fights.length)
+         {
+            (this.fights[_loc7_] as FightCommonInformations).serializeAs_FightCommonInformations(param1);
+            _loc7_++;
+         }
+         param1.writeBoolean(this.hasAggressiveMonsters);
+         this.fightStartPositions.serializeAs_FightStartingPositions(param1);
          this.currentHouse.serializeAs_HouseInformationsInside(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_MapComplementaryInformationsDataInHouseMessage(param1);
-    }
-
-    public void deserializeAs_MapComplementaryInformationsDataInHouseMessage(ICustomDataInput param1) {
-         super.deserialize(param1);
+         this.deserializeAs_MapComplementaryInformationsDataMessage(param1);
          this.currentHouse = new HouseInformationsInside();
          this.currentHouse.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_MapComplementaryInformationsDataInHouseMessage(param1);
-    }
-
-    public void deserializeAsyncAs_MapComplementaryInformationsDataInHouseMessage(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._currentHousetree = param1.addChild(this._currentHousetreeFunc);
-    }
-
-    private void _currentHousetreeFunc(ICustomDataInput param1) {
-         this.currentHouse = new HouseInformationsInside();
-         this.currentHouse.deserializeAsync(this._currentHousetree);
     }
 
 }

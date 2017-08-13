@@ -8,9 +8,6 @@ import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class FriendSpouseOnlineInformations extends FriendSpouseInformations implements INetworkType {
 
@@ -21,32 +18,7 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations imp
     private boolean followSpouse = false;
 
 
-    public int getTypeId() {
-         return 93;
-    }
-
-    public FriendSpouseOnlineInformations initFriendSpouseOnlineInformations(int param1,Number  param2,String  param3,int  param4,int  param5,int  param6,EntityLook  param7,GuildInformations  param8,int  param9,int  param10,int  param11,boolean  param12,boolean  param13) {
-         super.initFriendSpouseInformations(param1,param2,param3,param4,param5,param6,param7,param8,param9);
-         this.mapId = param10;
-         this.subAreaId = param11;
-         this.inFight = param12;
-         this.followSpouse = param13;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.mapId = 0;
-         this.subAreaId = 0;
-         this.inFight = false;
-         this.followSpouse = false;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_FriendSpouseOnlineInformations(param1);
-    }
-
-    public void serializeAs_FriendSpouseOnlineInformations(ICustomDataOutput param1) {
          super.serializeAs_FriendSpouseInformations(param1);
          int _loc2_ = 0;
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.inFight);
@@ -65,42 +37,37 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations imp
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_FriendSpouseOnlineInformations(param1);
-    }
-
-    public void deserializeAs_FriendSpouseOnlineInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this.deserializeByteBoxes(param1);
-         this._mapIdFunc(param1);
-         this._subAreaIdFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_FriendSpouseOnlineInformations(param1);
-    }
-
-    public void deserializeAsyncAs_FriendSpouseOnlineInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this.deserializeByteBoxes);
-         param1.addChild(this._mapIdFunc);
-         param1.addChild(this._subAreaIdFunc);
-    }
-
-    private void deserializeByteBoxes(ICustomDataInput param1) {
+         this.spouseAccountId = param1.readInt();
+         if(this.spouseAccountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.spouseAccountId + ") on element of FriendSpouseInformations.spouseAccountId.");
+         }
+         this.spouseId = param1.readVarUhLong();
+         if(this.spouseId < 0 || this.spouseId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.spouseId + ") on element of FriendSpouseInformations.spouseId.");
+         }
+         this.spouseName = param1.readUTF();
+         this.spouseLevel = param1.readUnsignedByte();
+         if(this.spouseLevel < 1 || this.spouseLevel > 206)
+         {
+            throw new Exception("Forbidden value (" + this.spouseLevel + ") on element of FriendSpouseInformations.spouseLevel.");
+         }
+         this.breed = param1.readByte();
+         this.sex = param1.readByte();
+         this.spouseEntityLook = new EntityLook();
+         this.spouseEntityLook.deserialize(param1);
+         this.guildInfo = new GuildInformations();
+         this.guildInfo.deserialize(param1);
+         this.alignmentSide = param1.readByte();
          int _loc2_ = param1.readByte();
          this.inFight = BooleanByteWrapper.getFlag(_loc2_,0);
          this.followSpouse = BooleanByteWrapper.getFlag(_loc2_,1);
-    }
-
-    private void _mapIdFunc(ICustomDataInput param1) {
          this.mapId = param1.readInt();
          if(this.mapId < 0)
          {
             throw new Exception("Forbidden value (" + this.mapId + ") on element of FriendSpouseOnlineInformations.mapId.");
          }
-    }
-
-    private void _subAreaIdFunc(ICustomDataInput param1) {
          this.subAreaId = param1.readVarUhShort();
          if(this.subAreaId < 0)
          {

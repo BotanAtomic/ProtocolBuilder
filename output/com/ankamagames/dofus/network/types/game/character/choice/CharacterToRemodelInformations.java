@@ -5,9 +5,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class CharacterToRemodelInformations extends CharacterRemodelingInformation implements INetworkType {
 
@@ -16,28 +13,7 @@ public class CharacterToRemodelInformations extends CharacterRemodelingInformati
     private int mandatoryChangeMask = 0;
 
 
-    public int getTypeId() {
-         return 477;
-    }
-
-    public CharacterToRemodelInformations initCharacterToRemodelInformations(Number param1,String  param2,int  param3,boolean  param4,int  param5,Vector<int>  param6,int  param7,int  param8) {
-         super.initCharacterRemodelingInformation(param1,param2,param3,param4,param5,param6);
-         this.possibleChangeMask = param7;
-         this.mandatoryChangeMask = param8;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.possibleChangeMask = 0;
-         this.mandatoryChangeMask = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_CharacterToRemodelInformations(param1);
-    }
-
-    public void serializeAs_CharacterToRemodelInformations(ICustomDataOutput param1) {
          super.serializeAs_CharacterRemodelingInformation(param1);
          if(this.possibleChangeMask < 0)
          {
@@ -52,34 +28,33 @@ public class CharacterToRemodelInformations extends CharacterRemodelingInformati
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_CharacterToRemodelInformations(param1);
-    }
-
-    public void deserializeAs_CharacterToRemodelInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._possibleChangeMaskFunc(param1);
-         this._mandatoryChangeMaskFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_CharacterToRemodelInformations(param1);
-    }
-
-    public void deserializeAsyncAs_CharacterToRemodelInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._possibleChangeMaskFunc);
-         param1.addChild(this._mandatoryChangeMaskFunc);
-    }
-
-    private void _possibleChangeMaskFunc(ICustomDataInput param1) {
+         Object _loc4_ = 0;
+         this.id = param1.readVarUhLong();
+         if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element of AbstractCharacterInformation.id.");
+         }
+         this.name = param1.readUTF();
+         this.breed = param1.readByte();
+         this.sex = param1.readBoolean();
+         this.cosmeticId = param1.readVarUhShort();
+         if(this.cosmeticId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.cosmeticId + ") on element of CharacterRemodelingInformation.cosmeticId.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         int _loc3_ = 0;
+         while(_loc3_ < _loc2_)
+         {
+            _loc4_ = param1.readInt();
+            this.colors.push(_loc4_);
+            _loc3_++;
+         }
          this.possibleChangeMask = param1.readByte();
          if(this.possibleChangeMask < 0)
          {
             throw new Exception("Forbidden value (" + this.possibleChangeMask + ") on element of CharacterToRemodelInformations.possibleChangeMask.");
          }
-    }
-
-    private void _mandatoryChangeMaskFunc(ICustomDataInput param1) {
          this.mandatoryChangeMask = param1.readByte();
          if(this.mandatoryChangeMask < 0)
          {

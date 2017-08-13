@@ -32,64 +32,7 @@ public class ActorRestrictionsInformations extends Object implements INetworkTyp
     private boolean cantWalk8Directions = false;
 
 
-    public int getTypeId() {
-         return 204;
-    }
-
-    public ActorRestrictionsInformations initActorRestrictionsInformations(boolean param1,boolean  param2,boolean  param3,boolean  param4,boolean  param5,boolean  param6,boolean  param7,boolean  param8,boolean  param9,boolean  param10,boolean  param11,boolean  param12,boolean  param13,boolean  param14,boolean  param15,boolean  param16,boolean  param17,boolean  param18,boolean  param19,boolean  param20,boolean  param21) {
-         this.cantBeAggressed = param1;
-         this.cantBeChallenged = param2;
-         this.cantTrade = param3;
-         this.cantBeAttackedByMutant = param4;
-         this.cantRun = param5;
-         this.forceSlowWalk = param6;
-         this.cantMinimize = param7;
-         this.cantMove = param8;
-         this.cantAggress = param9;
-         this.cantChallenge = param10;
-         this.cantExchange = param11;
-         this.cantAttack = param12;
-         this.cantChat = param13;
-         this.cantBeMerchant = param14;
-         this.cantUseObject = param15;
-         this.cantUseTaxCollector = param16;
-         this.cantUseInteractive = param17;
-         this.cantSpeakToNPC = param18;
-         this.cantChangeZone = param19;
-         this.cantAttackMonster = param20;
-         this.cantWalk8Directions = param21;
-         return this;
-    }
-
-    public void reset() {
-         this.cantBeAggressed = false;
-         this.cantBeChallenged = false;
-         this.cantTrade = false;
-         this.cantBeAttackedByMutant = false;
-         this.cantRun = false;
-         this.forceSlowWalk = false;
-         this.cantMinimize = false;
-         this.cantMove = false;
-         this.cantAggress = false;
-         this.cantChallenge = false;
-         this.cantExchange = false;
-         this.cantAttack = false;
-         this.cantChat = false;
-         this.cantBeMerchant = false;
-         this.cantUseObject = false;
-         this.cantUseTaxCollector = false;
-         this.cantUseInteractive = false;
-         this.cantSpeakToNPC = false;
-         this.cantChangeZone = false;
-         this.cantAttackMonster = false;
-         this.cantWalk8Directions = false;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_ActorRestrictionsInformations(param1);
-    }
-
-    public void serializeAs_ActorRestrictionsInformations(ICustomDataOutput param1) {
          int _loc2_ = 0;
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.cantBeAggressed);
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.cantBeChallenged);
@@ -120,22 +63,6 @@ public class ActorRestrictionsInformations extends Object implements INetworkTyp
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_ActorRestrictionsInformations(param1);
-    }
-
-    public void deserializeAs_ActorRestrictionsInformations(ICustomDataInput param1) {
-         this.deserializeByteBoxes(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_ActorRestrictionsInformations(param1);
-    }
-
-    public void deserializeAsyncAs_ActorRestrictionsInformations(FuncTree param1) {
-         param1.addChild(this.deserializeByteBoxes);
-    }
-
-    private void deserializeByteBoxes(ICustomDataInput param1) {
          int _loc2_ = param1.readByte();
          this.cantBeAggressed = BooleanByteWrapper.getFlag(_loc2_,0);
          this.cantBeChallenged = BooleanByteWrapper.getFlag(_loc2_,1);

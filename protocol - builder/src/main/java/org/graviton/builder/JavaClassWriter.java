@@ -8,11 +8,6 @@ import org.graviton.utils.FileUtils;
  */
 public class JavaClassWriter {
 
-    public static void write(ActionScriptClass actionScriptClass, boolean enumeration) {
-        if (enumeration) writeEnum(actionScriptClass);
-        else writeClass(actionScriptClass);
-    }
-
     public static void writeEnum(ActionScriptClass actionScriptClass) {
         StringBuilder builder = new StringBuilder();
         builder.append(actionScriptClass.getPackageName());

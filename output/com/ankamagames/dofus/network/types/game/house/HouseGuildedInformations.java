@@ -13,52 +13,30 @@ public class HouseGuildedInformations extends HouseInstanceInformations implemen
     private FuncTree _guildInfotree;
 
 
-    public int getTypeId() {
-         return 512;
-    }
-
-    public HouseGuildedInformations initHouseGuildedInformations(int param1,boolean  param2,boolean  param3,String  param4,Number  param5,boolean  param6,GuildInformations  param7) {
-         super.initHouseInstanceInformations(param1,param2,param3,param4,param5,param6);
-         this.guildInfo = param7;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.guildInfo = new GuildInformations();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_HouseGuildedInformations(param1);
-    }
-
-    public void serializeAs_HouseGuildedInformations(ICustomDataOutput param1) {
-         super.serializeAs_HouseInstanceInformations(param1);
+         int _loc2_ = 0;
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.secondHand);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.isLocked);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,2,this.isSaleLocked);
+         param1.writeByte(_loc2_);
+         if(this.instanceId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
+         }
+         param1.writeInt(this.instanceId);
+         param1.writeUTF(this.ownerName);
+         if(this.price < -9.007199254740992E15 || this.price > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.price + ") on element price.");
+         }
+         param1.writeVarLong(this.price);
          this.guildInfo.serializeAs_GuildInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_HouseGuildedInformations(param1);
-    }
-
-    public void deserializeAs_HouseGuildedInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
+         this.deserializeAs_HouseInstanceInformations(param1);
          this.guildInfo = new GuildInformations();
          this.guildInfo.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_HouseGuildedInformations(param1);
-    }
-
-    public void deserializeAsyncAs_HouseGuildedInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._guildInfotree = param1.addChild(this._guildInfotreeFunc);
-    }
-
-    private void _guildInfotreeFunc(ICustomDataInput param1) {
-         this.guildInfo = new GuildInformations();
-         this.guildInfo.deserializeAsync(this._guildInfotree);
     }
 
 }

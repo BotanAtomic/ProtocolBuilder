@@ -5,40 +5,17 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class HouseOnMapInformations extends HouseInformations implements INetworkType {
 
     private int protocolId = 510;
-    private Vector<uint> doorsOnMap;
-    private Vector<HouseInstanceInformations> houseInstances;
+    private int[] doorsOnMap;
+    private HouseInstanceInformations[] houseInstances;
     private FuncTree _doorsOnMaptree;
     private FuncTree _houseInstancestree;
 
 
-    public int getTypeId() {
-         return 510;
-    }
-
-    public HouseOnMapInformations initHouseOnMapInformations(int param1,int  param2,Vector<uint>  param3,Vector<HouseInstanceInformations>  param4) {
-         super.initHouseInformations(param1,param2);
-         this.doorsOnMap = param3;
-         this.houseInstances = param4;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.doorsOnMap = new Vector.<uint>();
-         this.houseInstances = new Vector.<HouseInstanceInformations>();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_HouseOnMapInformations(param1);
-    }
-
-    public void serializeAs_HouseOnMapInformations(ICustomDataOutput param1) {
          super.serializeAs_HouseInformations(param1);
          param1.writeShort(this.doorsOnMap.length);
          int _loc2_ = 0;
@@ -61,12 +38,136 @@ public class HouseOnMapInformations extends HouseInformations implements INetwor
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_HouseOnMapInformations(param1);
-    }
-
-    public void deserializeAs_HouseOnMapInformations(ICustomDataInput param1) {
          int _loc6_ = 0;
          HouseInstanceInformations _loc7_ = null;
+         int _loc2_ = param1.readUnsignedShort();
+         this.houseInfos = ProtocolTypeManager.getInstance(HouseInstanceInformations,_loc2_);
+         this.houseInfos.deserialize(param1);
+         this.worldX = param1.readShort();
+         if(this.worldX < -255 || this.worldX > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldX + ") on element of AccountHouseInformations.worldX.");
+         }
+         this.worldY = param1.readShort();
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element of AccountHouseInformations.worldY.");
+         }
+         this.mapId = param1.readInt();
+         this.subAreaId = param1.readVarUhShort();
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element of AccountHouseInformations.subAreaId.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         this.houseInfos = ProtocolTypeManager.getInstance(HouseInstanceInformations,_loc2_);
+         this.houseInfos.deserialize(param1);
+         this.worldX = param1.readShort();
+         if(this.worldX < -255 || this.worldX > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldX + ") on element of AccountHouseInformations.worldX.");
+         }
+         this.worldY = param1.readShort();
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element of AccountHouseInformations.worldY.");
+         }
+         this.mapId = param1.readInt();
+         this.subAreaId = param1.readVarUhShort();
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element of AccountHouseInformations.subAreaId.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         this.houseInfos = ProtocolTypeManager.getInstance(HouseInstanceInformations,_loc2_);
+         this.houseInfos.deserialize(param1);
+         this.worldX = param1.readShort();
+         if(this.worldX < -255 || this.worldX > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldX + ") on element of AccountHouseInformations.worldX.");
+         }
+         this.worldY = param1.readShort();
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element of AccountHouseInformations.worldY.");
+         }
+         this.mapId = param1.readInt();
+         this.subAreaId = param1.readVarUhShort();
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element of AccountHouseInformations.subAreaId.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         this.houseInfos = ProtocolTypeManager.getInstance(HouseInstanceInformations,_loc2_);
+         this.houseInfos.deserialize(param1);
+         this._worldXFunc(param1);
+         this._worldYFunc(param1);
+         this._mapIdFunc(param1);
+         this._subAreaIdFunc(param1);
+         int _loc2_ = param1.readUnsignedShort();
+         this.houseInfos = ProtocolTypeManager.getInstance(HouseInstanceInformations,_loc2_);
+         this.houseInfos.deserialize(param1);
+         this.worldX = param1.readShort();
+         if(this.worldX < -255 || this.worldX > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldX + ") on element of AccountHouseInformations.worldX.");
+         }
+         this.worldY = param1.readShort();
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element of AccountHouseInformations.worldY.");
+         }
+         this.mapId = param1.readInt();
+         this.subAreaId = param1.readVarUhShort();
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element of AccountHouseInformations.subAreaId.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         this.houseInfos = ProtocolTypeManager.getInstance(HouseInstanceInformations,_loc2_);
+         this.houseInfos.deserialize(param1);
+         this.worldX = param1.readShort();
+         if(this.worldX < -255 || this.worldX > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldX + ") on element of AccountHouseInformations.worldX.");
+         }
+         this.worldY = param1.readShort();
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element of AccountHouseInformations.worldY.");
+         }
+         this.mapId = param1.readInt();
+         this.subAreaId = param1.readVarUhShort();
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element of AccountHouseInformations.subAreaId.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         this.houseInfos = ProtocolTypeManager.getInstance(HouseInstanceInformations,_loc2_);
+         this.houseInfos.deserialize(param1);
+         this.worldX = param1.readShort();
+         if(this.worldX < -255 || this.worldX > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldX + ") on element of AccountHouseInformations.worldX.");
+         }
+         this.worldY = param1.readShort();
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element of AccountHouseInformations.worldY.");
+         }
+         this.mapId = param1.readInt();
+         this.subAreaId = param1.readVarUhShort();
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element of AccountHouseInformations.subAreaId.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         this.houseInfos = ProtocolTypeManager.getInstance(HouseInstanceInformations,_loc2_);
+         this.houseInfos.deserialize(param1);
+         this._worldXFunc(param1);
+         this._worldYFunc(param1);
+         this._mapIdFunc(param1);
+         this._subAreaIdFunc(param1);
          super.deserialize(param1);
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
@@ -89,51 +190,6 @@ public class HouseOnMapInformations extends HouseInformations implements INetwor
             this.houseInstances.push(_loc7_);
             _loc5_++;
          }
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_HouseOnMapInformations(param1);
-    }
-
-    public void deserializeAsyncAs_HouseOnMapInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._doorsOnMaptree = param1.addChild(this._doorsOnMaptreeFunc);
-         this._houseInstancestree = param1.addChild(this._houseInstancestreeFunc);
-    }
-
-    private void _doorsOnMaptreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._doorsOnMaptree.addChild(this._doorsOnMapFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _doorsOnMapFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readInt();
-         if(_loc2_ < 0)
-         {
-            throw new Exception("Forbidden value (" + _loc2_ + ") on elements of doorsOnMap.");
-         }
-         this.doorsOnMap.push(_loc2_);
-    }
-
-    private void _houseInstancestreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._houseInstancestree.addChild(this._houseInstancesFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _houseInstancesFunc(ICustomDataInput param1) {
-         HouseInstanceInformations _loc2_ = new HouseInstanceInformations();
-         _loc2_.deserialize(param1);
-         this.houseInstances.push(_loc2_);
     }
 
 }

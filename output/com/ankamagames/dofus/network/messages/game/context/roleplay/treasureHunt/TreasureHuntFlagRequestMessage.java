@@ -7,8 +7,6 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class TreasureHuntFlagRequestMessage extends NetworkMessage implements INetworkMessage {
 
@@ -18,49 +16,7 @@ public class TreasureHuntFlagRequestMessage extends NetworkMessage implements IN
     private int index = 0;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6508;
-    }
-
-    public TreasureHuntFlagRequestMessage initTreasureHuntFlagRequestMessage(int param1,int  param2) {
-         this.questType = param1;
-         this.index = param2;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.questType = 0;
-         this.index = 0;
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_TreasureHuntFlagRequestMessage(param1);
-    }
-
-    public void serializeAs_TreasureHuntFlagRequestMessage(ICustomDataOutput param1) {
          param1.writeByte(this.questType);
          if(this.index < 0)
          {
@@ -70,32 +26,11 @@ public class TreasureHuntFlagRequestMessage extends NetworkMessage implements IN
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_TreasureHuntFlagRequestMessage(param1);
-    }
-
-    public void deserializeAs_TreasureHuntFlagRequestMessage(ICustomDataInput param1) {
-         this._questTypeFunc(param1);
-         this._indexFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_TreasureHuntFlagRequestMessage(param1);
-    }
-
-    public void deserializeAsyncAs_TreasureHuntFlagRequestMessage(FuncTree param1) {
-         param1.addChild(this._questTypeFunc);
-         param1.addChild(this._indexFunc);
-    }
-
-    private void _questTypeFunc(ICustomDataInput param1) {
          this.questType = param1.readByte();
          if(this.questType < 0)
          {
             throw new Exception("Forbidden value (" + this.questType + ") on element of TreasureHuntFlagRequestMessage.questType.");
          }
-    }
-
-    private void _indexFunc(ICustomDataInput param1) {
          this.index = param1.readByte();
          if(this.index < 0)
          {

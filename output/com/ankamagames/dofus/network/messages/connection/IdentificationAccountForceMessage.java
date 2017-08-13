@@ -14,72 +14,43 @@ public class IdentificationAccountForceMessage extends IdentificationMessage imp
     private String forcedAccountLogin = "";
 
 
-    public boolean isInitialized() {
-         return super.isInitialized && this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6119;
-    }
-
-    public IdentificationAccountForceMessage initIdentificationAccountForceMessage(VersionExtended param1,String  param2,Vector<int>  param3,int  param4,boolean  param5,boolean  param6,boolean  param7,Number  param8,Vector<uint>  param9,String  param10) {
-         super.initIdentificationMessage(param1,param2,param3,param4,param5,param6,param7,param8,param9);
-         this.forcedAccountLogin = param10;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.forcedAccountLogin = "";
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_IdentificationAccountForceMessage(param1);
-    }
-
-    public void serializeAs_IdentificationAccountForceMessage(ICustomDataOutput param1) {
-         super.serializeAs_IdentificationMessage(param1);
+         int _loc2_ = 0;
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.autoconnect);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.useCertificate);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,2,this.useLoginToken);
+         param1.writeByte(_loc2_);
+         this.version.serializeAs_VersionExtended(param1);
+         param1.writeUTF(this.lang);
+         param1.writeVarInt(this.credentials.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.credentials.length)
+         {
+            param1.writeByte(this.credentials[_loc3_]);
+            _loc3_++;
+         }
+         param1.writeShort(this.serverId);
+         if(this.sessionOptionalSalt < -9.007199254740992E15 || this.sessionOptionalSalt > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.sessionOptionalSalt + ") on element sessionOptionalSalt.");
+         }
+         param1.writeVarLong(this.sessionOptionalSalt);
+         param1.writeShort(this.failedAttempts.length);
+         int _loc4_ = 0;
+         while(_loc4_ < this.failedAttempts.length)
+         {
+            if(this.failedAttempts[_loc4_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.failedAttempts[_loc4_] + ") on element 9 (starting at 1) of failedAttempts.");
+            }
+            param1.writeVarShort(this.failedAttempts[_loc4_]);
+            _loc4_++;
+         }
          param1.writeUTF(this.forcedAccountLogin);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_IdentificationAccountForceMessage(param1);
-    }
-
-    public void deserializeAs_IdentificationAccountForceMessage(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._forcedAccountLoginFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_IdentificationAccountForceMessage(param1);
-    }
-
-    public void deserializeAsyncAs_IdentificationAccountForceMessage(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._forcedAccountLoginFunc);
-    }
-
-    private void _forcedAccountLoginFunc(ICustomDataInput param1) {
+         this.deserializeAs_IdentificationMessage(param1);
          this.forcedAccountLogin = param1.readUTF();
     }
 

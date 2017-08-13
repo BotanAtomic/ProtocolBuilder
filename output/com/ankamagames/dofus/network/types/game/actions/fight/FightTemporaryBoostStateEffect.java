@@ -11,49 +11,44 @@ public class FightTemporaryBoostStateEffect extends FightTemporaryBoostEffect im
     private int stateId = 0;
 
 
-    public int getTypeId() {
-         return 214;
-    }
-
-    public FightTemporaryBoostStateEffect initFightTemporaryBoostStateEffect(int param1,Number  param2,int  param3,int  param4,int  param5,int  param6,int  param7,int  param8,int  param9) {
-         super.initFightTemporaryBoostEffect(param1,param2,param3,param4,param5,param6,param7,param8);
-         this.stateId = param9;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.stateId = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_FightTemporaryBoostStateEffect(param1);
-    }
-
-    public void serializeAs_FightTemporaryBoostStateEffect(ICustomDataOutput param1) {
          super.serializeAs_FightTemporaryBoostEffect(param1);
          param1.writeShort(this.stateId);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_FightTemporaryBoostStateEffect(param1);
-    }
-
-    public void deserializeAs_FightTemporaryBoostStateEffect(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._stateIdFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_FightTemporaryBoostStateEffect(param1);
-    }
-
-    public void deserializeAsyncAs_FightTemporaryBoostStateEffect(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._stateIdFunc);
-    }
-
-    private void _stateIdFunc(ICustomDataInput param1) {
+         this.uid = param1.readVarUhInt();
+         if(this.uid < 0)
+         {
+            throw new Exception("Forbidden value (" + this.uid + ") on element of AbstractFightDispellableEffect.uid.");
+         }
+         this.targetId = param1.readDouble();
+         if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.targetId + ") on element of AbstractFightDispellableEffect.targetId.");
+         }
+         this.turnDuration = param1.readShort();
+         this.dispelable = param1.readByte();
+         if(this.dispelable < 0)
+         {
+            throw new Exception("Forbidden value (" + this.dispelable + ") on element of AbstractFightDispellableEffect.dispelable.");
+         }
+         this.spellId = param1.readVarUhShort();
+         if(this.spellId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.spellId + ") on element of AbstractFightDispellableEffect.spellId.");
+         }
+         this.effectId = param1.readVarUhInt();
+         if(this.effectId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.effectId + ") on element of AbstractFightDispellableEffect.effectId.");
+         }
+         this.parentBoostUid = param1.readVarUhInt();
+         if(this.parentBoostUid < 0)
+         {
+            throw new Exception("Forbidden value (" + this.parentBoostUid + ") on element of AbstractFightDispellableEffect.parentBoostUid.");
+         }
+         this.delta = param1.readShort();
          this.stateId = param1.readShort();
     }
 

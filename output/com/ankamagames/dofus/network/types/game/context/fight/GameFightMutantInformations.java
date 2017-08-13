@@ -8,7 +8,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
 
 public class GameFightMutantInformations extends GameFightFighterNamedInformations implements INetworkType {
 
@@ -16,26 +15,7 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
     private int powerLevel = 0;
 
 
-    public int getTypeId() {
-         return 50;
-    }
-
-    public GameFightMutantInformations initGameFightMutantInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector<uint>  param8,String  param9,PlayerStatus  param10,int  param11) {
-         super.initGameFightFighterNamedInformations(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10);
-         this.powerLevel = param11;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.powerLevel = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GameFightMutantInformations(param1);
-    }
-
-    public void serializeAs_GameFightMutantInformations(ICustomDataOutput param1) {
          super.serializeAs_GameFightFighterNamedInformations(param1);
          if(this.powerLevel < 0)
          {
@@ -45,24 +25,37 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GameFightMutantInformations(param1);
-    }
-
-    public void deserializeAs_GameFightMutantInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._powerLevelFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GameFightMutantInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GameFightMutantInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._powerLevelFunc);
-    }
-
-    private void _powerLevelFunc(ICustomDataInput param1) {
+         int _loc5_ = 0;
+         this.deserializeAs_GameContextActorInformations(param1);
+         this.teamId = param1.readByte();
+         if(this.teamId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.teamId + ") on element of GameFightFighterInformations.teamId.");
+         }
+         this.wave = param1.readByte();
+         if(this.wave < 0)
+         {
+            throw new Exception("Forbidden value (" + this.wave + ") on element of GameFightFighterInformations.wave.");
+         }
+         this.alive = param1.readBoolean();
+         int _loc2_ = param1.readUnsignedShort();
+         this.stats = ProtocolTypeManager.getInstance(GameFightMinimalStats,_loc2_);
+         this.stats.deserialize(param1);
+         int _loc3_ = param1.readUnsignedShort();
+         int _loc4_ = 0;
+         while(_loc4_ < _loc3_)
+         {
+            _loc5_ = param1.readVarUhShort();
+            if(_loc5_ < 0 || _loc5_ > 559)
+            {
+               throw new Exception("Forbidden value (" + _loc5_ + ") on elements of previousPositions.");
+            }
+            this.previousPositions.push(_loc5_);
+            _loc4_++;
+         }
+         this.name = param1.readUTF();
+         this.status = new PlayerStatus();
+         this.status.deserialize(param1);
          this.powerLevel = param1.readByte();
          if(this.powerLevel < 0)
          {

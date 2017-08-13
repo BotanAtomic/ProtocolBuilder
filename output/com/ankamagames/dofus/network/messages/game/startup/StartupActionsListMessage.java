@@ -12,51 +12,11 @@ public class StartupActionsListMessage extends NetworkMessage implements INetwor
 
     private int protocolId = 1301;
     private boolean _isInitialized = false;
-    private Vector<StartupActionAddObject> actions;
+    private StartupActionAddObject[] actions;
     private FuncTree _actionstree;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 1301;
-    }
-
-    public StartupActionsListMessage initStartupActionsListMessage(Vector<StartupActionAddObject> param1) {
-         this.actions = param1;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.actions = new Vector.<StartupActionAddObject>();
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_StartupActionsListMessage(param1);
-    }
-
-    public void serializeAs_StartupActionsListMessage(ICustomDataOutput param1) {
          param1.writeShort(this.actions.length);
          int _loc2_ = 0;
          while(_loc2_ < this.actions.length)
@@ -67,10 +27,6 @@ public class StartupActionsListMessage extends NetworkMessage implements INetwor
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_StartupActionsListMessage(param1);
-    }
-
-    public void deserializeAs_StartupActionsListMessage(ICustomDataInput param1) {
          StartupActionAddObject _loc4_ = null;
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
@@ -81,30 +37,6 @@ public class StartupActionsListMessage extends NetworkMessage implements INetwor
             this.actions.push(_loc4_);
             _loc3_++;
          }
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_StartupActionsListMessage(param1);
-    }
-
-    public void deserializeAsyncAs_StartupActionsListMessage(FuncTree param1) {
-         this._actionstree = param1.addChild(this._actionstreeFunc);
-    }
-
-    private void _actionstreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._actionstree.addChild(this._actionsFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _actionsFunc(ICustomDataInput param1) {
-         StartupActionAddObject _loc2_ = new StartupActionAddObject();
-         _loc2_.deserialize(param1);
-         this.actions.push(_loc2_);
     }
 
 }

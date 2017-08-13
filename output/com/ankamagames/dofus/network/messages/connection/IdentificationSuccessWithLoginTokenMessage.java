@@ -13,72 +13,48 @@ public class IdentificationSuccessWithLoginTokenMessage extends IdentificationSu
     private String loginToken = "";
 
 
-    public boolean isInitialized() {
-         return super.isInitialized && this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6209;
-    }
-
-    public IdentificationSuccessWithLoginTokenMessage initIdentificationSuccessWithLoginTokenMessage(String param1,String  param2,int  param3,int  param4,boolean  param5,String  param6,Number  param7,Number  param8,Number  param9,boolean  param10,int  param11,String  param12) {
-         super.initIdentificationSuccessMessage(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10,param11);
-         this.loginToken = param12;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.loginToken = "";
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_IdentificationSuccessWithLoginTokenMessage(param1);
-    }
-
-    public void serializeAs_IdentificationSuccessWithLoginTokenMessage(ICustomDataOutput param1) {
          super.serializeAs_IdentificationSuccessMessage(param1);
          param1.writeUTF(this.loginToken);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_IdentificationSuccessWithLoginTokenMessage(param1);
-    }
-
-    public void deserializeAs_IdentificationSuccessWithLoginTokenMessage(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._loginTokenFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_IdentificationSuccessWithLoginTokenMessage(param1);
-    }
-
-    public void deserializeAsyncAs_IdentificationSuccessWithLoginTokenMessage(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._loginTokenFunc);
-    }
-
-    private void _loginTokenFunc(ICustomDataInput param1) {
+         int _loc2_ = param1.readByte();
+         this.hasRights = BooleanByteWrapper.getFlag(_loc2_,0);
+         this.wasAlreadyConnected = BooleanByteWrapper.getFlag(_loc2_,1);
+         this.login = param1.readUTF();
+         this.nickname = param1.readUTF();
+         this.accountId = param1.readInt();
+         if(this.accountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.accountId + ") on element of IdentificationSuccessMessage.accountId.");
+         }
+         this.communityId = param1.readByte();
+         if(this.communityId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.communityId + ") on element of IdentificationSuccessMessage.communityId.");
+         }
+         this.secretQuestion = param1.readUTF();
+         this.accountCreation = param1.readDouble();
+         if(this.accountCreation < 0 || this.accountCreation > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.accountCreation + ") on element of IdentificationSuccessMessage.accountCreation.");
+         }
+         this.subscriptionElapsedDuration = param1.readDouble();
+         if(this.subscriptionElapsedDuration < 0 || this.subscriptionElapsedDuration > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.subscriptionElapsedDuration + ") on element of IdentificationSuccessMessage.subscriptionElapsedDuration.");
+         }
+         this.subscriptionEndDate = param1.readDouble();
+         if(this.subscriptionEndDate < 0 || this.subscriptionEndDate > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.subscriptionEndDate + ") on element of IdentificationSuccessMessage.subscriptionEndDate.");
+         }
+         this.havenbagAvailableRoom = param1.readUnsignedByte();
+         if(this.havenbagAvailableRoom < 0 || this.havenbagAvailableRoom > 255)
+         {
+            throw new Exception("Forbidden value (" + this.havenbagAvailableRoom + ") on element of IdentificationSuccessMessage.havenbagAvailableRoom.");
+         }
          this.loginToken = param1.readUTF();
     }
 

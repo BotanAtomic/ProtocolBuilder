@@ -10,41 +10,30 @@ public class CharacterToRecolorInformation extends AbstractCharacterToRefurbishI
     private int protocolId = 212;
 
 
-    public int getTypeId() {
-         return 212;
-    }
-
-    public CharacterToRecolorInformation initCharacterToRecolorInformation(Number param1,Vector<int>  param2,int  param3) {
-         super.initAbstractCharacterToRefurbishInformation(param1,param2,param3);
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_CharacterToRecolorInformation(param1);
-    }
-
-    public void serializeAs_CharacterToRecolorInformation(ICustomDataOutput param1) {
          super.serializeAs_AbstractCharacterToRefurbishInformation(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_CharacterToRecolorInformation(param1);
-    }
-
-    public void deserializeAs_CharacterToRecolorInformation(ICustomDataInput param1) {
-         super.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_CharacterToRecolorInformation(param1);
-    }
-
-    public void deserializeAsyncAs_CharacterToRecolorInformation(FuncTree param1) {
-         super.deserializeAsync(param1);
+         Object _loc4_ = 0;
+         this.id = param1.readVarUhLong();
+         if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element of AbstractCharacterInformation.id.");
+         }
+         int _loc2_ = param1.readUnsignedShort();
+         int _loc3_ = 0;
+         while(_loc3_ < _loc2_)
+         {
+            _loc4_ = param1.readInt();
+            this.colors.push(_loc4_);
+            _loc3_++;
+         }
+         this.cosmeticId = param1.readVarUhInt();
+         if(this.cosmeticId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.cosmeticId + ") on element of AbstractCharacterToRefurbishInformation.cosmeticId.");
+         }
     }
 
 }

@@ -17,75 +17,37 @@ public class GuildInAllianceFactsMessage extends GuildFactsMessage implements IN
     private FuncTree _allianceInfostree;
 
 
-    public boolean isInitialized() {
-         return super.isInitialized && this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6422;
-    }
-
-    public GuildInAllianceFactsMessage initGuildInAllianceFactsMessage(GuildFactSheetInformations param1,int  param2,int  param3,Vector<CharacterMinimalInformations>  param4,BasicNamedAllianceInformations  param5) {
-         super.initGuildFactsMessage(param1,param2,param3,param4);
-         this.allianceInfos = param5;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.allianceInfos = new BasicNamedAllianceInformations();
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GuildInAllianceFactsMessage(param1);
-    }
-
-    public void serializeAs_GuildInAllianceFactsMessage(ICustomDataOutput param1) {
          super.serializeAs_GuildFactsMessage(param1);
          this.allianceInfos.serializeAs_BasicNamedAllianceInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GuildInAllianceFactsMessage(param1);
-    }
-
-    public void deserializeAs_GuildInAllianceFactsMessage(ICustomDataInput param1) {
-         super.deserialize(param1);
+         CharacterMinimalInformations _loc5_ = null;
+         int _loc2_ = param1.readUnsignedShort();
+         this.infos = ProtocolTypeManager.getInstance(GuildFactSheetInformations,_loc2_);
+         this.infos.deserialize(param1);
+         this.creationDate = param1.readInt();
+         if(this.creationDate < 0)
+         {
+            throw new Exception("Forbidden value (" + this.creationDate + ") on element of GuildFactsMessage.creationDate.");
+         }
+         this.nbTaxCollectors = param1.readVarUhShort();
+         if(this.nbTaxCollectors < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbTaxCollectors + ") on element of GuildFactsMessage.nbTaxCollectors.");
+         }
+         int _loc3_ = param1.readUnsignedShort();
+         int _loc4_ = 0;
+         while(_loc4_ < _loc3_)
+         {
+            _loc5_ = new CharacterMinimalInformations();
+            _loc5_.deserialize(param1);
+            this.members.push(_loc5_);
+            _loc4_++;
+         }
          this.allianceInfos = new BasicNamedAllianceInformations();
          this.allianceInfos.deserialize(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GuildInAllianceFactsMessage(param1);
-    }
-
-    public void deserializeAsyncAs_GuildInAllianceFactsMessage(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._allianceInfostree = param1.addChild(this._allianceInfostreeFunc);
-    }
-
-    private void _allianceInfostreeFunc(ICustomDataInput param1) {
-         this.allianceInfos = new BasicNamedAllianceInformations();
-         this.allianceInfos.deserializeAsync(this._allianceInfostree);
     }
 
 }

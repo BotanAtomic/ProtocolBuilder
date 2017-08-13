@@ -9,69 +9,20 @@ import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import com.ankamagames.dofus.network.ProtocolTypeManager;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class IdolListMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 6585;
     private boolean _isInitialized = false;
-    private Vector<uint> chosenIdols;
-    private Vector<uint> partyChosenIdols;
-    private Vector<PartyIdol> partyIdols;
+    private int[] chosenIdols;
+    private int[] partyChosenIdols;
+    private PartyIdol[] partyIdols;
     private FuncTree _chosenIdolstree;
     private FuncTree _partyChosenIdolstree;
     private FuncTree _partyIdolstree;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6585;
-    }
-
-    public IdolListMessage initIdolListMessage(Vector<uint> param1,Vector<uint>  param2,Vector<PartyIdol>  param3) {
-         this.chosenIdols = param1;
-         this.partyChosenIdols = param2;
-         this.partyIdols = param3;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.chosenIdols = new Vector.<uint>();
-         this.partyChosenIdols = new Vector.<uint>();
-         this.partyIdols = new Vector.<PartyIdol>();
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_IdolListMessage(param1);
-    }
-
-    public void serializeAs_IdolListMessage(ICustomDataOutput param1) {
          param1.writeShort(this.chosenIdols.length);
          int _loc2_ = 0;
          while(_loc2_ < this.chosenIdols.length)
@@ -105,10 +56,6 @@ public class IdolListMessage extends NetworkMessage implements INetworkMessage {
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_IdolListMessage(param1);
-    }
-
-    public void deserializeAs_IdolListMessage(ICustomDataInput param1) {
          int _loc8_ = 0;
          int _loc9_ = 0;
          int _loc10_ = 0;
@@ -147,71 +94,6 @@ public class IdolListMessage extends NetworkMessage implements INetworkMessage {
             this.partyIdols.push(_loc11_);
             _loc7_++;
          }
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_IdolListMessage(param1);
-    }
-
-    public void deserializeAsyncAs_IdolListMessage(FuncTree param1) {
-         this._chosenIdolstree = param1.addChild(this._chosenIdolstreeFunc);
-         this._partyChosenIdolstree = param1.addChild(this._partyChosenIdolstreeFunc);
-         this._partyIdolstree = param1.addChild(this._partyIdolstreeFunc);
-    }
-
-    private void _chosenIdolstreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._chosenIdolstree.addChild(this._chosenIdolsFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _chosenIdolsFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readVarUhShort();
-         if(_loc2_ < 0)
-         {
-            throw new Exception("Forbidden value (" + _loc2_ + ") on elements of chosenIdols.");
-         }
-         this.chosenIdols.push(_loc2_);
-    }
-
-    private void _partyChosenIdolstreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._partyChosenIdolstree.addChild(this._partyChosenIdolsFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _partyChosenIdolsFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readVarUhShort();
-         if(_loc2_ < 0)
-         {
-            throw new Exception("Forbidden value (" + _loc2_ + ") on elements of partyChosenIdols.");
-         }
-         this.partyChosenIdols.push(_loc2_);
-    }
-
-    private void _partyIdolstreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._partyIdolstree.addChild(this._partyIdolsFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _partyIdolsFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         PartyIdol _loc3_ = ProtocolTypeManager.getInstance(PartyIdol,_loc2_);
-         _loc3_.deserialize(param1);
-         this.partyIdols.push(_loc3_);
     }
 
 }

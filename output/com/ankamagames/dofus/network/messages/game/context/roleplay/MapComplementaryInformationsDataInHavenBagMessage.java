@@ -14,9 +14,6 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class MapComplementaryInformationsDataInHavenBagMessage extends MapComplementaryInformationsDataMessage implements INetworkMessage {
 
@@ -29,55 +26,64 @@ public class MapComplementaryInformationsDataInHavenBagMessage extends MapComple
     private FuncTree _ownerInformationstree;
 
 
-    public boolean isInitialized() {
-         return super.isInitialized && this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6622;
-    }
-
-    public MapComplementaryInformationsDataInHavenBagMessage initMapComplementaryInformationsDataInHavenBagMessage(int param1,int  param2,Vector<HouseInformations>  param3,Vector<GameRolePlayActorInformations>  param4,Vector<InteractiveElement>  param5,Vector<StatedElement>  param6,Vector<MapObstacle>  param7,Vector<FightCommonInformations>  param8,boolean  param9,FightStartingPositions  param10,CharacterMinimalInformations  param11,int  param12,int  param13,int  param14) {
-         super.initMapComplementaryInformationsDataMessage(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10);
-         this.ownerInformations = param11;
-         this.theme = param12;
-         this.roomId = param13;
-         this.maxRoomId = param14;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.ownerInformations = new CharacterMinimalInformations();
-         this.roomId = 0;
-         this.maxRoomId = 0;
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_MapComplementaryInformationsDataInHavenBagMessage(param1);
-    }
-
-    public void serializeAs_MapComplementaryInformationsDataInHavenBagMessage(ICustomDataOutput param1) {
-         super.serializeAs_MapComplementaryInformationsDataMessage(param1);
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
+         if(this.mapId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
+         }
+         param1.writeInt(this.mapId);
+         param1.writeShort(this.houses.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.houses.length)
+         {
+            param1.writeShort((this.houses[_loc2_] as HouseInformations).getTypeId());
+            (this.houses[_loc2_] as HouseInformations).serialize(param1);
+            _loc2_++;
+         }
+         param1.writeShort(this.actors.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.actors.length)
+         {
+            param1.writeShort((this.actors[_loc3_] as GameRolePlayActorInformations).getTypeId());
+            (this.actors[_loc3_] as GameRolePlayActorInformations).serialize(param1);
+            _loc3_++;
+         }
+         param1.writeShort(this.interactiveElements.length);
+         int _loc4_ = 0;
+         while(_loc4_ < this.interactiveElements.length)
+         {
+            param1.writeShort((this.interactiveElements[_loc4_] as InteractiveElement).getTypeId());
+            (this.interactiveElements[_loc4_] as InteractiveElement).serialize(param1);
+            _loc4_++;
+         }
+         param1.writeShort(this.statedElements.length);
+         int _loc5_ = 0;
+         while(_loc5_ < this.statedElements.length)
+         {
+            (this.statedElements[_loc5_] as StatedElement).serializeAs_StatedElement(param1);
+            _loc5_++;
+         }
+         param1.writeShort(this.obstacles.length);
+         int _loc6_ = 0;
+         while(_loc6_ < this.obstacles.length)
+         {
+            (this.obstacles[_loc6_] as MapObstacle).serializeAs_MapObstacle(param1);
+            _loc6_++;
+         }
+         param1.writeShort(this.fights.length);
+         int _loc7_ = 0;
+         while(_loc7_ < this.fights.length)
+         {
+            (this.fights[_loc7_] as FightCommonInformations).serializeAs_FightCommonInformations(param1);
+            _loc7_++;
+         }
+         param1.writeBoolean(this.hasAggressiveMonsters);
+         this.fightStartPositions.serializeAs_FightStartingPositions(param1);
          this.ownerInformations.serializeAs_CharacterMinimalInformations(param1);
          param1.writeByte(this.theme);
          if(this.roomId < 0)
@@ -93,48 +99,15 @@ public class MapComplementaryInformationsDataInHavenBagMessage extends MapComple
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_MapComplementaryInformationsDataInHavenBagMessage(param1);
-    }
-
-    public void deserializeAs_MapComplementaryInformationsDataInHavenBagMessage(ICustomDataInput param1) {
-         super.deserialize(param1);
+         this.deserializeAs_MapComplementaryInformationsDataMessage(param1);
          this.ownerInformations = new CharacterMinimalInformations();
          this.ownerInformations.deserialize(param1);
-         this._themeFunc(param1);
-         this._roomIdFunc(param1);
-         this._maxRoomIdFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_MapComplementaryInformationsDataInHavenBagMessage(param1);
-    }
-
-    public void deserializeAsyncAs_MapComplementaryInformationsDataInHavenBagMessage(FuncTree param1) {
-         super.deserializeAsync(param1);
-         this._ownerInformationstree = param1.addChild(this._ownerInformationstreeFunc);
-         param1.addChild(this._themeFunc);
-         param1.addChild(this._roomIdFunc);
-         param1.addChild(this._maxRoomIdFunc);
-    }
-
-    private void _ownerInformationstreeFunc(ICustomDataInput param1) {
-         this.ownerInformations = new CharacterMinimalInformations();
-         this.ownerInformations.deserializeAsync(this._ownerInformationstree);
-    }
-
-    private void _themeFunc(ICustomDataInput param1) {
          this.theme = param1.readByte();
-    }
-
-    private void _roomIdFunc(ICustomDataInput param1) {
          this.roomId = param1.readByte();
          if(this.roomId < 0)
          {
             throw new Exception("Forbidden value (" + this.roomId + ") on element of MapComplementaryInformationsDataInHavenBagMessage.roomId.");
          }
-    }
-
-    private void _maxRoomIdFunc(ICustomDataInput param1) {
          this.maxRoomId = param1.readByte();
          if(this.maxRoomId < 0)
          {

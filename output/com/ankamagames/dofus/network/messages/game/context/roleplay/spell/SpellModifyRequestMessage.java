@@ -7,9 +7,6 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class SpellModifyRequestMessage extends NetworkMessage implements INetworkMessage {
 
@@ -19,49 +16,7 @@ public class SpellModifyRequestMessage extends NetworkMessage implements INetwor
     private int spellLevel = 0;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6655;
-    }
-
-    public SpellModifyRequestMessage initSpellModifyRequestMessage(int param1,int  param2) {
-         this.spellId = param1;
-         this.spellLevel = param2;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.spellId = 0;
-         this.spellLevel = 0;
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_SpellModifyRequestMessage(param1);
-    }
-
-    public void serializeAs_SpellModifyRequestMessage(ICustomDataOutput param1) {
          if(this.spellId < 0)
          {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
@@ -75,32 +30,11 @@ public class SpellModifyRequestMessage extends NetworkMessage implements INetwor
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_SpellModifyRequestMessage(param1);
-    }
-
-    public void deserializeAs_SpellModifyRequestMessage(ICustomDataInput param1) {
-         this._spellIdFunc(param1);
-         this._spellLevelFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_SpellModifyRequestMessage(param1);
-    }
-
-    public void deserializeAsyncAs_SpellModifyRequestMessage(FuncTree param1) {
-         param1.addChild(this._spellIdFunc);
-         param1.addChild(this._spellLevelFunc);
-    }
-
-    private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readVarUhShort();
          if(this.spellId < 0)
          {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of SpellModifyRequestMessage.spellId.");
          }
-    }
-
-    private void _spellLevelFunc(ICustomDataInput param1) {
          this.spellLevel = param1.readShort();
          if(this.spellLevel < 1 || this.spellLevel > 200)
          {

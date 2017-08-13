@@ -6,11 +6,6 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class GuildInsiderFactSheetInformations extends GuildFactSheetInformations implements INetworkType {
 
@@ -21,32 +16,7 @@ public class GuildInsiderFactSheetInformations extends GuildFactSheetInformation
     private int lastActivity = 0;
 
 
-    public int getTypeId() {
-         return 423;
-    }
-
-    public GuildInsiderFactSheetInformations initGuildInsiderFactSheetInformations(int param1,String  param2,int  param3,GuildEmblem  param4,Number  param5,int  param6,String  param7,int  param8,int  param9,int  param10) {
-         super.initGuildFactSheetInformations(param1,param2,param3,param4,param5,param6);
-         this.leaderName = param7;
-         this.nbConnectedMembers = param8;
-         this.nbTaxCollectors = param9;
-         this.lastActivity = param10;
-         return this;
-    }
-
-    public void reset() {
-         super.reset();
-         this.leaderName = "";
-         this.nbConnectedMembers = 0;
-         this.nbTaxCollectors = 0;
-         this.lastActivity = 0;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_GuildInsiderFactSheetInformations(param1);
-    }
-
-    public void serializeAs_GuildInsiderFactSheetInformations(ICustomDataOutput param1) {
          super.serializeAs_GuildFactSheetInformations(param1);
          param1.writeUTF(this.leaderName);
          if(this.nbConnectedMembers < 0)
@@ -67,50 +37,55 @@ public class GuildInsiderFactSheetInformations extends GuildFactSheetInformation
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_GuildInsiderFactSheetInformations(param1);
-    }
-
-    public void deserializeAs_GuildInsiderFactSheetInformations(ICustomDataInput param1) {
-         super.deserialize(param1);
-         this._leaderNameFunc(param1);
-         this._nbConnectedMembersFunc(param1);
-         this._nbTaxCollectorsFunc(param1);
-         this._lastActivityFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_GuildInsiderFactSheetInformations(param1);
-    }
-
-    public void deserializeAsyncAs_GuildInsiderFactSheetInformations(FuncTree param1) {
-         super.deserializeAsync(param1);
-         param1.addChild(this._leaderNameFunc);
-         param1.addChild(this._nbConnectedMembersFunc);
-         param1.addChild(this._nbTaxCollectorsFunc);
-         param1.addChild(this._lastActivityFunc);
-    }
-
-    private void _leaderNameFunc(ICustomDataInput param1) {
+         this.abandonnedPaddock = param1.readBoolean();
+         this.level = param1.readUnsignedByte();
+         if(this.level < 0 || this.level > 255)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element of GuildInformationsGeneralMessage.level.");
+         }
+         this.expLevelFloor = param1.readVarUhLong();
+         if(this.expLevelFloor < 0 || this.expLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.expLevelFloor + ") on element of GuildInformationsGeneralMessage.expLevelFloor.");
+         }
+         this.experience = param1.readVarUhLong();
+         if(this.experience < 0 || this.experience > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experience + ") on element of GuildInformationsGeneralMessage.experience.");
+         }
+         this.expNextLevelFloor = param1.readVarUhLong();
+         if(this.expNextLevelFloor < 0 || this.expNextLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.expNextLevelFloor + ") on element of GuildInformationsGeneralMessage.expNextLevelFloor.");
+         }
+         this.creationDate = param1.readInt();
+         if(this.creationDate < 0)
+         {
+            throw new Exception("Forbidden value (" + this.creationDate + ") on element of GuildInformationsGeneralMessage.creationDate.");
+         }
+         this.nbTotalMembers = param1.readVarUhShort();
+         if(this.nbTotalMembers < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbTotalMembers + ") on element of GuildInformationsGeneralMessage.nbTotalMembers.");
+         }
+         this.nbConnectedMembers = param1.readVarUhShort();
+         if(this.nbConnectedMembers < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbConnectedMembers + ") on element of GuildInformationsGeneralMessage.nbConnectedMembers.");
+         }
+         this.allianceInfos = new BasicNamedAllianceInformations();
+         this.allianceInfos.deserialize(param1);
          this.leaderName = param1.readUTF();
-    }
-
-    private void _nbConnectedMembersFunc(ICustomDataInput param1) {
          this.nbConnectedMembers = param1.readVarUhShort();
          if(this.nbConnectedMembers < 0)
          {
             throw new Exception("Forbidden value (" + this.nbConnectedMembers + ") on element of GuildInsiderFactSheetInformations.nbConnectedMembers.");
          }
-    }
-
-    private void _nbTaxCollectorsFunc(ICustomDataInput param1) {
          this.nbTaxCollectors = param1.readByte();
          if(this.nbTaxCollectors < 0)
          {
             throw new Exception("Forbidden value (" + this.nbTaxCollectors + ") on element of GuildInsiderFactSheetInformations.nbTaxCollectors.");
          }
-    }
-
-    private void _lastActivityFunc(ICustomDataInput param1) {
          this.lastActivity = param1.readInt();
          if(this.lastActivity < 0)
          {

@@ -8,60 +8,17 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
 
 public class ExchangeStartedTaxCollectorShopMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 6664;
     private boolean _isInitialized = false;
-    private Vector<ObjectItem> objects;
+    private ObjectItem[] objects;
     private Number kamas = 0;
     private FuncTree _objectstree;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6664;
-    }
-
-    public ExchangeStartedTaxCollectorShopMessage initExchangeStartedTaxCollectorShopMessage(Vector<ObjectItem> param1,Number  param2) {
-         this.objects = param1;
-         this.kamas = param2;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.objects = new Vector.<ObjectItem>();
-         this.kamas = 0;
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_ExchangeStartedTaxCollectorShopMessage(param1);
-    }
-
-    public void serializeAs_ExchangeStartedTaxCollectorShopMessage(ICustomDataOutput param1) {
          param1.writeShort(this.objects.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objects.length)
@@ -77,10 +34,6 @@ public class ExchangeStartedTaxCollectorShopMessage extends NetworkMessage imple
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_ExchangeStartedTaxCollectorShopMessage(param1);
-    }
-
-    public void deserializeAs_ExchangeStartedTaxCollectorShopMessage(ICustomDataInput param1) {
          ObjectItem _loc4_ = null;
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
@@ -91,35 +44,6 @@ public class ExchangeStartedTaxCollectorShopMessage extends NetworkMessage imple
             this.objects.push(_loc4_);
             _loc3_++;
          }
-         this._kamasFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_ExchangeStartedTaxCollectorShopMessage(param1);
-    }
-
-    public void deserializeAsyncAs_ExchangeStartedTaxCollectorShopMessage(FuncTree param1) {
-         this._objectstree = param1.addChild(this._objectstreeFunc);
-         param1.addChild(this._kamasFunc);
-    }
-
-    private void _objectstreeFunc(ICustomDataInput param1) {
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            this._objectstree.addChild(this._objectsFunc);
-            _loc3_++;
-         }
-    }
-
-    private void _objectsFunc(ICustomDataInput param1) {
-         ObjectItem _loc2_ = new ObjectItem();
-         _loc2_.deserialize(param1);
-         this.objects.push(_loc2_);
-    }
-
-    private void _kamasFunc(ICustomDataInput param1) {
          this.kamas = param1.readVarUhLong();
          if(this.kamas < 0 || this.kamas > 9.007199254740992E15)
          {

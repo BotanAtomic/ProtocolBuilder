@@ -7,8 +7,6 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
-import java.lang.Exception;
-import java.lang.Exception;
 
 public class IdolsPresetDeleteResultMessage extends NetworkMessage implements INetworkMessage {
 
@@ -18,49 +16,7 @@ public class IdolsPresetDeleteResultMessage extends NetworkMessage implements IN
     private int code = 2;
 
 
-    public boolean isInitialized() {
-         return this._isInitialized;
-    }
-
-    public int getMessageId() {
-         return 6605;
-    }
-
-    public IdolsPresetDeleteResultMessage initIdolsPresetDeleteResultMessage(int param1,int  param2) {
-         this.presetId = param1;
-         this.code = param2;
-         this._isInitialized = true;
-         return this;
-    }
-
-    public void reset() {
-         this.presetId = 0;
-         this.code = 2;
-         this._isInitialized = false;
-    }
-
-    public void pack(ICustomDataOutput param1) {
-         ByteArray _loc2_ = new ByteArray();
-         this.serialize(new CustomDataWrapper(_loc2_));
-         writePacket(param1,this.getMessageId(),_loc2_);
-    }
-
-    public void unpack(ICustomDataInput param1,int  param2) {
-         this.deserialize(param1);
-    }
-
-    public FuncTree unpackAsync(ICustomDataInput param1,int  param2) {
-         FuncTree _loc3_ = new FuncTree();
-         _loc3_.setRoot(param1);
-         this.deserializeAsync(_loc3_);
-         return _loc3_;
-    }
-
     public void serialize(ICustomDataOutput param1) {
-         this.serializeAs_IdolsPresetDeleteResultMessage(param1);
-    }
-
-    public void serializeAs_IdolsPresetDeleteResultMessage(ICustomDataOutput param1) {
          if(this.presetId < 0)
          {
             throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
@@ -70,32 +26,11 @@ public class IdolsPresetDeleteResultMessage extends NetworkMessage implements IN
     }
 
     public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_IdolsPresetDeleteResultMessage(param1);
-    }
-
-    public void deserializeAs_IdolsPresetDeleteResultMessage(ICustomDataInput param1) {
-         this._presetIdFunc(param1);
-         this._codeFunc(param1);
-    }
-
-    public void deserializeAsync(FuncTree param1) {
-         this.deserializeAsyncAs_IdolsPresetDeleteResultMessage(param1);
-    }
-
-    public void deserializeAsyncAs_IdolsPresetDeleteResultMessage(FuncTree param1) {
-         param1.addChild(this._presetIdFunc);
-         param1.addChild(this._codeFunc);
-    }
-
-    private void _presetIdFunc(ICustomDataInput param1) {
          this.presetId = param1.readByte();
          if(this.presetId < 0)
          {
             throw new Exception("Forbidden value (" + this.presetId + ") on element of IdolsPresetDeleteResultMessage.presetId.");
          }
-    }
-
-    private void _codeFunc(ICustomDataInput param1) {
          this.code = param1.readByte();
          if(this.code < 0)
          {
