@@ -12,11 +12,11 @@ import java.nio.file.Paths;
 public class FileUtils {
 
     public static void writeFile(String content, String path) {
-        File file = new File(Paths.get(path).getParent().toString());
+        File file = new File(Paths.get("output/" + path).getParent().toString());
         if (!file.exists()) file.mkdirs();
 
         try {
-            Files.write(Paths.get(path), content.getBytes());
+            Files.write(Paths.get("output/" + path), content.getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         }
