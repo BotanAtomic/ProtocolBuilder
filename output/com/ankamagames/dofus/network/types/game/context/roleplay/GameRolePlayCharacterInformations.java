@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.character.alignment.ActorAlignmentInformations;
@@ -11,8 +11,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class GameRolePlayCharacterInformations extends GameRolePlayHumanoidInformations implements INetworkType {
 
     private int protocolId = 36;
-    private ActorAlignmentInformations alignmentInfos = ;
-    private FuncTree _alignmentInfostree = ;
+    private ActorAlignmentInformations alignmentInfos;
+    private FuncTree _alignmentInfostree;
 
 
     public int getTypeId() {

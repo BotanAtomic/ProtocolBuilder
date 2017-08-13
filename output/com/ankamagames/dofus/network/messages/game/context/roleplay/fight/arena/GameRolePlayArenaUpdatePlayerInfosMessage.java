@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GameRolePlayArenaUpdatePlayerInfosMessage extends NetworkMessage im
 
     private int protocolId = 6301;
     private boolean _isInitialized = false;
-    private ArenaRankInfos solo = ;
-    private FuncTree _solotree = ;
+    private ArenaRankInfos solo;
+    private FuncTree _solotree;
 
 
     public boolean isInitialized() {

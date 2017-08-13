@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.house;
+package com.ankamagames.dofus.network.types.game.house;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.GuildInformations;
@@ -9,8 +9,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class HouseGuildedInformations extends HouseInstanceInformations implements INetworkType {
 
     private int protocolId = 512;
-    private GuildInformations guildInfo = ;
-    private FuncTree _guildInfotree = ;
+    private GuildInformations guildInfo;
+    private FuncTree _guildInfotree;
 
 
     public int getTypeId() {

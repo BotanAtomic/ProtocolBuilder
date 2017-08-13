@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.approach;
+package com.ankamagames.dofus.network.messages.game.approach;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class ServerSessionConstantsMessage extends NetworkMessage implements INe
 
     private int protocolId = 6434;
     private boolean _isInitialized = false;
-    private Vector.<ServerSessionConstant> variables = ;
-    private FuncTree _variablestree = ;
-    private int _loc2_ = 0;
-    private ServerSessionConstant _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private ServerSessionConstant _loc3_ = ProtocolTypeManager.getInstance(ServerSessionConstant,_loc2_);
+    private Vector<ServerSessionConstant> variables;
+    private FuncTree _variablestree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class ServerSessionConstantsMessage extends NetworkMessage implements INe
          return 6434;
     }
 
-    public ServerSessionConstantsMessage initServerSessionConstantsMessage(Vector.<ServerSessionConstant> param1) {
+    public ServerSessionConstantsMessage initServerSessionConstantsMessage(Vector<ServerSessionConstant> param1) {
          this.variables = param1;
          this._isInitialized = true;
          return this;
@@ -67,9 +61,11 @@ public class ServerSessionConstantsMessage extends NetworkMessage implements INe
          param1.writeShort(this.variables.length);
          int _loc2_ = 0;
          while(_loc2_ < this.variables.length)
+         {
             param1.writeShort((this.variables[_loc2_] as ServerSessionConstant).getTypeId());
             (this.variables[_loc2_] as ServerSessionConstant).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,11 +78,13 @@ public class ServerSessionConstantsMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(ServerSessionConstant,_loc4_);
             _loc5_.deserialize(param1);
             this.variables.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,8 +99,10 @@ public class ServerSessionConstantsMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._variablestree.addChild(this._variablesFunc);
             _loc3_++;
+         }
     }
 
     private void _variablesFunc(ICustomDataInput param1) {

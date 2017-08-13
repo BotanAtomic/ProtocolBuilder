@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat;
+package com.ankamagames.dofus.network.messages.game.chat;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -39,7 +39,10 @@ public class ChatClientMultiMessage extends ChatAbstractClientMessage implements
          ByteArray _loc2_ = new ByteArray();
          this.serialize(new CustomDataWrapper(_loc2_));
          if(HASH_FUNCTION != null)
+         {
             HASH_FUNCTION(_loc2_);
+         }
+         writePacket(param1,this.getMessageId(),_loc2_);
     }
 
     public void unpack(ICustomDataInput param1,int  param2) {
@@ -83,7 +86,9 @@ public class ChatClientMultiMessage extends ChatAbstractClientMessage implements
     private void _channelFunc(ICustomDataInput param1) {
          this.channel = param1.readByte();
          if(this.channel < 0)
+         {
             throw new Exception("Forbidden value (" + this.channel + ") on element of ChatClientMultiMessage.channel.");
+         }
     }
 
 }

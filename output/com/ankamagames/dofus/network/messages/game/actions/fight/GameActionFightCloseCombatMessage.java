@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class GameActionFightCloseCombatMessage extends AbstractGameActionFightTa
     public void serializeAs_GameActionFightCloseCombatMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractGameActionFightTargetedAbilityMessage(param1);
          if(this.weaponGenericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.weaponGenericId + ") on element weaponGenericId.");
+         }
+         param1.writeVarShort(this.weaponGenericId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class GameActionFightCloseCombatMessage extends AbstractGameActionFightTa
     private void _weaponGenericIdFunc(ICustomDataInput param1) {
          this.weaponGenericId = param1.readVarUhShort();
          if(this.weaponGenericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.weaponGenericId + ") on element of GameActionFightCloseCombatMessage.weaponGenericId.");
+         }
     }
 
 }

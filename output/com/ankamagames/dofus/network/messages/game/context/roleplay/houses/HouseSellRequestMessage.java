@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -65,7 +66,16 @@ public class HouseSellRequestMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_HouseSellRequestMessage(ICustomDataOutput param1) {
          if(this.instanceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
+         }
+         param1.writeInt(this.instanceId);
+         if(this.amount < 0 || this.amount > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.amount + ") on element amount.");
+         }
+         param1.writeVarLong(this.amount);
+         param1.writeBoolean(this.forSale);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -91,13 +101,17 @@ public class HouseSellRequestMessage extends NetworkMessage implements INetworkM
     private void _instanceIdFunc(ICustomDataInput param1) {
          this.instanceId = param1.readInt();
          if(this.instanceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.instanceId + ") on element of HouseSellRequestMessage.instanceId.");
+         }
     }
 
     private void _amountFunc(ICustomDataInput param1) {
          this.amount = param1.readVarUhLong();
          if(this.amount < 0 || this.amount > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.amount + ") on element of HouseSellRequestMessage.amount.");
+         }
     }
 
     private void _forSaleFunc(ICustomDataInput param1) {

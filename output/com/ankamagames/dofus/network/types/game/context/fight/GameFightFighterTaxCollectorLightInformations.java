@@ -1,9 +1,10 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -39,7 +40,15 @@ public class GameFightFighterTaxCollectorLightInformations extends GameFightFigh
     public void serializeAs_GameFightFighterTaxCollectorLightInformations(ICustomDataOutput param1) {
          super.serializeAs_GameFightFighterLightInformations(param1);
          if(this.firstNameId < 0)
+         {
             throw new Exception("Forbidden value (" + this.firstNameId + ") on element firstNameId.");
+         }
+         param1.writeVarShort(this.firstNameId);
+         if(this.lastNameId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
+         }
+         param1.writeVarShort(this.lastNameId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -65,13 +74,17 @@ public class GameFightFighterTaxCollectorLightInformations extends GameFightFigh
     private void _firstNameIdFunc(ICustomDataInput param1) {
          this.firstNameId = param1.readVarUhShort();
          if(this.firstNameId < 0)
+         {
             throw new Exception("Forbidden value (" + this.firstNameId + ") on element of GameFightFighterTaxCollectorLightInformations.firstNameId.");
+         }
     }
 
     private void _lastNameIdFunc(ICustomDataInput param1) {
          this.lastNameId = param1.readVarUhShort();
          if(this.lastNameId < 0)
+         {
             throw new Exception("Forbidden value (" + this.lastNameId + ") on element of GameFightFighterTaxCollectorLightInformations.lastNameId.");
+         }
     }
 
 }

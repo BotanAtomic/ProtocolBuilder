@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.friend;
+package com.ankamagames.dofus.network.messages.game.friend;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,9 +13,9 @@ public class IgnoredAddedMessage extends NetworkMessage implements INetworkMessa
 
     private int protocolId = 5678;
     private boolean _isInitialized = false;
-    private IgnoredInformations ignoreAdded = ;
+    private IgnoredInformations ignoreAdded;
     private boolean session = false;
-    private FuncTree _ignoreAddedtree = ;
+    private FuncTree _ignoreAddedtree;
 
 
     public boolean isInitialized() {

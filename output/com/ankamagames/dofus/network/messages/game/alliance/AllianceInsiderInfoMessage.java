@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.alliance;
+package com.ankamagames.dofus.network.messages.game.alliance;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,23 +15,12 @@ public class AllianceInsiderInfoMessage extends NetworkMessage implements INetwo
 
     private int protocolId = 6403;
     private boolean _isInitialized = false;
-    private AllianceFactSheetInformations allianceInfos = ;
-    private Vector.<GuildInsiderFactSheetInformations> guilds = ;
-    private Vector.<PrismSubareaEmptyInfo> prisms = ;
-    private FuncTree _allianceInfostree = ;
-    private FuncTree _guildstree = ;
-    private FuncTree _prismstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private int _loc7_ = 0;
-    private PrismSubareaEmptyInfo _loc8_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private PrismSubareaEmptyInfo _loc3_ = ProtocolTypeManager.getInstance(PrismSubareaEmptyInfo,_loc2_);
+    private AllianceFactSheetInformations allianceInfos;
+    private Vector<GuildInsiderFactSheetInformations> guilds;
+    private Vector<PrismSubareaEmptyInfo> prisms;
+    private FuncTree _allianceInfostree;
+    private FuncTree _guildstree;
+    private FuncTree _prismstree;
 
 
     public boolean isInitialized() {
@@ -42,7 +31,7 @@ public class AllianceInsiderInfoMessage extends NetworkMessage implements INetwo
          return 6403;
     }
 
-    public AllianceInsiderInfoMessage initAllianceInsiderInfoMessage(AllianceFactSheetInformations param1,Vector.<GuildInsiderFactSheetInformations>  param2,Vector.<PrismSubareaEmptyInfo>  param3) {
+    public AllianceInsiderInfoMessage initAllianceInsiderInfoMessage(AllianceFactSheetInformations param1,Vector<GuildInsiderFactSheetInformations>  param2,Vector<PrismSubareaEmptyInfo>  param3) {
          this.allianceInfos = param1;
          this.guilds = param2;
          this.prisms = param3;
@@ -82,8 +71,18 @@ public class AllianceInsiderInfoMessage extends NetworkMessage implements INetwo
          param1.writeShort(this.guilds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.guilds.length)
+         {
             (this.guilds[_loc2_] as GuildInsiderFactSheetInformations).serializeAs_GuildInsiderFactSheetInformations(param1);
             _loc2_++;
+         }
+         param1.writeShort(this.prisms.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.prisms.length)
+         {
+            param1.writeShort((this.prisms[_loc3_] as PrismSubareaEmptyInfo).getTypeId());
+            (this.prisms[_loc3_] as PrismSubareaEmptyInfo).serialize(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -99,10 +98,22 @@ public class AllianceInsiderInfoMessage extends NetworkMessage implements INetwo
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = new GuildInsiderFactSheetInformations();
             _loc6_.deserialize(param1);
             this.guilds.push(_loc6_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = param1.readUnsignedShort();
+            _loc8_ = ProtocolTypeManager.getInstance(PrismSubareaEmptyInfo,_loc7_);
+            _loc8_.deserialize(param1);
+            this.prisms.push(_loc8_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -124,8 +135,10 @@ public class AllianceInsiderInfoMessage extends NetworkMessage implements INetwo
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._guildstree.addChild(this._guildsFunc);
             _loc3_++;
+         }
     }
 
     private void _guildsFunc(ICustomDataInput param1) {
@@ -138,8 +151,10 @@ public class AllianceInsiderInfoMessage extends NetworkMessage implements INetwo
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._prismstree.addChild(this._prismsFunc);
             _loc3_++;
+         }
     }
 
     private void _prismsFunc(ICustomDataInput param1) {

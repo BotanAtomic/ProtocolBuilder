@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GameFightPlacementSwapPositionsMessage extends NetworkMessage imple
 
     private int protocolId = 6544;
     private boolean _isInitialized = false;
-    private Vector.<IdentifiedEntityDispositionInformations> dispositions = ;
-    private FuncTree _dispositionstree = ;
+    private Vector<IdentifiedEntityDispositionInformations> dispositions;
+    private FuncTree _dispositionstree;
     private int _dispositionsindex = 0;
 
 
@@ -25,7 +25,7 @@ public class GameFightPlacementSwapPositionsMessage extends NetworkMessage imple
          return 6544;
     }
 
-    public GameFightPlacementSwapPositionsMessage initGameFightPlacementSwapPositionsMessage(Vector.<IdentifiedEntityDispositionInformations> param1) {
+    public GameFightPlacementSwapPositionsMessage initGameFightPlacementSwapPositionsMessage(Vector<IdentifiedEntityDispositionInformations> param1) {
          this.dispositions = param1;
          this._isInitialized = true;
          return this;
@@ -60,8 +60,10 @@ public class GameFightPlacementSwapPositionsMessage extends NetworkMessage imple
     public void serializeAs_GameFightPlacementSwapPositionsMessage(ICustomDataOutput param1) {
          int _loc2_ = 0;
          while(_loc2_ < 2)
+         {
             this.dispositions[_loc2_].serializeAs_IdentifiedEntityDispositionInformations(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -71,9 +73,11 @@ public class GameFightPlacementSwapPositionsMessage extends NetworkMessage imple
     public void deserializeAs_GameFightPlacementSwapPositionsMessage(ICustomDataInput param1) {
          int _loc2_ = 0;
          while(_loc2_ < 2)
+         {
             this.dispositions[_loc2_] = new IdentifiedEntityDispositionInformations();
             this.dispositions[_loc2_].deserialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -87,8 +91,10 @@ public class GameFightPlacementSwapPositionsMessage extends NetworkMessage imple
     private void _dispositionstreeFunc(ICustomDataInput param1) {
          int _loc2_ = 0;
          while(_loc2_ < 2)
+         {
             this._dispositionstree.addChild(this._dispositionsFunc);
             _loc2_++;
+         }
     }
 
     private void _dispositionsFunc(ICustomDataInput param1) {

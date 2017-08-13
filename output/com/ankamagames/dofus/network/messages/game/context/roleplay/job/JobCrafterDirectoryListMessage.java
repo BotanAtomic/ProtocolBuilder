@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class JobCrafterDirectoryListMessage extends NetworkMessage implements IN
 
     private int protocolId = 6046;
     private boolean _isInitialized = false;
-    private Vector.<JobCrafterDirectoryListEntry> listEntries = ;
-    private FuncTree _listEntriestree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<JobCrafterDirectoryListEntry> listEntries;
+    private FuncTree _listEntriestree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class JobCrafterDirectoryListMessage extends NetworkMessage implements IN
          return 6046;
     }
 
-    public JobCrafterDirectoryListMessage initJobCrafterDirectoryListMessage(Vector.<JobCrafterDirectoryListEntry> param1) {
+    public JobCrafterDirectoryListMessage initJobCrafterDirectoryListMessage(Vector<JobCrafterDirectoryListEntry> param1) {
          this.listEntries = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class JobCrafterDirectoryListMessage extends NetworkMessage implements IN
          param1.writeShort(this.listEntries.length);
          int _loc2_ = 0;
          while(_loc2_ < this.listEntries.length)
+         {
             (this.listEntries[_loc2_] as JobCrafterDirectoryListEntry).serializeAs_JobCrafterDirectoryListEntry(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class JobCrafterDirectoryListMessage extends NetworkMessage implements IN
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new JobCrafterDirectoryListEntry();
             _loc4_.deserialize(param1);
             this.listEntries.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class JobCrafterDirectoryListMessage extends NetworkMessage implements IN
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._listEntriestree.addChild(this._listEntriesFunc);
             _loc3_++;
+         }
     }
 
     private void _listEntriesFunc(ICustomDataInput param1) {

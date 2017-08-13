@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -9,6 +9,7 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class EntityTalkMessage extends NetworkMessage implements INetworkMessage {
 
@@ -16,12 +17,8 @@ public class EntityTalkMessage extends NetworkMessage implements INetworkMessage
     private boolean _isInitialized = false;
     private Number entityId = 0;
     private int textId = 0;
-    private Vector.<String> parameters = ;
-    private FuncTree _parameterstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<String> parameters;
+    private FuncTree _parameterstree;
 
 
     public boolean isInitialized() {
@@ -32,7 +29,7 @@ public class EntityTalkMessage extends NetworkMessage implements INetworkMessage
          return 6110;
     }
 
-    public EntityTalkMessage initEntityTalkMessage(Number param1,int  param2,Vector.<String>  param3) {
+    public EntityTalkMessage initEntityTalkMessage(Number param1,int  param2,Vector<String>  param3) {
          this.entityId = param1;
          this.textId = param2;
          this.parameters = param3;
@@ -70,7 +67,22 @@ public class EntityTalkMessage extends NetworkMessage implements INetworkMessage
 
     public void serializeAs_EntityTalkMessage(ICustomDataOutput param1) {
          if(this.entityId < -9.007199254740992E15 || this.entityId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.entityId + ") on element entityId.");
+         }
+         param1.writeDouble(this.entityId);
+         if(this.textId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.textId + ") on element textId.");
+         }
+         param1.writeVarShort(this.textId);
+         param1.writeShort(this.parameters.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.parameters.length)
+         {
+            param1.writeUTF(this.parameters[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,9 +96,11 @@ public class EntityTalkMessage extends NetworkMessage implements INetworkMessage
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUTF();
             this.parameters.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -102,21 +116,27 @@ public class EntityTalkMessage extends NetworkMessage implements INetworkMessage
     private void _entityIdFunc(ICustomDataInput param1) {
          this.entityId = param1.readDouble();
          if(this.entityId < -9.007199254740992E15 || this.entityId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.entityId + ") on element of EntityTalkMessage.entityId.");
+         }
     }
 
     private void _textIdFunc(ICustomDataInput param1) {
          this.textId = param1.readVarUhShort();
          if(this.textId < 0)
+         {
             throw new Exception("Forbidden value (" + this.textId + ") on element of EntityTalkMessage.textId.");
+         }
     }
 
     private void _parameterstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._parameterstree.addChild(this._parametersFunc);
             _loc3_++;
+         }
     }
 
     private void _parametersFunc(ICustomDataInput param1) {

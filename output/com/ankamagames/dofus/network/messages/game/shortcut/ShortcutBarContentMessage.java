@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.shortcut;
+package com.ankamagames.dofus.network.messages.game.shortcut;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,14 +15,8 @@ public class ShortcutBarContentMessage extends NetworkMessage implements INetwor
     private int protocolId = 6231;
     private boolean _isInitialized = false;
     private int barType = 0;
-    private Vector.<Shortcut> shortcuts = ;
-    private FuncTree _shortcutstree = ;
-    private int _loc2_ = 0;
-    private Shortcut _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private Shortcut _loc3_ = ProtocolTypeManager.getInstance(Shortcut,_loc2_);
+    private Vector<Shortcut> shortcuts;
+    private FuncTree _shortcutstree;
 
 
     public boolean isInitialized() {
@@ -33,7 +27,7 @@ public class ShortcutBarContentMessage extends NetworkMessage implements INetwor
          return 6231;
     }
 
-    public ShortcutBarContentMessage initShortcutBarContentMessage(int param1,Vector.<Shortcut>  param2) {
+    public ShortcutBarContentMessage initShortcutBarContentMessage(int param1,Vector<Shortcut>  param2) {
          this.barType = param1;
          this.shortcuts = param2;
          this._isInitialized = true;
@@ -72,9 +66,11 @@ public class ShortcutBarContentMessage extends NetworkMessage implements INetwor
          param1.writeShort(this.shortcuts.length);
          int _loc2_ = 0;
          while(_loc2_ < this.shortcuts.length)
+         {
             param1.writeShort((this.shortcuts[_loc2_] as Shortcut).getTypeId());
             (this.shortcuts[_loc2_] as Shortcut).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -88,11 +84,13 @@ public class ShortcutBarContentMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(Shortcut,_loc4_);
             _loc5_.deserialize(param1);
             this.shortcuts.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -107,15 +105,19 @@ public class ShortcutBarContentMessage extends NetworkMessage implements INetwor
     private void _barTypeFunc(ICustomDataInput param1) {
          this.barType = param1.readByte();
          if(this.barType < 0)
+         {
             throw new Exception("Forbidden value (" + this.barType + ") on element of ShortcutBarContentMessage.barType.");
+         }
     }
 
     private void _shortcutstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._shortcutstree.addChild(this._shortcutsFunc);
             _loc3_++;
+         }
     }
 
     private void _shortcutsFunc(ICustomDataInput param1) {

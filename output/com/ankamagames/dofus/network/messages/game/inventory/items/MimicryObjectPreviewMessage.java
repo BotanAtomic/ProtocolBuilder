@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class MimicryObjectPreviewMessage extends NetworkMessage implements INetw
 
     private int protocolId = 6458;
     private boolean _isInitialized = false;
-    private ObjectItem result = ;
-    private FuncTree _resulttree = ;
+    private ObjectItem result;
+    private FuncTree _resulttree;
 
 
     public boolean isInitialized() {

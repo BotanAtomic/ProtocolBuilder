@@ -1,9 +1,11 @@
-package package com.ankamagames.dofus.network.types.game.data.items.effects;
+package com.ankamagames.dofus.network.types.game.data.items.effects;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -43,7 +45,20 @@ public class ObjectEffectDice extends ObjectEffect implements INetworkType {
     public void serializeAs_ObjectEffectDice(ICustomDataOutput param1) {
          super.serializeAs_ObjectEffect(param1);
          if(this.diceNum < 0)
+         {
             throw new Exception("Forbidden value (" + this.diceNum + ") on element diceNum.");
+         }
+         param1.writeVarShort(this.diceNum);
+         if(this.diceSide < 0)
+         {
+            throw new Exception("Forbidden value (" + this.diceSide + ") on element diceSide.");
+         }
+         param1.writeVarShort(this.diceSide);
+         if(this.diceConst < 0)
+         {
+            throw new Exception("Forbidden value (" + this.diceConst + ") on element diceConst.");
+         }
+         param1.writeVarShort(this.diceConst);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -71,19 +86,25 @@ public class ObjectEffectDice extends ObjectEffect implements INetworkType {
     private void _diceNumFunc(ICustomDataInput param1) {
          this.diceNum = param1.readVarUhShort();
          if(this.diceNum < 0)
+         {
             throw new Exception("Forbidden value (" + this.diceNum + ") on element of ObjectEffectDice.diceNum.");
+         }
     }
 
     private void _diceSideFunc(ICustomDataInput param1) {
          this.diceSide = param1.readVarUhShort();
          if(this.diceSide < 0)
+         {
             throw new Exception("Forbidden value (" + this.diceSide + ") on element of ObjectEffectDice.diceSide.");
+         }
     }
 
     private void _diceConstFunc(ICustomDataInput param1) {
          this.diceConst = param1.readVarUhShort();
          if(this.diceConst < 0)
+         {
             throw new Exception("Forbidden value (" + this.diceConst + ") on element of ObjectEffectDice.diceConst.");
+         }
     }
 
 }

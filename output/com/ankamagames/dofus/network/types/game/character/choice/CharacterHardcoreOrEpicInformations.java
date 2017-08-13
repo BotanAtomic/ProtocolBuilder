@@ -1,10 +1,11 @@
-package package com.ankamagames.dofus.network.types.game.character.choice;
+package com.ankamagames.dofus.network.types.game.character.choice;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -45,7 +46,15 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
          super.serializeAs_CharacterBaseInformations(param1);
          param1.writeByte(this.deathState);
          if(this.deathCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.deathCount + ") on element deathCount.");
+         }
+         param1.writeVarShort(this.deathCount);
+         if(this.deathMaxLevel < 1 || this.deathMaxLevel > 206)
+         {
+            throw new Exception("Forbidden value (" + this.deathMaxLevel + ") on element deathMaxLevel.");
+         }
+         param1.writeByte(this.deathMaxLevel);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -73,19 +82,25 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
     private void _deathStateFunc(ICustomDataInput param1) {
          this.deathState = param1.readByte();
          if(this.deathState < 0)
+         {
             throw new Exception("Forbidden value (" + this.deathState + ") on element of CharacterHardcoreOrEpicInformations.deathState.");
+         }
     }
 
     private void _deathCountFunc(ICustomDataInput param1) {
          this.deathCount = param1.readVarUhShort();
          if(this.deathCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.deathCount + ") on element of CharacterHardcoreOrEpicInformations.deathCount.");
+         }
     }
 
     private void _deathMaxLevelFunc(ICustomDataInput param1) {
          this.deathMaxLevel = param1.readUnsignedByte();
          if(this.deathMaxLevel < 1 || this.deathMaxLevel > 206)
+         {
             throw new Exception("Forbidden value (" + this.deathMaxLevel + ") on element of CharacterHardcoreOrEpicInformations.deathMaxLevel.");
+         }
     }
 
 }

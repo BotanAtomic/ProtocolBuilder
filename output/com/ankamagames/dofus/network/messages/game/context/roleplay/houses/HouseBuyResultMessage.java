@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -7,6 +7,8 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -77,7 +79,20 @@ public class HouseBuyResultMessage extends NetworkMessage implements INetworkMes
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.bought);
          param1.writeByte(_loc2_);
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
+         }
+         param1.writeVarInt(this.houseId);
+         if(this.instanceId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
+         }
+         param1.writeInt(this.instanceId);
+         if(this.realPrice < 0 || this.realPrice > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.realPrice + ") on element realPrice.");
+         }
+         param1.writeVarLong(this.realPrice);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -111,19 +126,25 @@ public class HouseBuyResultMessage extends NetworkMessage implements INetworkMes
     private void _houseIdFunc(ICustomDataInput param1) {
          this.houseId = param1.readVarUhInt();
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element of HouseBuyResultMessage.houseId.");
+         }
     }
 
     private void _instanceIdFunc(ICustomDataInput param1) {
          this.instanceId = param1.readInt();
          if(this.instanceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.instanceId + ") on element of HouseBuyResultMessage.instanceId.");
+         }
     }
 
     private void _realPriceFunc(ICustomDataInput param1) {
          this.realPrice = param1.readVarUhLong();
          if(this.realPrice < 0 || this.realPrice > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.realPrice + ") on element of HouseBuyResultMessage.realPrice.");
+         }
     }
 
 }

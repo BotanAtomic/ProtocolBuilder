@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -10,18 +10,15 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class GameMapMovementRequestMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 950;
     private boolean _isInitialized = false;
-    private Vector.<uint> keyMovements = ;
+    private Vector<uint> keyMovements;
     private int mapId = 0;
-    private FuncTree _keyMovementstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _keyMovementstree;
 
 
     public boolean isInitialized() {
@@ -32,7 +29,7 @@ public class GameMapMovementRequestMessage extends NetworkMessage implements INe
          return 950;
     }
 
-    public GameMapMovementRequestMessage initGameMapMovementRequestMessage(Vector.<uint> param1,int  param2) {
+    public GameMapMovementRequestMessage initGameMapMovementRequestMessage(Vector<uint> param1,int  param2) {
          this.keyMovements = param1;
          this.mapId = param2;
          this._isInitialized = true;
@@ -49,7 +46,10 @@ public class GameMapMovementRequestMessage extends NetworkMessage implements INe
          ByteArray _loc2_ = new ByteArray();
          this.serialize(new CustomDataWrapper(_loc2_));
          if(HASH_FUNCTION != null)
+         {
             HASH_FUNCTION(_loc2_);
+         }
+         writePacket(param1,this.getMessageId(),_loc2_);
     }
 
     public void unpack(ICustomDataInput param1,int  param2) {
@@ -71,8 +71,19 @@ public class GameMapMovementRequestMessage extends NetworkMessage implements INe
          param1.writeShort(this.keyMovements.length);
          int _loc2_ = 0;
          while(_loc2_ < this.keyMovements.length)
+         {
             if(this.keyMovements[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.keyMovements[_loc2_] + ") on element 1 (starting at 1) of keyMovements.");
+            }
+            param1.writeShort(this.keyMovements[_loc2_]);
+            _loc2_++;
+         }
+         if(this.mapId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
+         }
+         param1.writeInt(this.mapId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,9 +95,16 @@ public class GameMapMovementRequestMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readShort();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of keyMovements.");
+            }
+            this.keyMovements.push(_loc4_);
+            _loc3_++;
+         }
+         this._mapIdFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -102,20 +120,27 @@ public class GameMapMovementRequestMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._keyMovementstree.addChild(this._keyMovementsFunc);
             _loc3_++;
+         }
     }
 
     private void _keyMovementsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of keyMovements.");
+         }
+         this.keyMovements.push(_loc2_);
     }
 
     private void _mapIdFunc(ICustomDataInput param1) {
          this.mapId = param1.readInt();
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element of GameMapMovementRequestMessage.mapId.");
+         }
     }
 
 }

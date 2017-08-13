@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.fight;
+package com.ankamagames.dofus.network.types.game.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -40,7 +40,10 @@ public class ProtectedEntityWaitingForHelpInfo extends Object implements INetwor
          param1.writeInt(this.timeLeftBeforeFight);
          param1.writeInt(this.waitTimeForPlacement);
          if(this.nbPositionForDefensors < 0)
+         {
             throw new Exception("Forbidden value (" + this.nbPositionForDefensors + ") on element nbPositionForDefensors.");
+         }
+         param1.writeByte(this.nbPositionForDefensors);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -74,7 +77,9 @@ public class ProtectedEntityWaitingForHelpInfo extends Object implements INetwor
     private void _nbPositionForDefensorsFunc(ICustomDataInput param1) {
          this.nbPositionForDefensors = param1.readByte();
          if(this.nbPositionForDefensors < 0)
+         {
             throw new Exception("Forbidden value (" + this.nbPositionForDefensors + ") on element of ProtectedEntityWaitingForHelpInfo.nbPositionForDefensors.");
+         }
     }
 
 }

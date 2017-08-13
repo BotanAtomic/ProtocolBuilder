@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class InventoryPresetItemUpdateErrorMessage extends NetworkMessage implem
     private void _codeFunc(ICustomDataInput param1) {
          this.code = param1.readByte();
          if(this.code < 0)
+         {
             throw new Exception("Forbidden value (" + this.code + ") on element of InventoryPresetItemUpdateErrorMessage.code.");
+         }
     }
 
 }

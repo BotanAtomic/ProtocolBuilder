@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class IdolsPresetUpdateMessage extends NetworkMessage implements INetwork
 
     private int protocolId = 6606;
     private boolean _isInitialized = false;
-    private IdolsPreset idolsPreset = ;
-    private FuncTree _idolsPresettree = ;
+    private IdolsPreset idolsPreset;
+    private FuncTree _idolsPresettree;
 
 
     public boolean isInitialized() {

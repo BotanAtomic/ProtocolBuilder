@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,12 +14,8 @@ public class MigratedServerListMessage extends NetworkMessage implements INetwor
 
     private int protocolId = 6731;
     private boolean _isInitialized = false;
-    private Vector.<uint> migratedServerIds = ;
-    private FuncTree _migratedServerIdstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> migratedServerIds;
+    private FuncTree _migratedServerIdstree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class MigratedServerListMessage extends NetworkMessage implements INetwor
          return 6731;
     }
 
-    public MigratedServerListMessage initMigratedServerListMessage(Vector.<uint> param1) {
+    public MigratedServerListMessage initMigratedServerListMessage(Vector<uint> param1) {
          this.migratedServerIds = param1;
          this._isInitialized = true;
          return this;
@@ -66,8 +62,14 @@ public class MigratedServerListMessage extends NetworkMessage implements INetwor
          param1.writeShort(this.migratedServerIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.migratedServerIds.length)
+         {
             if(this.migratedServerIds[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.migratedServerIds[_loc2_] + ") on element 1 (starting at 1) of migratedServerIds.");
+            }
+            param1.writeVarShort(this.migratedServerIds[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -79,9 +81,15 @@ public class MigratedServerListMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarUhShort();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of migratedServerIds.");
+            }
+            this.migratedServerIds.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -96,14 +104,19 @@ public class MigratedServerListMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._migratedServerIdstree.addChild(this._migratedServerIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _migratedServerIdsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of migratedServerIds.");
+         }
+         this.migratedServerIds.push(_loc2_);
     }
 
 }

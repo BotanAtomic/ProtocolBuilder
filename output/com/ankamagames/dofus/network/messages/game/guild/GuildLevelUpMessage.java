@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class GuildLevelUpMessage extends NetworkMessage implements INetworkMessa
 
     public void serializeAs_GuildLevelUpMessage(ICustomDataOutput param1) {
          if(this.newLevel < 2 || this.newLevel > 200)
+         {
             throw new Exception("Forbidden value (" + this.newLevel + ") on element newLevel.");
+         }
+         param1.writeByte(this.newLevel);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class GuildLevelUpMessage extends NetworkMessage implements INetworkMessa
     private void _newLevelFunc(ICustomDataInput param1) {
          this.newLevel = param1.readUnsignedByte();
          if(this.newLevel < 2 || this.newLevel > 200)
+         {
             throw new Exception("Forbidden value (" + this.newLevel + ") on element of GuildLevelUpMessage.newLevel.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class ExchangeStartOkMountWithOutPaddockMessage extends NetworkMessage im
 
     private int protocolId = 5991;
     private boolean _isInitialized = false;
-    private Vector.<MountClientData> stabledMountsDescription = ;
-    private FuncTree _stabledMountsDescriptiontree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<MountClientData> stabledMountsDescription;
+    private FuncTree _stabledMountsDescriptiontree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class ExchangeStartOkMountWithOutPaddockMessage extends NetworkMessage im
          return 5991;
     }
 
-    public ExchangeStartOkMountWithOutPaddockMessage initExchangeStartOkMountWithOutPaddockMessage(Vector.<MountClientData> param1) {
+    public ExchangeStartOkMountWithOutPaddockMessage initExchangeStartOkMountWithOutPaddockMessage(Vector<MountClientData> param1) {
          this.stabledMountsDescription = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class ExchangeStartOkMountWithOutPaddockMessage extends NetworkMessage im
          param1.writeShort(this.stabledMountsDescription.length);
          int _loc2_ = 0;
          while(_loc2_ < this.stabledMountsDescription.length)
+         {
             (this.stabledMountsDescription[_loc2_] as MountClientData).serializeAs_MountClientData(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class ExchangeStartOkMountWithOutPaddockMessage extends NetworkMessage im
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new MountClientData();
             _loc4_.deserialize(param1);
             this.stabledMountsDescription.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class ExchangeStartOkMountWithOutPaddockMessage extends NetworkMessage im
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._stabledMountsDescriptiontree.addChild(this._stabledMountsDescriptionFunc);
             _loc3_++;
+         }
     }
 
     private void _stabledMountsDescriptionFunc(ICustomDataInput param1) {

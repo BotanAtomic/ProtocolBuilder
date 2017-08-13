@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.script;
+package com.ankamagames.dofus.network.messages.game.script;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class CinematicMessage extends NetworkMessage implements INetworkMessage 
 
     public void serializeAs_CinematicMessage(ICustomDataOutput param1) {
          if(this.cinematicId < 0)
+         {
             throw new Exception("Forbidden value (" + this.cinematicId + ") on element cinematicId.");
+         }
+         param1.writeVarShort(this.cinematicId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class CinematicMessage extends NetworkMessage implements INetworkMessage 
     private void _cinematicIdFunc(ICustomDataInput param1) {
          this.cinematicId = param1.readVarUhShort();
          if(this.cinematicId < 0)
+         {
             throw new Exception("Forbidden value (" + this.cinematicId + ") on element of CinematicMessage.cinematicId.");
+         }
     }
 
 }

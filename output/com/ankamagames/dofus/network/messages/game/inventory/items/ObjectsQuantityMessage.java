@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class ObjectsQuantityMessage extends NetworkMessage implements INetworkMe
 
     private int protocolId = 6206;
     private boolean _isInitialized = false;
-    private Vector.<ObjectItemQuantity> objectsUIDAndQty = ;
-    private FuncTree _objectsUIDAndQtytree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItemQuantity> objectsUIDAndQty;
+    private FuncTree _objectsUIDAndQtytree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class ObjectsQuantityMessage extends NetworkMessage implements INetworkMe
          return 6206;
     }
 
-    public ObjectsQuantityMessage initObjectsQuantityMessage(Vector.<ObjectItemQuantity> param1) {
+    public ObjectsQuantityMessage initObjectsQuantityMessage(Vector<ObjectItemQuantity> param1) {
          this.objectsUIDAndQty = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class ObjectsQuantityMessage extends NetworkMessage implements INetworkMe
          param1.writeShort(this.objectsUIDAndQty.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objectsUIDAndQty.length)
+         {
             (this.objectsUIDAndQty[_loc2_] as ObjectItemQuantity).serializeAs_ObjectItemQuantity(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class ObjectsQuantityMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItemQuantity();
             _loc4_.deserialize(param1);
             this.objectsUIDAndQty.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class ObjectsQuantityMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objectsUIDAndQtytree.addChild(this._objectsUIDAndQtyFunc);
             _loc3_++;
+         }
     }
 
     private void _objectsUIDAndQtyFunc(ICustomDataInput param1) {

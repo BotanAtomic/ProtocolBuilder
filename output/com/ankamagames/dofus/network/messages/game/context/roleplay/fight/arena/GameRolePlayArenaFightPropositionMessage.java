@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -11,19 +11,17 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class GameRolePlayArenaFightPropositionMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 6276;
     private boolean _isInitialized = false;
     private int fightId = 0;
-    private Vector.<Number> alliesId = ;
+    private Vector<Number> alliesId;
     private int duration = 0;
-    private FuncTree _alliesIdtree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _alliesIdtree;
 
 
     public boolean isInitialized() {
@@ -34,7 +32,7 @@ public class GameRolePlayArenaFightPropositionMessage extends NetworkMessage imp
          return 6276;
     }
 
-    public GameRolePlayArenaFightPropositionMessage initGameRolePlayArenaFightPropositionMessage(int param1,Vector.<Number>  param2,int  param3) {
+    public GameRolePlayArenaFightPropositionMessage initGameRolePlayArenaFightPropositionMessage(int param1,Vector<Number>  param2,int  param3) {
          this.fightId = param1;
          this.alliesId = param2;
          this.duration = param3;
@@ -72,7 +70,26 @@ public class GameRolePlayArenaFightPropositionMessage extends NetworkMessage imp
 
     public void serializeAs_GameRolePlayArenaFightPropositionMessage(ICustomDataOutput param1) {
          if(this.fightId < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
+         }
+         param1.writeInt(this.fightId);
+         param1.writeShort(this.alliesId.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.alliesId.length)
+         {
+            if(this.alliesId[_loc2_] < -9.007199254740992E15 || this.alliesId[_loc2_] > 9.007199254740992E15)
+            {
+               throw new Exception("Forbidden value (" + this.alliesId[_loc2_] + ") on element 2 (starting at 1) of alliesId.");
+            }
+            param1.writeDouble(this.alliesId[_loc2_]);
+            _loc2_++;
+         }
+         if(this.duration < 0)
+         {
+            throw new Exception("Forbidden value (" + this.duration + ") on element duration.");
+         }
+         param1.writeVarShort(this.duration);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,9 +102,16 @@ public class GameRolePlayArenaFightPropositionMessage extends NetworkMessage imp
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readDouble();
             if(_loc4_ < -9.007199254740992E15 || _loc4_ > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of alliesId.");
+            }
+            this.alliesId.push(_loc4_);
+            _loc3_++;
+         }
+         this._durationFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -103,27 +127,36 @@ public class GameRolePlayArenaFightPropositionMessage extends NetworkMessage imp
     private void _fightIdFunc(ICustomDataInput param1) {
          this.fightId = param1.readInt();
          if(this.fightId < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightId + ") on element of GameRolePlayArenaFightPropositionMessage.fightId.");
+         }
     }
 
     private void _alliesIdtreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._alliesIdtree.addChild(this._alliesIdFunc);
             _loc3_++;
+         }
     }
 
     private void _alliesIdFunc(ICustomDataInput param1) {
          Number _loc2_ = param1.readDouble();
          if(_loc2_ < -9.007199254740992E15 || _loc2_ > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of alliesId.");
+         }
+         this.alliesId.push(_loc2_);
     }
 
     private void _durationFunc(ICustomDataInput param1) {
          this.duration = param1.readVarUhShort();
          if(this.duration < 0)
+         {
             throw new Exception("Forbidden value (" + this.duration + ") on element of GameRolePlayArenaFightPropositionMessage.duration.");
+         }
     }
 
 }

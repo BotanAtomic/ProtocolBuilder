@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.storage;
+package com.ankamagames.dofus.network.messages.game.inventory.storage;
 
 import com.ankamagames.dofus.network.messages.game.inventory.items.InventoryContentMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -22,7 +22,7 @@ public class StorageInventoryContentMessage extends InventoryContentMessage impl
          return 5646;
     }
 
-    public StorageInventoryContentMessage initStorageInventoryContentMessage(Vector.<ObjectItem> param1,Number  param2) {
+    public StorageInventoryContentMessage initStorageInventoryContentMessage(Vector<ObjectItem> param1,Number  param2) {
          super.initInventoryContentMessage(param1,param2);
          this._isInitialized = true;
          return this;

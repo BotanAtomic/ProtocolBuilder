@@ -1,9 +1,11 @@
-package package com.ankamagames.dofus.network.types.game.data.items.effects;
+package com.ankamagames.dofus.network.types.game.data.items.effects;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -43,7 +45,20 @@ public class ObjectEffectDuration extends ObjectEffect implements INetworkType {
     public void serializeAs_ObjectEffectDuration(ICustomDataOutput param1) {
          super.serializeAs_ObjectEffect(param1);
          if(this.days < 0)
+         {
             throw new Exception("Forbidden value (" + this.days + ") on element days.");
+         }
+         param1.writeVarShort(this.days);
+         if(this.hours < 0)
+         {
+            throw new Exception("Forbidden value (" + this.hours + ") on element hours.");
+         }
+         param1.writeByte(this.hours);
+         if(this.minutes < 0)
+         {
+            throw new Exception("Forbidden value (" + this.minutes + ") on element minutes.");
+         }
+         param1.writeByte(this.minutes);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -71,19 +86,25 @@ public class ObjectEffectDuration extends ObjectEffect implements INetworkType {
     private void _daysFunc(ICustomDataInput param1) {
          this.days = param1.readVarUhShort();
          if(this.days < 0)
+         {
             throw new Exception("Forbidden value (" + this.days + ") on element of ObjectEffectDuration.days.");
+         }
     }
 
     private void _hoursFunc(ICustomDataInput param1) {
          this.hours = param1.readByte();
          if(this.hours < 0)
+         {
             throw new Exception("Forbidden value (" + this.hours + ") on element of ObjectEffectDuration.hours.");
+         }
     }
 
     private void _minutesFunc(ICustomDataInput param1) {
          this.minutes = param1.readByte();
          if(this.minutes < 0)
+         {
             throw new Exception("Forbidden value (" + this.minutes + ") on element of ObjectEffectDuration.minutes.");
+         }
     }
 
 }

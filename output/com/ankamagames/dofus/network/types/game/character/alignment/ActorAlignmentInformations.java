@@ -1,9 +1,11 @@
-package package com.ankamagames.dofus.network.types.game.character.alignment;
+package com.ankamagames.dofus.network.types.game.character.alignment;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -44,7 +46,20 @@ public class ActorAlignmentInformations extends Object implements INetworkType {
     public void serializeAs_ActorAlignmentInformations(ICustomDataOutput param1) {
          param1.writeByte(this.alignmentSide);
          if(this.alignmentValue < 0)
+         {
             throw new Exception("Forbidden value (" + this.alignmentValue + ") on element alignmentValue.");
+         }
+         param1.writeByte(this.alignmentValue);
+         if(this.alignmentGrade < 0)
+         {
+            throw new Exception("Forbidden value (" + this.alignmentGrade + ") on element alignmentGrade.");
+         }
+         param1.writeByte(this.alignmentGrade);
+         if(this.characterPower < -9.007199254740992E15 || this.characterPower > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.characterPower + ") on element characterPower.");
+         }
+         param1.writeDouble(this.characterPower);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -76,19 +91,25 @@ public class ActorAlignmentInformations extends Object implements INetworkType {
     private void _alignmentValueFunc(ICustomDataInput param1) {
          this.alignmentValue = param1.readByte();
          if(this.alignmentValue < 0)
+         {
             throw new Exception("Forbidden value (" + this.alignmentValue + ") on element of ActorAlignmentInformations.alignmentValue.");
+         }
     }
 
     private void _alignmentGradeFunc(ICustomDataInput param1) {
          this.alignmentGrade = param1.readByte();
          if(this.alignmentGrade < 0)
+         {
             throw new Exception("Forbidden value (" + this.alignmentGrade + ") on element of ActorAlignmentInformations.alignmentGrade.");
+         }
     }
 
     private void _characterPowerFunc(ICustomDataInput param1) {
          this.characterPower = param1.readDouble();
          if(this.characterPower < -9.007199254740992E15 || this.characterPower > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.characterPower + ") on element of ActorAlignmentInformations.characterPower.");
+         }
     }
 
 }

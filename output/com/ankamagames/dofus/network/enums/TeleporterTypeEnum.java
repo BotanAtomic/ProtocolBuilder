@@ -2,10 +2,10 @@ package com.ankamagames.dofus.network.enums;
 
 public enum TeleporterTypeEnum {
 
-    TELEPORTER_ZAAP(0),
-    TELEPORTER_SUBWAY(1),
-    TELEPORTER_PRISM(2),
-    TELEPORTER_HAVENBAG(3);
+    TELEPORTER_ZAAP(0;),
+    TELEPORTER_SUBWAY(1;),
+    TELEPORTER_PRISM(2;),
+    TELEPORTER_HAVENBAG(3;);
 
     private final int value;
     public TeleporterTypeEnum(int value) {

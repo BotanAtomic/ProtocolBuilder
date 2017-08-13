@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.character.CharacterMinimalInformations;
@@ -16,16 +16,17 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class MapComplementaryInformationsDataInHavenBagMessage extends MapComplementaryInformationsDataMessage implements INetworkMessage {
 
     private int protocolId = 6622;
     private boolean _isInitialized = false;
-    private CharacterMinimalInformations ownerInformations = ;
+    private CharacterMinimalInformations ownerInformations;
     private int theme = 0;
     private int roomId = 0;
     private int maxRoomId = 0;
-    private FuncTree _ownerInformationstree = ;
+    private FuncTree _ownerInformationstree;
 
 
     public boolean isInitialized() {
@@ -36,7 +37,7 @@ public class MapComplementaryInformationsDataInHavenBagMessage extends MapComple
          return 6622;
     }
 
-    public MapComplementaryInformationsDataInHavenBagMessage initMapComplementaryInformationsDataInHavenBagMessage(int param1,int  param2,Vector.<HouseInformations>  param3,Vector.<GameRolePlayActorInformations>  param4,Vector.<InteractiveElement>  param5,Vector.<StatedElement>  param6,Vector.<MapObstacle>  param7,Vector.<FightCommonInformations>  param8,boolean  param9,FightStartingPositions  param10,CharacterMinimalInformations  param11,int  param12,int  param13,int  param14) {
+    public MapComplementaryInformationsDataInHavenBagMessage initMapComplementaryInformationsDataInHavenBagMessage(int param1,int  param2,Vector<HouseInformations>  param3,Vector<GameRolePlayActorInformations>  param4,Vector<InteractiveElement>  param5,Vector<StatedElement>  param6,Vector<MapObstacle>  param7,Vector<FightCommonInformations>  param8,boolean  param9,FightStartingPositions  param10,CharacterMinimalInformations  param11,int  param12,int  param13,int  param14) {
          super.initMapComplementaryInformationsDataMessage(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10);
          this.ownerInformations = param11;
          this.theme = param12;
@@ -80,7 +81,15 @@ public class MapComplementaryInformationsDataInHavenBagMessage extends MapComple
          this.ownerInformations.serializeAs_CharacterMinimalInformations(param1);
          param1.writeByte(this.theme);
          if(this.roomId < 0)
+         {
             throw new Exception("Forbidden value (" + this.roomId + ") on element roomId.");
+         }
+         param1.writeByte(this.roomId);
+         if(this.maxRoomId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxRoomId + ") on element maxRoomId.");
+         }
+         param1.writeByte(this.maxRoomId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -120,13 +129,17 @@ public class MapComplementaryInformationsDataInHavenBagMessage extends MapComple
     private void _roomIdFunc(ICustomDataInput param1) {
          this.roomId = param1.readByte();
          if(this.roomId < 0)
+         {
             throw new Exception("Forbidden value (" + this.roomId + ") on element of MapComplementaryInformationsDataInHavenBagMessage.roomId.");
+         }
     }
 
     private void _maxRoomIdFunc(ICustomDataInput param1) {
          this.maxRoomId = param1.readByte();
          if(this.maxRoomId < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxRoomId + ") on element of MapComplementaryInformationsDataInHavenBagMessage.maxRoomId.");
+         }
     }
 
 }

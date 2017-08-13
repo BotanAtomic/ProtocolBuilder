@@ -1,9 +1,10 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -39,7 +40,15 @@ public class GameFightFighterCompanionLightInformations extends GameFightFighter
     public void serializeAs_GameFightFighterCompanionLightInformations(ICustomDataOutput param1) {
          super.serializeAs_GameFightFighterLightInformations(param1);
          if(this.companionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.companionId + ") on element companionId.");
+         }
+         param1.writeByte(this.companionId);
+         if(this.masterId < -9.007199254740992E15 || this.masterId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.masterId + ") on element masterId.");
+         }
+         param1.writeDouble(this.masterId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -65,13 +74,17 @@ public class GameFightFighterCompanionLightInformations extends GameFightFighter
     private void _companionIdFunc(ICustomDataInput param1) {
          this.companionId = param1.readByte();
          if(this.companionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.companionId + ") on element of GameFightFighterCompanionLightInformations.companionId.");
+         }
     }
 
     private void _masterIdFunc(ICustomDataInput param1) {
          this.masterId = param1.readDouble();
          if(this.masterId < -9.007199254740992E15 || this.masterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.masterId + ") on element of GameFightFighterCompanionLightInformations.masterId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class JobCrafterDirectoryListRequestMessage extends NetworkMessage implem
 
     public void serializeAs_JobCrafterDirectoryListRequestMessage(ICustomDataOutput param1) {
          if(this.jobId < 0)
+         {
             throw new Exception("Forbidden value (" + this.jobId + ") on element jobId.");
+         }
+         param1.writeByte(this.jobId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class JobCrafterDirectoryListRequestMessage extends NetworkMessage implem
     private void _jobIdFunc(ICustomDataInput param1) {
          this.jobId = param1.readByte();
          if(this.jobId < 0)
+         {
             throw new Exception("Forbidden value (" + this.jobId + ") on element of JobCrafterDirectoryListRequestMessage.jobId.");
+         }
     }
 
 }

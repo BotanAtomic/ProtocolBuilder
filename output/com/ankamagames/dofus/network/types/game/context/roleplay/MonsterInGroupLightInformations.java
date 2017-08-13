@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -36,7 +36,10 @@ public class MonsterInGroupLightInformations extends Object implements INetworkT
     public void serializeAs_MonsterInGroupLightInformations(ICustomDataOutput param1) {
          param1.writeInt(this.creatureGenericId);
          if(this.grade < 0)
+         {
             throw new Exception("Forbidden value (" + this.grade + ") on element grade.");
+         }
+         param1.writeByte(this.grade);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -64,7 +67,9 @@ public class MonsterInGroupLightInformations extends Object implements INetworkT
     private void _gradeFunc(ICustomDataInput param1) {
          this.grade = param1.readByte();
          if(this.grade < 0)
+         {
             throw new Exception("Forbidden value (" + this.grade + ") on element of MonsterInGroupLightInformations.grade.");
+         }
     }
 
 }

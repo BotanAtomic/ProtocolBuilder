@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -37,7 +37,10 @@ public class GameRolePlayTreasureHintInformations extends GameRolePlayActorInfor
     public void serializeAs_GameRolePlayTreasureHintInformations(ICustomDataOutput param1) {
          super.serializeAs_GameRolePlayActorInformations(param1);
          if(this.npcId < 0)
+         {
             throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
+         }
+         param1.writeVarShort(this.npcId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -61,7 +64,9 @@ public class GameRolePlayTreasureHintInformations extends GameRolePlayActorInfor
     private void _npcIdFunc(ICustomDataInput param1) {
          this.npcId = param1.readVarUhShort();
          if(this.npcId < 0)
+         {
             throw new Exception("Forbidden value (" + this.npcId + ") on element of GameRolePlayTreasureHintInformations.npcId.");
+         }
     }
 
 }

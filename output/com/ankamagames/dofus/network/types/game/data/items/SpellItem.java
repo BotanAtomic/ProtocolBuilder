@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items;
+package com.ankamagames.dofus.network.types.game.data.items;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -37,7 +37,10 @@ public class SpellItem extends Item implements INetworkType {
          super.serializeAs_Item(param1);
          param1.writeInt(this.spellId);
          if(this.spellLevel < 1 || this.spellLevel > 200)
+         {
             throw new Exception("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
+         }
+         param1.writeShort(this.spellLevel);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -67,7 +70,9 @@ public class SpellItem extends Item implements INetworkType {
     private void _spellLevelFunc(ICustomDataInput param1) {
          this.spellLevel = param1.readShort();
          if(this.spellLevel < 1 || this.spellLevel > 200)
+         {
             throw new Exception("Forbidden value (" + this.spellLevel + ") on element of SpellItem.spellLevel.");
+         }
     }
 
 }

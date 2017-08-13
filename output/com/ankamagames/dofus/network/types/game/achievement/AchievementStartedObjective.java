@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.achievement;
+package com.ankamagames.dofus.network.types.game.achievement;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class AchievementStartedObjective extends AchievementObjective implements
     public void serializeAs_AchievementStartedObjective(ICustomDataOutput param1) {
          super.serializeAs_AchievementObjective(param1);
          if(this.value < 0)
+         {
             throw new Exception("Forbidden value (" + this.value + ") on element value.");
+         }
+         param1.writeVarShort(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class AchievementStartedObjective extends AchievementObjective implements
     private void _valueFunc(ICustomDataInput param1) {
          this.value = param1.readVarUhShort();
          if(this.value < 0)
+         {
             throw new Exception("Forbidden value (" + this.value + ") on element of AchievementStartedObjective.value.");
+         }
     }
 
 }

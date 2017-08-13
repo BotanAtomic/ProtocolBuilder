@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.party.PartyMemberInformations;
@@ -12,6 +12,7 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMessage {
 
@@ -20,23 +21,12 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
     private int partyType = 0;
     private Number partyLeaderId = 0;
     private int maxParticipants = 0;
-    private Vector.<PartyMemberInformations> members = ;
-    private Vector.<PartyGuestInformations> guests = ;
+    private Vector<PartyMemberInformations> members;
+    private Vector<PartyGuestInformations> guests;
     private boolean restricted = false;
     private String partyName = "";
-    private FuncTree _memberstree = ;
-    private FuncTree _gueststree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private PartyMemberInformations _loc7_ = null;
-    private PartyGuestInformations _loc8_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private PartyMemberInformations _loc3_ = ProtocolTypeManager.getInstance(PartyMemberInformations,_loc2_);
-    private int _loc3_ = 0;
+    private FuncTree _memberstree;
+    private FuncTree _gueststree;
 
 
     public boolean isInitialized() {
@@ -47,7 +37,7 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
          return 5576;
     }
 
-    public PartyJoinMessage initPartyJoinMessage(int param1,int  param2,Number  param3,int  param4,Vector.<PartyMemberInformations>  param5,Vector.<PartyGuestInformations>  param6,boolean  param7,String  param8) {
+    public PartyJoinMessage initPartyJoinMessage(int param1,int  param2,Number  param3,int  param4,Vector<PartyMemberInformations>  param5,Vector<PartyGuestInformations>  param6,boolean  param7,String  param8) {
          super.initAbstractPartyMessage(param1);
          this.partyType = param2;
          this.partyLeaderId = param3;
@@ -97,7 +87,32 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
          super.serializeAs_AbstractPartyMessage(param1);
          param1.writeByte(this.partyType);
          if(this.partyLeaderId < 0 || this.partyLeaderId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.partyLeaderId + ") on element partyLeaderId.");
+         }
+         param1.writeVarLong(this.partyLeaderId);
+         if(this.maxParticipants < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxParticipants + ") on element maxParticipants.");
+         }
+         param1.writeByte(this.maxParticipants);
+         param1.writeShort(this.members.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.members.length)
+         {
+            param1.writeShort((this.members[_loc2_] as PartyMemberInformations).getTypeId());
+            (this.members[_loc2_] as PartyMemberInformations).serialize(param1);
+            _loc2_++;
+         }
+         param1.writeShort(this.guests.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.guests.length)
+         {
+            (this.guests[_loc3_] as PartyGuestInformations).serializeAs_PartyGuestInformations(param1);
+            _loc3_++;
+         }
+         param1.writeBoolean(this.restricted);
+         param1.writeUTF(this.partyName);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -115,11 +130,24 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = param1.readUnsignedShort();
             _loc7_ = ProtocolTypeManager.getInstance(PartyMemberInformations,_loc6_);
             _loc7_.deserialize(param1);
             this.members.push(_loc7_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc8_ = new PartyGuestInformations();
+            _loc8_.deserialize(param1);
+            this.guests.push(_loc8_);
+            _loc5_++;
+         }
+         this._restrictedFunc(param1);
+         this._partyNameFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -140,27 +168,35 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
     private void _partyTypeFunc(ICustomDataInput param1) {
          this.partyType = param1.readByte();
          if(this.partyType < 0)
+         {
             throw new Exception("Forbidden value (" + this.partyType + ") on element of PartyJoinMessage.partyType.");
+         }
     }
 
     private void _partyLeaderIdFunc(ICustomDataInput param1) {
          this.partyLeaderId = param1.readVarUhLong();
          if(this.partyLeaderId < 0 || this.partyLeaderId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.partyLeaderId + ") on element of PartyJoinMessage.partyLeaderId.");
+         }
     }
 
     private void _maxParticipantsFunc(ICustomDataInput param1) {
          this.maxParticipants = param1.readByte();
          if(this.maxParticipants < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxParticipants + ") on element of PartyJoinMessage.maxParticipants.");
+         }
     }
 
     private void _memberstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._memberstree.addChild(this._membersFunc);
             _loc3_++;
+         }
     }
 
     private void _membersFunc(ICustomDataInput param1) {
@@ -174,8 +210,10 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._gueststree.addChild(this._guestsFunc);
             _loc3_++;
+         }
     }
 
     private void _guestsFunc(ICustomDataInput param1) {

@@ -61,7 +61,6 @@ public class ActionScriptClass {
                 String type = variable.contains("=") ?
                         variable.substring(0, variable.length() - 2).split(":")[1].split(" = ")[0] :
                         variable.substring(0, variable.length() - 2).split(":")[1];
-                System.err.println(type);
                 String value = variable.contains("=") ? variable.substring(0, variable.length() - 1).split(" = ")[1] : "";
                 variables.add(new ActionScriptVariable(type, name, value));
             } else if (line.contains("function")) variableArea.set(false);
@@ -116,17 +115,16 @@ public class ActionScriptClass {
                 List<String> functionLines = new LinkedList<>();
                 final AtomicInteger functionLineCounter = new AtomicInteger(0);
 
+                int rightAccoladeCount = 0, leftAccoladeCount = 0;
                 while (true) {
                     String functionLine = lines.get(lineCounter.get() + functionLineCounter.getAndIncrement());
-                    if (functionLine.contains("}"))
+                    rightAccoladeCount += (functionLine.contains("{") ? 1 : 0);
+                    leftAccoladeCount += (functionLine.contains("}") ? 1 : 0);
+                    if (rightAccoladeCount == leftAccoladeCount && leftAccoladeCount > 0)
                         break;
                 }
 
-                IntStream.range(lineCounter.get() + 1, lineCounter.get() + functionLineCounter.get()).forEach(i -> {
-                    String currentLine = lines.get(i);
-                    if (StringUtils.countRealCharacter(currentLine) > 2)
-                        functionLines.add(formatFunctionLine(lines.get(i)));
-                });
+                IntStream.range(lineCounter.get() + 2, lineCounter.get() + functionLineCounter.get() - 1).forEach(i -> functionLines.add(formatFunctionLine(lines.get(i))));
 
                 function.setFunctionLines(functionLines);
 

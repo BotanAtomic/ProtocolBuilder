@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.job.JobExperience;
@@ -61,7 +61,10 @@ public class JobExperienceOtherPlayerUpdateMessage extends JobExperienceUpdateMe
     public void serializeAs_JobExperienceOtherPlayerUpdateMessage(ICustomDataOutput param1) {
          super.serializeAs_JobExperienceUpdateMessage(param1);
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
+         }
+         param1.writeVarLong(this.playerId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +88,9 @@ public class JobExperienceOtherPlayerUpdateMessage extends JobExperienceUpdateMe
     private void _playerIdFunc(ICustomDataInput param1) {
          this.playerId = param1.readVarUhLong();
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element of JobExperienceOtherPlayerUpdateMessage.playerId.");
+         }
     }
 
 }

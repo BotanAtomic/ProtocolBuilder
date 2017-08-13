@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ChangeHavenBagRoomRequestMessage extends NetworkMessage implements 
 
     public void serializeAs_ChangeHavenBagRoomRequestMessage(ICustomDataOutput param1) {
          if(this.roomId < 0)
+         {
             throw new Exception("Forbidden value (" + this.roomId + ") on element roomId.");
+         }
+         param1.writeByte(this.roomId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ChangeHavenBagRoomRequestMessage extends NetworkMessage implements 
     private void _roomIdFunc(ICustomDataInput param1) {
          this.roomId = param1.readByte();
          if(this.roomId < 0)
+         {
             throw new Exception("Forbidden value (" + this.roomId + ") on element of ChangeHavenBagRoomRequestMessage.roomId.");
+         }
     }
 
 }

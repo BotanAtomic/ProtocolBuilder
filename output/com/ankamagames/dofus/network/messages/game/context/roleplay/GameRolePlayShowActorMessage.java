@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,8 +13,8 @@ public class GameRolePlayShowActorMessage extends NetworkMessage implements INet
 
     private int protocolId = 5632;
     private boolean _isInitialized = false;
-    private GameRolePlayActorInformations informations = ;
-    private FuncTree _informationstree = ;
+    private GameRolePlayActorInformations informations;
+    private FuncTree _informationstree;
 
 
     public boolean isInitialized() {

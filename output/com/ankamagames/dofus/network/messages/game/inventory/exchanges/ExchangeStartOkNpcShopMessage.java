@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -10,6 +10,7 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class ExchangeStartOkNpcShopMessage extends NetworkMessage implements INetworkMessage {
 
@@ -17,12 +18,8 @@ public class ExchangeStartOkNpcShopMessage extends NetworkMessage implements INe
     private boolean _isInitialized = false;
     private Number npcSellerId = 0;
     private int tokenId = 0;
-    private Vector.<ObjectItemToSellInNpcShop> objectsInfos = ;
-    private FuncTree _objectsInfostree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItemToSellInNpcShop> objectsInfos;
+    private FuncTree _objectsInfostree;
 
 
     public boolean isInitialized() {
@@ -33,7 +30,7 @@ public class ExchangeStartOkNpcShopMessage extends NetworkMessage implements INe
          return 5761;
     }
 
-    public ExchangeStartOkNpcShopMessage initExchangeStartOkNpcShopMessage(Number param1,int  param2,Vector.<ObjectItemToSellInNpcShop>  param3) {
+    public ExchangeStartOkNpcShopMessage initExchangeStartOkNpcShopMessage(Number param1,int  param2,Vector<ObjectItemToSellInNpcShop>  param3) {
          this.npcSellerId = param1;
          this.tokenId = param2;
          this.objectsInfos = param3;
@@ -71,7 +68,22 @@ public class ExchangeStartOkNpcShopMessage extends NetworkMessage implements INe
 
     public void serializeAs_ExchangeStartOkNpcShopMessage(ICustomDataOutput param1) {
          if(this.npcSellerId < -9.007199254740992E15 || this.npcSellerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.npcSellerId + ") on element npcSellerId.");
+         }
+         param1.writeDouble(this.npcSellerId);
+         if(this.tokenId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.tokenId + ") on element tokenId.");
+         }
+         param1.writeVarShort(this.tokenId);
+         param1.writeShort(this.objectsInfos.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.objectsInfos.length)
+         {
+            (this.objectsInfos[_loc2_] as ObjectItemToSellInNpcShop).serializeAs_ObjectItemToSellInNpcShop(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,10 +97,12 @@ public class ExchangeStartOkNpcShopMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItemToSellInNpcShop();
             _loc4_.deserialize(param1);
             this.objectsInfos.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -104,21 +118,27 @@ public class ExchangeStartOkNpcShopMessage extends NetworkMessage implements INe
     private void _npcSellerIdFunc(ICustomDataInput param1) {
          this.npcSellerId = param1.readDouble();
          if(this.npcSellerId < -9.007199254740992E15 || this.npcSellerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.npcSellerId + ") on element of ExchangeStartOkNpcShopMessage.npcSellerId.");
+         }
     }
 
     private void _tokenIdFunc(ICustomDataInput param1) {
          this.tokenId = param1.readVarUhShort();
          if(this.tokenId < 0)
+         {
             throw new Exception("Forbidden value (" + this.tokenId + ") on element of ExchangeStartOkNpcShopMessage.tokenId.");
+         }
     }
 
     private void _objectsInfostreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objectsInfostree.addChild(this._objectsInfosFunc);
             _loc3_++;
+         }
     }
 
     private void _objectsInfosFunc(ICustomDataInput param1) {

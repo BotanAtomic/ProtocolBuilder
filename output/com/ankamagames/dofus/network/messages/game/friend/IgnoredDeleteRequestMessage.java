@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.friend;
+package com.ankamagames.dofus.network.messages.game.friend;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class IgnoredDeleteRequestMessage extends NetworkMessage implements INetw
 
     public void serializeAs_IgnoredDeleteRequestMessage(ICustomDataOutput param1) {
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
+         param1.writeBoolean(this.session);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class IgnoredDeleteRequestMessage extends NetworkMessage implements INetw
     private void _accountIdFunc(ICustomDataInput param1) {
          this.accountId = param1.readInt();
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element of IgnoredDeleteRequestMessage.accountId.");
+         }
     }
 
     private void _sessionFunc(ICustomDataInput param1) {

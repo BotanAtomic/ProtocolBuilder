@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class NpcDialogReplyMessage extends NetworkMessage implements INetworkMes
 
     public void serializeAs_NpcDialogReplyMessage(ICustomDataOutput param1) {
          if(this.replyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.replyId + ") on element replyId.");
+         }
+         param1.writeVarInt(this.replyId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class NpcDialogReplyMessage extends NetworkMessage implements INetworkMes
     private void _replyIdFunc(ICustomDataInput param1) {
          this.replyId = param1.readVarUhInt();
          if(this.replyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.replyId + ") on element of NpcDialogReplyMessage.replyId.");
+         }
     }
 
 }

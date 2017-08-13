@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.GameRolePlayActorInformations;
@@ -61,7 +61,10 @@ public class GameRolePlayShowActorWithEventMessage extends GameRolePlayShowActor
     public void serializeAs_GameRolePlayShowActorWithEventMessage(ICustomDataOutput param1) {
          super.serializeAs_GameRolePlayShowActorMessage(param1);
          if(this.actorEventId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actorEventId + ") on element actorEventId.");
+         }
+         param1.writeByte(this.actorEventId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +88,9 @@ public class GameRolePlayShowActorWithEventMessage extends GameRolePlayShowActor
     private void _actorEventIdFunc(ICustomDataInput param1) {
          this.actorEventId = param1.readByte();
          if(this.actorEventId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actorEventId + ") on element of GameRolePlayShowActorWithEventMessage.actorEventId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class HouseBuyRequestMessage extends NetworkMessage implements INetworkMe
 
     public void serializeAs_HouseBuyRequestMessage(ICustomDataOutput param1) {
          if(this.proposedPrice < 0 || this.proposedPrice > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.proposedPrice + ") on element proposedPrice.");
+         }
+         param1.writeVarLong(this.proposedPrice);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class HouseBuyRequestMessage extends NetworkMessage implements INetworkMe
     private void _proposedPriceFunc(ICustomDataInput param1) {
          this.proposedPrice = param1.readVarUhLong();
          if(this.proposedPrice < 0 || this.proposedPrice > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.proposedPrice + ") on element of HouseBuyRequestMessage.proposedPrice.");
+         }
     }
 
 }

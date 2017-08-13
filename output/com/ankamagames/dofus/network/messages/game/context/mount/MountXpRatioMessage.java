@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class MountXpRatioMessage extends NetworkMessage implements INetworkMessa
 
     public void serializeAs_MountXpRatioMessage(ICustomDataOutput param1) {
          if(this.ratio < 0)
+         {
             throw new Exception("Forbidden value (" + this.ratio + ") on element ratio.");
+         }
+         param1.writeByte(this.ratio);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class MountXpRatioMessage extends NetworkMessage implements INetworkMessa
     private void _ratioFunc(ICustomDataInput param1) {
          this.ratio = param1.readByte();
          if(this.ratio < 0)
+         {
             throw new Exception("Forbidden value (" + this.ratio + ") on element of MountXpRatioMessage.ratio.");
+         }
     }
 
 }

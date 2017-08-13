@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.friend;
+package com.ankamagames.dofus.network.types.game.friend;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.GuildInformations;
@@ -14,6 +14,8 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class FriendOnlineInformations extends FriendInformations implements INetworkType {
 
@@ -24,14 +26,12 @@ public class FriendOnlineInformations extends FriendInformations implements INet
     private int alignmentSide = 0;
     private int breed = 0;
     private boolean sex = false;
-    private GuildInformations guildInfo = ;
+    private GuildInformations guildInfo;
     private int moodSmileyId = 0;
-    private PlayerStatus status = ;
+    private PlayerStatus status;
     private boolean havenBagShared = false;
-    private FuncTree _guildInfotree = ;
-    private FuncTree _statustree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
+    private FuncTree _guildInfotree;
+    private FuncTree _statustree;
 
 
     public int getTypeId() {
@@ -76,7 +76,26 @@ public class FriendOnlineInformations extends FriendInformations implements INet
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.havenBagShared);
          param1.writeByte(_loc2_);
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
+         }
+         param1.writeVarLong(this.playerId);
+         param1.writeUTF(this.playerName);
+         if(this.level < 0 || this.level > 206)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
+         param1.writeByte(this.alignmentSide);
+         param1.writeByte(this.breed);
+         this.guildInfo.serializeAs_GuildInformations(param1);
+         if(this.moodSmileyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.moodSmileyId + ") on element moodSmileyId.");
+         }
+         param1.writeVarShort(this.moodSmileyId);
+         param1.writeShort(this.status.getTypeId());
+         this.status.serialize(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -125,7 +144,9 @@ public class FriendOnlineInformations extends FriendInformations implements INet
     private void _playerIdFunc(ICustomDataInput param1) {
          this.playerId = param1.readVarUhLong();
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element of FriendOnlineInformations.playerId.");
+         }
     }
 
     private void _playerNameFunc(ICustomDataInput param1) {
@@ -135,7 +156,9 @@ public class FriendOnlineInformations extends FriendInformations implements INet
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readUnsignedByte();
          if(this.level < 0 || this.level > 206)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of FriendOnlineInformations.level.");
+         }
     }
 
     private void _alignmentSideFunc(ICustomDataInput param1) {
@@ -145,7 +168,9 @@ public class FriendOnlineInformations extends FriendInformations implements INet
     private void _breedFunc(ICustomDataInput param1) {
          this.breed = param1.readByte();
          if(this.breed < PlayableBreedEnum.Feca || this.breed > PlayableBreedEnum.Ouginak)
+         {
             throw new Exception("Forbidden value (" + this.breed + ") on element of FriendOnlineInformations.breed.");
+         }
     }
 
     private void _guildInfotreeFunc(ICustomDataInput param1) {
@@ -156,7 +181,9 @@ public class FriendOnlineInformations extends FriendInformations implements INet
     private void _moodSmileyIdFunc(ICustomDataInput param1) {
          this.moodSmileyId = param1.readVarUhShort();
          if(this.moodSmileyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.moodSmileyId + ") on element of FriendOnlineInformations.moodSmileyId.");
+         }
     }
 
     private void _statustreeFunc(ICustomDataInput param1) {

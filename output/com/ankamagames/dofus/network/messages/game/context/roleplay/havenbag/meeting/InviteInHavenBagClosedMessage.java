@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag.meeting;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag.meeting;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class InviteInHavenBagClosedMessage extends NetworkMessage implements INe
 
     private int protocolId = 6645;
     private boolean _isInitialized = false;
-    private CharacterMinimalInformations hostInformations = ;
-    private FuncTree _hostInformationstree = ;
+    private CharacterMinimalInformations hostInformations;
+    private FuncTree _hostInformationstree;
 
 
     public boolean isInitialized() {

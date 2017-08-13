@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,26 +13,12 @@ public class MapNpcsQuestStatusUpdateMessage extends NetworkMessage implements I
     private int protocolId = 5642;
     private boolean _isInitialized = false;
     private int mapId = 0;
-    private Vector.<int> npcsIdsWithQuest = ;
-    private Vector.<GameRolePlayNpcQuestFlag> questFlags = ;
-    private Vector.<int> npcsIdsWithoutQuest = ;
-    private FuncTree _npcsIdsWithQuesttree = ;
-    private FuncTree _questFlagstree = ;
-    private FuncTree _npcsIdsWithoutQuesttree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private int _loc4_ = 0;
-    private GameRolePlayNpcQuestFlag _loc9_ = null;
-    private * _loc10_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc6_ = param1.readUnsignedShort();
-    private int _loc7_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> npcsIdsWithQuest;
+    private Vector<GameRolePlayNpcQuestFlag> questFlags;
+    private Vector<int> npcsIdsWithoutQuest;
+    private FuncTree _npcsIdsWithQuesttree;
+    private FuncTree _questFlagstree;
+    private FuncTree _npcsIdsWithoutQuesttree;
 
 
     public boolean isInitialized() {
@@ -43,7 +29,7 @@ public class MapNpcsQuestStatusUpdateMessage extends NetworkMessage implements I
          return 5642;
     }
 
-    public MapNpcsQuestStatusUpdateMessage initMapNpcsQuestStatusUpdateMessage(int param1,Vector.<int>  param2,Vector.<GameRolePlayNpcQuestFlag>  param3,Vector.<int>  param4) {
+    public MapNpcsQuestStatusUpdateMessage initMapNpcsQuestStatusUpdateMessage(int param1,Vector<int>  param2,Vector<GameRolePlayNpcQuestFlag>  param3,Vector<int>  param4) {
          this.mapId = param1;
          this.npcsIdsWithQuest = param2;
          this.questFlags = param3;
@@ -86,8 +72,24 @@ public class MapNpcsQuestStatusUpdateMessage extends NetworkMessage implements I
          param1.writeShort(this.npcsIdsWithQuest.length);
          int _loc2_ = 0;
          while(_loc2_ < this.npcsIdsWithQuest.length)
+         {
             param1.writeInt(this.npcsIdsWithQuest[_loc2_]);
             _loc2_++;
+         }
+         param1.writeShort(this.questFlags.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.questFlags.length)
+         {
+            (this.questFlags[_loc3_] as GameRolePlayNpcQuestFlag).serializeAs_GameRolePlayNpcQuestFlag(param1);
+            _loc3_++;
+         }
+         param1.writeShort(this.npcsIdsWithoutQuest.length);
+         int _loc4_ = 0;
+         while(_loc4_ < this.npcsIdsWithoutQuest.length)
+         {
+            param1.writeInt(this.npcsIdsWithoutQuest[_loc4_]);
+            _loc4_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -102,9 +104,28 @@ public class MapNpcsQuestStatusUpdateMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc8_ = param1.readInt();
             this.npcsIdsWithQuest.push(_loc8_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc9_ = new GameRolePlayNpcQuestFlag();
+            _loc9_.deserialize(param1);
+            this.questFlags.push(_loc9_);
+            _loc5_++;
+         }
+         int _loc6_ = param1.readUnsignedShort();
+         int _loc7_ = 0;
+         while(_loc7_ < _loc6_)
+         {
+            _loc10_ = param1.readInt();
+            this.npcsIdsWithoutQuest.push(_loc10_);
+            _loc7_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -126,8 +147,10 @@ public class MapNpcsQuestStatusUpdateMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._npcsIdsWithQuesttree.addChild(this._npcsIdsWithQuestFunc);
             _loc3_++;
+         }
     }
 
     private void _npcsIdsWithQuestFunc(ICustomDataInput param1) {
@@ -139,8 +162,10 @@ public class MapNpcsQuestStatusUpdateMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._questFlagstree.addChild(this._questFlagsFunc);
             _loc3_++;
+         }
     }
 
     private void _questFlagsFunc(ICustomDataInput param1) {
@@ -153,8 +178,10 @@ public class MapNpcsQuestStatusUpdateMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._npcsIdsWithoutQuesttree.addChild(this._npcsIdsWithoutQuestFunc);
             _loc3_++;
+         }
     }
 
     private void _npcsIdsWithoutQuestFunc(ICustomDataInput param1) {

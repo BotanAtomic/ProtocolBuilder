@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class HouseKickIndoorMerchantRequestMessage extends NetworkMessage implem
 
     public void serializeAs_HouseKickIndoorMerchantRequestMessage(ICustomDataOutput param1) {
          if(this.cellId < 0 || this.cellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
+         }
+         param1.writeVarShort(this.cellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class HouseKickIndoorMerchantRequestMessage extends NetworkMessage implem
     private void _cellIdFunc(ICustomDataInput param1) {
          this.cellId = param1.readVarUhShort();
          if(this.cellId < 0 || this.cellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.cellId + ") on element of HouseKickIndoorMerchantRequestMessage.cellId.");
+         }
     }
 
 }

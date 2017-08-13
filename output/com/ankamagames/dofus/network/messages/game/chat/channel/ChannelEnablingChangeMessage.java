@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat.channel;
+package com.ankamagames.dofus.network.messages.game.chat.channel;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -84,7 +84,9 @@ public class ChannelEnablingChangeMessage extends NetworkMessage implements INet
     private void _channelFunc(ICustomDataInput param1) {
          this.channel = param1.readByte();
          if(this.channel < 0)
+         {
             throw new Exception("Forbidden value (" + this.channel + ") on element of ChannelEnablingChangeMessage.channel.");
+         }
     }
 
     private void _enableFunc(ICustomDataInput param1) {

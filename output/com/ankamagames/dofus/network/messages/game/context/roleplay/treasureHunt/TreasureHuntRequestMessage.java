@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,11 @@ public class TreasureHuntRequestMessage extends NetworkMessage implements INetwo
 
     public void serializeAs_TreasureHuntRequestMessage(ICustomDataOutput param1) {
          if(this.questLevel < 1 || this.questLevel > 206)
+         {
             throw new Exception("Forbidden value (" + this.questLevel + ") on element questLevel.");
+         }
+         param1.writeByte(this.questLevel);
+         param1.writeByte(this.questType);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +90,17 @@ public class TreasureHuntRequestMessage extends NetworkMessage implements INetwo
     private void _questLevelFunc(ICustomDataInput param1) {
          this.questLevel = param1.readUnsignedByte();
          if(this.questLevel < 1 || this.questLevel > 206)
+         {
             throw new Exception("Forbidden value (" + this.questLevel + ") on element of TreasureHuntRequestMessage.questLevel.");
+         }
     }
 
     private void _questTypeFunc(ICustomDataInput param1) {
          this.questType = param1.readByte();
          if(this.questType < 0)
+         {
             throw new Exception("Forbidden value (" + this.questType + ") on element of TreasureHuntRequestMessage.questType.");
+         }
     }
 
 }

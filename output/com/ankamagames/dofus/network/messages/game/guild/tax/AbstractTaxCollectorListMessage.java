@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild.tax;
+package com.ankamagames.dofus.network.messages.game.guild.tax;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class AbstractTaxCollectorListMessage extends NetworkMessage implements I
 
     private int protocolId = 6568;
     private boolean _isInitialized = false;
-    private Vector.<TaxCollectorInformations> informations = ;
-    private FuncTree _informationstree = ;
-    private int _loc2_ = 0;
-    private TaxCollectorInformations _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private TaxCollectorInformations _loc3_ = ProtocolTypeManager.getInstance(TaxCollectorInformations,_loc2_);
+    private Vector<TaxCollectorInformations> informations;
+    private FuncTree _informationstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class AbstractTaxCollectorListMessage extends NetworkMessage implements I
          return 6568;
     }
 
-    public AbstractTaxCollectorListMessage initAbstractTaxCollectorListMessage(Vector.<TaxCollectorInformations> param1) {
+    public AbstractTaxCollectorListMessage initAbstractTaxCollectorListMessage(Vector<TaxCollectorInformations> param1) {
          this.informations = param1;
          this._isInitialized = true;
          return this;
@@ -67,9 +61,11 @@ public class AbstractTaxCollectorListMessage extends NetworkMessage implements I
          param1.writeShort(this.informations.length);
          int _loc2_ = 0;
          while(_loc2_ < this.informations.length)
+         {
             param1.writeShort((this.informations[_loc2_] as TaxCollectorInformations).getTypeId());
             (this.informations[_loc2_] as TaxCollectorInformations).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,11 +78,13 @@ public class AbstractTaxCollectorListMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(TaxCollectorInformations,_loc4_);
             _loc5_.deserialize(param1);
             this.informations.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,8 +99,10 @@ public class AbstractTaxCollectorListMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._informationstree.addChild(this._informationsFunc);
             _loc3_++;
+         }
     }
 
     private void _informationsFunc(ICustomDataInput param1) {

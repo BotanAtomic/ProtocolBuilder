@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,10 @@ public class GameActionFightReflectSpellMessage extends AbstractGameActionMessag
     public void serializeAs_GameActionFightReflectSpellMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractGameActionMessage(param1);
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +88,9 @@ public class GameActionFightReflectSpellMessage extends AbstractGameActionMessag
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readDouble();
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of GameActionFightReflectSpellMessage.targetId.");
+         }
     }
 
 }

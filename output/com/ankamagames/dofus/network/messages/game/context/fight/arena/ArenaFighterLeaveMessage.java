@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight.arena;
+package com.ankamagames.dofus.network.messages.game.context.fight.arena;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class ArenaFighterLeaveMessage extends NetworkMessage implements INetwork
 
     private int protocolId = 6700;
     private boolean _isInitialized = false;
-    private CharacterBasicMinimalInformations leaver = ;
-    private FuncTree _leavertree = ;
+    private CharacterBasicMinimalInformations leaver;
+    private FuncTree _leavertree;
 
 
     public boolean isInitialized() {

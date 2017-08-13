@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;

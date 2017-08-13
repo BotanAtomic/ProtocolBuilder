@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class ObtainedItemMessage extends NetworkMessage implements INetworkMessa
 
     public void serializeAs_ObtainedItemMessage(ICustomDataOutput param1) {
          if(this.genericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.genericId + ") on element genericId.");
+         }
+         param1.writeVarShort(this.genericId);
+         if(this.baseQuantity < 0)
+         {
+            throw new Exception("Forbidden value (" + this.baseQuantity + ") on element baseQuantity.");
+         }
+         param1.writeVarInt(this.baseQuantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class ObtainedItemMessage extends NetworkMessage implements INetworkMessa
     private void _genericIdFunc(ICustomDataInput param1) {
          this.genericId = param1.readVarUhShort();
          if(this.genericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.genericId + ") on element of ObtainedItemMessage.genericId.");
+         }
     }
 
     private void _baseQuantityFunc(ICustomDataInput param1) {
          this.baseQuantity = param1.readVarUhInt();
          if(this.baseQuantity < 0)
+         {
             throw new Exception("Forbidden value (" + this.baseQuantity + ") on element of ObtainedItemMessage.baseQuantity.");
+         }
     }
 
 }

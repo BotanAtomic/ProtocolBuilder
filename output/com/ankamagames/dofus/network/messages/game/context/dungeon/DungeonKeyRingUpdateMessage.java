@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.dungeon;
+package com.ankamagames.dofus.network.messages.game.context.dungeon;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class DungeonKeyRingUpdateMessage extends NetworkMessage implements INetw
 
     public void serializeAs_DungeonKeyRingUpdateMessage(ICustomDataOutput param1) {
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+         }
+         param1.writeVarShort(this.dungeonId);
+         param1.writeBoolean(this.available);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class DungeonKeyRingUpdateMessage extends NetworkMessage implements INetw
     private void _dungeonIdFunc(ICustomDataInput param1) {
          this.dungeonId = param1.readVarUhShort();
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element of DungeonKeyRingUpdateMessage.dungeonId.");
+         }
     }
 
     private void _availableFunc(ICustomDataInput param1) {

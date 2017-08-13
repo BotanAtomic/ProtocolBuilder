@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class GameContextRemoveElementWithEventMessage extends GameContextRemoveE
     public void serializeAs_GameContextRemoveElementWithEventMessage(ICustomDataOutput param1) {
          super.serializeAs_GameContextRemoveElementMessage(param1);
          if(this.elementEventId < 0)
+         {
             throw new Exception("Forbidden value (" + this.elementEventId + ") on element elementEventId.");
+         }
+         param1.writeByte(this.elementEventId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class GameContextRemoveElementWithEventMessage extends GameContextRemoveE
     private void _elementEventIdFunc(ICustomDataInput param1) {
          this.elementEventId = param1.readByte();
          if(this.elementEventId < 0)
+         {
             throw new Exception("Forbidden value (" + this.elementEventId + ") on element of GameContextRemoveElementWithEventMessage.elementEventId.");
+         }
     }
 
 }

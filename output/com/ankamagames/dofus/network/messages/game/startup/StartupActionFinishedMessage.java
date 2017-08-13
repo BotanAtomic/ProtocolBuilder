@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.startup;
+package com.ankamagames.dofus.network.messages.game.startup;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -69,7 +69,10 @@ public class StartupActionFinishedMessage extends NetworkMessage implements INet
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.automaticAction);
          param1.writeByte(_loc2_);
          if(this.actionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
+         }
+         param1.writeInt(this.actionId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -99,7 +102,9 @@ public class StartupActionFinishedMessage extends NetworkMessage implements INet
     private void _actionIdFunc(ICustomDataInput param1) {
          this.actionId = param1.readInt();
          if(this.actionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actionId + ") on element of StartupActionFinishedMessage.actionId.");
+         }
     }
 
 }

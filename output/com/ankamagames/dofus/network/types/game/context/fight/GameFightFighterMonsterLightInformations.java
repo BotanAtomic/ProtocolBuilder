@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class GameFightFighterMonsterLightInformations extends GameFightFighterLi
     public void serializeAs_GameFightFighterMonsterLightInformations(ICustomDataOutput param1) {
          super.serializeAs_GameFightFighterLightInformations(param1);
          if(this.creatureGenericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.creatureGenericId + ") on element creatureGenericId.");
+         }
+         param1.writeVarShort(this.creatureGenericId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class GameFightFighterMonsterLightInformations extends GameFightFighterLi
     private void _creatureGenericIdFunc(ICustomDataInput param1) {
          this.creatureGenericId = param1.readVarUhShort();
          if(this.creatureGenericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.creatureGenericId + ") on element of GameFightFighterMonsterLightInformations.creatureGenericId.");
+         }
     }
 
 }

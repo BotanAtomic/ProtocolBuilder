@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat;
+package com.ankamagames.dofus.network.messages.game.chat;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.data.items.ObjectItem;
@@ -11,12 +11,8 @@ public class ChatServerCopyWithObjectMessage extends ChatServerCopyMessage imple
 
     private int protocolId = 884;
     private boolean _isInitialized = false;
-    private Vector.<ObjectItem> objects = ;
-    private FuncTree _objectstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItem> objects;
+    private FuncTree _objectstree;
 
 
     public boolean isInitialized() {
@@ -27,7 +23,7 @@ public class ChatServerCopyWithObjectMessage extends ChatServerCopyMessage imple
          return 884;
     }
 
-    public ChatServerCopyWithObjectMessage initChatServerCopyWithObjectMessage(int param1,String  param2,int  param3,String  param4,Number  param5,String  param6,Vector.<ObjectItem>  param7) {
+    public ChatServerCopyWithObjectMessage initChatServerCopyWithObjectMessage(int param1,String  param2,int  param3,String  param4,Number  param5,String  param6,Vector<ObjectItem>  param7) {
          super.initChatServerCopyMessage(param1,param2,param3,param4,param5,param6);
          this.objects = param7;
          this._isInitialized = true;
@@ -66,8 +62,10 @@ public class ChatServerCopyWithObjectMessage extends ChatServerCopyMessage imple
          param1.writeShort(this.objects.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objects.length)
+         {
             (this.objects[_loc2_] as ObjectItem).serializeAs_ObjectItem(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,10 +78,12 @@ public class ChatServerCopyWithObjectMessage extends ChatServerCopyMessage imple
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItem();
             _loc4_.deserialize(param1);
             this.objects.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -99,8 +99,10 @@ public class ChatServerCopyWithObjectMessage extends ChatServerCopyMessage imple
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objectstree.addChild(this._objectsFunc);
             _loc3_++;
+         }
     }
 
     private void _objectsFunc(ICustomDataInput param1) {

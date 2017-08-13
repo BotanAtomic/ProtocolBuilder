@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class RoomAvailableUpdateMessage extends NetworkMessage implements INetwo
 
     public void serializeAs_RoomAvailableUpdateMessage(ICustomDataOutput param1) {
          if(this.nbRoom < 0 || this.nbRoom > 255)
+         {
             throw new Exception("Forbidden value (" + this.nbRoom + ") on element nbRoom.");
+         }
+         param1.writeByte(this.nbRoom);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class RoomAvailableUpdateMessage extends NetworkMessage implements INetwo
     private void _nbRoomFunc(ICustomDataInput param1) {
          this.nbRoom = param1.readUnsignedByte();
          if(this.nbRoom < 0 || this.nbRoom > 255)
+         {
             throw new Exception("Forbidden value (" + this.nbRoom + ") on element of RoomAvailableUpdateMessage.nbRoom.");
+         }
     }
 
 }

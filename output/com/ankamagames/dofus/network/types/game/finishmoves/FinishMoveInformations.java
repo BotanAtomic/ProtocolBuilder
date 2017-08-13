@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.finishmoves;
+package com.ankamagames.dofus.network.types.game.finishmoves;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,11 @@ public class FinishMoveInformations extends Object implements INetworkType {
 
     public void serializeAs_FinishMoveInformations(ICustomDataOutput param1) {
          if(this.finishMoveId < 0)
+         {
             throw new Exception("Forbidden value (" + this.finishMoveId + ") on element finishMoveId.");
+         }
+         param1.writeInt(this.finishMoveId);
+         param1.writeBoolean(this.finishMoveState);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +63,9 @@ public class FinishMoveInformations extends Object implements INetworkType {
     private void _finishMoveIdFunc(ICustomDataInput param1) {
          this.finishMoveId = param1.readInt();
          if(this.finishMoveId < 0)
+         {
             throw new Exception("Forbidden value (" + this.finishMoveId + ") on element of FinishMoveInformations.finishMoveId.");
+         }
     }
 
     private void _finishMoveStateFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class CurrentMapMessage extends NetworkMessage implements INetworkMessage
 
     public void serializeAs_CurrentMapMessage(ICustomDataOutput param1) {
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
+         }
+         param1.writeInt(this.mapId);
+         param1.writeUTF(this.mapKey);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class CurrentMapMessage extends NetworkMessage implements INetworkMessage
     private void _mapIdFunc(ICustomDataInput param1) {
          this.mapId = param1.readInt();
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element of CurrentMapMessage.mapId.");
+         }
     }
 
     private void _mapKeyFunc(ICustomDataInput param1) {

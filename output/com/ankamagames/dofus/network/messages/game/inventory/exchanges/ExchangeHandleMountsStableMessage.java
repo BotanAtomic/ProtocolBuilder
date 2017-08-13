@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,12 +15,8 @@ public class ExchangeHandleMountsStableMessage extends NetworkMessage implements
     private int protocolId = 6562;
     private boolean _isInitialized = false;
     private int actionType = 0;
-    private Vector.<uint> ridesId = ;
-    private FuncTree _ridesIdtree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> ridesId;
+    private FuncTree _ridesIdtree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class ExchangeHandleMountsStableMessage extends NetworkMessage implements
          return 6562;
     }
 
-    public ExchangeHandleMountsStableMessage initExchangeHandleMountsStableMessage(int param1,Vector.<uint>  param2) {
+    public ExchangeHandleMountsStableMessage initExchangeHandleMountsStableMessage(int param1,Vector<uint>  param2) {
          this.actionType = param1;
          this.ridesId = param2;
          this._isInitialized = true;
@@ -70,8 +66,14 @@ public class ExchangeHandleMountsStableMessage extends NetworkMessage implements
          param1.writeShort(this.ridesId.length);
          int _loc2_ = 0;
          while(_loc2_ < this.ridesId.length)
+         {
             if(this.ridesId[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.ridesId[_loc2_] + ") on element 2 (starting at 1) of ridesId.");
+            }
+            param1.writeVarInt(this.ridesId[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,9 +86,15 @@ public class ExchangeHandleMountsStableMessage extends NetworkMessage implements
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarUhInt();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of ridesId.");
+            }
+            this.ridesId.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -106,14 +114,19 @@ public class ExchangeHandleMountsStableMessage extends NetworkMessage implements
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._ridesIdtree.addChild(this._ridesIdFunc);
             _loc3_++;
+         }
     }
 
     private void _ridesIdFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhInt();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of ridesId.");
+         }
+         this.ridesId.push(_loc2_);
     }
 
 }

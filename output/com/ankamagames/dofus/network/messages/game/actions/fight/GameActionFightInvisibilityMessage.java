@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -65,7 +65,11 @@ public class GameActionFightInvisibilityMessage extends AbstractGameActionMessag
     public void serializeAs_GameActionFightInvisibilityMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractGameActionMessage(param1);
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
+         param1.writeByte(this.state);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -91,13 +95,17 @@ public class GameActionFightInvisibilityMessage extends AbstractGameActionMessag
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readDouble();
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of GameActionFightInvisibilityMessage.targetId.");
+         }
     }
 
     private void _stateFunc(ICustomDataInput param1) {
          this.state = param1.readByte();
          if(this.state < 0)
+         {
             throw new Exception("Forbidden value (" + this.state + ") on element of GameActionFightInvisibilityMessage.state.");
+         }
     }
 
 }

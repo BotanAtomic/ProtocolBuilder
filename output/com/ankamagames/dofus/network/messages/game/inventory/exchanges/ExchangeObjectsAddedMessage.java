@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.data.items.ObjectItem;
@@ -11,12 +11,8 @@ public class ExchangeObjectsAddedMessage extends ExchangeObjectMessage implement
 
     private int protocolId = 6535;
     private boolean _isInitialized = false;
-    private Vector.<ObjectItem> object = ;
-    private FuncTree _objecttree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItem> object;
+    private FuncTree _objecttree;
 
 
     public boolean isInitialized() {
@@ -27,7 +23,7 @@ public class ExchangeObjectsAddedMessage extends ExchangeObjectMessage implement
          return 6535;
     }
 
-    public ExchangeObjectsAddedMessage initExchangeObjectsAddedMessage(boolean param1,Vector.<ObjectItem>  param2) {
+    public ExchangeObjectsAddedMessage initExchangeObjectsAddedMessage(boolean param1,Vector<ObjectItem>  param2) {
          super.initExchangeObjectMessage(param1);
          this.object = param2;
          this._isInitialized = true;
@@ -66,8 +62,10 @@ public class ExchangeObjectsAddedMessage extends ExchangeObjectMessage implement
          param1.writeShort(this.object.length);
          int _loc2_ = 0;
          while(_loc2_ < this.object.length)
+         {
             (this.object[_loc2_] as ObjectItem).serializeAs_ObjectItem(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,10 +78,12 @@ public class ExchangeObjectsAddedMessage extends ExchangeObjectMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItem();
             _loc4_.deserialize(param1);
             this.object.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -99,8 +99,10 @@ public class ExchangeObjectsAddedMessage extends ExchangeObjectMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objecttree.addChild(this._objectFunc);
             _loc3_++;
+         }
     }
 
     private void _objectFunc(ICustomDataInput param1) {

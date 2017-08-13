@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items;
+package com.ankamagames.dofus.network.types.game.data.items;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.data.items.effects.ObjectEffect;
@@ -19,7 +19,7 @@ public class ObjectItemToSellInNpcShop extends ObjectItemMinimalInformation impl
          return 352;
     }
 
-    public ObjectItemToSellInNpcShop initObjectItemToSellInNpcShop(int param1,Vector.<ObjectEffect>  param2,Number  param3,String  param4) {
+    public ObjectItemToSellInNpcShop initObjectItemToSellInNpcShop(int param1,Vector<ObjectEffect>  param2,Number  param3,String  param4) {
          super.initObjectItemMinimalInformation(param1,param2);
          this.objectPrice = param3;
          this.buyCriterion = param4;
@@ -39,7 +39,11 @@ public class ObjectItemToSellInNpcShop extends ObjectItemMinimalInformation impl
     public void serializeAs_ObjectItemToSellInNpcShop(ICustomDataOutput param1) {
          super.serializeAs_ObjectItemMinimalInformation(param1);
          if(this.objectPrice < 0 || this.objectPrice > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.objectPrice + ") on element objectPrice.");
+         }
+         param1.writeVarLong(this.objectPrice);
+         param1.writeUTF(this.buyCriterion);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -65,7 +69,9 @@ public class ObjectItemToSellInNpcShop extends ObjectItemMinimalInformation impl
     private void _objectPriceFunc(ICustomDataInput param1) {
          this.objectPrice = param1.readVarUhLong();
          if(this.objectPrice < 0 || this.objectPrice > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.objectPrice + ") on element of ObjectItemToSellInNpcShop.objectPrice.");
+         }
     }
 
     private void _buyCriterionFunc(ICustomDataInput param1) {

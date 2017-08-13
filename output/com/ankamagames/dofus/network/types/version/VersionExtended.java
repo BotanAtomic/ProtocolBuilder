@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.version;
+package com.ankamagames.dofus.network.types.version;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -64,13 +64,17 @@ public class VersionExtended extends Version implements INetworkType {
     private void _installFunc(ICustomDataInput param1) {
          this.install = param1.readByte();
          if(this.install < 0)
+         {
             throw new Exception("Forbidden value (" + this.install + ") on element of VersionExtended.install.");
+         }
     }
 
     private void _technologyFunc(ICustomDataInput param1) {
          this.technology = param1.readByte();
          if(this.technology < 0)
+         {
             throw new Exception("Forbidden value (" + this.technology + ") on element of VersionExtended.technology.");
+         }
     }
 
 }

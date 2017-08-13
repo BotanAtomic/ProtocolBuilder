@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class ExchangeBidHouseUnsoldItemsMessage extends NetworkMessage implement
 
     private int protocolId = 6612;
     private boolean _isInitialized = false;
-    private Vector.<ObjectItemGenericQuantity> items = ;
-    private FuncTree _itemstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItemGenericQuantity> items;
+    private FuncTree _itemstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class ExchangeBidHouseUnsoldItemsMessage extends NetworkMessage implement
          return 6612;
     }
 
-    public ExchangeBidHouseUnsoldItemsMessage initExchangeBidHouseUnsoldItemsMessage(Vector.<ObjectItemGenericQuantity> param1) {
+    public ExchangeBidHouseUnsoldItemsMessage initExchangeBidHouseUnsoldItemsMessage(Vector<ObjectItemGenericQuantity> param1) {
          this.items = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class ExchangeBidHouseUnsoldItemsMessage extends NetworkMessage implement
          param1.writeShort(this.items.length);
          int _loc2_ = 0;
          while(_loc2_ < this.items.length)
+         {
             (this.items[_loc2_] as ObjectItemGenericQuantity).serializeAs_ObjectItemGenericQuantity(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class ExchangeBidHouseUnsoldItemsMessage extends NetworkMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItemGenericQuantity();
             _loc4_.deserialize(param1);
             this.items.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class ExchangeBidHouseUnsoldItemsMessage extends NetworkMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._itemstree.addChild(this._itemsFunc);
             _loc3_++;
+         }
     }
 
     private void _itemsFunc(ICustomDataInput param1) {

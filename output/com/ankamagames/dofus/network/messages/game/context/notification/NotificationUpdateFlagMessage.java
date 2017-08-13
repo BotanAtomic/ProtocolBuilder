@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.notification;
+package com.ankamagames.dofus.network.messages.game.context.notification;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class NotificationUpdateFlagMessage extends NetworkMessage implements INe
 
     public void serializeAs_NotificationUpdateFlagMessage(ICustomDataOutput param1) {
          if(this.index < 0)
+         {
             throw new Exception("Forbidden value (" + this.index + ") on element index.");
+         }
+         param1.writeVarShort(this.index);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class NotificationUpdateFlagMessage extends NetworkMessage implements INe
     private void _indexFunc(ICustomDataInput param1) {
          this.index = param1.readVarUhShort();
          if(this.index < 0)
+         {
             throw new Exception("Forbidden value (" + this.index + ") on element of NotificationUpdateFlagMessage.index.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive.meeting;
+package com.ankamagames.dofus.network.messages.game.interactive.meeting;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class TeleportBuddiesMessage extends NetworkMessage implements INetworkMe
 
     public void serializeAs_TeleportBuddiesMessage(ICustomDataOutput param1) {
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+         }
+         param1.writeVarShort(this.dungeonId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class TeleportBuddiesMessage extends NetworkMessage implements INetworkMe
     private void _dungeonIdFunc(ICustomDataInput param1) {
          this.dungeonId = param1.readVarUhShort();
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element of TeleportBuddiesMessage.dungeonId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.web.haapi;
+package com.ankamagames.dofus.network.messages.web.haapi;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class HaapiApiKeyRequestMessage extends NetworkMessage implements INetwor
     private void _keyTypeFunc(ICustomDataInput param1) {
          this.keyType = param1.readByte();
          if(this.keyType < 0)
+         {
             throw new Exception("Forbidden value (" + this.keyType + ") on element of HaapiApiKeyRequestMessage.keyType.");
+         }
     }
 
 }

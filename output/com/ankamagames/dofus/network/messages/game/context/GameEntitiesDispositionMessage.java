@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class GameEntitiesDispositionMessage extends NetworkMessage implements IN
 
     private int protocolId = 5696;
     private boolean _isInitialized = false;
-    private Vector.<IdentifiedEntityDispositionInformations> dispositions = ;
-    private FuncTree _dispositionstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<IdentifiedEntityDispositionInformations> dispositions;
+    private FuncTree _dispositionstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class GameEntitiesDispositionMessage extends NetworkMessage implements IN
          return 5696;
     }
 
-    public GameEntitiesDispositionMessage initGameEntitiesDispositionMessage(Vector.<IdentifiedEntityDispositionInformations> param1) {
+    public GameEntitiesDispositionMessage initGameEntitiesDispositionMessage(Vector<IdentifiedEntityDispositionInformations> param1) {
          this.dispositions = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class GameEntitiesDispositionMessage extends NetworkMessage implements IN
          param1.writeShort(this.dispositions.length);
          int _loc2_ = 0;
          while(_loc2_ < this.dispositions.length)
+         {
             (this.dispositions[_loc2_] as IdentifiedEntityDispositionInformations).serializeAs_IdentifiedEntityDispositionInformations(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class GameEntitiesDispositionMessage extends NetworkMessage implements IN
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new IdentifiedEntityDispositionInformations();
             _loc4_.deserialize(param1);
             this.dispositions.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class GameEntitiesDispositionMessage extends NetworkMessage implements IN
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._dispositionstree.addChild(this._dispositionsFunc);
             _loc3_++;
+         }
     }
 
     private void _dispositionsFunc(ICustomDataInput param1) {

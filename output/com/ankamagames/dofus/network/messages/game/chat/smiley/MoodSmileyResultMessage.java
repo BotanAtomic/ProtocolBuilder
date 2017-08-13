@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat.smiley;
+package com.ankamagames.dofus.network.messages.game.chat.smiley;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -63,7 +63,10 @@ public class MoodSmileyResultMessage extends NetworkMessage implements INetworkM
     public void serializeAs_MoodSmileyResultMessage(ICustomDataOutput param1) {
          param1.writeByte(this.resultCode);
          if(this.smileyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
+         }
+         param1.writeVarShort(this.smileyId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,13 +90,17 @@ public class MoodSmileyResultMessage extends NetworkMessage implements INetworkM
     private void _resultCodeFunc(ICustomDataInput param1) {
          this.resultCode = param1.readByte();
          if(this.resultCode < 0)
+         {
             throw new Exception("Forbidden value (" + this.resultCode + ") on element of MoodSmileyResultMessage.resultCode.");
+         }
     }
 
     private void _smileyIdFunc(ICustomDataInput param1) {
          this.smileyId = param1.readVarUhShort();
          if(this.smileyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.smileyId + ") on element of MoodSmileyResultMessage.smileyId.");
+         }
     }
 
 }

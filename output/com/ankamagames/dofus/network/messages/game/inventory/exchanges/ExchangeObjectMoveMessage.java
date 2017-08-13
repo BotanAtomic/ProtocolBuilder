@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class ExchangeObjectMoveMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_ExchangeObjectMoveMessage(ICustomDataOutput param1) {
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
+         }
+         param1.writeVarInt(this.objectUID);
+         param1.writeVarInt(this.quantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class ExchangeObjectMoveMessage extends NetworkMessage implements INetwor
     private void _objectUIDFunc(ICustomDataInput param1) {
          this.objectUID = param1.readVarUhInt();
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element of ExchangeObjectMoveMessage.objectUID.");
+         }
     }
 
     private void _quantityFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,19 +12,10 @@ public class ExchangeOfflineSoldItemsMessage extends NetworkMessage implements I
 
     private int protocolId = 6613;
     private boolean _isInitialized = false;
-    private Vector.<ObjectItemGenericQuantityPrice> bidHouseItems = ;
-    private Vector.<ObjectItemGenericQuantityPrice> merchantItems = ;
-    private FuncTree _bidHouseItemstree = ;
-    private FuncTree _merchantItemstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private ObjectItemGenericQuantityPrice _loc7_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItemGenericQuantityPrice> bidHouseItems;
+    private Vector<ObjectItemGenericQuantityPrice> merchantItems;
+    private FuncTree _bidHouseItemstree;
+    private FuncTree _merchantItemstree;
 
 
     public boolean isInitialized() {
@@ -35,7 +26,7 @@ public class ExchangeOfflineSoldItemsMessage extends NetworkMessage implements I
          return 6613;
     }
 
-    public ExchangeOfflineSoldItemsMessage initExchangeOfflineSoldItemsMessage(Vector.<ObjectItemGenericQuantityPrice> param1,Vector.<ObjectItemGenericQuantityPrice>  param2) {
+    public ExchangeOfflineSoldItemsMessage initExchangeOfflineSoldItemsMessage(Vector<ObjectItemGenericQuantityPrice> param1,Vector<ObjectItemGenericQuantityPrice>  param2) {
          this.bidHouseItems = param1;
          this.merchantItems = param2;
          this._isInitialized = true;
@@ -73,8 +64,17 @@ public class ExchangeOfflineSoldItemsMessage extends NetworkMessage implements I
          param1.writeShort(this.bidHouseItems.length);
          int _loc2_ = 0;
          while(_loc2_ < this.bidHouseItems.length)
+         {
             (this.bidHouseItems[_loc2_] as ObjectItemGenericQuantityPrice).serializeAs_ObjectItemGenericQuantityPrice(param1);
             _loc2_++;
+         }
+         param1.writeShort(this.merchantItems.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.merchantItems.length)
+         {
+            (this.merchantItems[_loc3_] as ObjectItemGenericQuantityPrice).serializeAs_ObjectItemGenericQuantityPrice(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,10 +87,21 @@ public class ExchangeOfflineSoldItemsMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = new ObjectItemGenericQuantityPrice();
             _loc6_.deserialize(param1);
             this.bidHouseItems.push(_loc6_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = new ObjectItemGenericQuantityPrice();
+            _loc7_.deserialize(param1);
+            this.merchantItems.push(_loc7_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -106,8 +117,10 @@ public class ExchangeOfflineSoldItemsMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._bidHouseItemstree.addChild(this._bidHouseItemsFunc);
             _loc3_++;
+         }
     }
 
     private void _bidHouseItemsFunc(ICustomDataInput param1) {
@@ -120,8 +133,10 @@ public class ExchangeOfflineSoldItemsMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._merchantItemstree.addChild(this._merchantItemsFunc);
             _loc3_++;
+         }
     }
 
     private void _merchantItemsFunc(ICustomDataInput param1) {

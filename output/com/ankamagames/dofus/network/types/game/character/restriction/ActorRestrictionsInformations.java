@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character.restriction;
+package com.ankamagames.dofus.network.types.game.character.restriction;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -30,10 +30,6 @@ public class ActorRestrictionsInformations extends Object implements INetworkTyp
     private boolean cantChangeZone = false;
     private boolean cantAttackMonster = false;
     private boolean cantWalk8Directions = false;
-    private int _loc3_ = 0;
-    private int _loc4_ = 0;
-    private int _loc3_ = param1.readByte();
-    private int _loc4_ = param1.readByte();
 
 
     public int getTypeId() {

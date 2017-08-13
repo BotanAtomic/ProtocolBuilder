@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -6,6 +6,8 @@ import com.ankamagames.dofus.network.types.game.context.EntityDispositionInforma
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -23,7 +25,7 @@ public class GameFightCompanionInformations extends GameFightFighterInformations
          return 450;
     }
 
-    public GameFightCompanionInformations initGameFightCompanionInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector.<uint>  param8,int  param9,int  param10,Number  param11) {
+    public GameFightCompanionInformations initGameFightCompanionInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector<uint>  param8,int  param9,int  param10,Number  param11) {
          super.initGameFightFighterInformations(param1,param2,param3,param4,param5,param6,param7,param8);
          this.companionGenericId = param9;
          this.level = param10;
@@ -45,7 +47,20 @@ public class GameFightCompanionInformations extends GameFightFighterInformations
     public void serializeAs_GameFightCompanionInformations(ICustomDataOutput param1) {
          super.serializeAs_GameFightFighterInformations(param1);
          if(this.companionGenericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.companionGenericId + ") on element companionGenericId.");
+         }
+         param1.writeByte(this.companionGenericId);
+         if(this.level < 0 || this.level > 255)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
+         if(this.masterId < -9.007199254740992E15 || this.masterId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.masterId + ") on element masterId.");
+         }
+         param1.writeDouble(this.masterId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -73,19 +88,25 @@ public class GameFightCompanionInformations extends GameFightFighterInformations
     private void _companionGenericIdFunc(ICustomDataInput param1) {
          this.companionGenericId = param1.readByte();
          if(this.companionGenericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.companionGenericId + ") on element of GameFightCompanionInformations.companionGenericId.");
+         }
     }
 
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readUnsignedByte();
          if(this.level < 0 || this.level > 255)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of GameFightCompanionInformations.level.");
+         }
     }
 
     private void _masterIdFunc(ICustomDataInput param1) {
          this.masterId = param1.readDouble();
          if(this.masterId < -9.007199254740992E15 || this.masterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.masterId + ") on element of GameFightCompanionInformations.masterId.");
+         }
     }
 
 }

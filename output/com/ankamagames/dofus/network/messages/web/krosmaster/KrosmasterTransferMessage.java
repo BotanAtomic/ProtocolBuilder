@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.web.krosmaster;
+package com.ankamagames.dofus.network.messages.web.krosmaster;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -88,7 +88,9 @@ public class KrosmasterTransferMessage extends NetworkMessage implements INetwor
     private void _failureFunc(ICustomDataInput param1) {
          this.failure = param1.readByte();
          if(this.failure < 0)
+         {
             throw new Exception("Forbidden value (" + this.failure + ") on element of KrosmasterTransferMessage.failure.");
+         }
     }
 
 }

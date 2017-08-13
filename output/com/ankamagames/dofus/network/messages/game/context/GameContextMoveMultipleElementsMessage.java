@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class GameContextMoveMultipleElementsMessage extends NetworkMessage imple
 
     private int protocolId = 254;
     private boolean _isInitialized = false;
-    private Vector.<EntityMovementInformations> movements = ;
-    private FuncTree _movementstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<EntityMovementInformations> movements;
+    private FuncTree _movementstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class GameContextMoveMultipleElementsMessage extends NetworkMessage imple
          return 254;
     }
 
-    public GameContextMoveMultipleElementsMessage initGameContextMoveMultipleElementsMessage(Vector.<EntityMovementInformations> param1) {
+    public GameContextMoveMultipleElementsMessage initGameContextMoveMultipleElementsMessage(Vector<EntityMovementInformations> param1) {
          this.movements = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class GameContextMoveMultipleElementsMessage extends NetworkMessage imple
          param1.writeShort(this.movements.length);
          int _loc2_ = 0;
          while(_loc2_ < this.movements.length)
+         {
             (this.movements[_loc2_] as EntityMovementInformations).serializeAs_EntityMovementInformations(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class GameContextMoveMultipleElementsMessage extends NetworkMessage imple
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new EntityMovementInformations();
             _loc4_.deserialize(param1);
             this.movements.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class GameContextMoveMultipleElementsMessage extends NetworkMessage imple
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._movementstree.addChild(this._movementsFunc);
             _loc3_++;
+         }
     }
 
     private void _movementsFunc(ICustomDataInput param1) {

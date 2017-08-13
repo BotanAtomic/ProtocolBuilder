@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -41,7 +41,10 @@ public class GameRolePlayMountInformations extends GameRolePlayNamedActorInforma
          super.serializeAs_GameRolePlayNamedActorInformations(param1);
          param1.writeUTF(this.ownerName);
          if(this.level < 0 || this.level > 255)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -71,7 +74,9 @@ public class GameRolePlayMountInformations extends GameRolePlayNamedActorInforma
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readUnsignedByte();
          if(this.level < 0 || this.level > 255)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of GameRolePlayMountInformations.level.");
+         }
     }
 
 }

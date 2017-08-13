@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat.smiley;
+package com.ankamagames.dofus.network.messages.game.chat.smiley;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,8 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -66,7 +68,20 @@ public class MoodSmileyUpdateMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_MoodSmileyUpdateMessage(ICustomDataOutput param1) {
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
+         if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
+         }
+         param1.writeVarLong(this.playerId);
+         if(this.smileyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
+         }
+         param1.writeVarShort(this.smileyId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -92,19 +107,25 @@ public class MoodSmileyUpdateMessage extends NetworkMessage implements INetworkM
     private void _accountIdFunc(ICustomDataInput param1) {
          this.accountId = param1.readInt();
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element of MoodSmileyUpdateMessage.accountId.");
+         }
     }
 
     private void _playerIdFunc(ICustomDataInput param1) {
          this.playerId = param1.readVarUhLong();
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element of MoodSmileyUpdateMessage.playerId.");
+         }
     }
 
     private void _smileyIdFunc(ICustomDataInput param1) {
          this.smileyId = param1.readVarUhShort();
          if(this.smileyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.smileyId + ") on element of MoodSmileyUpdateMessage.smileyId.");
+         }
     }
 
 }

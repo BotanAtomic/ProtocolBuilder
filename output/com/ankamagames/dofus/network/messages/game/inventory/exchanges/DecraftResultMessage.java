@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class DecraftResultMessage extends NetworkMessage implements INetworkMess
 
     private int protocolId = 6569;
     private boolean _isInitialized = false;
-    private Vector.<DecraftedItemStackInfo> results = ;
-    private FuncTree _resultstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<DecraftedItemStackInfo> results;
+    private FuncTree _resultstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class DecraftResultMessage extends NetworkMessage implements INetworkMess
          return 6569;
     }
 
-    public DecraftResultMessage initDecraftResultMessage(Vector.<DecraftedItemStackInfo> param1) {
+    public DecraftResultMessage initDecraftResultMessage(Vector<DecraftedItemStackInfo> param1) {
          this.results = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class DecraftResultMessage extends NetworkMessage implements INetworkMess
          param1.writeShort(this.results.length);
          int _loc2_ = 0;
          while(_loc2_ < this.results.length)
+         {
             (this.results[_loc2_] as DecraftedItemStackInfo).serializeAs_DecraftedItemStackInfo(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class DecraftResultMessage extends NetworkMessage implements INetworkMess
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new DecraftedItemStackInfo();
             _loc4_.deserialize(param1);
             this.results.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class DecraftResultMessage extends NetworkMessage implements INetworkMess
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._resultstree.addChild(this._resultsFunc);
             _loc3_++;
+         }
     }
 
     private void _resultsFunc(ICustomDataInput param1) {

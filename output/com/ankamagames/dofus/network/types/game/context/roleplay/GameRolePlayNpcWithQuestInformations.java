@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.quest.GameRolePlayNpcQuestFlag;
@@ -11,8 +11,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class GameRolePlayNpcWithQuestInformations extends GameRolePlayNpcInformations implements INetworkType {
 
     private int protocolId = 383;
-    private GameRolePlayNpcQuestFlag questFlag = ;
-    private FuncTree _questFlagtree = ;
+    private GameRolePlayNpcQuestFlag questFlag;
+    private FuncTree _questFlagtree;
 
 
     public int getTypeId() {

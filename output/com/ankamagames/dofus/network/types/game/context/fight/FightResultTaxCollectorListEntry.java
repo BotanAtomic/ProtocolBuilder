@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.BasicGuildInformations;
@@ -12,9 +12,9 @@ public class FightResultTaxCollectorListEntry extends FightResultFighterListEntr
 
     private int protocolId = 84;
     private int level = 0;
-    private BasicGuildInformations guildInfo = ;
+    private BasicGuildInformations guildInfo;
     private int experienceForGuild = 0;
-    private FuncTree _guildInfotree = ;
+    private FuncTree _guildInfotree;
 
 
     public int getTypeId() {
@@ -42,7 +42,12 @@ public class FightResultTaxCollectorListEntry extends FightResultFighterListEntr
     public void serializeAs_FightResultTaxCollectorListEntry(ICustomDataOutput param1) {
          super.serializeAs_FightResultFighterListEntry(param1);
          if(this.level < 1 || this.level > 200)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
+         this.guildInfo.serializeAs_BasicGuildInformations(param1);
+         param1.writeInt(this.experienceForGuild);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -71,7 +76,9 @@ public class FightResultTaxCollectorListEntry extends FightResultFighterListEntr
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readUnsignedByte();
          if(this.level < 1 || this.level > 200)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of FightResultTaxCollectorListEntry.level.");
+         }
     }
 
     private void _guildInfotreeFunc(ICustomDataInput param1) {

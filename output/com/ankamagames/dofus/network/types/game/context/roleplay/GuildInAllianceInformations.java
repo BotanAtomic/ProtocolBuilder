@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.guild.GuildEmblem;
@@ -36,7 +36,10 @@ public class GuildInAllianceInformations extends GuildInformations implements IN
     public void serializeAs_GuildInAllianceInformations(ICustomDataOutput param1) {
          super.serializeAs_GuildInformations(param1);
          if(this.nbMembers < 1 || this.nbMembers > 240)
+         {
             throw new Exception("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
+         }
+         param1.writeByte(this.nbMembers);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -60,7 +63,9 @@ public class GuildInAllianceInformations extends GuildInformations implements IN
     private void _nbMembersFunc(ICustomDataInput param1) {
          this.nbMembers = param1.readUnsignedByte();
          if(this.nbMembers < 1 || this.nbMembers > 240)
+         {
             throw new Exception("Forbidden value (" + this.nbMembers + ") on element of GuildInAllianceInformations.nbMembers.");
+         }
     }
 
 }

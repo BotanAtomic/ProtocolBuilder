@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.actions.fight;
+package com.ankamagames.dofus.network.types.game.actions.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class FightTemporarySpellBoostEffect extends FightTemporaryBoostEffect im
     public void serializeAs_FightTemporarySpellBoostEffect(ICustomDataOutput param1) {
          super.serializeAs_FightTemporaryBoostEffect(param1);
          if(this.boostedSpellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.boostedSpellId + ") on element boostedSpellId.");
+         }
+         param1.writeVarShort(this.boostedSpellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class FightTemporarySpellBoostEffect extends FightTemporaryBoostEffect im
     private void _boostedSpellIdFunc(ICustomDataInput param1) {
          this.boostedSpellId = param1.readVarUhShort();
          if(this.boostedSpellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.boostedSpellId + ") on element of FightTemporarySpellBoostEffect.boostedSpellId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,21 +12,17 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class HousePropertiesMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 5734;
     private boolean _isInitialized = false;
     private int houseId = 0;
-    private Vector.<uint> doorsOnMap = ;
-    private HouseInstanceInformations properties = ;
-    private FuncTree _doorsOnMaptree = ;
-    private FuncTree _propertiestree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
+    private Vector<uint> doorsOnMap;
+    private HouseInstanceInformations properties;
+    private FuncTree _doorsOnMaptree;
+    private FuncTree _propertiestree;
 
 
     public boolean isInitialized() {
@@ -37,7 +33,7 @@ public class HousePropertiesMessage extends NetworkMessage implements INetworkMe
          return 5734;
     }
 
-    public HousePropertiesMessage initHousePropertiesMessage(int param1,Vector.<uint>  param2,HouseInstanceInformations  param3) {
+    public HousePropertiesMessage initHousePropertiesMessage(int param1,Vector<uint>  param2,HouseInstanceInformations  param3) {
          this.houseId = param1;
          this.doorsOnMap = param2;
          this.properties = param3;
@@ -75,7 +71,23 @@ public class HousePropertiesMessage extends NetworkMessage implements INetworkMe
 
     public void serializeAs_HousePropertiesMessage(ICustomDataOutput param1) {
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
+         }
+         param1.writeVarInt(this.houseId);
+         param1.writeShort(this.doorsOnMap.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.doorsOnMap.length)
+         {
+            if(this.doorsOnMap[_loc2_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.doorsOnMap[_loc2_] + ") on element 2 (starting at 1) of doorsOnMap.");
+            }
+            param1.writeInt(this.doorsOnMap[_loc2_]);
+            _loc2_++;
+         }
+         param1.writeShort(this.properties.getTypeId());
+         this.properties.serialize(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -88,9 +100,18 @@ public class HousePropertiesMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc5_ = param1.readInt();
             if(_loc5_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc5_ + ") on elements of doorsOnMap.");
+            }
+            this.doorsOnMap.push(_loc5_);
+            _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         this.properties = ProtocolTypeManager.getInstance(HouseInstanceInformations,_loc4_);
+         this.properties.deserialize(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -106,21 +127,28 @@ public class HousePropertiesMessage extends NetworkMessage implements INetworkMe
     private void _houseIdFunc(ICustomDataInput param1) {
          this.houseId = param1.readVarUhInt();
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element of HousePropertiesMessage.houseId.");
+         }
     }
 
     private void _doorsOnMaptreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._doorsOnMaptree.addChild(this._doorsOnMapFunc);
             _loc3_++;
+         }
     }
 
     private void _doorsOnMapFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readInt();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of doorsOnMap.");
+         }
+         this.doorsOnMap.push(_loc2_);
     }
 
     private void _propertiestreeFunc(ICustomDataInput param1) {

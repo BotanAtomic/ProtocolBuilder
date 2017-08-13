@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character;
+package com.ankamagames.dofus.network.types.game.character;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -9,8 +9,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class CharacterMinimalPlusLookInformations extends CharacterMinimalInformations implements INetworkType {
 
     private int protocolId = 163;
-    private EntityLook entityLook = ;
-    private FuncTree _entityLooktree = ;
+    private EntityLook entityLook;
+    private FuncTree _entityLooktree;
 
 
     public int getTypeId() {

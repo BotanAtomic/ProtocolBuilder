@@ -1,9 +1,10 @@
-package package com.ankamagames.dofus.network.types.game.data.items.effects;
+package com.ankamagames.dofus.network.types.game.data.items.effects;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -39,7 +40,15 @@ public class ObjectEffectMinMax extends ObjectEffect implements INetworkType {
     public void serializeAs_ObjectEffectMinMax(ICustomDataOutput param1) {
          super.serializeAs_ObjectEffect(param1);
          if(this.min < 0)
+         {
             throw new Exception("Forbidden value (" + this.min + ") on element min.");
+         }
+         param1.writeVarInt(this.min);
+         if(this.max < 0)
+         {
+            throw new Exception("Forbidden value (" + this.max + ") on element max.");
+         }
+         param1.writeVarInt(this.max);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -65,13 +74,17 @@ public class ObjectEffectMinMax extends ObjectEffect implements INetworkType {
     private void _minFunc(ICustomDataInput param1) {
          this.min = param1.readVarUhInt();
          if(this.min < 0)
+         {
             throw new Exception("Forbidden value (" + this.min + ") on element of ObjectEffectMinMax.min.");
+         }
     }
 
     private void _maxFunc(ICustomDataInput param1) {
          this.max = param1.readVarUhInt();
          if(this.max < 0)
+         {
             throw new Exception("Forbidden value (" + this.max + ") on element of ObjectEffectMinMax.max.");
+         }
     }
 
 }

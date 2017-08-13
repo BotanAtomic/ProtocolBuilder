@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class GuildFactsRequestMessage extends NetworkMessage implements INetwork
 
     public void serializeAs_GuildFactsRequestMessage(ICustomDataOutput param1) {
          if(this.guildId < 0)
+         {
             throw new Exception("Forbidden value (" + this.guildId + ") on element guildId.");
+         }
+         param1.writeVarInt(this.guildId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class GuildFactsRequestMessage extends NetworkMessage implements INetwork
     private void _guildIdFunc(ICustomDataInput param1) {
          this.guildId = param1.readVarUhInt();
          if(this.guildId < 0)
+         {
             throw new Exception("Forbidden value (" + this.guildId + ") on element of GuildFactsRequestMessage.guildId.");
+         }
     }
 
 }

@@ -2,9 +2,9 @@ package com.ankamagames.dofus.network.enums;
 
 public enum GameActionMarkCellsTypeEnum {
 
-    CELLS_CIRCLE(0),
-    CELLS_CROSS(1),
-    CELLS_SQUARE(2);
+    CELLS_CIRCLE(0;),
+    CELLS_CROSS(1;),
+    CELLS_SQUARE(2;);
 
     private final int value;
     public GameActionMarkCellsTypeEnum(int value) {

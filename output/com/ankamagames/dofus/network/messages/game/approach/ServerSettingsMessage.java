@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.approach;
+package com.ankamagames.dofus.network.messages.game.approach;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -69,7 +70,16 @@ public class ServerSettingsMessage extends NetworkMessage implements INetworkMes
     public void serializeAs_ServerSettingsMessage(ICustomDataOutput param1) {
          param1.writeUTF(this.lang);
          if(this.community < 0)
+         {
             throw new Exception("Forbidden value (" + this.community + ") on element community.");
+         }
+         param1.writeByte(this.community);
+         param1.writeByte(this.gameType);
+         if(this.arenaLeaveBanTime < 0)
+         {
+            throw new Exception("Forbidden value (" + this.arenaLeaveBanTime + ") on element arenaLeaveBanTime.");
+         }
+         param1.writeVarShort(this.arenaLeaveBanTime);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -101,7 +111,9 @@ public class ServerSettingsMessage extends NetworkMessage implements INetworkMes
     private void _communityFunc(ICustomDataInput param1) {
          this.community = param1.readByte();
          if(this.community < 0)
+         {
             throw new Exception("Forbidden value (" + this.community + ") on element of ServerSettingsMessage.community.");
+         }
     }
 
     private void _gameTypeFunc(ICustomDataInput param1) {
@@ -111,7 +123,9 @@ public class ServerSettingsMessage extends NetworkMessage implements INetworkMes
     private void _arenaLeaveBanTimeFunc(ICustomDataInput param1) {
          this.arenaLeaveBanTime = param1.readVarUhShort();
          if(this.arenaLeaveBanTime < 0)
+         {
             throw new Exception("Forbidden value (" + this.arenaLeaveBanTime + ") on element of ServerSettingsMessage.arenaLeaveBanTime.");
+         }
     }
 
 }

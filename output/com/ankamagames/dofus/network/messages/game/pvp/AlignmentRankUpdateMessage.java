@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.pvp;
+package com.ankamagames.dofus.network.messages.game.pvp;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class AlignmentRankUpdateMessage extends NetworkMessage implements INetwo
 
     public void serializeAs_AlignmentRankUpdateMessage(ICustomDataOutput param1) {
          if(this.alignmentRank < 0)
+         {
             throw new Exception("Forbidden value (" + this.alignmentRank + ") on element alignmentRank.");
+         }
+         param1.writeByte(this.alignmentRank);
+         param1.writeBoolean(this.verbose);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class AlignmentRankUpdateMessage extends NetworkMessage implements INetwo
     private void _alignmentRankFunc(ICustomDataInput param1) {
          this.alignmentRank = param1.readByte();
          if(this.alignmentRank < 0)
+         {
             throw new Exception("Forbidden value (" + this.alignmentRank + ") on element of AlignmentRankUpdateMessage.alignmentRank.");
+         }
     }
 
     private void _verboseFunc(ICustomDataInput param1) {

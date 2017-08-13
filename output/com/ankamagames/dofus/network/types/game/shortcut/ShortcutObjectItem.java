@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.shortcut;
+package com.ankamagames.dofus.network.types.game.shortcut;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class HelloConnectMessage extends NetworkMessage implements INetworkMessa
     private int protocolId = 3;
     private boolean _isInitialized = false;
     private String salt = "";
-    private Vector.<int> key = ;
-    private FuncTree _keytree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readVarInt();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> key;
+    private FuncTree _keytree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class HelloConnectMessage extends NetworkMessage implements INetworkMessa
          return 3;
     }
 
-    public HelloConnectMessage initHelloConnectMessage(String param1,Vector.<int>  param2) {
+    public HelloConnectMessage initHelloConnectMessage(String param1,Vector<int>  param2) {
          this.salt = param1;
          this.key = param2;
          this._isInitialized = true;
@@ -67,8 +63,10 @@ public class HelloConnectMessage extends NetworkMessage implements INetworkMessa
          param1.writeVarInt(this.key.length);
          int _loc2_ = 0;
          while(_loc2_ < this.key.length)
+         {
             param1.writeByte(this.key[_loc2_]);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -81,9 +79,11 @@ public class HelloConnectMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readByte();
             this.key.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -103,8 +103,10 @@ public class HelloConnectMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._keytree.addChild(this._keyFunc);
             _loc3_++;
+         }
     }
 
     private void _keyFunc(ICustomDataInput param1) {

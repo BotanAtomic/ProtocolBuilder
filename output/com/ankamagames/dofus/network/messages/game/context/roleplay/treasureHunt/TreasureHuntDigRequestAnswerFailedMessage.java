@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class TreasureHuntDigRequestAnswerFailedMessage extends TreasureHuntDigRe
     public void serializeAs_TreasureHuntDigRequestAnswerFailedMessage(ICustomDataOutput param1) {
          super.serializeAs_TreasureHuntDigRequestAnswerMessage(param1);
          if(this.wrongFlagCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.wrongFlagCount + ") on element wrongFlagCount.");
+         }
+         param1.writeByte(this.wrongFlagCount);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class TreasureHuntDigRequestAnswerFailedMessage extends TreasureHuntDigRe
     private void _wrongFlagCountFunc(ICustomDataInput param1) {
          this.wrongFlagCount = param1.readByte();
          if(this.wrongFlagCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.wrongFlagCount + ") on element of TreasureHuntDigRequestAnswerFailedMessage.wrongFlagCount.");
+         }
     }
 
 }

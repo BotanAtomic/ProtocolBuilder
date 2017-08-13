@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GoldAddedMessage extends NetworkMessage implements INetworkMessage 
 
     private int protocolId = 6030;
     private boolean _isInitialized = false;
-    private GoldItem gold = ;
-    private FuncTree _goldtree = ;
+    private GoldItem gold;
+    private FuncTree _goldtree;
 
 
     public boolean isInitialized() {

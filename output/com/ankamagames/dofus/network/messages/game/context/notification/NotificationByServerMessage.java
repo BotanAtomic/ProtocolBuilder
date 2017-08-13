@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.notification;
+package com.ankamagames.dofus.network.messages.game.context.notification;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,13 +14,9 @@ public class NotificationByServerMessage extends NetworkMessage implements INetw
     private int protocolId = 6103;
     private boolean _isInitialized = false;
     private int id = 0;
-    private Vector.<String> parameters = ;
+    private Vector<String> parameters;
     private boolean forceOpen = false;
-    private FuncTree _parameterstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _parameterstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class NotificationByServerMessage extends NetworkMessage implements INetw
          return 6103;
     }
 
-    public NotificationByServerMessage initNotificationByServerMessage(int param1,Vector.<String>  param2,boolean  param3) {
+    public NotificationByServerMessage initNotificationByServerMessage(int param1,Vector<String>  param2,boolean  param3) {
          this.id = param1;
          this.parameters = param2;
          this.forceOpen = param3;
@@ -69,7 +65,18 @@ public class NotificationByServerMessage extends NetworkMessage implements INetw
 
     public void serializeAs_NotificationByServerMessage(ICustomDataOutput param1) {
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarShort(this.id);
+         param1.writeShort(this.parameters.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.parameters.length)
+         {
+            param1.writeUTF(this.parameters[_loc2_]);
+            _loc2_++;
+         }
+         param1.writeBoolean(this.forceOpen);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,9 +89,12 @@ public class NotificationByServerMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUTF();
             this.parameters.push(_loc4_);
             _loc3_++;
+         }
+         this._forceOpenFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -100,15 +110,19 @@ public class NotificationByServerMessage extends NetworkMessage implements INetw
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readVarUhShort();
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of NotificationByServerMessage.id.");
+         }
     }
 
     private void _parameterstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._parameterstree.addChild(this._parametersFunc);
             _loc3_++;
+         }
     }
 
     private void _parametersFunc(ICustomDataInput param1) {

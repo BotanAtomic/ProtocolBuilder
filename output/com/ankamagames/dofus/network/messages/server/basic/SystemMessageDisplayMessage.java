@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.server.basic;
+package com.ankamagames.dofus.network.messages.server.basic;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -66,7 +66,17 @@ public class SystemMessageDisplayMessage extends NetworkMessage implements INetw
     public void serializeAs_SystemMessageDisplayMessage(ICustomDataOutput param1) {
          param1.writeBoolean(this.hangUp);
          if(this.msgId < 0)
+         {
             throw new Exception("Forbidden value (" + this.msgId + ") on element msgId.");
+         }
+         param1.writeVarShort(this.msgId);
+         param1.writeShort(this.parameters.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.parameters.length)
+         {
+            param1.writeUTF(this.parameters[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,9 +90,11 @@ public class SystemMessageDisplayMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUTF();
             this.parameters.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -102,15 +114,19 @@ public class SystemMessageDisplayMessage extends NetworkMessage implements INetw
     private void _msgIdFunc(ICustomDataInput param1) {
          this.msgId = param1.readVarUhShort();
          if(this.msgId < 0)
+         {
             throw new Exception("Forbidden value (" + this.msgId + ") on element of SystemMessageDisplayMessage.msgId.");
+         }
     }
 
     private void _parameterstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._parameterstree.addChild(this._parametersFunc);
             _loc3_++;
+         }
     }
 
     private void _parametersFunc(ICustomDataInput param1) {

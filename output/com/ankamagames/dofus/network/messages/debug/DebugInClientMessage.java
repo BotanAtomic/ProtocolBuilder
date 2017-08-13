@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.debug;
+package com.ankamagames.dofus.network.messages.debug;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -84,7 +84,9 @@ public class DebugInClientMessage extends NetworkMessage implements INetworkMess
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readByte();
          if(this.level < 0)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of DebugInClientMessage.level.");
+         }
     }
 
     private void _messageFunc(ICustomDataInput param1) {

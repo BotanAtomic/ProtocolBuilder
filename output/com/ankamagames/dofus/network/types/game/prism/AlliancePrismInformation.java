@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.prism;
+package com.ankamagames.dofus.network.types.game.prism;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.AllianceInformations;
@@ -9,8 +9,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class AlliancePrismInformation extends PrismInformation implements INetworkType {
 
     private int protocolId = 427;
-    private AllianceInformations alliance = ;
-    private FuncTree _alliancetree = ;
+    private AllianceInformations alliance;
+    private FuncTree _alliancetree;
 
 
     public int getTypeId() {

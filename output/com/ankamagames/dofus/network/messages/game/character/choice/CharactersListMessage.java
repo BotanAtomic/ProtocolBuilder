@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.choice;
+package com.ankamagames.dofus.network.messages.game.character.choice;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.character.choice.CharacterBaseInformations;
@@ -22,7 +22,7 @@ public class CharactersListMessage extends Basic {
          return 151;
     }
 
-    public CharactersListMessage initCharactersListMessage(Vector.<CharacterBaseInformations> param1,boolean  param2) {
+    public CharactersListMessage initCharactersListMessage(Vector<CharacterBaseInformations> param1,boolean  param2) {
          super.initBasicCharactersListMessage(param1);
          this.hasStartupActions = param2;
          this._isInitialized = true;

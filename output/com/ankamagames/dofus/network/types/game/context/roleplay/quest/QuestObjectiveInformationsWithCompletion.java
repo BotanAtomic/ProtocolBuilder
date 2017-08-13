@@ -1,9 +1,10 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.quest;
+package com.ankamagames.dofus.network.types.game.context.roleplay.quest;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -19,7 +20,7 @@ public class QuestObjectiveInformationsWithCompletion extends QuestObjectiveInfo
          return 386;
     }
 
-    public QuestObjectiveInformationsWithCompletion initQuestObjectiveInformationsWithCompletion(int param1,boolean  param2,Vector.<String>  param3,int  param4,int  param5) {
+    public QuestObjectiveInformationsWithCompletion initQuestObjectiveInformationsWithCompletion(int param1,boolean  param2,Vector<String>  param3,int  param4,int  param5) {
          super.initQuestObjectiveInformations(param1,param2,param3);
          this.curCompletion = param4;
          this.maxCompletion = param5;
@@ -39,7 +40,15 @@ public class QuestObjectiveInformationsWithCompletion extends QuestObjectiveInfo
     public void serializeAs_QuestObjectiveInformationsWithCompletion(ICustomDataOutput param1) {
          super.serializeAs_QuestObjectiveInformations(param1);
          if(this.curCompletion < 0)
+         {
             throw new Exception("Forbidden value (" + this.curCompletion + ") on element curCompletion.");
+         }
+         param1.writeVarShort(this.curCompletion);
+         if(this.maxCompletion < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxCompletion + ") on element maxCompletion.");
+         }
+         param1.writeVarShort(this.maxCompletion);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -65,13 +74,17 @@ public class QuestObjectiveInformationsWithCompletion extends QuestObjectiveInfo
     private void _curCompletionFunc(ICustomDataInput param1) {
          this.curCompletion = param1.readVarUhShort();
          if(this.curCompletion < 0)
+         {
             throw new Exception("Forbidden value (" + this.curCompletion + ") on element of QuestObjectiveInformationsWithCompletion.curCompletion.");
+         }
     }
 
     private void _maxCompletionFunc(ICustomDataInput param1) {
          this.maxCompletion = param1.readVarUhShort();
          if(this.maxCompletion < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxCompletion + ") on element of QuestObjectiveInformationsWithCompletion.maxCompletion.");
+         }
     }
 
 }

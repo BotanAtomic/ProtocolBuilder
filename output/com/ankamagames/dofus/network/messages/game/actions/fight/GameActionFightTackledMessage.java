@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,12 +14,8 @@ public class GameActionFightTackledMessage extends AbstractGameActionMessage imp
 
     private int protocolId = 1004;
     private boolean _isInitialized = false;
-    private Vector.<Number> tacklersIds = ;
-    private FuncTree _tacklersIdstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<Number> tacklersIds;
+    private FuncTree _tacklersIdstree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class GameActionFightTackledMessage extends AbstractGameActionMessage imp
          return 1004;
     }
 
-    public GameActionFightTackledMessage initGameActionFightTackledMessage(int param1,Number  param2,Vector.<Number>  param3) {
+    public GameActionFightTackledMessage initGameActionFightTackledMessage(int param1,Number  param2,Vector<Number>  param3) {
          super.initAbstractGameActionMessage(param1,param2);
          this.tacklersIds = param3;
          this._isInitialized = true;
@@ -69,8 +65,14 @@ public class GameActionFightTackledMessage extends AbstractGameActionMessage imp
          param1.writeShort(this.tacklersIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.tacklersIds.length)
+         {
             if(this.tacklersIds[_loc2_] < -9.007199254740992E15 || this.tacklersIds[_loc2_] > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + this.tacklersIds[_loc2_] + ") on element 1 (starting at 1) of tacklersIds.");
+            }
+            param1.writeDouble(this.tacklersIds[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -83,9 +85,15 @@ public class GameActionFightTackledMessage extends AbstractGameActionMessage imp
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readDouble();
             if(_loc4_ < -9.007199254740992E15 || _loc4_ > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of tacklersIds.");
+            }
+            this.tacklersIds.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,14 +109,19 @@ public class GameActionFightTackledMessage extends AbstractGameActionMessage imp
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._tacklersIdstree.addChild(this._tacklersIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _tacklersIdsFunc(ICustomDataInput param1) {
          Number _loc2_ = param1.readDouble();
          if(_loc2_ < -9.007199254740992E15 || _loc2_ > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of tacklersIds.");
+         }
+         this.tacklersIds.push(_loc2_);
     }
 
 }

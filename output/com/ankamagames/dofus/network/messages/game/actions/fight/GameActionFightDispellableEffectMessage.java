@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,9 +13,8 @@ public class GameActionFightDispellableEffectMessage extends AbstractGameActionM
 
     private int protocolId = 6070;
     private boolean _isInitialized = false;
-    private AbstractFightDispellableEffect effect = ;
-    private FuncTree _effecttree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private AbstractFightDispellableEffect effect;
+    private FuncTree _effecttree;
 
 
     public boolean isInitialized() {

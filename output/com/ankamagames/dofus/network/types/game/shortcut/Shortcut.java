@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.shortcut;
+package com.ankamagames.dofus.network.types.game.shortcut;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -32,7 +32,10 @@ public class Shortcut extends Object implements INetworkType {
 
     public void serializeAs_Shortcut(ICustomDataOutput param1) {
          if(this.slot < 0 || this.slot > 99)
+         {
             throw new Exception("Forbidden value (" + this.slot + ") on element slot.");
+         }
+         param1.writeByte(this.slot);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -54,7 +57,9 @@ public class Shortcut extends Object implements INetworkType {
     private void _slotFunc(ICustomDataInput param1) {
          this.slot = param1.readByte();
          if(this.slot < 0 || this.slot > 99)
+         {
             throw new Exception("Forbidden value (" + this.slot + ") on element of Shortcut.slot.");
+         }
     }
 
 }

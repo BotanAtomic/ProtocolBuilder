@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -12,21 +12,15 @@ public class FightResultPlayerListEntry extends FightResultFighterListEntry impl
 
     private int protocolId = 24;
     private int level = 0;
-    private Vector.<FightResultAdditionalData> additional = ;
-    private FuncTree _additionaltree = ;
-    private int _loc2_ = 0;
-    private FightResultAdditionalData _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private FightResultAdditionalData _loc3_ = ProtocolTypeManager.getInstance(FightResultAdditionalData,_loc2_);
+    private Vector<FightResultAdditionalData> additional;
+    private FuncTree _additionaltree;
 
 
     public int getTypeId() {
          return 24;
     }
 
-    public FightResultPlayerListEntry initFightResultPlayerListEntry(int param1,int  param2,FightLoot  param3,Number  param4,boolean  param5,int  param6,Vector.<FightResultAdditionalData>  param7) {
+    public FightResultPlayerListEntry initFightResultPlayerListEntry(int param1,int  param2,FightLoot  param3,Number  param4,boolean  param5,int  param6,Vector<FightResultAdditionalData>  param7) {
          super.initFightResultFighterListEntry(param1,param2,param3,param4,param5);
          this.level = param6;
          this.additional = param7;
@@ -46,7 +40,18 @@ public class FightResultPlayerListEntry extends FightResultFighterListEntry impl
     public void serializeAs_FightResultPlayerListEntry(ICustomDataOutput param1) {
          super.serializeAs_FightResultFighterListEntry(param1);
          if(this.level < 1 || this.level > 206)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
+         param1.writeShort(this.additional.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.additional.length)
+         {
+            param1.writeShort((this.additional[_loc2_] as FightResultAdditionalData).getTypeId());
+            (this.additional[_loc2_] as FightResultAdditionalData).serialize(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -61,11 +66,13 @@ public class FightResultPlayerListEntry extends FightResultFighterListEntry impl
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(FightResultAdditionalData,_loc4_);
             _loc5_.deserialize(param1);
             this.additional.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -81,15 +88,19 @@ public class FightResultPlayerListEntry extends FightResultFighterListEntry impl
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readUnsignedByte();
          if(this.level < 1 || this.level > 206)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of FightResultPlayerListEntry.level.");
+         }
     }
 
     private void _additionaltreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._additionaltree.addChild(this._additionalFunc);
             _loc3_++;
+         }
     }
 
     private void _additionalFunc(ICustomDataInput param1) {

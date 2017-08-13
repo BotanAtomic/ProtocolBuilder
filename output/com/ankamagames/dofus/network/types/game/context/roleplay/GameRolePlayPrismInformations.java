@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.prism.PrismInformation;
@@ -12,9 +12,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class GameRolePlayPrismInformations extends GameRolePlayActorInformations implements INetworkType {
 
     private int protocolId = 161;
-    private PrismInformation prism = ;
-    private FuncTree _prismtree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private PrismInformation prism;
+    private FuncTree _prismtree;
 
 
     public int getTypeId() {

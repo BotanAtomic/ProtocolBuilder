@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,13 +12,9 @@ public class GameRolePlayArenaSwitchToGameServerMessage extends NetworkMessage i
     private int protocolId = 6574;
     private boolean _isInitialized = false;
     private boolean validToken = false;
-    private Vector.<int> ticket = ;
+    private Vector<int> ticket;
     private int homeServerId = 0;
-    private FuncTree _tickettree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readVarInt();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _tickettree;
 
 
     public boolean isInitialized() {
@@ -29,7 +25,7 @@ public class GameRolePlayArenaSwitchToGameServerMessage extends NetworkMessage i
          return 6574;
     }
 
-    public GameRolePlayArenaSwitchToGameServerMessage initGameRolePlayArenaSwitchToGameServerMessage(boolean param1,Vector.<int>  param2,int  param3) {
+    public GameRolePlayArenaSwitchToGameServerMessage initGameRolePlayArenaSwitchToGameServerMessage(boolean param1,Vector<int>  param2,int  param3) {
          this.validToken = param1;
          this.ticket = param2;
          this.homeServerId = param3;
@@ -70,8 +66,11 @@ public class GameRolePlayArenaSwitchToGameServerMessage extends NetworkMessage i
          param1.writeVarInt(this.ticket.length);
          int _loc2_ = 0;
          while(_loc2_ < this.ticket.length)
+         {
             param1.writeByte(this.ticket[_loc2_]);
             _loc2_++;
+         }
+         param1.writeShort(this.homeServerId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,9 +83,12 @@ public class GameRolePlayArenaSwitchToGameServerMessage extends NetworkMessage i
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readByte();
             this.ticket.push(_loc4_);
             _loc3_++;
+         }
+         this._homeServerIdFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -107,8 +109,10 @@ public class GameRolePlayArenaSwitchToGameServerMessage extends NetworkMessage i
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._tickettree.addChild(this._ticketFunc);
             _loc3_++;
+         }
     }
 
     private void _ticketFunc(ICustomDataInput param1) {

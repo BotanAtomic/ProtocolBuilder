@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,12 +15,8 @@ public class DungeonPartyFinderRoomContentMessage extends NetworkMessage impleme
     private int protocolId = 6247;
     private boolean _isInitialized = false;
     private int dungeonId = 0;
-    private Vector.<DungeonPartyFinderPlayer> players = ;
-    private FuncTree _playerstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<DungeonPartyFinderPlayer> players;
+    private FuncTree _playerstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class DungeonPartyFinderRoomContentMessage extends NetworkMessage impleme
          return 6247;
     }
 
-    public DungeonPartyFinderRoomContentMessage initDungeonPartyFinderRoomContentMessage(int param1,Vector.<DungeonPartyFinderPlayer>  param2) {
+    public DungeonPartyFinderRoomContentMessage initDungeonPartyFinderRoomContentMessage(int param1,Vector<DungeonPartyFinderPlayer>  param2) {
          this.dungeonId = param1;
          this.players = param2;
          this._isInitialized = true;
@@ -67,7 +63,17 @@ public class DungeonPartyFinderRoomContentMessage extends NetworkMessage impleme
 
     public void serializeAs_DungeonPartyFinderRoomContentMessage(ICustomDataOutput param1) {
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+         }
+         param1.writeVarShort(this.dungeonId);
+         param1.writeShort(this.players.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.players.length)
+         {
+            (this.players[_loc2_] as DungeonPartyFinderPlayer).serializeAs_DungeonPartyFinderPlayer(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,10 +86,12 @@ public class DungeonPartyFinderRoomContentMessage extends NetworkMessage impleme
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new DungeonPartyFinderPlayer();
             _loc4_.deserialize(param1);
             this.players.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -98,15 +106,19 @@ public class DungeonPartyFinderRoomContentMessage extends NetworkMessage impleme
     private void _dungeonIdFunc(ICustomDataInput param1) {
          this.dungeonId = param1.readVarUhShort();
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element of DungeonPartyFinderRoomContentMessage.dungeonId.");
+         }
     }
 
     private void _playerstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._playerstree.addChild(this._playersFunc);
             _loc3_++;
+         }
     }
 
     private void _playersFunc(ICustomDataInput param1) {

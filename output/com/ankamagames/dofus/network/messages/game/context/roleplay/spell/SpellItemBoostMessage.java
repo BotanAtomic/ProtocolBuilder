@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.spell;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.spell;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -65,7 +66,16 @@ public class SpellItemBoostMessage extends NetworkMessage implements INetworkMes
 
     public void serializeAs_SpellItemBoostMessage(ICustomDataOutput param1) {
          if(this.statId < 0)
+         {
             throw new Exception("Forbidden value (" + this.statId + ") on element statId.");
+         }
+         param1.writeVarInt(this.statId);
+         if(this.spellId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeVarShort(this.spellId);
+         param1.writeVarShort(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -91,13 +101,17 @@ public class SpellItemBoostMessage extends NetworkMessage implements INetworkMes
     private void _statIdFunc(ICustomDataInput param1) {
          this.statId = param1.readVarUhInt();
          if(this.statId < 0)
+         {
             throw new Exception("Forbidden value (" + this.statId + ") on element of SpellItemBoostMessage.statId.");
+         }
     }
 
     private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readVarUhShort();
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of SpellItemBoostMessage.spellId.");
+         }
     }
 
     private void _valueFunc(ICustomDataInput param1) {

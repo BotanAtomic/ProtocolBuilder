@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.secure;
+package com.ankamagames.dofus.network.messages.secure;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

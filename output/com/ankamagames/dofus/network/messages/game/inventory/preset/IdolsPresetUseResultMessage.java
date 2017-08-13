@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -11,6 +11,7 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class IdolsPresetUseResultMessage extends NetworkMessage implements INetworkMessage {
 
@@ -18,12 +19,8 @@ public class IdolsPresetUseResultMessage extends NetworkMessage implements INetw
     private boolean _isInitialized = false;
     private int presetId = 0;
     private int code = 3;
-    private Vector.<uint> missingIdols = ;
-    private FuncTree _missingIdolstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> missingIdols;
+    private FuncTree _missingIdolstree;
 
 
     public boolean isInitialized() {
@@ -34,7 +31,7 @@ public class IdolsPresetUseResultMessage extends NetworkMessage implements INetw
          return 6614;
     }
 
-    public IdolsPresetUseResultMessage initIdolsPresetUseResultMessage(int param1,int  param2,Vector.<uint>  param3) {
+    public IdolsPresetUseResultMessage initIdolsPresetUseResultMessage(int param1,int  param2,Vector<uint>  param3) {
          this.presetId = param1;
          this.code = param2;
          this.missingIdols = param3;
@@ -72,7 +69,22 @@ public class IdolsPresetUseResultMessage extends NetworkMessage implements INetw
 
     public void serializeAs_IdolsPresetUseResultMessage(ICustomDataOutput param1) {
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
+         }
+         param1.writeByte(this.presetId);
+         param1.writeByte(this.code);
+         param1.writeShort(this.missingIdols.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.missingIdols.length)
+         {
+            if(this.missingIdols[_loc2_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.missingIdols[_loc2_] + ") on element 3 (starting at 1) of missingIdols.");
+            }
+            param1.writeVarShort(this.missingIdols[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,9 +98,15 @@ public class IdolsPresetUseResultMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarUhShort();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of missingIdols.");
+            }
+            this.missingIdols.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -104,27 +122,36 @@ public class IdolsPresetUseResultMessage extends NetworkMessage implements INetw
     private void _presetIdFunc(ICustomDataInput param1) {
          this.presetId = param1.readByte();
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element of IdolsPresetUseResultMessage.presetId.");
+         }
     }
 
     private void _codeFunc(ICustomDataInput param1) {
          this.code = param1.readByte();
          if(this.code < 0)
+         {
             throw new Exception("Forbidden value (" + this.code + ") on element of IdolsPresetUseResultMessage.code.");
+         }
     }
 
     private void _missingIdolstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._missingIdolstree.addChild(this._missingIdolsFunc);
             _loc3_++;
+         }
     }
 
     private void _missingIdolsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of missingIdols.");
+         }
+         this.missingIdols.push(_loc2_);
     }
 
 }

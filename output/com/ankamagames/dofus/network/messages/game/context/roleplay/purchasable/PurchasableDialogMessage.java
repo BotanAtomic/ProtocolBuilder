@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.purchasable;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.purchasable;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -7,6 +7,8 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -77,7 +79,20 @@ public class PurchasableDialogMessage extends NetworkMessage implements INetwork
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.secondHand);
          param1.writeByte(_loc2_);
          if(this.purchasableId < 0)
+         {
             throw new Exception("Forbidden value (" + this.purchasableId + ") on element purchasableId.");
+         }
+         param1.writeVarInt(this.purchasableId);
+         if(this.purchasableInstanceId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.purchasableInstanceId + ") on element purchasableInstanceId.");
+         }
+         param1.writeInt(this.purchasableInstanceId);
+         if(this.price < 0 || this.price > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.price + ") on element price.");
+         }
+         param1.writeVarLong(this.price);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -111,19 +126,25 @@ public class PurchasableDialogMessage extends NetworkMessage implements INetwork
     private void _purchasableIdFunc(ICustomDataInput param1) {
          this.purchasableId = param1.readVarUhInt();
          if(this.purchasableId < 0)
+         {
             throw new Exception("Forbidden value (" + this.purchasableId + ") on element of PurchasableDialogMessage.purchasableId.");
+         }
     }
 
     private void _purchasableInstanceIdFunc(ICustomDataInput param1) {
          this.purchasableInstanceId = param1.readInt();
          if(this.purchasableInstanceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.purchasableInstanceId + ") on element of PurchasableDialogMessage.purchasableInstanceId.");
+         }
     }
 
     private void _priceFunc(ICustomDataInput param1) {
          this.price = param1.readVarUhLong();
          if(this.price < 0 || this.price > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.price + ") on element of PurchasableDialogMessage.price.");
+         }
     }
 
 }

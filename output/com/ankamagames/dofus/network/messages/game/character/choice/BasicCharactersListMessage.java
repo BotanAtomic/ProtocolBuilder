@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.choice;
+package com.ankamagames.dofus.network.messages.game.character.choice;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class BasicCharactersListMessage extends NetworkMessage implements INetwo
 
     private int protocolId = 6475;
     private boolean _isInitialized = false;
-    private Vector.<CharacterBaseInformations> characters = ;
-    private FuncTree _characterstree = ;
-    private int _loc2_ = 0;
-    private CharacterBaseInformations _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private CharacterBaseInformations _loc3_ = ProtocolTypeManager.getInstance(CharacterBaseInformations,_loc2_);
+    private Vector<CharacterBaseInformations> characters;
+    private FuncTree _characterstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class BasicCharactersListMessage extends NetworkMessage implements INetwo
          return 6475;
     }
 
-    public BasicCharactersListMessage initBasicCharactersListMessage(Vector.<CharacterBaseInformations> param1) {
+    public BasicCharactersListMessage initBasicCharactersListMessage(Vector<CharacterBaseInformations> param1) {
          this.characters = param1;
          this._isInitialized = true;
          return this;
@@ -67,9 +61,11 @@ public class BasicCharactersListMessage extends NetworkMessage implements INetwo
          param1.writeShort(this.characters.length);
          int _loc2_ = 0;
          while(_loc2_ < this.characters.length)
+         {
             param1.writeShort((this.characters[_loc2_] as CharacterBaseInformations).getTypeId());
             (this.characters[_loc2_] as CharacterBaseInformations).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,11 +78,13 @@ public class BasicCharactersListMessage extends NetworkMessage implements INetwo
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(CharacterBaseInformations,_loc4_);
             _loc5_.deserialize(param1);
             this.characters.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,8 +99,10 @@ public class BasicCharactersListMessage extends NetworkMessage implements INetwo
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._characterstree.addChild(this._charactersFunc);
             _loc3_++;
+         }
     }
 
     private void _charactersFunc(ICustomDataInput param1) {

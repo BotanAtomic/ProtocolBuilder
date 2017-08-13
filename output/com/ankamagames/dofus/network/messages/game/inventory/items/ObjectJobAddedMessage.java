@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ObjectJobAddedMessage extends NetworkMessage implements INetworkMes
 
     public void serializeAs_ObjectJobAddedMessage(ICustomDataOutput param1) {
          if(this.jobId < 0)
+         {
             throw new Exception("Forbidden value (" + this.jobId + ") on element jobId.");
+         }
+         param1.writeByte(this.jobId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ObjectJobAddedMessage extends NetworkMessage implements INetworkMes
     private void _jobIdFunc(ICustomDataInput param1) {
          this.jobId = param1.readByte();
          if(this.jobId < 0)
+         {
             throw new Exception("Forbidden value (" + this.jobId + ") on element of ObjectJobAddedMessage.jobId.");
+         }
     }
 
 }

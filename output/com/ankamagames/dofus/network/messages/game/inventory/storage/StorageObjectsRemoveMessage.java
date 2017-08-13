@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.storage;
+package com.ankamagames.dofus.network.messages.game.inventory.storage;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,12 +14,8 @@ public class StorageObjectsRemoveMessage extends NetworkMessage implements INetw
 
     private int protocolId = 6035;
     private boolean _isInitialized = false;
-    private Vector.<uint> objectUIDList = ;
-    private FuncTree _objectUIDListtree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> objectUIDList;
+    private FuncTree _objectUIDListtree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class StorageObjectsRemoveMessage extends NetworkMessage implements INetw
          return 6035;
     }
 
-    public StorageObjectsRemoveMessage initStorageObjectsRemoveMessage(Vector.<uint> param1) {
+    public StorageObjectsRemoveMessage initStorageObjectsRemoveMessage(Vector<uint> param1) {
          this.objectUIDList = param1;
          this._isInitialized = true;
          return this;
@@ -66,8 +62,14 @@ public class StorageObjectsRemoveMessage extends NetworkMessage implements INetw
          param1.writeShort(this.objectUIDList.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objectUIDList.length)
+         {
             if(this.objectUIDList[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.objectUIDList[_loc2_] + ") on element 1 (starting at 1) of objectUIDList.");
+            }
+            param1.writeVarInt(this.objectUIDList[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -79,9 +81,15 @@ public class StorageObjectsRemoveMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarUhInt();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of objectUIDList.");
+            }
+            this.objectUIDList.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -96,14 +104,19 @@ public class StorageObjectsRemoveMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objectUIDListtree.addChild(this._objectUIDListFunc);
             _loc3_++;
+         }
     }
 
     private void _objectUIDListFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhInt();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of objectUIDList.");
+         }
+         this.objectUIDList.push(_loc2_);
     }
 
 }

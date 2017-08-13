@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -81,7 +81,11 @@ public class GameFightJoinMessage extends NetworkMessage implements INetworkMess
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,3,this.isFightStarted);
          param1.writeByte(_loc2_);
          if(this.timeMaxBeforeFightStart < 0)
+         {
             throw new Exception("Forbidden value (" + this.timeMaxBeforeFightStart + ") on element timeMaxBeforeFightStart.");
+         }
+         param1.writeShort(this.timeMaxBeforeFightStart);
+         param1.writeByte(this.fightType);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -115,13 +119,17 @@ public class GameFightJoinMessage extends NetworkMessage implements INetworkMess
     private void _timeMaxBeforeFightStartFunc(ICustomDataInput param1) {
          this.timeMaxBeforeFightStart = param1.readShort();
          if(this.timeMaxBeforeFightStart < 0)
+         {
             throw new Exception("Forbidden value (" + this.timeMaxBeforeFightStart + ") on element of GameFightJoinMessage.timeMaxBeforeFightStart.");
+         }
     }
 
     private void _fightTypeFunc(ICustomDataInput param1) {
          this.fightType = param1.readByte();
          if(this.fightType < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightType + ") on element of GameFightJoinMessage.fightType.");
+         }
     }
 
 }

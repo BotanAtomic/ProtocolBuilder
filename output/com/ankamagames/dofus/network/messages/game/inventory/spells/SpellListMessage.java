@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.spells;
+package com.ankamagames.dofus.network.messages.game.inventory.spells;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,12 +13,8 @@ public class SpellListMessage extends NetworkMessage implements INetworkMessage 
     private int protocolId = 1200;
     private boolean _isInitialized = false;
     private boolean spellPrevisualization = false;
-    private Vector.<SpellItem> spells = ;
-    private FuncTree _spellstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<SpellItem> spells;
+    private FuncTree _spellstree;
 
 
     public boolean isInitialized() {
@@ -29,7 +25,7 @@ public class SpellListMessage extends NetworkMessage implements INetworkMessage 
          return 1200;
     }
 
-    public SpellListMessage initSpellListMessage(boolean param1,Vector.<SpellItem>  param2) {
+    public SpellListMessage initSpellListMessage(boolean param1,Vector<SpellItem>  param2) {
          this.spellPrevisualization = param1;
          this.spells = param2;
          this._isInitialized = true;
@@ -68,8 +64,10 @@ public class SpellListMessage extends NetworkMessage implements INetworkMessage 
          param1.writeShort(this.spells.length);
          int _loc2_ = 0;
          while(_loc2_ < this.spells.length)
+         {
             (this.spells[_loc2_] as SpellItem).serializeAs_SpellItem(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,10 +80,12 @@ public class SpellListMessage extends NetworkMessage implements INetworkMessage 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new SpellItem();
             _loc4_.deserialize(param1);
             this.spells.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -105,8 +105,10 @@ public class SpellListMessage extends NetworkMessage implements INetworkMessage 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._spellstree.addChild(this._spellsFunc);
             _loc3_++;
+         }
     }
 
     private void _spellsFunc(ICustomDataInput param1) {

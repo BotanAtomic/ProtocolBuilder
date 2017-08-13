@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.dofus.network.messages.game.inventory.exchanges.ExchangeObjectMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class ExchangeObjectModifiedMessage extends ExchangeObjectMessage impleme
 
     private int protocolId = 5519;
     private boolean _isInitialized = false;
-    private ObjectItem object = ;
-    private FuncTree _objecttree = ;
+    private ObjectItem object;
+    private FuncTree _objecttree;
 
 
     public boolean isInitialized() {

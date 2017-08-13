@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.house;
+package com.ankamagames.dofus.network.types.game.house;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -9,17 +9,18 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class AccountHouseInformations extends HouseInformations implements INetworkType {
 
     private int protocolId = 390;
-    private HouseInstanceInformations houseInfos = ;
+    private HouseInstanceInformations houseInfos;
     private int worldX = 0;
     private int worldY = 0;
     private int mapId = 0;
     private int subAreaId = 0;
-    private FuncTree _houseInfostree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private FuncTree _houseInfostree;
 
 
     public int getTypeId() {
@@ -53,7 +54,21 @@ public class AccountHouseInformations extends HouseInformations implements INetw
          param1.writeShort(this.houseInfos.getTypeId());
          this.houseInfos.serialize(param1);
          if(this.worldX < -255 || this.worldX > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
+         }
+         param1.writeShort(this.worldX);
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
+         }
+         param1.writeShort(this.worldY);
+         param1.writeInt(this.mapId);
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -93,13 +108,17 @@ public class AccountHouseInformations extends HouseInformations implements INetw
     private void _worldXFunc(ICustomDataInput param1) {
          this.worldX = param1.readShort();
          if(this.worldX < -255 || this.worldX > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldX + ") on element of AccountHouseInformations.worldX.");
+         }
     }
 
     private void _worldYFunc(ICustomDataInput param1) {
          this.worldY = param1.readShort();
          if(this.worldY < -255 || this.worldY > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldY + ") on element of AccountHouseInformations.worldY.");
+         }
     }
 
     private void _mapIdFunc(ICustomDataInput param1) {
@@ -109,7 +128,9 @@ public class AccountHouseInformations extends HouseInformations implements INetw
     private void _subAreaIdFunc(ICustomDataInput param1) {
          this.subAreaId = param1.readVarUhShort();
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element of AccountHouseInformations.subAreaId.");
+         }
     }
 
 }

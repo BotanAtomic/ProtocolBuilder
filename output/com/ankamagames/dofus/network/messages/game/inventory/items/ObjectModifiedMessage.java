@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class ObjectModifiedMessage extends NetworkMessage implements INetworkMes
 
     private int protocolId = 3029;
     private boolean _isInitialized = false;
-    private ObjectItem object = ;
-    private FuncTree _objecttree = ;
+    private ObjectItem object;
+    private FuncTree _objecttree;
 
 
     public boolean isInitialized() {

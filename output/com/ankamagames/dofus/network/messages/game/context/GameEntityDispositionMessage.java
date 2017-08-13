@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GameEntityDispositionMessage extends NetworkMessage implements INet
 
     private int protocolId = 5693;
     private boolean _isInitialized = false;
-    private IdentifiedEntityDispositionInformations disposition = ;
-    private FuncTree _dispositiontree = ;
+    private IdentifiedEntityDispositionInformations disposition;
+    private FuncTree _dispositiontree;
 
 
     public boolean isInitialized() {

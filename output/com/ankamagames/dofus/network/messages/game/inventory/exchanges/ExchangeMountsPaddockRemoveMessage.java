@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -11,12 +11,8 @@ public class ExchangeMountsPaddockRemoveMessage extends NetworkMessage implement
 
     private int protocolId = 6559;
     private boolean _isInitialized = false;
-    private Vector.<int> mountsId = ;
-    private FuncTree _mountsIdtree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> mountsId;
+    private FuncTree _mountsIdtree;
 
 
     public boolean isInitialized() {
@@ -27,7 +23,7 @@ public class ExchangeMountsPaddockRemoveMessage extends NetworkMessage implement
          return 6559;
     }
 
-    public ExchangeMountsPaddockRemoveMessage initExchangeMountsPaddockRemoveMessage(Vector.<int> param1) {
+    public ExchangeMountsPaddockRemoveMessage initExchangeMountsPaddockRemoveMessage(Vector<int> param1) {
          this.mountsId = param1;
          this._isInitialized = true;
          return this;
@@ -63,8 +59,10 @@ public class ExchangeMountsPaddockRemoveMessage extends NetworkMessage implement
          param1.writeShort(this.mountsId.length);
          int _loc2_ = 0;
          while(_loc2_ < this.mountsId.length)
+         {
             param1.writeVarInt(this.mountsId[_loc2_]);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -76,9 +74,11 @@ public class ExchangeMountsPaddockRemoveMessage extends NetworkMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarInt();
             this.mountsId.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -93,8 +93,10 @@ public class ExchangeMountsPaddockRemoveMessage extends NetworkMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._mountsIdtree.addChild(this._mountsIdFunc);
             _loc3_++;
+         }
     }
 
     private void _mountsIdFunc(ICustomDataInput param1) {

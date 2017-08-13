@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class GuildSpellUpgradeRequestMessage extends NetworkMessage implements I
 
     public void serializeAs_GuildSpellUpgradeRequestMessage(ICustomDataOutput param1) {
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeInt(this.spellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class GuildSpellUpgradeRequestMessage extends NetworkMessage implements I
     private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readInt();
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of GuildSpellUpgradeRequestMessage.spellId.");
+         }
     }
 
 }

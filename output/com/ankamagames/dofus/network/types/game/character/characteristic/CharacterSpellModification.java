@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character.characteristic;
+package com.ankamagames.dofus.network.types.game.character.characteristic;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -13,8 +13,8 @@ public class CharacterSpellModification extends Object implements INetworkType {
     private int protocolId = 215;
     private int modificationType = 0;
     private int spellId = 0;
-    private CharacterBaseCharacteristic value = ;
-    private FuncTree _valuetree = ;
+    private CharacterBaseCharacteristic value;
+    private FuncTree _valuetree;
 
 
     public int getTypeId() {
@@ -41,7 +41,11 @@ public class CharacterSpellModification extends Object implements INetworkType {
     public void serializeAs_CharacterSpellModification(ICustomDataOutput param1) {
          param1.writeByte(this.modificationType);
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeVarShort(this.spellId);
+         this.value.serializeAs_CharacterBaseCharacteristic(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -68,13 +72,17 @@ public class CharacterSpellModification extends Object implements INetworkType {
     private void _modificationTypeFunc(ICustomDataInput param1) {
          this.modificationType = param1.readByte();
          if(this.modificationType < 0)
+         {
             throw new Exception("Forbidden value (" + this.modificationType + ") on element of CharacterSpellModification.modificationType.");
+         }
     }
 
     private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readVarUhShort();
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of CharacterSpellModification.spellId.");
+         }
     }
 
     private void _valuetreeFunc(ICustomDataInput param1) {

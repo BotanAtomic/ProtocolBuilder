@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -82,7 +82,9 @@ public class PartyNameSetErrorMessage extends AbstractPartyMessage implements IN
     private void _resultFunc(ICustomDataInput param1) {
          this.result = param1.readByte();
          if(this.result < 0)
+         {
             throw new Exception("Forbidden value (" + this.result + ") on element of PartyNameSetErrorMessage.result.");
+         }
     }
 
 }

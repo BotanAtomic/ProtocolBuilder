@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items;
+package com.ankamagames.dofus.network.types.game.data.items;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -33,7 +33,10 @@ public class GoldItem extends Item implements INetworkType {
     public void serializeAs_GoldItem(ICustomDataOutput param1) {
          super.serializeAs_Item(param1);
          if(this.sum < 0 || this.sum > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.sum + ") on element sum.");
+         }
+         param1.writeVarLong(this.sum);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -57,7 +60,9 @@ public class GoldItem extends Item implements INetworkType {
     private void _sumFunc(ICustomDataInput param1) {
          this.sum = param1.readVarUhLong();
          if(this.sum < 0 || this.sum > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.sum + ") on element of GoldItem.sum.");
+         }
     }
 
 }

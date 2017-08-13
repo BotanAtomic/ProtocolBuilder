@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.friend;
+package com.ankamagames.dofus.network.messages.game.friend;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,8 +13,8 @@ public class FriendAddedMessage extends NetworkMessage implements INetworkMessag
 
     private int protocolId = 5599;
     private boolean _isInitialized = false;
-    private FriendInformations friendAdded = ;
-    private FuncTree _friendAddedtree = ;
+    private FriendInformations friendAdded;
+    private FuncTree _friendAddedtree;
 
 
     public boolean isInitialized() {

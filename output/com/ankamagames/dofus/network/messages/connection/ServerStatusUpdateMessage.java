@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class ServerStatusUpdateMessage extends NetworkMessage implements INetwor
 
     private int protocolId = 50;
     private boolean _isInitialized = false;
-    private GameServerInformations server = ;
-    private FuncTree _servertree = ;
+    private GameServerInformations server;
+    private FuncTree _servertree;
 
 
     public boolean isInitialized() {

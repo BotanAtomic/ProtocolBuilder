@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class GuildInvitationStateRecrutedMessage extends NetworkMessage implemen
     private void _invitationStateFunc(ICustomDataInput param1) {
          this.invitationState = param1.readByte();
          if(this.invitationState < 0)
+         {
             throw new Exception("Forbidden value (" + this.invitationState + ") on element of GuildInvitationStateRecrutedMessage.invitationState.");
+         }
     }
 
 }

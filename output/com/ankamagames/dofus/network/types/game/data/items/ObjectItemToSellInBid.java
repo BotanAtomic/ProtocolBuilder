@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items;
+package com.ankamagames.dofus.network.types.game.data.items;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.data.items.effects.ObjectEffect;
@@ -18,7 +18,7 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
          return 164;
     }
 
-    public ObjectItemToSellInBid initObjectItemToSellInBid(int param1,Vector.<ObjectEffect>  param2,int  param3,int  param4,Number  param5,int  param6) {
+    public ObjectItemToSellInBid initObjectItemToSellInBid(int param1,Vector<ObjectEffect>  param2,int  param3,int  param4,Number  param5,int  param6) {
          super.initObjectItemToSell(param1,param2,param3,param4,param5);
          this.unsoldDelay = param6;
          return this;
@@ -36,7 +36,10 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
     public void serializeAs_ObjectItemToSellInBid(ICustomDataOutput param1) {
          super.serializeAs_ObjectItemToSell(param1);
          if(this.unsoldDelay < 0)
+         {
             throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element unsoldDelay.");
+         }
+         param1.writeInt(this.unsoldDelay);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -60,7 +63,9 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
     private void _unsoldDelayFunc(ICustomDataInput param1) {
          this.unsoldDelay = param1.readInt();
          if(this.unsoldDelay < 0)
+         {
             throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element of ObjectItemToSellInBid.unsoldDelay.");
+         }
     }
 
 }

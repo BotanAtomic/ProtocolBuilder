@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.moderation;
+package com.ankamagames.dofus.network.messages.game.moderation;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -64,7 +64,12 @@ public class PopupWarningMessage extends NetworkMessage implements INetworkMessa
 
     public void serializeAs_PopupWarningMessage(ICustomDataOutput param1) {
          if(this.lockDuration < 0 || this.lockDuration > 255)
+         {
             throw new Exception("Forbidden value (" + this.lockDuration + ") on element lockDuration.");
+         }
+         param1.writeByte(this.lockDuration);
+         param1.writeUTF(this.author);
+         param1.writeUTF(this.content);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +95,9 @@ public class PopupWarningMessage extends NetworkMessage implements INetworkMessa
     private void _lockDurationFunc(ICustomDataInput param1) {
          this.lockDuration = param1.readUnsignedByte();
          if(this.lockDuration < 0 || this.lockDuration > 255)
+         {
             throw new Exception("Forbidden value (" + this.lockDuration + ") on element of PopupWarningMessage.lockDuration.");
+         }
     }
 
     private void _authorFunc(ICustomDataInput param1) {

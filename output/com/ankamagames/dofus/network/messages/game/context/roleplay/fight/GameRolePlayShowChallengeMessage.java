@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.fight;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GameRolePlayShowChallengeMessage extends NetworkMessage implements 
 
     private int protocolId = 301;
     private boolean _isInitialized = false;
-    private FightCommonInformations commonsInfos = ;
-    private FuncTree _commonsInfostree = ;
+    private FightCommonInformations commonsInfos;
+    private FuncTree _commonsInfostree;
 
 
     public boolean isInitialized() {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.fight.arena.ArenaRankInfos;
@@ -11,10 +11,10 @@ public class GameRolePlayArenaUpdatePlayerInfosAllQueuesMessage extends GameRole
 
     private int protocolId = 6728;
     private boolean _isInitialized = false;
-    private ArenaRankInfos team = ;
-    private ArenaRankInfos duel = ;
-    private FuncTree _teamtree = ;
-    private FuncTree _dueltree = ;
+    private ArenaRankInfos team;
+    private ArenaRankInfos duel;
+    private FuncTree _teamtree;
+    private FuncTree _dueltree;
 
 
     public boolean isInitialized() {

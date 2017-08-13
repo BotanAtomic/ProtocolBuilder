@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -82,7 +82,9 @@ public class PartyCannotJoinErrorMessage extends AbstractPartyMessage implements
     private void _reasonFunc(ICustomDataInput param1) {
          this.reason = param1.readByte();
          if(this.reason < 0)
+         {
             throw new Exception("Forbidden value (" + this.reason + ") on element of PartyCannotJoinErrorMessage.reason.");
+         }
     }
 
 }

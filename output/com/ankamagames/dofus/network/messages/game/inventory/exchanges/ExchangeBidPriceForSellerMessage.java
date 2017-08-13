@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -14,12 +14,8 @@ public class ExchangeBidPriceForSellerMessage extends ExchangeBidPriceMessage im
     private int protocolId = 6464;
     private boolean _isInitialized = false;
     private boolean allIdentical = false;
-    private Vector.<Number> minimalPrices = ;
-    private FuncTree _minimalPricestree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<Number> minimalPrices;
+    private FuncTree _minimalPricestree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class ExchangeBidPriceForSellerMessage extends ExchangeBidPriceMessage im
          return 6464;
     }
 
-    public ExchangeBidPriceForSellerMessage initExchangeBidPriceForSellerMessage(int param1,Number  param2,boolean  param3,Vector.<Number>  param4) {
+    public ExchangeBidPriceForSellerMessage initExchangeBidPriceForSellerMessage(int param1,Number  param2,boolean  param3,Vector<Number>  param4) {
          super.initExchangeBidPriceMessage(param1,param2);
          this.allIdentical = param3;
          this.minimalPrices = param4;
@@ -72,8 +68,14 @@ public class ExchangeBidPriceForSellerMessage extends ExchangeBidPriceMessage im
          param1.writeShort(this.minimalPrices.length);
          int _loc2_ = 0;
          while(_loc2_ < this.minimalPrices.length)
+         {
             if(this.minimalPrices[_loc2_] < 0 || this.minimalPrices[_loc2_] > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + this.minimalPrices[_loc2_] + ") on element 2 (starting at 1) of minimalPrices.");
+            }
+            param1.writeVarLong(this.minimalPrices[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,9 +89,15 @@ public class ExchangeBidPriceForSellerMessage extends ExchangeBidPriceMessage im
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarUhLong();
             if(_loc4_ < 0 || _loc4_ > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of minimalPrices.");
+            }
+            this.minimalPrices.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -110,14 +118,19 @@ public class ExchangeBidPriceForSellerMessage extends ExchangeBidPriceMessage im
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._minimalPricestree.addChild(this._minimalPricesFunc);
             _loc3_++;
+         }
     }
 
     private void _minimalPricesFunc(ICustomDataInput param1) {
          Number _loc2_ = param1.readVarUhLong();
          if(_loc2_ < 0 || _loc2_ > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of minimalPrices.");
+         }
+         this.minimalPrices.push(_loc2_);
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.approach;
+package com.ankamagames.dofus.network.types.game.approach;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class ServerSessionConstantLong extends ServerSessionConstant implements 
     public void serializeAs_ServerSessionConstantLong(ICustomDataOutput param1) {
          super.serializeAs_ServerSessionConstant(param1);
          if(this.value < -9.007199254740992E15 || this.value > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.value + ") on element value.");
+         }
+         param1.writeDouble(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class ServerSessionConstantLong extends ServerSessionConstant implements 
     private void _valueFunc(ICustomDataInput param1) {
          this.value = param1.readDouble();
          if(this.value < -9.007199254740992E15 || this.value > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.value + ") on element of ServerSessionConstantLong.value.");
+         }
     }
 
 }

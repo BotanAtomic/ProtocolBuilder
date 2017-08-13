@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.choice;
+package com.ankamagames.dofus.network.messages.game.character.choice;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.character.choice.RemodelingInformation;
@@ -11,8 +11,8 @@ public class CharacterSelectionWithRemodelMessage extends CharacterSelectionMess
 
     private int protocolId = 6549;
     private boolean _isInitialized = false;
-    private RemodelingInformation remodel = ;
-    private FuncTree _remodeltree = ;
+    private RemodelingInformation remodel;
+    private FuncTree _remodeltree;
 
 
     public boolean isInitialized() {

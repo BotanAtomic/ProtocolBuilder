@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.social;
+package com.ankamagames.dofus.network.messages.game.social;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -10,6 +10,7 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class ContactLookMessage extends NetworkMessage implements INetworkMessage {
 
@@ -18,8 +19,8 @@ public class ContactLookMessage extends NetworkMessage implements INetworkMessag
     private int requestId = 0;
     private String playerName = "";
     private Number playerId = 0;
-    private EntityLook look = ;
-    private FuncTree _looktree = ;
+    private EntityLook look;
+    private FuncTree _looktree;
 
 
     public boolean isInitialized() {
@@ -70,7 +71,17 @@ public class ContactLookMessage extends NetworkMessage implements INetworkMessag
 
     public void serializeAs_ContactLookMessage(ICustomDataOutput param1) {
          if(this.requestId < 0)
+         {
             throw new Exception("Forbidden value (" + this.requestId + ") on element requestId.");
+         }
+         param1.writeVarInt(this.requestId);
+         param1.writeUTF(this.playerName);
+         if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
+         }
+         param1.writeVarLong(this.playerId);
+         this.look.serializeAs_EntityLook(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -99,7 +110,9 @@ public class ContactLookMessage extends NetworkMessage implements INetworkMessag
     private void _requestIdFunc(ICustomDataInput param1) {
          this.requestId = param1.readVarUhInt();
          if(this.requestId < 0)
+         {
             throw new Exception("Forbidden value (" + this.requestId + ") on element of ContactLookMessage.requestId.");
+         }
     }
 
     private void _playerNameFunc(ICustomDataInput param1) {
@@ -109,7 +122,9 @@ public class ContactLookMessage extends NetworkMessage implements INetworkMessag
     private void _playerIdFunc(ICustomDataInput param1) {
          this.playerId = param1.readVarUhLong();
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element of ContactLookMessage.playerId.");
+         }
     }
 
     private void _looktreeFunc(ICustomDataInput param1) {

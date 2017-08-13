@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -16,7 +16,7 @@ public class FightAllianceTeamInformations extends FightTeamInformations impleme
          return 439;
     }
 
-    public FightAllianceTeamInformations initFightAllianceTeamInformations(int param1,Number  param2,int  param3,int  param4,int  param5,Vector.<FightTeamMemberInformations>  param6,int  param7) {
+    public FightAllianceTeamInformations initFightAllianceTeamInformations(int param1,Number  param2,int  param3,int  param4,int  param5,Vector<FightTeamMemberInformations>  param6,int  param7) {
          super.initFightTeamInformations(param1,param2,param3,param4,param5,param6);
          this.relation = param7;
          return this;
@@ -57,7 +57,9 @@ public class FightAllianceTeamInformations extends FightTeamInformations impleme
     private void _relationFunc(ICustomDataInput param1) {
          this.relation = param1.readByte();
          if(this.relation < 0)
+         {
             throw new Exception("Forbidden value (" + this.relation + ") on element of FightAllianceTeamInformations.relation.");
+         }
     }
 
 }

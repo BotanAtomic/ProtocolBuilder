@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.inventory.preset.Preset;
@@ -13,19 +13,10 @@ public class InventoryContentAndPresetMessage extends InventoryContentMessage im
 
     private int protocolId = 6162;
     private boolean _isInitialized = false;
-    private Vector.<Preset> presets = ;
-    private Vector.<IdolsPreset> idolsPresets = ;
-    private FuncTree _presetstree = ;
-    private FuncTree _idolsPresetstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private IdolsPreset _loc7_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<Preset> presets;
+    private Vector<IdolsPreset> idolsPresets;
+    private FuncTree _presetstree;
+    private FuncTree _idolsPresetstree;
 
 
     public boolean isInitialized() {
@@ -36,7 +27,7 @@ public class InventoryContentAndPresetMessage extends InventoryContentMessage im
          return 6162;
     }
 
-    public InventoryContentAndPresetMessage initInventoryContentAndPresetMessage(Vector.<ObjectItem> param1,Number  param2,Vector.<Preset>  param3,Vector.<IdolsPreset>  param4) {
+    public InventoryContentAndPresetMessage initInventoryContentAndPresetMessage(Vector<ObjectItem> param1,Number  param2,Vector<Preset>  param3,Vector<IdolsPreset>  param4) {
          super.initInventoryContentMessage(param1,param2);
          this.presets = param3;
          this.idolsPresets = param4;
@@ -77,8 +68,17 @@ public class InventoryContentAndPresetMessage extends InventoryContentMessage im
          param1.writeShort(this.presets.length);
          int _loc2_ = 0;
          while(_loc2_ < this.presets.length)
+         {
             (this.presets[_loc2_] as Preset).serializeAs_Preset(param1);
             _loc2_++;
+         }
+         param1.writeShort(this.idolsPresets.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.idolsPresets.length)
+         {
+            (this.idolsPresets[_loc3_] as IdolsPreset).serializeAs_IdolsPreset(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -92,10 +92,21 @@ public class InventoryContentAndPresetMessage extends InventoryContentMessage im
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = new Preset();
             _loc6_.deserialize(param1);
             this.presets.push(_loc6_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = new IdolsPreset();
+            _loc7_.deserialize(param1);
+            this.idolsPresets.push(_loc7_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -112,8 +123,10 @@ public class InventoryContentAndPresetMessage extends InventoryContentMessage im
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._presetstree.addChild(this._presetsFunc);
             _loc3_++;
+         }
     }
 
     private void _presetsFunc(ICustomDataInput param1) {
@@ -126,8 +139,10 @@ public class InventoryContentAndPresetMessage extends InventoryContentMessage im
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._idolsPresetstree.addChild(this._idolsPresetsFunc);
             _loc3_++;
+         }
     }
 
     private void _idolsPresetsFunc(ICustomDataInput param1) {

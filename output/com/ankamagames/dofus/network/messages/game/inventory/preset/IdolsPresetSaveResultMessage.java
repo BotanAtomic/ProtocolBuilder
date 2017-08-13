@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.dofus.network.messages.game.inventory.AbstractPresetSaveResultMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

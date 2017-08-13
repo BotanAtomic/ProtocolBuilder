@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.lockable;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.lockable;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,10 @@ public class LockableShowCodeDialogMessage extends NetworkMessage implements INe
     public void serializeAs_LockableShowCodeDialogMessage(ICustomDataOutput param1) {
          param1.writeBoolean(this.changeOrUse);
          if(this.codeSize < 0)
+         {
             throw new Exception("Forbidden value (" + this.codeSize + ") on element codeSize.");
+         }
+         param1.writeByte(this.codeSize);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +93,9 @@ public class LockableShowCodeDialogMessage extends NetworkMessage implements INe
     private void _codeSizeFunc(ICustomDataInput param1) {
          this.codeSize = param1.readByte();
          if(this.codeSize < 0)
+         {
             throw new Exception("Forbidden value (" + this.codeSize + ") on element of LockableShowCodeDialogMessage.codeSize.");
+         }
     }
 
 }

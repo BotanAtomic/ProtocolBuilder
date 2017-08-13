@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.status;
+package com.ankamagames.dofus.network.messages.game.character.status;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -11,6 +11,7 @@ import com.ankamagames.dofus.network.ProtocolTypeManager;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class PlayerStatusUpdateMessage extends NetworkMessage implements INetworkMessage {
 
@@ -18,9 +19,8 @@ public class PlayerStatusUpdateMessage extends NetworkMessage implements INetwor
     private boolean _isInitialized = false;
     private int accountId = 0;
     private Number playerId = 0;
-    private PlayerStatus status = ;
-    private FuncTree _statustree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private PlayerStatus status;
+    private FuncTree _statustree;
 
 
     public boolean isInitialized() {
@@ -69,7 +69,17 @@ public class PlayerStatusUpdateMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_PlayerStatusUpdateMessage(ICustomDataOutput param1) {
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
+         if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
+         }
+         param1.writeVarLong(this.playerId);
+         param1.writeShort(this.status.getTypeId());
+         this.status.serialize(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,13 +107,17 @@ public class PlayerStatusUpdateMessage extends NetworkMessage implements INetwor
     private void _accountIdFunc(ICustomDataInput param1) {
          this.accountId = param1.readInt();
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element of PlayerStatusUpdateMessage.accountId.");
+         }
     }
 
     private void _playerIdFunc(ICustomDataInput param1) {
          this.playerId = param1.readVarUhLong();
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element of PlayerStatusUpdateMessage.playerId.");
+         }
     }
 
     private void _statustreeFunc(ICustomDataInput param1) {

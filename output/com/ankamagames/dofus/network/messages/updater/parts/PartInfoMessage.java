@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.updater.parts;
+package com.ankamagames.dofus.network.messages.updater.parts;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,9 +12,9 @@ public class PartInfoMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 1508;
     private boolean _isInitialized = false;
-    private ContentPart part = ;
+    private ContentPart part;
     private Number installationPercent = 0;
-    private FuncTree _parttree = ;
+    private FuncTree _parttree;
 
 
     public boolean isInitialized() {

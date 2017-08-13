@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -9,19 +9,15 @@ public class AlternativeMonstersInGroupLightInformations extends Object implemen
 
     private int protocolId = 394;
     private int playerCount = 0;
-    private Vector.<MonsterInGroupLightInformations> monsters = ;
-    private FuncTree _monsterstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<MonsterInGroupLightInformations> monsters;
+    private FuncTree _monsterstree;
 
 
     public int getTypeId() {
          return 394;
     }
 
-    public AlternativeMonstersInGroupLightInformations initAlternativeMonstersInGroupLightInformations(int param1,Vector.<MonsterInGroupLightInformations>  param2) {
+    public AlternativeMonstersInGroupLightInformations initAlternativeMonstersInGroupLightInformations(int param1,Vector<MonsterInGroupLightInformations>  param2) {
          this.playerCount = param1;
          this.monsters = param2;
          return this;
@@ -41,8 +37,10 @@ public class AlternativeMonstersInGroupLightInformations extends Object implemen
          param1.writeShort(this.monsters.length);
          int _loc2_ = 0;
          while(_loc2_ < this.monsters.length)
+         {
             (this.monsters[_loc2_] as MonsterInGroupLightInformations).serializeAs_MonsterInGroupLightInformations(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -55,10 +53,12 @@ public class AlternativeMonstersInGroupLightInformations extends Object implemen
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new MonsterInGroupLightInformations();
             _loc4_.deserialize(param1);
             this.monsters.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -78,8 +78,10 @@ public class AlternativeMonstersInGroupLightInformations extends Object implemen
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._monsterstree.addChild(this._monstersFunc);
             _loc3_++;
+         }
     }
 
     private void _monstersFunc(ICustomDataInput param1) {

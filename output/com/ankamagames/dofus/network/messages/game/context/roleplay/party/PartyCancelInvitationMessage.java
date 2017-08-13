@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class PartyCancelInvitationMessage extends AbstractPartyMessage implement
     public void serializeAs_PartyCancelInvitationMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractPartyMessage(param1);
          if(this.guestId < 0 || this.guestId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.guestId + ") on element guestId.");
+         }
+         param1.writeVarLong(this.guestId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class PartyCancelInvitationMessage extends AbstractPartyMessage implement
     private void _guestIdFunc(ICustomDataInput param1) {
          this.guestId = param1.readVarUhLong();
          if(this.guestId < 0 || this.guestId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.guestId + ") on element of PartyCancelInvitationMessage.guestId.");
+         }
     }
 
 }

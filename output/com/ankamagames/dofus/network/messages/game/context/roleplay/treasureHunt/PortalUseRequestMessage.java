@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class PortalUseRequestMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_PortalUseRequestMessage(ICustomDataOutput param1) {
          if(this.portalId < 0)
+         {
             throw new Exception("Forbidden value (" + this.portalId + ") on element portalId.");
+         }
+         param1.writeVarInt(this.portalId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class PortalUseRequestMessage extends NetworkMessage implements INetworkM
     private void _portalIdFunc(ICustomDataInput param1) {
          this.portalId = param1.readVarUhInt();
          if(this.portalId < 0)
+         {
             throw new Exception("Forbidden value (" + this.portalId + ") on element of PortalUseRequestMessage.portalId.");
+         }
     }
 
 }

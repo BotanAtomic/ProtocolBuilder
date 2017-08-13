@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.shortcut;
+package com.ankamagames.dofus.network.messages.game.shortcut;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -63,7 +63,10 @@ public class ShortcutBarRemoveRequestMessage extends NetworkMessage implements I
     public void serializeAs_ShortcutBarRemoveRequestMessage(ICustomDataOutput param1) {
          param1.writeByte(this.barType);
          if(this.slot < 0 || this.slot > 99)
+         {
             throw new Exception("Forbidden value (" + this.slot + ") on element slot.");
+         }
+         param1.writeByte(this.slot);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,13 +90,17 @@ public class ShortcutBarRemoveRequestMessage extends NetworkMessage implements I
     private void _barTypeFunc(ICustomDataInput param1) {
          this.barType = param1.readByte();
          if(this.barType < 0)
+         {
             throw new Exception("Forbidden value (" + this.barType + ") on element of ShortcutBarRemoveRequestMessage.barType.");
+         }
     }
 
     private void _slotFunc(ICustomDataInput param1) {
          this.slot = param1.readByte();
          if(this.slot < 0 || this.slot > 99)
+         {
             throw new Exception("Forbidden value (" + this.slot + ") on element of ShortcutBarRemoveRequestMessage.slot.");
+         }
     }
 
 }

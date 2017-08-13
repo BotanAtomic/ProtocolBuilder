@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class GameFightNewRoundMessage extends NetworkMessage implements INetwork
 
     public void serializeAs_GameFightNewRoundMessage(ICustomDataOutput param1) {
          if(this.roundNumber < 0)
+         {
             throw new Exception("Forbidden value (" + this.roundNumber + ") on element roundNumber.");
+         }
+         param1.writeVarInt(this.roundNumber);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class GameFightNewRoundMessage extends NetworkMessage implements INetwork
     private void _roundNumberFunc(ICustomDataInput param1) {
          this.roundNumber = param1.readVarUhInt();
          if(this.roundNumber < 0)
+         {
             throw new Exception("Forbidden value (" + this.roundNumber + ") on element of GameFightNewRoundMessage.roundNumber.");
+         }
     }
 
 }

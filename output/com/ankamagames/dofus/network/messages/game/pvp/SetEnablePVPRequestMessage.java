@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.pvp;
+package com.ankamagames.dofus.network.messages.game.pvp;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

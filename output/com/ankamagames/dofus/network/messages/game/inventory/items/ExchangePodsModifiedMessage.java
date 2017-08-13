@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.dofus.network.messages.game.inventory.exchanges.ExchangeObjectMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -65,7 +66,15 @@ public class ExchangePodsModifiedMessage extends ExchangeObjectMessage implement
     public void serializeAs_ExchangePodsModifiedMessage(ICustomDataOutput param1) {
          super.serializeAs_ExchangeObjectMessage(param1);
          if(this.currentWeight < 0)
+         {
             throw new Exception("Forbidden value (" + this.currentWeight + ") on element currentWeight.");
+         }
+         param1.writeVarInt(this.currentWeight);
+         if(this.maxWeight < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxWeight + ") on element maxWeight.");
+         }
+         param1.writeVarInt(this.maxWeight);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -91,13 +100,17 @@ public class ExchangePodsModifiedMessage extends ExchangeObjectMessage implement
     private void _currentWeightFunc(ICustomDataInput param1) {
          this.currentWeight = param1.readVarUhInt();
          if(this.currentWeight < 0)
+         {
             throw new Exception("Forbidden value (" + this.currentWeight + ") on element of ExchangePodsModifiedMessage.currentWeight.");
+         }
     }
 
     private void _maxWeightFunc(ICustomDataInput param1) {
          this.maxWeight = param1.readVarUhInt();
          if(this.maxWeight < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxWeight + ") on element of ExchangePodsModifiedMessage.maxWeight.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class GameMapChangeOrientationsMessage extends NetworkMessage implements 
 
     private int protocolId = 6155;
     private boolean _isInitialized = false;
-    private Vector.<ActorOrientation> orientations = ;
-    private FuncTree _orientationstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ActorOrientation> orientations;
+    private FuncTree _orientationstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class GameMapChangeOrientationsMessage extends NetworkMessage implements 
          return 6155;
     }
 
-    public GameMapChangeOrientationsMessage initGameMapChangeOrientationsMessage(Vector.<ActorOrientation> param1) {
+    public GameMapChangeOrientationsMessage initGameMapChangeOrientationsMessage(Vector<ActorOrientation> param1) {
          this.orientations = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class GameMapChangeOrientationsMessage extends NetworkMessage implements 
          param1.writeShort(this.orientations.length);
          int _loc2_ = 0;
          while(_loc2_ < this.orientations.length)
+         {
             (this.orientations[_loc2_] as ActorOrientation).serializeAs_ActorOrientation(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class GameMapChangeOrientationsMessage extends NetworkMessage implements 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ActorOrientation();
             _loc4_.deserialize(param1);
             this.orientations.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class GameMapChangeOrientationsMessage extends NetworkMessage implements 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._orientationstree.addChild(this._orientationsFunc);
             _loc3_++;
+         }
     }
 
     private void _orientationsFunc(ICustomDataInput param1) {

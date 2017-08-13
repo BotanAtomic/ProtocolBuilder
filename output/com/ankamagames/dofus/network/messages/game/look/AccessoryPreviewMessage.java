@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.look;
+package com.ankamagames.dofus.network.messages.game.look;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class AccessoryPreviewMessage extends NetworkMessage implements INetworkM
 
     private int protocolId = 6517;
     private boolean _isInitialized = false;
-    private EntityLook look = ;
-    private FuncTree _looktree = ;
+    private EntityLook look;
+    private FuncTree _looktree;
 
 
     public boolean isInitialized() {

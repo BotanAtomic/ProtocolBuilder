@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.choice;
+package com.ankamagames.dofus.network.messages.game.character.choice;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.character.choice.CharacterToRemodelInformations;
@@ -12,12 +12,8 @@ public class CharactersListWithRemodelingMessage extends CharactersListMessage i
 
     private int protocolId = 6550;
     private boolean _isInitialized = false;
-    private Vector.<CharacterToRemodelInformations> charactersToRemodel = ;
-    private FuncTree _charactersToRemodeltree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<CharacterToRemodelInformations> charactersToRemodel;
+    private FuncTree _charactersToRemodeltree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class CharactersListWithRemodelingMessage extends CharactersListMessage i
          return 6550;
     }
 
-    public CharactersListWithRemodelingMessage initCharactersListWithRemodelingMessage(Vector.<CharacterBaseInformations> param1,boolean  param2,Vector.<CharacterToRemodelInformations>  param3) {
+    public CharactersListWithRemodelingMessage initCharactersListWithRemodelingMessage(Vector<CharacterBaseInformations> param1,boolean  param2,Vector<CharacterToRemodelInformations>  param3) {
          super.initCharactersListMessage(param1,param2);
          this.charactersToRemodel = param3;
          this._isInitialized = true;
@@ -67,8 +63,10 @@ public class CharactersListWithRemodelingMessage extends CharactersListMessage i
          param1.writeShort(this.charactersToRemodel.length);
          int _loc2_ = 0;
          while(_loc2_ < this.charactersToRemodel.length)
+         {
             (this.charactersToRemodel[_loc2_] as CharacterToRemodelInformations).serializeAs_CharacterToRemodelInformations(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -81,10 +79,12 @@ public class CharactersListWithRemodelingMessage extends CharactersListMessage i
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new CharacterToRemodelInformations();
             _loc4_.deserialize(param1);
             this.charactersToRemodel.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -100,8 +100,10 @@ public class CharactersListWithRemodelingMessage extends CharactersListMessage i
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._charactersToRemodeltree.addChild(this._charactersToRemodelFunc);
             _loc3_++;
+         }
     }
 
     private void _charactersToRemodelFunc(ICustomDataInput param1) {

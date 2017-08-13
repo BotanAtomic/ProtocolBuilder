@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GuildPaddockBoughtMessage extends NetworkMessage implements INetwor
 
     private int protocolId = 5952;
     private boolean _isInitialized = false;
-    private PaddockContentInformations paddockInfo = ;
-    private FuncTree _paddockInfotree = ;
+    private PaddockContentInformations paddockInfo;
+    private FuncTree _paddockInfotree;
 
 
     public boolean isInitialized() {

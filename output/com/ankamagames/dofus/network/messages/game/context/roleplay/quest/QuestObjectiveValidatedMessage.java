@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.quest;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.quest;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class QuestObjectiveValidatedMessage extends NetworkMessage implements IN
 
     public void serializeAs_QuestObjectiveValidatedMessage(ICustomDataOutput param1) {
          if(this.questId < 0)
+         {
             throw new Exception("Forbidden value (" + this.questId + ") on element questId.");
+         }
+         param1.writeVarShort(this.questId);
+         if(this.objectiveId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.objectiveId + ") on element objectiveId.");
+         }
+         param1.writeVarShort(this.objectiveId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class QuestObjectiveValidatedMessage extends NetworkMessage implements IN
     private void _questIdFunc(ICustomDataInput param1) {
          this.questId = param1.readVarUhShort();
          if(this.questId < 0)
+         {
             throw new Exception("Forbidden value (" + this.questId + ") on element of QuestObjectiveValidatedMessage.questId.");
+         }
     }
 
     private void _objectiveIdFunc(ICustomDataInput param1) {
          this.objectiveId = param1.readVarUhShort();
          if(this.objectiveId < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectiveId + ") on element of QuestObjectiveValidatedMessage.objectiveId.");
+         }
     }
 
 }

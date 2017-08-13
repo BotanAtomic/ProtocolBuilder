@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -19,21 +19,10 @@ public class GameFightEndMessage extends NetworkMessage implements INetworkMessa
     private int duration = 0;
     private int ageBonus = 0;
     private int lootShareLimitMalus = 0;
-    private Vector.<FightResultListEntry> results = ;
-    private Vector.<NamedPartyTeamWithOutcome> namedPartyTeamsOutcomes = ;
-    private FuncTree _resultstree = ;
-    private FuncTree _namedPartyTeamsOutcomestree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private FightResultListEntry _loc7_ = null;
-    private NamedPartyTeamWithOutcome _loc8_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private FightResultListEntry _loc3_ = ProtocolTypeManager.getInstance(FightResultListEntry,_loc2_);
-    private int _loc3_ = 0;
+    private Vector<FightResultListEntry> results;
+    private Vector<NamedPartyTeamWithOutcome> namedPartyTeamsOutcomes;
+    private FuncTree _resultstree;
+    private FuncTree _namedPartyTeamsOutcomestree;
 
 
     public boolean isInitialized() {
@@ -44,7 +33,7 @@ public class GameFightEndMessage extends NetworkMessage implements INetworkMessa
          return 720;
     }
 
-    public GameFightEndMessage initGameFightEndMessage(int param1,int  param2,int  param3,Vector.<FightResultListEntry>  param4,Vector.<NamedPartyTeamWithOutcome>  param5) {
+    public GameFightEndMessage initGameFightEndMessage(int param1,int  param2,int  param3,Vector<FightResultListEntry>  param4,Vector<NamedPartyTeamWithOutcome>  param5) {
          this.duration = param1;
          this.ageBonus = param2;
          this.lootShareLimitMalus = param3;
@@ -86,7 +75,27 @@ public class GameFightEndMessage extends NetworkMessage implements INetworkMessa
 
     public void serializeAs_GameFightEndMessage(ICustomDataOutput param1) {
          if(this.duration < 0)
+         {
             throw new Exception("Forbidden value (" + this.duration + ") on element duration.");
+         }
+         param1.writeInt(this.duration);
+         param1.writeShort(this.ageBonus);
+         param1.writeShort(this.lootShareLimitMalus);
+         param1.writeShort(this.results.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.results.length)
+         {
+            param1.writeShort((this.results[_loc2_] as FightResultListEntry).getTypeId());
+            (this.results[_loc2_] as FightResultListEntry).serialize(param1);
+            _loc2_++;
+         }
+         param1.writeShort(this.namedPartyTeamsOutcomes.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.namedPartyTeamsOutcomes.length)
+         {
+            (this.namedPartyTeamsOutcomes[_loc3_] as NamedPartyTeamWithOutcome).serializeAs_NamedPartyTeamWithOutcome(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -103,11 +112,22 @@ public class GameFightEndMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = param1.readUnsignedShort();
             _loc7_ = ProtocolTypeManager.getInstance(FightResultListEntry,_loc6_);
             _loc7_.deserialize(param1);
             this.results.push(_loc7_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc8_ = new NamedPartyTeamWithOutcome();
+            _loc8_.deserialize(param1);
+            this.namedPartyTeamsOutcomes.push(_loc8_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -125,7 +145,9 @@ public class GameFightEndMessage extends NetworkMessage implements INetworkMessa
     private void _durationFunc(ICustomDataInput param1) {
          this.duration = param1.readInt();
          if(this.duration < 0)
+         {
             throw new Exception("Forbidden value (" + this.duration + ") on element of GameFightEndMessage.duration.");
+         }
     }
 
     private void _ageBonusFunc(ICustomDataInput param1) {
@@ -140,8 +162,10 @@ public class GameFightEndMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._resultstree.addChild(this._resultsFunc);
             _loc3_++;
+         }
     }
 
     private void _resultsFunc(ICustomDataInput param1) {
@@ -155,8 +179,10 @@ public class GameFightEndMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._namedPartyTeamsOutcomestree.addChild(this._namedPartyTeamsOutcomesFunc);
             _loc3_++;
+         }
     }
 
     private void _namedPartyTeamsOutcomesFunc(ICustomDataInput param1) {

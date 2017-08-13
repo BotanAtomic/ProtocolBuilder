@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.party;
+package com.ankamagames.dofus.network.types.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -11,6 +11,7 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class PartyGuestInformations extends Object implements INetworkType {
 
@@ -18,26 +19,21 @@ public class PartyGuestInformations extends Object implements INetworkType {
     private Number guestId = 0;
     private Number hostId = 0;
     private String name = "";
-    private EntityLook guestLook = ;
+    private EntityLook guestLook;
     private int breed = 0;
     private boolean sex = false;
-    private PlayerStatus status = ;
-    private Vector.<PartyCompanionBaseInformations> companions = ;
-    private FuncTree _guestLooktree = ;
-    private FuncTree _statustree = ;
-    private FuncTree _companionstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = param1.readUnsignedShort();
-    private int _loc4_ = 0;
-    private int _loc3_ = 0;
+    private PlayerStatus status;
+    private Vector<PartyCompanionBaseInformations> companions;
+    private FuncTree _guestLooktree;
+    private FuncTree _statustree;
+    private FuncTree _companionstree;
 
 
     public int getTypeId() {
          return 374;
     }
 
-    public PartyGuestInformations initPartyGuestInformations(Number param1,Number  param2,String  param3,EntityLook  param4,int  param5,boolean  param6,PlayerStatus  param7,Vector.<PartyCompanionBaseInformations>  param8) {
+    public PartyGuestInformations initPartyGuestInformations(Number param1,Number  param2,String  param3,EntityLook  param4,int  param5,boolean  param6,PlayerStatus  param7,Vector<PartyCompanionBaseInformations>  param8) {
          this.guestId = param1;
          this.hostId = param2;
          this.name = param3;
@@ -64,7 +60,28 @@ public class PartyGuestInformations extends Object implements INetworkType {
 
     public void serializeAs_PartyGuestInformations(ICustomDataOutput param1) {
          if(this.guestId < 0 || this.guestId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.guestId + ") on element guestId.");
+         }
+         param1.writeVarLong(this.guestId);
+         if(this.hostId < 0 || this.hostId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.hostId + ") on element hostId.");
+         }
+         param1.writeVarLong(this.hostId);
+         param1.writeUTF(this.name);
+         this.guestLook.serializeAs_EntityLook(param1);
+         param1.writeByte(this.breed);
+         param1.writeBoolean(this.sex);
+         param1.writeShort(this.status.getTypeId());
+         this.status.serialize(param1);
+         param1.writeShort(this.companions.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.companions.length)
+         {
+            (this.companions[_loc2_] as PartyCompanionBaseInformations).serializeAs_PartyCompanionBaseInformations(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,10 +103,12 @@ public class PartyGuestInformations extends Object implements INetworkType {
          int _loc3_ = param1.readUnsignedShort();
          int _loc4_ = 0;
          while(_loc4_ < _loc3_)
+         {
             _loc5_ = new PartyCompanionBaseInformations();
             _loc5_.deserialize(param1);
             this.companions.push(_loc5_);
             _loc4_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -110,13 +129,17 @@ public class PartyGuestInformations extends Object implements INetworkType {
     private void _guestIdFunc(ICustomDataInput param1) {
          this.guestId = param1.readVarUhLong();
          if(this.guestId < 0 || this.guestId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.guestId + ") on element of PartyGuestInformations.guestId.");
+         }
     }
 
     private void _hostIdFunc(ICustomDataInput param1) {
          this.hostId = param1.readVarUhLong();
          if(this.hostId < 0 || this.hostId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.hostId + ") on element of PartyGuestInformations.hostId.");
+         }
     }
 
     private void _nameFunc(ICustomDataInput param1) {
@@ -146,8 +169,10 @@ public class PartyGuestInformations extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._companionstree.addChild(this._companionsFunc);
             _loc3_++;
+         }
     }
 
     private void _companionsFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.party.PartyMemberGeoPosition;
@@ -11,12 +11,8 @@ public class PartyLocateMembersMessage extends AbstractPartyMessage implements I
 
     private int protocolId = 5595;
     private boolean _isInitialized = false;
-    private Vector.<PartyMemberGeoPosition> geopositions = ;
-    private FuncTree _geopositionstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<PartyMemberGeoPosition> geopositions;
+    private FuncTree _geopositionstree;
 
 
     public boolean isInitialized() {
@@ -27,7 +23,7 @@ public class PartyLocateMembersMessage extends AbstractPartyMessage implements I
          return 5595;
     }
 
-    public PartyLocateMembersMessage initPartyLocateMembersMessage(int param1,Vector.<PartyMemberGeoPosition>  param2) {
+    public PartyLocateMembersMessage initPartyLocateMembersMessage(int param1,Vector<PartyMemberGeoPosition>  param2) {
          super.initAbstractPartyMessage(param1);
          this.geopositions = param2;
          this._isInitialized = true;
@@ -66,8 +62,10 @@ public class PartyLocateMembersMessage extends AbstractPartyMessage implements I
          param1.writeShort(this.geopositions.length);
          int _loc2_ = 0;
          while(_loc2_ < this.geopositions.length)
+         {
             (this.geopositions[_loc2_] as PartyMemberGeoPosition).serializeAs_PartyMemberGeoPosition(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,10 +78,12 @@ public class PartyLocateMembersMessage extends AbstractPartyMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new PartyMemberGeoPosition();
             _loc4_.deserialize(param1);
             this.geopositions.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -99,8 +99,10 @@ public class PartyLocateMembersMessage extends AbstractPartyMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._geopositionstree.addChild(this._geopositionsFunc);
             _loc3_++;
+         }
     }
 
     private void _geopositionsFunc(ICustomDataInput param1) {

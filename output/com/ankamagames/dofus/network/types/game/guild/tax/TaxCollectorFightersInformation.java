@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.guild.tax;
+package com.ankamagames.dofus.network.types.game.guild.tax;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.character.CharacterMinimalPlusLookInformations;
@@ -11,30 +11,17 @@ public class TaxCollectorFightersInformation extends Object implements INetworkT
 
     private int protocolId = 169;
     private int collectorId = 0;
-    private Vector.<CharacterMinimalPlusLookInformations> allyCharactersInformations = ;
-    private Vector.<CharacterMinimalPlusLookInformations> enemyCharactersInformations = ;
-    private FuncTree _allyCharactersInformationstree = ;
-    private FuncTree _enemyCharactersInformationstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private CharacterMinimalPlusLookInformations _loc7_ = null;
-    private int _loc8_ = 0;
-    private CharacterMinimalPlusLookInformations _loc9_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private CharacterMinimalPlusLookInformations _loc3_ = ProtocolTypeManager.getInstance(CharacterMinimalPlusLookInformations,_loc2_);
-    private int _loc3_ = 0;
-    private CharacterMinimalPlusLookInformations _loc3_ = ProtocolTypeManager.getInstance(CharacterMinimalPlusLookInformations,_loc2_);
+    private Vector<CharacterMinimalPlusLookInformations> allyCharactersInformations;
+    private Vector<CharacterMinimalPlusLookInformations> enemyCharactersInformations;
+    private FuncTree _allyCharactersInformationstree;
+    private FuncTree _enemyCharactersInformationstree;
 
 
     public int getTypeId() {
          return 169;
     }
 
-    public TaxCollectorFightersInformation initTaxCollectorFightersInformation(int param1,Vector.<CharacterMinimalPlusLookInformations>  param2,Vector.<CharacterMinimalPlusLookInformations>  param3) {
+    public TaxCollectorFightersInformation initTaxCollectorFightersInformation(int param1,Vector<CharacterMinimalPlusLookInformations>  param2,Vector<CharacterMinimalPlusLookInformations>  param3) {
          this.collectorId = param1;
          this.allyCharactersInformations = param2;
          this.enemyCharactersInformations = param3;
@@ -56,9 +43,19 @@ public class TaxCollectorFightersInformation extends Object implements INetworkT
          param1.writeShort(this.allyCharactersInformations.length);
          int _loc2_ = 0;
          while(_loc2_ < this.allyCharactersInformations.length)
+         {
             param1.writeShort((this.allyCharactersInformations[_loc2_] as CharacterMinimalPlusLookInformations).getTypeId());
             (this.allyCharactersInformations[_loc2_] as CharacterMinimalPlusLookInformations).serialize(param1);
             _loc2_++;
+         }
+         param1.writeShort(this.enemyCharactersInformations.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.enemyCharactersInformations.length)
+         {
+            param1.writeShort((this.enemyCharactersInformations[_loc3_] as CharacterMinimalPlusLookInformations).getTypeId());
+            (this.enemyCharactersInformations[_loc3_] as CharacterMinimalPlusLookInformations).serialize(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -74,11 +71,23 @@ public class TaxCollectorFightersInformation extends Object implements INetworkT
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = param1.readUnsignedShort();
             _loc7_ = ProtocolTypeManager.getInstance(CharacterMinimalPlusLookInformations,_loc6_);
             _loc7_.deserialize(param1);
             this.allyCharactersInformations.push(_loc7_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc8_ = param1.readUnsignedShort();
+            _loc9_ = ProtocolTypeManager.getInstance(CharacterMinimalPlusLookInformations,_loc8_);
+            _loc9_.deserialize(param1);
+            this.enemyCharactersInformations.push(_loc9_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -99,8 +108,10 @@ public class TaxCollectorFightersInformation extends Object implements INetworkT
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._allyCharactersInformationstree.addChild(this._allyCharactersInformationsFunc);
             _loc3_++;
+         }
     }
 
     private void _allyCharactersInformationsFunc(ICustomDataInput param1) {
@@ -114,8 +125,10 @@ public class TaxCollectorFightersInformation extends Object implements INetworkT
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._enemyCharactersInformationstree.addChild(this._enemyCharactersInformationsFunc);
             _loc3_++;
+         }
     }
 
     private void _enemyCharactersInformationsFunc(ICustomDataInput param1) {

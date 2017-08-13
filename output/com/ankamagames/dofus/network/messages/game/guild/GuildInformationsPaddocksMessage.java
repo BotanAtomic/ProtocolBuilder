@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,12 +15,8 @@ public class GuildInformationsPaddocksMessage extends NetworkMessage implements 
     private int protocolId = 5959;
     private boolean _isInitialized = false;
     private int nbPaddockMax = 0;
-    private Vector.<PaddockContentInformations> paddocksInformations = ;
-    private FuncTree _paddocksInformationstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<PaddockContentInformations> paddocksInformations;
+    private FuncTree _paddocksInformationstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class GuildInformationsPaddocksMessage extends NetworkMessage implements 
          return 5959;
     }
 
-    public GuildInformationsPaddocksMessage initGuildInformationsPaddocksMessage(int param1,Vector.<PaddockContentInformations>  param2) {
+    public GuildInformationsPaddocksMessage initGuildInformationsPaddocksMessage(int param1,Vector<PaddockContentInformations>  param2) {
          this.nbPaddockMax = param1;
          this.paddocksInformations = param2;
          this._isInitialized = true;
@@ -67,7 +63,17 @@ public class GuildInformationsPaddocksMessage extends NetworkMessage implements 
 
     public void serializeAs_GuildInformationsPaddocksMessage(ICustomDataOutput param1) {
          if(this.nbPaddockMax < 0)
+         {
             throw new Exception("Forbidden value (" + this.nbPaddockMax + ") on element nbPaddockMax.");
+         }
+         param1.writeByte(this.nbPaddockMax);
+         param1.writeShort(this.paddocksInformations.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.paddocksInformations.length)
+         {
+            (this.paddocksInformations[_loc2_] as PaddockContentInformations).serializeAs_PaddockContentInformations(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,10 +86,12 @@ public class GuildInformationsPaddocksMessage extends NetworkMessage implements 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new PaddockContentInformations();
             _loc4_.deserialize(param1);
             this.paddocksInformations.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -98,15 +106,19 @@ public class GuildInformationsPaddocksMessage extends NetworkMessage implements 
     private void _nbPaddockMaxFunc(ICustomDataInput param1) {
          this.nbPaddockMax = param1.readByte();
          if(this.nbPaddockMax < 0)
+         {
             throw new Exception("Forbidden value (" + this.nbPaddockMax + ") on element of GuildInformationsPaddocksMessage.nbPaddockMax.");
+         }
     }
 
     private void _paddocksInformationstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._paddocksInformationstree.addChild(this._paddocksInformationsFunc);
             _loc3_++;
+         }
     }
 
     private void _paddocksInformationsFunc(ICustomDataInput param1) {

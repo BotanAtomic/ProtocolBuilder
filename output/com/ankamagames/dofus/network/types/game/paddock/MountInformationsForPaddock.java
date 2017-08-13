@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.paddock;
+package com.ankamagames.dofus.network.types.game.paddock;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -38,7 +38,12 @@ public class MountInformationsForPaddock extends Object implements INetworkType 
 
     public void serializeAs_MountInformationsForPaddock(ICustomDataOutput param1) {
          if(this.modelId < 0)
+         {
             throw new Exception("Forbidden value (" + this.modelId + ") on element modelId.");
+         }
+         param1.writeVarShort(this.modelId);
+         param1.writeUTF(this.name);
+         param1.writeUTF(this.ownerName);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -64,7 +69,9 @@ public class MountInformationsForPaddock extends Object implements INetworkType 
     private void _modelIdFunc(ICustomDataInput param1) {
          this.modelId = param1.readVarUhShort();
          if(this.modelId < 0)
+         {
             throw new Exception("Forbidden value (" + this.modelId + ") on element of MountInformationsForPaddock.modelId.");
+         }
     }
 
     private void _nameFunc(ICustomDataInput param1) {

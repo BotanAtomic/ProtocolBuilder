@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.notification;
+package com.ankamagames.dofus.network.messages.game.context.notification;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

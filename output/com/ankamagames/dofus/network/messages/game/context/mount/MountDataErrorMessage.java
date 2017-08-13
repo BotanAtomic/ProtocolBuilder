@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class MountDataErrorMessage extends NetworkMessage implements INetworkMes
     private void _reasonFunc(ICustomDataInput param1) {
          this.reason = param1.readByte();
          if(this.reason < 0)
+         {
             throw new Exception("Forbidden value (" + this.reason + ") on element of MountDataErrorMessage.reason.");
+         }
     }
 
 }

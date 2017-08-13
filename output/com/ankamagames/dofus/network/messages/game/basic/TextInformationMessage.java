@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.basic;
+package com.ankamagames.dofus.network.messages.game.basic;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -16,12 +16,8 @@ public class TextInformationMessage extends NetworkMessage implements INetworkMe
     private boolean _isInitialized = false;
     private int msgType = 0;
     private int msgId = 0;
-    private Vector.<String> parameters = ;
-    private FuncTree _parameterstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<String> parameters;
+    private FuncTree _parameterstree;
 
 
     public boolean isInitialized() {
@@ -32,7 +28,7 @@ public class TextInformationMessage extends NetworkMessage implements INetworkMe
          return 780;
     }
 
-    public TextInformationMessage initTextInformationMessage(int param1,int  param2,Vector.<String>  param3) {
+    public TextInformationMessage initTextInformationMessage(int param1,int  param2,Vector<String>  param3) {
          this.msgType = param1;
          this.msgId = param2;
          this.parameters = param3;
@@ -71,7 +67,17 @@ public class TextInformationMessage extends NetworkMessage implements INetworkMe
     public void serializeAs_TextInformationMessage(ICustomDataOutput param1) {
          param1.writeByte(this.msgType);
          if(this.msgId < 0)
+         {
             throw new Exception("Forbidden value (" + this.msgId + ") on element msgId.");
+         }
+         param1.writeVarShort(this.msgId);
+         param1.writeShort(this.parameters.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.parameters.length)
+         {
+            param1.writeUTF(this.parameters[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,9 +91,11 @@ public class TextInformationMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUTF();
             this.parameters.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -103,21 +111,27 @@ public class TextInformationMessage extends NetworkMessage implements INetworkMe
     private void _msgTypeFunc(ICustomDataInput param1) {
          this.msgType = param1.readByte();
          if(this.msgType < 0)
+         {
             throw new Exception("Forbidden value (" + this.msgType + ") on element of TextInformationMessage.msgType.");
+         }
     }
 
     private void _msgIdFunc(ICustomDataInput param1) {
          this.msgId = param1.readVarUhShort();
          if(this.msgId < 0)
+         {
             throw new Exception("Forbidden value (" + this.msgId + ") on element of TextInformationMessage.msgId.");
+         }
     }
 
     private void _parameterstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._parameterstree.addChild(this._parametersFunc);
             _loc3_++;
+         }
     }
 
     private void _parametersFunc(ICustomDataInput param1) {

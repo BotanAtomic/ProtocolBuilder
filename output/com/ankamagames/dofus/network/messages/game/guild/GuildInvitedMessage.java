@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -16,8 +16,8 @@ public class GuildInvitedMessage extends NetworkMessage implements INetworkMessa
     private boolean _isInitialized = false;
     private Number recruterId = 0;
     private String recruterName = "";
-    private BasicGuildInformations guildInfo = ;
-    private FuncTree _guildInfotree = ;
+    private BasicGuildInformations guildInfo;
+    private FuncTree _guildInfotree;
 
 
     public boolean isInitialized() {
@@ -66,7 +66,12 @@ public class GuildInvitedMessage extends NetworkMessage implements INetworkMessa
 
     public void serializeAs_GuildInvitedMessage(ICustomDataOutput param1) {
          if(this.recruterId < 0 || this.recruterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.recruterId + ") on element recruterId.");
+         }
+         param1.writeVarLong(this.recruterId);
+         param1.writeUTF(this.recruterName);
+         this.guildInfo.serializeAs_BasicGuildInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -93,7 +98,9 @@ public class GuildInvitedMessage extends NetworkMessage implements INetworkMessa
     private void _recruterIdFunc(ICustomDataInput param1) {
          this.recruterId = param1.readVarUhLong();
          if(this.recruterId < 0 || this.recruterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.recruterId + ") on element of GuildInvitedMessage.recruterId.");
+         }
     }
 
     private void _recruterNameFunc(ICustomDataInput param1) {

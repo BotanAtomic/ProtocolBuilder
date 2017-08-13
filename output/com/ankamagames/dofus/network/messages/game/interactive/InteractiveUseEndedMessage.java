@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive;
+package com.ankamagames.dofus.network.messages.game.interactive;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class InteractiveUseEndedMessage extends NetworkMessage implements INetwo
 
     public void serializeAs_InteractiveUseEndedMessage(ICustomDataOutput param1) {
          if(this.elemId < 0)
+         {
             throw new Exception("Forbidden value (" + this.elemId + ") on element elemId.");
+         }
+         param1.writeVarInt(this.elemId);
+         if(this.skillId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
+         }
+         param1.writeVarShort(this.skillId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class InteractiveUseEndedMessage extends NetworkMessage implements INetwo
     private void _elemIdFunc(ICustomDataInput param1) {
          this.elemId = param1.readVarUhInt();
          if(this.elemId < 0)
+         {
             throw new Exception("Forbidden value (" + this.elemId + ") on element of InteractiveUseEndedMessage.elemId.");
+         }
     }
 
     private void _skillIdFunc(ICustomDataInput param1) {
          this.skillId = param1.readVarUhShort();
          if(this.skillId < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillId + ") on element of InteractiveUseEndedMessage.skillId.");
+         }
     }
 
 }

@@ -1,10 +1,12 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -54,7 +56,21 @@ public class GameFightFighterLightInformations extends Object implements INetwor
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.alive);
          param1.writeByte(_loc2_);
          if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeDouble(this.id);
+         if(this.wave < 0)
+         {
+            throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
+         }
+         param1.writeByte(this.wave);
+         if(this.level < 0)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeVarShort(this.level);
+         param1.writeByte(this.breed);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,19 +106,25 @@ public class GameFightFighterLightInformations extends Object implements INetwor
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readDouble();
          if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of GameFightFighterLightInformations.id.");
+         }
     }
 
     private void _waveFunc(ICustomDataInput param1) {
          this.wave = param1.readByte();
          if(this.wave < 0)
+         {
             throw new Exception("Forbidden value (" + this.wave + ") on element of GameFightFighterLightInformations.wave.");
+         }
     }
 
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readVarUhShort();
          if(this.level < 0)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of GameFightFighterLightInformations.level.");
+         }
     }
 
     private void _breedFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character.status;
+package com.ankamagames.dofus.network.types.game.character.status;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -52,7 +52,9 @@ public class PlayerStatus extends Object implements INetworkType {
     private void _statusIdFunc(ICustomDataInput param1) {
          this.statusId = param1.readByte();
          if(this.statusId < 0)
+         {
             throw new Exception("Forbidden value (" + this.statusId + ") on element of PlayerStatus.statusId.");
+         }
     }
 
 }

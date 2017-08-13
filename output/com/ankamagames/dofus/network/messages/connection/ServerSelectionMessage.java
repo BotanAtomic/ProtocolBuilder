@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ServerSelectionMessage extends NetworkMessage implements INetworkMe
 
     public void serializeAs_ServerSelectionMessage(ICustomDataOutput param1) {
          if(this.serverId < 0)
+         {
             throw new Exception("Forbidden value (" + this.serverId + ") on element serverId.");
+         }
+         param1.writeVarShort(this.serverId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ServerSelectionMessage extends NetworkMessage implements INetworkMe
     private void _serverIdFunc(ICustomDataInput param1) {
          this.serverId = param1.readVarUhShort();
          if(this.serverId < 0)
+         {
             throw new Exception("Forbidden value (" + this.serverId + ") on element of ServerSelectionMessage.serverId.");
+         }
     }
 
 }

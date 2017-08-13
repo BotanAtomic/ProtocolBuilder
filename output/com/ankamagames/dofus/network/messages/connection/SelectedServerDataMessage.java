@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -18,12 +19,8 @@ public class SelectedServerDataMessage extends NetworkMessage implements INetwor
     private String address = "";
     private int port = 0;
     private boolean canCreateNewCharacter = false;
-    private Vector.<int> ticket = ;
-    private FuncTree _tickettree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readVarInt();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> ticket;
+    private FuncTree _tickettree;
 
 
     public boolean isInitialized() {
@@ -34,7 +31,7 @@ public class SelectedServerDataMessage extends NetworkMessage implements INetwor
          return 42;
     }
 
-    public SelectedServerDataMessage initSelectedServerDataMessage(int param1,String  param2,int  param3,boolean  param4,Vector.<int>  param5) {
+    public SelectedServerDataMessage initSelectedServerDataMessage(int param1,String  param2,int  param3,boolean  param4,Vector<int>  param5) {
          this.serverId = param1;
          this.address = param2;
          this.port = param3;
@@ -76,7 +73,24 @@ public class SelectedServerDataMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_SelectedServerDataMessage(ICustomDataOutput param1) {
          if(this.serverId < 0)
+         {
             throw new Exception("Forbidden value (" + this.serverId + ") on element serverId.");
+         }
+         param1.writeVarShort(this.serverId);
+         param1.writeUTF(this.address);
+         if(this.port < 0 || this.port > 65535)
+         {
+            throw new Exception("Forbidden value (" + this.port + ") on element port.");
+         }
+         param1.writeShort(this.port);
+         param1.writeBoolean(this.canCreateNewCharacter);
+         param1.writeVarInt(this.ticket.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.ticket.length)
+         {
+            param1.writeByte(this.ticket[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -92,9 +106,11 @@ public class SelectedServerDataMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readByte();
             this.ticket.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -112,7 +128,9 @@ public class SelectedServerDataMessage extends NetworkMessage implements INetwor
     private void _serverIdFunc(ICustomDataInput param1) {
          this.serverId = param1.readVarUhShort();
          if(this.serverId < 0)
+         {
             throw new Exception("Forbidden value (" + this.serverId + ") on element of SelectedServerDataMessage.serverId.");
+         }
     }
 
     private void _addressFunc(ICustomDataInput param1) {
@@ -122,7 +140,9 @@ public class SelectedServerDataMessage extends NetworkMessage implements INetwor
     private void _portFunc(ICustomDataInput param1) {
          this.port = param1.readUnsignedShort();
          if(this.port < 0 || this.port > 65535)
+         {
             throw new Exception("Forbidden value (" + this.port + ") on element of SelectedServerDataMessage.port.");
+         }
     }
 
     private void _canCreateNewCharacterFunc(ICustomDataInput param1) {
@@ -133,8 +153,10 @@ public class SelectedServerDataMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._tickettree.addChild(this._ticketFunc);
             _loc3_++;
+         }
     }
 
     private void _ticketFunc(ICustomDataInput param1) {

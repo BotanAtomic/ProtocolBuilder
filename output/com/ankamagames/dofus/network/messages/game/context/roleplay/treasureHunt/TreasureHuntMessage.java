@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,6 +13,9 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class TreasureHuntMessage extends NetworkMessage implements INetworkMessage {
 
@@ -20,25 +23,14 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
     private boolean _isInitialized = false;
     private int questType = 0;
     private int startMapId = 0;
-    private Vector.<TreasureHuntStep> knownStepsList = ;
+    private Vector<TreasureHuntStep> knownStepsList;
     private int totalStepCount = 0;
     private int checkPointCurrent = 0;
     private int checkPointTotal = 0;
     private int availableRetryCount = 0;
-    private Vector.<TreasureHuntFlag> flags = ;
-    private FuncTree _knownStepsListtree = ;
-    private FuncTree _flagstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private TreasureHuntStep _loc7_ = null;
-    private TreasureHuntFlag _loc8_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private TreasureHuntStep _loc3_ = ProtocolTypeManager.getInstance(TreasureHuntStep,_loc2_);
-    private int _loc3_ = 0;
+    private Vector<TreasureHuntFlag> flags;
+    private FuncTree _knownStepsListtree;
+    private FuncTree _flagstree;
 
 
     public boolean isInitialized() {
@@ -49,7 +41,7 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
          return 6486;
     }
 
-    public TreasureHuntMessage initTreasureHuntMessage(int param1,int  param2,Vector.<TreasureHuntStep>  param3,int  param4,int  param5,int  param6,int  param7,Vector.<TreasureHuntFlag>  param8) {
+    public TreasureHuntMessage initTreasureHuntMessage(int param1,int  param2,Vector<TreasureHuntStep>  param3,int  param4,int  param5,int  param6,int  param7,Vector<TreasureHuntFlag>  param8) {
          this.questType = param1;
          this.startMapId = param2;
          this.knownStepsList = param3;
@@ -101,9 +93,34 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
          param1.writeShort(this.knownStepsList.length);
          int _loc2_ = 0;
          while(_loc2_ < this.knownStepsList.length)
+         {
             param1.writeShort((this.knownStepsList[_loc2_] as TreasureHuntStep).getTypeId());
             (this.knownStepsList[_loc2_] as TreasureHuntStep).serialize(param1);
             _loc2_++;
+         }
+         if(this.totalStepCount < 0)
+         {
+            throw new Exception("Forbidden value (" + this.totalStepCount + ") on element totalStepCount.");
+         }
+         param1.writeByte(this.totalStepCount);
+         if(this.checkPointCurrent < 0)
+         {
+            throw new Exception("Forbidden value (" + this.checkPointCurrent + ") on element checkPointCurrent.");
+         }
+         param1.writeVarInt(this.checkPointCurrent);
+         if(this.checkPointTotal < 0)
+         {
+            throw new Exception("Forbidden value (" + this.checkPointTotal + ") on element checkPointTotal.");
+         }
+         param1.writeVarInt(this.checkPointTotal);
+         param1.writeInt(this.availableRetryCount);
+         param1.writeShort(this.flags.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.flags.length)
+         {
+            (this.flags[_loc3_] as TreasureHuntFlag).serializeAs_TreasureHuntFlag(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -119,11 +136,26 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = param1.readUnsignedShort();
             _loc7_ = ProtocolTypeManager.getInstance(TreasureHuntStep,_loc6_);
             _loc7_.deserialize(param1);
             this.knownStepsList.push(_loc7_);
             _loc3_++;
+         }
+         this._totalStepCountFunc(param1);
+         this._checkPointCurrentFunc(param1);
+         this._checkPointTotalFunc(param1);
+         this._availableRetryCountFunc(param1);
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc8_ = new TreasureHuntFlag();
+            _loc8_.deserialize(param1);
+            this.flags.push(_loc8_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -144,7 +176,9 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
     private void _questTypeFunc(ICustomDataInput param1) {
          this.questType = param1.readByte();
          if(this.questType < 0)
+         {
             throw new Exception("Forbidden value (" + this.questType + ") on element of TreasureHuntMessage.questType.");
+         }
     }
 
     private void _startMapIdFunc(ICustomDataInput param1) {
@@ -155,8 +189,10 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._knownStepsListtree.addChild(this._knownStepsListFunc);
             _loc3_++;
+         }
     }
 
     private void _knownStepsListFunc(ICustomDataInput param1) {
@@ -169,19 +205,25 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
     private void _totalStepCountFunc(ICustomDataInput param1) {
          this.totalStepCount = param1.readByte();
          if(this.totalStepCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.totalStepCount + ") on element of TreasureHuntMessage.totalStepCount.");
+         }
     }
 
     private void _checkPointCurrentFunc(ICustomDataInput param1) {
          this.checkPointCurrent = param1.readVarUhInt();
          if(this.checkPointCurrent < 0)
+         {
             throw new Exception("Forbidden value (" + this.checkPointCurrent + ") on element of TreasureHuntMessage.checkPointCurrent.");
+         }
     }
 
     private void _checkPointTotalFunc(ICustomDataInput param1) {
          this.checkPointTotal = param1.readVarUhInt();
          if(this.checkPointTotal < 0)
+         {
             throw new Exception("Forbidden value (" + this.checkPointTotal + ") on element of TreasureHuntMessage.checkPointTotal.");
+         }
     }
 
     private void _availableRetryCountFunc(ICustomDataInput param1) {
@@ -192,8 +234,10 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._flagstree.addChild(this._flagsFunc);
             _loc3_++;
+         }
     }
 
     private void _flagsFunc(ICustomDataInput param1) {

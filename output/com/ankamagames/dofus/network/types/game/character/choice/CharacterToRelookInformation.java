@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character.choice;
+package com.ankamagames.dofus.network.types.game.character.choice;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -14,7 +14,7 @@ public class CharacterToRelookInformation extends AbstractCharacterToRefurbishIn
          return 399;
     }
 
-    public CharacterToRelookInformation initCharacterToRelookInformation(Number param1,Vector.<int>  param2,int  param3) {
+    public CharacterToRelookInformation initCharacterToRelookInformation(Number param1,Vector<int>  param2,int  param3) {
          super.initAbstractCharacterToRefurbishInformation(param1,param2,param3);
          return this;
     }

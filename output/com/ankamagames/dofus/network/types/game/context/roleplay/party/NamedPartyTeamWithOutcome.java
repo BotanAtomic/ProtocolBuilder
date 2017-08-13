@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.party;
+package com.ankamagames.dofus.network.types.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -9,9 +9,9 @@ import java.lang.Exception;
 public class NamedPartyTeamWithOutcome extends Object implements INetworkType {
 
     private int protocolId = 470;
-    private NamedPartyTeam team = ;
+    private NamedPartyTeam team;
     private int outcome = 0;
-    private FuncTree _teamtree = ;
+    private FuncTree _teamtree;
 
 
     public int getTypeId() {
@@ -64,7 +64,9 @@ public class NamedPartyTeamWithOutcome extends Object implements INetworkType {
     private void _outcomeFunc(ICustomDataInput param1) {
          this.outcome = param1.readVarUhShort();
          if(this.outcome < 0)
+         {
             throw new Exception("Forbidden value (" + this.outcome + ") on element of NamedPartyTeamWithOutcome.outcome.");
+         }
     }
 
 }

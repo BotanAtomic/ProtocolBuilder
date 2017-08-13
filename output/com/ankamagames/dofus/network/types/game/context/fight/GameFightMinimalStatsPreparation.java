@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class GameFightMinimalStatsPreparation extends GameFightMinimalStats impl
     public void serializeAs_GameFightMinimalStatsPreparation(ICustomDataOutput param1) {
          super.serializeAs_GameFightMinimalStats(param1);
          if(this.initiative < 0)
+         {
             throw new Exception("Forbidden value (" + this.initiative + ") on element initiative.");
+         }
+         param1.writeVarInt(this.initiative);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class GameFightMinimalStatsPreparation extends GameFightMinimalStats impl
     private void _initiativeFunc(ICustomDataInput param1) {
          this.initiative = param1.readVarUhInt();
          if(this.initiative < 0)
+         {
             throw new Exception("Forbidden value (" + this.initiative + ") on element of GameFightMinimalStatsPreparation.initiative.");
+         }
     }
 
 }

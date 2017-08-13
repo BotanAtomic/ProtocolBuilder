@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.sequence;
+package com.ankamagames.dofus.network.messages.game.actions.sequence;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -65,7 +66,16 @@ public class SequenceEndMessage extends NetworkMessage implements INetworkMessag
 
     public void serializeAs_SequenceEndMessage(ICustomDataOutput param1) {
          if(this.actionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
+         }
+         param1.writeVarShort(this.actionId);
+         if(this.authorId < -9.007199254740992E15 || this.authorId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.authorId + ") on element authorId.");
+         }
+         param1.writeDouble(this.authorId);
+         param1.writeByte(this.sequenceType);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -91,13 +101,17 @@ public class SequenceEndMessage extends NetworkMessage implements INetworkMessag
     private void _actionIdFunc(ICustomDataInput param1) {
          this.actionId = param1.readVarUhShort();
          if(this.actionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actionId + ") on element of SequenceEndMessage.actionId.");
+         }
     }
 
     private void _authorIdFunc(ICustomDataInput param1) {
          this.authorId = param1.readDouble();
          if(this.authorId < -9.007199254740992E15 || this.authorId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.authorId + ") on element of SequenceEndMessage.authorId.");
+         }
     }
 
     private void _sequenceTypeFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -16,7 +16,7 @@ public class GameFightAIInformations extends GameFightFighterInformations implem
          return 151;
     }
 
-    public GameFightAIInformations initGameFightAIInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector.<uint>  param8) {
+    public GameFightAIInformations initGameFightAIInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector<uint>  param8) {
          super.initGameFightFighterInformations(param1,param2,param3,param4,param5,param6,param7,param8);
          return this;
     }

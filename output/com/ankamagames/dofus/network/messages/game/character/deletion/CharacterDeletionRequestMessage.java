@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.deletion;
+package com.ankamagames.dofus.network.messages.game.character.deletion;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class CharacterDeletionRequestMessage extends NetworkMessage implements I
 
     public void serializeAs_CharacterDeletionRequestMessage(ICustomDataOutput param1) {
          if(this.characterId < 0 || this.characterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.characterId + ") on element characterId.");
+         }
+         param1.writeVarLong(this.characterId);
+         param1.writeUTF(this.secretAnswerHash);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class CharacterDeletionRequestMessage extends NetworkMessage implements I
     private void _characterIdFunc(ICustomDataInput param1) {
          this.characterId = param1.readVarUhLong();
          if(this.characterId < 0 || this.characterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.characterId + ") on element of CharacterDeletionRequestMessage.characterId.");
+         }
     }
 
     private void _secretAnswerHashFunc(ICustomDataInput param1) {

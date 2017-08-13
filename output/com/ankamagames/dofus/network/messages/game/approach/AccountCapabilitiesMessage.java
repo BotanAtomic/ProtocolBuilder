@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.approach;
+package com.ankamagames.dofus.network.messages.game.approach;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -7,6 +7,8 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -80,7 +82,21 @@ public class AccountCapabilitiesMessage extends NetworkMessage implements INetwo
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.canCreateNewCharacter);
          param1.writeByte(_loc2_);
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
+         if(this.breedsVisible < 0)
+         {
+            throw new Exception("Forbidden value (" + this.breedsVisible + ") on element breedsVisible.");
+         }
+         param1.writeVarInt(this.breedsVisible);
+         if(this.breedsAvailable < 0)
+         {
+            throw new Exception("Forbidden value (" + this.breedsAvailable + ") on element breedsAvailable.");
+         }
+         param1.writeVarInt(this.breedsAvailable);
+         param1.writeByte(this.status);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -116,19 +132,25 @@ public class AccountCapabilitiesMessage extends NetworkMessage implements INetwo
     private void _accountIdFunc(ICustomDataInput param1) {
          this.accountId = param1.readInt();
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element of AccountCapabilitiesMessage.accountId.");
+         }
     }
 
     private void _breedsVisibleFunc(ICustomDataInput param1) {
          this.breedsVisible = param1.readVarUhInt();
          if(this.breedsVisible < 0)
+         {
             throw new Exception("Forbidden value (" + this.breedsVisible + ") on element of AccountCapabilitiesMessage.breedsVisible.");
+         }
     }
 
     private void _breedsAvailableFunc(ICustomDataInput param1) {
          this.breedsAvailable = param1.readVarUhInt();
          if(this.breedsAvailable < 0)
+         {
             throw new Exception("Forbidden value (" + this.breedsAvailable + ") on element of AccountCapabilitiesMessage.breedsAvailable.");
+         }
     }
 
     private void _statusFunc(ICustomDataInput param1) {

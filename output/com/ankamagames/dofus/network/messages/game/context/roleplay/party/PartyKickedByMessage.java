@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class PartyKickedByMessage extends AbstractPartyMessage implements INetwo
     public void serializeAs_PartyKickedByMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractPartyMessage(param1);
          if(this.kickerId < 0 || this.kickerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.kickerId + ") on element kickerId.");
+         }
+         param1.writeVarLong(this.kickerId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class PartyKickedByMessage extends AbstractPartyMessage implements INetwo
     private void _kickerIdFunc(ICustomDataInput param1) {
          this.kickerId = param1.readVarUhLong();
          if(this.kickerId < 0 || this.kickerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.kickerId + ") on element of PartyKickedByMessage.kickerId.");
+         }
     }
 
 }

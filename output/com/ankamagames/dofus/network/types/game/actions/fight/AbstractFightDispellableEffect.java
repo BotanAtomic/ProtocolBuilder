@@ -1,9 +1,13 @@
-package package com.ankamagames.dofus.network.types.game.actions.fight;
+package com.ankamagames.dofus.network.types.game.actions.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -55,7 +59,32 @@ public class AbstractFightDispellableEffect extends Object implements INetworkTy
 
     public void serializeAs_AbstractFightDispellableEffect(ICustomDataOutput param1) {
          if(this.uid < 0)
+         {
             throw new Exception("Forbidden value (" + this.uid + ") on element uid.");
+         }
+         param1.writeVarInt(this.uid);
+         if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
+         param1.writeShort(this.turnDuration);
+         param1.writeByte(this.dispelable);
+         if(this.spellId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeVarShort(this.spellId);
+         if(this.effectId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.effectId + ") on element effectId.");
+         }
+         param1.writeVarInt(this.effectId);
+         if(this.parentBoostUid < 0)
+         {
+            throw new Exception("Forbidden value (" + this.parentBoostUid + ") on element parentBoostUid.");
+         }
+         param1.writeVarInt(this.parentBoostUid);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -89,13 +118,17 @@ public class AbstractFightDispellableEffect extends Object implements INetworkTy
     private void _uidFunc(ICustomDataInput param1) {
          this.uid = param1.readVarUhInt();
          if(this.uid < 0)
+         {
             throw new Exception("Forbidden value (" + this.uid + ") on element of AbstractFightDispellableEffect.uid.");
+         }
     }
 
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readDouble();
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of AbstractFightDispellableEffect.targetId.");
+         }
     }
 
     private void _turnDurationFunc(ICustomDataInput param1) {
@@ -105,25 +138,33 @@ public class AbstractFightDispellableEffect extends Object implements INetworkTy
     private void _dispelableFunc(ICustomDataInput param1) {
          this.dispelable = param1.readByte();
          if(this.dispelable < 0)
+         {
             throw new Exception("Forbidden value (" + this.dispelable + ") on element of AbstractFightDispellableEffect.dispelable.");
+         }
     }
 
     private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readVarUhShort();
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of AbstractFightDispellableEffect.spellId.");
+         }
     }
 
     private void _effectIdFunc(ICustomDataInput param1) {
          this.effectId = param1.readVarUhInt();
          if(this.effectId < 0)
+         {
             throw new Exception("Forbidden value (" + this.effectId + ") on element of AbstractFightDispellableEffect.effectId.");
+         }
     }
 
     private void _parentBoostUidFunc(ICustomDataInput param1) {
          this.parentBoostUid = param1.readVarUhInt();
          if(this.parentBoostUid < 0)
+         {
             throw new Exception("Forbidden value (" + this.parentBoostUid + ") on element of AbstractFightDispellableEffect.parentBoostUid.");
+         }
     }
 
 }

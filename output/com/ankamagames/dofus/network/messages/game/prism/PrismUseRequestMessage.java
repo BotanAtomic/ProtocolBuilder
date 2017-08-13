@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class PrismUseRequestMessage extends NetworkMessage implements INetworkMe
     private void _moduleToUseFunc(ICustomDataInput param1) {
          this.moduleToUse = param1.readByte();
          if(this.moduleToUse < 0)
+         {
             throw new Exception("Forbidden value (" + this.moduleToUse + ") on element of PrismUseRequestMessage.moduleToUse.");
+         }
     }
 
 }

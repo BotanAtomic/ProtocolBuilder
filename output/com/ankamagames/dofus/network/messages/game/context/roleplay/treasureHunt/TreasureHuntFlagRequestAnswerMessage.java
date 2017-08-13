@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -68,7 +68,10 @@ public class TreasureHuntFlagRequestAnswerMessage extends NetworkMessage impleme
          param1.writeByte(this.questType);
          param1.writeByte(this.result);
          if(this.index < 0)
+         {
             throw new Exception("Forbidden value (" + this.index + ") on element index.");
+         }
+         param1.writeByte(this.index);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -94,19 +97,25 @@ public class TreasureHuntFlagRequestAnswerMessage extends NetworkMessage impleme
     private void _questTypeFunc(ICustomDataInput param1) {
          this.questType = param1.readByte();
          if(this.questType < 0)
+         {
             throw new Exception("Forbidden value (" + this.questType + ") on element of TreasureHuntFlagRequestAnswerMessage.questType.");
+         }
     }
 
     private void _resultFunc(ICustomDataInput param1) {
          this.result = param1.readByte();
          if(this.result < 0)
+         {
             throw new Exception("Forbidden value (" + this.result + ") on element of TreasureHuntFlagRequestAnswerMessage.result.");
+         }
     }
 
     private void _indexFunc(ICustomDataInput param1) {
          this.index = param1.readByte();
          if(this.index < 0)
+         {
             throw new Exception("Forbidden value (" + this.index + ") on element of TreasureHuntFlagRequestAnswerMessage.index.");
+         }
     }
 
 }

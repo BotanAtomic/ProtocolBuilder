@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -8,24 +8,21 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class FightLoot extends Object implements INetworkType {
 
     private int protocolId = 41;
-    private Vector.<uint> objects = ;
+    private Vector<uint> objects;
     private Number kamas = 0;
-    private FuncTree _objectstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _objectstree;
 
 
     public int getTypeId() {
          return 41;
     }
 
-    public FightLoot initFightLoot(Vector.<uint> param1,Number  param2) {
+    public FightLoot initFightLoot(Vector<uint> param1,Number  param2) {
          this.objects = param1;
          this.kamas = param2;
          return this;
@@ -44,8 +41,19 @@ public class FightLoot extends Object implements INetworkType {
          param1.writeShort(this.objects.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objects.length)
+         {
             if(this.objects[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.objects[_loc2_] + ") on element 1 (starting at 1) of objects.");
+            }
+            param1.writeVarShort(this.objects[_loc2_]);
+            _loc2_++;
+         }
+         if(this.kamas < 0 || this.kamas > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.kamas + ") on element kamas.");
+         }
+         param1.writeVarLong(this.kamas);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -57,9 +65,16 @@ public class FightLoot extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarUhShort();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of objects.");
+            }
+            this.objects.push(_loc4_);
+            _loc3_++;
+         }
+         this._kamasFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -75,20 +90,27 @@ public class FightLoot extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objectstree.addChild(this._objectsFunc);
             _loc3_++;
+         }
     }
 
     private void _objectsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of objects.");
+         }
+         this.objects.push(_loc2_);
     }
 
     private void _kamasFunc(ICustomDataInput param1) {
          this.kamas = param1.readVarUhLong();
          if(this.kamas < 0 || this.kamas > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.kamas + ") on element of FightLoot.kamas.");
+         }
     }
 
 }

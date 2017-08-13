@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.approach;
+package com.ankamagames.dofus.network.messages.game.approach;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,12 +14,8 @@ public class ServerOptionalFeaturesMessage extends NetworkMessage implements INe
 
     private int protocolId = 6305;
     private boolean _isInitialized = false;
-    private Vector.<uint> features = ;
-    private FuncTree _featurestree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> features;
+    private FuncTree _featurestree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class ServerOptionalFeaturesMessage extends NetworkMessage implements INe
          return 6305;
     }
 
-    public ServerOptionalFeaturesMessage initServerOptionalFeaturesMessage(Vector.<uint> param1) {
+    public ServerOptionalFeaturesMessage initServerOptionalFeaturesMessage(Vector<uint> param1) {
          this.features = param1;
          this._isInitialized = true;
          return this;
@@ -66,8 +62,14 @@ public class ServerOptionalFeaturesMessage extends NetworkMessage implements INe
          param1.writeShort(this.features.length);
          int _loc2_ = 0;
          while(_loc2_ < this.features.length)
+         {
             if(this.features[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.features[_loc2_] + ") on element 1 (starting at 1) of features.");
+            }
+            param1.writeByte(this.features[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -79,9 +81,15 @@ public class ServerOptionalFeaturesMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readByte();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of features.");
+            }
+            this.features.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -96,14 +104,19 @@ public class ServerOptionalFeaturesMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._featurestree.addChild(this._featuresFunc);
             _loc3_++;
+         }
     }
 
     private void _featuresFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readByte();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of features.");
+         }
+         this.features.push(_loc2_);
     }
 
 }

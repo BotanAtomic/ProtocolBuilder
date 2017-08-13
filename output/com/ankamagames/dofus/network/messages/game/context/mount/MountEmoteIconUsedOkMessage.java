@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,10 @@ public class MountEmoteIconUsedOkMessage extends NetworkMessage implements INetw
     public void serializeAs_MountEmoteIconUsedOkMessage(ICustomDataOutput param1) {
          param1.writeVarInt(this.mountId);
          if(this.reactionType < 0)
+         {
             throw new Exception("Forbidden value (" + this.reactionType + ") on element reactionType.");
+         }
+         param1.writeByte(this.reactionType);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +93,9 @@ public class MountEmoteIconUsedOkMessage extends NetworkMessage implements INetw
     private void _reactionTypeFunc(ICustomDataInput param1) {
          this.reactionType = param1.readByte();
          if(this.reactionType < 0)
+         {
             throw new Exception("Forbidden value (" + this.reactionType + ") on element of MountEmoteIconUsedOkMessage.reactionType.");
+         }
     }
 
 }

@@ -1,10 +1,11 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.lockable;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.lockable;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -67,7 +68,16 @@ public class LockableStateUpdateHouseDoorMessage extends LockableStateUpdateAbst
     public void serializeAs_LockableStateUpdateHouseDoorMessage(ICustomDataOutput param1) {
          super.serializeAs_LockableStateUpdateAbstractMessage(param1);
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
+         }
+         param1.writeVarInt(this.houseId);
+         if(this.instanceId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
+         }
+         param1.writeInt(this.instanceId);
+         param1.writeBoolean(this.secondHand);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -95,13 +105,17 @@ public class LockableStateUpdateHouseDoorMessage extends LockableStateUpdateAbst
     private void _houseIdFunc(ICustomDataInput param1) {
          this.houseId = param1.readVarUhInt();
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element of LockableStateUpdateHouseDoorMessage.houseId.");
+         }
     }
 
     private void _instanceIdFunc(ICustomDataInput param1) {
          this.instanceId = param1.readInt();
          if(this.instanceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.instanceId + ") on element of LockableStateUpdateHouseDoorMessage.instanceId.");
+         }
     }
 
     private void _secondHandFunc(ICustomDataInput param1) {

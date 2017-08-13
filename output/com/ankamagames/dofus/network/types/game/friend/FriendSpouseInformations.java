@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.friend;
+package com.ankamagames.dofus.network.types.game.friend;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -6,6 +6,8 @@ import com.ankamagames.dofus.network.types.game.context.roleplay.GuildInformatio
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -20,11 +22,11 @@ public class FriendSpouseInformations extends Object implements INetworkType {
     private int spouseLevel = 0;
     private int breed = 0;
     private int sex = 0;
-    private EntityLook spouseEntityLook = ;
-    private GuildInformations guildInfo = ;
+    private EntityLook spouseEntityLook;
+    private GuildInformations guildInfo;
     private int alignmentSide = 0;
-    private FuncTree _spouseEntityLooktree = ;
-    private FuncTree _guildInfotree = ;
+    private FuncTree _spouseEntityLooktree;
+    private FuncTree _guildInfotree;
 
 
     public int getTypeId() {
@@ -60,7 +62,26 @@ public class FriendSpouseInformations extends Object implements INetworkType {
 
     public void serializeAs_FriendSpouseInformations(ICustomDataOutput param1) {
          if(this.spouseAccountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spouseAccountId + ") on element spouseAccountId.");
+         }
+         param1.writeInt(this.spouseAccountId);
+         if(this.spouseId < 0 || this.spouseId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.spouseId + ") on element spouseId.");
+         }
+         param1.writeVarLong(this.spouseId);
+         param1.writeUTF(this.spouseName);
+         if(this.spouseLevel < 1 || this.spouseLevel > 206)
+         {
+            throw new Exception("Forbidden value (" + this.spouseLevel + ") on element spouseLevel.");
+         }
+         param1.writeByte(this.spouseLevel);
+         param1.writeByte(this.breed);
+         param1.writeByte(this.sex);
+         this.spouseEntityLook.serializeAs_EntityLook(param1);
+         this.guildInfo.serializeAs_GuildInformations(param1);
+         param1.writeByte(this.alignmentSide);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -100,13 +121,17 @@ public class FriendSpouseInformations extends Object implements INetworkType {
     private void _spouseAccountIdFunc(ICustomDataInput param1) {
          this.spouseAccountId = param1.readInt();
          if(this.spouseAccountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spouseAccountId + ") on element of FriendSpouseInformations.spouseAccountId.");
+         }
     }
 
     private void _spouseIdFunc(ICustomDataInput param1) {
          this.spouseId = param1.readVarUhLong();
          if(this.spouseId < 0 || this.spouseId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.spouseId + ") on element of FriendSpouseInformations.spouseId.");
+         }
     }
 
     private void _spouseNameFunc(ICustomDataInput param1) {
@@ -116,7 +141,9 @@ public class FriendSpouseInformations extends Object implements INetworkType {
     private void _spouseLevelFunc(ICustomDataInput param1) {
          this.spouseLevel = param1.readUnsignedByte();
          if(this.spouseLevel < 1 || this.spouseLevel > 206)
+         {
             throw new Exception("Forbidden value (" + this.spouseLevel + ") on element of FriendSpouseInformations.spouseLevel.");
+         }
     }
 
     private void _breedFunc(ICustomDataInput param1) {

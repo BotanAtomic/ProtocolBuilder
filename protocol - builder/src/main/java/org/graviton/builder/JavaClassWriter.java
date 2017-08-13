@@ -37,13 +37,12 @@ public class JavaClassWriter {
         builder.append("    }\n\n");
         builder.append("}");
 
-        System.err.println(builder.toString());
         FileUtils.writeFile(builder.toString(), actionScriptClass.buildExportPath() + actionScriptClass.getName() + ".java");
     }
 
     public static void writeClass(ActionScriptClass actionScriptClass) {
         StringBuilder builder = new StringBuilder();
-        builder.append("package ").append(actionScriptClass.getPackageName());
+        builder.append(actionScriptClass.getPackageName());
         builder.append("\n\n");
         actionScriptClass.getImportLines().forEach(builder::append);
         builder.append("\n");

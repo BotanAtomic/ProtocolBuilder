@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.friend;
+package com.ankamagames.dofus.network.types.game.friend;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -46,7 +46,13 @@ public class IgnoredOnlineInformations extends IgnoredInformations implements IN
     public void serializeAs_IgnoredOnlineInformations(ICustomDataOutput param1) {
          super.serializeAs_IgnoredInformations(param1);
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
+         }
+         param1.writeVarLong(this.playerId);
+         param1.writeUTF(this.playerName);
+         param1.writeByte(this.breed);
+         param1.writeBoolean(this.sex);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -76,7 +82,9 @@ public class IgnoredOnlineInformations extends IgnoredInformations implements IN
     private void _playerIdFunc(ICustomDataInput param1) {
          this.playerId = param1.readVarUhLong();
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element of IgnoredOnlineInformations.playerId.");
+         }
     }
 
     private void _playerNameFunc(ICustomDataInput param1) {
@@ -86,7 +94,9 @@ public class IgnoredOnlineInformations extends IgnoredInformations implements IN
     private void _breedFunc(ICustomDataInput param1) {
          this.breed = param1.readByte();
          if(this.breed < PlayableBreedEnum.Feca || this.breed > PlayableBreedEnum.Ouginak)
+         {
             throw new Exception("Forbidden value (" + this.breed + ") on element of IgnoredOnlineInformations.breed.");
+         }
     }
 
     private void _sexFunc(ICustomDataInput param1) {

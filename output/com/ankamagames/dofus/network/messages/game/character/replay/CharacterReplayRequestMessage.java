@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.replay;
+package com.ankamagames.dofus.network.messages.game.character.replay;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class CharacterReplayRequestMessage extends NetworkMessage implements INe
 
     public void serializeAs_CharacterReplayRequestMessage(ICustomDataOutput param1) {
          if(this.characterId < 0 || this.characterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.characterId + ") on element characterId.");
+         }
+         param1.writeVarLong(this.characterId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class CharacterReplayRequestMessage extends NetworkMessage implements INe
     private void _characterIdFunc(ICustomDataInput param1) {
          this.characterId = param1.readVarUhLong();
          if(this.characterId < 0 || this.characterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.characterId + ") on element of CharacterReplayRequestMessage.characterId.");
+         }
     }
 
 }

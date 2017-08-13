@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.alliance;
+package com.ankamagames.dofus.network.messages.game.alliance;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class AllianceInvitationMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_AllianceInvitationMessage(ICustomDataOutput param1) {
          if(this.targetId < 0 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeVarLong(this.targetId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class AllianceInvitationMessage extends NetworkMessage implements INetwor
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readVarUhLong();
          if(this.targetId < 0 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of AllianceInvitationMessage.targetId.");
+         }
     }
 
 }

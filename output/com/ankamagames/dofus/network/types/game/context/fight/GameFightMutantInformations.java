@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -20,7 +20,7 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
          return 50;
     }
 
-    public GameFightMutantInformations initGameFightMutantInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector.<uint>  param8,String  param9,PlayerStatus  param10,int  param11) {
+    public GameFightMutantInformations initGameFightMutantInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector<uint>  param8,String  param9,PlayerStatus  param10,int  param11) {
          super.initGameFightFighterNamedInformations(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10);
          this.powerLevel = param11;
          return this;
@@ -38,7 +38,10 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
     public void serializeAs_GameFightMutantInformations(ICustomDataOutput param1) {
          super.serializeAs_GameFightFighterNamedInformations(param1);
          if(this.powerLevel < 0)
+         {
             throw new Exception("Forbidden value (" + this.powerLevel + ") on element powerLevel.");
+         }
+         param1.writeByte(this.powerLevel);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -62,7 +65,9 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
     private void _powerLevelFunc(ICustomDataInput param1) {
          this.powerLevel = param1.readByte();
          if(this.powerLevel < 0)
+         {
             throw new Exception("Forbidden value (" + this.powerLevel + ") on element of GameFightMutantInformations.powerLevel.");
+         }
     }
 
 }

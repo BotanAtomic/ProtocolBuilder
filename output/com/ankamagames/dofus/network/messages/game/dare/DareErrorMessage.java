@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class DareErrorMessage extends NetworkMessage implements INetworkMessage 
     private void _errorFunc(ICustomDataInput param1) {
          this.error = param1.readByte();
          if(this.error < 0)
+         {
             throw new Exception("Forbidden value (" + this.error + ") on element of DareErrorMessage.error.");
+         }
     }
 
 }

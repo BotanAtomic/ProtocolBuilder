@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class DareRewardWonMessage extends NetworkMessage implements INetworkMess
 
     private int protocolId = 6678;
     private boolean _isInitialized = false;
-    private DareReward reward = ;
-    private FuncTree _rewardtree = ;
+    private DareReward reward;
+    private FuncTree _rewardtree;
 
 
     public boolean isInitialized() {

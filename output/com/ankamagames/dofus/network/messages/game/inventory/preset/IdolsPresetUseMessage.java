@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class IdolsPresetUseMessage extends NetworkMessage implements INetworkMes
 
     public void serializeAs_IdolsPresetUseMessage(ICustomDataOutput param1) {
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
+         }
+         param1.writeByte(this.presetId);
+         param1.writeBoolean(this.party);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class IdolsPresetUseMessage extends NetworkMessage implements INetworkMes
     private void _presetIdFunc(ICustomDataInput param1) {
          this.presetId = param1.readByte();
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element of IdolsPresetUseMessage.presetId.");
+         }
     }
 
     private void _partyFunc(ICustomDataInput param1) {

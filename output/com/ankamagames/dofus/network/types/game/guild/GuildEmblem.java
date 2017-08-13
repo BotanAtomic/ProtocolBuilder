@@ -1,9 +1,10 @@
-package package com.ankamagames.dofus.network.types.game.guild;
+package com.ankamagames.dofus.network.types.game.guild;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -42,7 +43,17 @@ public class GuildEmblem extends Object implements INetworkType {
 
     public void serializeAs_GuildEmblem(ICustomDataOutput param1) {
          if(this.symbolShape < 0)
+         {
             throw new Exception("Forbidden value (" + this.symbolShape + ") on element symbolShape.");
+         }
+         param1.writeVarShort(this.symbolShape);
+         param1.writeInt(this.symbolColor);
+         if(this.backgroundShape < 0)
+         {
+            throw new Exception("Forbidden value (" + this.backgroundShape + ") on element backgroundShape.");
+         }
+         param1.writeByte(this.backgroundShape);
+         param1.writeInt(this.backgroundColor);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -70,7 +81,9 @@ public class GuildEmblem extends Object implements INetworkType {
     private void _symbolShapeFunc(ICustomDataInput param1) {
          this.symbolShape = param1.readVarUhShort();
          if(this.symbolShape < 0)
+         {
             throw new Exception("Forbidden value (" + this.symbolShape + ") on element of GuildEmblem.symbolShape.");
+         }
     }
 
     private void _symbolColorFunc(ICustomDataInput param1) {
@@ -80,7 +93,9 @@ public class GuildEmblem extends Object implements INetworkType {
     private void _backgroundShapeFunc(ICustomDataInput param1) {
          this.backgroundShape = param1.readByte();
          if(this.backgroundShape < 0)
+         {
             throw new Exception("Forbidden value (" + this.backgroundShape + ") on element of GuildEmblem.backgroundShape.");
+         }
     }
 
     private void _backgroundColorFunc(ICustomDataInput param1) {

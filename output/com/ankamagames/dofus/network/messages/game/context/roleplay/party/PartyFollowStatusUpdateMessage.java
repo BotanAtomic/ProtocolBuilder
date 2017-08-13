@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -16,7 +16,6 @@ public class PartyFollowStatusUpdateMessage extends AbstractPartyMessage impleme
     private boolean success = false;
     private boolean isFollowed = false;
     private Number followedId = 0;
-    private int _loc2_ = 0;
 
 
     public boolean isInitialized() {
@@ -72,7 +71,10 @@ public class PartyFollowStatusUpdateMessage extends AbstractPartyMessage impleme
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.isFollowed);
          param1.writeByte(_loc2_);
          if(this.followedId < 0 || this.followedId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.followedId + ") on element followedId.");
+         }
+         param1.writeVarLong(this.followedId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -104,7 +106,9 @@ public class PartyFollowStatusUpdateMessage extends AbstractPartyMessage impleme
     private void _followedIdFunc(ICustomDataInput param1) {
          this.followedId = param1.readVarUhLong();
          if(this.followedId < 0 || this.followedId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.followedId + ") on element of PartyFollowStatusUpdateMessage.followedId.");
+         }
     }
 
 }

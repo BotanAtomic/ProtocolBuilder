@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.startup;
+package com.ankamagames.dofus.network.types.game.startup;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.data.items.ObjectItemInformationWithQuantity;
@@ -16,19 +16,15 @@ public class StartupActionAddObject extends Object implements INetworkType {
     private String text = "";
     private String descUrl = "";
     private String pictureUrl = "";
-    private Vector.<ObjectItemInformationWithQuantity> items = ;
-    private FuncTree _itemstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItemInformationWithQuantity> items;
+    private FuncTree _itemstree;
 
 
     public int getTypeId() {
          return 52;
     }
 
-    public StartupActionAddObject initStartupActionAddObject(int param1,String  param2,String  param3,String  param4,String  param5,Vector.<ObjectItemInformationWithQuantity>  param6) {
+    public StartupActionAddObject initStartupActionAddObject(int param1,String  param2,String  param3,String  param4,String  param5,Vector<ObjectItemInformationWithQuantity>  param6) {
          this.uid = param1;
          this.title = param2;
          this.text = param3;
@@ -53,7 +49,21 @@ public class StartupActionAddObject extends Object implements INetworkType {
 
     public void serializeAs_StartupActionAddObject(ICustomDataOutput param1) {
          if(this.uid < 0)
+         {
             throw new Exception("Forbidden value (" + this.uid + ") on element uid.");
+         }
+         param1.writeInt(this.uid);
+         param1.writeUTF(this.title);
+         param1.writeUTF(this.text);
+         param1.writeUTF(this.descUrl);
+         param1.writeUTF(this.pictureUrl);
+         param1.writeShort(this.items.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.items.length)
+         {
+            (this.items[_loc2_] as ObjectItemInformationWithQuantity).serializeAs_ObjectItemInformationWithQuantity(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -70,10 +80,12 @@ public class StartupActionAddObject extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItemInformationWithQuantity();
             _loc4_.deserialize(param1);
             this.items.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -92,7 +104,9 @@ public class StartupActionAddObject extends Object implements INetworkType {
     private void _uidFunc(ICustomDataInput param1) {
          this.uid = param1.readInt();
          if(this.uid < 0)
+         {
             throw new Exception("Forbidden value (" + this.uid + ") on element of StartupActionAddObject.uid.");
+         }
     }
 
     private void _titleFunc(ICustomDataInput param1) {
@@ -115,8 +129,10 @@ public class StartupActionAddObject extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._itemstree.addChild(this._itemsFunc);
             _loc3_++;
+         }
     }
 
     private void _itemsFunc(ICustomDataInput param1) {

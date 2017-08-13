@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class MountDataMessage extends NetworkMessage implements INetworkMessage 
 
     private int protocolId = 5973;
     private boolean _isInitialized = false;
-    private MountClientData mountData = ;
-    private FuncTree _mountDatatree = ;
+    private MountClientData mountData;
+    private FuncTree _mountDatatree;
 
 
     public boolean isInitialized() {

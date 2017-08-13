@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.alliance;
+package com.ankamagames.dofus.network.messages.game.alliance;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,8 +14,8 @@ public class AllianceModificationValidMessage extends NetworkMessage implements 
     private boolean _isInitialized = false;
     private String allianceName = "";
     private String allianceTag = "";
-    private GuildEmblem Alliancemblem = ;
-    private FuncTree _Alliancemblemtree = ;
+    private GuildEmblem Alliancemblem;
+    private FuncTree _Alliancemblemtree;
 
 
     public boolean isInitialized() {

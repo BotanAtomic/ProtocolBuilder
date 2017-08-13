@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.objects;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.objects;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ObjectGroundRemovedMessage extends NetworkMessage implements INetwo
 
     public void serializeAs_ObjectGroundRemovedMessage(ICustomDataOutput param1) {
          if(this.cell < 0 || this.cell > 559)
+         {
             throw new Exception("Forbidden value (" + this.cell + ") on element cell.");
+         }
+         param1.writeVarShort(this.cell);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ObjectGroundRemovedMessage extends NetworkMessage implements INetwo
     private void _cellFunc(ICustomDataInput param1) {
          this.cell = param1.readVarUhShort();
          if(this.cell < 0 || this.cell > 559)
+         {
             throw new Exception("Forbidden value (" + this.cell + ") on element of ObjectGroundRemovedMessage.cell.");
+         }
     }
 
 }

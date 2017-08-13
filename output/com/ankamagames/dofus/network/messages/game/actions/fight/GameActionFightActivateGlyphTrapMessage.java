@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

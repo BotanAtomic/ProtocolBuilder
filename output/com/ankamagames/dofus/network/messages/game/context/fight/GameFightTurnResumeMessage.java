@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class GameFightTurnResumeMessage extends GameFightTurnStartMessage implem
     public void serializeAs_GameFightTurnResumeMessage(ICustomDataOutput param1) {
          super.serializeAs_GameFightTurnStartMessage(param1);
          if(this.remainingTime < 0)
+         {
             throw new Exception("Forbidden value (" + this.remainingTime + ") on element remainingTime.");
+         }
+         param1.writeVarInt(this.remainingTime);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class GameFightTurnResumeMessage extends GameFightTurnStartMessage implem
     private void _remainingTimeFunc(ICustomDataInput param1) {
          this.remainingTime = param1.readVarUhInt();
          if(this.remainingTime < 0)
+         {
             throw new Exception("Forbidden value (" + this.remainingTime + ") on element of GameFightTurnResumeMessage.remainingTime.");
+         }
     }
 
 }

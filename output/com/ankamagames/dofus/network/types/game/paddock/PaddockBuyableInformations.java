@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.paddock;
+package com.ankamagames.dofus.network.types.game.paddock;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,11 @@ public class PaddockBuyableInformations extends Object implements INetworkType {
 
     public void serializeAs_PaddockBuyableInformations(ICustomDataOutput param1) {
          if(this.price < 0 || this.price > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.price + ") on element price.");
+         }
+         param1.writeVarLong(this.price);
+         param1.writeBoolean(this.locked);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +63,9 @@ public class PaddockBuyableInformations extends Object implements INetworkType {
     private void _priceFunc(ICustomDataInput param1) {
          this.price = param1.readVarUhLong();
          if(this.price < 0 || this.price > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.price + ") on element of PaddockBuyableInformations.price.");
+         }
     }
 
     private void _lockedFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.mount.MountClientData;
@@ -21,7 +21,7 @@ public class ExchangeMountsStableBornAddMessage extends ExchangeMountsStableAddM
          return 6557;
     }
 
-    public ExchangeMountsStableBornAddMessage initExchangeMountsStableBornAddMessage(Vector.<MountClientData> param1) {
+    public ExchangeMountsStableBornAddMessage initExchangeMountsStableBornAddMessage(Vector<MountClientData> param1) {
          super.initExchangeMountsStableAddMessage(param1);
          this._isInitialized = true;
          return this;

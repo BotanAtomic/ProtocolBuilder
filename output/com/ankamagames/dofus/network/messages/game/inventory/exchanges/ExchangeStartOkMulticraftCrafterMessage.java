@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ExchangeStartOkMulticraftCrafterMessage extends NetworkMessage impl
 
     public void serializeAs_ExchangeStartOkMulticraftCrafterMessage(ICustomDataOutput param1) {
          if(this.skillId < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
+         }
+         param1.writeVarInt(this.skillId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ExchangeStartOkMulticraftCrafterMessage extends NetworkMessage impl
     private void _skillIdFunc(ICustomDataInput param1) {
          this.skillId = param1.readVarUhInt();
          if(this.skillId < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillId + ") on element of ExchangeStartOkMulticraftCrafterMessage.skillId.");
+         }
     }
 
 }

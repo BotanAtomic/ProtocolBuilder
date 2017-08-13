@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character;
+package com.ankamagames.dofus.network.types.game.character;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class CharacterMinimalInformations extends CharacterBasicMinimalInformati
     public void serializeAs_CharacterMinimalInformations(ICustomDataOutput param1) {
          super.serializeAs_CharacterBasicMinimalInformations(param1);
          if(this.level < 1 || this.level > 206)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class CharacterMinimalInformations extends CharacterBasicMinimalInformati
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readUnsignedByte();
          if(this.level < 1 || this.level > 206)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of CharacterMinimalInformations.level.");
+         }
     }
 
 }

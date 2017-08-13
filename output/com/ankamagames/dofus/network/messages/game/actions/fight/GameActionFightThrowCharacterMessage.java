@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -65,7 +66,15 @@ public class GameActionFightThrowCharacterMessage extends AbstractGameActionMess
     public void serializeAs_GameActionFightThrowCharacterMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractGameActionMessage(param1);
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
+         if(this.cellId < -1 || this.cellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
+         }
+         param1.writeShort(this.cellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -91,13 +100,17 @@ public class GameActionFightThrowCharacterMessage extends AbstractGameActionMess
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readDouble();
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of GameActionFightThrowCharacterMessage.targetId.");
+         }
     }
 
     private void _cellIdFunc(ICustomDataInput param1) {
          this.cellId = param1.readShort();
          if(this.cellId < -1 || this.cellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.cellId + ") on element of GameActionFightThrowCharacterMessage.cellId.");
+         }
     }
 
 }

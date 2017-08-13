@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ExchangeStartOkNpcTradeMessage extends NetworkMessage implements IN
 
     public void serializeAs_ExchangeStartOkNpcTradeMessage(ICustomDataOutput param1) {
          if(this.npcId < -9.007199254740992E15 || this.npcId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
+         }
+         param1.writeDouble(this.npcId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ExchangeStartOkNpcTradeMessage extends NetworkMessage implements IN
     private void _npcIdFunc(ICustomDataInput param1) {
          this.npcId = param1.readDouble();
          if(this.npcId < -9.007199254740992E15 || this.npcId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.npcId + ") on element of ExchangeStartOkNpcTradeMessage.npcId.");
+         }
     }
 
 }

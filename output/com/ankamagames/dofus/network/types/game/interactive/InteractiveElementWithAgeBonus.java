@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.interactive;
+package com.ankamagames.dofus.network.types.game.interactive;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -17,7 +17,7 @@ public class InteractiveElementWithAgeBonus extends InteractiveElement implement
          return 398;
     }
 
-    public InteractiveElementWithAgeBonus initInteractiveElementWithAgeBonus(int param1,int  param2,Vector.<InteractiveElementSkill>  param3,Vector.<InteractiveElementSkill>  param4,boolean  param5,int  param6) {
+    public InteractiveElementWithAgeBonus initInteractiveElementWithAgeBonus(int param1,int  param2,Vector<InteractiveElementSkill>  param3,Vector<InteractiveElementSkill>  param4,boolean  param5,int  param6) {
          super.initInteractiveElement(param1,param2,param3,param4,param5);
          this.ageBonus = param6;
          return this;
@@ -35,7 +35,10 @@ public class InteractiveElementWithAgeBonus extends InteractiveElement implement
     public void serializeAs_InteractiveElementWithAgeBonus(ICustomDataOutput param1) {
          super.serializeAs_InteractiveElement(param1);
          if(this.ageBonus < -1 || this.ageBonus > 1000)
+         {
             throw new Exception("Forbidden value (" + this.ageBonus + ") on element ageBonus.");
+         }
+         param1.writeShort(this.ageBonus);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class InteractiveElementWithAgeBonus extends InteractiveElement implement
     private void _ageBonusFunc(ICustomDataInput param1) {
          this.ageBonus = param1.readShort();
          if(this.ageBonus < -1 || this.ageBonus > 1000)
+         {
             throw new Exception("Forbidden value (" + this.ageBonus + ") on element of InteractiveElementWithAgeBonus.ageBonus.");
+         }
     }
 
 }

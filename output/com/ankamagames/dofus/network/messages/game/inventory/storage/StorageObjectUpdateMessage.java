@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.storage;
+package com.ankamagames.dofus.network.messages.game.inventory.storage;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class StorageObjectUpdateMessage extends NetworkMessage implements INetwo
 
     private int protocolId = 5647;
     private boolean _isInitialized = false;
-    private ObjectItem object = ;
-    private FuncTree _objecttree = ;
+    private ObjectItem object;
+    private FuncTree _objecttree;
 
 
     public boolean isInitialized() {

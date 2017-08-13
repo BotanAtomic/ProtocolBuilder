@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.social;
+package com.ankamagames.dofus.network.types.game.social;
 
 import com.ankamagames.dofus.network.types.game.context.roleplay.GuildInformations;
 import com.ankamagames.jerakine.network.INetworkType;
@@ -11,8 +11,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class AlliancedGuildFactSheetInformations extends GuildInformations implements INetworkType {
 
     private int protocolId = 422;
-    private BasicNamedAllianceInformations allianceInfos = ;
-    private FuncTree _allianceInfostree = ;
+    private BasicNamedAllianceInformations allianceInfos;
+    private FuncTree _allianceInfostree;
 
 
     public int getTypeId() {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -66,7 +66,10 @@ public class PaddockBuyResultMessage extends NetworkMessage implements INetworkM
          param1.writeInt(this.paddockId);
          param1.writeBoolean(this.bought);
          if(this.realPrice < 0 || this.realPrice > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.realPrice + ") on element realPrice.");
+         }
+         param1.writeVarLong(this.realPrice);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -100,7 +103,9 @@ public class PaddockBuyResultMessage extends NetworkMessage implements INetworkM
     private void _realPriceFunc(ICustomDataInput param1) {
          this.realPrice = param1.readVarUhLong();
          if(this.realPrice < 0 || this.realPrice > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.realPrice + ") on element of PaddockBuyResultMessage.realPrice.");
+         }
     }
 
 }

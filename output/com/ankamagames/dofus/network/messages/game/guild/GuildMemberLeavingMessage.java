@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,10 @@ public class GuildMemberLeavingMessage extends NetworkMessage implements INetwor
     public void serializeAs_GuildMemberLeavingMessage(ICustomDataOutput param1) {
          param1.writeBoolean(this.kicked);
          if(this.memberId < 0 || this.memberId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.memberId + ") on element memberId.");
+         }
+         param1.writeVarLong(this.memberId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +93,9 @@ public class GuildMemberLeavingMessage extends NetworkMessage implements INetwor
     private void _memberIdFunc(ICustomDataInput param1) {
          this.memberId = param1.readVarUhLong();
          if(this.memberId < 0 || this.memberId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.memberId + ") on element of GuildMemberLeavingMessage.memberId.");
+         }
     }
 
 }

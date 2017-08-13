@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.basic;
+package com.ankamagames.dofus.network.messages.game.basic;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class BasicAckMessage extends NetworkMessage implements INetworkMessage {
 
     public void serializeAs_BasicAckMessage(ICustomDataOutput param1) {
          if(this.seq < 0)
+         {
             throw new Exception("Forbidden value (" + this.seq + ") on element seq.");
+         }
+         param1.writeVarInt(this.seq);
+         if(this.lastPacketId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.lastPacketId + ") on element lastPacketId.");
+         }
+         param1.writeVarShort(this.lastPacketId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class BasicAckMessage extends NetworkMessage implements INetworkMessage {
     private void _seqFunc(ICustomDataInput param1) {
          this.seq = param1.readVarUhInt();
          if(this.seq < 0)
+         {
             throw new Exception("Forbidden value (" + this.seq + ") on element of BasicAckMessage.seq.");
+         }
     }
 
     private void _lastPacketIdFunc(ICustomDataInput param1) {
          this.lastPacketId = param1.readVarUhShort();
          if(this.lastPacketId < 0)
+         {
             throw new Exception("Forbidden value (" + this.lastPacketId + ") on element of BasicAckMessage.lastPacketId.");
+         }
     }
 
 }

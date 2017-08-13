@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items;
+package com.ankamagames.dofus.network.types.game.data.items;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.data.items.effects.ObjectEffect;
@@ -13,21 +13,15 @@ public class ObjectItemMinimalInformation extends Item implements INetworkType {
 
     private int protocolId = 124;
     private int objectGID = 0;
-    private Vector.<ObjectEffect> effects = ;
-    private FuncTree _effectstree = ;
-    private int _loc2_ = 0;
-    private ObjectEffect _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private ObjectEffect _loc3_ = ProtocolTypeManager.getInstance(ObjectEffect,_loc2_);
+    private Vector<ObjectEffect> effects;
+    private FuncTree _effectstree;
 
 
     public int getTypeId() {
          return 124;
     }
 
-    public ObjectItemMinimalInformation initObjectItemMinimalInformation(int param1,Vector.<ObjectEffect>  param2) {
+    public ObjectItemMinimalInformation initObjectItemMinimalInformation(int param1,Vector<ObjectEffect>  param2) {
          this.objectGID = param1;
          this.effects = param2;
          return this;
@@ -45,7 +39,18 @@ public class ObjectItemMinimalInformation extends Item implements INetworkType {
     public void serializeAs_ObjectItemMinimalInformation(ICustomDataOutput param1) {
          super.serializeAs_Item(param1);
          if(this.objectGID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
+         }
+         param1.writeVarShort(this.objectGID);
+         param1.writeShort(this.effects.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.effects.length)
+         {
+            param1.writeShort((this.effects[_loc2_] as ObjectEffect).getTypeId());
+            (this.effects[_loc2_] as ObjectEffect).serialize(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -60,11 +65,13 @@ public class ObjectItemMinimalInformation extends Item implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(ObjectEffect,_loc4_);
             _loc5_.deserialize(param1);
             this.effects.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -80,15 +87,19 @@ public class ObjectItemMinimalInformation extends Item implements INetworkType {
     private void _objectGIDFunc(ICustomDataInput param1) {
          this.objectGID = param1.readVarUhShort();
          if(this.objectGID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectGID + ") on element of ObjectItemMinimalInformation.objectGID.");
+         }
     }
 
     private void _effectstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._effectstree.addChild(this._effectsFunc);
             _loc3_++;
+         }
     }
 
     private void _effectsFunc(ICustomDataInput param1) {

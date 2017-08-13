@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.mount;
+package com.ankamagames.dofus.network.types.game.mount;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -52,7 +52,9 @@ public class UpdateMountBoost extends Object implements INetworkType {
     private void _typeFunc(ICustomDataInput param1) {
          this.type = param1.readByte();
          if(this.type < 0)
+         {
             throw new Exception("Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
+         }
     }
 
 }

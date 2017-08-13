@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.dofus.network.messages.game.inventory.exchanges.ExchangeObjectMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,10 @@ public class ExchangeObjectRemovedFromBagMessage extends ExchangeObjectMessage i
     public void serializeAs_ExchangeObjectRemovedFromBagMessage(ICustomDataOutput param1) {
          super.serializeAs_ExchangeObjectMessage(param1);
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
+         }
+         param1.writeVarInt(this.objectUID);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +88,9 @@ public class ExchangeObjectRemovedFromBagMessage extends ExchangeObjectMessage i
     private void _objectUIDFunc(ICustomDataInput param1) {
          this.objectUID = param1.readVarUhInt();
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element of ExchangeObjectRemovedFromBagMessage.objectUID.");
+         }
     }
 
 }

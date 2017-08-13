@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -16,23 +16,10 @@ public class MapRunningFightDetailsMessage extends NetworkMessage implements INe
     private int protocolId = 5751;
     private boolean _isInitialized = false;
     private int fightId = 0;
-    private Vector.<GameFightFighterLightInformations> attackers = ;
-    private Vector.<GameFightFighterLightInformations> defenders = ;
-    private FuncTree _attackerstree = ;
-    private FuncTree _defenderstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private GameFightFighterLightInformations _loc7_ = null;
-    private int _loc8_ = 0;
-    private GameFightFighterLightInformations _loc9_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private GameFightFighterLightInformations _loc3_ = ProtocolTypeManager.getInstance(GameFightFighterLightInformations,_loc2_);
-    private int _loc3_ = 0;
-    private GameFightFighterLightInformations _loc3_ = ProtocolTypeManager.getInstance(GameFightFighterLightInformations,_loc2_);
+    private Vector<GameFightFighterLightInformations> attackers;
+    private Vector<GameFightFighterLightInformations> defenders;
+    private FuncTree _attackerstree;
+    private FuncTree _defenderstree;
 
 
     public boolean isInitialized() {
@@ -43,7 +30,7 @@ public class MapRunningFightDetailsMessage extends NetworkMessage implements INe
          return 5751;
     }
 
-    public MapRunningFightDetailsMessage initMapRunningFightDetailsMessage(int param1,Vector.<GameFightFighterLightInformations>  param2,Vector.<GameFightFighterLightInformations>  param3) {
+    public MapRunningFightDetailsMessage initMapRunningFightDetailsMessage(int param1,Vector<GameFightFighterLightInformations>  param2,Vector<GameFightFighterLightInformations>  param3) {
          this.fightId = param1;
          this.attackers = param2;
          this.defenders = param3;
@@ -81,7 +68,26 @@ public class MapRunningFightDetailsMessage extends NetworkMessage implements INe
 
     public void serializeAs_MapRunningFightDetailsMessage(ICustomDataOutput param1) {
          if(this.fightId < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
+         }
+         param1.writeInt(this.fightId);
+         param1.writeShort(this.attackers.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.attackers.length)
+         {
+            param1.writeShort((this.attackers[_loc2_] as GameFightFighterLightInformations).getTypeId());
+            (this.attackers[_loc2_] as GameFightFighterLightInformations).serialize(param1);
+            _loc2_++;
+         }
+         param1.writeShort(this.defenders.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.defenders.length)
+         {
+            param1.writeShort((this.defenders[_loc3_] as GameFightFighterLightInformations).getTypeId());
+            (this.defenders[_loc3_] as GameFightFighterLightInformations).serialize(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,11 +103,23 @@ public class MapRunningFightDetailsMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = param1.readUnsignedShort();
             _loc7_ = ProtocolTypeManager.getInstance(GameFightFighterLightInformations,_loc6_);
             _loc7_.deserialize(param1);
             this.attackers.push(_loc7_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc8_ = param1.readUnsignedShort();
+            _loc9_ = ProtocolTypeManager.getInstance(GameFightFighterLightInformations,_loc8_);
+            _loc9_.deserialize(param1);
+            this.defenders.push(_loc9_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -117,15 +135,19 @@ public class MapRunningFightDetailsMessage extends NetworkMessage implements INe
     private void _fightIdFunc(ICustomDataInput param1) {
          this.fightId = param1.readInt();
          if(this.fightId < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightId + ") on element of MapRunningFightDetailsMessage.fightId.");
+         }
     }
 
     private void _attackerstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._attackerstree.addChild(this._attackersFunc);
             _loc3_++;
+         }
     }
 
     private void _attackersFunc(ICustomDataInput param1) {
@@ -139,8 +161,10 @@ public class MapRunningFightDetailsMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._defenderstree.addChild(this._defendersFunc);
             _loc3_++;
+         }
     }
 
     private void _defendersFunc(ICustomDataInput param1) {

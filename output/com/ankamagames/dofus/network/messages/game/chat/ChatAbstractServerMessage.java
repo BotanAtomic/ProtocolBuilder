@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat;
+package com.ankamagames.dofus.network.messages.game.chat;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -70,7 +70,11 @@ public class ChatAbstractServerMessage extends NetworkMessage implements INetwor
          param1.writeByte(this.channel);
          param1.writeUTF(this.content);
          if(this.timestamp < 0)
+         {
             throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
+         }
+         param1.writeInt(this.timestamp);
+         param1.writeUTF(this.fingerprint);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -98,7 +102,9 @@ public class ChatAbstractServerMessage extends NetworkMessage implements INetwor
     private void _channelFunc(ICustomDataInput param1) {
          this.channel = param1.readByte();
          if(this.channel < 0)
+         {
             throw new Exception("Forbidden value (" + this.channel + ") on element of ChatAbstractServerMessage.channel.");
+         }
     }
 
     private void _contentFunc(ICustomDataInput param1) {
@@ -108,7 +114,9 @@ public class ChatAbstractServerMessage extends NetworkMessage implements INetwor
     private void _timestampFunc(ICustomDataInput param1) {
          this.timestamp = param1.readInt();
          if(this.timestamp < 0)
+         {
             throw new Exception("Forbidden value (" + this.timestamp + ") on element of ChatAbstractServerMessage.timestamp.");
+         }
     }
 
     private void _fingerprintFunc(ICustomDataInput param1) {

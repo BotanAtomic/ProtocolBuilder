@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.updater.parts;
+package com.ankamagames.dofus.network.messages.updater.parts;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

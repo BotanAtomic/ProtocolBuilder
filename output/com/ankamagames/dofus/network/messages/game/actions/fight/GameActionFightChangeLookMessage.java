@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,8 +15,8 @@ public class GameActionFightChangeLookMessage extends AbstractGameActionMessage 
     private int protocolId = 5532;
     private boolean _isInitialized = false;
     private Number targetId = 0;
-    private EntityLook entityLook = ;
-    private FuncTree _entityLooktree = ;
+    private EntityLook entityLook;
+    private FuncTree _entityLooktree;
 
 
     public boolean isInitialized() {
@@ -66,7 +66,11 @@ public class GameActionFightChangeLookMessage extends AbstractGameActionMessage 
     public void serializeAs_GameActionFightChangeLookMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractGameActionMessage(param1);
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
+         this.entityLook.serializeAs_EntityLook(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -93,7 +97,9 @@ public class GameActionFightChangeLookMessage extends AbstractGameActionMessage 
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readDouble();
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of GameActionFightChangeLookMessage.targetId.");
+         }
     }
 
     private void _entityLooktreeFunc(ICustomDataInput param1) {

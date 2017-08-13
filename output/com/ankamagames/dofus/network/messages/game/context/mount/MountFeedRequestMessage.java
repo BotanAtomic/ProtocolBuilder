@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,8 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -69,7 +71,21 @@ public class MountFeedRequestMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_MountFeedRequestMessage(ICustomDataOutput param1) {
          if(this.mountUid < 0)
+         {
             throw new Exception("Forbidden value (" + this.mountUid + ") on element mountUid.");
+         }
+         param1.writeVarInt(this.mountUid);
+         param1.writeByte(this.mountLocation);
+         if(this.mountFoodUid < 0)
+         {
+            throw new Exception("Forbidden value (" + this.mountFoodUid + ") on element mountFoodUid.");
+         }
+         param1.writeVarInt(this.mountFoodUid);
+         if(this.quantity < 0)
+         {
+            throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
+         }
+         param1.writeVarInt(this.quantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,7 +113,9 @@ public class MountFeedRequestMessage extends NetworkMessage implements INetworkM
     private void _mountUidFunc(ICustomDataInput param1) {
          this.mountUid = param1.readVarUhInt();
          if(this.mountUid < 0)
+         {
             throw new Exception("Forbidden value (" + this.mountUid + ") on element of MountFeedRequestMessage.mountUid.");
+         }
     }
 
     private void _mountLocationFunc(ICustomDataInput param1) {
@@ -107,13 +125,17 @@ public class MountFeedRequestMessage extends NetworkMessage implements INetworkM
     private void _mountFoodUidFunc(ICustomDataInput param1) {
          this.mountFoodUid = param1.readVarUhInt();
          if(this.mountFoodUid < 0)
+         {
             throw new Exception("Forbidden value (" + this.mountFoodUid + ") on element of MountFeedRequestMessage.mountFoodUid.");
+         }
     }
 
     private void _quantityFunc(ICustomDataInput param1) {
          this.quantity = param1.readVarUhInt();
          if(this.quantity < 0)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element of MountFeedRequestMessage.quantity.");
+         }
     }
 
 }

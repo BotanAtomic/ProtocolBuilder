@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,11 @@ public class IdolsPresetDeleteResultMessage extends NetworkMessage implements IN
 
     public void serializeAs_IdolsPresetDeleteResultMessage(ICustomDataOutput param1) {
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
+         }
+         param1.writeByte(this.presetId);
+         param1.writeByte(this.code);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +90,17 @@ public class IdolsPresetDeleteResultMessage extends NetworkMessage implements IN
     private void _presetIdFunc(ICustomDataInput param1) {
          this.presetId = param1.readByte();
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element of IdolsPresetDeleteResultMessage.presetId.");
+         }
     }
 
     private void _codeFunc(ICustomDataInput param1) {
          this.code = param1.readByte();
          if(this.code < 0)
+         {
             throw new Exception("Forbidden value (" + this.code + ") on element of IdolsPresetDeleteResultMessage.code.");
+         }
     }
 
 }

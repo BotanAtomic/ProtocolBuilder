@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class PartyLeaderUpdateMessage extends AbstractPartyEventMessage implemen
     public void serializeAs_PartyLeaderUpdateMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractPartyEventMessage(param1);
          if(this.partyLeaderId < 0 || this.partyLeaderId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.partyLeaderId + ") on element partyLeaderId.");
+         }
+         param1.writeVarLong(this.partyLeaderId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class PartyLeaderUpdateMessage extends AbstractPartyEventMessage implemen
     private void _partyLeaderIdFunc(ICustomDataInput param1) {
          this.partyLeaderId = param1.readVarUhLong();
          if(this.partyLeaderId < 0 || this.partyLeaderId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.partyLeaderId + ") on element of PartyLeaderUpdateMessage.partyLeaderId.");
+         }
     }
 
 }

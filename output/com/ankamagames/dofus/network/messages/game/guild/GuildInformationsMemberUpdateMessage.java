@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GuildInformationsMemberUpdateMessage extends NetworkMessage impleme
 
     private int protocolId = 5597;
     private boolean _isInitialized = false;
-    private GuildMember member = ;
-    private FuncTree _membertree = ;
+    private GuildMember member;
+    private FuncTree _membertree;
 
 
     public boolean isInitialized() {

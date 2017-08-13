@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.guild.tax;
+package com.ankamagames.dofus.network.types.game.guild.tax;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -12,10 +12,10 @@ public class TaxCollectorMovement extends Object implements INetworkType {
 
     private int protocolId = 493;
     private int movementType = 0;
-    private TaxCollectorBasicInformations basicInfos = ;
+    private TaxCollectorBasicInformations basicInfos;
     private Number playerId = 0;
     private String playerName = "";
-    private FuncTree _basicInfostree = ;
+    private FuncTree _basicInfostree;
 
 
     public int getTypeId() {
@@ -44,7 +44,11 @@ public class TaxCollectorMovement extends Object implements INetworkType {
          param1.writeByte(this.movementType);
          this.basicInfos.serializeAs_TaxCollectorBasicInformations(param1);
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
+         }
+         param1.writeVarLong(this.playerId);
+         param1.writeUTF(this.playerName);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -73,7 +77,9 @@ public class TaxCollectorMovement extends Object implements INetworkType {
     private void _movementTypeFunc(ICustomDataInput param1) {
          this.movementType = param1.readByte();
          if(this.movementType < 0)
+         {
             throw new Exception("Forbidden value (" + this.movementType + ") on element of TaxCollectorMovement.movementType.");
+         }
     }
 
     private void _basicInfostreeFunc(ICustomDataInput param1) {
@@ -84,7 +90,9 @@ public class TaxCollectorMovement extends Object implements INetworkType {
     private void _playerIdFunc(ICustomDataInput param1) {
          this.playerId = param1.readVarUhLong();
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
+         }
     }
 
     private void _playerNameFunc(ICustomDataInput param1) {

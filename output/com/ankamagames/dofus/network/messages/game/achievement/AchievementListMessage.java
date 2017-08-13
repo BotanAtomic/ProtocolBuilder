@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.achievement;
+package com.ankamagames.dofus.network.messages.game.achievement;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,19 +15,10 @@ public class AchievementListMessage extends NetworkMessage implements INetworkMe
 
     private int protocolId = 6205;
     private boolean _isInitialized = false;
-    private Vector.<uint> finishedAchievementsIds = ;
-    private Vector.<AchievementRewardable> rewardableAchievements = ;
-    private FuncTree _finishedAchievementsIdstree = ;
-    private FuncTree _rewardableAchievementstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private AchievementRewardable _loc7_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> finishedAchievementsIds;
+    private Vector<AchievementRewardable> rewardableAchievements;
+    private FuncTree _finishedAchievementsIdstree;
+    private FuncTree _rewardableAchievementstree;
 
 
     public boolean isInitialized() {
@@ -38,7 +29,7 @@ public class AchievementListMessage extends NetworkMessage implements INetworkMe
          return 6205;
     }
 
-    public AchievementListMessage initAchievementListMessage(Vector.<uint> param1,Vector.<AchievementRewardable>  param2) {
+    public AchievementListMessage initAchievementListMessage(Vector<uint> param1,Vector<AchievementRewardable>  param2) {
          this.finishedAchievementsIds = param1;
          this.rewardableAchievements = param2;
          this._isInitialized = true;
@@ -76,8 +67,21 @@ public class AchievementListMessage extends NetworkMessage implements INetworkMe
          param1.writeShort(this.finishedAchievementsIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.finishedAchievementsIds.length)
+         {
             if(this.finishedAchievementsIds[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.finishedAchievementsIds[_loc2_] + ") on element 1 (starting at 1) of finishedAchievementsIds.");
+            }
+            param1.writeVarShort(this.finishedAchievementsIds[_loc2_]);
+            _loc2_++;
+         }
+         param1.writeShort(this.rewardableAchievements.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.rewardableAchievements.length)
+         {
+            (this.rewardableAchievements[_loc3_] as AchievementRewardable).serializeAs_AchievementRewardable(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,9 +94,24 @@ public class AchievementListMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = param1.readVarUhShort();
             if(_loc6_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc6_ + ") on elements of finishedAchievementsIds.");
+            }
+            this.finishedAchievementsIds.push(_loc6_);
+            _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = new AchievementRewardable();
+            _loc7_.deserialize(param1);
+            this.rewardableAchievements.push(_loc7_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -108,22 +127,29 @@ public class AchievementListMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._finishedAchievementsIdstree.addChild(this._finishedAchievementsIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _finishedAchievementsIdsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of finishedAchievementsIds.");
+         }
+         this.finishedAchievementsIds.push(_loc2_);
     }
 
     private void _rewardableAchievementstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._rewardableAchievementstree.addChild(this._rewardableAchievementsFunc);
             _loc3_++;
+         }
     }
 
     private void _rewardableAchievementsFunc(ICustomDataInput param1) {

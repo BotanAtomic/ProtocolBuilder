@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GameMapChangeOrientationMessage extends NetworkMessage implements I
 
     private int protocolId = 946;
     private boolean _isInitialized = false;
-    private ActorOrientation orientation = ;
-    private FuncTree _orientationtree = ;
+    private ActorOrientation orientation;
+    private FuncTree _orientationtree;
 
 
     public boolean isInitialized() {

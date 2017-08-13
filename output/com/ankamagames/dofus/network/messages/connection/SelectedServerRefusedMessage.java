@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -66,7 +66,12 @@ public class SelectedServerRefusedMessage extends NetworkMessage implements INet
 
     public void serializeAs_SelectedServerRefusedMessage(ICustomDataOutput param1) {
          if(this.serverId < 0)
+         {
             throw new Exception("Forbidden value (" + this.serverId + ") on element serverId.");
+         }
+         param1.writeVarShort(this.serverId);
+         param1.writeByte(this.error);
+         param1.writeByte(this.serverStatus);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -92,19 +97,25 @@ public class SelectedServerRefusedMessage extends NetworkMessage implements INet
     private void _serverIdFunc(ICustomDataInput param1) {
          this.serverId = param1.readVarUhShort();
          if(this.serverId < 0)
+         {
             throw new Exception("Forbidden value (" + this.serverId + ") on element of SelectedServerRefusedMessage.serverId.");
+         }
     }
 
     private void _errorFunc(ICustomDataInput param1) {
          this.error = param1.readByte();
          if(this.error < 0)
+         {
             throw new Exception("Forbidden value (" + this.error + ") on element of SelectedServerRefusedMessage.error.");
+         }
     }
 
     private void _serverStatusFunc(ICustomDataInput param1) {
          this.serverStatus = param1.readByte();
          if(this.serverStatus < 0)
+         {
             throw new Exception("Forbidden value (" + this.serverStatus + ") on element of SelectedServerRefusedMessage.serverStatus.");
+         }
     }
 
 }

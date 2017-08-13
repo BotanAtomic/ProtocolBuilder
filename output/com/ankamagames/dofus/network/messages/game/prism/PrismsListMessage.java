@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class PrismsListMessage extends NetworkMessage implements INetworkMessage
 
     private int protocolId = 6440;
     private boolean _isInitialized = false;
-    private Vector.<PrismSubareaEmptyInfo> prisms = ;
-    private FuncTree _prismstree = ;
-    private int _loc2_ = 0;
-    private PrismSubareaEmptyInfo _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private PrismSubareaEmptyInfo _loc3_ = ProtocolTypeManager.getInstance(PrismSubareaEmptyInfo,_loc2_);
+    private Vector<PrismSubareaEmptyInfo> prisms;
+    private FuncTree _prismstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class PrismsListMessage extends NetworkMessage implements INetworkMessage
          return 6440;
     }
 
-    public PrismsListMessage initPrismsListMessage(Vector.<PrismSubareaEmptyInfo> param1) {
+    public PrismsListMessage initPrismsListMessage(Vector<PrismSubareaEmptyInfo> param1) {
          this.prisms = param1;
          this._isInitialized = true;
          return this;
@@ -67,9 +61,11 @@ public class PrismsListMessage extends NetworkMessage implements INetworkMessage
          param1.writeShort(this.prisms.length);
          int _loc2_ = 0;
          while(_loc2_ < this.prisms.length)
+         {
             param1.writeShort((this.prisms[_loc2_] as PrismSubareaEmptyInfo).getTypeId());
             (this.prisms[_loc2_] as PrismSubareaEmptyInfo).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,11 +78,13 @@ public class PrismsListMessage extends NetworkMessage implements INetworkMessage
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(PrismSubareaEmptyInfo,_loc4_);
             _loc5_.deserialize(param1);
             this.prisms.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,8 +99,10 @@ public class PrismsListMessage extends NetworkMessage implements INetworkMessage
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._prismstree.addChild(this._prismsFunc);
             _loc3_++;
+         }
     }
 
     private void _prismsFunc(ICustomDataInput param1) {

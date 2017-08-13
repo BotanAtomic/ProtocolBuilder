@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GameDataPaddockObjectAddMessage extends NetworkMessage implements I
 
     private int protocolId = 5990;
     private boolean _isInitialized = false;
-    private PaddockItem paddockItemDescription = ;
-    private FuncTree _paddockItemDescriptiontree = ;
+    private PaddockItem paddockItemDescription;
+    private FuncTree _paddockItemDescriptiontree;
 
 
     public boolean isInitialized() {

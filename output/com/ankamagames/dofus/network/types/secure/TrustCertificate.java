@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.secure;
+package com.ankamagames.dofus.network.types.secure;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,11 @@ public class TrustCertificate extends Object implements INetworkType {
 
     public void serializeAs_TrustCertificate(ICustomDataOutput param1) {
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeInt(this.id);
+         param1.writeUTF(this.hash);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +63,9 @@ public class TrustCertificate extends Object implements INetworkType {
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readInt();
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of TrustCertificate.id.");
+         }
     }
 
     private void _hashFunc(ICustomDataInput param1) {

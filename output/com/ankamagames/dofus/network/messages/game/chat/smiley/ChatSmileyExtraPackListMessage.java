@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat.smiley;
+package com.ankamagames.dofus.network.messages.game.chat.smiley;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,12 +14,8 @@ public class ChatSmileyExtraPackListMessage extends NetworkMessage implements IN
 
     private int protocolId = 6596;
     private boolean _isInitialized = false;
-    private Vector.<uint> packIds = ;
-    private FuncTree _packIdstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> packIds;
+    private FuncTree _packIdstree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class ChatSmileyExtraPackListMessage extends NetworkMessage implements IN
          return 6596;
     }
 
-    public ChatSmileyExtraPackListMessage initChatSmileyExtraPackListMessage(Vector.<uint> param1) {
+    public ChatSmileyExtraPackListMessage initChatSmileyExtraPackListMessage(Vector<uint> param1) {
          this.packIds = param1;
          this._isInitialized = true;
          return this;
@@ -66,8 +62,14 @@ public class ChatSmileyExtraPackListMessage extends NetworkMessage implements IN
          param1.writeShort(this.packIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.packIds.length)
+         {
             if(this.packIds[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.packIds[_loc2_] + ") on element 1 (starting at 1) of packIds.");
+            }
+            param1.writeByte(this.packIds[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -79,9 +81,15 @@ public class ChatSmileyExtraPackListMessage extends NetworkMessage implements IN
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readByte();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of packIds.");
+            }
+            this.packIds.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -96,14 +104,19 @@ public class ChatSmileyExtraPackListMessage extends NetworkMessage implements IN
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._packIdstree.addChild(this._packIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _packIdsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readByte();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of packIds.");
+         }
+         this.packIds.push(_loc2_);
     }
 
 }

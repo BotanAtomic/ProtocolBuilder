@@ -2,8 +2,8 @@ package com.ankamagames.dofus.network.enums;
 
 public enum GameContextEnum {
 
-    ROLE_PLAY(1),
-    FIGHT(2);
+    ROLE_PLAY(1;),
+    FIGHT(2;);
 
     private final int value;
     public GameContextEnum(int value) {

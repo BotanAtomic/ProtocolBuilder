@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class GameFightJoinRequestMessage extends NetworkMessage implements INetw
 
     public void serializeAs_GameFightJoinRequestMessage(ICustomDataOutput param1) {
          if(this.fighterId < -9.007199254740992E15 || this.fighterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.fighterId + ") on element fighterId.");
+         }
+         param1.writeDouble(this.fighterId);
+         param1.writeInt(this.fightId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class GameFightJoinRequestMessage extends NetworkMessage implements INetw
     private void _fighterIdFunc(ICustomDataInput param1) {
          this.fighterId = param1.readDouble();
          if(this.fighterId < -9.007199254740992E15 || this.fighterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.fighterId + ") on element of GameFightJoinRequestMessage.fighterId.");
+         }
     }
 
     private void _fightIdFunc(ICustomDataInput param1) {

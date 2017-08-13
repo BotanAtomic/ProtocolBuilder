@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.interactive;
+package com.ankamagames.dofus.network.types.game.interactive;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class InteractiveElementNamedSkill extends InteractiveElementSkill implem
     public void serializeAs_InteractiveElementNamedSkill(ICustomDataOutput param1) {
          super.serializeAs_InteractiveElementSkill(param1);
          if(this.nameId < 0)
+         {
             throw new Exception("Forbidden value (" + this.nameId + ") on element nameId.");
+         }
+         param1.writeVarInt(this.nameId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class InteractiveElementNamedSkill extends InteractiveElementSkill implem
     private void _nameIdFunc(ICustomDataInput param1) {
          this.nameId = param1.readVarUhInt();
          if(this.nameId < 0)
+         {
             throw new Exception("Forbidden value (" + this.nameId + ") on element of InteractiveElementNamedSkill.nameId.");
+         }
     }
 
 }

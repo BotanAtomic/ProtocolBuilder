@@ -2,9 +2,9 @@ package com.ankamagames.dofus.network.enums;
 
 public enum ClientInstallTypeEnum {
 
-    CLIENT_INSTALL_UNKNOWN(0),
-    CLIENT_BUNDLE(1),
-    CLIENT_STREAMING(2);
+    CLIENT_INSTALL_UNKNOWN(0;),
+    CLIENT_BUNDLE(1;),
+    CLIENT_STREAMING(2;);
 
     private final int value;
     public ClientInstallTypeEnum(int value) {

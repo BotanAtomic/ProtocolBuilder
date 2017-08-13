@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild.tax;
+package com.ankamagames.dofus.network.messages.game.guild.tax;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class TaxCollectorMovementsOfflineMessage extends NetworkMessage implemen
 
     private int protocolId = 6611;
     private boolean _isInitialized = false;
-    private Vector.<TaxCollectorMovement> movements = ;
-    private FuncTree _movementstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<TaxCollectorMovement> movements;
+    private FuncTree _movementstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class TaxCollectorMovementsOfflineMessage extends NetworkMessage implemen
          return 6611;
     }
 
-    public TaxCollectorMovementsOfflineMessage initTaxCollectorMovementsOfflineMessage(Vector.<TaxCollectorMovement> param1) {
+    public TaxCollectorMovementsOfflineMessage initTaxCollectorMovementsOfflineMessage(Vector<TaxCollectorMovement> param1) {
          this.movements = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class TaxCollectorMovementsOfflineMessage extends NetworkMessage implemen
          param1.writeShort(this.movements.length);
          int _loc2_ = 0;
          while(_loc2_ < this.movements.length)
+         {
             (this.movements[_loc2_] as TaxCollectorMovement).serializeAs_TaxCollectorMovement(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class TaxCollectorMovementsOfflineMessage extends NetworkMessage implemen
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new TaxCollectorMovement();
             _loc4_.deserialize(param1);
             this.movements.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class TaxCollectorMovementsOfflineMessage extends NetworkMessage implemen
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._movementstree.addChild(this._movementsFunc);
             _loc3_++;
+         }
     }
 
     private void _movementsFunc(ICustomDataInput param1) {

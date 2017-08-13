@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class GuildListMessage extends NetworkMessage implements INetworkMessage 
 
     private int protocolId = 6413;
     private boolean _isInitialized = false;
-    private Vector.<GuildInformations> guilds = ;
-    private FuncTree _guildstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<GuildInformations> guilds;
+    private FuncTree _guildstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class GuildListMessage extends NetworkMessage implements INetworkMessage 
          return 6413;
     }
 
-    public GuildListMessage initGuildListMessage(Vector.<GuildInformations> param1) {
+    public GuildListMessage initGuildListMessage(Vector<GuildInformations> param1) {
          this.guilds = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class GuildListMessage extends NetworkMessage implements INetworkMessage 
          param1.writeShort(this.guilds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.guilds.length)
+         {
             (this.guilds[_loc2_] as GuildInformations).serializeAs_GuildInformations(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class GuildListMessage extends NetworkMessage implements INetworkMessage 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new GuildInformations();
             _loc4_.deserialize(param1);
             this.guilds.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class GuildListMessage extends NetworkMessage implements INetworkMessage 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._guildstree.addChild(this._guildsFunc);
             _loc3_++;
+         }
     }
 
     private void _guildsFunc(ICustomDataInput param1) {

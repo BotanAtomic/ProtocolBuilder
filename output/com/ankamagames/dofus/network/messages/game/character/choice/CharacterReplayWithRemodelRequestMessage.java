@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.choice;
+package com.ankamagames.dofus.network.messages.game.character.choice;
 
 import com.ankamagames.dofus.network.messages.game.character.replay.CharacterReplayRequestMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class CharacterReplayWithRemodelRequestMessage extends CharacterReplayReq
 
     private int protocolId = 6551;
     private boolean _isInitialized = false;
-    private RemodelingInformation remodel = ;
-    private FuncTree _remodeltree = ;
+    private RemodelingInformation remodel;
+    private FuncTree _remodeltree;
 
 
     public boolean isInitialized() {

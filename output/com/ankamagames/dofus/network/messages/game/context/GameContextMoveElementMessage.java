@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GameContextMoveElementMessage extends NetworkMessage implements INe
 
     private int protocolId = 253;
     private boolean _isInitialized = false;
-    private EntityMovementInformations movement = ;
-    private FuncTree _movementtree = ;
+    private EntityMovementInformations movement;
+    private FuncTree _movementtree;
 
 
     public boolean isInitialized() {

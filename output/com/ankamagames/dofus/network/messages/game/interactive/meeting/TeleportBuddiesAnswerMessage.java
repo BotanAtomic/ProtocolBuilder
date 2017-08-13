@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive.meeting;
+package com.ankamagames.dofus.network.messages.game.interactive.meeting;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

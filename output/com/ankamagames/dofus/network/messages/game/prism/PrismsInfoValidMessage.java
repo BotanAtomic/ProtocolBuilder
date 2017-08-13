@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class PrismsInfoValidMessage extends NetworkMessage implements INetworkMe
 
     private int protocolId = 6451;
     private boolean _isInitialized = false;
-    private Vector.<PrismFightersInformation> fights = ;
-    private FuncTree _fightstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<PrismFightersInformation> fights;
+    private FuncTree _fightstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class PrismsInfoValidMessage extends NetworkMessage implements INetworkMe
          return 6451;
     }
 
-    public PrismsInfoValidMessage initPrismsInfoValidMessage(Vector.<PrismFightersInformation> param1) {
+    public PrismsInfoValidMessage initPrismsInfoValidMessage(Vector<PrismFightersInformation> param1) {
          this.fights = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class PrismsInfoValidMessage extends NetworkMessage implements INetworkMe
          param1.writeShort(this.fights.length);
          int _loc2_ = 0;
          while(_loc2_ < this.fights.length)
+         {
             (this.fights[_loc2_] as PrismFightersInformation).serializeAs_PrismFightersInformation(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class PrismsInfoValidMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new PrismFightersInformation();
             _loc4_.deserialize(param1);
             this.fights.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class PrismsInfoValidMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._fightstree.addChild(this._fightsFunc);
             _loc3_++;
+         }
     }
 
     private void _fightsFunc(ICustomDataInput param1) {

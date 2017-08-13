@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ExchangeSetCraftRecipeMessage extends NetworkMessage implements INe
 
     public void serializeAs_ExchangeSetCraftRecipeMessage(ICustomDataOutput param1) {
          if(this.objectGID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
+         }
+         param1.writeVarShort(this.objectGID);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ExchangeSetCraftRecipeMessage extends NetworkMessage implements INe
     private void _objectGIDFunc(ICustomDataInput param1) {
          this.objectGID = param1.readVarUhShort();
          if(this.objectGID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectGID + ") on element of ExchangeSetCraftRecipeMessage.objectGID.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class PrismFightAddedMessage extends NetworkMessage implements INetworkMe
 
     private int protocolId = 6452;
     private boolean _isInitialized = false;
-    private PrismFightersInformation fight = ;
-    private FuncTree _fighttree = ;
+    private PrismFightersInformation fight;
+    private FuncTree _fighttree;
 
 
     public boolean isInitialized() {

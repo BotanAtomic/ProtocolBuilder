@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.stats;
+package com.ankamagames.dofus.network.messages.game.character.stats;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class LifePointsRegenBeginMessage extends NetworkMessage implements INetw
 
     public void serializeAs_LifePointsRegenBeginMessage(ICustomDataOutput param1) {
          if(this.regenRate < 0 || this.regenRate > 255)
+         {
             throw new Exception("Forbidden value (" + this.regenRate + ") on element regenRate.");
+         }
+         param1.writeByte(this.regenRate);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class LifePointsRegenBeginMessage extends NetworkMessage implements INetw
     private void _regenRateFunc(ICustomDataInput param1) {
          this.regenRate = param1.readUnsignedByte();
          if(this.regenRate < 0 || this.regenRate > 255)
+         {
             throw new Exception("Forbidden value (" + this.regenRate + ") on element of LifePointsRegenBeginMessage.regenRate.");
+         }
     }
 
 }

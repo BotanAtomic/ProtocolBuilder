@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class PartyInvitationDungeonRequestMessage extends PartyInvitationRequest
     public void serializeAs_PartyInvitationDungeonRequestMessage(ICustomDataOutput param1) {
          super.serializeAs_PartyInvitationRequestMessage(param1);
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+         }
+         param1.writeVarShort(this.dungeonId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class PartyInvitationDungeonRequestMessage extends PartyInvitationRequest
     private void _dungeonIdFunc(ICustomDataInput param1) {
          this.dungeonId = param1.readVarUhShort();
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element of PartyInvitationDungeonRequestMessage.dungeonId.");
+         }
     }
 
 }

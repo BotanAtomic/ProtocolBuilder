@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.ui;
+package com.ankamagames.dofus.network.messages.game.ui;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class ClientUIOpenedByObjectMessage extends ClientUIOpenedMessage impleme
     public void serializeAs_ClientUIOpenedByObjectMessage(ICustomDataOutput param1) {
          super.serializeAs_ClientUIOpenedMessage(param1);
          if(this.uid < 0)
+         {
             throw new Exception("Forbidden value (" + this.uid + ") on element uid.");
+         }
+         param1.writeVarInt(this.uid);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class ClientUIOpenedByObjectMessage extends ClientUIOpenedMessage impleme
     private void _uidFunc(ICustomDataInput param1) {
          this.uid = param1.readVarUhInt();
          if(this.uid < 0)
+         {
             throw new Exception("Forbidden value (" + this.uid + ") on element of ClientUIOpenedByObjectMessage.uid.");
+         }
     }
 
 }

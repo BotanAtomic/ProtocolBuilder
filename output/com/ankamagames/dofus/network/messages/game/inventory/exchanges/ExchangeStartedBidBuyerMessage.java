@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class ExchangeStartedBidBuyerMessage extends NetworkMessage implements IN
 
     private int protocolId = 5904;
     private boolean _isInitialized = false;
-    private SellerBuyerDescriptor buyerDescriptor = ;
-    private FuncTree _buyerDescriptortree = ;
+    private SellerBuyerDescriptor buyerDescriptor;
+    private FuncTree _buyerDescriptortree;
 
 
     public boolean isInitialized() {

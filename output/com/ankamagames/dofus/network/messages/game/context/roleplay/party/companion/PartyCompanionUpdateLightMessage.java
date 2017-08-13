@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party.companion;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party.companion;
 
 import com.ankamagames.dofus.network.messages.game.context.roleplay.party.PartyUpdateLightMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,10 @@ public class PartyCompanionUpdateLightMessage extends PartyUpdateLightMessage im
     public void serializeAs_PartyCompanionUpdateLightMessage(ICustomDataOutput param1) {
          super.serializeAs_PartyUpdateLightMessage(param1);
          if(this.indexId < 0)
+         {
             throw new Exception("Forbidden value (" + this.indexId + ") on element indexId.");
+         }
+         param1.writeByte(this.indexId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +88,9 @@ public class PartyCompanionUpdateLightMessage extends PartyUpdateLightMessage im
     private void _indexIdFunc(ICustomDataInput param1) {
          this.indexId = param1.readByte();
          if(this.indexId < 0)
+         {
             throw new Exception("Forbidden value (" + this.indexId + ") on element of PartyCompanionUpdateLightMessage.indexId.");
+         }
     }
 
 }

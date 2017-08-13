@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character.choice;
+package com.ankamagames.dofus.network.types.game.character.choice;
 
 import com.ankamagames.dofus.network.types.game.character.AbstractCharacterInformation;
 import com.ankamagames.jerakine.network.INetworkType;
@@ -6,24 +6,21 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class AbstractCharacterToRefurbishInformation extends AbstractCharacterInformation implements INetworkType {
 
     private int protocolId = 475;
-    private Vector.<int> colors = ;
+    private Vector<int> colors;
     private int cosmeticId = 0;
-    private FuncTree _colorstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _colorstree;
 
 
     public int getTypeId() {
          return 475;
     }
 
-    public AbstractCharacterToRefurbishInformation initAbstractCharacterToRefurbishInformation(Number param1,Vector.<int>  param2,int  param3) {
+    public AbstractCharacterToRefurbishInformation initAbstractCharacterToRefurbishInformation(Number param1,Vector<int>  param2,int  param3) {
          super.initAbstractCharacterInformation(param1);
          this.colors = param2;
          this.cosmeticId = param3;
@@ -45,8 +42,15 @@ public class AbstractCharacterToRefurbishInformation extends AbstractCharacterIn
          param1.writeShort(this.colors.length);
          int _loc2_ = 0;
          while(_loc2_ < this.colors.length)
+         {
             param1.writeInt(this.colors[_loc2_]);
             _loc2_++;
+         }
+         if(this.cosmeticId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+         }
+         param1.writeVarInt(this.cosmeticId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,9 +63,12 @@ public class AbstractCharacterToRefurbishInformation extends AbstractCharacterIn
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readInt();
             this.colors.push(_loc4_);
             _loc3_++;
+         }
+         this._cosmeticIdFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -78,8 +85,10 @@ public class AbstractCharacterToRefurbishInformation extends AbstractCharacterIn
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._colorstree.addChild(this._colorsFunc);
             _loc3_++;
+         }
     }
 
     private void _colorsFunc(ICustomDataInput param1) {
@@ -90,7 +99,9 @@ public class AbstractCharacterToRefurbishInformation extends AbstractCharacterIn
     private void _cosmeticIdFunc(ICustomDataInput param1) {
          this.cosmeticId = param1.readVarUhInt();
          if(this.cosmeticId < 0)
+         {
             throw new Exception("Forbidden value (" + this.cosmeticId + ") on element of AbstractCharacterToRefurbishInformation.cosmeticId.");
+         }
     }
 
 }

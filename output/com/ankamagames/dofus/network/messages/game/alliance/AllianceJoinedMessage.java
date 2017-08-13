@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.alliance;
+package com.ankamagames.dofus.network.messages.game.alliance;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,10 +14,10 @@ public class AllianceJoinedMessage extends NetworkMessage implements INetworkMes
 
     private int protocolId = 6402;
     private boolean _isInitialized = false;
-    private AllianceInformations allianceInfo = ;
+    private AllianceInformations allianceInfo;
     private boolean enabled = false;
     private int leadingGuildId = 0;
-    private FuncTree _allianceInfotree = ;
+    private FuncTree _allianceInfotree;
 
 
     public boolean isInitialized() {
@@ -67,7 +67,10 @@ public class AllianceJoinedMessage extends NetworkMessage implements INetworkMes
          this.allianceInfo.serializeAs_AllianceInformations(param1);
          param1.writeBoolean(this.enabled);
          if(this.leadingGuildId < 0)
+         {
             throw new Exception("Forbidden value (" + this.leadingGuildId + ") on element leadingGuildId.");
+         }
+         param1.writeVarInt(this.leadingGuildId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -103,7 +106,9 @@ public class AllianceJoinedMessage extends NetworkMessage implements INetworkMes
     private void _leadingGuildIdFunc(ICustomDataInput param1) {
          this.leadingGuildId = param1.readVarUhInt();
          if(this.leadingGuildId < 0)
+         {
             throw new Exception("Forbidden value (" + this.leadingGuildId + ") on element of AllianceJoinedMessage.leadingGuildId.");
+         }
     }
 
 }

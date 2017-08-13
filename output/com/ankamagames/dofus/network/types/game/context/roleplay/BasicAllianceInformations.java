@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.dofus.network.types.game.social.AbstractSocialGroupInfos;
 import com.ankamagames.jerakine.network.INetworkType;
@@ -37,7 +37,11 @@ public class BasicAllianceInformations extends AbstractSocialGroupInfos implemen
     public void serializeAs_BasicAllianceInformations(ICustomDataOutput param1) {
          super.serializeAs_AbstractSocialGroupInfos(param1);
          if(this.allianceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
+         }
+         param1.writeVarInt(this.allianceId);
+         param1.writeUTF(this.allianceTag);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -63,7 +67,9 @@ public class BasicAllianceInformations extends AbstractSocialGroupInfos implemen
     private void _allianceIdFunc(ICustomDataInput param1) {
          this.allianceId = param1.readVarUhInt();
          if(this.allianceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.allianceId + ") on element of BasicAllianceInformations.allianceId.");
+         }
     }
 
     private void _allianceTagFunc(ICustomDataInput param1) {

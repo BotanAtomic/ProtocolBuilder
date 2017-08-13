@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.friend;
+package com.ankamagames.dofus.network.types.game.friend;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,11 @@ public class AbstractContactInformations extends Object implements INetworkType 
 
     public void serializeAs_AbstractContactInformations(ICustomDataOutput param1) {
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
+         param1.writeUTF(this.accountName);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +63,9 @@ public class AbstractContactInformations extends Object implements INetworkType 
     private void _accountIdFunc(ICustomDataInput param1) {
          this.accountId = param1.readInt();
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element of AbstractContactInformations.accountId.");
+         }
     }
 
     private void _accountNameFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive.zaap;
+package com.ankamagames.dofus.network.messages.game.interactive.zaap;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -23,7 +23,7 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
          return 1604;
     }
 
-    public ZaapListMessage initZaapListMessage(int param1,Vector.<uint>  param2,Vector.<uint>  param3,Vector.<uint>  param4,Vector.<uint>  param5,int  param6) {
+    public ZaapListMessage initZaapListMessage(int param1,Vector<uint>  param2,Vector<uint>  param3,Vector<uint>  param4,Vector<uint>  param5,int  param6) {
          super.initTeleportDestinationsListMessage(param1,param2,param3,param4,param5);
          this.spawnMapId = param6;
          this._isInitialized = true;
@@ -60,7 +60,10 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
     public void serializeAs_ZaapListMessage(ICustomDataOutput param1) {
          super.serializeAs_TeleportDestinationsListMessage(param1);
          if(this.spawnMapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spawnMapId + ") on element spawnMapId.");
+         }
+         param1.writeInt(this.spawnMapId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
     private void _spawnMapIdFunc(ICustomDataInput param1) {
          this.spawnMapId = param1.readInt();
          if(this.spawnMapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spawnMapId + ") on element of ZaapListMessage.spawnMapId.");
+         }
     }
 
 }

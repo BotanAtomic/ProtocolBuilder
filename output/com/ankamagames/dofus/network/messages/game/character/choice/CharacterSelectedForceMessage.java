@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.choice;
+package com.ankamagames.dofus.network.messages.game.character.choice;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class CharacterSelectedForceMessage extends NetworkMessage implements INe
 
     public void serializeAs_CharacterSelectedForceMessage(ICustomDataOutput param1) {
          if(this.id < 1 || this.id > 2147483647)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeInt(this.id);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class CharacterSelectedForceMessage extends NetworkMessage implements INe
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readInt();
          if(this.id < 1 || this.id > 2147483647)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of CharacterSelectedForceMessage.id.");
+         }
     }
 
 }

@@ -1,10 +1,11 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -15,12 +16,8 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
     private boolean _isInitialized = false;
     private int spellId = 0;
     private int spellLevel = 0;
-    private Vector.<int> portalsIds = ;
-    private FuncTree _portalsIdstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> portalsIds;
+    private FuncTree _portalsIdstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +28,7 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
          return 1010;
     }
 
-    public GameActionFightSpellCastMessage initGameActionFightSpellCastMessage(int param1,Number  param2,Number  param3,int  param4,int  param5,boolean  param6,boolean  param7,int  param8,int  param9,Vector.<int>  param10) {
+    public GameActionFightSpellCastMessage initGameActionFightSpellCastMessage(int param1,Number  param2,Number  param3,int  param4,int  param5,boolean  param6,boolean  param7,int  param8,int  param9,Vector<int>  param10) {
          super.initAbstractGameActionFightTargetedAbilityMessage(param1,param2,param3,param4,param5,param6,param7);
          this.spellId = param8;
          this.spellLevel = param9;
@@ -72,7 +69,22 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
     public void serializeAs_GameActionFightSpellCastMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractGameActionFightTargetedAbilityMessage(param1);
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeVarShort(this.spellId);
+         if(this.spellLevel < 1 || this.spellLevel > 200)
+         {
+            throw new Exception("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
+         }
+         param1.writeShort(this.spellLevel);
+         param1.writeShort(this.portalsIds.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.portalsIds.length)
+         {
+            param1.writeShort(this.portalsIds[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,9 +99,11 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readShort();
             this.portalsIds.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -106,21 +120,27 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
     private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readVarUhShort();
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of GameActionFightSpellCastMessage.spellId.");
+         }
     }
 
     private void _spellLevelFunc(ICustomDataInput param1) {
          this.spellLevel = param1.readShort();
          if(this.spellLevel < 1 || this.spellLevel > 200)
+         {
             throw new Exception("Forbidden value (" + this.spellLevel + ") on element of GameActionFightSpellCastMessage.spellLevel.");
+         }
     }
 
     private void _portalsIdstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._portalsIdstree.addChild(this._portalsIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _portalsIdsFunc(ICustomDataInput param1) {

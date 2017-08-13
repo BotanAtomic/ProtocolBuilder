@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.quest;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.quest;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class FollowedQuestsMessage extends NetworkMessage implements INetworkMes
 
     private int protocolId = 6717;
     private boolean _isInitialized = false;
-    private Vector.<QuestActiveDetailedInformations> quests = ;
-    private FuncTree _queststree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<QuestActiveDetailedInformations> quests;
+    private FuncTree _queststree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class FollowedQuestsMessage extends NetworkMessage implements INetworkMes
          return 6717;
     }
 
-    public FollowedQuestsMessage initFollowedQuestsMessage(Vector.<QuestActiveDetailedInformations> param1) {
+    public FollowedQuestsMessage initFollowedQuestsMessage(Vector<QuestActiveDetailedInformations> param1) {
          this.quests = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class FollowedQuestsMessage extends NetworkMessage implements INetworkMes
          param1.writeShort(this.quests.length);
          int _loc2_ = 0;
          while(_loc2_ < this.quests.length)
+         {
             (this.quests[_loc2_] as QuestActiveDetailedInformations).serializeAs_QuestActiveDetailedInformations(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class FollowedQuestsMessage extends NetworkMessage implements INetworkMes
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new QuestActiveDetailedInformations();
             _loc4_.deserialize(param1);
             this.quests.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class FollowedQuestsMessage extends NetworkMessage implements INetworkMes
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._queststree.addChild(this._questsFunc);
             _loc3_++;
+         }
     }
 
     private void _questsFunc(ICustomDataInput param1) {

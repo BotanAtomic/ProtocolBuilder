@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GameActionFightMarkCellsMessage extends AbstractGameActionMessage i
 
     private int protocolId = 5540;
     private boolean _isInitialized = false;
-    private GameActionMark mark = ;
-    private FuncTree _marktree = ;
+    private GameActionMark mark;
+    private FuncTree _marktree;
 
 
     public boolean isInitialized() {

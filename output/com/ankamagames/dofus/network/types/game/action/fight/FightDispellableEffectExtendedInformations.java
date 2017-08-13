@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.action.fight;
+package com.ankamagames.dofus.network.types.game.action.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.actions.fight.AbstractFightDispellableEffect;
@@ -9,15 +9,15 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class FightDispellableEffectExtendedInformations extends Object implements INetworkType {
 
     private int protocolId = 208;
     private int actionId = 0;
     private Number sourceId = 0;
-    private AbstractFightDispellableEffect effect = ;
-    private FuncTree _effecttree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private AbstractFightDispellableEffect effect;
+    private FuncTree _effecttree;
 
 
     public int getTypeId() {
@@ -43,7 +43,17 @@ public class FightDispellableEffectExtendedInformations extends Object implement
 
     public void serializeAs_FightDispellableEffectExtendedInformations(ICustomDataOutput param1) {
          if(this.actionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
+         }
+         param1.writeVarShort(this.actionId);
+         if(this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
+         }
+         param1.writeDouble(this.sourceId);
+         param1.writeShort(this.effect.getTypeId());
+         this.effect.serialize(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -71,13 +81,17 @@ public class FightDispellableEffectExtendedInformations extends Object implement
     private void _actionIdFunc(ICustomDataInput param1) {
          this.actionId = param1.readVarUhShort();
          if(this.actionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actionId + ") on element of FightDispellableEffectExtendedInformations.actionId.");
+         }
     }
 
     private void _sourceIdFunc(ICustomDataInput param1) {
          this.sourceId = param1.readDouble();
          if(this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.sourceId + ") on element of FightDispellableEffectExtendedInformations.sourceId.");
+         }
     }
 
     private void _effecttreeFunc(ICustomDataInput param1) {

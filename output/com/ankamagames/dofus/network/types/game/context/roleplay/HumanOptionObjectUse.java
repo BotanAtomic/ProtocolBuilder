@@ -1,9 +1,10 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -42,7 +43,15 @@ public class HumanOptionObjectUse extends HumanOption implements INetworkType {
          super.serializeAs_HumanOption(param1);
          param1.writeByte(this.delayTypeId);
          if(this.delayEndTime < 0 || this.delayEndTime > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.delayEndTime + ") on element delayEndTime.");
+         }
+         param1.writeDouble(this.delayEndTime);
+         if(this.objectGID < 0)
+         {
+            throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
+         }
+         param1.writeVarShort(this.objectGID);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -70,19 +79,25 @@ public class HumanOptionObjectUse extends HumanOption implements INetworkType {
     private void _delayTypeIdFunc(ICustomDataInput param1) {
          this.delayTypeId = param1.readByte();
          if(this.delayTypeId < 0)
+         {
             throw new Exception("Forbidden value (" + this.delayTypeId + ") on element of HumanOptionObjectUse.delayTypeId.");
+         }
     }
 
     private void _delayEndTimeFunc(ICustomDataInput param1) {
          this.delayEndTime = param1.readDouble();
          if(this.delayEndTime < 0 || this.delayEndTime > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.delayEndTime + ") on element of HumanOptionObjectUse.delayEndTime.");
+         }
     }
 
     private void _objectGIDFunc(ICustomDataInput param1) {
          this.objectGID = param1.readVarUhShort();
          if(this.objectGID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectGID + ") on element of HumanOptionObjectUse.objectGID.");
+         }
     }
 
 }

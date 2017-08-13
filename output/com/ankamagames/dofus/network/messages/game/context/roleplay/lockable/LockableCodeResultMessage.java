@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.lockable;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.lockable;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class LockableCodeResultMessage extends NetworkMessage implements INetwor
     private void _resultFunc(ICustomDataInput param1) {
          this.result = param1.readByte();
          if(this.result < 0)
+         {
             throw new Exception("Forbidden value (" + this.result + ") on element of LockableCodeResultMessage.result.");
+         }
     }
 
 }

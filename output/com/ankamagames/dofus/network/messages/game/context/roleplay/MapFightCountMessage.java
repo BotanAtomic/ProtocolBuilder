@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class MapFightCountMessage extends NetworkMessage implements INetworkMess
 
     public void serializeAs_MapFightCountMessage(ICustomDataOutput param1) {
          if(this.fightCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightCount + ") on element fightCount.");
+         }
+         param1.writeVarShort(this.fightCount);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class MapFightCountMessage extends NetworkMessage implements INetworkMess
     private void _fightCountFunc(ICustomDataInput param1) {
          this.fightCount = param1.readVarUhShort();
          if(this.fightCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightCount + ") on element of MapFightCountMessage.fightCount.");
+         }
     }
 
 }

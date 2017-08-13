@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ExchangeBidHouseListMessage extends NetworkMessage implements INetw
 
     public void serializeAs_ExchangeBidHouseListMessage(ICustomDataOutput param1) {
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarShort(this.id);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ExchangeBidHouseListMessage extends NetworkMessage implements INetw
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readVarUhShort();
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of ExchangeBidHouseListMessage.id.");
+         }
     }
 
 }

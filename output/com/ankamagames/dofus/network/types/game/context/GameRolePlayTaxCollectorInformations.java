@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context;
+package com.ankamagames.dofus.network.types.game.context;
 
 import com.ankamagames.dofus.network.types.game.context.roleplay.GameRolePlayActorInformations;
 import com.ankamagames.jerakine.network.INetworkType;
@@ -13,11 +13,10 @@ import java.lang.Exception;
 public class GameRolePlayTaxCollectorInformations extends GameRolePlayActorInformations implements INetworkType {
 
     private int protocolId = 148;
-    private TaxCollectorStaticInformations identification = ;
+    private TaxCollectorStaticInformations identification;
     private int guildLevel = 0;
     private int taxCollectorAttack = 0;
-    private FuncTree _identificationtree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private FuncTree _identificationtree;
 
 
     public int getTypeId() {
@@ -47,7 +46,11 @@ public class GameRolePlayTaxCollectorInformations extends GameRolePlayActorInfor
          param1.writeShort(this.identification.getTypeId());
          this.identification.serialize(param1);
          if(this.guildLevel < 0 || this.guildLevel > 255)
+         {
             throw new Exception("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
+         }
+         param1.writeByte(this.guildLevel);
+         param1.writeInt(this.taxCollectorAttack);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -83,7 +86,9 @@ public class GameRolePlayTaxCollectorInformations extends GameRolePlayActorInfor
     private void _guildLevelFunc(ICustomDataInput param1) {
          this.guildLevel = param1.readUnsignedByte();
          if(this.guildLevel < 0 || this.guildLevel > 255)
+         {
             throw new Exception("Forbidden value (" + this.guildLevel + ") on element of GameRolePlayTaxCollectorInformations.guildLevel.");
+         }
     }
 
     private void _taxCollectorAttackFunc(ICustomDataInput param1) {

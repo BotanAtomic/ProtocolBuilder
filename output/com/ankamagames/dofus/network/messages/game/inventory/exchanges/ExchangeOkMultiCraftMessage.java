@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -65,7 +66,16 @@ public class ExchangeOkMultiCraftMessage extends NetworkMessage implements INetw
 
     public void serializeAs_ExchangeOkMultiCraftMessage(ICustomDataOutput param1) {
          if(this.initiatorId < 0 || this.initiatorId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.initiatorId + ") on element initiatorId.");
+         }
+         param1.writeVarLong(this.initiatorId);
+         if(this.otherId < 0 || this.otherId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.otherId + ") on element otherId.");
+         }
+         param1.writeVarLong(this.otherId);
+         param1.writeByte(this.role);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -91,13 +101,17 @@ public class ExchangeOkMultiCraftMessage extends NetworkMessage implements INetw
     private void _initiatorIdFunc(ICustomDataInput param1) {
          this.initiatorId = param1.readVarUhLong();
          if(this.initiatorId < 0 || this.initiatorId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.initiatorId + ") on element of ExchangeOkMultiCraftMessage.initiatorId.");
+         }
     }
 
     private void _otherIdFunc(ICustomDataInput param1) {
          this.otherId = param1.readVarUhLong();
          if(this.otherId < 0 || this.otherId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.otherId + ") on element of ExchangeOkMultiCraftMessage.otherId.");
+         }
     }
 
     private void _roleFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -9,18 +9,15 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class JobMultiCraftAvailableSkillsMessage extends JobAllowMultiCraftRequestMessage implements INetworkMessage {
 
     private int protocolId = 5747;
     private boolean _isInitialized = false;
     private Number playerId = 0;
-    private Vector.<uint> skills = ;
-    private FuncTree _skillstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> skills;
+    private FuncTree _skillstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +28,7 @@ public class JobMultiCraftAvailableSkillsMessage extends JobAllowMultiCraftReque
          return 5747;
     }
 
-    public JobMultiCraftAvailableSkillsMessage initJobMultiCraftAvailableSkillsMessage(boolean param1,Number  param2,Vector.<uint>  param3) {
+    public JobMultiCraftAvailableSkillsMessage initJobMultiCraftAvailableSkillsMessage(boolean param1,Number  param2,Vector<uint>  param3) {
          super.initJobAllowMultiCraftRequestMessage(param1);
          this.playerId = param2;
          this.skills = param3;
@@ -70,7 +67,21 @@ public class JobMultiCraftAvailableSkillsMessage extends JobAllowMultiCraftReque
     public void serializeAs_JobMultiCraftAvailableSkillsMessage(ICustomDataOutput param1) {
          super.serializeAs_JobAllowMultiCraftRequestMessage(param1);
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
+         }
+         param1.writeVarLong(this.playerId);
+         param1.writeShort(this.skills.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.skills.length)
+         {
+            if(this.skills[_loc2_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.skills[_loc2_] + ") on element 2 (starting at 1) of skills.");
+            }
+            param1.writeVarShort(this.skills[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,9 +95,15 @@ public class JobMultiCraftAvailableSkillsMessage extends JobAllowMultiCraftReque
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarUhShort();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of skills.");
+            }
+            this.skills.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -102,21 +119,28 @@ public class JobMultiCraftAvailableSkillsMessage extends JobAllowMultiCraftReque
     private void _playerIdFunc(ICustomDataInput param1) {
          this.playerId = param1.readVarUhLong();
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element of JobMultiCraftAvailableSkillsMessage.playerId.");
+         }
     }
 
     private void _skillstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._skillstree.addChild(this._skillsFunc);
             _loc3_++;
+         }
     }
 
     private void _skillsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of skills.");
+         }
+         this.skills.push(_loc2_);
     }
 
 }

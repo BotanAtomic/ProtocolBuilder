@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -10,6 +10,7 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class HouseToSellListMessage extends NetworkMessage implements INetworkMessage {
 
@@ -17,12 +18,8 @@ public class HouseToSellListMessage extends NetworkMessage implements INetworkMe
     private boolean _isInitialized = false;
     private int pageIndex = 0;
     private int totalPage = 0;
-    private Vector.<HouseInformationsForSell> houseList = ;
-    private FuncTree _houseListtree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<HouseInformationsForSell> houseList;
+    private FuncTree _houseListtree;
 
 
     public boolean isInitialized() {
@@ -33,7 +30,7 @@ public class HouseToSellListMessage extends NetworkMessage implements INetworkMe
          return 6140;
     }
 
-    public HouseToSellListMessage initHouseToSellListMessage(int param1,int  param2,Vector.<HouseInformationsForSell>  param3) {
+    public HouseToSellListMessage initHouseToSellListMessage(int param1,int  param2,Vector<HouseInformationsForSell>  param3) {
          this.pageIndex = param1;
          this.totalPage = param2;
          this.houseList = param3;
@@ -71,7 +68,22 @@ public class HouseToSellListMessage extends NetworkMessage implements INetworkMe
 
     public void serializeAs_HouseToSellListMessage(ICustomDataOutput param1) {
          if(this.pageIndex < 0)
+         {
             throw new Exception("Forbidden value (" + this.pageIndex + ") on element pageIndex.");
+         }
+         param1.writeVarShort(this.pageIndex);
+         if(this.totalPage < 0)
+         {
+            throw new Exception("Forbidden value (" + this.totalPage + ") on element totalPage.");
+         }
+         param1.writeVarShort(this.totalPage);
+         param1.writeShort(this.houseList.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.houseList.length)
+         {
+            (this.houseList[_loc2_] as HouseInformationsForSell).serializeAs_HouseInformationsForSell(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,10 +97,12 @@ public class HouseToSellListMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new HouseInformationsForSell();
             _loc4_.deserialize(param1);
             this.houseList.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -104,21 +118,27 @@ public class HouseToSellListMessage extends NetworkMessage implements INetworkMe
     private void _pageIndexFunc(ICustomDataInput param1) {
          this.pageIndex = param1.readVarUhShort();
          if(this.pageIndex < 0)
+         {
             throw new Exception("Forbidden value (" + this.pageIndex + ") on element of HouseToSellListMessage.pageIndex.");
+         }
     }
 
     private void _totalPageFunc(ICustomDataInput param1) {
          this.totalPage = param1.readVarUhShort();
          if(this.totalPage < 0)
+         {
             throw new Exception("Forbidden value (" + this.totalPage + ") on element of HouseToSellListMessage.totalPage.");
+         }
     }
 
     private void _houseListtreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._houseListtree.addChild(this._houseListFunc);
             _loc3_++;
+         }
     }
 
     private void _houseListFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.emote;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.emote;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -13,12 +13,8 @@ public class EmotePlayMassiveMessage extends EmotePlayAbstractMessage implements
 
     private int protocolId = 5691;
     private boolean _isInitialized = false;
-    private Vector.<Number> actorIds = ;
-    private FuncTree _actorIdstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<Number> actorIds;
+    private FuncTree _actorIdstree;
 
 
     public boolean isInitialized() {
@@ -29,7 +25,7 @@ public class EmotePlayMassiveMessage extends EmotePlayAbstractMessage implements
          return 5691;
     }
 
-    public EmotePlayMassiveMessage initEmotePlayMassiveMessage(int param1,Number  param2,Vector.<Number>  param3) {
+    public EmotePlayMassiveMessage initEmotePlayMassiveMessage(int param1,Number  param2,Vector<Number>  param3) {
          super.initEmotePlayAbstractMessage(param1,param2);
          this.actorIds = param3;
          this._isInitialized = true;
@@ -68,8 +64,14 @@ public class EmotePlayMassiveMessage extends EmotePlayAbstractMessage implements
          param1.writeShort(this.actorIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.actorIds.length)
+         {
             if(this.actorIds[_loc2_] < -9.007199254740992E15 || this.actorIds[_loc2_] > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + this.actorIds[_loc2_] + ") on element 1 (starting at 1) of actorIds.");
+            }
+            param1.writeDouble(this.actorIds[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,9 +84,15 @@ public class EmotePlayMassiveMessage extends EmotePlayAbstractMessage implements
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readDouble();
             if(_loc4_ < -9.007199254740992E15 || _loc4_ > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of actorIds.");
+            }
+            this.actorIds.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -100,14 +108,19 @@ public class EmotePlayMassiveMessage extends EmotePlayAbstractMessage implements
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._actorIdstree.addChild(this._actorIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _actorIdsFunc(ICustomDataInput param1) {
          Number _loc2_ = param1.readDouble();
          if(_loc2_ < -9.007199254740992E15 || _loc2_ > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of actorIds.");
+         }
+         this.actorIds.push(_loc2_);
     }
 
 }

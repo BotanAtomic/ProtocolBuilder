@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.paddock;
+package com.ankamagames.dofus.network.types.game.paddock;
 
 import com.ankamagames.dofus.network.types.game.context.roleplay.ObjectItemInRolePlay;
 import com.ankamagames.jerakine.network.INetworkType;
@@ -10,8 +10,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class PaddockItem extends ObjectItemInRolePlay implements INetworkType {
 
     private int protocolId = 185;
-    private ItemDurability durability = ;
-    private FuncTree _durabilitytree = ;
+    private ItemDurability durability;
+    private FuncTree _durabilitytree;
 
 
     public int getTypeId() {

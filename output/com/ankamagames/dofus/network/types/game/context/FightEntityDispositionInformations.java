@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context;
+package com.ankamagames.dofus.network.types.game.context;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class FightEntityDispositionInformations extends EntityDispositionInforma
     public void serializeAs_FightEntityDispositionInformations(ICustomDataOutput param1) {
          super.serializeAs_EntityDispositionInformations(param1);
          if(this.carryingCharacterId < -9.007199254740992E15 || this.carryingCharacterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.carryingCharacterId + ") on element carryingCharacterId.");
+         }
+         param1.writeDouble(this.carryingCharacterId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class FightEntityDispositionInformations extends EntityDispositionInforma
     private void _carryingCharacterIdFunc(ICustomDataInput param1) {
          this.carryingCharacterId = param1.readDouble();
          if(this.carryingCharacterId < -9.007199254740992E15 || this.carryingCharacterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.carryingCharacterId + ") on element of FightEntityDispositionInformations.carryingCharacterId.");
+         }
     }
 
 }

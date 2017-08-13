@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,9 +14,9 @@ public class GuildJoinedMessage extends NetworkMessage implements INetworkMessag
 
     private int protocolId = 5564;
     private boolean _isInitialized = false;
-    private GuildInformations guildInfo = ;
+    private GuildInformations guildInfo;
     private int memberRights = 0;
-    private FuncTree _guildInfotree = ;
+    private FuncTree _guildInfotree;
 
 
     public boolean isInitialized() {
@@ -63,7 +63,10 @@ public class GuildJoinedMessage extends NetworkMessage implements INetworkMessag
     public void serializeAs_GuildJoinedMessage(ICustomDataOutput param1) {
          this.guildInfo.serializeAs_GuildInformations(param1);
          if(this.memberRights < 0)
+         {
             throw new Exception("Forbidden value (" + this.memberRights + ") on element memberRights.");
+         }
+         param1.writeVarInt(this.memberRights);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -93,7 +96,9 @@ public class GuildJoinedMessage extends NetworkMessage implements INetworkMessag
     private void _memberRightsFunc(ICustomDataInput param1) {
          this.memberRights = param1.readVarUhInt();
          if(this.memberRights < 0)
+         {
             throw new Exception("Forbidden value (" + this.memberRights + ") on element of GuildJoinedMessage.memberRights.");
+         }
     }
 
 }

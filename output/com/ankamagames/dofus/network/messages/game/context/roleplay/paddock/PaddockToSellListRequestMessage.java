@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.paddock;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.paddock;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class PaddockToSellListRequestMessage extends NetworkMessage implements I
 
     public void serializeAs_PaddockToSellListRequestMessage(ICustomDataOutput param1) {
          if(this.pageIndex < 0)
+         {
             throw new Exception("Forbidden value (" + this.pageIndex + ") on element pageIndex.");
+         }
+         param1.writeVarShort(this.pageIndex);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class PaddockToSellListRequestMessage extends NetworkMessage implements I
     private void _pageIndexFunc(ICustomDataInput param1) {
          this.pageIndex = param1.readVarUhShort();
          if(this.pageIndex < 0)
+         {
             throw new Exception("Forbidden value (" + this.pageIndex + ") on element of PaddockToSellListRequestMessage.pageIndex.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class JobCrafterDirectorySettingsMessage extends NetworkMessage implement
 
     private int protocolId = 5652;
     private boolean _isInitialized = false;
-    private Vector.<JobCrafterDirectorySettings> craftersSettings = ;
-    private FuncTree _craftersSettingstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<JobCrafterDirectorySettings> craftersSettings;
+    private FuncTree _craftersSettingstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class JobCrafterDirectorySettingsMessage extends NetworkMessage implement
          return 5652;
     }
 
-    public JobCrafterDirectorySettingsMessage initJobCrafterDirectorySettingsMessage(Vector.<JobCrafterDirectorySettings> param1) {
+    public JobCrafterDirectorySettingsMessage initJobCrafterDirectorySettingsMessage(Vector<JobCrafterDirectorySettings> param1) {
          this.craftersSettings = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class JobCrafterDirectorySettingsMessage extends NetworkMessage implement
          param1.writeShort(this.craftersSettings.length);
          int _loc2_ = 0;
          while(_loc2_ < this.craftersSettings.length)
+         {
             (this.craftersSettings[_loc2_] as JobCrafterDirectorySettings).serializeAs_JobCrafterDirectorySettings(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class JobCrafterDirectorySettingsMessage extends NetworkMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new JobCrafterDirectorySettings();
             _loc4_.deserialize(param1);
             this.craftersSettings.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class JobCrafterDirectorySettingsMessage extends NetworkMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._craftersSettingstree.addChild(this._craftersSettingsFunc);
             _loc3_++;
+         }
     }
 
     private void _craftersSettingsFunc(ICustomDataInput param1) {

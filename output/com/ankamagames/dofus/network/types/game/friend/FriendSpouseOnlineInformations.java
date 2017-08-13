@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.friend;
+package com.ankamagames.dofus.network.types.game.friend;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -10,6 +10,7 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class FriendSpouseOnlineInformations extends FriendSpouseInformations implements INetworkType {
 
@@ -18,7 +19,6 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations imp
     private int subAreaId = 0;
     private boolean inFight = false;
     private boolean followSpouse = false;
-    private int _loc2_ = 0;
 
 
     public int getTypeId() {
@@ -53,7 +53,15 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations imp
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.followSpouse);
          param1.writeByte(_loc2_);
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
+         }
+         param1.writeInt(this.mapId);
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,13 +95,17 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations imp
     private void _mapIdFunc(ICustomDataInput param1) {
          this.mapId = param1.readInt();
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element of FriendSpouseOnlineInformations.mapId.");
+         }
     }
 
     private void _subAreaIdFunc(ICustomDataInput param1) {
          this.subAreaId = param1.readVarUhShort();
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element of FriendSpouseOnlineInformations.subAreaId.");
+         }
     }
 
 }

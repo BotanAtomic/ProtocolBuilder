@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.guild.GuildEmblem;
@@ -9,8 +9,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class AllianceInformations extends BasicNamed {
 
     private int protocolId = 417;
-    private GuildEmblem allianceEmblem = ;
-    private FuncTree _allianceEmblemtree = ;
+    private GuildEmblem allianceEmblem;
+    private FuncTree _allianceEmblemtree;
 
 
     public int getTypeId() {

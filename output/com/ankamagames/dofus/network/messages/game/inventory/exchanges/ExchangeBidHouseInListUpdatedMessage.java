@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.data.items.effects.ObjectEffect;
@@ -21,7 +21,7 @@ public class ExchangeBidHouseInListUpdatedMessage extends ExchangeBidHouseInList
          return 6337;
     }
 
-    public ExchangeBidHouseInListUpdatedMessage initExchangeBidHouseInListUpdatedMessage(int param1,int  param2,Vector.<ObjectEffect>  param3,Vector.<Number>  param4) {
+    public ExchangeBidHouseInListUpdatedMessage initExchangeBidHouseInListUpdatedMessage(int param1,int  param2,Vector<ObjectEffect>  param3,Vector<Number>  param4) {
          super.initExchangeBidHouseInListAddedMessage(param1,param2,param3,param4);
          this._isInitialized = true;
          return this;

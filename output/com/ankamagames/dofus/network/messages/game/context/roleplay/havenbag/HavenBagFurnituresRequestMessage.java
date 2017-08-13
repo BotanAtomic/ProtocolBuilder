@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -10,31 +10,19 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class HavenBagFurnituresRequestMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 6637;
     private boolean _isInitialized = false;
-    private Vector.<uint> cellIds = ;
-    private Vector.<int> funitureIds = ;
-    private Vector.<uint> orientations = ;
-    private FuncTree _cellIdstree = ;
-    private FuncTree _funitureIdstree = ;
-    private FuncTree _orientationstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private int _loc4_ = 0;
-    private * _loc9_ = 0;
-    private int _loc10_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc6_ = param1.readUnsignedShort();
-    private int _loc7_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> cellIds;
+    private Vector<int> funitureIds;
+    private Vector<uint> orientations;
+    private FuncTree _cellIdstree;
+    private FuncTree _funitureIdstree;
+    private FuncTree _orientationstree;
 
 
     public boolean isInitialized() {
@@ -45,7 +33,7 @@ public class HavenBagFurnituresRequestMessage extends NetworkMessage implements 
          return 6637;
     }
 
-    public HavenBagFurnituresRequestMessage initHavenBagFurnituresRequestMessage(Vector.<uint> param1,Vector.<int>  param2,Vector.<uint>  param3) {
+    public HavenBagFurnituresRequestMessage initHavenBagFurnituresRequestMessage(Vector<uint> param1,Vector<int>  param2,Vector<uint>  param3) {
          this.cellIds = param1;
          this.funitureIds = param2;
          this.orientations = param3;
@@ -85,8 +73,32 @@ public class HavenBagFurnituresRequestMessage extends NetworkMessage implements 
          param1.writeShort(this.cellIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.cellIds.length)
+         {
             if(this.cellIds[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.cellIds[_loc2_] + ") on element 1 (starting at 1) of cellIds.");
+            }
+            param1.writeVarShort(this.cellIds[_loc2_]);
+            _loc2_++;
+         }
+         param1.writeShort(this.funitureIds.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.funitureIds.length)
+         {
+            param1.writeInt(this.funitureIds[_loc3_]);
+            _loc3_++;
+         }
+         param1.writeShort(this.orientations.length);
+         int _loc4_ = 0;
+         while(_loc4_ < this.orientations.length)
+         {
+            if(this.orientations[_loc4_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.orientations[_loc4_] + ") on element 3 (starting at 1) of orientations.");
+            }
+            param1.writeByte(this.orientations[_loc4_]);
+            _loc4_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -100,9 +112,35 @@ public class HavenBagFurnituresRequestMessage extends NetworkMessage implements 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc8_ = param1.readVarUhShort();
             if(_loc8_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc8_ + ") on elements of cellIds.");
+            }
+            this.cellIds.push(_loc8_);
+            _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc9_ = param1.readInt();
+            this.funitureIds.push(_loc9_);
+            _loc5_++;
+         }
+         int _loc6_ = param1.readUnsignedShort();
+         int _loc7_ = 0;
+         while(_loc7_ < _loc6_)
+         {
+            _loc10_ = param1.readByte();
+            if(_loc10_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc10_ + ") on elements of orientations.");
+            }
+            this.orientations.push(_loc10_);
+            _loc7_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -119,22 +157,29 @@ public class HavenBagFurnituresRequestMessage extends NetworkMessage implements 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._cellIdstree.addChild(this._cellIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _cellIdsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of cellIds.");
+         }
+         this.cellIds.push(_loc2_);
     }
 
     private void _funitureIdstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._funitureIdstree.addChild(this._funitureIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _funitureIdsFunc(ICustomDataInput param1) {
@@ -146,14 +191,19 @@ public class HavenBagFurnituresRequestMessage extends NetworkMessage implements 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._orientationstree.addChild(this._orientationsFunc);
             _loc3_++;
+         }
     }
 
     private void _orientationsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readByte();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of orientations.");
+         }
+         this.orientations.push(_loc2_);
     }
 
 }

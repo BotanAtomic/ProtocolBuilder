@@ -1,10 +1,11 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.emote;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.emote;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -64,7 +65,15 @@ public class EmotePlayMessage extends EmotePlayAbstractMessage implements INetwo
     public void serializeAs_EmotePlayMessage(ICustomDataOutput param1) {
          super.serializeAs_EmotePlayAbstractMessage(param1);
          if(this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.actorId + ") on element actorId.");
+         }
+         param1.writeDouble(this.actorId);
+         if(this.accountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,13 +99,17 @@ public class EmotePlayMessage extends EmotePlayAbstractMessage implements INetwo
     private void _actorIdFunc(ICustomDataInput param1) {
          this.actorId = param1.readDouble();
          if(this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.actorId + ") on element of EmotePlayMessage.actorId.");
+         }
     }
 
     private void _accountIdFunc(ICustomDataInput param1) {
          this.accountId = param1.readInt();
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element of EmotePlayMessage.accountId.");
+         }
     }
 
 }

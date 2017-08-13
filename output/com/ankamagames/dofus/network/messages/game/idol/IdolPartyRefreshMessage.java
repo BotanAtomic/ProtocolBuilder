@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.idol;
+package com.ankamagames.dofus.network.messages.game.idol;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class IdolPartyRefreshMessage extends NetworkMessage implements INetworkM
 
     private int protocolId = 6583;
     private boolean _isInitialized = false;
-    private PartyIdol partyIdol = ;
-    private FuncTree _partyIdoltree = ;
+    private PartyIdol partyIdol;
+    private FuncTree _partyIdoltree;
 
 
     public boolean isInitialized() {

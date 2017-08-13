@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -58,7 +58,10 @@ public class ExchangeStartOkCraftWithInformationMessage extends ExchangeStartOkC
     public void serializeAs_ExchangeStartOkCraftWithInformationMessage(ICustomDataOutput param1) {
          super.serializeAs_ExchangeStartOkCraftMessage(param1);
          if(this.skillId < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
+         }
+         param1.writeVarInt(this.skillId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,7 +85,9 @@ public class ExchangeStartOkCraftWithInformationMessage extends ExchangeStartOkC
     private void _skillIdFunc(ICustomDataInput param1) {
          this.skillId = param1.readVarUhInt();
          if(this.skillId < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillId + ") on element of ExchangeStartOkCraftWithInformationMessage.skillId.");
+         }
     }
 
 }

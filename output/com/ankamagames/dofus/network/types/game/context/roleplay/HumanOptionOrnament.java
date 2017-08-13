@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -33,7 +33,10 @@ public class HumanOptionOrnament extends HumanOption implements INetworkType {
     public void serializeAs_HumanOptionOrnament(ICustomDataOutput param1) {
          super.serializeAs_HumanOption(param1);
          if(this.ornamentId < 0)
+         {
             throw new Exception("Forbidden value (" + this.ornamentId + ") on element ornamentId.");
+         }
+         param1.writeVarShort(this.ornamentId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -57,7 +60,9 @@ public class HumanOptionOrnament extends HumanOption implements INetworkType {
     private void _ornamentIdFunc(ICustomDataInput param1) {
          this.ornamentId = param1.readVarUhShort();
          if(this.ornamentId < 0)
+         {
             throw new Exception("Forbidden value (" + this.ornamentId + ") on element of HumanOptionOrnament.ornamentId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.interactive.skill;
+package com.ankamagames.dofus.network.types.game.interactive.skill;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class SkillActionDescriptionTimed extends SkillActionDescription implemen
     public void serializeAs_SkillActionDescriptionTimed(ICustomDataOutput param1) {
          super.serializeAs_SkillActionDescription(param1);
          if(this.time < 0 || this.time > 255)
+         {
             throw new Exception("Forbidden value (" + this.time + ") on element time.");
+         }
+         param1.writeByte(this.time);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class SkillActionDescriptionTimed extends SkillActionDescription implemen
     private void _timeFunc(ICustomDataInput param1) {
          this.time = param1.readUnsignedByte();
          if(this.time < 0 || this.time > 255)
+         {
             throw new Exception("Forbidden value (" + this.time + ") on element of SkillActionDescriptionTimed.time.");
+         }
     }
 
 }

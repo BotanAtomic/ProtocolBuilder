@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive.zaap;
+package com.ankamagames.dofus.network.messages.game.interactive.zaap;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,39 +13,25 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class TeleportDestinationsListMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 5960;
     private boolean _isInitialized = false;
     private int teleporterType = 0;
-    private Vector.<uint> mapIds = ;
-    private Vector.<uint> subAreaIds = ;
-    private Vector.<uint> costs = ;
-    private Vector.<uint> destTeleporterType = ;
-    private FuncTree _mapIdstree = ;
-    private FuncTree _subAreaIdstree = ;
-    private FuncTree _coststree = ;
-    private FuncTree _destTeleporterTypetree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private int _loc4_ = 0;
-    private int _loc5_ = 0;
-    private int _loc11_ = 0;
-    private int _loc12_ = 0;
-    private int _loc13_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc6_ = param1.readUnsignedShort();
-    private int _loc7_ = 0;
-    private int _loc8_ = param1.readUnsignedShort();
-    private int _loc9_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> mapIds;
+    private Vector<uint> subAreaIds;
+    private Vector<uint> costs;
+    private Vector<uint> destTeleporterType;
+    private FuncTree _mapIdstree;
+    private FuncTree _subAreaIdstree;
+    private FuncTree _coststree;
+    private FuncTree _destTeleporterTypetree;
 
 
     public boolean isInitialized() {
@@ -56,7 +42,7 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
          return 5960;
     }
 
-    public TeleportDestinationsListMessage initTeleportDestinationsListMessage(int param1,Vector.<uint>  param2,Vector.<uint>  param3,Vector.<uint>  param4,Vector.<uint>  param5) {
+    public TeleportDestinationsListMessage initTeleportDestinationsListMessage(int param1,Vector<uint>  param2,Vector<uint>  param3,Vector<uint>  param4,Vector<uint>  param5) {
          this.teleporterType = param1;
          this.mapIds = param2;
          this.subAreaIds = param3;
@@ -101,8 +87,43 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
          param1.writeShort(this.mapIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.mapIds.length)
+         {
             if(this.mapIds[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.mapIds[_loc2_] + ") on element 2 (starting at 1) of mapIds.");
+            }
+            param1.writeInt(this.mapIds[_loc2_]);
+            _loc2_++;
+         }
+         param1.writeShort(this.subAreaIds.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.subAreaIds.length)
+         {
+            if(this.subAreaIds[_loc3_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.subAreaIds[_loc3_] + ") on element 3 (starting at 1) of subAreaIds.");
+            }
+            param1.writeVarShort(this.subAreaIds[_loc3_]);
+            _loc3_++;
+         }
+         param1.writeShort(this.costs.length);
+         int _loc4_ = 0;
+         while(_loc4_ < this.costs.length)
+         {
+            if(this.costs[_loc4_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.costs[_loc4_] + ") on element 4 (starting at 1) of costs.");
+            }
+            param1.writeVarShort(this.costs[_loc4_]);
+            _loc4_++;
+         }
+         param1.writeShort(this.destTeleporterType.length);
+         int _loc5_ = 0;
+         while(_loc5_ < this.destTeleporterType.length)
+         {
+            param1.writeByte(this.destTeleporterType[_loc5_]);
+            _loc5_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -118,9 +139,51 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc10_ = param1.readInt();
             if(_loc10_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc10_ + ") on elements of mapIds.");
+            }
+            this.mapIds.push(_loc10_);
+            _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc11_ = param1.readVarUhShort();
+            if(_loc11_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc11_ + ") on elements of subAreaIds.");
+            }
+            this.subAreaIds.push(_loc11_);
+            _loc5_++;
+         }
+         int _loc6_ = param1.readUnsignedShort();
+         int _loc7_ = 0;
+         while(_loc7_ < _loc6_)
+         {
+            _loc12_ = param1.readVarUhShort();
+            if(_loc12_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc12_ + ") on elements of costs.");
+            }
+            this.costs.push(_loc12_);
+            _loc7_++;
+         }
+         int _loc8_ = param1.readUnsignedShort();
+         int _loc9_ = 0;
+         while(_loc9_ < _loc8_)
+         {
+            _loc13_ = param1.readByte();
+            if(_loc13_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc13_ + ") on elements of destTeleporterType.");
+            }
+            this.destTeleporterType.push(_loc13_);
+            _loc9_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -138,63 +201,85 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
     private void _teleporterTypeFunc(ICustomDataInput param1) {
          this.teleporterType = param1.readByte();
          if(this.teleporterType < 0)
+         {
             throw new Exception("Forbidden value (" + this.teleporterType + ") on element of TeleportDestinationsListMessage.teleporterType.");
+         }
     }
 
     private void _mapIdstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._mapIdstree.addChild(this._mapIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _mapIdsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readInt();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of mapIds.");
+         }
+         this.mapIds.push(_loc2_);
     }
 
     private void _subAreaIdstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._subAreaIdstree.addChild(this._subAreaIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _subAreaIdsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of subAreaIds.");
+         }
+         this.subAreaIds.push(_loc2_);
     }
 
     private void _coststreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._coststree.addChild(this._costsFunc);
             _loc3_++;
+         }
     }
 
     private void _costsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of costs.");
+         }
+         this.costs.push(_loc2_);
     }
 
     private void _destTeleporterTypetreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._destTeleporterTypetree.addChild(this._destTeleporterTypeFunc);
             _loc3_++;
+         }
     }
 
     private void _destTeleporterTypeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readByte();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of destTeleporterType.");
+         }
+         this.destTeleporterType.push(_loc2_);
     }
 
 }

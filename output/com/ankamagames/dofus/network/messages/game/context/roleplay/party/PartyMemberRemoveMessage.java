@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class PartyMemberRemoveMessage extends AbstractPartyEventMessage implemen
     public void serializeAs_PartyMemberRemoveMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractPartyEventMessage(param1);
          if(this.leavingPlayerId < 0 || this.leavingPlayerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.leavingPlayerId + ") on element leavingPlayerId.");
+         }
+         param1.writeVarLong(this.leavingPlayerId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class PartyMemberRemoveMessage extends AbstractPartyEventMessage implemen
     private void _leavingPlayerIdFunc(ICustomDataInput param1) {
          this.leavingPlayerId = param1.readVarUhLong();
          if(this.leavingPlayerId < 0 || this.leavingPlayerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.leavingPlayerId + ") on element of PartyMemberRemoveMessage.leavingPlayerId.");
+         }
     }
 
 }

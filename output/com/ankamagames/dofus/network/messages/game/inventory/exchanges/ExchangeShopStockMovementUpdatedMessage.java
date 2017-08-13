@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class ExchangeShopStockMovementUpdatedMessage extends NetworkMessage impl
 
     private int protocolId = 5909;
     private boolean _isInitialized = false;
-    private ObjectItemToSell objectInfo = ;
-    private FuncTree _objectInfotree = ;
+    private ObjectItemToSell objectInfo;
+    private FuncTree _objectInfotree;
 
 
     public boolean isInitialized() {

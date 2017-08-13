@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dialog;
+package com.ankamagames.dofus.network.messages.game.dialog;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class PauseDialogMessage extends NetworkMessage implements INetworkMessag
     private void _dialogTypeFunc(ICustomDataInput param1) {
          this.dialogType = param1.readByte();
          if(this.dialogType < 0)
+         {
             throw new Exception("Forbidden value (" + this.dialogType + ") on element of PauseDialogMessage.dialogType.");
+         }
     }
 
 }

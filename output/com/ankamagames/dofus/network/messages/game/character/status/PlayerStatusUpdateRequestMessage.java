@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.status;
+package com.ankamagames.dofus.network.messages.game.character.status;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,8 +13,8 @@ public class PlayerStatusUpdateRequestMessage extends NetworkMessage implements 
 
     private int protocolId = 6387;
     private boolean _isInitialized = false;
-    private PlayerStatus status = ;
-    private FuncTree _statustree = ;
+    private PlayerStatus status;
+    private FuncTree _statustree;
 
 
     public boolean isInitialized() {

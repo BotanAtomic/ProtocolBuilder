@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.atlas.compass;
+package com.ankamagames.dofus.network.messages.game.atlas.compass;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class CompassResetMessage extends NetworkMessage implements INetworkMessa
     private void _typeFunc(ICustomDataInput param1) {
          this.type = param1.readByte();
          if(this.type < 0)
+         {
             throw new Exception("Forbidden value (" + this.type + ") on element of CompassResetMessage.type.");
+         }
     }
 
 }

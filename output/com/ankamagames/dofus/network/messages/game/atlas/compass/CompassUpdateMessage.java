@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.atlas.compass;
+package com.ankamagames.dofus.network.messages.game.atlas.compass;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,9 +15,8 @@ public class CompassUpdateMessage extends NetworkMessage implements INetworkMess
     private int protocolId = 5591;
     private boolean _isInitialized = false;
     private int type = 0;
-    private MapCoordinates coords = ;
-    private FuncTree _coordstree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private MapCoordinates coords;
+    private FuncTree _coordstree;
 
 
     public boolean isInitialized() {
@@ -91,7 +90,9 @@ public class CompassUpdateMessage extends NetworkMessage implements INetworkMess
     private void _typeFunc(ICustomDataInput param1) {
          this.type = param1.readByte();
          if(this.type < 0)
+         {
             throw new Exception("Forbidden value (" + this.type + ") on element of CompassUpdateMessage.type.");
+         }
     }
 
     private void _coordstreeFunc(ICustomDataInput param1) {

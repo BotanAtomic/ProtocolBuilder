@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.tinsel;
+package com.ankamagames.dofus.network.messages.game.tinsel;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class TitleSelectedMessage extends NetworkMessage implements INetworkMess
 
     public void serializeAs_TitleSelectedMessage(ICustomDataOutput param1) {
          if(this.titleId < 0)
+         {
             throw new Exception("Forbidden value (" + this.titleId + ") on element titleId.");
+         }
+         param1.writeVarShort(this.titleId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class TitleSelectedMessage extends NetworkMessage implements INetworkMess
     private void _titleIdFunc(ICustomDataInput param1) {
          this.titleId = param1.readVarUhShort();
          if(this.titleId < 0)
+         {
             throw new Exception("Forbidden value (" + this.titleId + ") on element of TitleSelectedMessage.titleId.");
+         }
     }
 
 }

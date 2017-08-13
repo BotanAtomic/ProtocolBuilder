@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat;
+package com.ankamagames.dofus.network.messages.game.chat;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -63,7 +63,11 @@ public class ChatServerCopyMessage extends ChatAbstractServerMessage implements 
     public void serializeAs_ChatServerCopyMessage(ICustomDataOutput param1) {
          super.serializeAs_ChatAbstractServerMessage(param1);
          if(this.receiverId < 0 || this.receiverId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.receiverId + ") on element receiverId.");
+         }
+         param1.writeVarLong(this.receiverId);
+         param1.writeUTF(this.receiverName);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -89,7 +93,9 @@ public class ChatServerCopyMessage extends ChatAbstractServerMessage implements 
     private void _receiverIdFunc(ICustomDataInput param1) {
          this.receiverId = param1.readVarUhLong();
          if(this.receiverId < 0 || this.receiverId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.receiverId + ") on element of ChatServerCopyMessage.receiverId.");
+         }
     }
 
     private void _receiverNameFunc(ICustomDataInput param1) {

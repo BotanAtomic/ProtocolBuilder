@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.quest;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.quest;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,8 +13,8 @@ public class QuestStepInfoMessage extends NetworkMessage implements INetworkMess
 
     private int protocolId = 5625;
     private boolean _isInitialized = false;
-    private QuestActiveInformations infos = ;
-    private FuncTree _infostree = ;
+    private QuestActiveInformations infos;
+    private FuncTree _infostree;
 
 
     public boolean isInitialized() {

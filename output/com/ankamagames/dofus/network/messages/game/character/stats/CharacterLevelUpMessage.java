@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.stats;
+package com.ankamagames.dofus.network.messages.game.character.stats;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class CharacterLevelUpMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_CharacterLevelUpMessage(ICustomDataOutput param1) {
          if(this.newLevel < 2 || this.newLevel > 206)
+         {
             throw new Exception("Forbidden value (" + this.newLevel + ") on element newLevel.");
+         }
+         param1.writeByte(this.newLevel);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class CharacterLevelUpMessage extends NetworkMessage implements INetworkM
     private void _newLevelFunc(ICustomDataInput param1) {
          this.newLevel = param1.readUnsignedByte();
          if(this.newLevel < 2 || this.newLevel > 206)
+         {
             throw new Exception("Forbidden value (" + this.newLevel + ") on element of CharacterLevelUpMessage.newLevel.");
+         }
     }
 
 }

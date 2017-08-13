@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.updater.parts;
+package com.ankamagames.dofus.network.messages.updater.parts;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class DownloadCurrentSpeedMessage extends NetworkMessage implements INetw
 
     public void serializeAs_DownloadCurrentSpeedMessage(ICustomDataOutput param1) {
          if(this.downloadSpeed < 1 || this.downloadSpeed > 10)
+         {
             throw new Exception("Forbidden value (" + this.downloadSpeed + ") on element downloadSpeed.");
+         }
+         param1.writeByte(this.downloadSpeed);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class DownloadCurrentSpeedMessage extends NetworkMessage implements INetw
     private void _downloadSpeedFunc(ICustomDataInput param1) {
          this.downloadSpeed = param1.readByte();
          if(this.downloadSpeed < 1 || this.downloadSpeed > 10)
+         {
             throw new Exception("Forbidden value (" + this.downloadSpeed + ") on element of DownloadCurrentSpeedMessage.downloadSpeed.");
+         }
     }
 
 }

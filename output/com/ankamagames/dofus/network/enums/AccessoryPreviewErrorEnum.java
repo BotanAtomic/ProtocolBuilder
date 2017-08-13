@@ -2,9 +2,9 @@ package com.ankamagames.dofus.network.enums;
 
 public enum AccessoryPreviewErrorEnum {
 
-    PREVIEW_ERROR(0),
-    PREVIEW_COOLDOWN(1),
-    PREVIEW_BAD_ITEM(2);
+    PREVIEW_ERROR(0;),
+    PREVIEW_COOLDOWN(1;),
+    PREVIEW_BAD_ITEM(2;);
 
     private final int value;
     public AccessoryPreviewErrorEnum(int value) {

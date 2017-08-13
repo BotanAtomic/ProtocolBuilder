@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.version.Version;
@@ -11,8 +11,8 @@ public class IdentificationFailedForBadVersionMessage extends IdentificationFail
 
     private int protocolId = 21;
     private boolean _isInitialized = false;
-    private Version requiredVersion = ;
-    private FuncTree _requiredVersiontree = ;
+    private Version requiredVersion;
+    private FuncTree _requiredVersiontree;
 
 
     public boolean isInitialized() {

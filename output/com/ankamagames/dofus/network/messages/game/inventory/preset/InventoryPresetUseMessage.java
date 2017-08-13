@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class InventoryPresetUseMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_InventoryPresetUseMessage(ICustomDataOutput param1) {
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
+         }
+         param1.writeByte(this.presetId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class InventoryPresetUseMessage extends NetworkMessage implements INetwor
     private void _presetIdFunc(ICustomDataInput param1) {
          this.presetId = param1.readByte();
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element of InventoryPresetUseMessage.presetId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat.smiley;
+package com.ankamagames.dofus.network.messages.game.chat.smiley;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class LocalizedChatSmileyMessage extends ChatSmileyMessage implements INe
     public void serializeAs_LocalizedChatSmileyMessage(ICustomDataOutput param1) {
          super.serializeAs_ChatSmileyMessage(param1);
          if(this.cellId < 0 || this.cellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
+         }
+         param1.writeVarShort(this.cellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class LocalizedChatSmileyMessage extends ChatSmileyMessage implements INe
     private void _cellIdFunc(ICustomDataInput param1) {
          this.cellId = param1.readVarUhShort();
          if(this.cellId < 0 || this.cellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.cellId + ") on element of LocalizedChatSmileyMessage.cellId.");
+         }
     }
 
 }

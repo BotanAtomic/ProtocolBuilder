@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.finishmoves;
+package com.ankamagames.dofus.network.messages.game.finishmoves;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class FinishMoveSetRequestMessage extends NetworkMessage implements INetw
 
     public void serializeAs_FinishMoveSetRequestMessage(ICustomDataOutput param1) {
          if(this.finishMoveId < 0)
+         {
             throw new Exception("Forbidden value (" + this.finishMoveId + ") on element finishMoveId.");
+         }
+         param1.writeInt(this.finishMoveId);
+         param1.writeBoolean(this.finishMoveState);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class FinishMoveSetRequestMessage extends NetworkMessage implements INetw
     private void _finishMoveIdFunc(ICustomDataInput param1) {
          this.finishMoveId = param1.readInt();
          if(this.finishMoveId < 0)
+         {
             throw new Exception("Forbidden value (" + this.finishMoveId + ") on element of FinishMoveSetRequestMessage.finishMoveId.");
+         }
     }
 
     private void _finishMoveStateFunc(ICustomDataInput param1) {

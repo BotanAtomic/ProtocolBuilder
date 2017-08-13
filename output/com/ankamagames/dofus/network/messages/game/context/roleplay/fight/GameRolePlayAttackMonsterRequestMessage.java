@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.fight;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class GameRolePlayAttackMonsterRequestMessage extends NetworkMessage impl
 
     public void serializeAs_GameRolePlayAttackMonsterRequestMessage(ICustomDataOutput param1) {
          if(this.monsterGroupId < -9.007199254740992E15 || this.monsterGroupId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.monsterGroupId + ") on element monsterGroupId.");
+         }
+         param1.writeDouble(this.monsterGroupId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class GameRolePlayAttackMonsterRequestMessage extends NetworkMessage impl
     private void _monsterGroupIdFunc(ICustomDataInput param1) {
          this.monsterGroupId = param1.readDouble();
          if(this.monsterGroupId < -9.007199254740992E15 || this.monsterGroupId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.monsterGroupId + ") on element of GameRolePlayAttackMonsterRequestMessage.monsterGroupId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -40,7 +40,11 @@ public class GameRolePlayMutantInformations extends GameRolePlayHumanoidInformat
     public void serializeAs_GameRolePlayMutantInformations(ICustomDataOutput param1) {
          super.serializeAs_GameRolePlayHumanoidInformations(param1);
          if(this.monsterId < 0)
+         {
             throw new Exception("Forbidden value (" + this.monsterId + ") on element monsterId.");
+         }
+         param1.writeVarShort(this.monsterId);
+         param1.writeByte(this.powerLevel);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -66,7 +70,9 @@ public class GameRolePlayMutantInformations extends GameRolePlayHumanoidInformat
     private void _monsterIdFunc(ICustomDataInput param1) {
          this.monsterId = param1.readVarUhShort();
          if(this.monsterId < 0)
+         {
             throw new Exception("Forbidden value (" + this.monsterId + ") on element of GameRolePlayMutantInformations.monsterId.");
+         }
     }
 
     private void _powerLevelFunc(ICustomDataInput param1) {

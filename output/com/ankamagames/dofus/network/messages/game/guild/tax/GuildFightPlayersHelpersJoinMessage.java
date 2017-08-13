@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild.tax;
+package com.ankamagames.dofus.network.messages.game.guild.tax;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,8 +15,8 @@ public class GuildFightPlayersHelpersJoinMessage extends NetworkMessage implemen
     private int protocolId = 5720;
     private boolean _isInitialized = false;
     private int fightId = 0;
-    private CharacterMinimalPlusLookInformations playerInfo = ;
-    private FuncTree _playerInfotree = ;
+    private CharacterMinimalPlusLookInformations playerInfo;
+    private FuncTree _playerInfotree;
 
 
     public boolean isInitialized() {
@@ -63,7 +63,11 @@ public class GuildFightPlayersHelpersJoinMessage extends NetworkMessage implemen
 
     public void serializeAs_GuildFightPlayersHelpersJoinMessage(ICustomDataOutput param1) {
          if(this.fightId < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
+         }
+         param1.writeInt(this.fightId);
+         this.playerInfo.serializeAs_CharacterMinimalPlusLookInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -88,7 +92,9 @@ public class GuildFightPlayersHelpersJoinMessage extends NetworkMessage implemen
     private void _fightIdFunc(ICustomDataInput param1) {
          this.fightId = param1.readInt();
          if(this.fightId < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightId + ") on element of GuildFightPlayersHelpersJoinMessage.fightId.");
+         }
     }
 
     private void _playerInfotreeFunc(ICustomDataInput param1) {

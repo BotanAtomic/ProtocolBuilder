@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.job;
+package com.ankamagames.dofus.network.types.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.interactive.skill.SkillActionDescription;
@@ -13,21 +13,15 @@ public class JobDescription extends Object implements INetworkType {
 
     private int protocolId = 101;
     private int jobId = 0;
-    private Vector.<SkillActionDescription> skills = ;
-    private FuncTree _skillstree = ;
-    private int _loc2_ = 0;
-    private SkillActionDescription _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private SkillActionDescription _loc3_ = ProtocolTypeManager.getInstance(SkillActionDescription,_loc2_);
+    private Vector<SkillActionDescription> skills;
+    private FuncTree _skillstree;
 
 
     public int getTypeId() {
          return 101;
     }
 
-    public JobDescription initJobDescription(int param1,Vector.<SkillActionDescription>  param2) {
+    public JobDescription initJobDescription(int param1,Vector<SkillActionDescription>  param2) {
          this.jobId = param1;
          this.skills = param2;
          return this;
@@ -44,7 +38,18 @@ public class JobDescription extends Object implements INetworkType {
 
     public void serializeAs_JobDescription(ICustomDataOutput param1) {
          if(this.jobId < 0)
+         {
             throw new Exception("Forbidden value (" + this.jobId + ") on element jobId.");
+         }
+         param1.writeByte(this.jobId);
+         param1.writeShort(this.skills.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.skills.length)
+         {
+            param1.writeShort((this.skills[_loc2_] as SkillActionDescription).getTypeId());
+            (this.skills[_loc2_] as SkillActionDescription).serialize(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -58,11 +63,13 @@ public class JobDescription extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(SkillActionDescription,_loc4_);
             _loc5_.deserialize(param1);
             this.skills.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -77,15 +84,19 @@ public class JobDescription extends Object implements INetworkType {
     private void _jobIdFunc(ICustomDataInput param1) {
          this.jobId = param1.readByte();
          if(this.jobId < 0)
+         {
             throw new Exception("Forbidden value (" + this.jobId + ") on element of JobDescription.jobId.");
+         }
     }
 
     private void _skillstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._skillstree.addChild(this._skillsFunc);
             _loc3_++;
+         }
     }
 
     private void _skillsFunc(ICustomDataInput param1) {

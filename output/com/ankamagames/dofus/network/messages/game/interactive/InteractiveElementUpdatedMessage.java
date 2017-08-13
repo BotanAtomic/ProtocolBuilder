@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive;
+package com.ankamagames.dofus.network.messages.game.interactive;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class InteractiveElementUpdatedMessage extends NetworkMessage implements 
 
     private int protocolId = 5708;
     private boolean _isInitialized = false;
-    private InteractiveElement interactiveElement = ;
-    private FuncTree _interactiveElementtree = ;
+    private InteractiveElement interactiveElement;
+    private FuncTree _interactiveElementtree;
 
 
     public boolean isInitialized() {

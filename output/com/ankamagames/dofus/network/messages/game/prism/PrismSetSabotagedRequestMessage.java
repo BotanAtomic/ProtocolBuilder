@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class PrismSetSabotagedRequestMessage extends NetworkMessage implements I
 
     public void serializeAs_PrismSetSabotagedRequestMessage(ICustomDataOutput param1) {
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class PrismSetSabotagedRequestMessage extends NetworkMessage implements I
     private void _subAreaIdFunc(ICustomDataInput param1) {
          this.subAreaId = param1.readVarUhShort();
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element of PrismSetSabotagedRequestMessage.subAreaId.");
+         }
     }
 
 }

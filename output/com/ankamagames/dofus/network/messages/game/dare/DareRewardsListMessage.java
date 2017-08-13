@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class DareRewardsListMessage extends NetworkMessage implements INetworkMe
 
     private int protocolId = 6677;
     private boolean _isInitialized = false;
-    private Vector.<DareReward> rewards = ;
-    private FuncTree _rewardstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<DareReward> rewards;
+    private FuncTree _rewardstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class DareRewardsListMessage extends NetworkMessage implements INetworkMe
          return 6677;
     }
 
-    public DareRewardsListMessage initDareRewardsListMessage(Vector.<DareReward> param1) {
+    public DareRewardsListMessage initDareRewardsListMessage(Vector<DareReward> param1) {
          this.rewards = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class DareRewardsListMessage extends NetworkMessage implements INetworkMe
          param1.writeShort(this.rewards.length);
          int _loc2_ = 0;
          while(_loc2_ < this.rewards.length)
+         {
             (this.rewards[_loc2_] as DareReward).serializeAs_DareReward(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class DareRewardsListMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new DareReward();
             _loc4_.deserialize(param1);
             this.rewards.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class DareRewardsListMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._rewardstree.addChild(this._rewardsFunc);
             _loc3_++;
+         }
     }
 
     private void _rewardsFunc(ICustomDataInput param1) {

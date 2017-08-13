@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class GameActionFightSummonMessage extends AbstractGameActionMessage impl
 
     private int protocolId = 5825;
     private boolean _isInitialized = false;
-    private Vector.<GameFightFighterInformations> summons = ;
-    private FuncTree _summonstree = ;
-    private int _loc2_ = 0;
-    private GameFightFighterInformations _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private GameFightFighterInformations _loc3_ = ProtocolTypeManager.getInstance(GameFightFighterInformations,_loc2_);
+    private Vector<GameFightFighterInformations> summons;
+    private FuncTree _summonstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class GameActionFightSummonMessage extends AbstractGameActionMessage impl
          return 5825;
     }
 
-    public GameActionFightSummonMessage initGameActionFightSummonMessage(int param1,Number  param2,Vector.<GameFightFighterInformations>  param3) {
+    public GameActionFightSummonMessage initGameActionFightSummonMessage(int param1,Number  param2,Vector<GameFightFighterInformations>  param3) {
          super.initAbstractGameActionMessage(param1,param2);
          this.summons = param3;
          this._isInitialized = true;
@@ -70,9 +64,11 @@ public class GameActionFightSummonMessage extends AbstractGameActionMessage impl
          param1.writeShort(this.summons.length);
          int _loc2_ = 0;
          while(_loc2_ < this.summons.length)
+         {
             param1.writeShort((this.summons[_loc2_] as GameFightFighterInformations).getTypeId());
             (this.summons[_loc2_] as GameFightFighterInformations).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,11 +82,13 @@ public class GameActionFightSummonMessage extends AbstractGameActionMessage impl
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(GameFightFighterInformations,_loc4_);
             _loc5_.deserialize(param1);
             this.summons.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -106,8 +104,10 @@ public class GameActionFightSummonMessage extends AbstractGameActionMessage impl
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._summonstree.addChild(this._summonsFunc);
             _loc3_++;
+         }
     }
 
     private void _summonsFunc(ICustomDataInput param1) {

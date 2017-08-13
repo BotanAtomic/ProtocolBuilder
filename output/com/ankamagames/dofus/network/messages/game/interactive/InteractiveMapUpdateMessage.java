@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive;
+package com.ankamagames.dofus.network.messages.game.interactive;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class InteractiveMapUpdateMessage extends NetworkMessage implements INetw
 
     private int protocolId = 5002;
     private boolean _isInitialized = false;
-    private Vector.<InteractiveElement> interactiveElements = ;
-    private FuncTree _interactiveElementstree = ;
-    private int _loc2_ = 0;
-    private InteractiveElement _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private InteractiveElement _loc3_ = ProtocolTypeManager.getInstance(InteractiveElement,_loc2_);
+    private Vector<InteractiveElement> interactiveElements;
+    private FuncTree _interactiveElementstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class InteractiveMapUpdateMessage extends NetworkMessage implements INetw
          return 5002;
     }
 
-    public InteractiveMapUpdateMessage initInteractiveMapUpdateMessage(Vector.<InteractiveElement> param1) {
+    public InteractiveMapUpdateMessage initInteractiveMapUpdateMessage(Vector<InteractiveElement> param1) {
          this.interactiveElements = param1;
          this._isInitialized = true;
          return this;
@@ -67,9 +61,11 @@ public class InteractiveMapUpdateMessage extends NetworkMessage implements INetw
          param1.writeShort(this.interactiveElements.length);
          int _loc2_ = 0;
          while(_loc2_ < this.interactiveElements.length)
+         {
             param1.writeShort((this.interactiveElements[_loc2_] as InteractiveElement).getTypeId());
             (this.interactiveElements[_loc2_] as InteractiveElement).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,11 +78,13 @@ public class InteractiveMapUpdateMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(InteractiveElement,_loc4_);
             _loc5_.deserialize(param1);
             this.interactiveElements.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,8 +99,10 @@ public class InteractiveMapUpdateMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._interactiveElementstree.addChild(this._interactiveElementsFunc);
             _loc3_++;
+         }
     }
 
     private void _interactiveElementsFunc(ICustomDataInput param1) {

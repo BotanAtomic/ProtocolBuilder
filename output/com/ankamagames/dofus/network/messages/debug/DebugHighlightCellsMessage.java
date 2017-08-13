@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.debug;
+package com.ankamagames.dofus.network.messages.debug;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,12 +15,8 @@ public class DebugHighlightCellsMessage extends NetworkMessage implements INetwo
     private int protocolId = 2001;
     private boolean _isInitialized = false;
     private int color = 0;
-    private Vector.<uint> cells = ;
-    private FuncTree _cellstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> cells;
+    private FuncTree _cellstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class DebugHighlightCellsMessage extends NetworkMessage implements INetwo
          return 2001;
     }
 
-    public DebugHighlightCellsMessage initDebugHighlightCellsMessage(int param1,Vector.<uint>  param2) {
+    public DebugHighlightCellsMessage initDebugHighlightCellsMessage(int param1,Vector<uint>  param2) {
          this.color = param1;
          this.cells = param2;
          this._isInitialized = true;
@@ -70,8 +66,14 @@ public class DebugHighlightCellsMessage extends NetworkMessage implements INetwo
          param1.writeShort(this.cells.length);
          int _loc2_ = 0;
          while(_loc2_ < this.cells.length)
+         {
             if(this.cells[_loc2_] < 0 || this.cells[_loc2_] > 559)
+            {
                throw new Exception("Forbidden value (" + this.cells[_loc2_] + ") on element 2 (starting at 1) of cells.");
+            }
+            param1.writeVarShort(this.cells[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,9 +86,15 @@ public class DebugHighlightCellsMessage extends NetworkMessage implements INetwo
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarUhShort();
             if(_loc4_ < 0 || _loc4_ > 559)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of cells.");
+            }
+            this.cells.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -106,14 +114,19 @@ public class DebugHighlightCellsMessage extends NetworkMessage implements INetwo
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._cellstree.addChild(this._cellsFunc);
             _loc3_++;
+         }
     }
 
     private void _cellsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0 || _loc2_ > 559)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of cells.");
+         }
+         this.cells.push(_loc2_);
     }
 
 }

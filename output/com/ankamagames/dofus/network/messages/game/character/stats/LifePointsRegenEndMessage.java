@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.stats;
+package com.ankamagames.dofus.network.messages.game.character.stats;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class LifePointsRegenEndMessage extends UpdateLifePointsMessage implement
     public void serializeAs_LifePointsRegenEndMessage(ICustomDataOutput param1) {
          super.serializeAs_UpdateLifePointsMessage(param1);
          if(this.lifePointsGained < 0)
+         {
             throw new Exception("Forbidden value (" + this.lifePointsGained + ") on element lifePointsGained.");
+         }
+         param1.writeVarInt(this.lifePointsGained);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class LifePointsRegenEndMessage extends UpdateLifePointsMessage implement
     private void _lifePointsGainedFunc(ICustomDataInput param1) {
          this.lifePointsGained = param1.readVarUhInt();
          if(this.lifePointsGained < 0)
+         {
             throw new Exception("Forbidden value (" + this.lifePointsGained + ") on element of LifePointsRegenEndMessage.lifePointsGained.");
+         }
     }
 
 }

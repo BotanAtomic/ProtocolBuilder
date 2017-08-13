@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class ExchangeCraftResultMessage extends NetworkMessage implements INetwo
     private void _craftResultFunc(ICustomDataInput param1) {
          this.craftResult = param1.readByte();
          if(this.craftResult < 0)
+         {
             throw new Exception("Forbidden value (" + this.craftResult + ") on element of ExchangeCraftResultMessage.craftResult.");
+         }
     }
 
 }

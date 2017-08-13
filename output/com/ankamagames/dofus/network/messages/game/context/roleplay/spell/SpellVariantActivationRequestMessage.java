@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.spell;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.spell;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class SpellVariantActivationRequestMessage extends NetworkMessage impleme
 
     public void serializeAs_SpellVariantActivationRequestMessage(ICustomDataOutput param1) {
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeVarShort(this.spellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class SpellVariantActivationRequestMessage extends NetworkMessage impleme
     private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readVarUhShort();
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of SpellVariantActivationRequestMessage.spellId.");
+         }
     }
 
 }

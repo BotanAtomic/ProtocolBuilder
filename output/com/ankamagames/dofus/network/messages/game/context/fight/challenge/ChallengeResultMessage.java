@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight.challenge;
+package com.ankamagames.dofus.network.messages.game.context.fight.challenge;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class ChallengeResultMessage extends NetworkMessage implements INetworkMe
 
     public void serializeAs_ChallengeResultMessage(ICustomDataOutput param1) {
          if(this.challengeId < 0)
+         {
             throw new Exception("Forbidden value (" + this.challengeId + ") on element challengeId.");
+         }
+         param1.writeVarShort(this.challengeId);
+         param1.writeBoolean(this.success);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class ChallengeResultMessage extends NetworkMessage implements INetworkMe
     private void _challengeIdFunc(ICustomDataInput param1) {
          this.challengeId = param1.readVarUhShort();
          if(this.challengeId < 0)
+         {
             throw new Exception("Forbidden value (" + this.challengeId + ") on element of ChallengeResultMessage.challengeId.");
+         }
     }
 
     private void _successFunc(ICustomDataInput param1) {

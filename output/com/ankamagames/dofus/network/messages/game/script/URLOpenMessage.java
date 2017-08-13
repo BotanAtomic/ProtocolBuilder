@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.script;
+package com.ankamagames.dofus.network.messages.game.script;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class URLOpenMessage extends NetworkMessage implements INetworkMessage {
 
     public void serializeAs_URLOpenMessage(ICustomDataOutput param1) {
          if(this.urlId < 0)
+         {
             throw new Exception("Forbidden value (" + this.urlId + ") on element urlId.");
+         }
+         param1.writeByte(this.urlId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class URLOpenMessage extends NetworkMessage implements INetworkMessage {
     private void _urlIdFunc(ICustomDataInput param1) {
          this.urlId = param1.readByte();
          if(this.urlId < 0)
+         {
             throw new Exception("Forbidden value (" + this.urlId + ") on element of URLOpenMessage.urlId.");
+         }
     }
 
 }

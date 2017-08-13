@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag.meeting;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag.meeting;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class HavenBagPermissionsUpdateRequestMessage extends NetworkMessage impl
 
     public void serializeAs_HavenBagPermissionsUpdateRequestMessage(ICustomDataOutput param1) {
          if(this.permissions < 0)
+         {
             throw new Exception("Forbidden value (" + this.permissions + ") on element permissions.");
+         }
+         param1.writeInt(this.permissions);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class HavenBagPermissionsUpdateRequestMessage extends NetworkMessage impl
     private void _permissionsFunc(ICustomDataInput param1) {
          this.permissions = param1.readInt();
          if(this.permissions < 0)
+         {
             throw new Exception("Forbidden value (" + this.permissions + ") on element of HavenBagPermissionsUpdateRequestMessage.permissions.");
+         }
     }
 
 }

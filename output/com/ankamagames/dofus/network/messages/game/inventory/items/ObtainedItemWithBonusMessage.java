@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class ObtainedItemWithBonusMessage extends ObtainedItemMessage implements
     public void serializeAs_ObtainedItemWithBonusMessage(ICustomDataOutput param1) {
          super.serializeAs_ObtainedItemMessage(param1);
          if(this.bonusQuantity < 0)
+         {
             throw new Exception("Forbidden value (" + this.bonusQuantity + ") on element bonusQuantity.");
+         }
+         param1.writeVarInt(this.bonusQuantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class ObtainedItemWithBonusMessage extends ObtainedItemMessage implements
     private void _bonusQuantityFunc(ICustomDataInput param1) {
          this.bonusQuantity = param1.readVarUhInt();
          if(this.bonusQuantity < 0)
+         {
             throw new Exception("Forbidden value (" + this.bonusQuantity + ") on element of ObtainedItemWithBonusMessage.bonusQuantity.");
+         }
     }
 
 }

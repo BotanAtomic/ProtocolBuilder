@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.houses;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class AccountHouseMessage extends NetworkMessage implements INetworkMessa
 
     private int protocolId = 6315;
     private boolean _isInitialized = false;
-    private Vector.<AccountHouseInformations> houses = ;
-    private FuncTree _housestree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<AccountHouseInformations> houses;
+    private FuncTree _housestree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class AccountHouseMessage extends NetworkMessage implements INetworkMessa
          return 6315;
     }
 
-    public AccountHouseMessage initAccountHouseMessage(Vector.<AccountHouseInformations> param1) {
+    public AccountHouseMessage initAccountHouseMessage(Vector<AccountHouseInformations> param1) {
          this.houses = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class AccountHouseMessage extends NetworkMessage implements INetworkMessa
          param1.writeShort(this.houses.length);
          int _loc2_ = 0;
          while(_loc2_ < this.houses.length)
+         {
             (this.houses[_loc2_] as AccountHouseInformations).serializeAs_AccountHouseInformations(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class AccountHouseMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new AccountHouseInformations();
             _loc4_.deserialize(param1);
             this.houses.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class AccountHouseMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._housestree.addChild(this._housesFunc);
             _loc3_++;
+         }
     }
 
     private void _housesFunc(ICustomDataInput param1) {

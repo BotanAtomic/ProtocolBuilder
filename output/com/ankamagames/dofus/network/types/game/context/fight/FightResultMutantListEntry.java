@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class FightResultMutantListEntry extends FightResultFighterListEntry impl
     public void serializeAs_FightResultMutantListEntry(ICustomDataOutput param1) {
          super.serializeAs_FightResultFighterListEntry(param1);
          if(this.level < 0)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeVarShort(this.level);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class FightResultMutantListEntry extends FightResultFighterListEntry impl
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readVarUhShort();
          if(this.level < 0)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of FightResultMutantListEntry.level.");
+         }
     }
 
 }

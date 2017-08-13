@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.stats;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.stats;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,10 @@ public class StatsUpgradeResultMessage extends NetworkMessage implements INetwor
     public void serializeAs_StatsUpgradeResultMessage(ICustomDataOutput param1) {
          param1.writeByte(this.result);
          if(this.nbCharacBoost < 0)
+         {
             throw new Exception("Forbidden value (" + this.nbCharacBoost + ") on element nbCharacBoost.");
+         }
+         param1.writeVarShort(this.nbCharacBoost);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +93,9 @@ public class StatsUpgradeResultMessage extends NetworkMessage implements INetwor
     private void _nbCharacBoostFunc(ICustomDataInput param1) {
          this.nbCharacBoost = param1.readVarUhShort();
          if(this.nbCharacBoost < 0)
+         {
             throw new Exception("Forbidden value (" + this.nbCharacBoost + ") on element of StatsUpgradeResultMessage.nbCharacBoost.");
+         }
     }
 
 }

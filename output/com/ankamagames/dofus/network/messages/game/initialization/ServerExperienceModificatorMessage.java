@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.initialization;
+package com.ankamagames.dofus.network.messages.game.initialization;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ServerExperienceModificatorMessage extends NetworkMessage implement
 
     public void serializeAs_ServerExperienceModificatorMessage(ICustomDataOutput param1) {
          if(this.experiencePercent < 0)
+         {
             throw new Exception("Forbidden value (" + this.experiencePercent + ") on element experiencePercent.");
+         }
+         param1.writeVarShort(this.experiencePercent);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ServerExperienceModificatorMessage extends NetworkMessage implement
     private void _experiencePercentFunc(ICustomDataInput param1) {
          this.experiencePercent = param1.readVarUhShort();
          if(this.experiencePercent < 0)
+         {
             throw new Exception("Forbidden value (" + this.experiencePercent + ") on element of ServerExperienceModificatorMessage.experiencePercent.");
+         }
     }
 
 }

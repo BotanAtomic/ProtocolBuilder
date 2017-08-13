@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.guild.tax;
+package com.ankamagames.dofus.network.types.game.guild.tax;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -36,7 +36,10 @@ public class AdditionalTaxCollectorInformations extends Object implements INetwo
     public void serializeAs_AdditionalTaxCollectorInformations(ICustomDataOutput param1) {
          param1.writeUTF(this.collectorCallerName);
          if(this.date < 0)
+         {
             throw new Exception("Forbidden value (" + this.date + ") on element date.");
+         }
+         param1.writeInt(this.date);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -64,7 +67,9 @@ public class AdditionalTaxCollectorInformations extends Object implements INetwo
     private void _dateFunc(ICustomDataInput param1) {
          this.date = param1.readInt();
          if(this.date < 0)
+         {
             throw new Exception("Forbidden value (" + this.date + ") on element of AdditionalTaxCollectorInformations.date.");
+         }
     }
 
 }

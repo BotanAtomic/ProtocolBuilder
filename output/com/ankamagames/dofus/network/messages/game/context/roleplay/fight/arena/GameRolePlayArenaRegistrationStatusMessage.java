@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -95,13 +95,17 @@ public class GameRolePlayArenaRegistrationStatusMessage extends NetworkMessage i
     private void _stepFunc(ICustomDataInput param1) {
          this.step = param1.readByte();
          if(this.step < 0)
+         {
             throw new Exception("Forbidden value (" + this.step + ") on element of GameRolePlayArenaRegistrationStatusMessage.step.");
+         }
     }
 
     private void _battleModeFunc(ICustomDataInput param1) {
          this.battleMode = param1.readInt();
          if(this.battleMode < 0)
+         {
             throw new Exception("Forbidden value (" + this.battleMode + ") on element of GameRolePlayArenaRegistrationStatusMessage.battleMode.");
+         }
     }
 
 }

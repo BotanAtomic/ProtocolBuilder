@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class ExchangeTypesItemsExchangerDescriptionForUserMessage extends Networ
 
     private int protocolId = 5752;
     private boolean _isInitialized = false;
-    private Vector.<BidExchangerObjectInfo> itemTypeDescriptions = ;
-    private FuncTree _itemTypeDescriptionstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<BidExchangerObjectInfo> itemTypeDescriptions;
+    private FuncTree _itemTypeDescriptionstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class ExchangeTypesItemsExchangerDescriptionForUserMessage extends Networ
          return 5752;
     }
 
-    public ExchangeTypesItemsExchangerDescriptionForUserMessage initExchangeTypesItemsExchangerDescriptionForUserMessage(Vector.<BidExchangerObjectInfo> param1) {
+    public ExchangeTypesItemsExchangerDescriptionForUserMessage initExchangeTypesItemsExchangerDescriptionForUserMessage(Vector<BidExchangerObjectInfo> param1) {
          this.itemTypeDescriptions = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class ExchangeTypesItemsExchangerDescriptionForUserMessage extends Networ
          param1.writeShort(this.itemTypeDescriptions.length);
          int _loc2_ = 0;
          while(_loc2_ < this.itemTypeDescriptions.length)
+         {
             (this.itemTypeDescriptions[_loc2_] as BidExchangerObjectInfo).serializeAs_BidExchangerObjectInfo(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class ExchangeTypesItemsExchangerDescriptionForUserMessage extends Networ
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new BidExchangerObjectInfo();
             _loc4_.deserialize(param1);
             this.itemTypeDescriptions.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class ExchangeTypesItemsExchangerDescriptionForUserMessage extends Networ
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._itemTypeDescriptionstree.addChild(this._itemTypeDescriptionsFunc);
             _loc3_++;
+         }
     }
 
     private void _itemTypeDescriptionsFunc(ICustomDataInput param1) {

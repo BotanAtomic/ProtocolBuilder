@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.spell;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.spell;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -66,7 +67,15 @@ public class SpellVariantActivationMessage extends NetworkMessage implements INe
     public void serializeAs_SpellVariantActivationMessage(ICustomDataOutput param1) {
          param1.writeBoolean(this.result);
          if(this.activatedSpellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.activatedSpellId + ") on element activatedSpellId.");
+         }
+         param1.writeVarShort(this.activatedSpellId);
+         if(this.deactivatedSpellId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.deactivatedSpellId + ") on element deactivatedSpellId.");
+         }
+         param1.writeVarShort(this.deactivatedSpellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -96,13 +105,17 @@ public class SpellVariantActivationMessage extends NetworkMessage implements INe
     private void _activatedSpellIdFunc(ICustomDataInput param1) {
          this.activatedSpellId = param1.readVarUhShort();
          if(this.activatedSpellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.activatedSpellId + ") on element of SpellVariantActivationMessage.activatedSpellId.");
+         }
     }
 
     private void _deactivatedSpellIdFunc(ICustomDataInput param1) {
          this.deactivatedSpellId = param1.readVarUhShort();
          if(this.deactivatedSpellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.deactivatedSpellId + ") on element of SpellVariantActivationMessage.deactivatedSpellId.");
+         }
     }
 
 }

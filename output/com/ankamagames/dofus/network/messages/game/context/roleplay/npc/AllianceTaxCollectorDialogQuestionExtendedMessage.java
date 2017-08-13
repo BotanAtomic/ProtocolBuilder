@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.BasicNamedAllianceInformations;
@@ -12,8 +12,8 @@ public class AllianceTaxCollectorDialogQuestionExtendedMessage extends TaxCollec
 
     private int protocolId = 6445;
     private boolean _isInitialized = false;
-    private BasicNamedAllianceInformations alliance = ;
-    private FuncTree _alliancetree = ;
+    private BasicNamedAllianceInformations alliance;
+    private FuncTree _alliancetree;
 
 
     public boolean isInitialized() {

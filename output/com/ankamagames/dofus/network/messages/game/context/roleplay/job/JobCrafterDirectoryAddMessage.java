@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class JobCrafterDirectoryAddMessage extends NetworkMessage implements INe
 
     private int protocolId = 5651;
     private boolean _isInitialized = false;
-    private JobCrafterDirectoryListEntry listEntry = ;
-    private FuncTree _listEntrytree = ;
+    private JobCrafterDirectoryListEntry listEntry;
+    private FuncTree _listEntrytree;
 
 
     public boolean isInitialized() {

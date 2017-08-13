@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.paddock;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.paddock;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class PaddockPropertiesMessage extends NetworkMessage implements INetwork
 
     private int protocolId = 5824;
     private boolean _isInitialized = false;
-    private PaddockInstancesInformations properties = ;
-    private FuncTree _propertiestree = ;
+    private PaddockInstancesInformations properties;
+    private FuncTree _propertiestree;
 
 
     public boolean isInitialized() {

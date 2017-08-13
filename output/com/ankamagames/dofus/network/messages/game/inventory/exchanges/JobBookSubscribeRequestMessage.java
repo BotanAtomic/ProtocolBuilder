@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,12 +14,8 @@ public class JobBookSubscribeRequestMessage extends NetworkMessage implements IN
 
     private int protocolId = 6592;
     private boolean _isInitialized = false;
-    private Vector.<uint> jobIds = ;
-    private FuncTree _jobIdstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> jobIds;
+    private FuncTree _jobIdstree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class JobBookSubscribeRequestMessage extends NetworkMessage implements IN
          return 6592;
     }
 
-    public JobBookSubscribeRequestMessage initJobBookSubscribeRequestMessage(Vector.<uint> param1) {
+    public JobBookSubscribeRequestMessage initJobBookSubscribeRequestMessage(Vector<uint> param1) {
          this.jobIds = param1;
          this._isInitialized = true;
          return this;
@@ -66,8 +62,14 @@ public class JobBookSubscribeRequestMessage extends NetworkMessage implements IN
          param1.writeShort(this.jobIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.jobIds.length)
+         {
             if(this.jobIds[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.jobIds[_loc2_] + ") on element 1 (starting at 1) of jobIds.");
+            }
+            param1.writeByte(this.jobIds[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -79,9 +81,15 @@ public class JobBookSubscribeRequestMessage extends NetworkMessage implements IN
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readByte();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of jobIds.");
+            }
+            this.jobIds.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -96,14 +104,19 @@ public class JobBookSubscribeRequestMessage extends NetworkMessage implements IN
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._jobIdstree.addChild(this._jobIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _jobIdsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readByte();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of jobIds.");
+         }
+         this.jobIds.push(_loc2_);
     }
 
 }

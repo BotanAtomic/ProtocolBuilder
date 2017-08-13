@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild.tax;
+package com.ankamagames.dofus.network.messages.game.guild.tax;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.guild.tax.TaxCollectorFightersInformation;
@@ -15,12 +15,8 @@ public class TaxCollectorListMessage extends Abstract {
     private int protocolId = 5930;
     private boolean _isInitialized = false;
     private int nbcollectorMax = 0;
-    private Vector.<TaxCollectorFightersInformation> fightersInformations = ;
-    private FuncTree _fightersInformationstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<TaxCollectorFightersInformation> fightersInformations;
+    private FuncTree _fightersInformationstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class TaxCollectorListMessage extends Abstract {
          return 5930;
     }
 
-    public TaxCollectorListMessage initTaxCollectorListMessage(Vector.<TaxCollectorInformations> param1,int  param2,Vector.<TaxCollectorFightersInformation>  param3) {
+    public TaxCollectorListMessage initTaxCollectorListMessage(Vector<TaxCollectorInformations> param1,int  param2,Vector<TaxCollectorFightersInformation>  param3) {
          super.initAbstractTaxCollectorListMessage(param1);
          this.nbcollectorMax = param2;
          this.fightersInformations = param3;
@@ -70,7 +66,17 @@ public class TaxCollectorListMessage extends Abstract {
     public void serializeAs_TaxCollectorListMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractTaxCollectorListMessage(param1);
          if(this.nbcollectorMax < 0)
+         {
             throw new Exception("Forbidden value (" + this.nbcollectorMax + ") on element nbcollectorMax.");
+         }
+         param1.writeByte(this.nbcollectorMax);
+         param1.writeShort(this.fightersInformations.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.fightersInformations.length)
+         {
+            (this.fightersInformations[_loc2_] as TaxCollectorFightersInformation).serializeAs_TaxCollectorFightersInformation(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,10 +90,12 @@ public class TaxCollectorListMessage extends Abstract {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new TaxCollectorFightersInformation();
             _loc4_.deserialize(param1);
             this.fightersInformations.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -103,15 +111,19 @@ public class TaxCollectorListMessage extends Abstract {
     private void _nbcollectorMaxFunc(ICustomDataInput param1) {
          this.nbcollectorMax = param1.readByte();
          if(this.nbcollectorMax < 0)
+         {
             throw new Exception("Forbidden value (" + this.nbcollectorMax + ") on element of TaxCollectorListMessage.nbcollectorMax.");
+         }
     }
 
     private void _fightersInformationstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._fightersInformationstree.addChild(this._fightersInformationsFunc);
             _loc3_++;
+         }
     }
 
     private void _fightersInformationsFunc(ICustomDataInput param1) {

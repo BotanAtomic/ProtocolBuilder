@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.character.alignment.ActorAlignmentInformations;
@@ -11,15 +11,15 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class GameFightMonsterWithAlignmentInformations extends GameFightMonsterInformations implements INetworkType {
 
     private int protocolId = 203;
-    private ActorAlignmentInformations alignmentInfos = ;
-    private FuncTree _alignmentInfostree = ;
+    private ActorAlignmentInformations alignmentInfos;
+    private FuncTree _alignmentInfostree;
 
 
     public int getTypeId() {
          return 203;
     }
 
-    public GameFightMonsterWithAlignmentInformations initGameFightMonsterWithAlignmentInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector.<uint>  param8,int  param9,int  param10,ActorAlignmentInformations  param11) {
+    public GameFightMonsterWithAlignmentInformations initGameFightMonsterWithAlignmentInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector<uint>  param8,int  param9,int  param10,ActorAlignmentInformations  param11) {
          super.initGameFightMonsterInformations(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10);
          this.alignmentInfos = param11;
          return this;

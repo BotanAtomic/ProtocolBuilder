@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class ObjectUseOnCharacterMessage extends ObjectUseMessage implements INe
     public void serializeAs_ObjectUseOnCharacterMessage(ICustomDataOutput param1) {
          super.serializeAs_ObjectUseMessage(param1);
          if(this.characterId < 0 || this.characterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.characterId + ") on element characterId.");
+         }
+         param1.writeVarLong(this.characterId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class ObjectUseOnCharacterMessage extends ObjectUseMessage implements INe
     private void _characterIdFunc(ICustomDataInput param1) {
          this.characterId = param1.readVarUhLong();
          if(this.characterId < 0 || this.characterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.characterId + ") on element of ObjectUseOnCharacterMessage.characterId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.mount.MountClientData;
@@ -11,12 +11,8 @@ public class ExchangeStartOkMountMessage extends ExchangeStartOkMountWithOutPadd
 
     private int protocolId = 5979;
     private boolean _isInitialized = false;
-    private Vector.<MountClientData> paddockedMountsDescription = ;
-    private FuncTree _paddockedMountsDescriptiontree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<MountClientData> paddockedMountsDescription;
+    private FuncTree _paddockedMountsDescriptiontree;
 
 
     public boolean isInitialized() {
@@ -27,7 +23,7 @@ public class ExchangeStartOkMountMessage extends ExchangeStartOkMountWithOutPadd
          return 5979;
     }
 
-    public ExchangeStartOkMountMessage initExchangeStartOkMountMessage(Vector.<MountClientData> param1,Vector.<MountClientData>  param2) {
+    public ExchangeStartOkMountMessage initExchangeStartOkMountMessage(Vector<MountClientData> param1,Vector<MountClientData>  param2) {
          super.initExchangeStartOkMountWithOutPaddockMessage(param1);
          this.paddockedMountsDescription = param2;
          this._isInitialized = true;
@@ -66,8 +62,10 @@ public class ExchangeStartOkMountMessage extends ExchangeStartOkMountWithOutPadd
          param1.writeShort(this.paddockedMountsDescription.length);
          int _loc2_ = 0;
          while(_loc2_ < this.paddockedMountsDescription.length)
+         {
             (this.paddockedMountsDescription[_loc2_] as MountClientData).serializeAs_MountClientData(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,10 +78,12 @@ public class ExchangeStartOkMountMessage extends ExchangeStartOkMountWithOutPadd
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new MountClientData();
             _loc4_.deserialize(param1);
             this.paddockedMountsDescription.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -99,8 +99,10 @@ public class ExchangeStartOkMountMessage extends ExchangeStartOkMountWithOutPadd
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._paddockedMountsDescriptiontree.addChild(this._paddockedMountsDescriptionFunc);
             _loc3_++;
+         }
     }
 
     private void _paddockedMountsDescriptionFunc(ICustomDataInput param1) {

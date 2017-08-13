@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ExchangeObjectMoveKamaMessage extends NetworkMessage implements INe
 
     public void serializeAs_ExchangeObjectMoveKamaMessage(ICustomDataOutput param1) {
          if(this.quantity < -9.007199254740992E15 || this.quantity > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
+         }
+         param1.writeVarLong(this.quantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ExchangeObjectMoveKamaMessage extends NetworkMessage implements INe
     private void _quantityFunc(ICustomDataInput param1) {
          this.quantity = param1.readVarLong();
          if(this.quantity < -9.007199254740992E15 || this.quantity > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element of ExchangeObjectMoveKamaMessage.quantity.");
+         }
     }
 
 }

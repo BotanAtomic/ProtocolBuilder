@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.MapCoordinatesExtended;
@@ -11,19 +11,15 @@ public class AtlasPointsInformations extends Object implements INetworkType {
 
     private int protocolId = 175;
     private int type = 0;
-    private Vector.<MapCoordinatesExtended> coords = ;
-    private FuncTree _coordstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<MapCoordinatesExtended> coords;
+    private FuncTree _coordstree;
 
 
     public int getTypeId() {
          return 175;
     }
 
-    public AtlasPointsInformations initAtlasPointsInformations(int param1,Vector.<MapCoordinatesExtended>  param2) {
+    public AtlasPointsInformations initAtlasPointsInformations(int param1,Vector<MapCoordinatesExtended>  param2) {
          this.type = param1;
          this.coords = param2;
          return this;
@@ -43,8 +39,10 @@ public class AtlasPointsInformations extends Object implements INetworkType {
          param1.writeShort(this.coords.length);
          int _loc2_ = 0;
          while(_loc2_ < this.coords.length)
+         {
             (this.coords[_loc2_] as MapCoordinatesExtended).serializeAs_MapCoordinatesExtended(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -57,10 +55,12 @@ public class AtlasPointsInformations extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new MapCoordinatesExtended();
             _loc4_.deserialize(param1);
             this.coords.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -75,15 +75,19 @@ public class AtlasPointsInformations extends Object implements INetworkType {
     private void _typeFunc(ICustomDataInput param1) {
          this.type = param1.readByte();
          if(this.type < 0)
+         {
             throw new Exception("Forbidden value (" + this.type + ") on element of AtlasPointsInformations.type.");
+         }
     }
 
     private void _coordstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._coordstree.addChild(this._coordsFunc);
             _loc3_++;
+         }
     }
 
     private void _coordsFunc(ICustomDataInput param1) {

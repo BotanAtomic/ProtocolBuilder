@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class SymbioticObjectAssociatedMessage extends NetworkMessage implements 
 
     public void serializeAs_SymbioticObjectAssociatedMessage(ICustomDataOutput param1) {
          if(this.hostUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.hostUID + ") on element hostUID.");
+         }
+         param1.writeVarInt(this.hostUID);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class SymbioticObjectAssociatedMessage extends NetworkMessage implements 
     private void _hostUIDFunc(ICustomDataInput param1) {
          this.hostUID = param1.readVarUhInt();
          if(this.hostUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.hostUID + ") on element of SymbioticObjectAssociatedMessage.hostUID.");
+         }
     }
 
 }

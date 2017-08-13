@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.quest;
+package com.ankamagames.dofus.network.types.game.context.roleplay.quest;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -32,7 +32,10 @@ public class QuestActiveInformations extends Object implements INetworkType {
 
     public void serializeAs_QuestActiveInformations(ICustomDataOutput param1) {
          if(this.questId < 0)
+         {
             throw new Exception("Forbidden value (" + this.questId + ") on element questId.");
+         }
+         param1.writeVarShort(this.questId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -54,7 +57,9 @@ public class QuestActiveInformations extends Object implements INetworkType {
     private void _questIdFunc(ICustomDataInput param1) {
          this.questId = param1.readVarUhShort();
          if(this.questId < 0)
+         {
             throw new Exception("Forbidden value (" + this.questId + ") on element of QuestActiveInformations.questId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class GameActionFightNoSpellCastMessage extends NetworkMessage implements
 
     public void serializeAs_GameActionFightNoSpellCastMessage(ICustomDataOutput param1) {
          if(this.spellLevelId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellLevelId + ") on element spellLevelId.");
+         }
+         param1.writeVarInt(this.spellLevelId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class GameActionFightNoSpellCastMessage extends NetworkMessage implements
     private void _spellLevelIdFunc(ICustomDataInput param1) {
          this.spellLevelId = param1.readVarUhInt();
          if(this.spellLevelId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellLevelId + ") on element of GameActionFightNoSpellCastMessage.spellLevelId.");
+         }
     }
 
 }

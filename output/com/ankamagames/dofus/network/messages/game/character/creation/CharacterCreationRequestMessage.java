@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.creation;
+package com.ankamagames.dofus.network.messages.game.character.creation;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -9,6 +9,7 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import com.ankamagames.dofus.network.enums.PlayableBreedEnum;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class CharacterCreationRequestMessage extends NetworkMessage implements INetworkMessage {
 
@@ -17,12 +18,10 @@ public class CharacterCreationRequestMessage extends NetworkMessage implements I
     private String name = "";
     private int breed = 0;
     private boolean sex = false;
-    private Vector.<int> colors = ;
+    private Vector<int> colors;
     private int cosmeticId = 0;
-    private FuncTree _colorstree = ;
+    private FuncTree _colorstree;
     private int _colorsindex = 0;
-    private int _loc2_ = 0;
-    private int _loc2_ = 0;
 
 
     public boolean isInitialized() {
@@ -33,7 +32,7 @@ public class CharacterCreationRequestMessage extends NetworkMessage implements I
          return 160;
     }
 
-    public CharacterCreationRequestMessage initCharacterCreationRequestMessage(String param1,int  param2,boolean  param3,Vector.<int>  param4,int  param5) {
+    public CharacterCreationRequestMessage initCharacterCreationRequestMessage(String param1,int  param2,boolean  param3,Vector<int>  param4,int  param5) {
          this.name = param1;
          this.breed = param2;
          this.sex = param3;
@@ -79,8 +78,15 @@ public class CharacterCreationRequestMessage extends NetworkMessage implements I
          param1.writeBoolean(this.sex);
          int _loc2_ = 0;
          while(_loc2_ < 5)
+         {
             param1.writeInt(this.colors[_loc2_]);
             _loc2_++;
+         }
+         if(this.cosmeticId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+         }
+         param1.writeVarShort(this.cosmeticId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -93,8 +99,11 @@ public class CharacterCreationRequestMessage extends NetworkMessage implements I
          this._sexFunc(param1);
          int _loc2_ = 0;
          while(_loc2_ < 5)
+         {
             this.colors[_loc2_] = param1.readInt();
             _loc2_++;
+         }
+         this._cosmeticIdFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -116,7 +125,9 @@ public class CharacterCreationRequestMessage extends NetworkMessage implements I
     private void _breedFunc(ICustomDataInput param1) {
          this.breed = param1.readByte();
          if(this.breed < PlayableBreedEnum.Feca || this.breed > PlayableBreedEnum.Ouginak)
+         {
             throw new Exception("Forbidden value (" + this.breed + ") on element of CharacterCreationRequestMessage.breed.");
+         }
     }
 
     private void _sexFunc(ICustomDataInput param1) {
@@ -126,8 +137,10 @@ public class CharacterCreationRequestMessage extends NetworkMessage implements I
     private void _colorstreeFunc(ICustomDataInput param1) {
          int _loc2_ = 0;
          while(_loc2_ < 5)
+         {
             this._colorstree.addChild(this._colorsFunc);
             _loc2_++;
+         }
     }
 
     private void _colorsFunc(ICustomDataInput param1) {
@@ -138,7 +151,9 @@ public class CharacterCreationRequestMessage extends NetworkMessage implements I
     private void _cosmeticIdFunc(ICustomDataInput param1) {
          this.cosmeticId = param1.readVarUhShort();
          if(this.cosmeticId < 0)
+         {
             throw new Exception("Forbidden value (" + this.cosmeticId + ") on element of CharacterCreationRequestMessage.cosmeticId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -84,7 +84,9 @@ public class HavenBagDailyLoteryMessage extends NetworkMessage implements INetwo
     private void _returnTypeFunc(ICustomDataInput param1) {
          this.returnType = param1.readByte();
          if(this.returnType < 0)
+         {
             throw new Exception("Forbidden value (" + this.returnType + ") on element of HavenBagDailyLoteryMessage.returnType.");
+         }
     }
 
     private void _tokenIdFunc(ICustomDataInput param1) {

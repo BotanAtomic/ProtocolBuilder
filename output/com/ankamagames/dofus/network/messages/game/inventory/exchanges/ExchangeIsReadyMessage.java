@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class ExchangeIsReadyMessage extends NetworkMessage implements INetworkMe
 
     public void serializeAs_ExchangeIsReadyMessage(ICustomDataOutput param1) {
          if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeDouble(this.id);
+         param1.writeBoolean(this.ready);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class ExchangeIsReadyMessage extends NetworkMessage implements INetworkMe
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readDouble();
          if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of ExchangeIsReadyMessage.id.");
+         }
     }
 
     private void _readyFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class MapObstacleUpdateMessage extends NetworkMessage implements INetwork
 
     private int protocolId = 6051;
     private boolean _isInitialized = false;
-    private Vector.<MapObstacle> obstacles = ;
-    private FuncTree _obstaclestree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<MapObstacle> obstacles;
+    private FuncTree _obstaclestree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class MapObstacleUpdateMessage extends NetworkMessage implements INetwork
          return 6051;
     }
 
-    public MapObstacleUpdateMessage initMapObstacleUpdateMessage(Vector.<MapObstacle> param1) {
+    public MapObstacleUpdateMessage initMapObstacleUpdateMessage(Vector<MapObstacle> param1) {
          this.obstacles = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class MapObstacleUpdateMessage extends NetworkMessage implements INetwork
          param1.writeShort(this.obstacles.length);
          int _loc2_ = 0;
          while(_loc2_ < this.obstacles.length)
+         {
             (this.obstacles[_loc2_] as MapObstacle).serializeAs_MapObstacle(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class MapObstacleUpdateMessage extends NetworkMessage implements INetwork
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new MapObstacle();
             _loc4_.deserialize(param1);
             this.obstacles.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class MapObstacleUpdateMessage extends NetworkMessage implements INetwork
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._obstaclestree.addChild(this._obstaclesFunc);
             _loc3_++;
+         }
     }
 
     private void _obstaclesFunc(ICustomDataInput param1) {

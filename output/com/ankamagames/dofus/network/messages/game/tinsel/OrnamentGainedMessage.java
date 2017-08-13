@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.tinsel;
+package com.ankamagames.dofus.network.messages.game.tinsel;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class OrnamentGainedMessage extends NetworkMessage implements INetworkMes
 
     public void serializeAs_OrnamentGainedMessage(ICustomDataOutput param1) {
          if(this.ornamentId < 0)
+         {
             throw new Exception("Forbidden value (" + this.ornamentId + ") on element ornamentId.");
+         }
+         param1.writeShort(this.ornamentId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class OrnamentGainedMessage extends NetworkMessage implements INetworkMes
     private void _ornamentIdFunc(ICustomDataInput param1) {
          this.ornamentId = param1.readShort();
          if(this.ornamentId < 0)
+         {
             throw new Exception("Forbidden value (" + this.ornamentId + ") on element of OrnamentGainedMessage.ornamentId.");
+         }
     }
 
 }

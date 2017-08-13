@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class DungeonPartyFinderListenErrorMessage extends NetworkMessage impleme
 
     public void serializeAs_DungeonPartyFinderListenErrorMessage(ICustomDataOutput param1) {
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+         }
+         param1.writeVarShort(this.dungeonId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class DungeonPartyFinderListenErrorMessage extends NetworkMessage impleme
     private void _dungeonIdFunc(ICustomDataInput param1) {
          this.dungeonId = param1.readVarUhShort();
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element of DungeonPartyFinderListenErrorMessage.dungeonId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.interactive.skill;
+package com.ankamagames.dofus.network.types.game.interactive.skill;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class SkillActionDescriptionCraft extends SkillActionDescription implemen
     public void serializeAs_SkillActionDescriptionCraft(ICustomDataOutput param1) {
          super.serializeAs_SkillActionDescription(param1);
          if(this.probability < 0)
+         {
             throw new Exception("Forbidden value (" + this.probability + ") on element probability.");
+         }
+         param1.writeByte(this.probability);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class SkillActionDescriptionCraft extends SkillActionDescription implemen
     private void _probabilityFunc(ICustomDataInput param1) {
          this.probability = param1.readByte();
          if(this.probability < 0)
+         {
             throw new Exception("Forbidden value (" + this.probability + ") on element of SkillActionDescriptionCraft.probability.");
+         }
     }
 
 }

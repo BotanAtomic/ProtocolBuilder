@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.shortcut;
+package com.ankamagames.dofus.network.types.game.shortcut;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class ShortcutObjectPreset extends ShortcutObject implements INetworkType
     public void serializeAs_ShortcutObjectPreset(ICustomDataOutput param1) {
          super.serializeAs_ShortcutObject(param1);
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
+         }
+         param1.writeByte(this.presetId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class ShortcutObjectPreset extends ShortcutObject implements INetworkType
     private void _presetIdFunc(ICustomDataInput param1) {
          this.presetId = param1.readByte();
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
+         }
     }
 
 }

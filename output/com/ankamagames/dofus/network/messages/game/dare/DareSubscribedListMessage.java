@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,19 +13,10 @@ public class DareSubscribedListMessage extends NetworkMessage implements INetwor
 
     private int protocolId = 6658;
     private boolean _isInitialized = false;
-    private Vector.<DareInformations> daresFixedInfos = ;
-    private Vector.<DareVersatileInformations> daresVersatilesInfos = ;
-    private FuncTree _daresFixedInfostree = ;
-    private FuncTree _daresVersatilesInfostree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private DareVersatileInformations _loc7_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<DareInformations> daresFixedInfos;
+    private Vector<DareVersatileInformations> daresVersatilesInfos;
+    private FuncTree _daresFixedInfostree;
+    private FuncTree _daresVersatilesInfostree;
 
 
     public boolean isInitialized() {
@@ -36,7 +27,7 @@ public class DareSubscribedListMessage extends NetworkMessage implements INetwor
          return 6658;
     }
 
-    public DareSubscribedListMessage initDareSubscribedListMessage(Vector.<DareInformations> param1,Vector.<DareVersatileInformations>  param2) {
+    public DareSubscribedListMessage initDareSubscribedListMessage(Vector<DareInformations> param1,Vector<DareVersatileInformations>  param2) {
          this.daresFixedInfos = param1;
          this.daresVersatilesInfos = param2;
          this._isInitialized = true;
@@ -74,8 +65,17 @@ public class DareSubscribedListMessage extends NetworkMessage implements INetwor
          param1.writeShort(this.daresFixedInfos.length);
          int _loc2_ = 0;
          while(_loc2_ < this.daresFixedInfos.length)
+         {
             (this.daresFixedInfos[_loc2_] as DareInformations).serializeAs_DareInformations(param1);
             _loc2_++;
+         }
+         param1.writeShort(this.daresVersatilesInfos.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.daresVersatilesInfos.length)
+         {
+            (this.daresVersatilesInfos[_loc3_] as DareVersatileInformations).serializeAs_DareVersatileInformations(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -88,10 +88,21 @@ public class DareSubscribedListMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = new DareInformations();
             _loc6_.deserialize(param1);
             this.daresFixedInfos.push(_loc6_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = new DareVersatileInformations();
+            _loc7_.deserialize(param1);
+            this.daresVersatilesInfos.push(_loc7_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -107,8 +118,10 @@ public class DareSubscribedListMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._daresFixedInfostree.addChild(this._daresFixedInfosFunc);
             _loc3_++;
+         }
     }
 
     private void _daresFixedInfosFunc(ICustomDataInput param1) {
@@ -121,8 +134,10 @@ public class DareSubscribedListMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._daresVersatilesInfostree.addChild(this._daresVersatilesInfosFunc);
             _loc3_++;
+         }
     }
 
     private void _daresVersatilesInfosFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.shortcut;
+package com.ankamagames.dofus.network.types.game.shortcut;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class ShortcutSpell extends Shortcut implements INetworkType {
     public void serializeAs_ShortcutSpell(ICustomDataOutput param1) {
          super.serializeAs_Shortcut(param1);
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeVarShort(this.spellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class ShortcutSpell extends Shortcut implements INetworkType {
     private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readVarUhShort();
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
+         }
     }
 
 }

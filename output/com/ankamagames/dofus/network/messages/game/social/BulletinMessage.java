@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.social;
+package com.ankamagames.dofus.network.messages.game.social;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class BulletinMessage extends SocialNoticeMessage implements INetworkMess
     public void serializeAs_BulletinMessage(ICustomDataOutput param1) {
          super.serializeAs_SocialNoticeMessage(param1);
          if(this.lastNotifiedTimestamp < 0)
+         {
             throw new Exception("Forbidden value (" + this.lastNotifiedTimestamp + ") on element lastNotifiedTimestamp.");
+         }
+         param1.writeInt(this.lastNotifiedTimestamp);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class BulletinMessage extends SocialNoticeMessage implements INetworkMess
     private void _lastNotifiedTimestampFunc(ICustomDataInput param1) {
          this.lastNotifiedTimestamp = param1.readInt();
          if(this.lastNotifiedTimestamp < 0)
+         {
             throw new Exception("Forbidden value (" + this.lastNotifiedTimestamp + ") on element of BulletinMessage.lastNotifiedTimestamp.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.stats;
+package com.ankamagames.dofus.network.messages.game.character.stats;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class FighterStatsListMessage extends NetworkMessage implements INetworkM
 
     private int protocolId = 6322;
     private boolean _isInitialized = false;
-    private CharacterCharacteristicsInformations stats = ;
-    private FuncTree _statstree = ;
+    private CharacterCharacteristicsInformations stats;
+    private FuncTree _statstree;
 
 
     public boolean isInitialized() {

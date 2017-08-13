@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.houses.guild;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.houses.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,8 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -69,7 +71,21 @@ public class HouseGuildShareRequestMessage extends NetworkMessage implements INe
 
     public void serializeAs_HouseGuildShareRequestMessage(ICustomDataOutput param1) {
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
+         }
+         param1.writeVarInt(this.houseId);
+         if(this.instanceId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
+         }
+         param1.writeInt(this.instanceId);
+         param1.writeBoolean(this.enable);
+         if(this.rights < 0)
+         {
+            throw new Exception("Forbidden value (" + this.rights + ") on element rights.");
+         }
+         param1.writeVarInt(this.rights);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,13 +113,17 @@ public class HouseGuildShareRequestMessage extends NetworkMessage implements INe
     private void _houseIdFunc(ICustomDataInput param1) {
          this.houseId = param1.readVarUhInt();
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element of HouseGuildShareRequestMessage.houseId.");
+         }
     }
 
     private void _instanceIdFunc(ICustomDataInput param1) {
          this.instanceId = param1.readInt();
          if(this.instanceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.instanceId + ") on element of HouseGuildShareRequestMessage.instanceId.");
+         }
     }
 
     private void _enableFunc(ICustomDataInput param1) {
@@ -113,7 +133,9 @@ public class HouseGuildShareRequestMessage extends NetworkMessage implements INe
     private void _rightsFunc(ICustomDataInput param1) {
          this.rights = param1.readVarUhInt();
          if(this.rights < 0)
+         {
             throw new Exception("Forbidden value (" + this.rights + ") on element of HouseGuildShareRequestMessage.rights.");
+         }
     }
 
 }

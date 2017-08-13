@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class GameFightSynchronizeMessage extends NetworkMessage implements INetw
 
     private int protocolId = 5921;
     private boolean _isInitialized = false;
-    private Vector.<GameFightFighterInformations> fighters = ;
-    private FuncTree _fighterstree = ;
-    private int _loc2_ = 0;
-    private GameFightFighterInformations _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private GameFightFighterInformations _loc3_ = ProtocolTypeManager.getInstance(GameFightFighterInformations,_loc2_);
+    private Vector<GameFightFighterInformations> fighters;
+    private FuncTree _fighterstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class GameFightSynchronizeMessage extends NetworkMessage implements INetw
          return 5921;
     }
 
-    public GameFightSynchronizeMessage initGameFightSynchronizeMessage(Vector.<GameFightFighterInformations> param1) {
+    public GameFightSynchronizeMessage initGameFightSynchronizeMessage(Vector<GameFightFighterInformations> param1) {
          this.fighters = param1;
          this._isInitialized = true;
          return this;
@@ -67,9 +61,11 @@ public class GameFightSynchronizeMessage extends NetworkMessage implements INetw
          param1.writeShort(this.fighters.length);
          int _loc2_ = 0;
          while(_loc2_ < this.fighters.length)
+         {
             param1.writeShort((this.fighters[_loc2_] as GameFightFighterInformations).getTypeId());
             (this.fighters[_loc2_] as GameFightFighterInformations).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,11 +78,13 @@ public class GameFightSynchronizeMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(GameFightFighterInformations,_loc4_);
             _loc5_.deserialize(param1);
             this.fighters.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,8 +99,10 @@ public class GameFightSynchronizeMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._fighterstree.addChild(this._fightersFunc);
             _loc3_++;
+         }
     }
 
     private void _fightersFunc(ICustomDataInput param1) {

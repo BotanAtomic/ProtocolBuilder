@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items.effects;
+package com.ankamagames.dofus.network.types.game.data.items.effects;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class ObjectEffectCreature extends ObjectEffect implements INetworkType {
     public void serializeAs_ObjectEffectCreature(ICustomDataOutput param1) {
          super.serializeAs_ObjectEffect(param1);
          if(this.monsterFamilyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");
+         }
+         param1.writeVarShort(this.monsterFamilyId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class ObjectEffectCreature extends ObjectEffect implements INetworkType {
     private void _monsterFamilyIdFunc(ICustomDataInput param1) {
          this.monsterFamilyId = param1.readVarUhShort();
          if(this.monsterFamilyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.monsterFamilyId + ") on element of ObjectEffectCreature.monsterFamilyId.");
+         }
     }
 
 }

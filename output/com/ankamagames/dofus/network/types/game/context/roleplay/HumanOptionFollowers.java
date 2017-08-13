@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.IndexedEntityLook;
@@ -9,19 +9,15 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class HumanOptionFollowers extends HumanOption implements INetworkType {
 
     private int protocolId = 410;
-    private Vector.<IndexedEntityLook> followingCharactersLook = ;
-    private FuncTree _followingCharactersLooktree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<IndexedEntityLook> followingCharactersLook;
+    private FuncTree _followingCharactersLooktree;
 
 
     public int getTypeId() {
          return 410;
     }
 
-    public HumanOptionFollowers initHumanOptionFollowers(Vector.<IndexedEntityLook> param1) {
+    public HumanOptionFollowers initHumanOptionFollowers(Vector<IndexedEntityLook> param1) {
          this.followingCharactersLook = param1;
          return this;
     }
@@ -39,8 +35,10 @@ public class HumanOptionFollowers extends HumanOption implements INetworkType {
          param1.writeShort(this.followingCharactersLook.length);
          int _loc2_ = 0;
          while(_loc2_ < this.followingCharactersLook.length)
+         {
             (this.followingCharactersLook[_loc2_] as IndexedEntityLook).serializeAs_IndexedEntityLook(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -53,10 +51,12 @@ public class HumanOptionFollowers extends HumanOption implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new IndexedEntityLook();
             _loc4_.deserialize(param1);
             this.followingCharactersLook.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -72,8 +72,10 @@ public class HumanOptionFollowers extends HumanOption implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._followingCharactersLooktree.addChild(this._followingCharactersLookFunc);
             _loc3_++;
+         }
     }
 
     private void _followingCharactersLookFunc(ICustomDataInput param1) {

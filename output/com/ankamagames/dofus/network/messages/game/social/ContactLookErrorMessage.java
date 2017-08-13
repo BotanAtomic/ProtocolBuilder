@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.social;
+package com.ankamagames.dofus.network.messages.game.social;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ContactLookErrorMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_ContactLookErrorMessage(ICustomDataOutput param1) {
          if(this.requestId < 0)
+         {
             throw new Exception("Forbidden value (" + this.requestId + ") on element requestId.");
+         }
+         param1.writeVarInt(this.requestId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ContactLookErrorMessage extends NetworkMessage implements INetworkM
     private void _requestIdFunc(ICustomDataInput param1) {
          this.requestId = param1.readVarUhInt();
          if(this.requestId < 0)
+         {
             throw new Exception("Forbidden value (" + this.requestId + ") on element of ContactLookErrorMessage.requestId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.security;
+package com.ankamagames.dofus.network.messages.security;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -11,12 +11,8 @@ public class CheckIntegrityMessage extends NetworkMessage implements INetworkMes
 
     private int protocolId = 6372;
     private boolean _isInitialized = false;
-    private Vector.<int> data = ;
-    private FuncTree _datatree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readVarInt();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> data;
+    private FuncTree _datatree;
 
 
     public boolean isInitialized() {
@@ -27,7 +23,7 @@ public class CheckIntegrityMessage extends NetworkMessage implements INetworkMes
          return 6372;
     }
 
-    public CheckIntegrityMessage initCheckIntegrityMessage(Vector.<int> param1) {
+    public CheckIntegrityMessage initCheckIntegrityMessage(Vector<int> param1) {
          this.data = param1;
          this._isInitialized = true;
          return this;
@@ -63,8 +59,10 @@ public class CheckIntegrityMessage extends NetworkMessage implements INetworkMes
          param1.writeVarInt(this.data.length);
          int _loc2_ = 0;
          while(_loc2_ < this.data.length)
+         {
             param1.writeByte(this.data[_loc2_]);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -76,9 +74,11 @@ public class CheckIntegrityMessage extends NetworkMessage implements INetworkMes
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readByte();
             this.data.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -93,8 +93,10 @@ public class CheckIntegrityMessage extends NetworkMessage implements INetworkMes
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._datatree.addChild(this._dataFunc);
             _loc3_++;
+         }
     }
 
     private void _dataFunc(ICustomDataInput param1) {

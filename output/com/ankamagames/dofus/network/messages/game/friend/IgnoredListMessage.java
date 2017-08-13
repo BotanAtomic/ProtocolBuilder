@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.friend;
+package com.ankamagames.dofus.network.messages.game.friend;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class IgnoredListMessage extends NetworkMessage implements INetworkMessag
 
     private int protocolId = 5674;
     private boolean _isInitialized = false;
-    private Vector.<IgnoredInformations> ignoredList = ;
-    private FuncTree _ignoredListtree = ;
-    private int _loc2_ = 0;
-    private IgnoredInformations _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private IgnoredInformations _loc3_ = ProtocolTypeManager.getInstance(IgnoredInformations,_loc2_);
+    private Vector<IgnoredInformations> ignoredList;
+    private FuncTree _ignoredListtree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class IgnoredListMessage extends NetworkMessage implements INetworkMessag
          return 5674;
     }
 
-    public IgnoredListMessage initIgnoredListMessage(Vector.<IgnoredInformations> param1) {
+    public IgnoredListMessage initIgnoredListMessage(Vector<IgnoredInformations> param1) {
          this.ignoredList = param1;
          this._isInitialized = true;
          return this;
@@ -67,9 +61,11 @@ public class IgnoredListMessage extends NetworkMessage implements INetworkMessag
          param1.writeShort(this.ignoredList.length);
          int _loc2_ = 0;
          while(_loc2_ < this.ignoredList.length)
+         {
             param1.writeShort((this.ignoredList[_loc2_] as IgnoredInformations).getTypeId());
             (this.ignoredList[_loc2_] as IgnoredInformations).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,11 +78,13 @@ public class IgnoredListMessage extends NetworkMessage implements INetworkMessag
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(IgnoredInformations,_loc4_);
             _loc5_.deserialize(param1);
             this.ignoredList.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,8 +99,10 @@ public class IgnoredListMessage extends NetworkMessage implements INetworkMessag
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._ignoredListtree.addChild(this._ignoredListFunc);
             _loc3_++;
+         }
     }
 
     private void _ignoredListFunc(ICustomDataInput param1) {

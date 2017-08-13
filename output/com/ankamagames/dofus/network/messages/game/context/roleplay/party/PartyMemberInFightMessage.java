@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.MapCoordinatesExtended;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -20,9 +21,9 @@ public class PartyMemberInFightMessage extends AbstractPartyMessage implements I
     private int memberAccountId = 0;
     private String memberName = "";
     private int fightId = 0;
-    private MapCoordinatesExtended fightMap = ;
+    private MapCoordinatesExtended fightMap;
     private int timeBeforeFightStart = 0;
-    private FuncTree _fightMaptree = ;
+    private FuncTree _fightMaptree;
 
 
     public boolean isInitialized() {
@@ -82,7 +83,19 @@ public class PartyMemberInFightMessage extends AbstractPartyMessage implements I
          super.serializeAs_AbstractPartyMessage(param1);
          param1.writeByte(this.reason);
          if(this.memberId < 0 || this.memberId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.memberId + ") on element memberId.");
+         }
+         param1.writeVarLong(this.memberId);
+         if(this.memberAccountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.memberAccountId + ") on element memberAccountId.");
+         }
+         param1.writeInt(this.memberAccountId);
+         param1.writeUTF(this.memberName);
+         param1.writeInt(this.fightId);
+         this.fightMap.serializeAs_MapCoordinatesExtended(param1);
+         param1.writeVarShort(this.timeBeforeFightStart);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -119,19 +132,25 @@ public class PartyMemberInFightMessage extends AbstractPartyMessage implements I
     private void _reasonFunc(ICustomDataInput param1) {
          this.reason = param1.readByte();
          if(this.reason < 0)
+         {
             throw new Exception("Forbidden value (" + this.reason + ") on element of PartyMemberInFightMessage.reason.");
+         }
     }
 
     private void _memberIdFunc(ICustomDataInput param1) {
          this.memberId = param1.readVarUhLong();
          if(this.memberId < 0 || this.memberId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.memberId + ") on element of PartyMemberInFightMessage.memberId.");
+         }
     }
 
     private void _memberAccountIdFunc(ICustomDataInput param1) {
          this.memberAccountId = param1.readInt();
          if(this.memberAccountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.memberAccountId + ") on element of PartyMemberInFightMessage.memberAccountId.");
+         }
     }
 
     private void _memberNameFunc(ICustomDataInput param1) {

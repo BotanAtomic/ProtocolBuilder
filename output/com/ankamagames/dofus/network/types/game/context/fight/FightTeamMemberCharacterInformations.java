@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -39,7 +39,10 @@ public class FightTeamMemberCharacterInformations extends FightTeamMemberInforma
          super.serializeAs_FightTeamMemberInformations(param1);
          param1.writeUTF(this.name);
          if(this.level < 0 || this.level > 255)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -69,7 +72,9 @@ public class FightTeamMemberCharacterInformations extends FightTeamMemberInforma
     private void _levelFunc(ICustomDataInput param1) {
          this.level = param1.readUnsignedByte();
          if(this.level < 0 || this.level > 255)
+         {
             throw new Exception("Forbidden value (" + this.level + ") on element of FightTeamMemberCharacterInformations.level.");
+         }
     }
 
 }

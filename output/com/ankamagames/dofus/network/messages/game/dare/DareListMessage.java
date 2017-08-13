@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class DareListMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 6661;
     private boolean _isInitialized = false;
-    private Vector.<DareInformations> dares = ;
-    private FuncTree _darestree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<DareInformations> dares;
+    private FuncTree _darestree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class DareListMessage extends NetworkMessage implements INetworkMessage {
          return 6661;
     }
 
-    public DareListMessage initDareListMessage(Vector.<DareInformations> param1) {
+    public DareListMessage initDareListMessage(Vector<DareInformations> param1) {
          this.dares = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class DareListMessage extends NetworkMessage implements INetworkMessage {
          param1.writeShort(this.dares.length);
          int _loc2_ = 0;
          while(_loc2_ < this.dares.length)
+         {
             (this.dares[_loc2_] as DareInformations).serializeAs_DareInformations(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class DareListMessage extends NetworkMessage implements INetworkMessage {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new DareInformations();
             _loc4_.deserialize(param1);
             this.dares.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class DareListMessage extends NetworkMessage implements INetworkMessage {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._darestree.addChild(this._daresFunc);
             _loc3_++;
+         }
     }
 
     private void _daresFunc(ICustomDataInput param1) {

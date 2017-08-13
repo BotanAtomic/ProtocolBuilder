@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class GuildGetInformationsMessage extends NetworkMessage implements INetw
     private void _infoTypeFunc(ICustomDataInput param1) {
          this.infoType = param1.readByte();
          if(this.infoType < 0)
+         {
             throw new Exception("Forbidden value (" + this.infoType + ") on element of GuildGetInformationsMessage.infoType.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.initialization;
+package com.ankamagames.dofus.network.messages.game.initialization;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class CharacterCapabilitiesMessage extends NetworkMessage implements INet
 
     public void serializeAs_CharacterCapabilitiesMessage(ICustomDataOutput param1) {
          if(this.guildEmblemSymbolCategories < 0)
+         {
             throw new Exception("Forbidden value (" + this.guildEmblemSymbolCategories + ") on element guildEmblemSymbolCategories.");
+         }
+         param1.writeVarInt(this.guildEmblemSymbolCategories);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class CharacterCapabilitiesMessage extends NetworkMessage implements INet
     private void _guildEmblemSymbolCategoriesFunc(ICustomDataInput param1) {
          this.guildEmblemSymbolCategories = param1.readVarUhInt();
          if(this.guildEmblemSymbolCategories < 0)
+         {
             throw new Exception("Forbidden value (" + this.guildEmblemSymbolCategories + ") on element of CharacterCapabilitiesMessage.guildEmblemSymbolCategories.");
+         }
     }
 
 }

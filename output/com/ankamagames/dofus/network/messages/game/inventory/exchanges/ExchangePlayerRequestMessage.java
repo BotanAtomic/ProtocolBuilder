@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -40,7 +40,10 @@ public class ExchangePlayerRequestMessage extends ExchangeRequestMessage impleme
          ByteArray _loc2_ = new ByteArray();
          this.serialize(new CustomDataWrapper(_loc2_));
          if(HASH_FUNCTION != null)
+         {
             HASH_FUNCTION(_loc2_);
+         }
+         writePacket(param1,this.getMessageId(),_loc2_);
     }
 
     public void unpack(ICustomDataInput param1,int  param2) {
@@ -61,7 +64,10 @@ public class ExchangePlayerRequestMessage extends ExchangeRequestMessage impleme
     public void serializeAs_ExchangePlayerRequestMessage(ICustomDataOutput param1) {
          super.serializeAs_ExchangeRequestMessage(param1);
          if(this.target < 0 || this.target > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.target + ") on element target.");
+         }
+         param1.writeVarLong(this.target);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +91,9 @@ public class ExchangePlayerRequestMessage extends ExchangeRequestMessage impleme
     private void _targetFunc(ICustomDataInput param1) {
          this.target = param1.readVarUhLong();
          if(this.target < 0 || this.target > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.target + ") on element of ExchangePlayerRequestMessage.target.");
+         }
     }
 
 }

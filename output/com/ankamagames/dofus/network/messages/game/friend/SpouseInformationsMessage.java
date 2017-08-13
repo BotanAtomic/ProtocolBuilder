@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.friend;
+package com.ankamagames.dofus.network.messages.game.friend;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,8 +13,8 @@ public class SpouseInformationsMessage extends NetworkMessage implements INetwor
 
     private int protocolId = 6356;
     private boolean _isInitialized = false;
-    private FriendSpouseInformations spouse = ;
-    private FuncTree _spousetree = ;
+    private FriendSpouseInformations spouse;
+    private FuncTree _spousetree;
 
 
     public boolean isInitialized() {

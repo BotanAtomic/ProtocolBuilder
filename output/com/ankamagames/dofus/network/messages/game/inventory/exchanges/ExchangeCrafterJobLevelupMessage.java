@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ExchangeCrafterJobLevelupMessage extends NetworkMessage implements 
 
     public void serializeAs_ExchangeCrafterJobLevelupMessage(ICustomDataOutput param1) {
          if(this.crafterJobLevel < 0 || this.crafterJobLevel > 255)
+         {
             throw new Exception("Forbidden value (" + this.crafterJobLevel + ") on element crafterJobLevel.");
+         }
+         param1.writeByte(this.crafterJobLevel);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ExchangeCrafterJobLevelupMessage extends NetworkMessage implements 
     private void _crafterJobLevelFunc(ICustomDataInput param1) {
          this.crafterJobLevel = param1.readUnsignedByte();
          if(this.crafterJobLevel < 0 || this.crafterJobLevel > 255)
+         {
             throw new Exception("Forbidden value (" + this.crafterJobLevel + ") on element of ExchangeCrafterJobLevelupMessage.crafterJobLevel.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class InventoryPresetUpdateMessage extends NetworkMessage implements INet
 
     private int protocolId = 6171;
     private boolean _isInitialized = false;
-    private Preset preset = ;
-    private FuncTree _presettree = ;
+    private Preset preset;
+    private FuncTree _presettree;
 
 
     public boolean isInitialized() {

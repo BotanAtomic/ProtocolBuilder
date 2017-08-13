@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -10,32 +10,26 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class IdentificationMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 4;
     private boolean _isInitialized = false;
-    private VersionExtended version = ;
+    private VersionExtended version;
     private String lang = "";
-    private Vector.<int> credentials = ;
+    private Vector<int> credentials;
     private int serverId = 0;
     private boolean autoconnect = false;
     private boolean useCertificate = false;
     private boolean useLoginToken = false;
     private Number sessionOptionalSalt = 0;
-    private Vector.<uint> failedAttempts = ;
-    private FuncTree _versiontree = ;
-    private FuncTree _credentialstree = ;
-    private FuncTree _failedAttemptstree = ;
-    private int _loc3_ = 0;
-    private int _loc4_ = 0;
-    private int _loc7_ = 0;
-    private int _loc2_ = param1.readVarInt();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> failedAttempts;
+    private FuncTree _versiontree;
+    private FuncTree _credentialstree;
+    private FuncTree _failedAttemptstree;
 
 
     public boolean isInitialized() {
@@ -46,7 +40,7 @@ public class IdentificationMessage extends NetworkMessage implements INetworkMes
          return 4;
     }
 
-    public IdentificationMessage initIdentificationMessage(VersionExtended param1,String  param2,Vector.<int>  param3,int  param4,boolean  param5,boolean  param6,boolean  param7,Number  param8,Vector.<uint>  param9) {
+    public IdentificationMessage initIdentificationMessage(VersionExtended param1,String  param2,Vector<int>  param3,int  param4,boolean  param5,boolean  param6,boolean  param7,Number  param8,Vector<uint>  param9) {
          this.version = param1;
          this.lang = param2;
          this.credentials = param3;
@@ -104,8 +98,27 @@ public class IdentificationMessage extends NetworkMessage implements INetworkMes
          param1.writeVarInt(this.credentials.length);
          int _loc3_ = 0;
          while(_loc3_ < this.credentials.length)
+         {
             param1.writeByte(this.credentials[_loc3_]);
             _loc3_++;
+         }
+         param1.writeShort(this.serverId);
+         if(this.sessionOptionalSalt < -9.007199254740992E15 || this.sessionOptionalSalt > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.sessionOptionalSalt + ") on element sessionOptionalSalt.");
+         }
+         param1.writeVarLong(this.sessionOptionalSalt);
+         param1.writeShort(this.failedAttempts.length);
+         int _loc4_ = 0;
+         while(_loc4_ < this.failedAttempts.length)
+         {
+            if(this.failedAttempts[_loc4_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.failedAttempts[_loc4_] + ") on element 9 (starting at 1) of failedAttempts.");
+            }
+            param1.writeVarShort(this.failedAttempts[_loc4_]);
+            _loc4_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -122,9 +135,25 @@ public class IdentificationMessage extends NetworkMessage implements INetworkMes
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = param1.readByte();
             this.credentials.push(_loc6_);
             _loc3_++;
+         }
+         this._serverIdFunc(param1);
+         this._sessionOptionalSaltFunc(param1);
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = param1.readVarUhShort();
+            if(_loc7_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc7_ + ") on elements of failedAttempts.");
+            }
+            this.failedAttempts.push(_loc7_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -161,8 +190,10 @@ public class IdentificationMessage extends NetworkMessage implements INetworkMes
          int _loc2_ = param1.readVarInt();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._credentialstree.addChild(this._credentialsFunc);
             _loc3_++;
+         }
     }
 
     private void _credentialsFunc(ICustomDataInput param1) {
@@ -177,21 +208,28 @@ public class IdentificationMessage extends NetworkMessage implements INetworkMes
     private void _sessionOptionalSaltFunc(ICustomDataInput param1) {
          this.sessionOptionalSalt = param1.readVarLong();
          if(this.sessionOptionalSalt < -9.007199254740992E15 || this.sessionOptionalSalt > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.sessionOptionalSalt + ") on element of IdentificationMessage.sessionOptionalSalt.");
+         }
     }
 
     private void _failedAttemptstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._failedAttemptstree.addChild(this._failedAttemptsFunc);
             _loc3_++;
+         }
     }
 
     private void _failedAttemptsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of failedAttempts.");
+         }
+         this.failedAttempts.push(_loc2_);
     }
 
 }

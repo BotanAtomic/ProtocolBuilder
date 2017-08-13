@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.types.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -62,7 +62,9 @@ public class TreasureHuntFlag extends Object implements INetworkType {
     private void _stateFunc(ICustomDataInput param1) {
          this.state = param1.readByte();
          if(this.state < 0)
+         {
             throw new Exception("Forbidden value (" + this.state + ") on element of TreasureHuntFlag.state.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,10 @@ public class ExchangeReadyMessage extends NetworkMessage implements INetworkMess
     public void serializeAs_ExchangeReadyMessage(ICustomDataOutput param1) {
          param1.writeBoolean(this.ready);
          if(this.step < 0)
+         {
             throw new Exception("Forbidden value (" + this.step + ") on element step.");
+         }
+         param1.writeVarShort(this.step);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +93,9 @@ public class ExchangeReadyMessage extends NetworkMessage implements INetworkMess
     private void _stepFunc(ICustomDataInput param1) {
          this.step = param1.readVarUhShort();
          if(this.step < 0)
+         {
             throw new Exception("Forbidden value (" + this.step + ") on element of ExchangeReadyMessage.step.");
+         }
     }
 
 }

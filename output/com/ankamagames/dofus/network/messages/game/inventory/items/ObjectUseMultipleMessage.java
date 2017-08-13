@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class ObjectUseMultipleMessage extends ObjectUseMessage implements INetwo
     public void serializeAs_ObjectUseMultipleMessage(ICustomDataOutput param1) {
          super.serializeAs_ObjectUseMessage(param1);
          if(this.quantity < 0)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
+         }
+         param1.writeVarInt(this.quantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class ObjectUseMultipleMessage extends ObjectUseMessage implements INetwo
     private void _quantityFunc(ICustomDataInput param1) {
          this.quantity = param1.readVarUhInt();
          if(this.quantity < 0)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element of ObjectUseMultipleMessage.quantity.");
+         }
     }
 
 }

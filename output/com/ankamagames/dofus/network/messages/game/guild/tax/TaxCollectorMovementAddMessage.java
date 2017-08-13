@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild.tax;
+package com.ankamagames.dofus.network.messages.game.guild.tax;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,8 +13,8 @@ public class TaxCollectorMovementAddMessage extends NetworkMessage implements IN
 
     private int protocolId = 5917;
     private boolean _isInitialized = false;
-    private TaxCollectorInformations informations = ;
-    private FuncTree _informationstree = ;
+    private TaxCollectorInformations informations;
+    private FuncTree _informationstree;
 
 
     public boolean isInitialized() {

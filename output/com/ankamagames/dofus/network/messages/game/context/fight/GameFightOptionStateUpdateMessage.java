@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -69,7 +69,13 @@ public class GameFightOptionStateUpdateMessage extends NetworkMessage implements
 
     public void serializeAs_GameFightOptionStateUpdateMessage(ICustomDataOutput param1) {
          if(this.fightId < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
+         }
+         param1.writeShort(this.fightId);
+         param1.writeByte(this.teamId);
+         param1.writeByte(this.option);
+         param1.writeBoolean(this.state);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,19 +103,25 @@ public class GameFightOptionStateUpdateMessage extends NetworkMessage implements
     private void _fightIdFunc(ICustomDataInput param1) {
          this.fightId = param1.readShort();
          if(this.fightId < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightId + ") on element of GameFightOptionStateUpdateMessage.fightId.");
+         }
     }
 
     private void _teamIdFunc(ICustomDataInput param1) {
          this.teamId = param1.readByte();
          if(this.teamId < 0)
+         {
             throw new Exception("Forbidden value (" + this.teamId + ") on element of GameFightOptionStateUpdateMessage.teamId.");
+         }
     }
 
     private void _optionFunc(ICustomDataInput param1) {
          this.option = param1.readByte();
          if(this.option < 0)
+         {
             throw new Exception("Forbidden value (" + this.option + ") on element of GameFightOptionStateUpdateMessage.option.");
+         }
     }
 
     private void _stateFunc(ICustomDataInput param1) {

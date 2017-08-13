@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive;
+package com.ankamagames.dofus.network.messages.game.interactive;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class StatedMapUpdateMessage extends NetworkMessage implements INetworkMe
 
     private int protocolId = 5716;
     private boolean _isInitialized = false;
-    private Vector.<StatedElement> statedElements = ;
-    private FuncTree _statedElementstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<StatedElement> statedElements;
+    private FuncTree _statedElementstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class StatedMapUpdateMessage extends NetworkMessage implements INetworkMe
          return 5716;
     }
 
-    public StatedMapUpdateMessage initStatedMapUpdateMessage(Vector.<StatedElement> param1) {
+    public StatedMapUpdateMessage initStatedMapUpdateMessage(Vector<StatedElement> param1) {
          this.statedElements = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class StatedMapUpdateMessage extends NetworkMessage implements INetworkMe
          param1.writeShort(this.statedElements.length);
          int _loc2_ = 0;
          while(_loc2_ < this.statedElements.length)
+         {
             (this.statedElements[_loc2_] as StatedElement).serializeAs_StatedElement(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class StatedMapUpdateMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new StatedElement();
             _loc4_.deserialize(param1);
             this.statedElements.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class StatedMapUpdateMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._statedElementstree.addChild(this._statedElementsFunc);
             _loc3_++;
+         }
     }
 
     private void _statedElementsFunc(ICustomDataInput param1) {

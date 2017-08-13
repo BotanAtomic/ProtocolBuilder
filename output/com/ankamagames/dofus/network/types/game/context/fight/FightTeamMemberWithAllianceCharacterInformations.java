@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.BasicAllianceInformations;
@@ -9,8 +9,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class FightTeamMemberWithAllianceCharacterInformations extends FightTeamMemberCharacterInformations implements INetworkType {
 
     private int protocolId = 426;
-    private BasicAllianceInformations allianceInfos = ;
-    private FuncTree _allianceInfostree = ;
+    private BasicAllianceInformations allianceInfos;
+    private FuncTree _allianceInfostree;
 
 
     public int getTypeId() {

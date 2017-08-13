@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.party.PartyInvitationMemberInformations;
@@ -15,12 +15,8 @@ public class PartyInvitationDungeonDetailsMessage extends PartyInvitationDetails
     private int protocolId = 6262;
     private boolean _isInitialized = false;
     private int dungeonId = 0;
-    private Vector.<Boolean> playersDungeonReady = ;
-    private FuncTree _playersDungeonReadytree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<Boolean> playersDungeonReady;
+    private FuncTree _playersDungeonReadytree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class PartyInvitationDungeonDetailsMessage extends PartyInvitationDetails
          return 6262;
     }
 
-    public PartyInvitationDungeonDetailsMessage initPartyInvitationDungeonDetailsMessage(int param1,int  param2,String  param3,Number  param4,String  param5,Number  param6,Vector.<PartyInvitationMemberInformations>  param7,Vector.<PartyGuestInformations>  param8,int  param9,Vector.<Boolean>  param10) {
+    public PartyInvitationDungeonDetailsMessage initPartyInvitationDungeonDetailsMessage(int param1,int  param2,String  param3,Number  param4,String  param5,Number  param6,Vector<PartyInvitationMemberInformations>  param7,Vector<PartyGuestInformations>  param8,int  param9,Vector<Boolean>  param10) {
          super.initPartyInvitationDetailsMessage(param1,param2,param3,param4,param5,param6,param7,param8);
          this.dungeonId = param9;
          this.playersDungeonReady = param10;
@@ -70,7 +66,17 @@ public class PartyInvitationDungeonDetailsMessage extends PartyInvitationDetails
     public void serializeAs_PartyInvitationDungeonDetailsMessage(ICustomDataOutput param1) {
          super.serializeAs_PartyInvitationDetailsMessage(param1);
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+         }
+         param1.writeVarShort(this.dungeonId);
+         param1.writeShort(this.playersDungeonReady.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.playersDungeonReady.length)
+         {
+            param1.writeBoolean(this.playersDungeonReady[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,9 +90,11 @@ public class PartyInvitationDungeonDetailsMessage extends PartyInvitationDetails
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readBoolean();
             this.playersDungeonReady.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -102,15 +110,19 @@ public class PartyInvitationDungeonDetailsMessage extends PartyInvitationDetails
     private void _dungeonIdFunc(ICustomDataInput param1) {
          this.dungeonId = param1.readVarUhShort();
          if(this.dungeonId < 0)
+         {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element of PartyInvitationDungeonDetailsMessage.dungeonId.");
+         }
     }
 
     private void _playersDungeonReadytreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._playersDungeonReadytree.addChild(this._playersDungeonReadyFunc);
             _loc3_++;
+         }
     }
 
     private void _playersDungeonReadyFunc(ICustomDataInput param1) {

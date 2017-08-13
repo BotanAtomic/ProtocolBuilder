@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.interactive;
+package com.ankamagames.dofus.network.types.game.interactive;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -36,7 +36,11 @@ public class MapObstacle extends Object implements INetworkType {
 
     public void serializeAs_MapObstacle(ICustomDataOutput param1) {
          if(this.obstacleCellId < 0 || this.obstacleCellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.obstacleCellId + ") on element obstacleCellId.");
+         }
+         param1.writeVarShort(this.obstacleCellId);
+         param1.writeByte(this.state);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -60,13 +64,17 @@ public class MapObstacle extends Object implements INetworkType {
     private void _obstacleCellIdFunc(ICustomDataInput param1) {
          this.obstacleCellId = param1.readVarUhShort();
          if(this.obstacleCellId < 0 || this.obstacleCellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.obstacleCellId + ") on element of MapObstacle.obstacleCellId.");
+         }
     }
 
     private void _stateFunc(ICustomDataInput param1) {
          this.state = param1.readByte();
          if(this.state < 0)
+         {
             throw new Exception("Forbidden value (" + this.state + ") on element of MapObstacle.state.");
+         }
     }
 
 }

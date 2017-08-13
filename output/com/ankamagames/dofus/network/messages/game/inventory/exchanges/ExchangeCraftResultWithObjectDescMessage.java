@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.data.items.ObjectItemNotInContainer;
@@ -11,8 +11,8 @@ public class ExchangeCraftResultWithObjectDescMessage extends ExchangeCraftResul
 
     private int protocolId = 5999;
     private boolean _isInitialized = false;
-    private ObjectItemNotInContainer objectInfo = ;
-    private FuncTree _objectInfotree = ;
+    private ObjectItemNotInContainer objectInfo;
+    private FuncTree _objectInfotree;
 
 
     public boolean isInitialized() {

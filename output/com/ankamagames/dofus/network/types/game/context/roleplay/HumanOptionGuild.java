@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -8,8 +8,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class HumanOptionGuild extends HumanOption implements INetworkType {
 
     private int protocolId = 409;
-    private GuildInformations guildInformations = ;
-    private FuncTree _guildInformationstree = ;
+    private GuildInformations guildInformations;
+    private FuncTree _guildInformationstree;
 
 
     public int getTypeId() {

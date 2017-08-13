@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -11,12 +11,8 @@ public class HavenBagPackListMessage extends NetworkMessage implements INetworkM
 
     private int protocolId = 6620;
     private boolean _isInitialized = false;
-    private Vector.<int> packIds = ;
-    private FuncTree _packIdstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> packIds;
+    private FuncTree _packIdstree;
 
 
     public boolean isInitialized() {
@@ -27,7 +23,7 @@ public class HavenBagPackListMessage extends NetworkMessage implements INetworkM
          return 6620;
     }
 
-    public HavenBagPackListMessage initHavenBagPackListMessage(Vector.<int> param1) {
+    public HavenBagPackListMessage initHavenBagPackListMessage(Vector<int> param1) {
          this.packIds = param1;
          this._isInitialized = true;
          return this;
@@ -63,8 +59,10 @@ public class HavenBagPackListMessage extends NetworkMessage implements INetworkM
          param1.writeShort(this.packIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.packIds.length)
+         {
             param1.writeByte(this.packIds[_loc2_]);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -76,9 +74,11 @@ public class HavenBagPackListMessage extends NetworkMessage implements INetworkM
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readByte();
             this.packIds.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -93,8 +93,10 @@ public class HavenBagPackListMessage extends NetworkMessage implements INetworkM
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._packIdstree.addChild(this._packIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _packIdsFunc(ICustomDataInput param1) {

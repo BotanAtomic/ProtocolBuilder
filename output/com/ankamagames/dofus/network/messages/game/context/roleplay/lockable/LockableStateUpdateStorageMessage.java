@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.lockable;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.lockable;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -64,7 +64,10 @@ public class LockableStateUpdateStorageMessage extends LockableStateUpdateAbstra
          super.serializeAs_LockableStateUpdateAbstractMessage(param1);
          param1.writeInt(this.mapId);
          if(this.elementId < 0)
+         {
             throw new Exception("Forbidden value (" + this.elementId + ") on element elementId.");
+         }
+         param1.writeVarInt(this.elementId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -94,7 +97,9 @@ public class LockableStateUpdateStorageMessage extends LockableStateUpdateAbstra
     private void _elementIdFunc(ICustomDataInput param1) {
          this.elementId = param1.readVarUhInt();
          if(this.elementId < 0)
+         {
             throw new Exception("Forbidden value (" + this.elementId + ") on element of LockableStateUpdateStorageMessage.elementId.");
+         }
     }
 
 }

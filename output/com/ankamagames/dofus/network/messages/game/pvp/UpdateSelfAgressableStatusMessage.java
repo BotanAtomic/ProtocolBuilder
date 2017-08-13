@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.pvp;
+package com.ankamagames.dofus.network.messages.game.pvp;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -63,7 +63,10 @@ public class UpdateSelfAgressableStatusMessage extends NetworkMessage implements
     public void serializeAs_UpdateSelfAgressableStatusMessage(ICustomDataOutput param1) {
          param1.writeByte(this.status);
          if(this.probationTime < 0)
+         {
             throw new Exception("Forbidden value (" + this.probationTime + ") on element probationTime.");
+         }
+         param1.writeInt(this.probationTime);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,13 +90,17 @@ public class UpdateSelfAgressableStatusMessage extends NetworkMessage implements
     private void _statusFunc(ICustomDataInput param1) {
          this.status = param1.readByte();
          if(this.status < 0)
+         {
             throw new Exception("Forbidden value (" + this.status + ") on element of UpdateSelfAgressableStatusMessage.status.");
+         }
     }
 
     private void _probationTimeFunc(ICustomDataInput param1) {
          this.probationTime = param1.readInt();
          if(this.probationTime < 0)
+         {
             throw new Exception("Forbidden value (" + this.probationTime + ") on element of UpdateSelfAgressableStatusMessage.probationTime.");
+         }
     }
 
 }

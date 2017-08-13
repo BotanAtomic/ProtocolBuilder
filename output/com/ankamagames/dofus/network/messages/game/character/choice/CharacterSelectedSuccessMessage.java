@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.choice;
+package com.ankamagames.dofus.network.messages.game.character.choice;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,9 +12,9 @@ public class CharacterSelectedSuccessMessage extends NetworkMessage implements I
 
     private int protocolId = 153;
     private boolean _isInitialized = false;
-    private CharacterBaseInformations infos = ;
+    private CharacterBaseInformations infos;
     private boolean isCollectingStats = false;
-    private FuncTree _infostree = ;
+    private FuncTree _infostree;
 
 
     public boolean isInitialized() {

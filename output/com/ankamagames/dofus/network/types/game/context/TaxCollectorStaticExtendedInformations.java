@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context;
+package com.ankamagames.dofus.network.types.game.context;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.AllianceInformations;
@@ -10,8 +10,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class TaxCollectorStaticExtendedInformations extends TaxCollectorStaticInformations implements INetworkType {
 
     private int protocolId = 440;
-    private AllianceInformations allianceIdentity = ;
-    private FuncTree _allianceIdentitytree = ;
+    private AllianceInformations allianceIdentity;
+    private FuncTree _allianceIdentitytree;
 
 
     public int getTypeId() {

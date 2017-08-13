@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -65,7 +66,16 @@ public class GuildHouseRemoveMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_GuildHouseRemoveMessage(ICustomDataOutput param1) {
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
+         }
+         param1.writeVarInt(this.houseId);
+         if(this.instanceId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
+         }
+         param1.writeInt(this.instanceId);
+         param1.writeBoolean(this.secondHand);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -91,13 +101,17 @@ public class GuildHouseRemoveMessage extends NetworkMessage implements INetworkM
     private void _houseIdFunc(ICustomDataInput param1) {
          this.houseId = param1.readVarUhInt();
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element of GuildHouseRemoveMessage.houseId.");
+         }
     }
 
     private void _instanceIdFunc(ICustomDataInput param1) {
          this.instanceId = param1.readInt();
          if(this.instanceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.instanceId + ") on element of GuildHouseRemoveMessage.instanceId.");
+         }
     }
 
     private void _secondHandFunc(ICustomDataInput param1) {

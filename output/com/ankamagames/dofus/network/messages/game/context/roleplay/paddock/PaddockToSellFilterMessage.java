@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.paddock;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.paddock;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -70,7 +70,10 @@ public class PaddockToSellFilterMessage extends NetworkMessage implements INetwo
          param1.writeByte(this.atLeastNbMount);
          param1.writeByte(this.atLeastNbMachine);
          if(this.maxPrice < 0 || this.maxPrice > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.maxPrice + ") on element maxPrice.");
+         }
+         param1.writeVarLong(this.maxPrice);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -110,7 +113,9 @@ public class PaddockToSellFilterMessage extends NetworkMessage implements INetwo
     private void _maxPriceFunc(ICustomDataInput param1) {
          this.maxPrice = param1.readVarUhLong();
          if(this.maxPrice < 0 || this.maxPrice > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.maxPrice + ") on element of PaddockToSellFilterMessage.maxPrice.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character;
+package com.ankamagames.dofus.network.types.game.character;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -36,7 +36,10 @@ public class CharacterMinimalPlusLookAndGradeInformations extends CharacterMinim
     public void serializeAs_CharacterMinimalPlusLookAndGradeInformations(ICustomDataOutput param1) {
          super.serializeAs_CharacterMinimalPlusLookInformations(param1);
          if(this.grade < 0)
+         {
             throw new Exception("Forbidden value (" + this.grade + ") on element grade.");
+         }
+         param1.writeVarInt(this.grade);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -60,7 +63,9 @@ public class CharacterMinimalPlusLookAndGradeInformations extends CharacterMinim
     private void _gradeFunc(ICustomDataInput param1) {
          this.grade = param1.readVarUhInt();
          if(this.grade < 0)
+         {
             throw new Exception("Forbidden value (" + this.grade + ") on element of CharacterMinimalPlusLookAndGradeInformations.grade.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.character.restriction.ActorRestrictionsInformations;
@@ -10,24 +10,18 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class HumanInformations extends Object implements INetworkType {
 
     private int protocolId = 157;
-    private ActorRestrictionsInformations restrictions = ;
+    private ActorRestrictionsInformations restrictions;
     private boolean sex = false;
-    private Vector.<HumanOption> options = ;
-    private FuncTree _restrictionstree = ;
-    private FuncTree _optionstree = ;
-    private int _loc2_ = 0;
-    private HumanOption _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private HumanOption _loc3_ = ProtocolTypeManager.getInstance(HumanOption,_loc2_);
+    private Vector<HumanOption> options;
+    private FuncTree _restrictionstree;
+    private FuncTree _optionstree;
 
 
     public int getTypeId() {
          return 157;
     }
 
-    public HumanInformations initHumanInformations(ActorRestrictionsInformations param1,boolean  param2,Vector.<HumanOption>  param3) {
+    public HumanInformations initHumanInformations(ActorRestrictionsInformations param1,boolean  param2,Vector<HumanOption>  param3) {
          this.restrictions = param1;
          this.sex = param2;
          this.options = param3;
@@ -49,9 +43,11 @@ public class HumanInformations extends Object implements INetworkType {
          param1.writeShort(this.options.length);
          int _loc2_ = 0;
          while(_loc2_ < this.options.length)
+         {
             param1.writeShort((this.options[_loc2_] as HumanOption).getTypeId());
             (this.options[_loc2_] as HumanOption).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -67,11 +63,13 @@ public class HumanInformations extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(HumanOption,_loc4_);
             _loc5_.deserialize(param1);
             this.options.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -97,8 +95,10 @@ public class HumanInformations extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._optionstree.addChild(this._optionsFunc);
             _loc3_++;
+         }
     }
 
     private void _optionsFunc(ICustomDataInput param1) {

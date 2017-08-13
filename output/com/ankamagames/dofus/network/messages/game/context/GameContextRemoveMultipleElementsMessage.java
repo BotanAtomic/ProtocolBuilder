@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,12 +14,8 @@ public class GameContextRemoveMultipleElementsMessage extends NetworkMessage imp
 
     private int protocolId = 252;
     private boolean _isInitialized = false;
-    private Vector.<Number> elementsIds = ;
-    private FuncTree _elementsIdstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<Number> elementsIds;
+    private FuncTree _elementsIdstree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class GameContextRemoveMultipleElementsMessage extends NetworkMessage imp
          return 252;
     }
 
-    public GameContextRemoveMultipleElementsMessage initGameContextRemoveMultipleElementsMessage(Vector.<Number> param1) {
+    public GameContextRemoveMultipleElementsMessage initGameContextRemoveMultipleElementsMessage(Vector<Number> param1) {
          this.elementsIds = param1;
          this._isInitialized = true;
          return this;
@@ -66,8 +62,14 @@ public class GameContextRemoveMultipleElementsMessage extends NetworkMessage imp
          param1.writeShort(this.elementsIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.elementsIds.length)
+         {
             if(this.elementsIds[_loc2_] < -9.007199254740992E15 || this.elementsIds[_loc2_] > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + this.elementsIds[_loc2_] + ") on element 1 (starting at 1) of elementsIds.");
+            }
+            param1.writeDouble(this.elementsIds[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -79,9 +81,15 @@ public class GameContextRemoveMultipleElementsMessage extends NetworkMessage imp
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readDouble();
             if(_loc4_ < -9.007199254740992E15 || _loc4_ > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of elementsIds.");
+            }
+            this.elementsIds.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -96,14 +104,19 @@ public class GameContextRemoveMultipleElementsMessage extends NetworkMessage imp
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._elementsIdstree.addChild(this._elementsIdsFunc);
             _loc3_++;
+         }
     }
 
     private void _elementsIdsFunc(ICustomDataInput param1) {
          Number _loc2_ = param1.readDouble();
          if(_loc2_ < -9.007199254740992E15 || _loc2_ > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of elementsIds.");
+         }
+         this.elementsIds.push(_loc2_);
     }
 
 }

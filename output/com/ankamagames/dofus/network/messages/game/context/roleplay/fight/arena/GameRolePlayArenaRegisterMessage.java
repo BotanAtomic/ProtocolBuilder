@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class GameRolePlayArenaRegisterMessage extends NetworkMessage implements 
     private void _battleModeFunc(ICustomDataInput param1) {
          this.battleMode = param1.readInt();
          if(this.battleMode < 0)
+         {
             throw new Exception("Forbidden value (" + this.battleMode + ") on element of GameRolePlayArenaRegisterMessage.battleMode.");
+         }
     }
 
 }

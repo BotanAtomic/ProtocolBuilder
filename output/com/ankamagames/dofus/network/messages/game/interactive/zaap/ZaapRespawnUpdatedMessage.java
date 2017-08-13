@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive.zaap;
+package com.ankamagames.dofus.network.messages.game.interactive.zaap;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ZaapRespawnUpdatedMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_ZaapRespawnUpdatedMessage(ICustomDataOutput param1) {
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
+         }
+         param1.writeInt(this.mapId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ZaapRespawnUpdatedMessage extends NetworkMessage implements INetwor
     private void _mapIdFunc(ICustomDataInput param1) {
          this.mapId = param1.readInt();
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element of ZaapRespawnUpdatedMessage.mapId.");
+         }
     }
 
 }

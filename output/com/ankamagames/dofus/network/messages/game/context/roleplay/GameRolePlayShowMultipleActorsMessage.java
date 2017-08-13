@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class GameRolePlayShowMultipleActorsMessage extends NetworkMessage implem
 
     private int protocolId = 6712;
     private boolean _isInitialized = false;
-    private Vector.<GameRolePlayActorInformations> informationsList = ;
-    private FuncTree _informationsListtree = ;
-    private int _loc2_ = 0;
-    private GameRolePlayActorInformations _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private GameRolePlayActorInformations _loc3_ = ProtocolTypeManager.getInstance(GameRolePlayActorInformations,_loc2_);
+    private Vector<GameRolePlayActorInformations> informationsList;
+    private FuncTree _informationsListtree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class GameRolePlayShowMultipleActorsMessage extends NetworkMessage implem
          return 6712;
     }
 
-    public GameRolePlayShowMultipleActorsMessage initGameRolePlayShowMultipleActorsMessage(Vector.<GameRolePlayActorInformations> param1) {
+    public GameRolePlayShowMultipleActorsMessage initGameRolePlayShowMultipleActorsMessage(Vector<GameRolePlayActorInformations> param1) {
          this.informationsList = param1;
          this._isInitialized = true;
          return this;
@@ -67,9 +61,11 @@ public class GameRolePlayShowMultipleActorsMessage extends NetworkMessage implem
          param1.writeShort(this.informationsList.length);
          int _loc2_ = 0;
          while(_loc2_ < this.informationsList.length)
+         {
             param1.writeShort((this.informationsList[_loc2_] as GameRolePlayActorInformations).getTypeId());
             (this.informationsList[_loc2_] as GameRolePlayActorInformations).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,11 +78,13 @@ public class GameRolePlayShowMultipleActorsMessage extends NetworkMessage implem
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(GameRolePlayActorInformations,_loc4_);
             _loc5_.deserialize(param1);
             this.informationsList.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,8 +99,10 @@ public class GameRolePlayShowMultipleActorsMessage extends NetworkMessage implem
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._informationsListtree.addChild(this._informationsListFunc);
             _loc3_++;
+         }
     }
 
     private void _informationsListFunc(ICustomDataInput param1) {

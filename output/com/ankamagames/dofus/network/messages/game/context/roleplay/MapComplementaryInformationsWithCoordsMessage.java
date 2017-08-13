@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.house.HouseInformations;
@@ -12,6 +12,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -32,7 +33,7 @@ public class MapComplementaryInformationsWithCoordsMessage extends MapComplement
          return 6268;
     }
 
-    public MapComplementaryInformationsWithCoordsMessage initMapComplementaryInformationsWithCoordsMessage(int param1,int  param2,Vector.<HouseInformations>  param3,Vector.<GameRolePlayActorInformations>  param4,Vector.<InteractiveElement>  param5,Vector.<StatedElement>  param6,Vector.<MapObstacle>  param7,Vector.<FightCommonInformations>  param8,boolean  param9,FightStartingPositions  param10,int  param11,int  param12) {
+    public MapComplementaryInformationsWithCoordsMessage initMapComplementaryInformationsWithCoordsMessage(int param1,int  param2,Vector<HouseInformations>  param3,Vector<GameRolePlayActorInformations>  param4,Vector<InteractiveElement>  param5,Vector<StatedElement>  param6,Vector<MapObstacle>  param7,Vector<FightCommonInformations>  param8,boolean  param9,FightStartingPositions  param10,int  param11,int  param12) {
          super.initMapComplementaryInformationsDataMessage(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10);
          this.worldX = param11;
          this.worldY = param12;
@@ -71,7 +72,15 @@ public class MapComplementaryInformationsWithCoordsMessage extends MapComplement
     public void serializeAs_MapComplementaryInformationsWithCoordsMessage(ICustomDataOutput param1) {
          super.serializeAs_MapComplementaryInformationsDataMessage(param1);
          if(this.worldX < -255 || this.worldX > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
+         }
+         param1.writeShort(this.worldX);
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
+         }
+         param1.writeShort(this.worldY);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,13 +106,17 @@ public class MapComplementaryInformationsWithCoordsMessage extends MapComplement
     private void _worldXFunc(ICustomDataInput param1) {
          this.worldX = param1.readShort();
          if(this.worldX < -255 || this.worldX > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldX + ") on element of MapComplementaryInformationsWithCoordsMessage.worldX.");
+         }
     }
 
     private void _worldYFunc(ICustomDataInput param1) {
          this.worldY = param1.readShort();
          if(this.worldY < -255 || this.worldY > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldY + ") on element of MapComplementaryInformationsWithCoordsMessage.worldY.");
+         }
     }
 
 }

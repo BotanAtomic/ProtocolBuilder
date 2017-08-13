@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context;
+package com.ankamagames.dofus.network.types.game.context;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -9,19 +9,15 @@ public class EntityMovementInformations extends Object implements INetworkType {
 
     private int protocolId = 63;
     private int id = 0;
-    private Vector.<int> steps = ;
-    private FuncTree _stepstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> steps;
+    private FuncTree _stepstree;
 
 
     public int getTypeId() {
          return 63;
     }
 
-    public EntityMovementInformations initEntityMovementInformations(int param1,Vector.<int>  param2) {
+    public EntityMovementInformations initEntityMovementInformations(int param1,Vector<int>  param2) {
          this.id = param1;
          this.steps = param2;
          return this;
@@ -41,8 +37,10 @@ public class EntityMovementInformations extends Object implements INetworkType {
          param1.writeShort(this.steps.length);
          int _loc2_ = 0;
          while(_loc2_ < this.steps.length)
+         {
             param1.writeByte(this.steps[_loc2_]);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -55,9 +53,11 @@ public class EntityMovementInformations extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readByte();
             this.steps.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -77,8 +77,10 @@ public class EntityMovementInformations extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._stepstree.addChild(this._stepsFunc);
             _loc3_++;
+         }
     }
 
     private void _stepsFunc(ICustomDataInput param1) {

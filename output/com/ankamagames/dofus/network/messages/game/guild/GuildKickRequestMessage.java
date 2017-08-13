@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class GuildKickRequestMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_GuildKickRequestMessage(ICustomDataOutput param1) {
          if(this.kickedId < 0 || this.kickedId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.kickedId + ") on element kickedId.");
+         }
+         param1.writeVarLong(this.kickedId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class GuildKickRequestMessage extends NetworkMessage implements INetworkM
     private void _kickedIdFunc(ICustomDataInput param1) {
          this.kickedId = param1.readVarUhLong();
          if(this.kickedId < 0 || this.kickedId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.kickedId + ") on element of GuildKickRequestMessage.kickedId.");
+         }
     }
 
 }

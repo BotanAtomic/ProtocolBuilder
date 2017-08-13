@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.atlas.compass;
+package com.ankamagames.dofus.network.messages.game.atlas.compass;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.MapCoordinates;
@@ -64,7 +64,11 @@ public class CompassUpdatePartyMemberMessage extends CompassUpdateMessage implem
     public void serializeAs_CompassUpdatePartyMemberMessage(ICustomDataOutput param1) {
          super.serializeAs_CompassUpdateMessage(param1);
          if(this.memberId < 0 || this.memberId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.memberId + ") on element memberId.");
+         }
+         param1.writeVarLong(this.memberId);
+         param1.writeBoolean(this.active);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +94,9 @@ public class CompassUpdatePartyMemberMessage extends CompassUpdateMessage implem
     private void _memberIdFunc(ICustomDataInput param1) {
          this.memberId = param1.readVarUhLong();
          if(this.memberId < 0 || this.memberId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.memberId + ") on element of CompassUpdatePartyMemberMessage.memberId.");
+         }
     }
 
     private void _activeFunc(ICustomDataInput param1) {

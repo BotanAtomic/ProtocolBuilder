@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -43,7 +44,10 @@ public class GameActionFightCastRequestMessage extends NetworkMessage implements
          ByteArray _loc2_ = new ByteArray();
          this.serialize(new CustomDataWrapper(_loc2_));
          if(HASH_FUNCTION != null)
+         {
             HASH_FUNCTION(_loc2_);
+         }
+         writePacket(param1,this.getMessageId(),_loc2_);
     }
 
     public void unpack(ICustomDataInput param1,int  param2) {
@@ -63,7 +67,15 @@ public class GameActionFightCastRequestMessage extends NetworkMessage implements
 
     public void serializeAs_GameActionFightCastRequestMessage(ICustomDataOutput param1) {
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeVarShort(this.spellId);
+         if(this.cellId < -1 || this.cellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
+         }
+         param1.writeShort(this.cellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,13 +99,17 @@ public class GameActionFightCastRequestMessage extends NetworkMessage implements
     private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readVarUhShort();
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of GameActionFightCastRequestMessage.spellId.");
+         }
     }
 
     private void _cellIdFunc(ICustomDataInput param1) {
          this.cellId = param1.readShort();
          if(this.cellId < -1 || this.cellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.cellId + ") on element of GameActionFightCastRequestMessage.cellId.");
+         }
     }
 
 }

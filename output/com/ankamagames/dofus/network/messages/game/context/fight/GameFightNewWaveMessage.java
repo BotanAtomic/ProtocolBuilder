@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -65,7 +65,12 @@ public class GameFightNewWaveMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_GameFightNewWaveMessage(ICustomDataOutput param1) {
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeByte(this.id);
+         param1.writeByte(this.teamId);
+         param1.writeShort(this.nbTurnBeforeNextWave);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -91,13 +96,17 @@ public class GameFightNewWaveMessage extends NetworkMessage implements INetworkM
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readByte();
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of GameFightNewWaveMessage.id.");
+         }
     }
 
     private void _teamIdFunc(ICustomDataInput param1) {
          this.teamId = param1.readByte();
          if(this.teamId < 0)
+         {
             throw new Exception("Forbidden value (" + this.teamId + ") on element of GameFightNewWaveMessage.teamId.");
+         }
     }
 
     private void _nbTurnBeforeNextWaveFunc(ICustomDataInput param1) {

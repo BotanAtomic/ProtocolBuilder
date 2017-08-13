@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive;
+package com.ankamagames.dofus.network.messages.game.interactive;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class StatedElementUpdatedMessage extends NetworkMessage implements INetw
 
     private int protocolId = 5709;
     private boolean _isInitialized = false;
-    private StatedElement statedElement = ;
-    private FuncTree _statedElementtree = ;
+    private StatedElement statedElement;
+    private FuncTree _statedElementtree;
 
 
     public boolean isInitialized() {

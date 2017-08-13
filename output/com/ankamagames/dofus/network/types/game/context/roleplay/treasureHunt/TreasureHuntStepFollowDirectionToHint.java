@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.types.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -38,7 +38,10 @@ public class TreasureHuntStepFollowDirectionToHint extends TreasureHuntStep impl
          super.serializeAs_TreasureHuntStep(param1);
          param1.writeByte(this.direction);
          if(this.npcId < 0)
+         {
             throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
+         }
+         param1.writeVarShort(this.npcId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -64,13 +67,17 @@ public class TreasureHuntStepFollowDirectionToHint extends TreasureHuntStep impl
     private void _directionFunc(ICustomDataInput param1) {
          this.direction = param1.readByte();
          if(this.direction < 0)
+         {
             throw new Exception("Forbidden value (" + this.direction + ") on element of TreasureHuntStepFollowDirectionToHint.direction.");
+         }
     }
 
     private void _npcIdFunc(ICustomDataInput param1) {
          this.npcId = param1.readVarUhShort();
          if(this.npcId < 0)
+         {
             throw new Exception("Forbidden value (" + this.npcId + ") on element of TreasureHuntStepFollowDirectionToHint.npcId.");
+         }
     }
 
 }

@@ -1,9 +1,12 @@
-package package com.ankamagames.dofus.network.types.connection;
+package com.ankamagames.dofus.network.types.connection;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -58,7 +61,29 @@ public class GameServerInformations extends Object implements INetworkType {
 
     public void serializeAs_GameServerInformations(ICustomDataOutput param1) {
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarShort(this.id);
+         param1.writeByte(this.type);
+         param1.writeByte(this.status);
+         param1.writeByte(this.completion);
+         param1.writeBoolean(this.isSelectable);
+         if(this.charactersCount < 0)
+         {
+            throw new Exception("Forbidden value (" + this.charactersCount + ") on element charactersCount.");
+         }
+         param1.writeByte(this.charactersCount);
+         if(this.charactersSlots < 0)
+         {
+            throw new Exception("Forbidden value (" + this.charactersSlots + ") on element charactersSlots.");
+         }
+         param1.writeByte(this.charactersSlots);
+         if(this.date < -9.007199254740992E15 || this.date > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.date + ") on element date.");
+         }
+         param1.writeDouble(this.date);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -94,7 +119,9 @@ public class GameServerInformations extends Object implements INetworkType {
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readVarUhShort();
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of GameServerInformations.id.");
+         }
     }
 
     private void _typeFunc(ICustomDataInput param1) {
@@ -104,13 +131,17 @@ public class GameServerInformations extends Object implements INetworkType {
     private void _statusFunc(ICustomDataInput param1) {
          this.status = param1.readByte();
          if(this.status < 0)
+         {
             throw new Exception("Forbidden value (" + this.status + ") on element of GameServerInformations.status.");
+         }
     }
 
     private void _completionFunc(ICustomDataInput param1) {
          this.completion = param1.readByte();
          if(this.completion < 0)
+         {
             throw new Exception("Forbidden value (" + this.completion + ") on element of GameServerInformations.completion.");
+         }
     }
 
     private void _isSelectableFunc(ICustomDataInput param1) {
@@ -120,19 +151,25 @@ public class GameServerInformations extends Object implements INetworkType {
     private void _charactersCountFunc(ICustomDataInput param1) {
          this.charactersCount = param1.readByte();
          if(this.charactersCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.charactersCount + ") on element of GameServerInformations.charactersCount.");
+         }
     }
 
     private void _charactersSlotsFunc(ICustomDataInput param1) {
          this.charactersSlots = param1.readByte();
          if(this.charactersSlots < 0)
+         {
             throw new Exception("Forbidden value (" + this.charactersSlots + ") on element of GameServerInformations.charactersSlots.");
+         }
     }
 
     private void _dateFunc(ICustomDataInput param1) {
          this.date = param1.readDouble();
          if(this.date < -9.007199254740992E15 || this.date > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.date + ") on element of GameServerInformations.date.");
+         }
     }
 
 }

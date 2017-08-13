@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.document;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.document;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ComicReadingBeginMessage extends NetworkMessage implements INetwork
 
     public void serializeAs_ComicReadingBeginMessage(ICustomDataOutput param1) {
          if(this.comicId < 0)
+         {
             throw new Exception("Forbidden value (" + this.comicId + ") on element comicId.");
+         }
+         param1.writeVarShort(this.comicId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ComicReadingBeginMessage extends NetworkMessage implements INetwork
     private void _comicIdFunc(ICustomDataInput param1) {
          this.comicId = param1.readVarUhShort();
          if(this.comicId < 0)
+         {
             throw new Exception("Forbidden value (" + this.comicId + ") on element of ComicReadingBeginMessage.comicId.");
+         }
     }
 
 }

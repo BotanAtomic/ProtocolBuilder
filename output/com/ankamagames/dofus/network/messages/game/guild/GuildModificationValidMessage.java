@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,8 +13,8 @@ public class GuildModificationValidMessage extends NetworkMessage implements INe
     private int protocolId = 6323;
     private boolean _isInitialized = false;
     private String guildName = "";
-    private GuildEmblem guildEmblem = ;
-    private FuncTree _guildEmblemtree = ;
+    private GuildEmblem guildEmblem;
+    private FuncTree _guildEmblemtree;
 
 
     public boolean isInitialized() {

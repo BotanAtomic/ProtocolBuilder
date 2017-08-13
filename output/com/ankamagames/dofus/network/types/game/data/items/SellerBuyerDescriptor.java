@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items;
+package com.ankamagames.dofus.network.types.game.data.items;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -11,36 +11,32 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class SellerBuyerDescriptor extends Object implements INetworkType {
 
     private int protocolId = 121;
-    private Vector.<uint> quantities = ;
-    private Vector.<uint> types = ;
+    private Vector<uint> quantities;
+    private Vector<uint> types;
     private Number taxPercentage = 0;
     private Number taxModificationPercentage = 0;
     private int maxItemLevel = 0;
     private int maxItemPerAccount = 0;
     private int npcContextualId = 0;
     private int unsoldDelay = 0;
-    private FuncTree _quantitiestree = ;
-    private FuncTree _typestree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private int _loc7_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _quantitiestree;
+    private FuncTree _typestree;
 
 
     public int getTypeId() {
          return 121;
     }
 
-    public SellerBuyerDescriptor initSellerBuyerDescriptor(Vector.<uint> param1,Vector.<uint>  param2,Number  param3,Number  param4,int  param5,int  param6,int  param7,int  param8) {
+    public SellerBuyerDescriptor initSellerBuyerDescriptor(Vector<uint> param1,Vector<uint>  param2,Number  param3,Number  param4,int  param5,int  param6,int  param7,int  param8) {
          this.quantities = param1;
          this.types = param2;
          this.taxPercentage = param3;
@@ -71,8 +67,43 @@ public class SellerBuyerDescriptor extends Object implements INetworkType {
          param1.writeShort(this.quantities.length);
          int _loc2_ = 0;
          while(_loc2_ < this.quantities.length)
+         {
             if(this.quantities[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.quantities[_loc2_] + ") on element 1 (starting at 1) of quantities.");
+            }
+            param1.writeVarInt(this.quantities[_loc2_]);
+            _loc2_++;
+         }
+         param1.writeShort(this.types.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.types.length)
+         {
+            if(this.types[_loc3_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.types[_loc3_] + ") on element 2 (starting at 1) of types.");
+            }
+            param1.writeVarInt(this.types[_loc3_]);
+            _loc3_++;
+         }
+         param1.writeFloat(this.taxPercentage);
+         param1.writeFloat(this.taxModificationPercentage);
+         if(this.maxItemLevel < 0 || this.maxItemLevel > 255)
+         {
+            throw new Exception("Forbidden value (" + this.maxItemLevel + ") on element maxItemLevel.");
+         }
+         param1.writeByte(this.maxItemLevel);
+         if(this.maxItemPerAccount < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxItemPerAccount + ") on element maxItemPerAccount.");
+         }
+         param1.writeVarInt(this.maxItemPerAccount);
+         param1.writeInt(this.npcContextualId);
+         if(this.unsoldDelay < 0)
+         {
+            throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element unsoldDelay.");
+         }
+         param1.writeVarShort(this.unsoldDelay);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,9 +116,33 @@ public class SellerBuyerDescriptor extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = param1.readVarUhInt();
             if(_loc6_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc6_ + ") on elements of quantities.");
+            }
+            this.quantities.push(_loc6_);
+            _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = param1.readVarUhInt();
+            if(_loc7_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc7_ + ") on elements of types.");
+            }
+            this.types.push(_loc7_);
+            _loc5_++;
+         }
+         this._taxPercentageFunc(param1);
+         this._taxModificationPercentageFunc(param1);
+         this._maxItemLevelFunc(param1);
+         this._maxItemPerAccountFunc(param1);
+         this._npcContextualIdFunc(param1);
+         this._unsoldDelayFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -109,28 +164,38 @@ public class SellerBuyerDescriptor extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._quantitiestree.addChild(this._quantitiesFunc);
             _loc3_++;
+         }
     }
 
     private void _quantitiesFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhInt();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of quantities.");
+         }
+         this.quantities.push(_loc2_);
     }
 
     private void _typestreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._typestree.addChild(this._typesFunc);
             _loc3_++;
+         }
     }
 
     private void _typesFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhInt();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of types.");
+         }
+         this.types.push(_loc2_);
     }
 
     private void _taxPercentageFunc(ICustomDataInput param1) {
@@ -144,13 +209,17 @@ public class SellerBuyerDescriptor extends Object implements INetworkType {
     private void _maxItemLevelFunc(ICustomDataInput param1) {
          this.maxItemLevel = param1.readUnsignedByte();
          if(this.maxItemLevel < 0 || this.maxItemLevel > 255)
+         {
             throw new Exception("Forbidden value (" + this.maxItemLevel + ") on element of SellerBuyerDescriptor.maxItemLevel.");
+         }
     }
 
     private void _maxItemPerAccountFunc(ICustomDataInput param1) {
          this.maxItemPerAccount = param1.readVarUhInt();
          if(this.maxItemPerAccount < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxItemPerAccount + ") on element of SellerBuyerDescriptor.maxItemPerAccount.");
+         }
     }
 
     private void _npcContextualIdFunc(ICustomDataInput param1) {
@@ -160,7 +229,9 @@ public class SellerBuyerDescriptor extends Object implements INetworkType {
     private void _unsoldDelayFunc(ICustomDataInput param1) {
          this.unsoldDelay = param1.readVarUhShort();
          if(this.unsoldDelay < 0)
+         {
             throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element of SellerBuyerDescriptor.unsoldDelay.");
+         }
     }
 
 }

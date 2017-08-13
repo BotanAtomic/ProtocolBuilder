@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.quest;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.quest;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class QuestStepInfoRequestMessage extends NetworkMessage implements INetw
 
     public void serializeAs_QuestStepInfoRequestMessage(ICustomDataOutput param1) {
          if(this.questId < 0)
+         {
             throw new Exception("Forbidden value (" + this.questId + ") on element questId.");
+         }
+         param1.writeVarShort(this.questId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class QuestStepInfoRequestMessage extends NetworkMessage implements INetw
     private void _questIdFunc(ICustomDataInput param1) {
          this.questId = param1.readVarUhShort();
          if(this.questId < 0)
+         {
             throw new Exception("Forbidden value (" + this.questId + ") on element of QuestStepInfoRequestMessage.questId.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class KickHavenBagRequestMessage extends NetworkMessage implements INetwo
 
     public void serializeAs_KickHavenBagRequestMessage(ICustomDataOutput param1) {
          if(this.guestId < 0 || this.guestId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.guestId + ") on element guestId.");
+         }
+         param1.writeVarLong(this.guestId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class KickHavenBagRequestMessage extends NetworkMessage implements INetwo
     private void _guestIdFunc(ICustomDataInput param1) {
          this.guestId = param1.readVarUhLong();
          if(this.guestId < 0 || this.guestId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.guestId + ") on element of KickHavenBagRequestMessage.guestId.");
+         }
     }
 
 }

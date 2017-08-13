@@ -1,10 +1,14 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.party.companion;
+package com.ankamagames.dofus.network.types.game.context.roleplay.party.companion;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -52,7 +56,30 @@ public class PartyCompanionMemberInformations extends PartyCompanionBaseInformat
     public void serializeAs_PartyCompanionMemberInformations(ICustomDataOutput param1) {
          super.serializeAs_PartyCompanionBaseInformations(param1);
          if(this.initiative < 0)
+         {
             throw new Exception("Forbidden value (" + this.initiative + ") on element initiative.");
+         }
+         param1.writeVarShort(this.initiative);
+         if(this.lifePoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+         }
+         param1.writeVarInt(this.lifePoints);
+         if(this.maxLifePoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+         }
+         param1.writeVarInt(this.maxLifePoints);
+         if(this.prospecting < 0)
+         {
+            throw new Exception("Forbidden value (" + this.prospecting + ") on element prospecting.");
+         }
+         param1.writeVarShort(this.prospecting);
+         if(this.regenRate < 0 || this.regenRate > 255)
+         {
+            throw new Exception("Forbidden value (" + this.regenRate + ") on element regenRate.");
+         }
+         param1.writeByte(this.regenRate);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,31 +111,41 @@ public class PartyCompanionMemberInformations extends PartyCompanionBaseInformat
     private void _initiativeFunc(ICustomDataInput param1) {
          this.initiative = param1.readVarUhShort();
          if(this.initiative < 0)
+         {
             throw new Exception("Forbidden value (" + this.initiative + ") on element of PartyCompanionMemberInformations.initiative.");
+         }
     }
 
     private void _lifePointsFunc(ICustomDataInput param1) {
          this.lifePoints = param1.readVarUhInt();
          if(this.lifePoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.lifePoints + ") on element of PartyCompanionMemberInformations.lifePoints.");
+         }
     }
 
     private void _maxLifePointsFunc(ICustomDataInput param1) {
          this.maxLifePoints = param1.readVarUhInt();
          if(this.maxLifePoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element of PartyCompanionMemberInformations.maxLifePoints.");
+         }
     }
 
     private void _prospectingFunc(ICustomDataInput param1) {
          this.prospecting = param1.readVarUhShort();
          if(this.prospecting < 0)
+         {
             throw new Exception("Forbidden value (" + this.prospecting + ") on element of PartyCompanionMemberInformations.prospecting.");
+         }
     }
 
     private void _regenRateFunc(ICustomDataInput param1) {
          this.regenRate = param1.readUnsignedByte();
          if(this.regenRate < 0 || this.regenRate > 255)
+         {
             throw new Exception("Forbidden value (" + this.regenRate + ") on element of PartyCompanionMemberInformations.regenRate.");
+         }
     }
 
 }

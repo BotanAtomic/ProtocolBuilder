@@ -2,9 +2,9 @@ package com.ankamagames.dofus.network.enums;
 
 public enum TaxCollectorStateEnum {
 
-    STATE_COLLECTING(0),
-    STATE_WAITING_FOR_HELP(1),
-    STATE_FIGHTING(2);
+    STATE_COLLECTING(0;),
+    STATE_WAITING_FOR_HELP(1;),
+    STATE_FIGHTING(2;);
 
     private final int value;
     public TaxCollectorStateEnum(int value) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.atlas;
+package com.ankamagames.dofus.network.messages.game.atlas;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class AtlasPointInformationsMessage extends NetworkMessage implements INe
 
     private int protocolId = 5956;
     private boolean _isInitialized = false;
-    private AtlasPointsInformations type = ;
-    private FuncTree _typetree = ;
+    private AtlasPointsInformations type;
+    private FuncTree _typetree;
 
 
     public boolean isInitialized() {

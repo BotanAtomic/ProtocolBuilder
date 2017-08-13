@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.actions.fight;
+package com.ankamagames.dofus.network.types.game.actions.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -41,7 +41,13 @@ public class GameActionMarkedCell extends Object implements INetworkType {
 
     public void serializeAs_GameActionMarkedCell(ICustomDataOutput param1) {
          if(this.cellId < 0 || this.cellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
+         }
+         param1.writeVarShort(this.cellId);
+         param1.writeByte(this.zoneSize);
+         param1.writeInt(this.cellColor);
+         param1.writeByte(this.cellsType);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -69,7 +75,9 @@ public class GameActionMarkedCell extends Object implements INetworkType {
     private void _cellIdFunc(ICustomDataInput param1) {
          this.cellId = param1.readVarUhShort();
          if(this.cellId < 0 || this.cellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.cellId + ") on element of GameActionMarkedCell.cellId.");
+         }
     }
 
     private void _zoneSizeFunc(ICustomDataInput param1) {

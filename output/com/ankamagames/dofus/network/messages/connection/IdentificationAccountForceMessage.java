@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.version.VersionExtended;
@@ -22,7 +22,7 @@ public class IdentificationAccountForceMessage extends IdentificationMessage imp
          return 6119;
     }
 
-    public IdentificationAccountForceMessage initIdentificationAccountForceMessage(VersionExtended param1,String  param2,Vector.<int>  param3,int  param4,boolean  param5,boolean  param6,boolean  param7,Number  param8,Vector.<uint>  param9,String  param10) {
+    public IdentificationAccountForceMessage initIdentificationAccountForceMessage(VersionExtended param1,String  param2,Vector<int>  param3,int  param4,boolean  param5,boolean  param6,boolean  param7,Number  param8,Vector<uint>  param9,String  param10) {
          super.initIdentificationMessage(param1,param2,param3,param4,param5,param6,param7,param8,param9);
          this.forcedAccountLogin = param10;
          this._isInitialized = true;

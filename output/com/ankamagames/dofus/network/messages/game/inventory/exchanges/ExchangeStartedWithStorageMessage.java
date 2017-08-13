@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class ExchangeStartedWithStorageMessage extends ExchangeStartedMessage im
     public void serializeAs_ExchangeStartedWithStorageMessage(ICustomDataOutput param1) {
          super.serializeAs_ExchangeStartedMessage(param1);
          if(this.storageMaxSlot < 0)
+         {
             throw new Exception("Forbidden value (" + this.storageMaxSlot + ") on element storageMaxSlot.");
+         }
+         param1.writeVarInt(this.storageMaxSlot);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class ExchangeStartedWithStorageMessage extends ExchangeStartedMessage im
     private void _storageMaxSlotFunc(ICustomDataInput param1) {
          this.storageMaxSlot = param1.readVarUhInt();
          if(this.storageMaxSlot < 0)
+         {
             throw new Exception("Forbidden value (" + this.storageMaxSlot + ") on element of ExchangeStartedWithStorageMessage.storageMaxSlot.");
+         }
     }
 
 }

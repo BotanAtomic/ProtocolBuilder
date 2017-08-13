@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.status;
+package com.ankamagames.dofus.network.messages.game.character.status;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.social;
+package com.ankamagames.dofus.network.types.game.social;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class GuildInAllianceVersatileInformations extends GuildVersatileInformat
     public void serializeAs_GuildInAllianceVersatileInformations(ICustomDataOutput param1) {
          super.serializeAs_GuildVersatileInformations(param1);
          if(this.allianceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
+         }
+         param1.writeVarInt(this.allianceId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class GuildInAllianceVersatileInformations extends GuildVersatileInformat
     private void _allianceIdFunc(ICustomDataInput param1) {
          this.allianceId = param1.readVarUhInt();
          if(this.allianceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.allianceId + ") on element of GuildInAllianceVersatileInformations.allianceId.");
+         }
     }
 
 }

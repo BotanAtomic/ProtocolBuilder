@@ -1,10 +1,14 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -76,7 +80,30 @@ public class PartyUpdateLightMessage extends AbstractPartyEventMessage implement
     public void serializeAs_PartyUpdateLightMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractPartyEventMessage(param1);
          if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarLong(this.id);
+         if(this.lifePoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+         }
+         param1.writeVarInt(this.lifePoints);
+         if(this.maxLifePoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+         }
+         param1.writeVarInt(this.maxLifePoints);
+         if(this.prospecting < 0)
+         {
+            throw new Exception("Forbidden value (" + this.prospecting + ") on element prospecting.");
+         }
+         param1.writeVarShort(this.prospecting);
+         if(this.regenRate < 0 || this.regenRate > 255)
+         {
+            throw new Exception("Forbidden value (" + this.regenRate + ") on element regenRate.");
+         }
+         param1.writeByte(this.regenRate);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -108,31 +135,41 @@ public class PartyUpdateLightMessage extends AbstractPartyEventMessage implement
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readVarUhLong();
          if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of PartyUpdateLightMessage.id.");
+         }
     }
 
     private void _lifePointsFunc(ICustomDataInput param1) {
          this.lifePoints = param1.readVarUhInt();
          if(this.lifePoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.lifePoints + ") on element of PartyUpdateLightMessage.lifePoints.");
+         }
     }
 
     private void _maxLifePointsFunc(ICustomDataInput param1) {
          this.maxLifePoints = param1.readVarUhInt();
          if(this.maxLifePoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element of PartyUpdateLightMessage.maxLifePoints.");
+         }
     }
 
     private void _prospectingFunc(ICustomDataInput param1) {
          this.prospecting = param1.readVarUhShort();
          if(this.prospecting < 0)
+         {
             throw new Exception("Forbidden value (" + this.prospecting + ") on element of PartyUpdateLightMessage.prospecting.");
+         }
     }
 
     private void _regenRateFunc(ICustomDataInput param1) {
          this.regenRate = param1.readUnsignedByte();
          if(this.regenRate < 0 || this.regenRate > 255)
+         {
             throw new Exception("Forbidden value (" + this.regenRate + ") on element of PartyUpdateLightMessage.regenRate.");
+         }
     }
 
 }

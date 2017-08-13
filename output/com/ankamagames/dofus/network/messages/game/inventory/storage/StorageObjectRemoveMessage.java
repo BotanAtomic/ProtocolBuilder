@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.storage;
+package com.ankamagames.dofus.network.messages.game.inventory.storage;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class StorageObjectRemoveMessage extends NetworkMessage implements INetwo
 
     public void serializeAs_StorageObjectRemoveMessage(ICustomDataOutput param1) {
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
+         }
+         param1.writeVarInt(this.objectUID);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class StorageObjectRemoveMessage extends NetworkMessage implements INetwo
     private void _objectUIDFunc(ICustomDataInput param1) {
          this.objectUID = param1.readVarUhInt();
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element of StorageObjectRemoveMessage.objectUID.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -15,23 +15,19 @@ public class FightExternalInformations extends Object implements INetworkType {
     private int fightType = 0;
     private int fightStart = 0;
     private boolean fightSpectatorLocked = false;
-    private Vector.<FightTeamLightInformations> fightTeams = ;
-    private Vector.<FightOptionsInformations> fightTeamsOptions = ;
-    private FuncTree _fightTeamstree = ;
+    private Vector<FightTeamLightInformations> fightTeams;
+    private Vector<FightOptionsInformations> fightTeamsOptions;
+    private FuncTree _fightTeamstree;
     private int _fightTeamsindex = 0;
-    private FuncTree _fightTeamsOptionstree = ;
+    private FuncTree _fightTeamsOptionstree;
     private int _fightTeamsOptionsindex = 0;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
 
 
     public int getTypeId() {
          return 117;
     }
 
-    public FightExternalInformations initFightExternalInformations(int param1,int  param2,int  param3,boolean  param4,Vector.<FightTeamLightInformations>  param5,Vector.<FightOptionsInformations>  param6) {
+    public FightExternalInformations initFightExternalInformations(int param1,int  param2,int  param3,boolean  param4,Vector<FightTeamLightInformations>  param5,Vector<FightOptionsInformations>  param6) {
          this.fightId = param1;
          this.fightType = param2;
          this.fightStart = param3;
@@ -58,7 +54,23 @@ public class FightExternalInformations extends Object implements INetworkType {
          param1.writeInt(this.fightId);
          param1.writeByte(this.fightType);
          if(this.fightStart < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightStart + ") on element fightStart.");
+         }
+         param1.writeInt(this.fightStart);
+         param1.writeBoolean(this.fightSpectatorLocked);
+         int _loc2_ = 0;
+         while(_loc2_ < 2)
+         {
+            this.fightTeams[_loc2_].serializeAs_FightTeamLightInformations(param1);
+            _loc2_++;
+         }
+         int _loc3_ = 0;
+         while(_loc3_ < 2)
+         {
+            this.fightTeamsOptions[_loc3_].serializeAs_FightOptionsInformations(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -72,9 +84,18 @@ public class FightExternalInformations extends Object implements INetworkType {
          this._fightSpectatorLockedFunc(param1);
          int _loc2_ = 0;
          while(_loc2_ < 2)
+         {
             this.fightTeams[_loc2_] = new FightTeamLightInformations();
             this.fightTeams[_loc2_].deserialize(param1);
             _loc2_++;
+         }
+         int _loc3_ = 0;
+         while(_loc3_ < 2)
+         {
+            this.fightTeamsOptions[_loc3_] = new FightOptionsInformations();
+            this.fightTeamsOptions[_loc3_].deserialize(param1);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -97,13 +118,17 @@ public class FightExternalInformations extends Object implements INetworkType {
     private void _fightTypeFunc(ICustomDataInput param1) {
          this.fightType = param1.readByte();
          if(this.fightType < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightType + ") on element of FightExternalInformations.fightType.");
+         }
     }
 
     private void _fightStartFunc(ICustomDataInput param1) {
          this.fightStart = param1.readInt();
          if(this.fightStart < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightStart + ") on element of FightExternalInformations.fightStart.");
+         }
     }
 
     private void _fightSpectatorLockedFunc(ICustomDataInput param1) {
@@ -113,8 +138,10 @@ public class FightExternalInformations extends Object implements INetworkType {
     private void _fightTeamstreeFunc(ICustomDataInput param1) {
          int _loc2_ = 0;
          while(_loc2_ < 2)
+         {
             this._fightTeamstree.addChild(this._fightTeamsFunc);
             _loc2_++;
+         }
     }
 
     private void _fightTeamsFunc(ICustomDataInput param1) {
@@ -126,8 +153,10 @@ public class FightExternalInformations extends Object implements INetworkType {
     private void _fightTeamsOptionstreeFunc(ICustomDataInput param1) {
          int _loc2_ = 0;
          while(_loc2_ < 2)
+         {
             this._fightTeamsOptionstree.addChild(this._fightTeamsOptionsFunc);
             _loc2_++;
+         }
     }
 
     private void _fightTeamsOptionsFunc(ICustomDataInput param1) {

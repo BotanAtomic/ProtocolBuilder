@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.sequence;
+package com.ankamagames.dofus.network.messages.game.actions.sequence;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,10 @@ public class SequenceStartMessage extends NetworkMessage implements INetworkMess
     public void serializeAs_SequenceStartMessage(ICustomDataOutput param1) {
          param1.writeByte(this.sequenceType);
          if(this.authorId < -9.007199254740992E15 || this.authorId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.authorId + ") on element authorId.");
+         }
+         param1.writeDouble(this.authorId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +93,9 @@ public class SequenceStartMessage extends NetworkMessage implements INetworkMess
     private void _authorIdFunc(ICustomDataInput param1) {
          this.authorId = param1.readDouble();
          if(this.authorId < -9.007199254740992E15 || this.authorId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.authorId + ") on element of SequenceStartMessage.authorId.");
+         }
     }
 
 }

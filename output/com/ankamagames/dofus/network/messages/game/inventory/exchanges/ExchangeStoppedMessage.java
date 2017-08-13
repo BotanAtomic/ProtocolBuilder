@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ExchangeStoppedMessage extends NetworkMessage implements INetworkMe
 
     public void serializeAs_ExchangeStoppedMessage(ICustomDataOutput param1) {
          if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarLong(this.id);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ExchangeStoppedMessage extends NetworkMessage implements INetworkMe
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readVarUhLong();
          if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of ExchangeStoppedMessage.id.");
+         }
     }
 
 }

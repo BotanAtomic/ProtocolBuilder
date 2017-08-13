@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class GameActionFightDispellSpellMessage extends GameActionFightDispellMe
     public void serializeAs_GameActionFightDispellSpellMessage(ICustomDataOutput param1) {
          super.serializeAs_GameActionFightDispellMessage(param1);
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeVarShort(this.spellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class GameActionFightDispellSpellMessage extends GameActionFightDispellMe
     private void _spellIdFunc(ICustomDataInput param1) {
          this.spellId = param1.readVarUhShort();
          if(this.spellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellId + ") on element of GameActionFightDispellSpellMessage.spellId.");
+         }
     }
 
 }

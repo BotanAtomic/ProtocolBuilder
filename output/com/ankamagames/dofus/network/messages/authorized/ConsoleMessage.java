@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.authorized;
+package com.ankamagames.dofus.network.messages.authorized;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -84,7 +84,9 @@ public class ConsoleMessage extends NetworkMessage implements INetworkMessage {
     private void _typeFunc(ICustomDataInput param1) {
          this.type = param1.readByte();
          if(this.type < 0)
+         {
             throw new Exception("Forbidden value (" + this.type + ") on element of ConsoleMessage.type.");
+         }
     }
 
     private void _contentFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.common.basic;
+package com.ankamagames.dofus.network.messages.common.basic;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class AggregateStatMessage extends NetworkMessage implements INetworkMess
     private void _statIdFunc(ICustomDataInput param1) {
          this.statId = param1.readVarUhShort();
          if(this.statId < 0)
+         {
             throw new Exception("Forbidden value (" + this.statId + ") on element of AggregateStatMessage.statId.");
+         }
     }
 
 }

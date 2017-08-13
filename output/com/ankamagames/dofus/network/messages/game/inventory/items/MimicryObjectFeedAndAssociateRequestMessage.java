@@ -1,10 +1,11 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -67,7 +68,16 @@ public class MimicryObjectFeedAndAssociateRequestMessage extends SymbioticObject
     public void serializeAs_MimicryObjectFeedAndAssociateRequestMessage(ICustomDataOutput param1) {
          super.serializeAs_SymbioticObjectAssociateRequestMessage(param1);
          if(this.foodUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.foodUID + ") on element foodUID.");
+         }
+         param1.writeVarInt(this.foodUID);
+         if(this.foodPos < 0 || this.foodPos > 255)
+         {
+            throw new Exception("Forbidden value (" + this.foodPos + ") on element foodPos.");
+         }
+         param1.writeByte(this.foodPos);
+         param1.writeBoolean(this.preview);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -95,13 +105,17 @@ public class MimicryObjectFeedAndAssociateRequestMessage extends SymbioticObject
     private void _foodUIDFunc(ICustomDataInput param1) {
          this.foodUID = param1.readVarUhInt();
          if(this.foodUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.foodUID + ") on element of MimicryObjectFeedAndAssociateRequestMessage.foodUID.");
+         }
     }
 
     private void _foodPosFunc(ICustomDataInput param1) {
          this.foodPos = param1.readUnsignedByte();
          if(this.foodPos < 0 || this.foodPos > 255)
+         {
             throw new Exception("Forbidden value (" + this.foodPos + ") on element of MimicryObjectFeedAndAssociateRequestMessage.foodPos.");
+         }
     }
 
     private void _previewFunc(ICustomDataInput param1) {

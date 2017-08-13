@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.storage;
+package com.ankamagames.dofus.network.messages.game.inventory.storage;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class StorageObjectsUpdateMessage extends NetworkMessage implements INetw
 
     private int protocolId = 6036;
     private boolean _isInitialized = false;
-    private Vector.<ObjectItem> objectList = ;
-    private FuncTree _objectListtree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItem> objectList;
+    private FuncTree _objectListtree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class StorageObjectsUpdateMessage extends NetworkMessage implements INetw
          return 6036;
     }
 
-    public StorageObjectsUpdateMessage initStorageObjectsUpdateMessage(Vector.<ObjectItem> param1) {
+    public StorageObjectsUpdateMessage initStorageObjectsUpdateMessage(Vector<ObjectItem> param1) {
          this.objectList = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class StorageObjectsUpdateMessage extends NetworkMessage implements INetw
          param1.writeShort(this.objectList.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objectList.length)
+         {
             (this.objectList[_loc2_] as ObjectItem).serializeAs_ObjectItem(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class StorageObjectsUpdateMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItem();
             _loc4_.deserialize(param1);
             this.objectList.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class StorageObjectsUpdateMessage extends NetworkMessage implements INetw
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objectListtree.addChild(this._objectListFunc);
             _loc3_++;
+         }
     }
 
     private void _objectListFunc(ICustomDataInput param1) {

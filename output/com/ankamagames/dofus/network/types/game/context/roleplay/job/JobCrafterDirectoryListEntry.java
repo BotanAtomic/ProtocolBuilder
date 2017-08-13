@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.job;
+package com.ankamagames.dofus.network.types.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -8,10 +8,10 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class JobCrafterDirectoryListEntry extends Object implements INetworkType {
 
     private int protocolId = 196;
-    private JobCrafterDirectoryEntryPlayerInfo playerInfo = ;
-    private JobCrafterDirectoryEntryJobInfo jobInfo = ;
-    private FuncTree _playerInfotree = ;
-    private FuncTree _jobInfotree = ;
+    private JobCrafterDirectoryEntryPlayerInfo playerInfo;
+    private JobCrafterDirectoryEntryJobInfo jobInfo;
+    private FuncTree _playerInfotree;
+    private FuncTree _jobInfotree;
 
 
     public int getTypeId() {

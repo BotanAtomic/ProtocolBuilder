@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.dofus.network.messages.game.inventory.AbstractPresetSaveMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -9,24 +9,17 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage implements INetworkMessage {
 
     private int protocolId = 6329;
     private boolean _isInitialized = false;
-    private Vector.<uint> itemsPositions = ;
-    private Vector.<uint> itemsUids = ;
-    private FuncTree _itemsPositionstree = ;
-    private FuncTree _itemsUidstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private int _loc7_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> itemsPositions;
+    private Vector<uint> itemsUids;
+    private FuncTree _itemsPositionstree;
+    private FuncTree _itemsUidstree;
 
 
     public boolean isInitialized() {
@@ -37,7 +30,7 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage 
          return 6329;
     }
 
-    public InventoryPresetSaveCustomMessage initInventoryPresetSaveCustomMessage(int param1,int  param2,Vector.<uint>  param3,Vector.<uint>  param4) {
+    public InventoryPresetSaveCustomMessage initInventoryPresetSaveCustomMessage(int param1,int  param2,Vector<uint>  param3,Vector<uint>  param4) {
          super.initAbstractPresetSaveMessage(param1,param2);
          this.itemsPositions = param3;
          this.itemsUids = param4;
@@ -78,8 +71,21 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage 
          param1.writeShort(this.itemsPositions.length);
          int _loc2_ = 0;
          while(_loc2_ < this.itemsPositions.length)
+         {
             param1.writeByte(this.itemsPositions[_loc2_]);
             _loc2_++;
+         }
+         param1.writeShort(this.itemsUids.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.itemsUids.length)
+         {
+            if(this.itemsUids[_loc3_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.itemsUids[_loc3_] + ") on element 2 (starting at 1) of itemsUids.");
+            }
+            param1.writeVarInt(this.itemsUids[_loc3_]);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -93,9 +99,27 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = param1.readUnsignedByte();
             if(_loc6_ < 0 || _loc6_ > 255)
+            {
                throw new Exception("Forbidden value (" + _loc6_ + ") on elements of itemsPositions.");
+            }
+            this.itemsPositions.push(_loc6_);
+            _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = param1.readVarUhInt();
+            if(_loc7_ < 0)
+            {
+               throw new Exception("Forbidden value (" + _loc7_ + ") on elements of itemsUids.");
+            }
+            this.itemsUids.push(_loc7_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -112,28 +136,38 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._itemsPositionstree.addChild(this._itemsPositionsFunc);
             _loc3_++;
+         }
     }
 
     private void _itemsPositionsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedByte();
          if(_loc2_ < 0 || _loc2_ > 255)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of itemsPositions.");
+         }
+         this.itemsPositions.push(_loc2_);
     }
 
     private void _itemsUidstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._itemsUidstree.addChild(this._itemsUidsFunc);
             _loc3_++;
+         }
     }
 
     private void _itemsUidsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhInt();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of itemsUids.");
+         }
+         this.itemsUids.push(_loc2_);
     }
 
 }

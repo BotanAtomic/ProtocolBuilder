@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class PrismsListRegisterMessage extends NetworkMessage implements INetwor
     private void _listenFunc(ICustomDataInput param1) {
          this.listen = param1.readByte();
          if(this.listen < 0)
+         {
             throw new Exception("Forbidden value (" + this.listen + ") on element of PrismsListRegisterMessage.listen.");
+         }
     }
 
 }

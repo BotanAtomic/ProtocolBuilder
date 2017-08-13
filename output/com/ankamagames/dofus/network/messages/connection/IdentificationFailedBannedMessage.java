@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class IdentificationFailedBannedMessage extends IdentificationFailedMessa
     public void serializeAs_IdentificationFailedBannedMessage(ICustomDataOutput param1) {
          super.serializeAs_IdentificationFailedMessage(param1);
          if(this.banEndDate < 0 || this.banEndDate > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.banEndDate + ") on element banEndDate.");
+         }
+         param1.writeDouble(this.banEndDate);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class IdentificationFailedBannedMessage extends IdentificationFailedMessa
     private void _banEndDateFunc(ICustomDataInput param1) {
          this.banEndDate = param1.readDouble();
          if(this.banEndDate < 0 || this.banEndDate > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.banEndDate + ") on element of IdentificationFailedBannedMessage.banEndDate.");
+         }
     }
 
 }

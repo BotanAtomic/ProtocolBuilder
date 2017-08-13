@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class GuildHousesInformationMessage extends NetworkMessage implements INe
 
     private int protocolId = 5919;
     private boolean _isInitialized = false;
-    private Vector.<HouseInformationsForGuild> housesInformations = ;
-    private FuncTree _housesInformationstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<HouseInformationsForGuild> housesInformations;
+    private FuncTree _housesInformationstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class GuildHousesInformationMessage extends NetworkMessage implements INe
          return 5919;
     }
 
-    public GuildHousesInformationMessage initGuildHousesInformationMessage(Vector.<HouseInformationsForGuild> param1) {
+    public GuildHousesInformationMessage initGuildHousesInformationMessage(Vector<HouseInformationsForGuild> param1) {
          this.housesInformations = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class GuildHousesInformationMessage extends NetworkMessage implements INe
          param1.writeShort(this.housesInformations.length);
          int _loc2_ = 0;
          while(_loc2_ < this.housesInformations.length)
+         {
             (this.housesInformations[_loc2_] as HouseInformationsForGuild).serializeAs_HouseInformationsForGuild(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class GuildHousesInformationMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new HouseInformationsForGuild();
             _loc4_.deserialize(param1);
             this.housesInformations.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class GuildHousesInformationMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._housesInformationstree.addChild(this._housesInformationsFunc);
             _loc3_++;
+         }
     }
 
     private void _housesInformationsFunc(ICustomDataInput param1) {

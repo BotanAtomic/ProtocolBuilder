@@ -1,10 +1,11 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -19,7 +20,6 @@ public class FightTeamLightInformations extends AbstractFightTeamInformations im
     private boolean hasAllianceMember = false;
     private boolean hasGroupMember = false;
     private boolean hasMyTaxCollector = false;
-    private int _loc2_ = 0;
 
 
     public int getTypeId() {
@@ -63,7 +63,15 @@ public class FightTeamLightInformations extends AbstractFightTeamInformations im
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,4,this.hasMyTaxCollector);
          param1.writeByte(_loc2_);
          if(this.teamMembersCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.teamMembersCount + ") on element teamMembersCount.");
+         }
+         param1.writeByte(this.teamMembersCount);
+         if(this.meanLevel < 0)
+         {
+            throw new Exception("Forbidden value (" + this.meanLevel + ") on element meanLevel.");
+         }
+         param1.writeVarInt(this.meanLevel);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -100,13 +108,17 @@ public class FightTeamLightInformations extends AbstractFightTeamInformations im
     private void _teamMembersCountFunc(ICustomDataInput param1) {
          this.teamMembersCount = param1.readByte();
          if(this.teamMembersCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.teamMembersCount + ") on element of FightTeamLightInformations.teamMembersCount.");
+         }
     }
 
     private void _meanLevelFunc(ICustomDataInput param1) {
          this.meanLevel = param1.readVarUhInt();
          if(this.meanLevel < 0)
+         {
             throw new Exception("Forbidden value (" + this.meanLevel + ") on element of FightTeamLightInformations.meanLevel.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.security;
+package com.ankamagames.dofus.network.messages.security;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -37,7 +37,10 @@ public class ClientKeyMessage extends NetworkMessage implements INetworkMessage 
          ByteArray _loc2_ = new ByteArray();
          this.serialize(new CustomDataWrapper(_loc2_));
          if(HASH_FUNCTION != null)
+         {
             HASH_FUNCTION(_loc2_);
+         }
+         writePacket(param1,this.getMessageId(),_loc2_);
     }
 
     public void unpack(ICustomDataInput param1,int  param2) {

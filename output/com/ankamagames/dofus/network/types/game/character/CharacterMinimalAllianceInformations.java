@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character;
+package com.ankamagames.dofus.network.types.game.character;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.BasicAllianceInformations;
@@ -11,8 +11,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class CharacterMinimalAllianceInformations extends CharacterMinimalGuildInformations implements INetworkType {
 
     private int protocolId = 444;
-    private BasicAllianceInformations alliance = ;
-    private FuncTree _alliancetree = ;
+    private BasicAllianceInformations alliance;
+    private FuncTree _alliancetree;
 
 
     public int getTypeId() {

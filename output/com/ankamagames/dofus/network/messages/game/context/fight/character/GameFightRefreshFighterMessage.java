@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight.character;
+package com.ankamagames.dofus.network.messages.game.context.fight.character;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,8 +13,8 @@ public class GameFightRefreshFighterMessage extends NetworkMessage implements IN
 
     private int protocolId = 6309;
     private boolean _isInitialized = false;
-    private GameContextActorInformations informations = ;
-    private FuncTree _informationstree = ;
+    private GameContextActorInformations informations;
+    private FuncTree _informationstree;
 
 
     public boolean isInitialized() {

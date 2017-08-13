@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.party.NamedPartyTeam;
@@ -11,12 +11,8 @@ public class GameFightSpectatorJoinMessage extends GameFightJoinMessage implemen
 
     private int protocolId = 6504;
     private boolean _isInitialized = false;
-    private Vector.<NamedPartyTeam> namedPartyTeams = ;
-    private FuncTree _namedPartyTeamstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<NamedPartyTeam> namedPartyTeams;
+    private FuncTree _namedPartyTeamstree;
 
 
     public boolean isInitialized() {
@@ -27,7 +23,7 @@ public class GameFightSpectatorJoinMessage extends GameFightJoinMessage implemen
          return 6504;
     }
 
-    public GameFightSpectatorJoinMessage initGameFightSpectatorJoinMessage(boolean param1,boolean  param2,boolean  param3,boolean  param4,int  param5,int  param6,Vector.<NamedPartyTeam>  param7) {
+    public GameFightSpectatorJoinMessage initGameFightSpectatorJoinMessage(boolean param1,boolean  param2,boolean  param3,boolean  param4,int  param5,int  param6,Vector<NamedPartyTeam>  param7) {
          super.initGameFightJoinMessage(param1,param2,param3,param4,param5,param6);
          this.namedPartyTeams = param7;
          this._isInitialized = true;
@@ -66,8 +62,10 @@ public class GameFightSpectatorJoinMessage extends GameFightJoinMessage implemen
          param1.writeShort(this.namedPartyTeams.length);
          int _loc2_ = 0;
          while(_loc2_ < this.namedPartyTeams.length)
+         {
             (this.namedPartyTeams[_loc2_] as NamedPartyTeam).serializeAs_NamedPartyTeam(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,10 +78,12 @@ public class GameFightSpectatorJoinMessage extends GameFightJoinMessage implemen
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new NamedPartyTeam();
             _loc4_.deserialize(param1);
             this.namedPartyTeams.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -99,8 +99,10 @@ public class GameFightSpectatorJoinMessage extends GameFightJoinMessage implemen
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._namedPartyTeamstree.addChild(this._namedPartyTeamsFunc);
             _loc3_++;
+         }
     }
 
     private void _namedPartyTeamsFunc(ICustomDataInput param1) {

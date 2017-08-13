@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.notification;
+package com.ankamagames.dofus.network.messages.game.context.notification;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -11,12 +11,8 @@ public class NotificationListMessage extends NetworkMessage implements INetworkM
 
     private int protocolId = 6087;
     private boolean _isInitialized = false;
-    private Vector.<int> flags = ;
-    private FuncTree _flagstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> flags;
+    private FuncTree _flagstree;
 
 
     public boolean isInitialized() {
@@ -27,7 +23,7 @@ public class NotificationListMessage extends NetworkMessage implements INetworkM
          return 6087;
     }
 
-    public NotificationListMessage initNotificationListMessage(Vector.<int> param1) {
+    public NotificationListMessage initNotificationListMessage(Vector<int> param1) {
          this.flags = param1;
          this._isInitialized = true;
          return this;
@@ -63,8 +59,10 @@ public class NotificationListMessage extends NetworkMessage implements INetworkM
          param1.writeShort(this.flags.length);
          int _loc2_ = 0;
          while(_loc2_ < this.flags.length)
+         {
             param1.writeVarInt(this.flags[_loc2_]);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -76,9 +74,11 @@ public class NotificationListMessage extends NetworkMessage implements INetworkM
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarInt();
             this.flags.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -93,8 +93,10 @@ public class NotificationListMessage extends NetworkMessage implements INetworkM
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._flagstree.addChild(this._flagsFunc);
             _loc3_++;
+         }
     }
 
     private void _flagsFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class ExchangeBidHouseSearchMessage extends NetworkMessage implements INe
 
     public void serializeAs_ExchangeBidHouseSearchMessage(ICustomDataOutput param1) {
          if(this.type < 0)
+         {
             throw new Exception("Forbidden value (" + this.type + ") on element type.");
+         }
+         param1.writeVarInt(this.type);
+         if(this.genId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.genId + ") on element genId.");
+         }
+         param1.writeVarShort(this.genId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class ExchangeBidHouseSearchMessage extends NetworkMessage implements INe
     private void _typeFunc(ICustomDataInput param1) {
          this.type = param1.readVarUhInt();
          if(this.type < 0)
+         {
             throw new Exception("Forbidden value (" + this.type + ") on element of ExchangeBidHouseSearchMessage.type.");
+         }
     }
 
     private void _genIdFunc(ICustomDataInput param1) {
          this.genId = param1.readVarUhShort();
          if(this.genId < 0)
+         {
             throw new Exception("Forbidden value (" + this.genId + ") on element of ExchangeBidHouseSearchMessage.genId.");
+         }
     }
 
 }

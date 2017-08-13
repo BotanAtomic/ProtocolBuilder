@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items.effects;
+package com.ankamagames.dofus.network.types.game.data.items.effects;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class ObjectEffectLadder extends ObjectEffectCreature implements INetwork
     public void serializeAs_ObjectEffectLadder(ICustomDataOutput param1) {
          super.serializeAs_ObjectEffectCreature(param1);
          if(this.monsterCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.monsterCount + ") on element monsterCount.");
+         }
+         param1.writeVarInt(this.monsterCount);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class ObjectEffectLadder extends ObjectEffectCreature implements INetwork
     private void _monsterCountFunc(ICustomDataInput param1) {
          this.monsterCount = param1.readVarUhInt();
          if(this.monsterCount < 0)
+         {
             throw new Exception("Forbidden value (" + this.monsterCount + ") on element of ObjectEffectLadder.monsterCount.");
+         }
     }
 
 }

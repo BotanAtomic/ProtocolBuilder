@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,9 +12,9 @@ public class DareCreatedMessage extends NetworkMessage implements INetworkMessag
 
     private int protocolId = 6668;
     private boolean _isInitialized = false;
-    private DareInformations dareInfos = ;
+    private DareInformations dareInfos;
     private boolean needNotifications = false;
-    private FuncTree _dareInfostree = ;
+    private FuncTree _dareInfostree;
 
 
     public boolean isInitialized() {

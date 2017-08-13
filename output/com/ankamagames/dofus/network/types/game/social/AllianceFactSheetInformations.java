@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.social;
+package com.ankamagames.dofus.network.types.game.social;
 
 import com.ankamagames.dofus.network.types.game.context.roleplay.AllianceInformations;
 import com.ankamagames.jerakine.network.INetworkType;
@@ -37,7 +37,10 @@ public class AllianceFactSheetInformations extends AllianceInformations implemen
     public void serializeAs_AllianceFactSheetInformations(ICustomDataOutput param1) {
          super.serializeAs_AllianceInformations(param1);
          if(this.creationDate < 0)
+         {
             throw new Exception("Forbidden value (" + this.creationDate + ") on element creationDate.");
+         }
+         param1.writeInt(this.creationDate);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -61,7 +64,9 @@ public class AllianceFactSheetInformations extends AllianceInformations implemen
     private void _creationDateFunc(ICustomDataInput param1) {
          this.creationDate = param1.readInt();
          if(this.creationDate < 0)
+         {
             throw new Exception("Forbidden value (" + this.creationDate + ") on element of AllianceFactSheetInformations.creationDate.");
+         }
     }
 
 }

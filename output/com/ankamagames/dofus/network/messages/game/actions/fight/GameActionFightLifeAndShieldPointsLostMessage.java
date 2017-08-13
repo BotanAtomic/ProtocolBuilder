@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class GameActionFightLifeAndShieldPointsLostMessage extends GameActionFig
     public void serializeAs_GameActionFightLifeAndShieldPointsLostMessage(ICustomDataOutput param1) {
          super.serializeAs_GameActionFightLifePointsLostMessage(param1);
          if(this.shieldLoss < 0)
+         {
             throw new Exception("Forbidden value (" + this.shieldLoss + ") on element shieldLoss.");
+         }
+         param1.writeVarShort(this.shieldLoss);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class GameActionFightLifeAndShieldPointsLostMessage extends GameActionFig
     private void _shieldLossFunc(ICustomDataInput param1) {
          this.shieldLoss = param1.readVarUhShort();
          if(this.shieldLoss < 0)
+         {
             throw new Exception("Forbidden value (" + this.shieldLoss + ") on element of GameActionFightLifeAndShieldPointsLostMessage.shieldLoss.");
+         }
     }
 
 }

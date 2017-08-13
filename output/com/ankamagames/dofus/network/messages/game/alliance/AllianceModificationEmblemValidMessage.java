@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.alliance;
+package com.ankamagames.dofus.network.messages.game.alliance;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class AllianceModificationEmblemValidMessage extends NetworkMessage imple
 
     private int protocolId = 6447;
     private boolean _isInitialized = false;
-    private GuildEmblem Alliancemblem = ;
-    private FuncTree _Alliancemblemtree = ;
+    private GuildEmblem Alliancemblem;
+    private FuncTree _Alliancemblemtree;
 
 
     public boolean isInitialized() {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -13,10 +13,9 @@ import java.lang.Exception;
 public class GameRolePlayHumanoidInformations extends GameRolePlayNamedActorInformations implements INetworkType {
 
     private int protocolId = 159;
-    private HumanInformations humanoidInfo = ;
+    private HumanInformations humanoidInfo;
     private int accountId = 0;
-    private FuncTree _humanoidInfotree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private FuncTree _humanoidInfotree;
 
 
     public int getTypeId() {
@@ -44,7 +43,10 @@ public class GameRolePlayHumanoidInformations extends GameRolePlayNamedActorInfo
          param1.writeShort(this.humanoidInfo.getTypeId());
          this.humanoidInfo.serialize(param1);
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -78,7 +80,9 @@ public class GameRolePlayHumanoidInformations extends GameRolePlayNamedActorInfo
     private void _accountIdFunc(ICustomDataInput param1) {
          this.accountId = param1.readInt();
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element of GameRolePlayHumanoidInformations.accountId.");
+         }
     }
 
 }

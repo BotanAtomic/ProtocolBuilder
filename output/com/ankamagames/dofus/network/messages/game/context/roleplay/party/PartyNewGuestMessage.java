@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.party.PartyGuestInformations;
@@ -11,8 +11,8 @@ public class PartyNewGuestMessage extends AbstractPartyEventMessage implements I
 
     private int protocolId = 6260;
     private boolean _isInitialized = false;
-    private PartyGuestInformations guest = ;
-    private FuncTree _guesttree = ;
+    private PartyGuestInformations guest;
+    private FuncTree _guesttree;
 
 
     public boolean isInitialized() {

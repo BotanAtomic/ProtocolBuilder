@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.storage;
+package com.ankamagames.dofus.network.messages.game.inventory.storage;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class StorageKamasUpdateMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_StorageKamasUpdateMessage(ICustomDataOutput param1) {
          if(this.kamasTotal < 0 || this.kamasTotal > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.kamasTotal + ") on element kamasTotal.");
+         }
+         param1.writeVarLong(this.kamasTotal);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class StorageKamasUpdateMessage extends NetworkMessage implements INetwor
     private void _kamasTotalFunc(ICustomDataInput param1) {
          this.kamasTotal = param1.readVarUhLong();
          if(this.kamasTotal < 0 || this.kamasTotal > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.kamasTotal + ") on element of StorageKamasUpdateMessage.kamasTotal.");
+         }
     }
 
 }

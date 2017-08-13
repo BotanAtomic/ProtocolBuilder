@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.common.basic;
+package com.ankamagames.dofus.network.messages.common.basic;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.common.basic.StatisticData;
@@ -12,14 +12,8 @@ public class AggregateStatWithDataMessage extends AggregateStatMessage implement
 
     private int protocolId = 6662;
     private boolean _isInitialized = false;
-    private Vector.<StatisticData> datas = ;
-    private FuncTree _datastree = ;
-    private int _loc2_ = 0;
-    private StatisticData _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private StatisticData _loc3_ = ProtocolTypeManager.getInstance(StatisticData,_loc2_);
+    private Vector<StatisticData> datas;
+    private FuncTree _datastree;
 
 
     public boolean isInitialized() {
@@ -30,7 +24,7 @@ public class AggregateStatWithDataMessage extends AggregateStatMessage implement
          return 6662;
     }
 
-    public AggregateStatWithDataMessage initAggregateStatWithDataMessage(int param1,Vector.<StatisticData>  param2) {
+    public AggregateStatWithDataMessage initAggregateStatWithDataMessage(int param1,Vector<StatisticData>  param2) {
          super.initAggregateStatMessage(param1);
          this.datas = param2;
          this._isInitialized = true;
@@ -69,9 +63,11 @@ public class AggregateStatWithDataMessage extends AggregateStatMessage implement
          param1.writeShort(this.datas.length);
          int _loc2_ = 0;
          while(_loc2_ < this.datas.length)
+         {
             param1.writeShort((this.datas[_loc2_] as StatisticData).getTypeId());
             (this.datas[_loc2_] as StatisticData).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,11 +81,13 @@ public class AggregateStatWithDataMessage extends AggregateStatMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(StatisticData,_loc4_);
             _loc5_.deserialize(param1);
             this.datas.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -105,8 +103,10 @@ public class AggregateStatWithDataMessage extends AggregateStatMessage implement
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._datastree.addChild(this._datasFunc);
             _loc3_++;
+         }
     }
 
     private void _datasFunc(ICustomDataInput param1) {

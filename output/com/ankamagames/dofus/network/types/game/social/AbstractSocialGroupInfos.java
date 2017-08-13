@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.social;
+package com.ankamagames.dofus.network.types.game.social;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;

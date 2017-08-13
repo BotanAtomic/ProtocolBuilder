@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.dare;
+package com.ankamagames.dofus.network.types.game.dare;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -10,19 +10,15 @@ public class DareCriteria extends Object implements INetworkType {
 
     private int protocolId = 501;
     private int type = 0;
-    private Vector.<int> params = ;
-    private FuncTree _paramstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> params;
+    private FuncTree _paramstree;
 
 
     public int getTypeId() {
          return 501;
     }
 
-    public DareCriteria initDareCriteria(int param1,Vector.<int>  param2) {
+    public DareCriteria initDareCriteria(int param1,Vector<int>  param2) {
          this.type = param1;
          this.params = param2;
          return this;
@@ -42,8 +38,10 @@ public class DareCriteria extends Object implements INetworkType {
          param1.writeShort(this.params.length);
          int _loc2_ = 0;
          while(_loc2_ < this.params.length)
+         {
             param1.writeInt(this.params[_loc2_]);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -56,9 +54,11 @@ public class DareCriteria extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readInt();
             this.params.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -73,15 +73,19 @@ public class DareCriteria extends Object implements INetworkType {
     private void _typeFunc(ICustomDataInput param1) {
          this.type = param1.readByte();
          if(this.type < 0)
+         {
             throw new Exception("Forbidden value (" + this.type + ") on element of DareCriteria.type.");
+         }
     }
 
     private void _paramstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._paramstree.addChild(this._paramsFunc);
             _loc3_++;
+         }
     }
 
     private void _paramsFunc(ICustomDataInput param1) {

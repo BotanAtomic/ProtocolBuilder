@@ -1,9 +1,11 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -40,7 +42,20 @@ public class MonsterBoosts extends Object implements INetworkType {
 
     public void serializeAs_MonsterBoosts(ICustomDataOutput param1) {
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarInt(this.id);
+         if(this.xpBoost < 0)
+         {
+            throw new Exception("Forbidden value (" + this.xpBoost + ") on element xpBoost.");
+         }
+         param1.writeVarShort(this.xpBoost);
+         if(this.dropBoost < 0)
+         {
+            throw new Exception("Forbidden value (" + this.dropBoost + ") on element dropBoost.");
+         }
+         param1.writeVarShort(this.dropBoost);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -66,19 +81,25 @@ public class MonsterBoosts extends Object implements INetworkType {
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readVarUhInt();
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of MonsterBoosts.id.");
+         }
     }
 
     private void _xpBoostFunc(ICustomDataInput param1) {
          this.xpBoost = param1.readVarUhShort();
          if(this.xpBoost < 0)
+         {
             throw new Exception("Forbidden value (" + this.xpBoost + ") on element of MonsterBoosts.xpBoost.");
+         }
     }
 
     private void _dropBoostFunc(ICustomDataInput param1) {
          this.dropBoost = param1.readVarUhShort();
          if(this.dropBoost < 0)
+         {
             throw new Exception("Forbidden value (" + this.dropBoost + ") on element of MonsterBoosts.dropBoost.");
+         }
     }
 
 }

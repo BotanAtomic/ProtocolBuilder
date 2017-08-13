@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.alliance;
+package com.ankamagames.dofus.network.messages.game.alliance;
 
 import com.ankamagames.dofus.network.messages.game.social.SocialNoticeSetErrorMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

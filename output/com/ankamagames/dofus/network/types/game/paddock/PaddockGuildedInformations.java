@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.paddock;
+package com.ankamagames.dofus.network.types.game.paddock;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.GuildInformations;
@@ -10,8 +10,8 @@ public class PaddockGuildedInformations extends PaddockBuyableInformations imple
 
     private int protocolId = 508;
     private boolean deserted = false;
-    private GuildInformations guildInfo = ;
-    private FuncTree _guildInfotree = ;
+    private GuildInformations guildInfo;
+    private FuncTree _guildInfotree;
 
 
     public int getTypeId() {

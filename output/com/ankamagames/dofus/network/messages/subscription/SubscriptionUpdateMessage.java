@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.subscription;
+package com.ankamagames.dofus.network.messages.subscription;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class SubscriptionUpdateMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_SubscriptionUpdateMessage(ICustomDataOutput param1) {
          if(this.timestamp < -9.007199254740992E15 || this.timestamp > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
+         }
+         param1.writeDouble(this.timestamp);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class SubscriptionUpdateMessage extends NetworkMessage implements INetwor
     private void _timestampFunc(ICustomDataInput param1) {
          this.timestamp = param1.readDouble();
          if(this.timestamp < -9.007199254740992E15 || this.timestamp > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.timestamp + ") on element of SubscriptionUpdateMessage.timestamp.");
+         }
     }
 
 }

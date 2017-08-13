@@ -1,9 +1,12 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -48,7 +51,26 @@ public class FightResultPvpData extends FightResultAdditionalData implements INe
     public void serializeAs_FightResultPvpData(ICustomDataOutput param1) {
          super.serializeAs_FightResultAdditionalData(param1);
          if(this.grade < 0 || this.grade > 255)
+         {
             throw new Exception("Forbidden value (" + this.grade + ") on element grade.");
+         }
+         param1.writeByte(this.grade);
+         if(this.minHonorForGrade < 0 || this.minHonorForGrade > 20000)
+         {
+            throw new Exception("Forbidden value (" + this.minHonorForGrade + ") on element minHonorForGrade.");
+         }
+         param1.writeVarShort(this.minHonorForGrade);
+         if(this.maxHonorForGrade < 0 || this.maxHonorForGrade > 20000)
+         {
+            throw new Exception("Forbidden value (" + this.maxHonorForGrade + ") on element maxHonorForGrade.");
+         }
+         param1.writeVarShort(this.maxHonorForGrade);
+         if(this.honor < 0 || this.honor > 20000)
+         {
+            throw new Exception("Forbidden value (" + this.honor + ") on element honor.");
+         }
+         param1.writeVarShort(this.honor);
+         param1.writeVarShort(this.honorDelta);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,25 +102,33 @@ public class FightResultPvpData extends FightResultAdditionalData implements INe
     private void _gradeFunc(ICustomDataInput param1) {
          this.grade = param1.readUnsignedByte();
          if(this.grade < 0 || this.grade > 255)
+         {
             throw new Exception("Forbidden value (" + this.grade + ") on element of FightResultPvpData.grade.");
+         }
     }
 
     private void _minHonorForGradeFunc(ICustomDataInput param1) {
          this.minHonorForGrade = param1.readVarUhShort();
          if(this.minHonorForGrade < 0 || this.minHonorForGrade > 20000)
+         {
             throw new Exception("Forbidden value (" + this.minHonorForGrade + ") on element of FightResultPvpData.minHonorForGrade.");
+         }
     }
 
     private void _maxHonorForGradeFunc(ICustomDataInput param1) {
          this.maxHonorForGrade = param1.readVarUhShort();
          if(this.maxHonorForGrade < 0 || this.maxHonorForGrade > 20000)
+         {
             throw new Exception("Forbidden value (" + this.maxHonorForGrade + ") on element of FightResultPvpData.maxHonorForGrade.");
+         }
     }
 
     private void _honorFunc(ICustomDataInput param1) {
          this.honor = param1.readVarUhShort();
          if(this.honor < 0 || this.honor > 20000)
+         {
             throw new Exception("Forbidden value (" + this.honor + ") on element of FightResultPvpData.honor.");
+         }
     }
 
     private void _honorDeltaFunc(ICustomDataInput param1) {

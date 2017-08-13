@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,8 +15,8 @@ public class GameContextRefreshEntityLookMessage extends NetworkMessage implemen
     private int protocolId = 5637;
     private boolean _isInitialized = false;
     private Number id = 0;
-    private EntityLook look = ;
-    private FuncTree _looktree = ;
+    private EntityLook look;
+    private FuncTree _looktree;
 
 
     public boolean isInitialized() {
@@ -63,7 +63,11 @@ public class GameContextRefreshEntityLookMessage extends NetworkMessage implemen
 
     public void serializeAs_GameContextRefreshEntityLookMessage(ICustomDataOutput param1) {
          if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeDouble(this.id);
+         this.look.serializeAs_EntityLook(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -88,7 +92,9 @@ public class GameContextRefreshEntityLookMessage extends NetworkMessage implemen
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readDouble();
          if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of GameContextRefreshEntityLookMessage.id.");
+         }
     }
 
     private void _looktreeFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.alliance;
+package com.ankamagames.dofus.network.messages.game.alliance;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class AllianceKickRequestMessage extends NetworkMessage implements INetwo
 
     public void serializeAs_AllianceKickRequestMessage(ICustomDataOutput param1) {
          if(this.kickedId < 0)
+         {
             throw new Exception("Forbidden value (" + this.kickedId + ") on element kickedId.");
+         }
+         param1.writeVarInt(this.kickedId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class AllianceKickRequestMessage extends NetworkMessage implements INetwo
     private void _kickedIdFunc(ICustomDataInput param1) {
          this.kickedId = param1.readVarUhInt();
          if(this.kickedId < 0)
+         {
             throw new Exception("Forbidden value (" + this.kickedId + ") on element of AllianceKickRequestMessage.kickedId.");
+         }
     }
 
 }

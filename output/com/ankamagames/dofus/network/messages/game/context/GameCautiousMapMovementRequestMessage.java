@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -20,7 +20,7 @@ public class GameCautiousMapMovementRequestMessage extends GameMapMovementReques
          return 6496;
     }
 
-    public GameCautiousMapMovementRequestMessage initGameCautiousMapMovementRequestMessage(Vector.<uint> param1,int  param2) {
+    public GameCautiousMapMovementRequestMessage initGameCautiousMapMovementRequestMessage(Vector<uint> param1,int  param2) {
          super.initGameMapMovementRequestMessage(param1,param2);
          this._isInitialized = true;
          return this;
@@ -35,7 +35,10 @@ public class GameCautiousMapMovementRequestMessage extends GameMapMovementReques
          ByteArray _loc2_ = new ByteArray();
          this.serialize(new CustomDataWrapper(_loc2_));
          if(HASH_FUNCTION != null)
+         {
             HASH_FUNCTION(_loc2_);
+         }
+         writePacket(param1,this.getMessageId(),_loc2_);
     }
 
     public void unpack(ICustomDataInput param1,int  param2) {

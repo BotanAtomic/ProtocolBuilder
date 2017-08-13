@@ -1,9 +1,11 @@
-package package com.ankamagames.dofus.network.types.game.idol;
+package com.ankamagames.dofus.network.types.game.idol;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -40,7 +42,20 @@ public class Idol extends Object implements INetworkType {
 
     public void serializeAs_Idol(ICustomDataOutput param1) {
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarShort(this.id);
+         if(this.xpBonusPercent < 0)
+         {
+            throw new Exception("Forbidden value (" + this.xpBonusPercent + ") on element xpBonusPercent.");
+         }
+         param1.writeVarShort(this.xpBonusPercent);
+         if(this.dropBonusPercent < 0)
+         {
+            throw new Exception("Forbidden value (" + this.dropBonusPercent + ") on element dropBonusPercent.");
+         }
+         param1.writeVarShort(this.dropBonusPercent);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -66,19 +81,25 @@ public class Idol extends Object implements INetworkType {
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readVarUhShort();
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of Idol.id.");
+         }
     }
 
     private void _xpBonusPercentFunc(ICustomDataInput param1) {
          this.xpBonusPercent = param1.readVarUhShort();
          if(this.xpBonusPercent < 0)
+         {
             throw new Exception("Forbidden value (" + this.xpBonusPercent + ") on element of Idol.xpBonusPercent.");
+         }
     }
 
     private void _dropBonusPercentFunc(ICustomDataInput param1) {
          this.dropBonusPercent = param1.readVarUhShort();
          if(this.dropBonusPercent < 0)
+         {
             throw new Exception("Forbidden value (" + this.dropBonusPercent + ") on element of Idol.dropBonusPercent.");
+         }
     }
 
 }

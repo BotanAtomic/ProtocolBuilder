@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.achievement;
+package com.ankamagames.dofus.network.messages.game.achievement;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class AchievementDetailsMessage extends NetworkMessage implements INetwor
 
     private int protocolId = 6378;
     private boolean _isInitialized = false;
-    private Achievement achievement = ;
-    private FuncTree _achievementtree = ;
+    private Achievement achievement;
+    private FuncTree _achievementtree;
 
 
     public boolean isInitialized() {

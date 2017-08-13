@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,12 +15,8 @@ public class ExchangeStartOkHumanVendorMessage extends NetworkMessage implements
     private int protocolId = 5767;
     private boolean _isInitialized = false;
     private Number sellerId = 0;
-    private Vector.<ObjectItemToSellInHumanVendorShop> objectsInfos = ;
-    private FuncTree _objectsInfostree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItemToSellInHumanVendorShop> objectsInfos;
+    private FuncTree _objectsInfostree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class ExchangeStartOkHumanVendorMessage extends NetworkMessage implements
          return 5767;
     }
 
-    public ExchangeStartOkHumanVendorMessage initExchangeStartOkHumanVendorMessage(Number param1,Vector.<ObjectItemToSellInHumanVendorShop>  param2) {
+    public ExchangeStartOkHumanVendorMessage initExchangeStartOkHumanVendorMessage(Number param1,Vector<ObjectItemToSellInHumanVendorShop>  param2) {
          this.sellerId = param1;
          this.objectsInfos = param2;
          this._isInitialized = true;
@@ -67,7 +63,17 @@ public class ExchangeStartOkHumanVendorMessage extends NetworkMessage implements
 
     public void serializeAs_ExchangeStartOkHumanVendorMessage(ICustomDataOutput param1) {
          if(this.sellerId < -9.007199254740992E15 || this.sellerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.sellerId + ") on element sellerId.");
+         }
+         param1.writeDouble(this.sellerId);
+         param1.writeShort(this.objectsInfos.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.objectsInfos.length)
+         {
+            (this.objectsInfos[_loc2_] as ObjectItemToSellInHumanVendorShop).serializeAs_ObjectItemToSellInHumanVendorShop(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,10 +86,12 @@ public class ExchangeStartOkHumanVendorMessage extends NetworkMessage implements
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItemToSellInHumanVendorShop();
             _loc4_.deserialize(param1);
             this.objectsInfos.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -98,15 +106,19 @@ public class ExchangeStartOkHumanVendorMessage extends NetworkMessage implements
     private void _sellerIdFunc(ICustomDataInput param1) {
          this.sellerId = param1.readDouble();
          if(this.sellerId < -9.007199254740992E15 || this.sellerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.sellerId + ") on element of ExchangeStartOkHumanVendorMessage.sellerId.");
+         }
     }
 
     private void _objectsInfostreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objectsInfostree.addChild(this._objectsInfosFunc);
             _loc3_++;
+         }
     }
 
     private void _objectsInfosFunc(ICustomDataInput param1) {

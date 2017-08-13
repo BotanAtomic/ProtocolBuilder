@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.quest;
+package com.ankamagames.dofus.network.types.game.context.roleplay.quest;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -12,21 +12,15 @@ public class QuestActiveDetailedInformations extends QuestActiveInformations imp
 
     private int protocolId = 382;
     private int stepId = 0;
-    private Vector.<QuestObjectiveInformations> objectives = ;
-    private FuncTree _objectivestree = ;
-    private int _loc2_ = 0;
-    private QuestObjectiveInformations _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private QuestObjectiveInformations _loc3_ = ProtocolTypeManager.getInstance(QuestObjectiveInformations,_loc2_);
+    private Vector<QuestObjectiveInformations> objectives;
+    private FuncTree _objectivestree;
 
 
     public int getTypeId() {
          return 382;
     }
 
-    public QuestActiveDetailedInformations initQuestActiveDetailedInformations(int param1,int  param2,Vector.<QuestObjectiveInformations>  param3) {
+    public QuestActiveDetailedInformations initQuestActiveDetailedInformations(int param1,int  param2,Vector<QuestObjectiveInformations>  param3) {
          super.initQuestActiveInformations(param1);
          this.stepId = param2;
          this.objectives = param3;
@@ -46,7 +40,18 @@ public class QuestActiveDetailedInformations extends QuestActiveInformations imp
     public void serializeAs_QuestActiveDetailedInformations(ICustomDataOutput param1) {
          super.serializeAs_QuestActiveInformations(param1);
          if(this.stepId < 0)
+         {
             throw new Exception("Forbidden value (" + this.stepId + ") on element stepId.");
+         }
+         param1.writeVarShort(this.stepId);
+         param1.writeShort(this.objectives.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.objectives.length)
+         {
+            param1.writeShort((this.objectives[_loc2_] as QuestObjectiveInformations).getTypeId());
+            (this.objectives[_loc2_] as QuestObjectiveInformations).serialize(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -61,11 +66,13 @@ public class QuestActiveDetailedInformations extends QuestActiveInformations imp
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(QuestObjectiveInformations,_loc4_);
             _loc5_.deserialize(param1);
             this.objectives.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -81,15 +88,19 @@ public class QuestActiveDetailedInformations extends QuestActiveInformations imp
     private void _stepIdFunc(ICustomDataInput param1) {
          this.stepId = param1.readVarUhShort();
          if(this.stepId < 0)
+         {
             throw new Exception("Forbidden value (" + this.stepId + ") on element of QuestActiveDetailedInformations.stepId.");
+         }
     }
 
     private void _objectivestreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objectivestree.addChild(this._objectivesFunc);
             _loc3_++;
+         }
     }
 
     private void _objectivesFunc(ICustomDataInput param1) {

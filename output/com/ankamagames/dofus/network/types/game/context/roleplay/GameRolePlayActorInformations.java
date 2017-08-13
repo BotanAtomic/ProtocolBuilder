@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.dofus.network.types.game.context.GameContextActorInformations;
 import com.ankamagames.jerakine.network.INetworkType;

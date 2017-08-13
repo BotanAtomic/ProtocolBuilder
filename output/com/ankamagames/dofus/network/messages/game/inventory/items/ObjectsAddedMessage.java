@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class ObjectsAddedMessage extends NetworkMessage implements INetworkMessa
 
     private int protocolId = 6033;
     private boolean _isInitialized = false;
-    private Vector.<ObjectItem> object = ;
-    private FuncTree _objecttree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ObjectItem> object;
+    private FuncTree _objecttree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class ObjectsAddedMessage extends NetworkMessage implements INetworkMessa
          return 6033;
     }
 
-    public ObjectsAddedMessage initObjectsAddedMessage(Vector.<ObjectItem> param1) {
+    public ObjectsAddedMessage initObjectsAddedMessage(Vector<ObjectItem> param1) {
          this.object = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class ObjectsAddedMessage extends NetworkMessage implements INetworkMessa
          param1.writeShort(this.object.length);
          int _loc2_ = 0;
          while(_loc2_ < this.object.length)
+         {
             (this.object[_loc2_] as ObjectItem).serializeAs_ObjectItem(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class ObjectsAddedMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItem();
             _loc4_.deserialize(param1);
             this.object.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class ObjectsAddedMessage extends NetworkMessage implements INetworkMessa
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objecttree.addChild(this._objectFunc);
             _loc3_++;
+         }
     }
 
     private void _objectFunc(ICustomDataInput param1) {

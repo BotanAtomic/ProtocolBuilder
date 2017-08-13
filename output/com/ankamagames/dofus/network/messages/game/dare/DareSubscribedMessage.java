@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -18,8 +18,8 @@ public class DareSubscribedMessage extends NetworkMessage implements INetworkMes
     private Number dareId = 0;
     private boolean success = false;
     private boolean subscribe = false;
-    private DareVersatileInformations dareVersatilesInfos = ;
-    private FuncTree _dareVersatilesInfostree = ;
+    private DareVersatileInformations dareVersatilesInfos;
+    private FuncTree _dareVersatilesInfostree;
 
 
     public boolean isInitialized() {
@@ -74,7 +74,11 @@ public class DareSubscribedMessage extends NetworkMessage implements INetworkMes
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.subscribe);
          param1.writeByte(_loc2_);
          if(this.dareId < 0 || this.dareId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.dareId + ") on element dareId.");
+         }
+         param1.writeDouble(this.dareId);
+         this.dareVersatilesInfos.serializeAs_DareVersatileInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -107,7 +111,9 @@ public class DareSubscribedMessage extends NetworkMessage implements INetworkMes
     private void _dareIdFunc(ICustomDataInput param1) {
          this.dareId = param1.readDouble();
          if(this.dareId < 0 || this.dareId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.dareId + ") on element of DareSubscribedMessage.dareId.");
+         }
     }
 
     private void _dareVersatilesInfostreeFunc(ICustomDataInput param1) {

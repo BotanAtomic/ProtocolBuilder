@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.idol;
+package com.ankamagames.dofus.network.messages.game.idol;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,14 +15,8 @@ public class IdolFightPreparationUpdateMessage extends NetworkMessage implements
     private int protocolId = 6586;
     private boolean _isInitialized = false;
     private int idolSource = 0;
-    private Vector.<Idol> idols = ;
-    private FuncTree _idolstree = ;
-    private int _loc2_ = 0;
-    private Idol _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private Idol _loc3_ = ProtocolTypeManager.getInstance(Idol,_loc2_);
+    private Vector<Idol> idols;
+    private FuncTree _idolstree;
 
 
     public boolean isInitialized() {
@@ -33,7 +27,7 @@ public class IdolFightPreparationUpdateMessage extends NetworkMessage implements
          return 6586;
     }
 
-    public IdolFightPreparationUpdateMessage initIdolFightPreparationUpdateMessage(int param1,Vector.<Idol>  param2) {
+    public IdolFightPreparationUpdateMessage initIdolFightPreparationUpdateMessage(int param1,Vector<Idol>  param2) {
          this.idolSource = param1;
          this.idols = param2;
          this._isInitialized = true;
@@ -72,9 +66,11 @@ public class IdolFightPreparationUpdateMessage extends NetworkMessage implements
          param1.writeShort(this.idols.length);
          int _loc2_ = 0;
          while(_loc2_ < this.idols.length)
+         {
             param1.writeShort((this.idols[_loc2_] as Idol).getTypeId());
             (this.idols[_loc2_] as Idol).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -88,11 +84,13 @@ public class IdolFightPreparationUpdateMessage extends NetworkMessage implements
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(Idol,_loc4_);
             _loc5_.deserialize(param1);
             this.idols.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -107,15 +105,19 @@ public class IdolFightPreparationUpdateMessage extends NetworkMessage implements
     private void _idolSourceFunc(ICustomDataInput param1) {
          this.idolSource = param1.readByte();
          if(this.idolSource < 0)
+         {
             throw new Exception("Forbidden value (" + this.idolSource + ") on element of IdolFightPreparationUpdateMessage.idolSource.");
+         }
     }
 
     private void _idolstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._idolstree.addChild(this._idolsFunc);
             _loc3_++;
+         }
     }
 
     private void _idolsFunc(ICustomDataInput param1) {

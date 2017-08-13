@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -64,7 +64,11 @@ public class GameActionFightPointsVariationMessage extends AbstractGameActionMes
     public void serializeAs_GameActionFightPointsVariationMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractGameActionMessage(param1);
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
+         param1.writeShort(this.delta);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +94,9 @@ public class GameActionFightPointsVariationMessage extends AbstractGameActionMes
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readDouble();
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of GameActionFightPointsVariationMessage.targetId.");
+         }
     }
 
     private void _deltaFunc(ICustomDataInput param1) {

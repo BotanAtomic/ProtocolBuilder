@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.chat;
+package com.ankamagames.dofus.network.messages.game.chat;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -38,7 +38,10 @@ public class ChatClientPrivateMessage extends ChatAbstractClientMessage implemen
          ByteArray _loc2_ = new ByteArray();
          this.serialize(new CustomDataWrapper(_loc2_));
          if(HASH_FUNCTION != null)
+         {
             HASH_FUNCTION(_loc2_);
+         }
+         writePacket(param1,this.getMessageId(),_loc2_);
     }
 
     public void unpack(ICustomDataInput param1,int  param2) {

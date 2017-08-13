@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -8,6 +8,10 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -28,12 +32,8 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
     private boolean isForGuild = false;
     private boolean isForAlliance = false;
     private boolean needNotifications = false;
-    private Vector.<DareCriteria> criterions = ;
-    private FuncTree _criterionstree = ;
-    private int _loc3_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<DareCriteria> criterions;
+    private FuncTree _criterionstree;
 
 
     public boolean isInitialized() {
@@ -44,7 +44,7 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
          return 6665;
     }
 
-    public DareCreationRequestMessage initDareCreationRequestMessage(Number param1,Number  param2,int  param3,int  param4,int  param5,boolean  param6,boolean  param7,boolean  param8,boolean  param9,Vector.<DareCriteria>  param10) {
+    public DareCreationRequestMessage initDareCreationRequestMessage(Number param1,Number  param2,int  param3,int  param4,int  param5,boolean  param6,boolean  param7,boolean  param8,boolean  param9,Vector<DareCriteria>  param10) {
          this.subscriptionFee = param1;
          this.jackpot = param2;
          this.maxCountWinners = param3;
@@ -102,7 +102,37 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,3,this.needNotifications);
          param1.writeByte(_loc2_);
          if(this.subscriptionFee < 0 || this.subscriptionFee > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.subscriptionFee + ") on element subscriptionFee.");
+         }
+         param1.writeVarLong(this.subscriptionFee);
+         if(this.jackpot < 0 || this.jackpot > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.jackpot + ") on element jackpot.");
+         }
+         param1.writeVarLong(this.jackpot);
+         if(this.maxCountWinners < 0 || this.maxCountWinners > 65535)
+         {
+            throw new Exception("Forbidden value (" + this.maxCountWinners + ") on element maxCountWinners.");
+         }
+         param1.writeShort(this.maxCountWinners);
+         if(this.delayBeforeStart < 0 || this.delayBeforeStart > 4.294967295E9)
+         {
+            throw new Exception("Forbidden value (" + this.delayBeforeStart + ") on element delayBeforeStart.");
+         }
+         param1.writeUnsignedInt(this.delayBeforeStart);
+         if(this.duration < 0 || this.duration > 4.294967295E9)
+         {
+            throw new Exception("Forbidden value (" + this.duration + ") on element duration.");
+         }
+         param1.writeUnsignedInt(this.duration);
+         param1.writeShort(this.criterions.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.criterions.length)
+         {
+            (this.criterions[_loc3_] as DareCriteria).serializeAs_DareCriteria(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -120,10 +150,12 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new DareCriteria();
             _loc4_.deserialize(param1);
             this.criterions.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -151,39 +183,51 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
     private void _subscriptionFeeFunc(ICustomDataInput param1) {
          this.subscriptionFee = param1.readVarUhLong();
          if(this.subscriptionFee < 0 || this.subscriptionFee > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.subscriptionFee + ") on element of DareCreationRequestMessage.subscriptionFee.");
+         }
     }
 
     private void _jackpotFunc(ICustomDataInput param1) {
          this.jackpot = param1.readVarUhLong();
          if(this.jackpot < 0 || this.jackpot > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.jackpot + ") on element of DareCreationRequestMessage.jackpot.");
+         }
     }
 
     private void _maxCountWinnersFunc(ICustomDataInput param1) {
          this.maxCountWinners = param1.readUnsignedShort();
          if(this.maxCountWinners < 0 || this.maxCountWinners > 65535)
+         {
             throw new Exception("Forbidden value (" + this.maxCountWinners + ") on element of DareCreationRequestMessage.maxCountWinners.");
+         }
     }
 
     private void _delayBeforeStartFunc(ICustomDataInput param1) {
          this.delayBeforeStart = param1.readUnsignedInt();
          if(this.delayBeforeStart < 0 || this.delayBeforeStart > 4.294967295E9)
+         {
             throw new Exception("Forbidden value (" + this.delayBeforeStart + ") on element of DareCreationRequestMessage.delayBeforeStart.");
+         }
     }
 
     private void _durationFunc(ICustomDataInput param1) {
          this.duration = param1.readUnsignedInt();
          if(this.duration < 0 || this.duration > 4.294967295E9)
+         {
             throw new Exception("Forbidden value (" + this.duration + ") on element of DareCreationRequestMessage.duration.");
+         }
     }
 
     private void _criterionstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._criterionstree.addChild(this._criterionsFunc);
             _loc3_++;
+         }
     }
 
     private void _criterionsFunc(ICustomDataInput param1) {

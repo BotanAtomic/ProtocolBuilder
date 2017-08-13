@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection.search;
+package com.ankamagames.dofus.network.messages.connection.search;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,12 +14,8 @@ public class AcquaintanceServerListMessage extends NetworkMessage implements INe
 
     private int protocolId = 6142;
     private boolean _isInitialized = false;
-    private Vector.<uint> servers = ;
-    private FuncTree _serverstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> servers;
+    private FuncTree _serverstree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class AcquaintanceServerListMessage extends NetworkMessage implements INe
          return 6142;
     }
 
-    public AcquaintanceServerListMessage initAcquaintanceServerListMessage(Vector.<uint> param1) {
+    public AcquaintanceServerListMessage initAcquaintanceServerListMessage(Vector<uint> param1) {
          this.servers = param1;
          this._isInitialized = true;
          return this;
@@ -66,8 +62,14 @@ public class AcquaintanceServerListMessage extends NetworkMessage implements INe
          param1.writeShort(this.servers.length);
          int _loc2_ = 0;
          while(_loc2_ < this.servers.length)
+         {
             if(this.servers[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.servers[_loc2_] + ") on element 1 (starting at 1) of servers.");
+            }
+            param1.writeVarShort(this.servers[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -79,9 +81,15 @@ public class AcquaintanceServerListMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readVarUhShort();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of servers.");
+            }
+            this.servers.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -96,14 +104,19 @@ public class AcquaintanceServerListMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._serverstree.addChild(this._serversFunc);
             _loc3_++;
+         }
     }
 
     private void _serversFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readVarUhShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of servers.");
+         }
+         this.servers.push(_loc2_);
     }
 
 }

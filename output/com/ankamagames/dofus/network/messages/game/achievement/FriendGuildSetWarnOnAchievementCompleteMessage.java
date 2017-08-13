@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.achievement;
+package com.ankamagames.dofus.network.messages.game.achievement;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

@@ -1,9 +1,10 @@
-package package com.ankamagames.dofus.network.types.game.interactive;
+package com.ankamagames.dofus.network.types.game.interactive;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -36,7 +37,15 @@ public class InteractiveElementSkill extends Object implements INetworkType {
 
     public void serializeAs_InteractiveElementSkill(ICustomDataOutput param1) {
          if(this.skillId < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
+         }
+         param1.writeVarInt(this.skillId);
+         if(this.skillInstanceUid < 0)
+         {
+            throw new Exception("Forbidden value (" + this.skillInstanceUid + ") on element skillInstanceUid.");
+         }
+         param1.writeInt(this.skillInstanceUid);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -60,13 +69,17 @@ public class InteractiveElementSkill extends Object implements INetworkType {
     private void _skillIdFunc(ICustomDataInput param1) {
          this.skillId = param1.readVarUhInt();
          if(this.skillId < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillId + ") on element of InteractiveElementSkill.skillId.");
+         }
     }
 
     private void _skillInstanceUidFunc(ICustomDataInput param1) {
          this.skillInstanceUid = param1.readInt();
          if(this.skillInstanceUid < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillInstanceUid + ") on element of InteractiveElementSkill.skillInstanceUid.");
+         }
     }
 
 }

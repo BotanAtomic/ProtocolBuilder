@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.shortcut;
+package com.ankamagames.dofus.network.messages.game.shortcut;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,9 +15,8 @@ public class ShortcutBarReplacedMessage extends NetworkMessage implements INetwo
     private int protocolId = 6706;
     private boolean _isInitialized = false;
     private int barType = 0;
-    private Shortcut shortcut = ;
-    private FuncTree _shortcuttree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private Shortcut shortcut;
+    private FuncTree _shortcuttree;
 
 
     public boolean isInitialized() {
@@ -91,7 +90,9 @@ public class ShortcutBarReplacedMessage extends NetworkMessage implements INetwo
     private void _barTypeFunc(ICustomDataInput param1) {
          this.barType = param1.readByte();
          if(this.barType < 0)
+         {
             throw new Exception("Forbidden value (" + this.barType + ") on element of ShortcutBarReplacedMessage.barType.");
+         }
     }
 
     private void _shortcuttreeFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -20,7 +20,7 @@ public class GameCautiousMapMovementMessage extends GameMapMovementMessage imple
          return 6497;
     }
 
-    public GameCautiousMapMovementMessage initGameCautiousMapMovementMessage(Vector.<uint> param1,int  param2,Number  param3) {
+    public GameCautiousMapMovementMessage initGameCautiousMapMovementMessage(Vector<uint> param1,int  param2,Number  param3) {
          super.initGameMapMovementMessage(param1,param2,param3);
          this._isInitialized = true;
          return this;

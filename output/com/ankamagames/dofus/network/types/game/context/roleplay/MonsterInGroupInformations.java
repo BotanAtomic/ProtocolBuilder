@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -9,8 +9,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class MonsterInGroupInformations extends MonsterInGroupLightInformations implements INetworkType {
 
     private int protocolId = 144;
-    private EntityLook look = ;
-    private FuncTree _looktree = ;
+    private EntityLook look;
+    private FuncTree _looktree;
 
 
     public int getTypeId() {

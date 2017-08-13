@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.achievement;
+package com.ankamagames.dofus.network.messages.game.achievement;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class AchievementDetailedListRequestMessage extends NetworkMessage implem
 
     public void serializeAs_AchievementDetailedListRequestMessage(ICustomDataOutput param1) {
          if(this.categoryId < 0)
+         {
             throw new Exception("Forbidden value (" + this.categoryId + ") on element categoryId.");
+         }
+         param1.writeVarShort(this.categoryId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class AchievementDetailedListRequestMessage extends NetworkMessage implem
     private void _categoryIdFunc(ICustomDataInput param1) {
          this.categoryId = param1.readVarUhShort();
          if(this.categoryId < 0)
+         {
             throw new Exception("Forbidden value (" + this.categoryId + ") on element of AchievementDetailedListRequestMessage.categoryId.");
+         }
     }
 
 }

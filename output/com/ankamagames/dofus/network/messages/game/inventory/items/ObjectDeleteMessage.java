@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class ObjectDeleteMessage extends NetworkMessage implements INetworkMessa
 
     public void serializeAs_ObjectDeleteMessage(ICustomDataOutput param1) {
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
+         }
+         param1.writeVarInt(this.objectUID);
+         if(this.quantity < 0)
+         {
+            throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
+         }
+         param1.writeVarInt(this.quantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class ObjectDeleteMessage extends NetworkMessage implements INetworkMessa
     private void _objectUIDFunc(ICustomDataInput param1) {
          this.objectUID = param1.readVarUhInt();
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element of ObjectDeleteMessage.objectUID.");
+         }
     }
 
     private void _quantityFunc(ICustomDataInput param1) {
          this.quantity = param1.readVarUhInt();
          if(this.quantity < 0)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element of ObjectDeleteMessage.quantity.");
+         }
     }
 
 }

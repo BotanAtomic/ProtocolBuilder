@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -39,7 +39,10 @@ public class FightTeamMemberMonsterInformations extends FightTeamMemberInformati
          super.serializeAs_FightTeamMemberInformations(param1);
          param1.writeInt(this.monsterId);
          if(this.grade < 0)
+         {
             throw new Exception("Forbidden value (" + this.grade + ") on element grade.");
+         }
+         param1.writeByte(this.grade);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -69,7 +72,9 @@ public class FightTeamMemberMonsterInformations extends FightTeamMemberInformati
     private void _gradeFunc(ICustomDataInput param1) {
          this.grade = param1.readByte();
          if(this.grade < 0)
+         {
             throw new Exception("Forbidden value (" + this.grade + ") on element of FightTeamMemberMonsterInformations.grade.");
+         }
     }
 
 }

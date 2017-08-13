@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.web.krosmaster;
+package com.ankamagames.dofus.network.messages.web.krosmaster;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

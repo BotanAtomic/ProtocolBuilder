@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.wtf;
+package com.ankamagames.dofus.network.messages.wtf;
 
 import com.ankamagames.dofus.network.messages.debug.DebugInClientMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

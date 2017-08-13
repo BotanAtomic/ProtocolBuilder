@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.basic;
+package com.ankamagames.dofus.network.messages.game.basic;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class CurrentServerStatusUpdateMessage extends NetworkMessage implements 
     private void _statusFunc(ICustomDataInput param1) {
          this.status = param1.readByte();
          if(this.status < 0)
+         {
             throw new Exception("Forbidden value (" + this.status + ") on element of CurrentServerStatusUpdateMessage.status.");
+         }
     }
 
 }

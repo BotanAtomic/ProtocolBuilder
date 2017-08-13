@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.idol;
+package com.ankamagames.dofus.network.messages.game.idol;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -69,7 +69,10 @@ public class IdolSelectRequestMessage extends NetworkMessage implements INetwork
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.party);
          param1.writeByte(_loc2_);
          if(this.idolId < 0)
+         {
             throw new Exception("Forbidden value (" + this.idolId + ") on element idolId.");
+         }
+         param1.writeVarShort(this.idolId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -99,7 +102,9 @@ public class IdolSelectRequestMessage extends NetworkMessage implements INetwork
     private void _idolIdFunc(ICustomDataInput param1) {
          this.idolId = param1.readVarUhShort();
          if(this.idolId < 0)
+         {
             throw new Exception("Forbidden value (" + this.idolId + ") on element of IdolSelectRequestMessage.idolId.");
+         }
     }
 
 }

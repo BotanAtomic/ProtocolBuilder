@@ -1,10 +1,16 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -31,7 +37,6 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
     private boolean showExperienceForMount = false;
     private boolean isIncarnationExperience = false;
     private int rerollExperienceMul = 0;
-    private int _loc2_ = 0;
 
 
     public int getTypeId() {
@@ -89,7 +94,40 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,6,this.isIncarnationExperience);
          param1.writeByte(_loc2_);
          if(this.experience < 0 || this.experience > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experience + ") on element experience.");
+         }
+         param1.writeVarLong(this.experience);
+         if(this.experienceLevelFloor < 0 || this.experienceLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experienceLevelFloor + ") on element experienceLevelFloor.");
+         }
+         param1.writeVarLong(this.experienceLevelFloor);
+         if(this.experienceNextLevelFloor < 0 || this.experienceNextLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experienceNextLevelFloor + ") on element experienceNextLevelFloor.");
+         }
+         param1.writeVarLong(this.experienceNextLevelFloor);
+         if(this.experienceFightDelta < 0 || this.experienceFightDelta > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experienceFightDelta + ") on element experienceFightDelta.");
+         }
+         param1.writeVarLong(this.experienceFightDelta);
+         if(this.experienceForGuild < 0 || this.experienceForGuild > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experienceForGuild + ") on element experienceForGuild.");
+         }
+         param1.writeVarLong(this.experienceForGuild);
+         if(this.experienceForMount < 0 || this.experienceForMount > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experienceForMount + ") on element experienceForMount.");
+         }
+         param1.writeVarLong(this.experienceForMount);
+         if(this.rerollExperienceMul < 0)
+         {
+            throw new Exception("Forbidden value (" + this.rerollExperienceMul + ") on element rerollExperienceMul.");
+         }
+         param1.writeByte(this.rerollExperienceMul);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -138,43 +176,57 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
     private void _experienceFunc(ICustomDataInput param1) {
          this.experience = param1.readVarUhLong();
          if(this.experience < 0 || this.experience > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experience + ") on element of FightResultExperienceData.experience.");
+         }
     }
 
     private void _experienceLevelFloorFunc(ICustomDataInput param1) {
          this.experienceLevelFloor = param1.readVarUhLong();
          if(this.experienceLevelFloor < 0 || this.experienceLevelFloor > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experienceLevelFloor + ") on element of FightResultExperienceData.experienceLevelFloor.");
+         }
     }
 
     private void _experienceNextLevelFloorFunc(ICustomDataInput param1) {
          this.experienceNextLevelFloor = param1.readVarUhLong();
          if(this.experienceNextLevelFloor < 0 || this.experienceNextLevelFloor > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experienceNextLevelFloor + ") on element of FightResultExperienceData.experienceNextLevelFloor.");
+         }
     }
 
     private void _experienceFightDeltaFunc(ICustomDataInput param1) {
          this.experienceFightDelta = param1.readVarUhLong();
          if(this.experienceFightDelta < 0 || this.experienceFightDelta > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experienceFightDelta + ") on element of FightResultExperienceData.experienceFightDelta.");
+         }
     }
 
     private void _experienceForGuildFunc(ICustomDataInput param1) {
          this.experienceForGuild = param1.readVarUhLong();
          if(this.experienceForGuild < 0 || this.experienceForGuild > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experienceForGuild + ") on element of FightResultExperienceData.experienceForGuild.");
+         }
     }
 
     private void _experienceForMountFunc(ICustomDataInput param1) {
          this.experienceForMount = param1.readVarUhLong();
          if(this.experienceForMount < 0 || this.experienceForMount > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experienceForMount + ") on element of FightResultExperienceData.experienceForMount.");
+         }
     }
 
     private void _rerollExperienceMulFunc(ICustomDataInput param1) {
          this.rerollExperienceMul = param1.readByte();
          if(this.rerollExperienceMul < 0)
+         {
             throw new Exception("Forbidden value (" + this.rerollExperienceMul + ") on element of FightResultExperienceData.rerollExperienceMul.");
+         }
     }
 
 }

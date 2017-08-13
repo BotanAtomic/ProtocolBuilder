@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -6,6 +6,7 @@ import com.ankamagames.dofus.network.types.game.context.EntityDispositionInforma
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -44,7 +45,16 @@ public class GameRolePlayNpcInformations extends GameRolePlayActorInformations i
     public void serializeAs_GameRolePlayNpcInformations(ICustomDataOutput param1) {
          super.serializeAs_GameRolePlayActorInformations(param1);
          if(this.npcId < 0)
+         {
             throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
+         }
+         param1.writeVarShort(this.npcId);
+         param1.writeBoolean(this.sex);
+         if(this.specialArtworkId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.specialArtworkId + ") on element specialArtworkId.");
+         }
+         param1.writeVarShort(this.specialArtworkId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -72,7 +82,9 @@ public class GameRolePlayNpcInformations extends GameRolePlayActorInformations i
     private void _npcIdFunc(ICustomDataInput param1) {
          this.npcId = param1.readVarUhShort();
          if(this.npcId < 0)
+         {
             throw new Exception("Forbidden value (" + this.npcId + ") on element of GameRolePlayNpcInformations.npcId.");
+         }
     }
 
     private void _sexFunc(ICustomDataInput param1) {
@@ -82,7 +94,9 @@ public class GameRolePlayNpcInformations extends GameRolePlayActorInformations i
     private void _specialArtworkIdFunc(ICustomDataInput param1) {
          this.specialArtworkId = param1.readVarUhShort();
          if(this.specialArtworkId < 0)
+         {
             throw new Exception("Forbidden value (" + this.specialArtworkId + ") on element of GameRolePlayNpcInformations.specialArtworkId.");
+         }
     }
 
 }

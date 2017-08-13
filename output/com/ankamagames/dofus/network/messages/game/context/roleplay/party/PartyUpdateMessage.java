@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.party.PartyMemberInformations;
@@ -12,9 +12,8 @@ public class PartyUpdateMessage extends AbstractPartyEventMessage implements INe
 
     private int protocolId = 5575;
     private boolean _isInitialized = false;
-    private PartyMemberInformations memberInformations = ;
-    private FuncTree _memberInformationstree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private PartyMemberInformations memberInformations;
+    private FuncTree _memberInformationstree;
 
 
     public boolean isInitialized() {

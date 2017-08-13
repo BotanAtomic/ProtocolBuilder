@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.prism.PrismSubareaEmptyInfo;
@@ -21,7 +21,7 @@ public class PrismsListUpdateMessage extends PrismsListMessage implements INetwo
          return 6438;
     }
 
-    public PrismsListUpdateMessage initPrismsListUpdateMessage(Vector.<PrismSubareaEmptyInfo> param1) {
+    public PrismsListUpdateMessage initPrismsListUpdateMessage(Vector<PrismSubareaEmptyInfo> param1) {
          super.initPrismsListMessage(param1);
          this._isInitialized = true;
          return this;

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.party;
+package com.ankamagames.dofus.network.types.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -58,7 +58,9 @@ public class NamedPartyTeam extends Object implements INetworkType {
     private void _teamIdFunc(ICustomDataInput param1) {
          this.teamId = param1.readByte();
          if(this.teamId < 0)
+         {
             throw new Exception("Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
+         }
     }
 
     private void _partyNameFunc(ICustomDataInput param1) {

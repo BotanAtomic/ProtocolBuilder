@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items.effects;
+package com.ankamagames.dofus.network.types.game.data.items.effects;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class ObjectEffectInteger extends ObjectEffect implements INetworkType {
     public void serializeAs_ObjectEffectInteger(ICustomDataOutput param1) {
          super.serializeAs_ObjectEffect(param1);
          if(this.value < 0)
+         {
             throw new Exception("Forbidden value (" + this.value + ") on element value.");
+         }
+         param1.writeVarInt(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class ObjectEffectInteger extends ObjectEffect implements INetworkType {
     private void _valueFunc(ICustomDataInput param1) {
          this.value = param1.readVarUhInt();
          if(this.value < 0)
+         {
             throw new Exception("Forbidden value (" + this.value + ") on element of ObjectEffectInteger.value.");
+         }
     }
 
 }

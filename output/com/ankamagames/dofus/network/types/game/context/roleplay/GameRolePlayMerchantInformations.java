@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
@@ -14,21 +14,15 @@ public class GameRolePlayMerchantInformations extends GameRolePlayNamedActorInfo
 
     private int protocolId = 129;
     private int sellType = 0;
-    private Vector.<HumanOption> options = ;
-    private FuncTree _optionstree = ;
-    private int _loc2_ = 0;
-    private HumanOption _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private HumanOption _loc3_ = ProtocolTypeManager.getInstance(HumanOption,_loc2_);
+    private Vector<HumanOption> options;
+    private FuncTree _optionstree;
 
 
     public int getTypeId() {
          return 129;
     }
 
-    public GameRolePlayMerchantInformations initGameRolePlayMerchantInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,String  param4,int  param5,Vector.<HumanOption>  param6) {
+    public GameRolePlayMerchantInformations initGameRolePlayMerchantInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,String  param4,int  param5,Vector<HumanOption>  param6) {
          super.initGameRolePlayNamedActorInformations(param1,param2,param3,param4);
          this.sellType = param5;
          this.options = param6;
@@ -48,7 +42,18 @@ public class GameRolePlayMerchantInformations extends GameRolePlayNamedActorInfo
     public void serializeAs_GameRolePlayMerchantInformations(ICustomDataOutput param1) {
          super.serializeAs_GameRolePlayNamedActorInformations(param1);
          if(this.sellType < 0)
+         {
             throw new Exception("Forbidden value (" + this.sellType + ") on element sellType.");
+         }
+         param1.writeByte(this.sellType);
+         param1.writeShort(this.options.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.options.length)
+         {
+            param1.writeShort((this.options[_loc2_] as HumanOption).getTypeId());
+            (this.options[_loc2_] as HumanOption).serialize(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -63,11 +68,13 @@ public class GameRolePlayMerchantInformations extends GameRolePlayNamedActorInfo
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(HumanOption,_loc4_);
             _loc5_.deserialize(param1);
             this.options.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -83,15 +90,19 @@ public class GameRolePlayMerchantInformations extends GameRolePlayNamedActorInfo
     private void _sellTypeFunc(ICustomDataInput param1) {
          this.sellType = param1.readByte();
          if(this.sellType < 0)
+         {
             throw new Exception("Forbidden value (" + this.sellType + ") on element of GameRolePlayMerchantInformations.sellType.");
+         }
     }
 
     private void _optionstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._optionstree.addChild(this._optionsFunc);
             _loc3_++;
+         }
     }
 
     private void _optionsFunc(ICustomDataInput param1) {

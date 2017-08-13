@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -10,19 +10,16 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class GameMapMovementMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 951;
     private boolean _isInitialized = false;
-    private Vector.<uint> keyMovements = ;
+    private Vector<uint> keyMovements;
     private int forcedDirection = 0;
     private Number actorId = 0;
-    private FuncTree _keyMovementstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _keyMovementstree;
 
 
     public boolean isInitialized() {
@@ -33,7 +30,7 @@ public class GameMapMovementMessage extends NetworkMessage implements INetworkMe
          return 951;
     }
 
-    public GameMapMovementMessage initGameMapMovementMessage(Vector.<uint> param1,int  param2,Number  param3) {
+    public GameMapMovementMessage initGameMapMovementMessage(Vector<uint> param1,int  param2,Number  param3) {
          this.keyMovements = param1;
          this.forcedDirection = param2;
          this.actorId = param3;
@@ -73,8 +70,20 @@ public class GameMapMovementMessage extends NetworkMessage implements INetworkMe
          param1.writeShort(this.keyMovements.length);
          int _loc2_ = 0;
          while(_loc2_ < this.keyMovements.length)
+         {
             if(this.keyMovements[_loc2_] < 0)
+            {
                throw new Exception("Forbidden value (" + this.keyMovements[_loc2_] + ") on element 1 (starting at 1) of keyMovements.");
+            }
+            param1.writeShort(this.keyMovements[_loc2_]);
+            _loc2_++;
+         }
+         param1.writeShort(this.forcedDirection);
+         if(this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.actorId + ") on element actorId.");
+         }
+         param1.writeDouble(this.actorId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,9 +95,17 @@ public class GameMapMovementMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readShort();
             if(_loc4_ < 0)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of keyMovements.");
+            }
+            this.keyMovements.push(_loc4_);
+            _loc3_++;
+         }
+         this._forcedDirectionFunc(param1);
+         this._actorIdFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -105,14 +122,19 @@ public class GameMapMovementMessage extends NetworkMessage implements INetworkMe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._keyMovementstree.addChild(this._keyMovementsFunc);
             _loc3_++;
+         }
     }
 
     private void _keyMovementsFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readShort();
          if(_loc2_ < 0)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of keyMovements.");
+         }
+         this.keyMovements.push(_loc2_);
     }
 
     private void _forcedDirectionFunc(ICustomDataInput param1) {
@@ -122,7 +144,9 @@ public class GameMapMovementMessage extends NetworkMessage implements INetworkMe
     private void _actorIdFunc(ICustomDataInput param1) {
          this.actorId = param1.readDouble();
          if(this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.actorId + ") on element of GameMapMovementMessage.actorId.");
+         }
     }
 
 }

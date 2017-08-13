@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class PaddockSellRequestMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_PaddockSellRequestMessage(ICustomDataOutput param1) {
          if(this.price < 0 || this.price > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.price + ") on element price.");
+         }
+         param1.writeVarLong(this.price);
+         param1.writeBoolean(this.forSale);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class PaddockSellRequestMessage extends NetworkMessage implements INetwor
     private void _priceFunc(ICustomDataInput param1) {
          this.price = param1.readVarUhLong();
          if(this.price < 0 || this.price > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.price + ") on element of PaddockSellRequestMessage.price.");
+         }
     }
 
     private void _forSaleFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class ExchangeCraftResultWithObjectIdMessage extends ExchangeCraftResultM
     public void serializeAs_ExchangeCraftResultWithObjectIdMessage(ICustomDataOutput param1) {
          super.serializeAs_ExchangeCraftResultMessage(param1);
          if(this.objectGenericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectGenericId + ") on element objectGenericId.");
+         }
+         param1.writeVarShort(this.objectGenericId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class ExchangeCraftResultWithObjectIdMessage extends ExchangeCraftResultM
     private void _objectGenericIdFunc(ICustomDataInput param1) {
          this.objectGenericId = param1.readVarUhShort();
          if(this.objectGenericId < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectGenericId + ") on element of ExchangeCraftResultWithObjectIdMessage.objectGenericId.");
+         }
     }
 
 }

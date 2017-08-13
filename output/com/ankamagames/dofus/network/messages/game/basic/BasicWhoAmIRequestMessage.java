@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.basic;
+package com.ankamagames.dofus.network.messages.game.basic;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

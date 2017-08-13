@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive;
+package com.ankamagames.dofus.network.messages.game.interactive;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -43,7 +44,10 @@ public class InteractiveUseRequestMessage extends NetworkMessage implements INet
          ByteArray _loc2_ = new ByteArray();
          this.serialize(new CustomDataWrapper(_loc2_));
          if(HASH_FUNCTION != null)
+         {
             HASH_FUNCTION(_loc2_);
+         }
+         writePacket(param1,this.getMessageId(),_loc2_);
     }
 
     public void unpack(ICustomDataInput param1,int  param2) {
@@ -63,7 +67,15 @@ public class InteractiveUseRequestMessage extends NetworkMessage implements INet
 
     public void serializeAs_InteractiveUseRequestMessage(ICustomDataOutput param1) {
          if(this.elemId < 0)
+         {
             throw new Exception("Forbidden value (" + this.elemId + ") on element elemId.");
+         }
+         param1.writeVarInt(this.elemId);
+         if(this.skillInstanceUid < 0)
+         {
+            throw new Exception("Forbidden value (" + this.skillInstanceUid + ") on element skillInstanceUid.");
+         }
+         param1.writeVarInt(this.skillInstanceUid);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,13 +99,17 @@ public class InteractiveUseRequestMessage extends NetworkMessage implements INet
     private void _elemIdFunc(ICustomDataInput param1) {
          this.elemId = param1.readVarUhInt();
          if(this.elemId < 0)
+         {
             throw new Exception("Forbidden value (" + this.elemId + ") on element of InteractiveUseRequestMessage.elemId.");
+         }
     }
 
     private void _skillInstanceUidFunc(ICustomDataInput param1) {
          this.skillInstanceUid = param1.readVarUhInt();
          if(this.skillInstanceUid < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillInstanceUid + ") on element of InteractiveUseRequestMessage.skillInstanceUid.");
+         }
     }
 
 }

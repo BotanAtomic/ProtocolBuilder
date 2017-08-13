@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,8 @@ public class GuildVersatileInfoListMessage extends NetworkMessage implements INe
 
     private int protocolId = 6435;
     private boolean _isInitialized = false;
-    private Vector.<GuildVersatileInformations> guilds = ;
-    private FuncTree _guildstree = ;
-    private int _loc2_ = 0;
-    private GuildVersatileInformations _loc5_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private GuildVersatileInformations _loc3_ = ProtocolTypeManager.getInstance(GuildVersatileInformations,_loc2_);
+    private Vector<GuildVersatileInformations> guilds;
+    private FuncTree _guildstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +25,7 @@ public class GuildVersatileInfoListMessage extends NetworkMessage implements INe
          return 6435;
     }
 
-    public GuildVersatileInfoListMessage initGuildVersatileInfoListMessage(Vector.<GuildVersatileInformations> param1) {
+    public GuildVersatileInfoListMessage initGuildVersatileInfoListMessage(Vector<GuildVersatileInformations> param1) {
          this.guilds = param1;
          this._isInitialized = true;
          return this;
@@ -67,9 +61,11 @@ public class GuildVersatileInfoListMessage extends NetworkMessage implements INe
          param1.writeShort(this.guilds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.guilds.length)
+         {
             param1.writeShort((this.guilds[_loc2_] as GuildVersatileInformations).getTypeId());
             (this.guilds[_loc2_] as GuildVersatileInformations).serialize(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -82,11 +78,13 @@ public class GuildVersatileInfoListMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedShort();
             _loc5_ = ProtocolTypeManager.getInstance(GuildVersatileInformations,_loc4_);
             _loc5_.deserialize(param1);
             this.guilds.push(_loc5_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -101,8 +99,10 @@ public class GuildVersatileInfoListMessage extends NetworkMessage implements INe
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._guildstree.addChild(this._guildsFunc);
             _loc3_++;
+         }
     }
 
     private void _guildsFunc(ICustomDataInput param1) {

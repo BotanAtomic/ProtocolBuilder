@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class PrismFightStateUpdateMessage extends NetworkMessage implements INet
 
     public void serializeAs_PrismFightStateUpdateMessage(ICustomDataOutput param1) {
          if(this.state < 0)
+         {
             throw new Exception("Forbidden value (" + this.state + ") on element state.");
+         }
+         param1.writeByte(this.state);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class PrismFightStateUpdateMessage extends NetworkMessage implements INet
     private void _stateFunc(ICustomDataInput param1) {
          this.state = param1.readByte();
          if(this.state < 0)
+         {
             throw new Exception("Forbidden value (" + this.state + ") on element of PrismFightStateUpdateMessage.state.");
+         }
     }
 
 }

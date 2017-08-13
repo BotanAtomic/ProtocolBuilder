@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,11 @@ public class DareRewardConsumeRequestMessage extends NetworkMessage implements I
 
     public void serializeAs_DareRewardConsumeRequestMessage(ICustomDataOutput param1) {
          if(this.dareId < -9.007199254740992E15 || this.dareId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.dareId + ") on element dareId.");
+         }
+         param1.writeDouble(this.dareId);
+         param1.writeByte(this.type);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +90,17 @@ public class DareRewardConsumeRequestMessage extends NetworkMessage implements I
     private void _dareIdFunc(ICustomDataInput param1) {
          this.dareId = param1.readDouble();
          if(this.dareId < -9.007199254740992E15 || this.dareId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.dareId + ") on element of DareRewardConsumeRequestMessage.dareId.");
+         }
     }
 
     private void _typeFunc(ICustomDataInput param1) {
          this.type = param1.readByte();
          if(this.type < 0)
+         {
             throw new Exception("Forbidden value (" + this.type + ") on element of DareRewardConsumeRequestMessage.type.");
+         }
     }
 
 }

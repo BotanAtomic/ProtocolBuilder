@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.preset;
+package com.ankamagames.dofus.network.messages.game.inventory.preset;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -18,12 +18,8 @@ public class InventoryPresetUseResultMessage extends NetworkMessage implements I
     private boolean _isInitialized = false;
     private int presetId = 0;
     private int code = 3;
-    private Vector.<uint> unlinkedPosition = ;
-    private FuncTree _unlinkedPositiontree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<uint> unlinkedPosition;
+    private FuncTree _unlinkedPositiontree;
 
 
     public boolean isInitialized() {
@@ -34,7 +30,7 @@ public class InventoryPresetUseResultMessage extends NetworkMessage implements I
          return 6163;
     }
 
-    public InventoryPresetUseResultMessage initInventoryPresetUseResultMessage(int param1,int  param2,Vector.<uint>  param3) {
+    public InventoryPresetUseResultMessage initInventoryPresetUseResultMessage(int param1,int  param2,Vector<uint>  param3) {
          this.presetId = param1;
          this.code = param2;
          this.unlinkedPosition = param3;
@@ -72,7 +68,18 @@ public class InventoryPresetUseResultMessage extends NetworkMessage implements I
 
     public void serializeAs_InventoryPresetUseResultMessage(ICustomDataOutput param1) {
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
+         }
+         param1.writeByte(this.presetId);
+         param1.writeByte(this.code);
+         param1.writeShort(this.unlinkedPosition.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.unlinkedPosition.length)
+         {
+            param1.writeByte(this.unlinkedPosition[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,9 +93,15 @@ public class InventoryPresetUseResultMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readUnsignedByte();
             if(_loc4_ < 0 || _loc4_ > 255)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of unlinkedPosition.");
+            }
+            this.unlinkedPosition.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -104,27 +117,36 @@ public class InventoryPresetUseResultMessage extends NetworkMessage implements I
     private void _presetIdFunc(ICustomDataInput param1) {
          this.presetId = param1.readByte();
          if(this.presetId < 0)
+         {
             throw new Exception("Forbidden value (" + this.presetId + ") on element of InventoryPresetUseResultMessage.presetId.");
+         }
     }
 
     private void _codeFunc(ICustomDataInput param1) {
          this.code = param1.readByte();
          if(this.code < 0)
+         {
             throw new Exception("Forbidden value (" + this.code + ") on element of InventoryPresetUseResultMessage.code.");
+         }
     }
 
     private void _unlinkedPositiontreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._unlinkedPositiontree.addChild(this._unlinkedPositionFunc);
             _loc3_++;
+         }
     }
 
     private void _unlinkedPositionFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedByte();
          if(_loc2_ < 0 || _loc2_ > 255)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of unlinkedPosition.");
+         }
+         this.unlinkedPosition.push(_loc2_);
     }
 
 }

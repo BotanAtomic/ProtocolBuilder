@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.spell;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.spell;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -62,7 +62,10 @@ public class SpellModifySuccessMessage extends NetworkMessage implements INetwor
     public void serializeAs_SpellModifySuccessMessage(ICustomDataOutput param1) {
          param1.writeInt(this.spellId);
          if(this.spellLevel < 1 || this.spellLevel > 200)
+         {
             throw new Exception("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
+         }
+         param1.writeShort(this.spellLevel);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -90,7 +93,9 @@ public class SpellModifySuccessMessage extends NetworkMessage implements INetwor
     private void _spellLevelFunc(ICustomDataInput param1) {
          this.spellLevel = param1.readShort();
          if(this.spellLevel < 1 || this.spellLevel > 200)
+         {
             throw new Exception("Forbidden value (" + this.spellLevel + ") on element of SpellModifySuccessMessage.spellLevel.");
+         }
     }
 
 }

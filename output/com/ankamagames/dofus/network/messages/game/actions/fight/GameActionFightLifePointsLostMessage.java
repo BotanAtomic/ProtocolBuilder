@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,8 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -69,7 +71,20 @@ public class GameActionFightLifePointsLostMessage extends AbstractGameActionMess
     public void serializeAs_GameActionFightLifePointsLostMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractGameActionMessage(param1);
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
+         if(this.loss < 0)
+         {
+            throw new Exception("Forbidden value (" + this.loss + ") on element loss.");
+         }
+         param1.writeVarInt(this.loss);
+         if(this.permanentDamages < 0)
+         {
+            throw new Exception("Forbidden value (" + this.permanentDamages + ") on element permanentDamages.");
+         }
+         param1.writeVarInt(this.permanentDamages);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,19 +112,25 @@ public class GameActionFightLifePointsLostMessage extends AbstractGameActionMess
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readDouble();
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of GameActionFightLifePointsLostMessage.targetId.");
+         }
     }
 
     private void _lossFunc(ICustomDataInput param1) {
          this.loss = param1.readVarUhInt();
          if(this.loss < 0)
+         {
             throw new Exception("Forbidden value (" + this.loss + ") on element of GameActionFightLifePointsLostMessage.loss.");
+         }
     }
 
     private void _permanentDamagesFunc(ICustomDataInput param1) {
          this.permanentDamages = param1.readVarUhInt();
          if(this.permanentDamages < 0)
+         {
             throw new Exception("Forbidden value (" + this.permanentDamages + ") on element of GameActionFightLifePointsLostMessage.permanentDamages.");
+         }
     }
 
 }

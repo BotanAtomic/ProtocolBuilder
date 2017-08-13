@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class TaxCollectorDialogQuestionBasicMessage extends NetworkMessage imple
 
     private int protocolId = 5619;
     private boolean _isInitialized = false;
-    private BasicGuildInformations guildInfo = ;
-    private FuncTree _guildInfotree = ;
+    private BasicGuildInformations guildInfo;
+    private FuncTree _guildInfotree;
 
 
     public boolean isInitialized() {

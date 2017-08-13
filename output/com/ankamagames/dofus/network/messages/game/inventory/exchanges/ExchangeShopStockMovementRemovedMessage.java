@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class ExchangeShopStockMovementRemovedMessage extends NetworkMessage impl
 
     public void serializeAs_ExchangeShopStockMovementRemovedMessage(ICustomDataOutput param1) {
          if(this.objectId < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectId + ") on element objectId.");
+         }
+         param1.writeVarInt(this.objectId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class ExchangeShopStockMovementRemovedMessage extends NetworkMessage impl
     private void _objectIdFunc(ICustomDataInput param1) {
          this.objectId = param1.readVarUhInt();
          if(this.objectId < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectId + ") on element of ExchangeShopStockMovementRemovedMessage.objectId.");
+         }
     }
 
 }

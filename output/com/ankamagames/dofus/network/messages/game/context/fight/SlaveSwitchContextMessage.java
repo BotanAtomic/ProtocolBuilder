@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,6 +13,7 @@ import com.ankamagames.dofus.network.ProtocolTypeManager;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class SlaveSwitchContextMessage extends NetworkMessage implements INetworkMessage {
 
@@ -20,23 +21,12 @@ public class SlaveSwitchContextMessage extends NetworkMessage implements INetwor
     private boolean _isInitialized = false;
     private Number masterId = 0;
     private Number slaveId = 0;
-    private Vector.<SpellItem> slaveSpells = ;
-    private CharacterCharacteristicsInformations slaveStats = ;
-    private Vector.<Shortcut> shortcuts = ;
-    private FuncTree _slaveSpellstree = ;
-    private FuncTree _slaveStatstree = ;
-    private FuncTree _shortcutstree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private int _loc7_ = 0;
-    private Shortcut _loc8_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
-    private Shortcut _loc3_ = ProtocolTypeManager.getInstance(Shortcut,_loc2_);
+    private Vector<SpellItem> slaveSpells;
+    private CharacterCharacteristicsInformations slaveStats;
+    private Vector<Shortcut> shortcuts;
+    private FuncTree _slaveSpellstree;
+    private FuncTree _slaveStatstree;
+    private FuncTree _shortcutstree;
 
 
     public boolean isInitialized() {
@@ -47,7 +37,7 @@ public class SlaveSwitchContextMessage extends NetworkMessage implements INetwor
          return 6214;
     }
 
-    public SlaveSwitchContextMessage initSlaveSwitchContextMessage(Number param1,Number  param2,Vector.<SpellItem>  param3,CharacterCharacteristicsInformations  param4,Vector.<Shortcut>  param5) {
+    public SlaveSwitchContextMessage initSlaveSwitchContextMessage(Number param1,Number  param2,Vector<SpellItem>  param3,CharacterCharacteristicsInformations  param4,Vector<Shortcut>  param5) {
          this.masterId = param1;
          this.slaveId = param2;
          this.slaveSpells = param3;
@@ -88,7 +78,31 @@ public class SlaveSwitchContextMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_SlaveSwitchContextMessage(ICustomDataOutput param1) {
          if(this.masterId < -9.007199254740992E15 || this.masterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.masterId + ") on element masterId.");
+         }
+         param1.writeDouble(this.masterId);
+         if(this.slaveId < -9.007199254740992E15 || this.slaveId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.slaveId + ") on element slaveId.");
+         }
+         param1.writeDouble(this.slaveId);
+         param1.writeShort(this.slaveSpells.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.slaveSpells.length)
+         {
+            (this.slaveSpells[_loc2_] as SpellItem).serializeAs_SpellItem(param1);
+            _loc2_++;
+         }
+         this.slaveStats.serializeAs_CharacterCharacteristicsInformations(param1);
+         param1.writeShort(this.shortcuts.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.shortcuts.length)
+         {
+            param1.writeShort((this.shortcuts[_loc3_] as Shortcut).getTypeId());
+            (this.shortcuts[_loc3_] as Shortcut).serialize(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -104,10 +118,24 @@ public class SlaveSwitchContextMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = new SpellItem();
             _loc6_.deserialize(param1);
             this.slaveSpells.push(_loc6_);
             _loc3_++;
+         }
+         this.slaveStats = new CharacterCharacteristicsInformations();
+         this.slaveStats.deserialize(param1);
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = param1.readUnsignedShort();
+            _loc8_ = ProtocolTypeManager.getInstance(Shortcut,_loc7_);
+            _loc8_.deserialize(param1);
+            this.shortcuts.push(_loc8_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -125,21 +153,27 @@ public class SlaveSwitchContextMessage extends NetworkMessage implements INetwor
     private void _masterIdFunc(ICustomDataInput param1) {
          this.masterId = param1.readDouble();
          if(this.masterId < -9.007199254740992E15 || this.masterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.masterId + ") on element of SlaveSwitchContextMessage.masterId.");
+         }
     }
 
     private void _slaveIdFunc(ICustomDataInput param1) {
          this.slaveId = param1.readDouble();
          if(this.slaveId < -9.007199254740992E15 || this.slaveId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.slaveId + ") on element of SlaveSwitchContextMessage.slaveId.");
+         }
     }
 
     private void _slaveSpellstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._slaveSpellstree.addChild(this._slaveSpellsFunc);
             _loc3_++;
+         }
     }
 
     private void _slaveSpellsFunc(ICustomDataInput param1) {
@@ -157,8 +191,10 @@ public class SlaveSwitchContextMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._shortcutstree.addChild(this._shortcutsFunc);
             _loc3_++;
+         }
     }
 
     private void _shortcutsFunc(ICustomDataInput param1) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.character.stats;
+package com.ankamagames.dofus.network.messages.game.character.stats;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class UpdateLifePointsMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_UpdateLifePointsMessage(ICustomDataOutput param1) {
          if(this.lifePoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+         }
+         param1.writeVarInt(this.lifePoints);
+         if(this.maxLifePoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+         }
+         param1.writeVarInt(this.maxLifePoints);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class UpdateLifePointsMessage extends NetworkMessage implements INetworkM
     private void _lifePointsFunc(ICustomDataInput param1) {
          this.lifePoints = param1.readVarUhInt();
          if(this.lifePoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.lifePoints + ") on element of UpdateLifePointsMessage.lifePoints.");
+         }
     }
 
     private void _maxLifePointsFunc(ICustomDataInput param1) {
          this.maxLifePoints = param1.readVarUhInt();
          if(this.maxLifePoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element of UpdateLifePointsMessage.maxLifePoints.");
+         }
     }
 
 }

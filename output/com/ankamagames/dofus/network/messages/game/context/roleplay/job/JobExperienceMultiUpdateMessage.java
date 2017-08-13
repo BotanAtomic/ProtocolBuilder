@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class JobExperienceMultiUpdateMessage extends NetworkMessage implements I
 
     private int protocolId = 5809;
     private boolean _isInitialized = false;
-    private Vector.<JobExperience> experiencesUpdate = ;
-    private FuncTree _experiencesUpdatetree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<JobExperience> experiencesUpdate;
+    private FuncTree _experiencesUpdatetree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class JobExperienceMultiUpdateMessage extends NetworkMessage implements I
          return 5809;
     }
 
-    public JobExperienceMultiUpdateMessage initJobExperienceMultiUpdateMessage(Vector.<JobExperience> param1) {
+    public JobExperienceMultiUpdateMessage initJobExperienceMultiUpdateMessage(Vector<JobExperience> param1) {
          this.experiencesUpdate = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class JobExperienceMultiUpdateMessage extends NetworkMessage implements I
          param1.writeShort(this.experiencesUpdate.length);
          int _loc2_ = 0;
          while(_loc2_ < this.experiencesUpdate.length)
+         {
             (this.experiencesUpdate[_loc2_] as JobExperience).serializeAs_JobExperience(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class JobExperienceMultiUpdateMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new JobExperience();
             _loc4_.deserialize(param1);
             this.experiencesUpdate.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class JobExperienceMultiUpdateMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._experiencesUpdatetree.addChild(this._experiencesUpdateFunc);
             _loc3_++;
+         }
     }
 
     private void _experiencesUpdateFunc(ICustomDataInput param1) {

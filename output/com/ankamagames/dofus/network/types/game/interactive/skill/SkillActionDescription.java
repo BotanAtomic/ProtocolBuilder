@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.interactive.skill;
+package com.ankamagames.dofus.network.types.game.interactive.skill;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -32,7 +32,10 @@ public class SkillActionDescription extends Object implements INetworkType {
 
     public void serializeAs_SkillActionDescription(ICustomDataOutput param1) {
          if(this.skillId < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
+         }
+         param1.writeVarShort(this.skillId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -54,7 +57,9 @@ public class SkillActionDescription extends Object implements INetworkType {
     private void _skillIdFunc(ICustomDataInput param1) {
          this.skillId = param1.readVarUhShort();
          if(this.skillId < 0)
+         {
             throw new Exception("Forbidden value (" + this.skillId + ") on element of SkillActionDescription.skillId.");
+         }
     }
 
 }

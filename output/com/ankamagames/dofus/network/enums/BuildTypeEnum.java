@@ -2,13 +2,13 @@ package com.ankamagames.dofus.network.enums;
 
 public enum BuildTypeEnum {
 
-    RELEASE(0),
-    BETA(1),
-    ALPHA(2),
-    TESTING(3),
-    INTERNAL(4),
-    DEBUG(5),
-    EXPERIMENTAL(6);
+    RELEASE(0;),
+    BETA(1;),
+    ALPHA(2;),
+    TESTING(3;),
+    INTERNAL(4;),
+    DEBUG(5;),
+    EXPERIMENTAL(6;);
 
     private final int value;
     public BuildTypeEnum(int value) {

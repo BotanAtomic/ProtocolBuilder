@@ -1,10 +1,11 @@
-package package com.ankamagames.dofus.network.messages.game.chat;
+package com.ankamagames.dofus.network.messages.game.chat;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -67,7 +68,16 @@ public class ChatServerMessage extends ChatAbstractServerMessage implements INet
     public void serializeAs_ChatServerMessage(ICustomDataOutput param1) {
          super.serializeAs_ChatAbstractServerMessage(param1);
          if(this.senderId < -9.007199254740992E15 || this.senderId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.senderId + ") on element senderId.");
+         }
+         param1.writeDouble(this.senderId);
+         param1.writeUTF(this.senderName);
+         if(this.senderAccountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.senderAccountId + ") on element senderAccountId.");
+         }
+         param1.writeInt(this.senderAccountId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -95,7 +105,9 @@ public class ChatServerMessage extends ChatAbstractServerMessage implements INet
     private void _senderIdFunc(ICustomDataInput param1) {
          this.senderId = param1.readDouble();
          if(this.senderId < -9.007199254740992E15 || this.senderId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.senderId + ") on element of ChatServerMessage.senderId.");
+         }
     }
 
     private void _senderNameFunc(ICustomDataInput param1) {
@@ -105,7 +117,9 @@ public class ChatServerMessage extends ChatAbstractServerMessage implements INet
     private void _senderAccountIdFunc(ICustomDataInput param1) {
          this.senderAccountId = param1.readInt();
          if(this.senderAccountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.senderAccountId + ") on element of ChatServerMessage.senderAccountId.");
+         }
     }
 
 }

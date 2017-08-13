@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.fight;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -69,7 +70,16 @@ public class GameRolePlayPlayerFightFriendlyAnsweredMessage extends NetworkMessa
     public void serializeAs_GameRolePlayPlayerFightFriendlyAnsweredMessage(ICustomDataOutput param1) {
          param1.writeInt(this.fightId);
          if(this.sourceId < 0 || this.sourceId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
+         }
+         param1.writeVarLong(this.sourceId);
+         if(this.targetId < 0 || this.targetId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeVarLong(this.targetId);
+         param1.writeBoolean(this.accept);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -101,13 +111,17 @@ public class GameRolePlayPlayerFightFriendlyAnsweredMessage extends NetworkMessa
     private void _sourceIdFunc(ICustomDataInput param1) {
          this.sourceId = param1.readVarUhLong();
          if(this.sourceId < 0 || this.sourceId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.sourceId + ") on element of GameRolePlayPlayerFightFriendlyAnsweredMessage.sourceId.");
+         }
     }
 
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readVarUhLong();
          if(this.targetId < 0 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of GameRolePlayPlayerFightFriendlyAnsweredMessage.targetId.");
+         }
     }
 
     private void _acceptFunc(ICustomDataInput param1) {

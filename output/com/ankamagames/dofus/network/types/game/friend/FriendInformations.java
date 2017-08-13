@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.friend;
+package com.ankamagames.dofus.network.types.game.friend;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -43,7 +43,11 @@ public class FriendInformations extends AbstractContactInformations implements I
          super.serializeAs_AbstractContactInformations(param1);
          param1.writeByte(this.playerState);
          if(this.lastConnection < 0)
+         {
             throw new Exception("Forbidden value (" + this.lastConnection + ") on element lastConnection.");
+         }
+         param1.writeVarShort(this.lastConnection);
+         param1.writeInt(this.achievementPoints);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -71,13 +75,17 @@ public class FriendInformations extends AbstractContactInformations implements I
     private void _playerStateFunc(ICustomDataInput param1) {
          this.playerState = param1.readByte();
          if(this.playerState < 0)
+         {
             throw new Exception("Forbidden value (" + this.playerState + ") on element of FriendInformations.playerState.");
+         }
     }
 
     private void _lastConnectionFunc(ICustomDataInput param1) {
          this.lastConnection = param1.readVarUhShort();
          if(this.lastConnection < 0)
+         {
             throw new Exception("Forbidden value (" + this.lastConnection + ") on element of FriendInformations.lastConnection.");
+         }
     }
 
     private void _achievementPointsFunc(ICustomDataInput param1) {

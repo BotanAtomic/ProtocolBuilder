@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.death;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.death;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -63,7 +63,10 @@ public class GameRolePlayPlayerLifeStatusMessage extends NetworkMessage implemen
     public void serializeAs_GameRolePlayPlayerLifeStatusMessage(ICustomDataOutput param1) {
          param1.writeByte(this.state);
          if(this.phenixMapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.phenixMapId + ") on element phenixMapId.");
+         }
+         param1.writeInt(this.phenixMapId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,13 +90,17 @@ public class GameRolePlayPlayerLifeStatusMessage extends NetworkMessage implemen
     private void _stateFunc(ICustomDataInput param1) {
          this.state = param1.readByte();
          if(this.state < 0)
+         {
             throw new Exception("Forbidden value (" + this.state + ") on element of GameRolePlayPlayerLifeStatusMessage.state.");
+         }
     }
 
     private void _phenixMapIdFunc(ICustomDataInput param1) {
          this.phenixMapId = param1.readInt();
          if(this.phenixMapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.phenixMapId + ") on element of GameRolePlayPlayerLifeStatusMessage.phenixMapId.");
+         }
     }
 
 }

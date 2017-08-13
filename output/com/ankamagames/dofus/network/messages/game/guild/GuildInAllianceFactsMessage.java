@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.context.roleplay.BasicNamedAllianceInformations;
@@ -13,8 +13,8 @@ public class GuildInAllianceFactsMessage extends GuildFactsMessage implements IN
 
     private int protocolId = 6422;
     private boolean _isInitialized = false;
-    private BasicNamedAllianceInformations allianceInfos = ;
-    private FuncTree _allianceInfostree = ;
+    private BasicNamedAllianceInformations allianceInfos;
+    private FuncTree _allianceInfostree;
 
 
     public boolean isInitialized() {
@@ -25,7 +25,7 @@ public class GuildInAllianceFactsMessage extends GuildFactsMessage implements IN
          return 6422;
     }
 
-    public GuildInAllianceFactsMessage initGuildInAllianceFactsMessage(GuildFactSheetInformations param1,int  param2,int  param3,Vector.<CharacterMinimalInformations>  param4,BasicNamedAllianceInformations  param5) {
+    public GuildInAllianceFactsMessage initGuildInAllianceFactsMessage(GuildFactSheetInformations param1,int  param2,int  param3,Vector<CharacterMinimalInformations>  param4,BasicNamedAllianceInformations  param5) {
          super.initGuildFactsMessage(param1,param2,param3,param4);
          this.allianceInfos = param5;
          this._isInitialized = true;

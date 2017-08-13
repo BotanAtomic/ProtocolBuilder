@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.delay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.delay;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class GameRolePlayDelayedObjectUseMessage extends GameRolePlayDelayedActi
     public void serializeAs_GameRolePlayDelayedObjectUseMessage(ICustomDataOutput param1) {
          super.serializeAs_GameRolePlayDelayedActionMessage(param1);
          if(this.objectGID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
+         }
+         param1.writeVarShort(this.objectGID);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class GameRolePlayDelayedObjectUseMessage extends GameRolePlayDelayedActi
     private void _objectGIDFunc(ICustomDataInput param1) {
          this.objectGID = param1.readVarUhShort();
          if(this.objectGID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectGID + ") on element of GameRolePlayDelayedObjectUseMessage.objectGID.");
+         }
     }
 
 }

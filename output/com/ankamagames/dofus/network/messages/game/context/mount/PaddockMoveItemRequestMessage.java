@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class PaddockMoveItemRequestMessage extends NetworkMessage implements INe
 
     public void serializeAs_PaddockMoveItemRequestMessage(ICustomDataOutput param1) {
          if(this.oldCellId < 0 || this.oldCellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.oldCellId + ") on element oldCellId.");
+         }
+         param1.writeVarShort(this.oldCellId);
+         if(this.newCellId < 0 || this.newCellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.newCellId + ") on element newCellId.");
+         }
+         param1.writeVarShort(this.newCellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class PaddockMoveItemRequestMessage extends NetworkMessage implements INe
     private void _oldCellIdFunc(ICustomDataInput param1) {
          this.oldCellId = param1.readVarUhShort();
          if(this.oldCellId < 0 || this.oldCellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.oldCellId + ") on element of PaddockMoveItemRequestMessage.oldCellId.");
+         }
     }
 
     private void _newCellIdFunc(ICustomDataInput param1) {
          this.newCellId = param1.readVarUhShort();
          if(this.newCellId < 0 || this.newCellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.newCellId + ") on element of PaddockMoveItemRequestMessage.newCellId.");
+         }
     }
 
 }

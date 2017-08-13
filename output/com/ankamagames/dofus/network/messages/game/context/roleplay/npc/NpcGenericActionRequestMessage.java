@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.npc;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -45,7 +45,10 @@ public class NpcGenericActionRequestMessage extends NetworkMessage implements IN
          ByteArray _loc2_ = new ByteArray();
          this.serialize(new CustomDataWrapper(_loc2_));
          if(HASH_FUNCTION != null)
+         {
             HASH_FUNCTION(_loc2_);
+         }
+         writePacket(param1,this.getMessageId(),_loc2_);
     }
 
     public void unpack(ICustomDataInput param1,int  param2) {
@@ -66,7 +69,11 @@ public class NpcGenericActionRequestMessage extends NetworkMessage implements IN
     public void serializeAs_NpcGenericActionRequestMessage(ICustomDataOutput param1) {
          param1.writeInt(this.npcId);
          if(this.npcActionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.npcActionId + ") on element npcActionId.");
+         }
+         param1.writeByte(this.npcActionId);
+         param1.writeInt(this.npcMapId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -96,7 +103,9 @@ public class NpcGenericActionRequestMessage extends NetworkMessage implements IN
     private void _npcActionIdFunc(ICustomDataInput param1) {
          this.npcActionId = param1.readByte();
          if(this.npcActionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.npcActionId + ") on element of NpcGenericActionRequestMessage.npcActionId.");
+         }
     }
 
     private void _npcMapIdFunc(ICustomDataInput param1) {

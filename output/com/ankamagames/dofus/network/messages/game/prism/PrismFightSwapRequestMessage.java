@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class PrismFightSwapRequestMessage extends NetworkMessage implements INet
 
     public void serializeAs_PrismFightSwapRequestMessage(ICustomDataOutput param1) {
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
+         if(this.targetId < 0 || this.targetId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeVarLong(this.targetId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class PrismFightSwapRequestMessage extends NetworkMessage implements INet
     private void _subAreaIdFunc(ICustomDataInput param1) {
          this.subAreaId = param1.readVarUhShort();
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element of PrismFightSwapRequestMessage.subAreaId.");
+         }
     }
 
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readVarUhLong();
          if(this.targetId < 0 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of PrismFightSwapRequestMessage.targetId.");
+         }
     }
 
 }

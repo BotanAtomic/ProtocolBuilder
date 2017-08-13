@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,8 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -69,7 +71,20 @@ public class GameActionFightSlideMessage extends AbstractGameActionMessage imple
     public void serializeAs_GameActionFightSlideMessage(ICustomDataOutput param1) {
          super.serializeAs_AbstractGameActionMessage(param1);
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
+         if(this.startCellId < -1 || this.startCellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.startCellId + ") on element startCellId.");
+         }
+         param1.writeShort(this.startCellId);
+         if(this.endCellId < -1 || this.endCellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.endCellId + ") on element endCellId.");
+         }
+         param1.writeShort(this.endCellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,19 +112,25 @@ public class GameActionFightSlideMessage extends AbstractGameActionMessage imple
     private void _targetIdFunc(ICustomDataInput param1) {
          this.targetId = param1.readDouble();
          if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.targetId + ") on element of GameActionFightSlideMessage.targetId.");
+         }
     }
 
     private void _startCellIdFunc(ICustomDataInput param1) {
          this.startCellId = param1.readShort();
          if(this.startCellId < -1 || this.startCellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.startCellId + ") on element of GameActionFightSlideMessage.startCellId.");
+         }
     }
 
     private void _endCellIdFunc(ICustomDataInput param1) {
          this.endCellId = param1.readShort();
          if(this.endCellId < -1 || this.endCellId > 559)
+         {
             throw new Exception("Forbidden value (" + this.endCellId + ") on element of GameActionFightSlideMessage.endCellId.");
+         }
     }
 
 }

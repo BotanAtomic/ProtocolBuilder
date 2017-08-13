@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class ExchangeBidHouseItemAddOkMessage extends NetworkMessage implements 
 
     private int protocolId = 5945;
     private boolean _isInitialized = false;
-    private ObjectItemToSellInBid itemInfo = ;
-    private FuncTree _itemInfotree = ;
+    private ObjectItemToSellInBid itemInfo;
+    private FuncTree _itemInfotree;
 
 
     public boolean isInitialized() {

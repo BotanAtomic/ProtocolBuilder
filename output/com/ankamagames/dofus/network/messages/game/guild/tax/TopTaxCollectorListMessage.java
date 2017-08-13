@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild.tax;
+package com.ankamagames.dofus.network.messages.game.guild.tax;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.guild.tax.TaxCollectorInformations;
@@ -22,7 +22,7 @@ public class TopTaxCollectorListMessage extends AbstractTaxCollectorListMessage 
          return 6565;
     }
 
-    public TopTaxCollectorListMessage initTopTaxCollectorListMessage(Vector.<TaxCollectorInformations> param1,boolean  param2) {
+    public TopTaxCollectorListMessage initTopTaxCollectorListMessage(Vector<TaxCollectorInformations> param1,boolean  param2) {
          super.initAbstractTaxCollectorListMessage(param1);
          this.isDungeon = param2;
          this._isInitialized = true;

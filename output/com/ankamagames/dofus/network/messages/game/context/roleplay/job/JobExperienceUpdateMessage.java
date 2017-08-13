@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class JobExperienceUpdateMessage extends NetworkMessage implements INetwo
 
     private int protocolId = 5654;
     private boolean _isInitialized = false;
-    private JobExperience experiencesUpdate = ;
-    private FuncTree _experiencesUpdatetree = ;
+    private JobExperience experiencesUpdate;
+    private FuncTree _experiencesUpdatetree;
 
 
     public boolean isInitialized() {

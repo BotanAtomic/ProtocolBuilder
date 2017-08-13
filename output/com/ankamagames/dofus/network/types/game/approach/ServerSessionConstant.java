@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.approach;
+package com.ankamagames.dofus.network.types.game.approach;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -32,7 +32,10 @@ public class ServerSessionConstant extends Object implements INetworkType {
 
     public void serializeAs_ServerSessionConstant(ICustomDataOutput param1) {
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarShort(this.id);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -54,7 +57,9 @@ public class ServerSessionConstant extends Object implements INetworkType {
     private void _idFunc(ICustomDataInput param1) {
          this.id = param1.readVarUhShort();
          if(this.id < 0)
+         {
             throw new Exception("Forbidden value (" + this.id + ") on element of ServerSessionConstant.id.");
+         }
     }
 
 }

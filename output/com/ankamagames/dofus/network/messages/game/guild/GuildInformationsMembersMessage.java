@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class GuildInformationsMembersMessage extends NetworkMessage implements I
 
     private int protocolId = 5558;
     private boolean _isInitialized = false;
-    private Vector.<GuildMember> members = ;
-    private FuncTree _memberstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<GuildMember> members;
+    private FuncTree _memberstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class GuildInformationsMembersMessage extends NetworkMessage implements I
          return 5558;
     }
 
-    public GuildInformationsMembersMessage initGuildInformationsMembersMessage(Vector.<GuildMember> param1) {
+    public GuildInformationsMembersMessage initGuildInformationsMembersMessage(Vector<GuildMember> param1) {
          this.members = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class GuildInformationsMembersMessage extends NetworkMessage implements I
          param1.writeShort(this.members.length);
          int _loc2_ = 0;
          while(_loc2_ < this.members.length)
+         {
             (this.members[_loc2_] as GuildMember).serializeAs_GuildMember(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class GuildInformationsMembersMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new GuildMember();
             _loc4_.deserialize(param1);
             this.members.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class GuildInformationsMembersMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._memberstree.addChild(this._membersFunc);
             _loc3_++;
+         }
     }
 
     private void _membersFunc(ICustomDataInput param1) {

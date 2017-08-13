@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.startup;
+package com.ankamagames.dofus.network.messages.game.startup;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class StartupActionAddMessage extends NetworkMessage implements INetworkM
 
     private int protocolId = 6538;
     private boolean _isInitialized = false;
-    private StartupActionAddObject newAction = ;
-    private FuncTree _newActiontree = ;
+    private StartupActionAddObject newAction;
+    private FuncTree _newActiontree;
 
 
     public boolean isInitialized() {

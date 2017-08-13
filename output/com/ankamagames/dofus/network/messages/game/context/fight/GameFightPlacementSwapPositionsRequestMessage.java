@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class GameFightPlacementSwapPositionsRequestMessage extends GameFightPlac
     public void serializeAs_GameFightPlacementSwapPositionsRequestMessage(ICustomDataOutput param1) {
          super.serializeAs_GameFightPlacementPositionRequestMessage(param1);
          if(this.requestedId < -9.007199254740992E15 || this.requestedId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.requestedId + ") on element requestedId.");
+         }
+         param1.writeDouble(this.requestedId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class GameFightPlacementSwapPositionsRequestMessage extends GameFightPlac
     private void _requestedIdFunc(ICustomDataInput param1) {
          this.requestedId = param1.readDouble();
          if(this.requestedId < -9.007199254740992E15 || this.requestedId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.requestedId + ") on element of GameFightPlacementSwapPositionsRequestMessage.requestedId.");
+         }
     }
 
 }

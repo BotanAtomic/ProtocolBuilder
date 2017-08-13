@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.alliance;
+package com.ankamagames.dofus.network.messages.game.alliance;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.social.AllianceFactSheetInformations;
@@ -21,7 +21,7 @@ public class AlliancePartialListMessage extends AllianceListMessage implements I
          return 6427;
     }
 
-    public AlliancePartialListMessage initAlliancePartialListMessage(Vector.<AllianceFactSheetInformations> param1) {
+    public AlliancePartialListMessage initAlliancePartialListMessage(Vector<AllianceFactSheetInformations> param1) {
          super.initAllianceListMessage(param1);
          this._isInitialized = true;
          return this;

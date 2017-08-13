@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.interactive.zaap;
+package com.ankamagames.dofus.network.messages.game.interactive.zaap;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -63,7 +63,10 @@ public class TeleportRequestMessage extends NetworkMessage implements INetworkMe
     public void serializeAs_TeleportRequestMessage(ICustomDataOutput param1) {
          param1.writeByte(this.teleporterType);
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
+         }
+         param1.writeInt(this.mapId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,13 +90,17 @@ public class TeleportRequestMessage extends NetworkMessage implements INetworkMe
     private void _teleporterTypeFunc(ICustomDataInput param1) {
          this.teleporterType = param1.readByte();
          if(this.teleporterType < 0)
+         {
             throw new Exception("Forbidden value (" + this.teleporterType + ") on element of TeleportRequestMessage.teleporterType.");
+         }
     }
 
     private void _mapIdFunc(ICustomDataInput param1) {
          this.mapId = param1.readInt();
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element of TeleportRequestMessage.mapId.");
+         }
     }
 
 }

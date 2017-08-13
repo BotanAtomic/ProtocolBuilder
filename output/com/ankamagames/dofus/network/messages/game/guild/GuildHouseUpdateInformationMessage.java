@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,8 +12,8 @@ public class GuildHouseUpdateInformationMessage extends NetworkMessage implement
 
     private int protocolId = 6181;
     private boolean _isInitialized = false;
-    private HouseInformationsForGuild housesInformations = ;
-    private FuncTree _housesInformationstree = ;
+    private HouseInformationsForGuild housesInformations;
+    private FuncTree _housesInformationstree;
 
 
     public boolean isInitialized() {

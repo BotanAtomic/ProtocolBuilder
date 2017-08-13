@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.party;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class AbstractPartyMessage extends NetworkMessage implements INetworkMess
 
     public void serializeAs_AbstractPartyMessage(ICustomDataOutput param1) {
          if(this.partyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
+         }
+         param1.writeVarInt(this.partyId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class AbstractPartyMessage extends NetworkMessage implements INetworkMess
     private void _partyIdFunc(ICustomDataInput param1) {
          this.partyId = param1.readVarUhInt();
          if(this.partyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.partyId + ") on element of AbstractPartyMessage.partyId.");
+         }
     }
 
 }

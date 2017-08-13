@@ -1,9 +1,11 @@
-package package com.ankamagames.dofus.network.types.game.paddock;
+package com.ankamagames.dofus.network.types.game.paddock;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -18,19 +20,15 @@ public class PaddockContentInformations extends PaddockInformations implements I
     private int mapId = 0;
     private int subAreaId = 0;
     private boolean abandonned = false;
-    private Vector.<MountInformationsForPaddock> mountsInformations = ;
-    private FuncTree _mountsInformationstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<MountInformationsForPaddock> mountsInformations;
+    private FuncTree _mountsInformationstree;
 
 
     public int getTypeId() {
          return 183;
     }
 
-    public PaddockContentInformations initPaddockContentInformations(int param1,int  param2,int  param3,int  param4,int  param5,int  param6,int  param7,boolean  param8,Vector.<MountInformationsForPaddock>  param9) {
+    public PaddockContentInformations initPaddockContentInformations(int param1,int  param2,int  param3,int  param4,int  param5,int  param6,int  param7,boolean  param8,Vector<MountInformationsForPaddock>  param9) {
          super.initPaddockInformations(param1,param2);
          this.paddockId = param3;
          this.worldX = param4;
@@ -61,7 +59,29 @@ public class PaddockContentInformations extends PaddockInformations implements I
          super.serializeAs_PaddockInformations(param1);
          param1.writeInt(this.paddockId);
          if(this.worldX < -255 || this.worldX > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
+         }
+         param1.writeShort(this.worldX);
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
+         }
+         param1.writeShort(this.worldY);
+         param1.writeInt(this.mapId);
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
+         param1.writeBoolean(this.abandonned);
+         param1.writeShort(this.mountsInformations.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.mountsInformations.length)
+         {
+            (this.mountsInformations[_loc2_] as MountInformationsForPaddock).serializeAs_MountInformationsForPaddock(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,10 +100,12 @@ public class PaddockContentInformations extends PaddockInformations implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new MountInformationsForPaddock();
             _loc4_.deserialize(param1);
             this.mountsInformations.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -108,13 +130,17 @@ public class PaddockContentInformations extends PaddockInformations implements I
     private void _worldXFunc(ICustomDataInput param1) {
          this.worldX = param1.readShort();
          if(this.worldX < -255 || this.worldX > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldX + ") on element of PaddockContentInformations.worldX.");
+         }
     }
 
     private void _worldYFunc(ICustomDataInput param1) {
          this.worldY = param1.readShort();
          if(this.worldY < -255 || this.worldY > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldY + ") on element of PaddockContentInformations.worldY.");
+         }
     }
 
     private void _mapIdFunc(ICustomDataInput param1) {
@@ -124,7 +150,9 @@ public class PaddockContentInformations extends PaddockInformations implements I
     private void _subAreaIdFunc(ICustomDataInput param1) {
          this.subAreaId = param1.readVarUhShort();
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element of PaddockContentInformations.subAreaId.");
+         }
     }
 
     private void _abandonnedFunc(ICustomDataInput param1) {
@@ -135,8 +163,10 @@ public class PaddockContentInformations extends PaddockInformations implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._mountsInformationstree.addChild(this._mountsInformationsFunc);
             _loc3_++;
+         }
     }
 
     private void _mountsInformationsFunc(ICustomDataInput param1) {

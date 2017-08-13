@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.finishmoves;
+package com.ankamagames.dofus.network.messages.game.finishmoves;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;

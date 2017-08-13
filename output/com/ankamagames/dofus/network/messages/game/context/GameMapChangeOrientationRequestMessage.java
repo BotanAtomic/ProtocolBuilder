@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class GameMapChangeOrientationRequestMessage extends NetworkMessage imple
     private void _directionFunc(ICustomDataInput param1) {
          this.direction = param1.readByte();
          if(this.direction < 0)
+         {
             throw new Exception("Forbidden value (" + this.direction + ") on element of GameMapChangeOrientationRequestMessage.direction.");
+         }
     }
 
 }

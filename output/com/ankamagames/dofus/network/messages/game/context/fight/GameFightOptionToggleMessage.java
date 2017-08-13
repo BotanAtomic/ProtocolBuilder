@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class GameFightOptionToggleMessage extends NetworkMessage implements INet
     private void _optionFunc(ICustomDataInput param1) {
          this.option = param1.readByte();
          if(this.option < 0)
+         {
             throw new Exception("Forbidden value (" + this.option + ") on element of GameFightOptionToggleMessage.option.");
+         }
     }
 
 }

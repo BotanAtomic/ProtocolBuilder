@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions.fight;
+package com.ankamagames.dofus.network.messages.game.actions.fight;
 
 import com.ankamagames.dofus.network.messages.game.actions.AbstractGameActionMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -69,7 +70,15 @@ public class GameActionFightTriggerGlyphTrapMessage extends AbstractGameActionMe
          super.serializeAs_AbstractGameActionMessage(param1);
          param1.writeShort(this.markId);
          if(this.triggeringCharacterId < -9.007199254740992E15 || this.triggeringCharacterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.triggeringCharacterId + ") on element triggeringCharacterId.");
+         }
+         param1.writeDouble(this.triggeringCharacterId);
+         if(this.triggeredSpellId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.triggeredSpellId + ") on element triggeredSpellId.");
+         }
+         param1.writeVarShort(this.triggeredSpellId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -101,13 +110,17 @@ public class GameActionFightTriggerGlyphTrapMessage extends AbstractGameActionMe
     private void _triggeringCharacterIdFunc(ICustomDataInput param1) {
          this.triggeringCharacterId = param1.readDouble();
          if(this.triggeringCharacterId < -9.007199254740992E15 || this.triggeringCharacterId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.triggeringCharacterId + ") on element of GameActionFightTriggerGlyphTrapMessage.triggeringCharacterId.");
+         }
     }
 
     private void _triggeredSpellIdFunc(ICustomDataInput param1) {
          this.triggeredSpellId = param1.readVarUhShort();
          if(this.triggeredSpellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.triggeredSpellId + ") on element of GameActionFightTriggerGlyphTrapMessage.triggeredSpellId.");
+         }
     }
 
 }

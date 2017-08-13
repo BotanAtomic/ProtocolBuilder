@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.context.roleplay.treasureHunt.PortalInformation;
@@ -12,9 +12,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class GameRolePlayPortalInformations extends GameRolePlayActorInformations implements INetworkType {
 
     private int protocolId = 467;
-    private PortalInformation portal = ;
-    private FuncTree _portaltree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private PortalInformation portal;
+    private FuncTree _portaltree;
 
 
     public int getTypeId() {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -66,7 +67,16 @@ public class ObjectSetPositionMessage extends NetworkMessage implements INetwork
 
     public void serializeAs_ObjectSetPositionMessage(ICustomDataOutput param1) {
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
+         }
+         param1.writeVarInt(this.objectUID);
+         param1.writeByte(this.position);
+         if(this.quantity < 0)
+         {
+            throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
+         }
+         param1.writeVarInt(this.quantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -92,19 +102,25 @@ public class ObjectSetPositionMessage extends NetworkMessage implements INetwork
     private void _objectUIDFunc(ICustomDataInput param1) {
          this.objectUID = param1.readVarUhInt();
          if(this.objectUID < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element of ObjectSetPositionMessage.objectUID.");
+         }
     }
 
     private void _positionFunc(ICustomDataInput param1) {
          this.position = param1.readUnsignedByte();
          if(this.position < 0 || this.position > 255)
+         {
             throw new Exception("Forbidden value (" + this.position + ") on element of ObjectSetPositionMessage.position.");
+         }
     }
 
     private void _quantityFunc(ICustomDataInput param1) {
          this.quantity = param1.readVarUhInt();
          if(this.quantity < 0)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element of ObjectSetPositionMessage.quantity.");
+         }
     }
 
 }

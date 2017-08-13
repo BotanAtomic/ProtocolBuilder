@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.alliance;
+package com.ankamagames.dofus.network.messages.game.alliance;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class AllianceCreationResultMessage extends NetworkMessage implements INe
     private void _resultFunc(ICustomDataInput param1) {
          this.result = param1.readByte();
          if(this.result < 0)
+         {
             throw new Exception("Forbidden value (" + this.result + ") on element of AllianceCreationResultMessage.result.");
+         }
     }
 
 }

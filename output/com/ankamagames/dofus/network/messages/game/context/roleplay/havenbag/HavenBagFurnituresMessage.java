@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class HavenBagFurnituresMessage extends NetworkMessage implements INetwor
 
     private int protocolId = 6634;
     private boolean _isInitialized = false;
-    private Vector.<HavenBagFurnitureInformation> furnituresInfos = ;
-    private FuncTree _furnituresInfostree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<HavenBagFurnitureInformation> furnituresInfos;
+    private FuncTree _furnituresInfostree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class HavenBagFurnituresMessage extends NetworkMessage implements INetwor
          return 6634;
     }
 
-    public HavenBagFurnituresMessage initHavenBagFurnituresMessage(Vector.<HavenBagFurnitureInformation> param1) {
+    public HavenBagFurnituresMessage initHavenBagFurnituresMessage(Vector<HavenBagFurnitureInformation> param1) {
          this.furnituresInfos = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class HavenBagFurnituresMessage extends NetworkMessage implements INetwor
          param1.writeShort(this.furnituresInfos.length);
          int _loc2_ = 0;
          while(_loc2_ < this.furnituresInfos.length)
+         {
             (this.furnituresInfos[_loc2_] as HavenBagFurnitureInformation).serializeAs_HavenBagFurnitureInformation(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class HavenBagFurnituresMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new HavenBagFurnitureInformation();
             _loc4_.deserialize(param1);
             this.furnituresInfos.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class HavenBagFurnituresMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._furnituresInfostree.addChild(this._furnituresInfosFunc);
             _loc3_++;
+         }
     }
 
     private void _furnituresInfosFunc(ICustomDataInput param1) {

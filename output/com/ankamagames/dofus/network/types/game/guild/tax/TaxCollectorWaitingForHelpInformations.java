@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.guild.tax;
+package com.ankamagames.dofus.network.types.game.guild.tax;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.fight.ProtectedEntityWaitingForHelpInfo;
@@ -9,8 +9,8 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 public class TaxCollectorWaitingForHelpInformations extends TaxCollectorComplementaryInformations implements INetworkType {
 
     private int protocolId = 447;
-    private ProtectedEntityWaitingForHelpInfo waitingForHelpInfo = ;
-    private FuncTree _waitingForHelpInfotree = ;
+    private ProtectedEntityWaitingForHelpInfo waitingForHelpInfo;
+    private FuncTree _waitingForHelpInfotree;
 
 
     public int getTypeId() {

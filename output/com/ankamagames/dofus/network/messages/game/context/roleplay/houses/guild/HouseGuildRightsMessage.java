@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.houses.guild;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.houses.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -11,6 +11,8 @@ import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 
 public class HouseGuildRightsMessage extends NetworkMessage implements INetworkMessage {
 
@@ -19,9 +21,9 @@ public class HouseGuildRightsMessage extends NetworkMessage implements INetworkM
     private int houseId = 0;
     private int instanceId = 0;
     private boolean secondHand = false;
-    private GuildInformations guildInfo = ;
+    private GuildInformations guildInfo;
     private int rights = 0;
-    private FuncTree _guildInfotree = ;
+    private FuncTree _guildInfotree;
 
 
     public boolean isInitialized() {
@@ -73,7 +75,22 @@ public class HouseGuildRightsMessage extends NetworkMessage implements INetworkM
 
     public void serializeAs_HouseGuildRightsMessage(ICustomDataOutput param1) {
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
+         }
+         param1.writeVarInt(this.houseId);
+         if(this.instanceId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
+         }
+         param1.writeInt(this.instanceId);
+         param1.writeBoolean(this.secondHand);
+         this.guildInfo.serializeAs_GuildInformations(param1);
+         if(this.rights < 0)
+         {
+            throw new Exception("Forbidden value (" + this.rights + ") on element rights.");
+         }
+         param1.writeVarInt(this.rights);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -104,13 +121,17 @@ public class HouseGuildRightsMessage extends NetworkMessage implements INetworkM
     private void _houseIdFunc(ICustomDataInput param1) {
          this.houseId = param1.readVarUhInt();
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element of HouseGuildRightsMessage.houseId.");
+         }
     }
 
     private void _instanceIdFunc(ICustomDataInput param1) {
          this.instanceId = param1.readInt();
          if(this.instanceId < 0)
+         {
             throw new Exception("Forbidden value (" + this.instanceId + ") on element of HouseGuildRightsMessage.instanceId.");
+         }
     }
 
     private void _secondHandFunc(ICustomDataInput param1) {
@@ -125,7 +146,9 @@ public class HouseGuildRightsMessage extends NetworkMessage implements INetworkM
     private void _rightsFunc(ICustomDataInput param1) {
          this.rights = param1.readVarUhInt();
          if(this.rights < 0)
+         {
             throw new Exception("Forbidden value (" + this.rights + ") on element of HouseGuildRightsMessage.rights.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.house;
+package com.ankamagames.dofus.network.messages.game.house;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class HouseTeleportRequestMessage extends NetworkMessage implements INetw
 
     public void serializeAs_HouseTeleportRequestMessage(ICustomDataOutput param1) {
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
+         }
+         param1.writeVarInt(this.houseId);
+         param1.writeInt(this.houseInstanceId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class HouseTeleportRequestMessage extends NetworkMessage implements INetw
     private void _houseIdFunc(ICustomDataInput param1) {
          this.houseId = param1.readVarUhInt();
          if(this.houseId < 0)
+         {
             throw new Exception("Forbidden value (" + this.houseId + ") on element of HouseTeleportRequestMessage.houseId.");
+         }
     }
 
     private void _houseInstanceIdFunc(ICustomDataInput param1) {

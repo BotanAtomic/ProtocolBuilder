@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -63,7 +63,10 @@ public class TreasureHuntFlagRemoveRequestMessage extends NetworkMessage impleme
     public void serializeAs_TreasureHuntFlagRemoveRequestMessage(ICustomDataOutput param1) {
          param1.writeByte(this.questType);
          if(this.index < 0)
+         {
             throw new Exception("Forbidden value (" + this.index + ") on element index.");
+         }
+         param1.writeByte(this.index);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,13 +90,17 @@ public class TreasureHuntFlagRemoveRequestMessage extends NetworkMessage impleme
     private void _questTypeFunc(ICustomDataInput param1) {
          this.questType = param1.readByte();
          if(this.questType < 0)
+         {
             throw new Exception("Forbidden value (" + this.questType + ") on element of TreasureHuntFlagRemoveRequestMessage.questType.");
+         }
     }
 
     private void _indexFunc(ICustomDataInput param1) {
          this.index = param1.readByte();
          if(this.index < 0)
+         {
             throw new Exception("Forbidden value (" + this.index + ") on element of TreasureHuntFlagRemoveRequestMessage.index.");
+         }
     }
 
 }

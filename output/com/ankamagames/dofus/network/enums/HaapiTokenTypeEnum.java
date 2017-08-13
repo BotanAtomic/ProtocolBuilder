@@ -2,8 +2,8 @@ package com.ankamagames.dofus.network.enums;
 
 public enum HaapiTokenTypeEnum {
 
-    HAAPI_APIKEY_GENERIC(0),
-    HAAPI_APIKEY_SHOP(1);
+    HAAPI_APIKEY_GENERIC(0;),
+    HAAPI_APIKEY_SHOP(1;);
 
     private final int value;
     public HaapiTokenTypeEnum(int value) {

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,19 +12,10 @@ public class GameRefreshMonsterBoostsMessage extends NetworkMessage implements I
 
     private int protocolId = 6618;
     private boolean _isInitialized = false;
-    private Vector.<MonsterBoosts> monsterBoosts = ;
-    private Vector.<MonsterBoosts> familyBoosts = ;
-    private FuncTree _monsterBooststree = ;
-    private FuncTree _familyBooststree = ;
-    private int _loc2_ = 0;
-    private int _loc3_ = 0;
-    private MonsterBoosts _loc7_ = null;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc4_ = param1.readUnsignedShort();
-    private int _loc5_ = 0;
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<MonsterBoosts> monsterBoosts;
+    private Vector<MonsterBoosts> familyBoosts;
+    private FuncTree _monsterBooststree;
+    private FuncTree _familyBooststree;
 
 
     public boolean isInitialized() {
@@ -35,7 +26,7 @@ public class GameRefreshMonsterBoostsMessage extends NetworkMessage implements I
          return 6618;
     }
 
-    public GameRefreshMonsterBoostsMessage initGameRefreshMonsterBoostsMessage(Vector.<MonsterBoosts> param1,Vector.<MonsterBoosts>  param2) {
+    public GameRefreshMonsterBoostsMessage initGameRefreshMonsterBoostsMessage(Vector<MonsterBoosts> param1,Vector<MonsterBoosts>  param2) {
          this.monsterBoosts = param1;
          this.familyBoosts = param2;
          this._isInitialized = true;
@@ -73,8 +64,17 @@ public class GameRefreshMonsterBoostsMessage extends NetworkMessage implements I
          param1.writeShort(this.monsterBoosts.length);
          int _loc2_ = 0;
          while(_loc2_ < this.monsterBoosts.length)
+         {
             (this.monsterBoosts[_loc2_] as MonsterBoosts).serializeAs_MonsterBoosts(param1);
             _loc2_++;
+         }
+         param1.writeShort(this.familyBoosts.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.familyBoosts.length)
+         {
+            (this.familyBoosts[_loc3_] as MonsterBoosts).serializeAs_MonsterBoosts(param1);
+            _loc3_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -87,10 +87,21 @@ public class GameRefreshMonsterBoostsMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc6_ = new MonsterBoosts();
             _loc6_.deserialize(param1);
             this.monsterBoosts.push(_loc6_);
             _loc3_++;
+         }
+         int _loc4_ = param1.readUnsignedShort();
+         int _loc5_ = 0;
+         while(_loc5_ < _loc4_)
+         {
+            _loc7_ = new MonsterBoosts();
+            _loc7_.deserialize(param1);
+            this.familyBoosts.push(_loc7_);
+            _loc5_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -106,8 +117,10 @@ public class GameRefreshMonsterBoostsMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._monsterBooststree.addChild(this._monsterBoostsFunc);
             _loc3_++;
+         }
     }
 
     private void _monsterBoostsFunc(ICustomDataInput param1) {
@@ -120,8 +133,10 @@ public class GameRefreshMonsterBoostsMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._familyBooststree.addChild(this._familyBoostsFunc);
             _loc3_++;
+         }
     }
 
     private void _familyBoostsFunc(ICustomDataInput param1) {

@@ -2,9 +2,9 @@ package com.ankamagames.dofus.network.enums;
 
 public enum GameActionFightInvisibilityStateEnum {
 
-    INVISIBLE(1),
-    DETECTED(2),
-    VISIBLE(3);
+    INVISIBLE(1;),
+    DETECTED(2;),
+    VISIBLE(3;);
 
     private final int value;
     public GameActionFightInvisibilityStateEnum(int value) {

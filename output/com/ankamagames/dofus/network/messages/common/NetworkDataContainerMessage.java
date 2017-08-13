@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.common;
+package com.ankamagames.dofus.network.messages.common;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,9 +12,8 @@ import java.lang.Exception;
 public class NetworkDataContainerMessage {
 
     private int protocolId = 2;
-    private ByteArray _content = ;
+    private ByteArray _content;
     private boolean _isInitialized = false;
-    private ByteArray _loc3_ = new ByteArray();
 
 
     public ByteArray content() {

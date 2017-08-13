@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay;
+package com.ankamagames.dofus.network.types.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -36,7 +36,11 @@ public class HumanOptionTitle extends HumanOption implements INetworkType {
     public void serializeAs_HumanOptionTitle(ICustomDataOutput param1) {
          super.serializeAs_HumanOption(param1);
          if(this.titleId < 0)
+         {
             throw new Exception("Forbidden value (" + this.titleId + ") on element titleId.");
+         }
+         param1.writeVarShort(this.titleId);
+         param1.writeUTF(this.titleParam);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -62,7 +66,9 @@ public class HumanOptionTitle extends HumanOption implements INetworkType {
     private void _titleIdFunc(ICustomDataInput param1) {
          this.titleId = param1.readVarUhShort();
          if(this.titleId < 0)
+         {
             throw new Exception("Forbidden value (" + this.titleId + ") on element of HumanOptionTitle.titleId.");
+         }
     }
 
     private void _titleParamFunc(ICustomDataInput param1) {

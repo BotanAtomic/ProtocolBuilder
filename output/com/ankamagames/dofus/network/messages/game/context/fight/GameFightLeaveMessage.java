@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.fight;
+package com.ankamagames.dofus.network.messages.game.context.fight;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class GameFightLeaveMessage extends NetworkMessage implements INetworkMes
 
     public void serializeAs_GameFightLeaveMessage(ICustomDataOutput param1) {
          if(this.charId < -9.007199254740992E15 || this.charId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.charId + ") on element charId.");
+         }
+         param1.writeDouble(this.charId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class GameFightLeaveMessage extends NetworkMessage implements INetworkMes
     private void _charIdFunc(ICustomDataInput param1) {
          this.charId = param1.readDouble();
          if(this.charId < -9.007199254740992E15 || this.charId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.charId + ") on element of GameFightLeaveMessage.charId.");
+         }
     }
 
 }

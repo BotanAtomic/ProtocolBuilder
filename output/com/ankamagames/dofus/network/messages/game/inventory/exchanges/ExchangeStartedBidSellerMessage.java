@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -13,14 +13,10 @@ public class ExchangeStartedBidSellerMessage extends NetworkMessage implements I
 
     private int protocolId = 5905;
     private boolean _isInitialized = false;
-    private SellerBuyerDescriptor sellerDescriptor = ;
-    private Vector.<ObjectItemToSellInBid> objectsInfos = ;
-    private FuncTree _sellerDescriptortree = ;
-    private FuncTree _objectsInfostree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private SellerBuyerDescriptor sellerDescriptor;
+    private Vector<ObjectItemToSellInBid> objectsInfos;
+    private FuncTree _sellerDescriptortree;
+    private FuncTree _objectsInfostree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class ExchangeStartedBidSellerMessage extends NetworkMessage implements I
          return 5905;
     }
 
-    public ExchangeStartedBidSellerMessage initExchangeStartedBidSellerMessage(SellerBuyerDescriptor param1,Vector.<ObjectItemToSellInBid>  param2) {
+    public ExchangeStartedBidSellerMessage initExchangeStartedBidSellerMessage(SellerBuyerDescriptor param1,Vector<ObjectItemToSellInBid>  param2) {
          this.sellerDescriptor = param1;
          this.objectsInfos = param2;
          this._isInitialized = true;
@@ -69,8 +65,10 @@ public class ExchangeStartedBidSellerMessage extends NetworkMessage implements I
          param1.writeShort(this.objectsInfos.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objectsInfos.length)
+         {
             (this.objectsInfos[_loc2_] as ObjectItemToSellInBid).serializeAs_ObjectItemToSellInBid(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,10 +82,12 @@ public class ExchangeStartedBidSellerMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ObjectItemToSellInBid();
             _loc4_.deserialize(param1);
             this.objectsInfos.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -108,8 +108,10 @@ public class ExchangeStartedBidSellerMessage extends NetworkMessage implements I
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._objectsInfostree.addChild(this._objectsInfosFunc);
             _loc3_++;
+         }
     }
 
     private void _objectsInfosFunc(ICustomDataInput param1) {

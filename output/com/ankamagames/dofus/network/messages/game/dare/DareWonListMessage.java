@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,12 +14,8 @@ public class DareWonListMessage extends NetworkMessage implements INetworkMessag
 
     private int protocolId = 6682;
     private boolean _isInitialized = false;
-    private Vector.<Number> dareId = ;
-    private FuncTree _dareIdtree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<Number> dareId;
+    private FuncTree _dareIdtree;
 
 
     public boolean isInitialized() {
@@ -30,7 +26,7 @@ public class DareWonListMessage extends NetworkMessage implements INetworkMessag
          return 6682;
     }
 
-    public DareWonListMessage initDareWonListMessage(Vector.<Number> param1) {
+    public DareWonListMessage initDareWonListMessage(Vector<Number> param1) {
          this.dareId = param1;
          this._isInitialized = true;
          return this;
@@ -66,8 +62,14 @@ public class DareWonListMessage extends NetworkMessage implements INetworkMessag
          param1.writeShort(this.dareId.length);
          int _loc2_ = 0;
          while(_loc2_ < this.dareId.length)
+         {
             if(this.dareId[_loc2_] < 0 || this.dareId[_loc2_] > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + this.dareId[_loc2_] + ") on element 1 (starting at 1) of dareId.");
+            }
+            param1.writeDouble(this.dareId[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -79,9 +81,15 @@ public class DareWonListMessage extends NetworkMessage implements INetworkMessag
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readDouble();
             if(_loc4_ < 0 || _loc4_ > 9.007199254740992E15)
+            {
                throw new Exception("Forbidden value (" + _loc4_ + ") on elements of dareId.");
+            }
+            this.dareId.push(_loc4_);
+            _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -96,14 +104,19 @@ public class DareWonListMessage extends NetworkMessage implements INetworkMessag
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._dareIdtree.addChild(this._dareIdFunc);
             _loc3_++;
+         }
     }
 
     private void _dareIdFunc(ICustomDataInput param1) {
          Number _loc2_ = param1.readDouble();
          if(_loc2_ < 0 || _loc2_ > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + _loc2_ + ") on elements of dareId.");
+         }
+         this.dareId.push(_loc2_);
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character.choice;
+package com.ankamagames.dofus.network.types.game.character.choice;
 
 import com.ankamagames.dofus.network.types.game.character.AbstractCharacterInformation;
 import com.ankamagames.jerakine.network.INetworkType;
@@ -15,19 +15,15 @@ public class CharacterRemodelingInformation extends AbstractCharacterInformation
     private int breed = 0;
     private boolean sex = false;
     private int cosmeticId = 0;
-    private Vector.<int> colors = ;
-    private FuncTree _colorstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> colors;
+    private FuncTree _colorstree;
 
 
     public int getTypeId() {
          return 479;
     }
 
-    public CharacterRemodelingInformation initCharacterRemodelingInformation(Number param1,String  param2,int  param3,boolean  param4,int  param5,Vector.<int>  param6) {
+    public CharacterRemodelingInformation initCharacterRemodelingInformation(Number param1,String  param2,int  param3,boolean  param4,int  param5,Vector<int>  param6) {
          super.initAbstractCharacterInformation(param1);
          this.name = param2;
          this.breed = param3;
@@ -56,7 +52,17 @@ public class CharacterRemodelingInformation extends AbstractCharacterInformation
          param1.writeByte(this.breed);
          param1.writeBoolean(this.sex);
          if(this.cosmeticId < 0)
+         {
             throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+         }
+         param1.writeVarShort(this.cosmeticId);
+         param1.writeShort(this.colors.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.colors.length)
+         {
+            param1.writeInt(this.colors[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -73,9 +79,11 @@ public class CharacterRemodelingInformation extends AbstractCharacterInformation
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readInt();
             this.colors.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -106,15 +114,19 @@ public class CharacterRemodelingInformation extends AbstractCharacterInformation
     private void _cosmeticIdFunc(ICustomDataInput param1) {
          this.cosmeticId = param1.readVarUhShort();
          if(this.cosmeticId < 0)
+         {
             throw new Exception("Forbidden value (" + this.cosmeticId + ") on element of CharacterRemodelingInformation.cosmeticId.");
+         }
     }
 
     private void _colorstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._colorstree.addChild(this._colorsFunc);
             _loc3_++;
+         }
     }
 
     private void _colorsFunc(ICustomDataInput param1) {

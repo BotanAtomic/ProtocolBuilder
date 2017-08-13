@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.actions;
+package com.ankamagames.dofus.network.messages.game.actions;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class AbstractGameActionMessage extends NetworkMessage implements INetwor
 
     public void serializeAs_AbstractGameActionMessage(ICustomDataOutput param1) {
          if(this.actionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
+         }
+         param1.writeVarShort(this.actionId);
+         if(this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
+         }
+         param1.writeDouble(this.sourceId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class AbstractGameActionMessage extends NetworkMessage implements INetwor
     private void _actionIdFunc(ICustomDataInput param1) {
          this.actionId = param1.readVarUhShort();
          if(this.actionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.actionId + ") on element of AbstractGameActionMessage.actionId.");
+         }
     }
 
     private void _sourceIdFunc(ICustomDataInput param1) {
          this.sourceId = param1.readDouble();
          if(this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.sourceId + ") on element of AbstractGameActionMessage.sourceId.");
+         }
     }
 
 }

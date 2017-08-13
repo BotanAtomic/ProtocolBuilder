@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild;
+package com.ankamagames.dofus.network.messages.game.guild;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class GuildCharacsUpgradeRequestMessage extends NetworkMessage implements
     private void _charaTypeTargetFunc(ICustomDataInput param1) {
          this.charaTypeTarget = param1.readByte();
          if(this.charaTypeTarget < 0)
+         {
             throw new Exception("Forbidden value (" + this.charaTypeTarget + ") on element of GuildCharacsUpgradeRequestMessage.charaTypeTarget.");
+         }
     }
 
 }

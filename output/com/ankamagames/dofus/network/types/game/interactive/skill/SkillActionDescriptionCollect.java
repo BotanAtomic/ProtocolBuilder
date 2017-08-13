@@ -1,9 +1,10 @@
-package package com.ankamagames.dofus.network.types.game.interactive.skill;
+package com.ankamagames.dofus.network.types.game.interactive.skill;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -39,7 +40,15 @@ public class SkillActionDescriptionCollect extends SkillActionDescriptionTimed i
     public void serializeAs_SkillActionDescriptionCollect(ICustomDataOutput param1) {
          super.serializeAs_SkillActionDescriptionTimed(param1);
          if(this.min < 0)
+         {
             throw new Exception("Forbidden value (" + this.min + ") on element min.");
+         }
+         param1.writeVarShort(this.min);
+         if(this.max < 0)
+         {
+            throw new Exception("Forbidden value (" + this.max + ") on element max.");
+         }
+         param1.writeVarShort(this.max);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -65,13 +74,17 @@ public class SkillActionDescriptionCollect extends SkillActionDescriptionTimed i
     private void _minFunc(ICustomDataInput param1) {
          this.min = param1.readVarUhShort();
          if(this.min < 0)
+         {
             throw new Exception("Forbidden value (" + this.min + ") on element of SkillActionDescriptionCollect.min.");
+         }
     }
 
     private void _maxFunc(ICustomDataInput param1) {
          this.max = param1.readVarUhShort();
          if(this.max < 0)
+         {
             throw new Exception("Forbidden value (" + this.max + ") on element of SkillActionDescriptionCollect.max.");
+         }
     }
 
 }

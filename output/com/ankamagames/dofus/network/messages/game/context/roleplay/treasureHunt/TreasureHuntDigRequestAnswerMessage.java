@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -85,13 +85,17 @@ public class TreasureHuntDigRequestAnswerMessage extends NetworkMessage implemen
     private void _questTypeFunc(ICustomDataInput param1) {
          this.questType = param1.readByte();
          if(this.questType < 0)
+         {
             throw new Exception("Forbidden value (" + this.questType + ") on element of TreasureHuntDigRequestAnswerMessage.questType.");
+         }
     }
 
     private void _resultFunc(ICustomDataInput param1) {
          this.result = param1.readByte();
          if(this.result < 0)
+         {
             throw new Exception("Forbidden value (" + this.result + ") on element of TreasureHuntDigRequestAnswerMessage.result.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -7,6 +7,11 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import com.ankamagames.jerakine.network.utils.BooleanByteWrapper;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -100,7 +105,36 @@ public class IdentificationSuccessMessage extends NetworkMessage implements INet
          param1.writeUTF(this.login);
          param1.writeUTF(this.nickname);
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
+         if(this.communityId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.communityId + ") on element communityId.");
+         }
+         param1.writeByte(this.communityId);
+         param1.writeUTF(this.secretQuestion);
+         if(this.accountCreation < 0 || this.accountCreation > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.accountCreation + ") on element accountCreation.");
+         }
+         param1.writeDouble(this.accountCreation);
+         if(this.subscriptionElapsedDuration < 0 || this.subscriptionElapsedDuration > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.subscriptionElapsedDuration + ") on element subscriptionElapsedDuration.");
+         }
+         param1.writeDouble(this.subscriptionElapsedDuration);
+         if(this.subscriptionEndDate < 0 || this.subscriptionEndDate > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.subscriptionEndDate + ") on element subscriptionEndDate.");
+         }
+         param1.writeDouble(this.subscriptionEndDate);
+         if(this.havenbagAvailableRoom < 0 || this.havenbagAvailableRoom > 255)
+         {
+            throw new Exception("Forbidden value (" + this.havenbagAvailableRoom + ") on element havenbagAvailableRoom.");
+         }
+         param1.writeByte(this.havenbagAvailableRoom);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -154,13 +188,17 @@ public class IdentificationSuccessMessage extends NetworkMessage implements INet
     private void _accountIdFunc(ICustomDataInput param1) {
          this.accountId = param1.readInt();
          if(this.accountId < 0)
+         {
             throw new Exception("Forbidden value (" + this.accountId + ") on element of IdentificationSuccessMessage.accountId.");
+         }
     }
 
     private void _communityIdFunc(ICustomDataInput param1) {
          this.communityId = param1.readByte();
          if(this.communityId < 0)
+         {
             throw new Exception("Forbidden value (" + this.communityId + ") on element of IdentificationSuccessMessage.communityId.");
+         }
     }
 
     private void _secretQuestionFunc(ICustomDataInput param1) {
@@ -170,25 +208,33 @@ public class IdentificationSuccessMessage extends NetworkMessage implements INet
     private void _accountCreationFunc(ICustomDataInput param1) {
          this.accountCreation = param1.readDouble();
          if(this.accountCreation < 0 || this.accountCreation > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.accountCreation + ") on element of IdentificationSuccessMessage.accountCreation.");
+         }
     }
 
     private void _subscriptionElapsedDurationFunc(ICustomDataInput param1) {
          this.subscriptionElapsedDuration = param1.readDouble();
          if(this.subscriptionElapsedDuration < 0 || this.subscriptionElapsedDuration > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.subscriptionElapsedDuration + ") on element of IdentificationSuccessMessage.subscriptionElapsedDuration.");
+         }
     }
 
     private void _subscriptionEndDateFunc(ICustomDataInput param1) {
          this.subscriptionEndDate = param1.readDouble();
          if(this.subscriptionEndDate < 0 || this.subscriptionEndDate > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.subscriptionEndDate + ") on element of IdentificationSuccessMessage.subscriptionEndDate.");
+         }
     }
 
     private void _havenbagAvailableRoomFunc(ICustomDataInput param1) {
          this.havenbagAvailableRoom = param1.readUnsignedByte();
          if(this.havenbagAvailableRoom < 0 || this.havenbagAvailableRoom > 255)
+         {
             throw new Exception("Forbidden value (" + this.havenbagAvailableRoom + ") on element of IdentificationSuccessMessage.havenbagAvailableRoom.");
+         }
     }
 
 }

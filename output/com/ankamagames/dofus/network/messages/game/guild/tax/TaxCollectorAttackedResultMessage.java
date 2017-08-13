@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.guild.tax;
+package com.ankamagames.dofus.network.messages.game.guild.tax;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -14,10 +14,10 @@ public class TaxCollectorAttackedResultMessage extends NetworkMessage implements
     private int protocolId = 5635;
     private boolean _isInitialized = false;
     private boolean deadOrAlive = false;
-    private TaxCollectorBasicInformations basicInfos = ;
-    private BasicGuildInformations guild = ;
-    private FuncTree _basicInfostree = ;
-    private FuncTree _guildtree = ;
+    private TaxCollectorBasicInformations basicInfos;
+    private BasicGuildInformations guild;
+    private FuncTree _basicInfostree;
+    private FuncTree _guildtree;
 
 
     public boolean isInitialized() {

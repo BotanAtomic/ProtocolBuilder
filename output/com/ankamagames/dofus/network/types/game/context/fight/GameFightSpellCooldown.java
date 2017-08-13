@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -36,7 +36,10 @@ public class GameFightSpellCooldown extends Object implements INetworkType {
     public void serializeAs_GameFightSpellCooldown(ICustomDataOutput param1) {
          param1.writeInt(this.spellId);
          if(this.cooldown < 0)
+         {
             throw new Exception("Forbidden value (" + this.cooldown + ") on element cooldown.");
+         }
+         param1.writeByte(this.cooldown);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -64,7 +67,9 @@ public class GameFightSpellCooldown extends Object implements INetworkType {
     private void _cooldownFunc(ICustomDataInput param1) {
          this.cooldown = param1.readByte();
          if(this.cooldown < 0)
+         {
             throw new Exception("Forbidden value (" + this.cooldown + ") on element of GameFightSpellCooldown.cooldown.");
+         }
     }
 
 }

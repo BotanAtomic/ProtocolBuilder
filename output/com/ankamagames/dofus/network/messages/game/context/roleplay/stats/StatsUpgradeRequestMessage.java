@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.stats;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.stats;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -67,7 +67,10 @@ public class StatsUpgradeRequestMessage extends NetworkMessage implements INetwo
          param1.writeBoolean(this.useAdditionnal);
          param1.writeByte(this.statId);
          if(this.boostPoint < 0)
+         {
             throw new Exception("Forbidden value (" + this.boostPoint + ") on element boostPoint.");
+         }
+         param1.writeVarShort(this.boostPoint);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,13 +100,17 @@ public class StatsUpgradeRequestMessage extends NetworkMessage implements INetwo
     private void _statIdFunc(ICustomDataInput param1) {
          this.statId = param1.readByte();
          if(this.statId < 0)
+         {
             throw new Exception("Forbidden value (" + this.statId + ") on element of StatsUpgradeRequestMessage.statId.");
+         }
     }
 
     private void _boostPointFunc(ICustomDataInput param1) {
          this.boostPoint = param1.readVarUhShort();
          if(this.boostPoint < 0)
+         {
             throw new Exception("Forbidden value (" + this.boostPoint + ") on element of StatsUpgradeRequestMessage.boostPoint.");
+         }
     }
 
 }

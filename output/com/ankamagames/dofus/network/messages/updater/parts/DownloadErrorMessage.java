@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.updater.parts;
+package com.ankamagames.dofus.network.messages.updater.parts;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -90,7 +90,9 @@ public class DownloadErrorMessage extends NetworkMessage implements INetworkMess
     private void _errorIdFunc(ICustomDataInput param1) {
          this.errorId = param1.readByte();
          if(this.errorId < 0)
+         {
             throw new Exception("Forbidden value (" + this.errorId + ") on element of DownloadErrorMessage.errorId.");
+         }
     }
 
     private void _messageFunc(ICustomDataInput param1) {

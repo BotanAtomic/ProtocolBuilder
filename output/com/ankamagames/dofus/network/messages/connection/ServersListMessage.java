@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.connection;
+package com.ankamagames.dofus.network.messages.connection;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -8,19 +8,16 @@ import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class ServersListMessage extends NetworkMessage implements INetworkMessage {
 
     private int protocolId = 30;
     private boolean _isInitialized = false;
-    private Vector.<GameServerInformations> servers = ;
+    private Vector<GameServerInformations> servers;
     private int alreadyConnectedToServerId = 0;
     private boolean canCreateNewCharacter = false;
-    private FuncTree _serverstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _serverstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +28,7 @@ public class ServersListMessage extends NetworkMessage implements INetworkMessag
          return 30;
     }
 
-    public ServersListMessage initServersListMessage(Vector.<GameServerInformations> param1,int  param2,boolean  param3) {
+    public ServersListMessage initServersListMessage(Vector<GameServerInformations> param1,int  param2,boolean  param3) {
          this.servers = param1;
          this.alreadyConnectedToServerId = param2;
          this.canCreateNewCharacter = param3;
@@ -71,8 +68,16 @@ public class ServersListMessage extends NetworkMessage implements INetworkMessag
          param1.writeShort(this.servers.length);
          int _loc2_ = 0;
          while(_loc2_ < this.servers.length)
+         {
             (this.servers[_loc2_] as GameServerInformations).serializeAs_GameServerInformations(param1);
             _loc2_++;
+         }
+         if(this.alreadyConnectedToServerId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.alreadyConnectedToServerId + ") on element alreadyConnectedToServerId.");
+         }
+         param1.writeVarShort(this.alreadyConnectedToServerId);
+         param1.writeBoolean(this.canCreateNewCharacter);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,10 +89,14 @@ public class ServersListMessage extends NetworkMessage implements INetworkMessag
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new GameServerInformations();
             _loc4_.deserialize(param1);
             this.servers.push(_loc4_);
             _loc3_++;
+         }
+         this._alreadyConnectedToServerIdFunc(param1);
+         this._canCreateNewCharacterFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -104,8 +113,10 @@ public class ServersListMessage extends NetworkMessage implements INetworkMessag
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._serverstree.addChild(this._serversFunc);
             _loc3_++;
+         }
     }
 
     private void _serversFunc(ICustomDataInput param1) {
@@ -117,7 +128,9 @@ public class ServersListMessage extends NetworkMessage implements INetworkMessag
     private void _alreadyConnectedToServerIdFunc(ICustomDataInput param1) {
          this.alreadyConnectedToServerId = param1.readVarUhShort();
          if(this.alreadyConnectedToServerId < 0)
+         {
             throw new Exception("Forbidden value (" + this.alreadyConnectedToServerId + ") on element of ServersListMessage.alreadyConnectedToServerId.");
+         }
     }
 
     private void _canCreateNewCharacterFunc(ICustomDataInput param1) {

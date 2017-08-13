@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag.meeting;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.havenbag.meeting;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,9 +12,9 @@ public class InviteInHavenBagMessage extends NetworkMessage implements INetworkM
 
     private int protocolId = 6642;
     private boolean _isInitialized = false;
-    private CharacterMinimalInformations guestInformations = ;
+    private CharacterMinimalInformations guestInformations;
     private boolean accept = false;
-    private FuncTree _guestInformationstree = ;
+    private FuncTree _guestInformationstree;
 
 
     public boolean isInitialized() {

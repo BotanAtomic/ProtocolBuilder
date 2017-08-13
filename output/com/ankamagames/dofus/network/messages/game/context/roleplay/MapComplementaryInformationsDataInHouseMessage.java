@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.house.HouseInformationsInside;
@@ -18,8 +18,8 @@ public class MapComplementaryInformationsDataInHouseMessage extends MapComplemen
 
     private int protocolId = 6130;
     private boolean _isInitialized = false;
-    private HouseInformationsInside currentHouse = ;
-    private FuncTree _currentHousetree = ;
+    private HouseInformationsInside currentHouse;
+    private FuncTree _currentHousetree;
 
 
     public boolean isInitialized() {
@@ -30,7 +30,7 @@ public class MapComplementaryInformationsDataInHouseMessage extends MapComplemen
          return 6130;
     }
 
-    public MapComplementaryInformationsDataInHouseMessage initMapComplementaryInformationsDataInHouseMessage(int param1,int  param2,Vector.<HouseInformations>  param3,Vector.<GameRolePlayActorInformations>  param4,Vector.<InteractiveElement>  param5,Vector.<StatedElement>  param6,Vector.<MapObstacle>  param7,Vector.<FightCommonInformations>  param8,boolean  param9,FightStartingPositions  param10,HouseInformationsInside  param11) {
+    public MapComplementaryInformationsDataInHouseMessage initMapComplementaryInformationsDataInHouseMessage(int param1,int  param2,Vector<HouseInformations>  param3,Vector<GameRolePlayActorInformations>  param4,Vector<InteractiveElement>  param5,Vector<StatedElement>  param6,Vector<MapObstacle>  param7,Vector<FightCommonInformations>  param8,boolean  param9,FightStartingPositions  param10,HouseInformationsInside  param11) {
          super.initMapComplementaryInformationsDataMessage(param1,param2,param3,param4,param5,param6,param7,param8,param9,param10);
          this.currentHouse = param11;
          this._isInitialized = true;

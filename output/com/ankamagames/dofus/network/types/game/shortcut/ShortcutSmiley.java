@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.shortcut;
+package com.ankamagames.dofus.network.types.game.shortcut;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class ShortcutSmiley extends Shortcut implements INetworkType {
     public void serializeAs_ShortcutSmiley(ICustomDataOutput param1) {
          super.serializeAs_Shortcut(param1);
          if(this.smileyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
+         }
+         param1.writeVarShort(this.smileyId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class ShortcutSmiley extends Shortcut implements INetworkType {
     private void _smileyIdFunc(ICustomDataInput param1) {
          this.smileyId = param1.readVarUhShort();
          if(this.smileyId < 0)
+         {
             throw new Exception("Forbidden value (" + this.smileyId + ") on element of ShortcutSmiley.smileyId.");
+         }
     }
 
 }

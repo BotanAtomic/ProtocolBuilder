@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context;
+package com.ankamagames.dofus.network.messages.game.context;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class GameContextCreateMessage extends NetworkMessage implements INetwork
     private void _contextFunc(ICustomDataInput param1) {
          this.context = param1.readByte();
          if(this.context < 0)
+         {
             throw new Exception("Forbidden value (" + this.context + ") on element of GameContextCreateMessage.context.");
+         }
     }
 
 }

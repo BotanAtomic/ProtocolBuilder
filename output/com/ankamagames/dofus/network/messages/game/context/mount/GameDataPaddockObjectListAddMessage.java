@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.mount;
+package com.ankamagames.dofus.network.messages.game.context.mount;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class GameDataPaddockObjectListAddMessage extends NetworkMessage implemen
 
     private int protocolId = 5992;
     private boolean _isInitialized = false;
-    private Vector.<PaddockItem> paddockItemDescription = ;
-    private FuncTree _paddockItemDescriptiontree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<PaddockItem> paddockItemDescription;
+    private FuncTree _paddockItemDescriptiontree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class GameDataPaddockObjectListAddMessage extends NetworkMessage implemen
          return 5992;
     }
 
-    public GameDataPaddockObjectListAddMessage initGameDataPaddockObjectListAddMessage(Vector.<PaddockItem> param1) {
+    public GameDataPaddockObjectListAddMessage initGameDataPaddockObjectListAddMessage(Vector<PaddockItem> param1) {
          this.paddockItemDescription = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class GameDataPaddockObjectListAddMessage extends NetworkMessage implemen
          param1.writeShort(this.paddockItemDescription.length);
          int _loc2_ = 0;
          while(_loc2_ < this.paddockItemDescription.length)
+         {
             (this.paddockItemDescription[_loc2_] as PaddockItem).serializeAs_PaddockItem(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class GameDataPaddockObjectListAddMessage extends NetworkMessage implemen
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new PaddockItem();
             _loc4_.deserialize(param1);
             this.paddockItemDescription.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class GameDataPaddockObjectListAddMessage extends NetworkMessage implemen
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._paddockItemDescriptiontree.addChild(this._paddockItemDescriptionFunc);
             _loc3_++;
+         }
     }
 
     private void _paddockItemDescriptionFunc(ICustomDataInput param1) {

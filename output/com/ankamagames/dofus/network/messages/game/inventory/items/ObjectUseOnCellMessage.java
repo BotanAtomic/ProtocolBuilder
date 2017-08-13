@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class ObjectUseOnCellMessage extends ObjectUseMessage implements INetwork
     public void serializeAs_ObjectUseOnCellMessage(ICustomDataOutput param1) {
          super.serializeAs_ObjectUseMessage(param1);
          if(this.cells < 0 || this.cells > 559)
+         {
             throw new Exception("Forbidden value (" + this.cells + ") on element cells.");
+         }
+         param1.writeVarShort(this.cells);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class ObjectUseOnCellMessage extends ObjectUseMessage implements INetwork
     private void _cellsFunc(ICustomDataInput param1) {
          this.cells = param1.readVarUhShort();
          if(this.cells < 0 || this.cells > 559)
+         {
             throw new Exception("Forbidden value (" + this.cells + ") on element of ObjectUseOnCellMessage.cells.");
+         }
     }
 
 }

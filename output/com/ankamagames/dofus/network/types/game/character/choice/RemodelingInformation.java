@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.character.choice;
+package com.ankamagames.dofus.network.types.game.character.choice;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -14,19 +14,15 @@ public class RemodelingInformation extends Object implements INetworkType {
     private int breed = 0;
     private boolean sex = false;
     private int cosmeticId = 0;
-    private Vector.<int> colors = ;
-    private FuncTree _colorstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<int> colors;
+    private FuncTree _colorstree;
 
 
     public int getTypeId() {
          return 480;
     }
 
-    public RemodelingInformation initRemodelingInformation(String param1,int  param2,boolean  param3,int  param4,Vector.<int>  param5) {
+    public RemodelingInformation initRemodelingInformation(String param1,int  param2,boolean  param3,int  param4,Vector<int>  param5) {
          this.name = param1;
          this.breed = param2;
          this.sex = param3;
@@ -52,7 +48,17 @@ public class RemodelingInformation extends Object implements INetworkType {
          param1.writeByte(this.breed);
          param1.writeBoolean(this.sex);
          if(this.cosmeticId < 0)
+         {
             throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+         }
+         param1.writeVarShort(this.cosmeticId);
+         param1.writeShort(this.colors.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.colors.length)
+         {
+            param1.writeInt(this.colors[_loc2_]);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -68,9 +74,11 @@ public class RemodelingInformation extends Object implements INetworkType {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = param1.readInt();
             this.colors.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -100,15 +108,19 @@ public class RemodelingInformation extends Object implements INetworkType {
     private void _cosmeticIdFunc(ICustomDataInput param1) {
          this.cosmeticId = param1.readVarUhShort();
          if(this.cosmeticId < 0)
+         {
             throw new Exception("Forbidden value (" + this.cosmeticId + ") on element of RemodelingInformation.cosmeticId.");
+         }
     }
 
     private void _colorstreeFunc(ICustomDataInput param1) {
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._colorstree.addChild(this._colorsFunc);
             _loc3_++;
+         }
     }
 
     private void _colorsFunc(ICustomDataInput param1) {

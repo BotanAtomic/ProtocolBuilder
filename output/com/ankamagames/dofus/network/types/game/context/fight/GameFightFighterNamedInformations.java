@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.fight;
+package com.ankamagames.dofus.network.types.game.context.fight;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.character.status.PlayerStatus;
@@ -12,15 +12,15 @@ public class GameFightFighterNamedInformations extends GameFightFighterInformati
 
     private int protocolId = 158;
     private String name = "";
-    private PlayerStatus status = ;
-    private FuncTree _statustree = ;
+    private PlayerStatus status;
+    private FuncTree _statustree;
 
 
     public int getTypeId() {
          return 158;
     }
 
-    public GameFightFighterNamedInformations initGameFightFighterNamedInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector.<uint>  param8,String  param9,PlayerStatus  param10) {
+    public GameFightFighterNamedInformations initGameFightFighterNamedInformations(Number param1,EntityLook  param2,EntityDispositionInformations  param3,int  param4,int  param5,boolean  param6,GameFightMinimalStats  param7,Vector<uint>  param8,String  param9,PlayerStatus  param10) {
          super.initGameFightFighterInformations(param1,param2,param3,param4,param5,param6,param7,param8);
          this.name = param9;
          this.status = param10;

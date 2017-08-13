@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay;
+package com.ankamagames.dofus.network.messages.game.context.roleplay;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -15,8 +15,8 @@ public class MapFightStartPositionsUpdateMessage extends NetworkMessage implemen
     private int protocolId = 6716;
     private boolean _isInitialized = false;
     private int mapId = 0;
-    private FightStartingPositions fightStartPositions = ;
-    private FuncTree _fightStartPositionstree = ;
+    private FightStartingPositions fightStartPositions;
+    private FuncTree _fightStartPositionstree;
 
 
     public boolean isInitialized() {
@@ -63,7 +63,11 @@ public class MapFightStartPositionsUpdateMessage extends NetworkMessage implemen
 
     public void serializeAs_MapFightStartPositionsUpdateMessage(ICustomDataOutput param1) {
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
+         }
+         param1.writeInt(this.mapId);
+         this.fightStartPositions.serializeAs_FightStartingPositions(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -88,7 +92,9 @@ public class MapFightStartPositionsUpdateMessage extends NetworkMessage implemen
     private void _mapIdFunc(ICustomDataInput param1) {
          this.mapId = param1.readInt();
          if(this.mapId < 0)
+         {
             throw new Exception("Forbidden value (" + this.mapId + ") on element of MapFightStartPositionsUpdateMessage.mapId.");
+         }
     }
 
     private void _fightStartPositionstreeFunc(ICustomDataInput param1) {

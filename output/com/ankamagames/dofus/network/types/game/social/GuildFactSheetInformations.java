@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.social;
+package com.ankamagames.dofus.network.types.game.social;
 
 import com.ankamagames.dofus.network.types.game.context.roleplay.GuildInformations;
 import com.ankamagames.jerakine.network.INetworkType;
@@ -6,6 +6,7 @@ import com.ankamagames.dofus.network.types.game.guild.GuildEmblem;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -41,7 +42,15 @@ public class GuildFactSheetInformations extends GuildInformations implements INe
     public void serializeAs_GuildFactSheetInformations(ICustomDataOutput param1) {
          super.serializeAs_GuildInformations(param1);
          if(this.leaderId < 0 || this.leaderId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
+         }
+         param1.writeVarLong(this.leaderId);
+         if(this.nbMembers < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
+         }
+         param1.writeVarShort(this.nbMembers);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -67,13 +76,17 @@ public class GuildFactSheetInformations extends GuildInformations implements INe
     private void _leaderIdFunc(ICustomDataInput param1) {
          this.leaderId = param1.readVarUhLong();
          if(this.leaderId < 0 || this.leaderId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.leaderId + ") on element of GuildFactSheetInformations.leaderId.");
+         }
     }
 
     private void _nbMembersFunc(ICustomDataInput param1) {
          this.nbMembers = param1.readVarUhShort();
          if(this.nbMembers < 0)
+         {
             throw new Exception("Forbidden value (" + this.nbMembers + ") on element of GuildFactSheetInformations.nbMembers.");
+         }
     }
 
 }

@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -60,7 +60,10 @@ public class FocusedExchangeReadyMessage extends ExchangeReadyMessage implements
     public void serializeAs_FocusedExchangeReadyMessage(ICustomDataOutput param1) {
          super.serializeAs_ExchangeReadyMessage(param1);
          if(this.focusActionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.focusActionId + ") on element focusActionId.");
+         }
+         param1.writeVarInt(this.focusActionId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -84,7 +87,9 @@ public class FocusedExchangeReadyMessage extends ExchangeReadyMessage implements
     private void _focusActionIdFunc(ICustomDataInput param1) {
          this.focusActionId = param1.readVarUhInt();
          if(this.focusActionId < 0)
+         {
             throw new Exception("Forbidden value (" + this.focusActionId + ") on element of FocusedExchangeReadyMessage.focusActionId.");
+         }
     }
 
 }

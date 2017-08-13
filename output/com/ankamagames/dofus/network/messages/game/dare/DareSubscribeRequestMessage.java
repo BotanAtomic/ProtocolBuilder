@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.dare;
+package com.ankamagames.dofus.network.messages.game.dare;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class DareSubscribeRequestMessage extends NetworkMessage implements INetw
 
     public void serializeAs_DareSubscribeRequestMessage(ICustomDataOutput param1) {
          if(this.dareId < 0 || this.dareId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.dareId + ") on element dareId.");
+         }
+         param1.writeDouble(this.dareId);
+         param1.writeBoolean(this.subscribe);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class DareSubscribeRequestMessage extends NetworkMessage implements INetw
     private void _dareIdFunc(ICustomDataInput param1) {
          this.dareId = param1.readDouble();
          if(this.dareId < 0 || this.dareId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.dareId + ") on element of DareSubscribeRequestMessage.dareId.");
+         }
     }
 
     private void _subscribeFunc(ICustomDataInput param1) {

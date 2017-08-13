@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.guild.tax;
+package com.ankamagames.dofus.network.types.game.guild.tax;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;

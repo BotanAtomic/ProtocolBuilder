@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.data.items;
+package com.ankamagames.dofus.network.types.game.data.items;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
@@ -35,7 +35,10 @@ public class ObjectItemGenericQuantityPrice extends ObjectItemGenericQuantity im
     public void serializeAs_ObjectItemGenericQuantityPrice(ICustomDataOutput param1) {
          super.serializeAs_ObjectItemGenericQuantity(param1);
          if(this.price < 0 || this.price > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.price + ") on element price.");
+         }
+         param1.writeVarLong(this.price);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -59,7 +62,9 @@ public class ObjectItemGenericQuantityPrice extends ObjectItemGenericQuantity im
     private void _priceFunc(ICustomDataInput param1) {
          this.price = param1.readVarUhLong();
          if(this.price < 0 || this.price > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.price + ") on element of ObjectItemGenericQuantityPrice.price.");
+         }
     }
 
 }

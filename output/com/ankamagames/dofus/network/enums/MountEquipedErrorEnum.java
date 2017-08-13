@@ -2,9 +2,9 @@ package com.ankamagames.dofus.network.enums;
 
 public enum MountEquipedErrorEnum {
 
-    UNSET(0),
-    SET(1),
-    RIDING(2);
+    UNSET(0;),
+    SET(1;),
+    RIDING(2;);
 
     private final int value;
     public MountEquipedErrorEnum(int value) {

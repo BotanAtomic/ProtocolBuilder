@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.startup;
+package com.ankamagames.dofus.network.messages.game.startup;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class StartupActionsListMessage extends NetworkMessage implements INetwor
 
     private int protocolId = 1301;
     private boolean _isInitialized = false;
-    private Vector.<StartupActionAddObject> actions = ;
-    private FuncTree _actionstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<StartupActionAddObject> actions;
+    private FuncTree _actionstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class StartupActionsListMessage extends NetworkMessage implements INetwor
          return 1301;
     }
 
-    public StartupActionsListMessage initStartupActionsListMessage(Vector.<StartupActionAddObject> param1) {
+    public StartupActionsListMessage initStartupActionsListMessage(Vector<StartupActionAddObject> param1) {
          this.actions = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class StartupActionsListMessage extends NetworkMessage implements INetwor
          param1.writeShort(this.actions.length);
          int _loc2_ = 0;
          while(_loc2_ < this.actions.length)
+         {
             (this.actions[_loc2_] as StartupActionAddObject).serializeAs_StartupActionAddObject(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class StartupActionsListMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new StartupActionAddObject();
             _loc4_.deserialize(param1);
             this.actions.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class StartupActionsListMessage extends NetworkMessage implements INetwor
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._actionstree.addChild(this._actionsFunc);
             _loc3_++;
+         }
     }
 
     private void _actionsFunc(ICustomDataInput param1) {

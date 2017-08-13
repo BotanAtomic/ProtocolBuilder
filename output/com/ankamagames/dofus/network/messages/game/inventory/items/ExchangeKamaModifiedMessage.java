@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.items;
+package com.ankamagames.dofus.network.messages.game.inventory.items;
 
 import com.ankamagames.dofus.network.messages.game.inventory.exchanges.ExchangeObjectMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,10 @@ public class ExchangeKamaModifiedMessage extends ExchangeObjectMessage implement
     public void serializeAs_ExchangeKamaModifiedMessage(ICustomDataOutput param1) {
          super.serializeAs_ExchangeObjectMessage(param1);
          if(this.quantity < 0 || this.quantity > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
+         }
+         param1.writeVarLong(this.quantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +88,9 @@ public class ExchangeKamaModifiedMessage extends ExchangeObjectMessage implement
     private void _quantityFunc(ICustomDataInput param1) {
          this.quantity = param1.readVarUhLong();
          if(this.quantity < 0 || this.quantity > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element of ExchangeKamaModifiedMessage.quantity.");
+         }
     }
 
 }

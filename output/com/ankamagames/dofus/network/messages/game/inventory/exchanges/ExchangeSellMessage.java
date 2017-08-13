@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -6,6 +6,7 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -62,7 +63,15 @@ public class ExchangeSellMessage extends NetworkMessage implements INetworkMessa
 
     public void serializeAs_ExchangeSellMessage(ICustomDataOutput param1) {
          if(this.objectToSellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectToSellId + ") on element objectToSellId.");
+         }
+         param1.writeVarInt(this.objectToSellId);
+         if(this.quantity < 0)
+         {
+            throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
+         }
+         param1.writeVarInt(this.quantity);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -86,13 +95,17 @@ public class ExchangeSellMessage extends NetworkMessage implements INetworkMessa
     private void _objectToSellIdFunc(ICustomDataInput param1) {
          this.objectToSellId = param1.readVarUhInt();
          if(this.objectToSellId < 0)
+         {
             throw new Exception("Forbidden value (" + this.objectToSellId + ") on element of ExchangeSellMessage.objectToSellId.");
+         }
     }
 
     private void _quantityFunc(ICustomDataInput param1) {
          this.quantity = param1.readVarUhInt();
          if(this.quantity < 0)
+         {
             throw new Exception("Forbidden value (" + this.quantity + ") on element of ExchangeSellMessage.quantity.");
+         }
     }
 
 }

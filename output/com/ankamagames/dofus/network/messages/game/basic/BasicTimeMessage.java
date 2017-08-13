@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.basic;
+package com.ankamagames.dofus.network.messages.game.basic;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class BasicTimeMessage extends NetworkMessage implements INetworkMessage 
 
     public void serializeAs_BasicTimeMessage(ICustomDataOutput param1) {
          if(this.timestamp < 0 || this.timestamp > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
+         }
+         param1.writeDouble(this.timestamp);
+         param1.writeShort(this.timezoneOffset);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class BasicTimeMessage extends NetworkMessage implements INetworkMessage 
     private void _timestampFunc(ICustomDataInput param1) {
          this.timestamp = param1.readDouble();
          if(this.timestamp < 0 || this.timestamp > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.timestamp + ") on element of BasicTimeMessage.timestamp.");
+         }
     }
 
     private void _timezoneOffsetFunc(ICustomDataInput param1) {

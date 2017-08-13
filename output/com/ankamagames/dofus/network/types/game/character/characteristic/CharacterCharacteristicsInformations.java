@@ -1,10 +1,23 @@
-package package com.ankamagames.dofus.network.types.game.character.characteristic;
+package com.ankamagames.dofus.network.types.game.character.characteristic;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.character.alignment.ActorExtendedAlignmentInformations;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -32,163 +45,159 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     private int statsPoints = 0;
     private int additionnalPoints = 0;
     private int spellsPoints = 0;
-    private ActorExtendedAlignmentInformations alignmentInfos = ;
+    private ActorExtendedAlignmentInformations alignmentInfos;
     private int lifePoints = 0;
     private int maxLifePoints = 0;
     private int energyPoints = 0;
     private int maxEnergyPoints = 0;
     private int actionPointsCurrent = 0;
     private int movementPointsCurrent = 0;
-    private CharacterBaseCharacteristic initiative = ;
-    private CharacterBaseCharacteristic prospecting = ;
-    private CharacterBaseCharacteristic actionPoints = ;
-    private CharacterBaseCharacteristic movementPoints = ;
-    private CharacterBaseCharacteristic strength = ;
-    private CharacterBaseCharacteristic vitality = ;
-    private CharacterBaseCharacteristic wisdom = ;
-    private CharacterBaseCharacteristic chance = ;
-    private CharacterBaseCharacteristic agility = ;
-    private CharacterBaseCharacteristic intelligence = ;
-    private CharacterBaseCharacteristic range = ;
-    private CharacterBaseCharacteristic summonableCreaturesBoost = ;
-    private CharacterBaseCharacteristic reflect = ;
-    private CharacterBaseCharacteristic criticalHit = ;
+    private CharacterBaseCharacteristic initiative;
+    private CharacterBaseCharacteristic prospecting;
+    private CharacterBaseCharacteristic actionPoints;
+    private CharacterBaseCharacteristic movementPoints;
+    private CharacterBaseCharacteristic strength;
+    private CharacterBaseCharacteristic vitality;
+    private CharacterBaseCharacteristic wisdom;
+    private CharacterBaseCharacteristic chance;
+    private CharacterBaseCharacteristic agility;
+    private CharacterBaseCharacteristic intelligence;
+    private CharacterBaseCharacteristic range;
+    private CharacterBaseCharacteristic summonableCreaturesBoost;
+    private CharacterBaseCharacteristic reflect;
+    private CharacterBaseCharacteristic criticalHit;
     private int criticalHitWeapon = 0;
-    private CharacterBaseCharacteristic criticalMiss = ;
-    private CharacterBaseCharacteristic healBonus = ;
-    private CharacterBaseCharacteristic allDamagesBonus = ;
-    private CharacterBaseCharacteristic weaponDamagesBonusPercent = ;
-    private CharacterBaseCharacteristic damagesBonusPercent = ;
-    private CharacterBaseCharacteristic trapBonus = ;
-    private CharacterBaseCharacteristic trapBonusPercent = ;
-    private CharacterBaseCharacteristic glyphBonusPercent = ;
-    private CharacterBaseCharacteristic runeBonusPercent = ;
-    private CharacterBaseCharacteristic permanentDamagePercent = ;
-    private CharacterBaseCharacteristic tackleBlock = ;
-    private CharacterBaseCharacteristic tackleEvade = ;
-    private CharacterBaseCharacteristic PAAttack = ;
-    private CharacterBaseCharacteristic PMAttack = ;
-    private CharacterBaseCharacteristic pushDamageBonus = ;
-    private CharacterBaseCharacteristic criticalDamageBonus = ;
-    private CharacterBaseCharacteristic neutralDamageBonus = ;
-    private CharacterBaseCharacteristic earthDamageBonus = ;
-    private CharacterBaseCharacteristic waterDamageBonus = ;
-    private CharacterBaseCharacteristic airDamageBonus = ;
-    private CharacterBaseCharacteristic fireDamageBonus = ;
-    private CharacterBaseCharacteristic dodgePALostProbability = ;
-    private CharacterBaseCharacteristic dodgePMLostProbability = ;
-    private CharacterBaseCharacteristic neutralElementResistPercent = ;
-    private CharacterBaseCharacteristic earthElementResistPercent = ;
-    private CharacterBaseCharacteristic waterElementResistPercent = ;
-    private CharacterBaseCharacteristic airElementResistPercent = ;
-    private CharacterBaseCharacteristic fireElementResistPercent = ;
-    private CharacterBaseCharacteristic neutralElementReduction = ;
-    private CharacterBaseCharacteristic earthElementReduction = ;
-    private CharacterBaseCharacteristic waterElementReduction = ;
-    private CharacterBaseCharacteristic airElementReduction = ;
-    private CharacterBaseCharacteristic fireElementReduction = ;
-    private CharacterBaseCharacteristic pushDamageReduction = ;
-    private CharacterBaseCharacteristic criticalDamageReduction = ;
-    private CharacterBaseCharacteristic pvpNeutralElementResistPercent = ;
-    private CharacterBaseCharacteristic pvpEarthElementResistPercent = ;
-    private CharacterBaseCharacteristic pvpWaterElementResistPercent = ;
-    private CharacterBaseCharacteristic pvpAirElementResistPercent = ;
-    private CharacterBaseCharacteristic pvpFireElementResistPercent = ;
-    private CharacterBaseCharacteristic pvpNeutralElementReduction = ;
-    private CharacterBaseCharacteristic pvpEarthElementReduction = ;
-    private CharacterBaseCharacteristic pvpWaterElementReduction = ;
-    private CharacterBaseCharacteristic pvpAirElementReduction = ;
-    private CharacterBaseCharacteristic pvpFireElementReduction = ;
-    private CharacterBaseCharacteristic meleeDamageDonePercent = ;
-    private CharacterBaseCharacteristic meleeDamageReceivedPercent = ;
-    private CharacterBaseCharacteristic rangedDamageDonePercent = ;
-    private CharacterBaseCharacteristic rangedDamageReceivedPercent = ;
-    private CharacterBaseCharacteristic weaponDamageDonePercent = ;
-    private CharacterBaseCharacteristic weaponDamageReceivedPercent = ;
-    private CharacterBaseCharacteristic spellDamageDonePercent = ;
-    private CharacterBaseCharacteristic spellDamageReceivedPercent = ;
-    private Vector.<CharacterSpellModification> spellModifications = ;
+    private CharacterBaseCharacteristic criticalMiss;
+    private CharacterBaseCharacteristic healBonus;
+    private CharacterBaseCharacteristic allDamagesBonus;
+    private CharacterBaseCharacteristic weaponDamagesBonusPercent;
+    private CharacterBaseCharacteristic damagesBonusPercent;
+    private CharacterBaseCharacteristic trapBonus;
+    private CharacterBaseCharacteristic trapBonusPercent;
+    private CharacterBaseCharacteristic glyphBonusPercent;
+    private CharacterBaseCharacteristic runeBonusPercent;
+    private CharacterBaseCharacteristic permanentDamagePercent;
+    private CharacterBaseCharacteristic tackleBlock;
+    private CharacterBaseCharacteristic tackleEvade;
+    private CharacterBaseCharacteristic PAAttack;
+    private CharacterBaseCharacteristic PMAttack;
+    private CharacterBaseCharacteristic pushDamageBonus;
+    private CharacterBaseCharacteristic criticalDamageBonus;
+    private CharacterBaseCharacteristic neutralDamageBonus;
+    private CharacterBaseCharacteristic earthDamageBonus;
+    private CharacterBaseCharacteristic waterDamageBonus;
+    private CharacterBaseCharacteristic airDamageBonus;
+    private CharacterBaseCharacteristic fireDamageBonus;
+    private CharacterBaseCharacteristic dodgePALostProbability;
+    private CharacterBaseCharacteristic dodgePMLostProbability;
+    private CharacterBaseCharacteristic neutralElementResistPercent;
+    private CharacterBaseCharacteristic earthElementResistPercent;
+    private CharacterBaseCharacteristic waterElementResistPercent;
+    private CharacterBaseCharacteristic airElementResistPercent;
+    private CharacterBaseCharacteristic fireElementResistPercent;
+    private CharacterBaseCharacteristic neutralElementReduction;
+    private CharacterBaseCharacteristic earthElementReduction;
+    private CharacterBaseCharacteristic waterElementReduction;
+    private CharacterBaseCharacteristic airElementReduction;
+    private CharacterBaseCharacteristic fireElementReduction;
+    private CharacterBaseCharacteristic pushDamageReduction;
+    private CharacterBaseCharacteristic criticalDamageReduction;
+    private CharacterBaseCharacteristic pvpNeutralElementResistPercent;
+    private CharacterBaseCharacteristic pvpEarthElementResistPercent;
+    private CharacterBaseCharacteristic pvpWaterElementResistPercent;
+    private CharacterBaseCharacteristic pvpAirElementResistPercent;
+    private CharacterBaseCharacteristic pvpFireElementResistPercent;
+    private CharacterBaseCharacteristic pvpNeutralElementReduction;
+    private CharacterBaseCharacteristic pvpEarthElementReduction;
+    private CharacterBaseCharacteristic pvpWaterElementReduction;
+    private CharacterBaseCharacteristic pvpAirElementReduction;
+    private CharacterBaseCharacteristic pvpFireElementReduction;
+    private CharacterBaseCharacteristic meleeDamageDonePercent;
+    private CharacterBaseCharacteristic meleeDamageReceivedPercent;
+    private CharacterBaseCharacteristic rangedDamageDonePercent;
+    private CharacterBaseCharacteristic rangedDamageReceivedPercent;
+    private CharacterBaseCharacteristic weaponDamageDonePercent;
+    private CharacterBaseCharacteristic weaponDamageReceivedPercent;
+    private CharacterBaseCharacteristic spellDamageDonePercent;
+    private CharacterBaseCharacteristic spellDamageReceivedPercent;
+    private Vector<CharacterSpellModification> spellModifications;
     private int probationTime = 0;
-    private FuncTree _alignmentInfostree = ;
-    private FuncTree _initiativetree = ;
-    private FuncTree _prospectingtree = ;
-    private FuncTree _actionPointstree = ;
-    private FuncTree _movementPointstree = ;
-    private FuncTree _strengthtree = ;
-    private FuncTree _vitalitytree = ;
-    private FuncTree _wisdomtree = ;
-    private FuncTree _chancetree = ;
-    private FuncTree _agilitytree = ;
-    private FuncTree _intelligencetree = ;
-    private FuncTree _rangetree = ;
-    private FuncTree _summonableCreaturesBoosttree = ;
-    private FuncTree _reflecttree = ;
-    private FuncTree _criticalHittree = ;
-    private FuncTree _criticalMisstree = ;
-    private FuncTree _healBonustree = ;
-    private FuncTree _allDamagesBonustree = ;
-    private FuncTree _weaponDamagesBonusPercenttree = ;
-    private FuncTree _damagesBonusPercenttree = ;
-    private FuncTree _trapBonustree = ;
-    private FuncTree _trapBonusPercenttree = ;
-    private FuncTree _glyphBonusPercenttree = ;
-    private FuncTree _runeBonusPercenttree = ;
-    private FuncTree _permanentDamagePercenttree = ;
-    private FuncTree _tackleBlocktree = ;
-    private FuncTree _tackleEvadetree = ;
-    private FuncTree _PAAttacktree = ;
-    private FuncTree _PMAttacktree = ;
-    private FuncTree _pushDamageBonustree = ;
-    private FuncTree _criticalDamageBonustree = ;
-    private FuncTree _neutralDamageBonustree = ;
-    private FuncTree _earthDamageBonustree = ;
-    private FuncTree _waterDamageBonustree = ;
-    private FuncTree _airDamageBonustree = ;
-    private FuncTree _fireDamageBonustree = ;
-    private FuncTree _dodgePALostProbabilitytree = ;
-    private FuncTree _dodgePMLostProbabilitytree = ;
-    private FuncTree _neutralElementResistPercenttree = ;
-    private FuncTree _earthElementResistPercenttree = ;
-    private FuncTree _waterElementResistPercenttree = ;
-    private FuncTree _airElementResistPercenttree = ;
-    private FuncTree _fireElementResistPercenttree = ;
-    private FuncTree _neutralElementReductiontree = ;
-    private FuncTree _earthElementReductiontree = ;
-    private FuncTree _waterElementReductiontree = ;
-    private FuncTree _airElementReductiontree = ;
-    private FuncTree _fireElementReductiontree = ;
-    private FuncTree _pushDamageReductiontree = ;
-    private FuncTree _criticalDamageReductiontree = ;
-    private FuncTree _pvpNeutralElementResistPercenttree = ;
-    private FuncTree _pvpEarthElementResistPercenttree = ;
-    private FuncTree _pvpWaterElementResistPercenttree = ;
-    private FuncTree _pvpAirElementResistPercenttree = ;
-    private FuncTree _pvpFireElementResistPercenttree = ;
-    private FuncTree _pvpNeutralElementReductiontree = ;
-    private FuncTree _pvpEarthElementReductiontree = ;
-    private FuncTree _pvpWaterElementReductiontree = ;
-    private FuncTree _pvpAirElementReductiontree = ;
-    private FuncTree _pvpFireElementReductiontree = ;
-    private FuncTree _meleeDamageDonePercenttree = ;
-    private FuncTree _meleeDamageReceivedPercenttree = ;
-    private FuncTree _rangedDamageDonePercenttree = ;
-    private FuncTree _rangedDamageReceivedPercenttree = ;
-    private FuncTree _weaponDamageDonePercenttree = ;
-    private FuncTree _weaponDamageReceivedPercenttree = ;
-    private FuncTree _spellDamageDonePercenttree = ;
-    private FuncTree _spellDamageReceivedPercenttree = ;
-    private FuncTree _spellModificationstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private FuncTree _alignmentInfostree;
+    private FuncTree _initiativetree;
+    private FuncTree _prospectingtree;
+    private FuncTree _actionPointstree;
+    private FuncTree _movementPointstree;
+    private FuncTree _strengthtree;
+    private FuncTree _vitalitytree;
+    private FuncTree _wisdomtree;
+    private FuncTree _chancetree;
+    private FuncTree _agilitytree;
+    private FuncTree _intelligencetree;
+    private FuncTree _rangetree;
+    private FuncTree _summonableCreaturesBoosttree;
+    private FuncTree _reflecttree;
+    private FuncTree _criticalHittree;
+    private FuncTree _criticalMisstree;
+    private FuncTree _healBonustree;
+    private FuncTree _allDamagesBonustree;
+    private FuncTree _weaponDamagesBonusPercenttree;
+    private FuncTree _damagesBonusPercenttree;
+    private FuncTree _trapBonustree;
+    private FuncTree _trapBonusPercenttree;
+    private FuncTree _glyphBonusPercenttree;
+    private FuncTree _runeBonusPercenttree;
+    private FuncTree _permanentDamagePercenttree;
+    private FuncTree _tackleBlocktree;
+    private FuncTree _tackleEvadetree;
+    private FuncTree _PAAttacktree;
+    private FuncTree _PMAttacktree;
+    private FuncTree _pushDamageBonustree;
+    private FuncTree _criticalDamageBonustree;
+    private FuncTree _neutralDamageBonustree;
+    private FuncTree _earthDamageBonustree;
+    private FuncTree _waterDamageBonustree;
+    private FuncTree _airDamageBonustree;
+    private FuncTree _fireDamageBonustree;
+    private FuncTree _dodgePALostProbabilitytree;
+    private FuncTree _dodgePMLostProbabilitytree;
+    private FuncTree _neutralElementResistPercenttree;
+    private FuncTree _earthElementResistPercenttree;
+    private FuncTree _waterElementResistPercenttree;
+    private FuncTree _airElementResistPercenttree;
+    private FuncTree _fireElementResistPercenttree;
+    private FuncTree _neutralElementReductiontree;
+    private FuncTree _earthElementReductiontree;
+    private FuncTree _waterElementReductiontree;
+    private FuncTree _airElementReductiontree;
+    private FuncTree _fireElementReductiontree;
+    private FuncTree _pushDamageReductiontree;
+    private FuncTree _criticalDamageReductiontree;
+    private FuncTree _pvpNeutralElementResistPercenttree;
+    private FuncTree _pvpEarthElementResistPercenttree;
+    private FuncTree _pvpWaterElementResistPercenttree;
+    private FuncTree _pvpAirElementResistPercenttree;
+    private FuncTree _pvpFireElementResistPercenttree;
+    private FuncTree _pvpNeutralElementReductiontree;
+    private FuncTree _pvpEarthElementReductiontree;
+    private FuncTree _pvpWaterElementReductiontree;
+    private FuncTree _pvpAirElementReductiontree;
+    private FuncTree _pvpFireElementReductiontree;
+    private FuncTree _meleeDamageDonePercenttree;
+    private FuncTree _meleeDamageReceivedPercenttree;
+    private FuncTree _rangedDamageDonePercenttree;
+    private FuncTree _rangedDamageReceivedPercenttree;
+    private FuncTree _weaponDamageDonePercenttree;
+    private FuncTree _weaponDamageReceivedPercenttree;
+    private FuncTree _spellDamageDonePercenttree;
+    private FuncTree _spellDamageReceivedPercenttree;
+    private FuncTree _spellModificationstree;
 
 
     public int getTypeId() {
          return 8;
     }
 
-    public CharacterCharacteristicsInformations initCharacterCharacteristicsInformations(Number param1,Number  param2,Number  param3,Number  param4,Number  param5,int  param6,int  param7,int  param8,ActorExtendedAlignmentInformations  param9,int  param10,int  param11,int  param12,int  param13,int  param14,int  param15,CharacterBaseCharacteristic  param16,CharacterBaseCharacteristic  param17,CharacterBaseCharacteristic  param18,CharacterBaseCharacteristic  param19,CharacterBaseCharacteristic  param20,CharacterBaseCharacteristic  param21,CharacterBaseCharacteristic  param22,CharacterBaseCharacteristic  param23,CharacterBaseCharacteristic  param24,CharacterBaseCharacteristic  param25,CharacterBaseCharacteristic  param26,CharacterBaseCharacteristic  param27,CharacterBaseCharacteristic  param28,CharacterBaseCharacteristic  param29,int  param30,CharacterBaseCharacteristic  param31,CharacterBaseCharacteristic  param32,CharacterBaseCharacteristic  param33,CharacterBaseCharacteristic  param34,CharacterBaseCharacteristic  param35,CharacterBaseCharacteristic  param36,CharacterBaseCharacteristic  param37,CharacterBaseCharacteristic  param38,CharacterBaseCharacteristic  param39,CharacterBaseCharacteristic  param40,CharacterBaseCharacteristic  param41,CharacterBaseCharacteristic  param42,CharacterBaseCharacteristic  param43,CharacterBaseCharacteristic  param44,CharacterBaseCharacteristic  param45,CharacterBaseCharacteristic  param46,CharacterBaseCharacteristic  param47,CharacterBaseCharacteristic  param48,CharacterBaseCharacteristic  param49,CharacterBaseCharacteristic  param50,CharacterBaseCharacteristic  param51,CharacterBaseCharacteristic  param52,CharacterBaseCharacteristic  param53,CharacterBaseCharacteristic  param54,CharacterBaseCharacteristic  param55,CharacterBaseCharacteristic  param56,CharacterBaseCharacteristic  param57,CharacterBaseCharacteristic  param58,CharacterBaseCharacteristic  param59,CharacterBaseCharacteristic  param60,CharacterBaseCharacteristic  param61,CharacterBaseCharacteristic  param62,CharacterBaseCharacteristic  param63,CharacterBaseCharacteristic  param64,CharacterBaseCharacteristic  param65,CharacterBaseCharacteristic  param66,CharacterBaseCharacteristic  param67,CharacterBaseCharacteristic  param68,CharacterBaseCharacteristic  param69,CharacterBaseCharacteristic  param70,CharacterBaseCharacteristic  param71,CharacterBaseCharacteristic  param72,CharacterBaseCharacteristic  param73,CharacterBaseCharacteristic  param74,CharacterBaseCharacteristic  param75,CharacterBaseCharacteristic  param76,CharacterBaseCharacteristic  param77,CharacterBaseCharacteristic  param78,CharacterBaseCharacteristic  param79,CharacterBaseCharacteristic  param80,CharacterBaseCharacteristic  param81,CharacterBaseCharacteristic  param82,CharacterBaseCharacteristic  param83,Vector.<CharacterSpellModification>  param84,int  param85) {
+    public CharacterCharacteristicsInformations initCharacterCharacteristicsInformations(Number param1,Number  param2,Number  param3,Number  param4,Number  param5,int  param6,int  param7,int  param8,ActorExtendedAlignmentInformations  param9,int  param10,int  param11,int  param12,int  param13,int  param14,int  param15,CharacterBaseCharacteristic  param16,CharacterBaseCharacteristic  param17,CharacterBaseCharacteristic  param18,CharacterBaseCharacteristic  param19,CharacterBaseCharacteristic  param20,CharacterBaseCharacteristic  param21,CharacterBaseCharacteristic  param22,CharacterBaseCharacteristic  param23,CharacterBaseCharacteristic  param24,CharacterBaseCharacteristic  param25,CharacterBaseCharacteristic  param26,CharacterBaseCharacteristic  param27,CharacterBaseCharacteristic  param28,CharacterBaseCharacteristic  param29,int  param30,CharacterBaseCharacteristic  param31,CharacterBaseCharacteristic  param32,CharacterBaseCharacteristic  param33,CharacterBaseCharacteristic  param34,CharacterBaseCharacteristic  param35,CharacterBaseCharacteristic  param36,CharacterBaseCharacteristic  param37,CharacterBaseCharacteristic  param38,CharacterBaseCharacteristic  param39,CharacterBaseCharacteristic  param40,CharacterBaseCharacteristic  param41,CharacterBaseCharacteristic  param42,CharacterBaseCharacteristic  param43,CharacterBaseCharacteristic  param44,CharacterBaseCharacteristic  param45,CharacterBaseCharacteristic  param46,CharacterBaseCharacteristic  param47,CharacterBaseCharacteristic  param48,CharacterBaseCharacteristic  param49,CharacterBaseCharacteristic  param50,CharacterBaseCharacteristic  param51,CharacterBaseCharacteristic  param52,CharacterBaseCharacteristic  param53,CharacterBaseCharacteristic  param54,CharacterBaseCharacteristic  param55,CharacterBaseCharacteristic  param56,CharacterBaseCharacteristic  param57,CharacterBaseCharacteristic  param58,CharacterBaseCharacteristic  param59,CharacterBaseCharacteristic  param60,CharacterBaseCharacteristic  param61,CharacterBaseCharacteristic  param62,CharacterBaseCharacteristic  param63,CharacterBaseCharacteristic  param64,CharacterBaseCharacteristic  param65,CharacterBaseCharacteristic  param66,CharacterBaseCharacteristic  param67,CharacterBaseCharacteristic  param68,CharacterBaseCharacteristic  param69,CharacterBaseCharacteristic  param70,CharacterBaseCharacteristic  param71,CharacterBaseCharacteristic  param72,CharacterBaseCharacteristic  param73,CharacterBaseCharacteristic  param74,CharacterBaseCharacteristic  param75,CharacterBaseCharacteristic  param76,CharacterBaseCharacteristic  param77,CharacterBaseCharacteristic  param78,CharacterBaseCharacteristic  param79,CharacterBaseCharacteristic  param80,CharacterBaseCharacteristic  param81,CharacterBaseCharacteristic  param82,CharacterBaseCharacteristic  param83,Vector<CharacterSpellModification>  param84,int  param85) {
          this.experience = param1;
          this.experienceLevelFloor = param2;
          this.experienceNextLevelFloor = param3;
@@ -303,7 +312,152 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
     public void serializeAs_CharacterCharacteristicsInformations(ICustomDataOutput param1) {
          if(this.experience < 0 || this.experience > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experience + ") on element experience.");
+         }
+         param1.writeVarLong(this.experience);
+         if(this.experienceLevelFloor < 0 || this.experienceLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experienceLevelFloor + ") on element experienceLevelFloor.");
+         }
+         param1.writeVarLong(this.experienceLevelFloor);
+         if(this.experienceNextLevelFloor < 0 || this.experienceNextLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experienceNextLevelFloor + ") on element experienceNextLevelFloor.");
+         }
+         param1.writeVarLong(this.experienceNextLevelFloor);
+         if(this.experienceBonusLimit < 0 || this.experienceBonusLimit > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experienceBonusLimit + ") on element experienceBonusLimit.");
+         }
+         param1.writeVarLong(this.experienceBonusLimit);
+         if(this.kamas < 0 || this.kamas > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.kamas + ") on element kamas.");
+         }
+         param1.writeVarLong(this.kamas);
+         if(this.statsPoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.statsPoints + ") on element statsPoints.");
+         }
+         param1.writeVarShort(this.statsPoints);
+         if(this.additionnalPoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.additionnalPoints + ") on element additionnalPoints.");
+         }
+         param1.writeVarShort(this.additionnalPoints);
+         if(this.spellsPoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.spellsPoints + ") on element spellsPoints.");
+         }
+         param1.writeVarShort(this.spellsPoints);
+         this.alignmentInfos.serializeAs_ActorExtendedAlignmentInformations(param1);
+         if(this.lifePoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+         }
+         param1.writeVarInt(this.lifePoints);
+         if(this.maxLifePoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+         }
+         param1.writeVarInt(this.maxLifePoints);
+         if(this.energyPoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.energyPoints + ") on element energyPoints.");
+         }
+         param1.writeVarShort(this.energyPoints);
+         if(this.maxEnergyPoints < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxEnergyPoints + ") on element maxEnergyPoints.");
+         }
+         param1.writeVarShort(this.maxEnergyPoints);
+         param1.writeVarShort(this.actionPointsCurrent);
+         param1.writeVarShort(this.movementPointsCurrent);
+         this.initiative.serializeAs_CharacterBaseCharacteristic(param1);
+         this.prospecting.serializeAs_CharacterBaseCharacteristic(param1);
+         this.actionPoints.serializeAs_CharacterBaseCharacteristic(param1);
+         this.movementPoints.serializeAs_CharacterBaseCharacteristic(param1);
+         this.strength.serializeAs_CharacterBaseCharacteristic(param1);
+         this.vitality.serializeAs_CharacterBaseCharacteristic(param1);
+         this.wisdom.serializeAs_CharacterBaseCharacteristic(param1);
+         this.chance.serializeAs_CharacterBaseCharacteristic(param1);
+         this.agility.serializeAs_CharacterBaseCharacteristic(param1);
+         this.intelligence.serializeAs_CharacterBaseCharacteristic(param1);
+         this.range.serializeAs_CharacterBaseCharacteristic(param1);
+         this.summonableCreaturesBoost.serializeAs_CharacterBaseCharacteristic(param1);
+         this.reflect.serializeAs_CharacterBaseCharacteristic(param1);
+         this.criticalHit.serializeAs_CharacterBaseCharacteristic(param1);
+         if(this.criticalHitWeapon < 0)
+         {
+            throw new Exception("Forbidden value (" + this.criticalHitWeapon + ") on element criticalHitWeapon.");
+         }
+         param1.writeVarShort(this.criticalHitWeapon);
+         this.criticalMiss.serializeAs_CharacterBaseCharacteristic(param1);
+         this.healBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.allDamagesBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.weaponDamagesBonusPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.damagesBonusPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.trapBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.trapBonusPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.glyphBonusPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.runeBonusPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.permanentDamagePercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.tackleBlock.serializeAs_CharacterBaseCharacteristic(param1);
+         this.tackleEvade.serializeAs_CharacterBaseCharacteristic(param1);
+         this.PAAttack.serializeAs_CharacterBaseCharacteristic(param1);
+         this.PMAttack.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pushDamageBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.criticalDamageBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.neutralDamageBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.earthDamageBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.waterDamageBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.airDamageBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.fireDamageBonus.serializeAs_CharacterBaseCharacteristic(param1);
+         this.dodgePALostProbability.serializeAs_CharacterBaseCharacteristic(param1);
+         this.dodgePMLostProbability.serializeAs_CharacterBaseCharacteristic(param1);
+         this.neutralElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.earthElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.waterElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.airElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.fireElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.neutralElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.earthElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.waterElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.airElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.fireElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pushDamageReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.criticalDamageReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpNeutralElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpEarthElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpWaterElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpAirElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpFireElementResistPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpNeutralElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpEarthElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpWaterElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpAirElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.pvpFireElementReduction.serializeAs_CharacterBaseCharacteristic(param1);
+         this.meleeDamageDonePercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.meleeDamageReceivedPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.rangedDamageDonePercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.rangedDamageReceivedPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.weaponDamageDonePercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.weaponDamageReceivedPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.spellDamageDonePercent.serializeAs_CharacterBaseCharacteristic(param1);
+         this.spellDamageReceivedPercent.serializeAs_CharacterBaseCharacteristic(param1);
+         param1.writeShort(this.spellModifications.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.spellModifications.length)
+         {
+            (this.spellModifications[_loc2_] as CharacterSpellModification).serializeAs_CharacterSpellModification(param1);
+            _loc2_++;
+         }
+         if(this.probationTime < 0)
+         {
+            throw new Exception("Forbidden value (" + this.probationTime + ") on element probationTime.");
+         }
+         param1.writeInt(this.probationTime);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -466,10 +620,13 @@ public class CharacterCharacteristicsInformations extends Object implements INet
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new CharacterSpellModification();
             _loc4_.deserialize(param1);
             this.spellModifications.push(_loc4_);
             _loc3_++;
+         }
+         this._probationTimeFunc(param1);
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -567,49 +724,65 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     private void _experienceFunc(ICustomDataInput param1) {
          this.experience = param1.readVarUhLong();
          if(this.experience < 0 || this.experience > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experience + ") on element of CharacterCharacteristicsInformations.experience.");
+         }
     }
 
     private void _experienceLevelFloorFunc(ICustomDataInput param1) {
          this.experienceLevelFloor = param1.readVarUhLong();
          if(this.experienceLevelFloor < 0 || this.experienceLevelFloor > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experienceLevelFloor + ") on element of CharacterCharacteristicsInformations.experienceLevelFloor.");
+         }
     }
 
     private void _experienceNextLevelFloorFunc(ICustomDataInput param1) {
          this.experienceNextLevelFloor = param1.readVarUhLong();
          if(this.experienceNextLevelFloor < 0 || this.experienceNextLevelFloor > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experienceNextLevelFloor + ") on element of CharacterCharacteristicsInformations.experienceNextLevelFloor.");
+         }
     }
 
     private void _experienceBonusLimitFunc(ICustomDataInput param1) {
          this.experienceBonusLimit = param1.readVarUhLong();
          if(this.experienceBonusLimit < 0 || this.experienceBonusLimit > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.experienceBonusLimit + ") on element of CharacterCharacteristicsInformations.experienceBonusLimit.");
+         }
     }
 
     private void _kamasFunc(ICustomDataInput param1) {
          this.kamas = param1.readVarUhLong();
          if(this.kamas < 0 || this.kamas > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.kamas + ") on element of CharacterCharacteristicsInformations.kamas.");
+         }
     }
 
     private void _statsPointsFunc(ICustomDataInput param1) {
          this.statsPoints = param1.readVarUhShort();
          if(this.statsPoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.statsPoints + ") on element of CharacterCharacteristicsInformations.statsPoints.");
+         }
     }
 
     private void _additionnalPointsFunc(ICustomDataInput param1) {
          this.additionnalPoints = param1.readVarUhShort();
          if(this.additionnalPoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.additionnalPoints + ") on element of CharacterCharacteristicsInformations.additionnalPoints.");
+         }
     }
 
     private void _spellsPointsFunc(ICustomDataInput param1) {
          this.spellsPoints = param1.readVarUhShort();
          if(this.spellsPoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.spellsPoints + ") on element of CharacterCharacteristicsInformations.spellsPoints.");
+         }
     }
 
     private void _alignmentInfostreeFunc(ICustomDataInput param1) {
@@ -620,25 +793,33 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     private void _lifePointsFunc(ICustomDataInput param1) {
          this.lifePoints = param1.readVarUhInt();
          if(this.lifePoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.lifePoints + ") on element of CharacterCharacteristicsInformations.lifePoints.");
+         }
     }
 
     private void _maxLifePointsFunc(ICustomDataInput param1) {
          this.maxLifePoints = param1.readVarUhInt();
          if(this.maxLifePoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element of CharacterCharacteristicsInformations.maxLifePoints.");
+         }
     }
 
     private void _energyPointsFunc(ICustomDataInput param1) {
          this.energyPoints = param1.readVarUhShort();
          if(this.energyPoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.energyPoints + ") on element of CharacterCharacteristicsInformations.energyPoints.");
+         }
     }
 
     private void _maxEnergyPointsFunc(ICustomDataInput param1) {
          this.maxEnergyPoints = param1.readVarUhShort();
          if(this.maxEnergyPoints < 0)
+         {
             throw new Exception("Forbidden value (" + this.maxEnergyPoints + ") on element of CharacterCharacteristicsInformations.maxEnergyPoints.");
+         }
     }
 
     private void _actionPointsCurrentFunc(ICustomDataInput param1) {
@@ -722,7 +903,9 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     private void _criticalHitWeaponFunc(ICustomDataInput param1) {
          this.criticalHitWeapon = param1.readVarUhShort();
          if(this.criticalHitWeapon < 0)
+         {
             throw new Exception("Forbidden value (" + this.criticalHitWeapon + ") on element of CharacterCharacteristicsInformations.criticalHitWeapon.");
+         }
     }
 
     private void _criticalMisstreeFunc(ICustomDataInput param1) {
@@ -994,8 +1177,10 @@ public class CharacterCharacteristicsInformations extends Object implements INet
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._spellModificationstree.addChild(this._spellModificationsFunc);
             _loc3_++;
+         }
     }
 
     private void _spellModificationsFunc(ICustomDataInput param1) {
@@ -1007,7 +1192,9 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     private void _probationTimeFunc(ICustomDataInput param1) {
          this.probationTime = param1.readInt();
          if(this.probationTime < 0)
+         {
             throw new Exception("Forbidden value (" + this.probationTime + ") on element of CharacterCharacteristicsInformations.probationTime.");
+         }
     }
 
 }

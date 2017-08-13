@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.updater.parts;
+package com.ankamagames.dofus.network.messages.updater.parts;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -12,12 +12,8 @@ public class PartsListMessage extends NetworkMessage implements INetworkMessage 
 
     private int protocolId = 1502;
     private boolean _isInitialized = false;
-    private Vector.<ContentPart> parts = ;
-    private FuncTree _partstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<ContentPart> parts;
+    private FuncTree _partstree;
 
 
     public boolean isInitialized() {
@@ -28,7 +24,7 @@ public class PartsListMessage extends NetworkMessage implements INetworkMessage 
          return 1502;
     }
 
-    public PartsListMessage initPartsListMessage(Vector.<ContentPart> param1) {
+    public PartsListMessage initPartsListMessage(Vector<ContentPart> param1) {
          this.parts = param1;
          this._isInitialized = true;
          return this;
@@ -64,8 +60,10 @@ public class PartsListMessage extends NetworkMessage implements INetworkMessage 
          param1.writeShort(this.parts.length);
          int _loc2_ = 0;
          while(_loc2_ < this.parts.length)
+         {
             (this.parts[_loc2_] as ContentPart).serializeAs_ContentPart(param1);
             _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -77,10 +75,12 @@ public class PartsListMessage extends NetworkMessage implements INetworkMessage 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             _loc4_ = new ContentPart();
             _loc4_.deserialize(param1);
             this.parts.push(_loc4_);
             _loc3_++;
+         }
     }
 
     public void deserializeAsync(FuncTree param1) {
@@ -95,8 +95,10 @@ public class PartsListMessage extends NetworkMessage implements INetworkMessage 
          int _loc2_ = param1.readUnsignedShort();
          int _loc3_ = 0;
          while(_loc3_ < _loc2_)
+         {
             this._partstree.addChild(this._partsFunc);
             _loc3_++;
+         }
     }
 
     private void _partsFunc(ICustomDataInput param1) {

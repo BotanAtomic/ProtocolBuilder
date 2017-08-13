@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.initialization;
+package com.ankamagames.dofus.network.messages.game.initialization;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -78,7 +78,9 @@ public class OnConnectionEventMessage extends NetworkMessage implements INetwork
     private void _eventTypeFunc(ICustomDataInput param1) {
          this.eventType = param1.readByte();
          if(this.eventType < 0)
+         {
             throw new Exception("Forbidden value (" + this.eventType + ") on element of OnConnectionEventMessage.eventType.");
+         }
     }
 
 }

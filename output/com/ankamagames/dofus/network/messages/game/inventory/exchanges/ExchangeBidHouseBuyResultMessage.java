@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
+package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -61,7 +61,11 @@ public class ExchangeBidHouseBuyResultMessage extends NetworkMessage implements 
 
     public void serializeAs_ExchangeBidHouseBuyResultMessage(ICustomDataOutput param1) {
          if(this.uid < 0)
+         {
             throw new Exception("Forbidden value (" + this.uid + ") on element uid.");
+         }
+         param1.writeVarInt(this.uid);
+         param1.writeBoolean(this.bought);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -85,7 +89,9 @@ public class ExchangeBidHouseBuyResultMessage extends NetworkMessage implements 
     private void _uidFunc(ICustomDataInput param1) {
          this.uid = param1.readVarUhInt();
          if(this.uid < 0)
+         {
             throw new Exception("Forbidden value (" + this.uid + ") on element of ExchangeBidHouseBuyResultMessage.uid.");
+         }
     }
 
     private void _boughtFunc(ICustomDataInput param1) {

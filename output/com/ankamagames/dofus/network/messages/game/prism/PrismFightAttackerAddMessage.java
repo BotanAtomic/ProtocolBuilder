@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.prism;
+package com.ankamagames.dofus.network.messages.game.prism;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -11,6 +11,7 @@ import com.ankamagames.dofus.network.ProtocolTypeManager;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
+import java.lang.Exception;
 
 public class PrismFightAttackerAddMessage extends NetworkMessage implements INetworkMessage {
 
@@ -18,9 +19,8 @@ public class PrismFightAttackerAddMessage extends NetworkMessage implements INet
     private boolean _isInitialized = false;
     private int subAreaId = 0;
     private int fightId = 0;
-    private CharacterMinimalPlusLookInformations attacker = ;
-    private FuncTree _attackertree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private CharacterMinimalPlusLookInformations attacker;
+    private FuncTree _attackertree;
 
 
     public boolean isInitialized() {
@@ -69,7 +69,17 @@ public class PrismFightAttackerAddMessage extends NetworkMessage implements INet
 
     public void serializeAs_PrismFightAttackerAddMessage(ICustomDataOutput param1) {
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
+         if(this.fightId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
+         }
+         param1.writeVarShort(this.fightId);
+         param1.writeShort(this.attacker.getTypeId());
+         this.attacker.serialize(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -97,13 +107,17 @@ public class PrismFightAttackerAddMessage extends NetworkMessage implements INet
     private void _subAreaIdFunc(ICustomDataInput param1) {
          this.subAreaId = param1.readVarUhShort();
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element of PrismFightAttackerAddMessage.subAreaId.");
+         }
     }
 
     private void _fightIdFunc(ICustomDataInput param1) {
          this.fightId = param1.readVarUhShort();
          if(this.fightId < 0)
+         {
             throw new Exception("Forbidden value (" + this.fightId + ") on element of PrismFightAttackerAddMessage.fightId.");
+         }
     }
 
     private void _attackertreeFunc(ICustomDataInput param1) {

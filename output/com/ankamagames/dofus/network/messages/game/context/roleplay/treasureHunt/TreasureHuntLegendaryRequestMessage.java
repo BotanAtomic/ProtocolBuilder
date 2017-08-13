@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.treasureHunt;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class TreasureHuntLegendaryRequestMessage extends NetworkMessage implemen
 
     public void serializeAs_TreasureHuntLegendaryRequestMessage(ICustomDataOutput param1) {
          if(this.legendaryId < 0)
+         {
             throw new Exception("Forbidden value (" + this.legendaryId + ") on element legendaryId.");
+         }
+         param1.writeVarShort(this.legendaryId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class TreasureHuntLegendaryRequestMessage extends NetworkMessage implemen
     private void _legendaryIdFunc(ICustomDataInput param1) {
          this.legendaryId = param1.readVarUhShort();
          if(this.legendaryId < 0)
+         {
             throw new Exception("Forbidden value (" + this.legendaryId + ") on element of TreasureHuntLegendaryRequestMessage.legendaryId.");
+         }
     }
 
 }

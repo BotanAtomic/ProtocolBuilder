@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.messages.game.context.roleplay.emote;
+package com.ankamagames.dofus.network.messages.game.context.roleplay.emote;
 
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
@@ -58,7 +58,10 @@ public class EmoteAddMessage extends NetworkMessage implements INetworkMessage {
 
     public void serializeAs_EmoteAddMessage(ICustomDataOutput param1) {
          if(this.emoteId < 0 || this.emoteId > 255)
+         {
             throw new Exception("Forbidden value (" + this.emoteId + ") on element emoteId.");
+         }
+         param1.writeByte(this.emoteId);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -80,7 +83,9 @@ public class EmoteAddMessage extends NetworkMessage implements INetworkMessage {
     private void _emoteIdFunc(ICustomDataInput param1) {
          this.emoteId = param1.readUnsignedByte();
          if(this.emoteId < 0 || this.emoteId > 255)
+         {
             throw new Exception("Forbidden value (" + this.emoteId + ") on element of EmoteAddMessage.emoteId.");
+         }
     }
 
 }

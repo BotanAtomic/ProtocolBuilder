@@ -1,4 +1,4 @@
-package package com.ankamagames.dofus.network.types.game.context.roleplay.job;
+package com.ankamagames.dofus.network.types.game.context.roleplay.job;
 
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.character.status.PlayerStatus;
@@ -7,6 +7,9 @@ import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.dofus.network.ProtocolTypeManager;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 import com.ankamagames.dofus.network.enums.PlayableBreedEnum;
+import java.lang.Exception;
+import java.lang.Exception;
+import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
 import java.lang.Exception;
@@ -27,9 +30,8 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
     private int worldY = 0;
     private int mapId = 0;
     private int subAreaId = 0;
-    private PlayerStatus status = ;
-    private FuncTree _statustree = ;
-    private int _loc2_ = param1.readUnsignedShort();
+    private PlayerStatus status;
+    private FuncTree _statustree;
 
 
     public int getTypeId() {
@@ -71,7 +73,33 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
 
     public void serializeAs_JobCrafterDirectoryEntryPlayerInfo(ICustomDataOutput param1) {
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
+         }
+         param1.writeVarLong(this.playerId);
+         param1.writeUTF(this.playerName);
+         param1.writeByte(this.alignmentSide);
+         param1.writeByte(this.breed);
+         param1.writeBoolean(this.sex);
+         param1.writeBoolean(this.isInWorkshop);
+         if(this.worldX < -255 || this.worldX > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
+         }
+         param1.writeShort(this.worldX);
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
+         }
+         param1.writeShort(this.worldY);
+         param1.writeInt(this.mapId);
+         if(this.subAreaId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+         }
+         param1.writeVarShort(this.subAreaId);
+         param1.writeShort(this.status.getTypeId());
+         this.status.serialize(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {
@@ -115,7 +143,9 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
     private void _playerIdFunc(ICustomDataInput param1) {
          this.playerId = param1.readVarUhLong();
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
+         {
             throw new Exception("Forbidden value (" + this.playerId + ") on element of JobCrafterDirectoryEntryPlayerInfo.playerId.");
+         }
     }
 
     private void _playerNameFunc(ICustomDataInput param1) {
@@ -129,7 +159,9 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
     private void _breedFunc(ICustomDataInput param1) {
          this.breed = param1.readByte();
          if(this.breed < PlayableBreedEnum.Feca || this.breed > PlayableBreedEnum.Ouginak)
+         {
             throw new Exception("Forbidden value (" + this.breed + ") on element of JobCrafterDirectoryEntryPlayerInfo.breed.");
+         }
     }
 
     private void _sexFunc(ICustomDataInput param1) {
@@ -143,13 +175,17 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
     private void _worldXFunc(ICustomDataInput param1) {
          this.worldX = param1.readShort();
          if(this.worldX < -255 || this.worldX > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldX + ") on element of JobCrafterDirectoryEntryPlayerInfo.worldX.");
+         }
     }
 
     private void _worldYFunc(ICustomDataInput param1) {
          this.worldY = param1.readShort();
          if(this.worldY < -255 || this.worldY > 255)
+         {
             throw new Exception("Forbidden value (" + this.worldY + ") on element of JobCrafterDirectoryEntryPlayerInfo.worldY.");
+         }
     }
 
     private void _mapIdFunc(ICustomDataInput param1) {
@@ -159,7 +195,9 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
     private void _subAreaIdFunc(ICustomDataInput param1) {
          this.subAreaId = param1.readVarUhShort();
          if(this.subAreaId < 0)
+         {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element of JobCrafterDirectoryEntryPlayerInfo.subAreaId.");
+         }
     }
 
     private void _statustreeFunc(ICustomDataInput param1) {
