@@ -4,8 +4,10 @@ import org.graviton.attribute.ActionScriptClass;
 import org.graviton.builder.JavaClassWriter;
 import org.graviton.utils.FileUtils;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.stream.Stream;
 
 /**
  * Created by Botan on 12/08/2017 : 00:47
@@ -13,11 +15,20 @@ import java.nio.file.Paths;
 class ProtocolBuilder {
 
     static void build() throws Exception {
-       // Files.list(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.enum.path")).toURI()))
-         //       .forEach(file -> JavaClassWriter.writeEnum(new ActionScriptClass(FileUtils.readFile(file.toUri()))));
+        buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.enum.path")).toURI()), true);
+        buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.messages.path")).toURI()), false);
+        buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.types.path")).toURI()), false);
+    }
 
-        new ActionScriptClass(FileUtils.readFile(Main.class.getClassLoader().getResource("data/messages/queues/LoginQueueStatusMessage.as").toURI()));
-
+    private static void buildFiles(Path path, boolean enumeration) throws IOException {
+        Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) throws IOException {
+                if (!attributes.isDirectory())
+                    JavaClassWriter.write(new ActionScriptClass(FileUtils.readFile(file.toUri())), enumeration);
+                return FileVisitResult.CONTINUE;
+            }
+        });
     }
 
 }

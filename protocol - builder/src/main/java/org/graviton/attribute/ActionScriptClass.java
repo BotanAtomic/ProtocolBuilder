@@ -3,10 +3,13 @@ package org.graviton.attribute;
 import lombok.Data;
 import org.graviton.utils.StringUtils;
 
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static org.graviton.attribute.ActionScriptVariable.resolveVariableType;
 
 /**
  * Created by Botan on 12/08/2017 : 19:51
@@ -14,13 +17,16 @@ import java.util.stream.Stream;
 
 @Data
 public class ActionScriptClass {
-    private String name, implementedClass, extendsClass;
+    private String name, implementedClass, extendsClass, packageName;
     private List<ActionScriptVariable> variables;
     private List<ActionScriptFunction> functions;
+    private List<String> importLines = new ArrayList<>();
 
     public ActionScriptClass(String content) {
         this.name = getName(content);
         this.extendsClass = getExtendsClass(content);
+        this.implementedClass = getImplementedClass(content);
+        this.packageName = StringUtils.splitCharacter(content, '\n', 1)[0] + ";";
         this.variables = getVariables(content);
         this.functions = getFunctions(content);
     }
@@ -37,6 +43,13 @@ public class ActionScriptClass {
         return classData.split("extends ")[1].split(" ")[0];
     }
 
+    private String getImplementedClass(String content) {
+        String classData = content.split(this.name)[1];
+        if (!classData.contains("implements"))
+            return "";
+        return classData.split("implements ")[1].split(" ")[0].replaceAll("\\r|\\n", "");
+    }
+
     private List<ActionScriptVariable> getVariables(String content) {
         List<ActionScriptVariable> variables = new ArrayList<>();
         String classData = StringUtils.splitCharacter(content, '{', 2)[1].substring(1).trim();
@@ -48,13 +61,14 @@ public class ActionScriptClass {
             String type = Stream.of((":" + variable.split(":")[1]).split(" "))
                     .filter(split -> split.contains(":")).findFirst().orElse("").substring(1);
 
-            variables.add(new ActionScriptVariable(type, name, variable.split(" =")[1].trim()));
+            variables.add(new ActionScriptVariable(type, name, variable.split(" =").length < 2 ? "" : variable.split(" =")[1].trim()));
         });
 
         return variables;
     }
 
     private List<ActionScriptFunction> getFunctions(String content) {
+        List<ActionScriptFunction> functions = new ArrayList<>();
         Map<Integer, String> lines = new TreeMap<>();
         AtomicInteger lineCounter = new AtomicInteger();
 
@@ -68,19 +82,32 @@ public class ActionScriptClass {
         Stream.of(content.split("\n")).forEach(line -> {
             lineCounter.incrementAndGet();
 
-            if (line.contains("function") && line.contains(":")) {
-                List<ActionScriptVariable> constructorVariables = new ArrayList<>();
-                boolean isPublic = line.contains("public");
+            if (line.contains("import")) {
+                if (line.contains("ankamagames"))
+                    importLines.add(line.trim() + "\n");
+            } else if (line.contains("function") && line.contains(":")) {
+                ActionScriptFunction function = new ActionScriptFunction();
                 String[] functionData = formatFunction(line).split(" : ");
                 String functionName = functionData[0];
-                String type = functionData[1];
 
+                function.setPublic(line.contains("public"));
+                function.setType(resolveVariableType(functionData[1]));
+
+                StringBuilder functionConstructor = new StringBuilder("(");
                 if (functionName.contains(":")) {
                     Stream.of(functionName.substring(0, functionName.length() - 1).split("\\(")[1].split(",")).forEach(variable -> {
                         String[] variableData = variable.split(":");
-                        constructorVariables.add(new ActionScriptVariable(variableData[1], variableData[0], ""));
+
+                        if (variableData[1].contains(" = "))
+                            variableData[1] = variableData[1].split(" = ")[0];
+
+                        functionConstructor.append(resolveVariableType(variableData[1])).append(" ").append(variableData[0]).append(",");
                     });
+                    function.setName(functionName.split("\\(")[0] + functionConstructor.substring(0, functionConstructor.length() - 1) + ")");
+                } else {
+                    function.setName(functionName);
                 }
+
 
                 List<String> functionLines = new LinkedList<>();
                 final AtomicInteger functionLineCounter = new AtomicInteger(0);
@@ -91,32 +118,50 @@ public class ActionScriptClass {
                         break;
                 }
 
-                System.err.println("Function content : " + functionName);
                 IntStream.range(lineCounter.get() + 1, lineCounter.get() + functionLineCounter.get()).forEach(i -> {
                     String currentLine = lines.get(i);
                     if (StringUtils.countRealCharacter(currentLine) > 2)
                         functionLines.add(formatFunctionLine(lines.get(i)));
                 });
-                functionLines.forEach(System.err::println);
-                System.err.println("END \n\n");
+
+                function.setFunctionLines(functionLines);
+
+                functions.add(function);
             }
         });
 
 
-        return null;
+        return functions;
     }
 
     private String formatFunctionLine(String line) {
         String finalLine = line;
-        if(finalLine.contains("var")) {
-            String
+        if (finalLine.contains("var ")) {
+            String data = finalLine.split("var ")[1];
+            if (data.contains("=")) {
+                String[] variableData = data.split(" = ");
+                finalLine = "         " + resolveVariableType(variableData[0].split(":")[1]) + " " + variableData[0].split(":")[0] + " = " + variableData[1];
+            } else {
+                finalLine = data.split(":")[1] + " " + data.split(":")[0] + ";";
+            }
+        } else if (finalLine.contains("()")) { // FUCKING FUNCTION
+            //TODO : function
         }
+
+        if (finalLine.contains("new Error")) {
+            importLines.add("import java.lang.Exception;\n");
+        }
+
         return finalLine.replace("new Error", "new Exception");
     }
 
     private String formatFunction(String function) {
         return function.replace("override ", "").replace("public ", "")
                 .replace("private ", "").replace("function ", "").replace("get ", "").trim();
+    }
+
+    public String buildExportPath() {
+        return packageName.substring(8, packageName.length() - 1).replace(".", File.separator) + File.separator;
     }
 
 }

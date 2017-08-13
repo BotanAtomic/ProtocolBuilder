@@ -11,8 +11,7 @@ import java.util.List;
 @Data
 public class ActionScriptFunction {
     private String name, type;
-    private List<ActionScriptVariable> variables, constructorVariables;
     private List<String> functionLines;
-
+    private boolean isPublic;
 
 }
