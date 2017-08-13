@@ -16,7 +16,7 @@ public class ActionScriptVariable {
         this.value = value;
     }
 
-    public static String resolveVariableType(String type) {
+    static String resolveVariableType(String type) {
         switch (type) {
             case "uint32":
                 return "long";
@@ -27,6 +27,6 @@ public class ActionScriptVariable {
             default:
                 //System.err.println("Not supported variable type : " + type);
         }
-        return type;
+        return type.replace("Vector.", "Vector");
     }
 }

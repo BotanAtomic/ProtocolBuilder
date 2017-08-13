@@ -5,6 +5,7 @@ import org.graviton.utils.StringUtils;
 
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -51,18 +52,21 @@ public class ActionScriptClass {
     }
 
     private List<ActionScriptVariable> getVariables(String content) {
-        List<ActionScriptVariable> variables = new ArrayList<>();
-        String classData = StringUtils.splitCharacter(content, '{', 2)[1].substring(1).trim();
-
-        Stream.of(classData.split(";")).filter(data -> !data.contains("function") && data.contains(":")).map(String::trim).forEach(variable -> {
-            String name = Stream.of((variable.split(":")[0] + ":").split(" "))
-                    .filter(split -> split.contains(":")).map(finalValue -> finalValue.substring(0, finalValue.length() - 1)).findFirst().orElse("");
-
-            String type = Stream.of((":" + variable.split(":")[1]).split(" "))
-                    .filter(split -> split.contains(":")).findFirst().orElse("").substring(1);
-
-            variables.add(new ActionScriptVariable(type, name, variable.split(" =").length < 2 ? "" : variable.split(" =")[1].trim()));
+        List<ActionScriptVariable> variables = new LinkedList<>();
+        AtomicBoolean variableArea = new AtomicBoolean(true);
+        Stream.of(content.split("\n")).forEach(line -> {
+            if ((line.contains("var ") || line.contains("const")) && variableArea.get()) {
+                String variable = line.contains("var ") ? line.split("var ")[1] : line.split("const ")[1];
+                String name = variable.split(":")[0];
+                String type = variable.contains("=") ?
+                        variable.substring(0, variable.length() - 2).split(":")[1].split(" = ")[0] :
+                        variable.substring(0, variable.length() - 2).split(":")[1];
+                System.err.println(type);
+                String value = variable.contains("=") ? variable.substring(0, variable.length() - 1).split(" = ")[1] : "";
+                variables.add(new ActionScriptVariable(type, name, value));
+            } else if (line.contains("function")) variableArea.set(false);
         });
+
 
         return variables;
     }

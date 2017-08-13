@@ -15,12 +15,8 @@ public class SystemMessageDisplayMessage extends NetworkMessage implements INetw
     private boolean _isInitialized = false;
     private boolean hangUp = false;
     private int msgId = 0;
-    private Vector.<String> parameters = ;
-    private FuncTree _parameterstree = ;
-    private int _loc2_ = 0;
-    private int _loc2_ = param1.readUnsignedShort();
-    private int _loc3_ = 0;
-    private int _loc3_ = 0;
+    private Vector<String> parameters;
+    private FuncTree _parameterstree;
 
 
     public boolean isInitialized() {
@@ -31,7 +27,7 @@ public class SystemMessageDisplayMessage extends NetworkMessage implements INetw
          return 189;
     }
 
-    public SystemMessageDisplayMessage initSystemMessageDisplayMessage(boolean param1,int  param2,Vector.<String>  param3) {
+    public SystemMessageDisplayMessage initSystemMessageDisplayMessage(boolean param1,int  param2,Vector<String>  param3) {
          this.hangUp = param1;
          this.msgId = param2;
          this.parameters = param3;

@@ -15,9 +15,13 @@ import java.util.stream.Stream;
 class ProtocolBuilder {
 
     static void build() throws Exception {
-        buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.enum.path")).toURI()), true);
-        buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.messages.path")).toURI()), false);
-        buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.types.path")).toURI()), false);
+     //   buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.enum.path")).toURI()), true);
+       // buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.messages.path")).toURI()), false);
+        //buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.types.path")).toURI()), false);
+        JavaClassWriter.write(new ActionScriptClass(FileUtils.readFile(
+                Main.class.getClassLoader().getResource("messages/server/basic/SystemMessageDisplayMessage.as").toURI()
+        )), false);
+
     }
 
     private static void buildFiles(Path path, boolean enumeration) throws IOException {

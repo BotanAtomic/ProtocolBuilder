@@ -37,6 +37,7 @@ public class JavaClassWriter {
         builder.append("    }\n\n");
         builder.append("}");
 
+        System.err.println(builder.toString());
         FileUtils.writeFile(builder.toString(), actionScriptClass.buildExportPath() + actionScriptClass.getName() + ".java");
     }
 
@@ -55,7 +56,7 @@ public class JavaClassWriter {
 
         builder.append("{\n\n");
         actionScriptClass.getVariables().forEach(variable -> builder.append("    private ").append(variable.getType()).append(" ")
-                .append(variable.getName()).append(" = ").append(variable.getValue()).append(";\n"));
+                .append(variable.getName()).append(variable.getValue().isEmpty() ? ";" : " = " + variable.getValue()).append("\n"));
 
         builder.append("\n\n");
         actionScriptClass.getFunctions().forEach(function -> {
@@ -66,7 +67,6 @@ public class JavaClassWriter {
             builder.append("    }\n\n");
         });
         builder.append("}");
-
         FileUtils.writeFile(builder.toString(), actionScriptClass.buildExportPath() + actionScriptClass.getName() + ".java");
     }
 
