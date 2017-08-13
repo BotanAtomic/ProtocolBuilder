@@ -15,7 +15,17 @@ public class GameRolePlayDelayedObjectUseMessage extends GameRolePlayDelayedActi
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayDelayedActionMessage(param1);
+         if(this.delayedCharacterId < -9.007199254740992E15 || this.delayedCharacterId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.delayedCharacterId + ") on element delayedCharacterId.");
+         }
+         param1.writeDouble(this.delayedCharacterId);
+         param1.writeByte(this.delayTypeId);
+         if(this.delayEndTime < 0 || this.delayEndTime > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.delayEndTime + ") on element delayEndTime.");
+         }
+         param1.writeDouble(this.delayEndTime);
          if(this.objectGID < 0)
          {
             throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");

@@ -12,9 +12,14 @@ public class ServerSessionConstantInteger extends ServerSessionConstant implemen
 
 
     public void serialize(ICustomDataOutput param1) {
-         param1.writeInt(this.value);
-         param1.writeInt(this.value);
-         super.serializeAs_ServerSessionConstant(param1);
+         param1.writeShort(this.variables.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.variables.length)
+         {
+            param1.writeShort((this.variables[_loc2_] as ServerSessionConstant).getTypeId());
+            (this.variables[_loc2_] as ServerSessionConstant).serialize(param1);
+            _loc2_++;
+         }
          param1.writeInt(this.value);
     }
 

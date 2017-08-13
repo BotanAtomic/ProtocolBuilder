@@ -16,7 +16,16 @@ public class EmotePlayMassiveMessage extends EmotePlayAbstractMessage implements
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_EmotePlayAbstractMessage(param1);
+         if(this.emoteId < 0 || this.emoteId > 255)
+         {
+            throw new Exception("Forbidden value (" + this.emoteId + ") on element emoteId.");
+         }
+         param1.writeByte(this.emoteId);
+         if(this.emoteStartTime < -9.007199254740992E15 || this.emoteStartTime > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.emoteStartTime + ") on element emoteStartTime.");
+         }
+         param1.writeDouble(this.emoteStartTime);
          param1.writeShort(this.actorIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.actorIds.length)

@@ -16,7 +16,8 @@ public class ChatClientMultiWithObjectMessage extends ChatClientMultiMessage imp
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ChatClientMultiMessage(param1);
+         super.serializeAs_ChatAbstractClientMessage(param1);
+         param1.writeByte(this.channel);
          param1.writeShort(this.objects.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objects.length)

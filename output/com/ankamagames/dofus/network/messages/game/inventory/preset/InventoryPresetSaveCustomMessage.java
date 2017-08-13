@@ -19,7 +19,16 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage 
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPresetSaveMessage(param1);
+         if(this.presetId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
+         }
+         param1.writeByte(this.presetId);
+         if(this.symbolId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.symbolId + ") on element symbolId.");
+         }
+         param1.writeByte(this.symbolId);
          param1.writeShort(this.itemsPositions.length);
          int _loc2_ = 0;
          while(_loc2_ < this.itemsPositions.length)

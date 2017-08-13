@@ -14,7 +14,6 @@ public class TaxCollectorWaitingForHelpInformations extends TaxCollectorCompleme
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_TaxCollectorComplementaryInformations(param1);
          this.waitingForHelpInfo.serializeAs_ProtectedEntityWaitingForHelpInfo(param1);
     }
 

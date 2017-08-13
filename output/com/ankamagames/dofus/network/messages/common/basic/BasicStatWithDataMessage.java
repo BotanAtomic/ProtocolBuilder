@@ -17,7 +17,12 @@ public class BasicStatWithDataMessage extends BasicStatMessage implements INetwo
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_BasicStatMessage(param1);
+         if(this.timeSpent < 0 || this.timeSpent > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.timeSpent + ") on element timeSpent.");
+         }
+         param1.writeDouble(this.timeSpent);
+         param1.writeVarShort(this.statId);
          param1.writeShort(this.datas.length);
          int _loc2_ = 0;
          while(_loc2_ < this.datas.length)

@@ -20,19 +20,6 @@ public class HumanOptionTitle extends HumanOption implements INetworkType {
          }
          param1.writeVarShort(this.titleId);
          param1.writeUTF(this.titleParam);
-         if(this.titleId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.titleId + ") on element titleId.");
-         }
-         param1.writeVarShort(this.titleId);
-         param1.writeUTF(this.titleParam);
-         super.serializeAs_HumanOption(param1);
-         if(this.titleId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.titleId + ") on element titleId.");
-         }
-         param1.writeVarShort(this.titleId);
-         param1.writeUTF(this.titleParam);
     }
 
     public void deserialize(ICustomDataInput param1) {

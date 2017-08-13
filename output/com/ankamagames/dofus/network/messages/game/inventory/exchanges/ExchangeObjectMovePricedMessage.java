@@ -15,7 +15,12 @@ public class ExchangeObjectMovePricedMessage extends ExchangeObjectMoveMessage i
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeObjectMoveMessage(param1);
+         if(this.objectUID < 0)
+         {
+            throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
+         }
+         param1.writeVarInt(this.objectUID);
+         param1.writeVarInt(this.quantity);
          if(this.price < 0 || this.price > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.price + ") on element price.");

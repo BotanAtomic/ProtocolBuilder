@@ -20,19 +20,6 @@ public class TreasureHuntStepFollowDirectionToPOI extends TreasureHuntStep imple
             throw new Exception("Forbidden value (" + this.poiLabelId + ") on element poiLabelId.");
          }
          param1.writeVarShort(this.poiLabelId);
-         param1.writeByte(this.direction);
-         if(this.poiLabelId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.poiLabelId + ") on element poiLabelId.");
-         }
-         param1.writeVarShort(this.poiLabelId);
-         super.serializeAs_TreasureHuntStep(param1);
-         param1.writeByte(this.direction);
-         if(this.poiLabelId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.poiLabelId + ") on element poiLabelId.");
-         }
-         param1.writeVarShort(this.poiLabelId);
     }
 
     public void deserialize(ICustomDataInput param1) {

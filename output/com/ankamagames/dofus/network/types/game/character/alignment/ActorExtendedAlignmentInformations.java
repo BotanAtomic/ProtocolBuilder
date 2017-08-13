@@ -16,7 +16,22 @@ public class ActorExtendedAlignmentInformations extends ActorAlignmentInformatio
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ActorAlignmentInformations(param1);
+         param1.writeByte(this.alignmentSide);
+         if(this.alignmentValue < 0)
+         {
+            throw new Exception("Forbidden value (" + this.alignmentValue + ") on element alignmentValue.");
+         }
+         param1.writeByte(this.alignmentValue);
+         if(this.alignmentGrade < 0)
+         {
+            throw new Exception("Forbidden value (" + this.alignmentGrade + ") on element alignmentGrade.");
+         }
+         param1.writeByte(this.alignmentGrade);
+         if(this.characterPower < -9.007199254740992E15 || this.characterPower > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.characterPower + ") on element characterPower.");
+         }
+         param1.writeDouble(this.characterPower);
          if(this.honor < 0 || this.honor > 20000)
          {
             throw new Exception("Forbidden value (" + this.honor + ") on element honor.");

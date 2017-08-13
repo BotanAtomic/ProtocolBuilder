@@ -17,11 +17,6 @@ public class HumanOptionAlliance extends HumanOption implements INetworkType {
     public void serialize(ICustomDataOutput param1) {
          this.allianceInformations.serializeAs_AllianceInformations(param1);
          param1.writeByte(this.aggressable);
-         this.allianceInformations.serializeAs_AllianceInformations(param1);
-         param1.writeByte(this.aggressable);
-         super.serializeAs_HumanOption(param1);
-         this.allianceInformations.serializeAs_AllianceInformations(param1);
-         param1.writeByte(this.aggressable);
     }
 
     public void deserialize(ICustomDataInput param1) {

@@ -18,7 +18,25 @@ public class GuildInAllianceFactsMessage extends GuildFactsMessage implements IN
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GuildFactsMessage(param1);
+         param1.writeShort(this.infos.getTypeId());
+         this.infos.serialize(param1);
+         if(this.creationDate < 0)
+         {
+            throw new Exception("Forbidden value (" + this.creationDate + ") on element creationDate.");
+         }
+         param1.writeInt(this.creationDate);
+         if(this.nbTaxCollectors < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbTaxCollectors + ") on element nbTaxCollectors.");
+         }
+         param1.writeVarShort(this.nbTaxCollectors);
+         param1.writeShort(this.members.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.members.length)
+         {
+            (this.members[_loc2_] as CharacterMinimalInformations).serializeAs_CharacterMinimalInformations(param1);
+            _loc2_++;
+         }
          this.allianceInfos.serializeAs_BasicNamedAllianceInformations(param1);
     }
 

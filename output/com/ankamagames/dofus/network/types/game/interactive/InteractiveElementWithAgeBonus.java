@@ -13,17 +13,7 @@ public class InteractiveElementWithAgeBonus extends InteractiveElement implement
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.ageBonus < -1 || this.ageBonus > 1000)
-         {
-            throw new Exception("Forbidden value (" + this.ageBonus + ") on element ageBonus.");
-         }
-         param1.writeShort(this.ageBonus);
-         if(this.ageBonus < -1 || this.ageBonus > 1000)
-         {
-            throw new Exception("Forbidden value (" + this.ageBonus + ") on element ageBonus.");
-         }
-         param1.writeShort(this.ageBonus);
-         super.serializeAs_InteractiveElement(param1);
+         this.interactiveElement.serializeAs_InteractiveElement(param1);
          if(this.ageBonus < -1 || this.ageBonus > 1000)
          {
             throw new Exception("Forbidden value (" + this.ageBonus + ") on element ageBonus.");

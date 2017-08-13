@@ -53,7 +53,7 @@ public class JavaClassWriter {
                 .append(variable.getName()).append(variable.getValue().isEmpty() ? ";" : " = " + variable.getValue()).append("\n"));
 
         builder.append("\n\n");
-        actionScriptClass.getFunctions().forEach(function -> {
+        actionScriptClass.getLogicFunctions().forEach(function -> {
             builder.append("    ").append(function.isPublic() ? "public " : "private ").append(function.getType()).append(" ").append(function.getName());
             builder.append(" {\n");
 

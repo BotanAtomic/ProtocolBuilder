@@ -14,7 +14,12 @@ public class CharacterMinimalPlusLookInformations extends CharacterMinimalInform
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_CharacterMinimalInformations(param1);
+         super.serializeAs_CharacterBasicMinimalInformations(param1);
+         if(this.level < 1 || this.level > 206)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
          this.entityLook.serializeAs_EntityLook(param1);
     }
 

@@ -14,7 +14,7 @@ public class GameRolePlayNamedActorInformations extends GameRolePlayActorInforma
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayActorInformations(param1);
+         super.serializeAs_GameContextActorInformations(param1);
          param1.writeUTF(this.name);
     }
 

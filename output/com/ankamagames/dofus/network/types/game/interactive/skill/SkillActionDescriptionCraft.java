@@ -13,17 +13,11 @@ public class SkillActionDescriptionCraft extends SkillActionDescription implemen
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.probability < 0)
+         if(this.skillId < 0)
          {
-            throw new Exception("Forbidden value (" + this.probability + ") on element probability.");
+            throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
          }
-         param1.writeByte(this.probability);
-         if(this.probability < 0)
-         {
-            throw new Exception("Forbidden value (" + this.probability + ") on element probability.");
-         }
-         param1.writeByte(this.probability);
-         super.serializeAs_SkillActionDescription(param1);
+         param1.writeVarShort(this.skillId);
          if(this.probability < 0)
          {
             throw new Exception("Forbidden value (" + this.probability + ") on element probability.");

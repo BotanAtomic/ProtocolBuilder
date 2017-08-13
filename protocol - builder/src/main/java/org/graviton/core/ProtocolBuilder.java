@@ -24,6 +24,8 @@ class ProtocolBuilder {
         buildFiles(Paths.get(Main.class.getClassLoader().getResource(System.getProperty("default.types.path")).toURI()), false);
 
         //protocolClass.add(new ActionScriptClass(FileUtils.readFile(Main.class.getClassLoader().getResource("messages/authorized/AdminCommandMessage.as").toURI())));
+        //protocolClass.add(new ActionScriptClass(FileUtils.readFile(Main.class.getClassLoader().getResource("messages/authorized/AdminQuietCommandMessage.as").toURI())));
+
         protocolClass.forEach(c -> JavaClassWriter.writeClass(c.format(protocolClass)));
     }
 

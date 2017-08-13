@@ -17,7 +17,7 @@ public class GameRolePlayPortalInformations extends GameRolePlayActorInformation
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayActorInformations(param1);
+         super.serializeAs_GameContextActorInformations(param1);
          param1.writeShort(this.portal.getTypeId());
          this.portal.serialize(param1);
     }

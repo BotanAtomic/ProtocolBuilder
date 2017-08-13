@@ -26,29 +26,6 @@ public class HumanOptionObjectUse extends HumanOption implements INetworkType {
             throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
          }
          param1.writeVarShort(this.objectGID);
-         param1.writeByte(this.delayTypeId);
-         if(this.delayEndTime < 0 || this.delayEndTime > 9.007199254740992E15)
-         {
-            throw new Exception("Forbidden value (" + this.delayEndTime + ") on element delayEndTime.");
-         }
-         param1.writeDouble(this.delayEndTime);
-         if(this.objectGID < 0)
-         {
-            throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
-         }
-         param1.writeVarShort(this.objectGID);
-         super.serializeAs_HumanOption(param1);
-         param1.writeByte(this.delayTypeId);
-         if(this.delayEndTime < 0 || this.delayEndTime > 9.007199254740992E15)
-         {
-            throw new Exception("Forbidden value (" + this.delayEndTime + ") on element delayEndTime.");
-         }
-         param1.writeDouble(this.delayEndTime);
-         if(this.objectGID < 0)
-         {
-            throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
-         }
-         param1.writeVarShort(this.objectGID);
     }
 
     public void deserialize(ICustomDataInput param1) {

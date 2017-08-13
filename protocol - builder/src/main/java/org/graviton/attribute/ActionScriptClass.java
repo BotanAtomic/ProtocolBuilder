@@ -159,10 +159,14 @@ public class ActionScriptClass {
 
         Function<String, ActionScriptFunction> extendSearchFunction = s -> {
             ActionScriptClass externalClass = searchClass.apply(extendsClass);
-            if (externalClass == null)
+            if (externalClass == null) {
+                System.err.println("Not found class " + s);
                 return null;
-            else
-                return externalClass.functions.stream().filter(c -> c.getName().contains(s)).findAny().orElse(null);
+            } else
+                return externalClass.functions.stream().filter(c -> {
+                    System.err.println("Search " + s + " / " + c.getName());
+                    return c.getName().contains(s);
+                }).findAny().orElse(null);
         };
 
         Function<String, ActionScriptFunction> implementSearchFunction = s -> {
@@ -170,7 +174,9 @@ public class ActionScriptClass {
             if (externalClass == null)
                 return null;
             else
-                return externalClass.functions.stream().filter(c -> c.getName().contains(s)).findAny().orElse(null);
+                return externalClass.functions.stream().filter(c -> {
+                    return c.getName().contains(s);
+                }).findAny().orElse(null);
         };
 
         IntStream.range(0, 3).forEach(i -> {
@@ -179,7 +185,6 @@ public class ActionScriptClass {
                 if (name.equals("serialize") || name.equals("deserialize")) {
                     new ArrayList<>(function.getFunctionLines()).forEach(functionLine -> {
                         String finalFunctionLine = functionLine.trim();
-
 
                         if (finalFunctionLine.contains("=") || !finalFunctionLine.contains("(") || !finalFunctionLine.contains(")"))
                             return;
@@ -197,6 +202,10 @@ public class ActionScriptClass {
                         ActionScriptFunction internalFunction = root.equals("this") ? internalSearchFunction.apply(externalFunctionName) :
                                 root.equals("super") ? extendSearchFunction.apply(externalFunctionName) : (implementSearchFunction.apply(externalFunctionName));
 
+                        if(root.equals("super")) {
+                            System.err.println(root);
+                        }
+
                         if (internalFunction == null)
                             internalFunction = internalSearchFunction.apply(externalFunctionName);
 
@@ -213,12 +222,16 @@ public class ActionScriptClass {
             });
         });
 
-        this.functions = functions.stream().filter(function -> {
+
+        return this;
+    }
+
+    public List<ActionScriptFunction> getLogicFunctions() {
+        return functions.stream().filter(function -> {
             String name = function.getName().split("\\(")[0];
             return name.equals("serialize") || name.equals("deserialize");
         }).collect(Collectors.toList());
 
-        return this;
     }
 
 }

@@ -13,17 +13,7 @@ public class ShortcutEmote extends Shortcut implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.emoteId < 0 || this.emoteId > 255)
-         {
-            throw new Exception("Forbidden value (" + this.emoteId + ") on element emoteId.");
-         }
-         param1.writeByte(this.emoteId);
-         if(this.emoteId < 0 || this.emoteId > 255)
-         {
-            throw new Exception("Forbidden value (" + this.emoteId + ") on element emoteId.");
-         }
-         param1.writeByte(this.emoteId);
-         super.serializeAs_Shortcut(param1);
+         param1.writeByte(this.error);
          if(this.emoteId < 0 || this.emoteId > 255)
          {
             throw new Exception("Forbidden value (" + this.emoteId + ") on element emoteId.");

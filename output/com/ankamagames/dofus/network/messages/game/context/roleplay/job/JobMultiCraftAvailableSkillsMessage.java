@@ -17,7 +17,7 @@ public class JobMultiCraftAvailableSkillsMessage extends JobAllowMultiCraftReque
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_JobAllowMultiCraftRequestMessage(param1);
+         param1.writeBoolean(this.enabled);
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");

@@ -26,7 +26,11 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyMessage(param1);
+         if(this.partyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
+         }
+         param1.writeVarInt(this.partyId);
          param1.writeByte(this.partyType);
          if(this.partyLeaderId < 0 || this.partyLeaderId > 9.007199254740992E15)
          {

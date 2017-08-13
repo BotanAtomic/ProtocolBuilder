@@ -29,7 +29,14 @@ public class FriendOnlineInformations extends FriendInformations implements INet
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_FriendInformations(param1);
+         super.serializeAs_AbstractContactInformations(param1);
+         param1.writeByte(this.playerState);
+         if(this.lastConnection < 0)
+         {
+            throw new Exception("Forbidden value (" + this.lastConnection + ") on element lastConnection.");
+         }
+         param1.writeVarShort(this.lastConnection);
+         param1.writeInt(this.achievementPoints);
          int _loc2_ = 0;
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.sex);
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.havenBagShared);

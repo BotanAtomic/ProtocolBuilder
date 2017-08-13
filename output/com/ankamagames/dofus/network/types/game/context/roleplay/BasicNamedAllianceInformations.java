@@ -12,7 +12,13 @@ public class BasicNamedAllianceInformations extends BasicAllianceInformations im
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_BasicAllianceInformations(param1);
+         super.serializeAs_AbstractSocialGroupInfos(param1);
+         if(this.allianceId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
+         }
+         param1.writeVarInt(this.allianceId);
+         param1.writeUTF(this.allianceTag);
          param1.writeUTF(this.allianceName);
     }
 

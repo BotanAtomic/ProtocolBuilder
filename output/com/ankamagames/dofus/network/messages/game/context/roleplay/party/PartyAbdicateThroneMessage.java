@@ -15,7 +15,11 @@ public class PartyAbdicateThroneMessage extends AbstractPartyMessage implements 
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyMessage(param1);
+         if(this.partyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
+         }
+         param1.writeVarInt(this.partyId);
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");

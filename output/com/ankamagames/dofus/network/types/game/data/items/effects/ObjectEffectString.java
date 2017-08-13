@@ -12,9 +12,11 @@ public class ObjectEffectString extends ObjectEffect implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         param1.writeUTF(this.value);
-         param1.writeUTF(this.value);
-         super.serializeAs_ObjectEffect(param1);
+         if(this.actionId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
+         }
+         param1.writeVarShort(this.actionId);
          param1.writeUTF(this.value);
     }
 

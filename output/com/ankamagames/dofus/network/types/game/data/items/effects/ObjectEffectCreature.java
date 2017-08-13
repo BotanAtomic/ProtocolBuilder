@@ -13,17 +13,11 @@ public class ObjectEffectCreature extends ObjectEffect implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.monsterFamilyId < 0)
+         if(this.actionId < 0)
          {
-            throw new Exception("Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");
+            throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
          }
-         param1.writeVarShort(this.monsterFamilyId);
-         if(this.monsterFamilyId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");
-         }
-         param1.writeVarShort(this.monsterFamilyId);
-         super.serializeAs_ObjectEffect(param1);
+         param1.writeVarShort(this.actionId);
          if(this.monsterFamilyId < 0)
          {
             throw new Exception("Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");

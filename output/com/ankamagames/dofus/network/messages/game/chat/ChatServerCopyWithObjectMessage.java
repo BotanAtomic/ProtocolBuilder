@@ -16,7 +16,13 @@ public class ChatServerCopyWithObjectMessage extends ChatServerCopyMessage imple
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ChatServerCopyMessage(param1);
+         super.serializeAs_ChatAbstractServerMessage(param1);
+         if(this.receiverId < 0 || this.receiverId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.receiverId + ") on element receiverId.");
+         }
+         param1.writeVarLong(this.receiverId);
+         param1.writeUTF(this.receiverName);
          param1.writeShort(this.objects.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objects.length)

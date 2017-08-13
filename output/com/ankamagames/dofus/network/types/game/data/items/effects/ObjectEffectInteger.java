@@ -13,17 +13,11 @@ public class ObjectEffectInteger extends ObjectEffect implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.value < 0)
+         if(this.actionId < 0)
          {
-            throw new Exception("Forbidden value (" + this.value + ") on element value.");
+            throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
          }
-         param1.writeVarInt(this.value);
-         if(this.value < 0)
-         {
-            throw new Exception("Forbidden value (" + this.value + ") on element value.");
-         }
-         param1.writeVarInt(this.value);
-         super.serializeAs_ObjectEffect(param1);
+         param1.writeVarShort(this.actionId);
          if(this.value < 0)
          {
             throw new Exception("Forbidden value (" + this.value + ") on element value.");

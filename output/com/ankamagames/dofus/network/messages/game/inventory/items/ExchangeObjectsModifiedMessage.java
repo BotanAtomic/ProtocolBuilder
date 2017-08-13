@@ -17,7 +17,7 @@ public class ExchangeObjectsModifiedMessage extends ExchangeObjectMessage implem
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeObjectMessage(param1);
+         param1.writeBoolean(this.remote);
          param1.writeShort(this.object.length);
          int _loc2_ = 0;
          while(_loc2_ < this.object.length)

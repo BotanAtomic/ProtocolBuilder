@@ -15,7 +15,16 @@ public class ObtainedItemWithBonusMessage extends ObtainedItemMessage implements
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ObtainedItemMessage(param1);
+         if(this.genericId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.genericId + ") on element genericId.");
+         }
+         param1.writeVarShort(this.genericId);
+         if(this.baseQuantity < 0)
+         {
+            throw new Exception("Forbidden value (" + this.baseQuantity + ") on element baseQuantity.");
+         }
+         param1.writeVarInt(this.baseQuantity);
          if(this.bonusQuantity < 0)
          {
             throw new Exception("Forbidden value (" + this.bonusQuantity + ") on element bonusQuantity.");

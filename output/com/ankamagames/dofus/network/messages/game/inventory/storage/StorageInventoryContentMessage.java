@@ -15,7 +15,18 @@ public class StorageInventoryContentMessage extends InventoryContentMessage impl
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_InventoryContentMessage(param1);
+         param1.writeShort(this.objects.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.objects.length)
+         {
+            (this.objects[_loc2_] as ObjectItem).serializeAs_ObjectItem(param1);
+            _loc2_++;
+         }
+         if(this.kamas < 0 || this.kamas > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.kamas + ") on element kamas.");
+         }
+         param1.writeVarLong(this.kamas);
     }
 
     public void deserialize(ICustomDataInput param1) {

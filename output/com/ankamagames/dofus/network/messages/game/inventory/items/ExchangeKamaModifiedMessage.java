@@ -16,7 +16,7 @@ public class ExchangeKamaModifiedMessage extends ExchangeObjectMessage implement
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeObjectMessage(param1);
+         param1.writeBoolean(this.remote);
          if(this.quantity < 0 || this.quantity > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");

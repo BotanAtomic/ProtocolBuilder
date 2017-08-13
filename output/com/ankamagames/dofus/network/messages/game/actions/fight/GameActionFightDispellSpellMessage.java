@@ -15,7 +15,12 @@ public class GameActionFightDispellSpellMessage extends GameActionFightDispellMe
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameActionFightDispellMessage(param1);
+         super.serializeAs_AbstractGameActionMessage(param1);
+         if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
          if(this.spellId < 0)
          {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");

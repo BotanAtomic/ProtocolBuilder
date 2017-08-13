@@ -21,7 +21,9 @@ public class PartyInvitationMemberInformations extends CharacterBaseInformations
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_CharacterBaseInformations(param1);
+         super.serializeAs_CharacterMinimalPlusLookInformations(param1);
+         param1.writeByte(this.breed);
+         param1.writeBoolean(this.sex);
          if(this.worldX < -255 || this.worldX > 255)
          {
             throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");

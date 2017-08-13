@@ -16,7 +16,7 @@ public class ExchangeObjectRemovedMessage extends ExchangeObjectMessage implemen
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeObjectMessage(param1);
+         param1.writeBoolean(this.remote);
          if(this.objectUID < 0)
          {
             throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");

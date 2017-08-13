@@ -20,7 +20,7 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage imple
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeStartedMessage(param1);
+         param1.writeByte(this.exchangeType);
          if(this.firstCharacterId < -9.007199254740992E15 || this.firstCharacterId > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.firstCharacterId + ") on element firstCharacterId.");

@@ -13,17 +13,11 @@ public class SkillActionDescriptionTimed extends SkillActionDescription implemen
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.time < 0 || this.time > 255)
+         if(this.skillId < 0)
          {
-            throw new Exception("Forbidden value (" + this.time + ") on element time.");
+            throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
          }
-         param1.writeByte(this.time);
-         if(this.time < 0 || this.time > 255)
-         {
-            throw new Exception("Forbidden value (" + this.time + ") on element time.");
-         }
-         param1.writeByte(this.time);
-         super.serializeAs_SkillActionDescription(param1);
+         param1.writeVarShort(this.skillId);
          if(this.time < 0 || this.time > 255)
          {
             throw new Exception("Forbidden value (" + this.time + ") on element time.");

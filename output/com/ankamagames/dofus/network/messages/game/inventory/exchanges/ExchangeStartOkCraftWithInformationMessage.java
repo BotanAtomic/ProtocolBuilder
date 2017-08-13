@@ -15,7 +15,6 @@ public class ExchangeStartOkCraftWithInformationMessage extends ExchangeStartOkC
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeStartOkCraftMessage(param1);
          if(this.skillId < 0)
          {
             throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");

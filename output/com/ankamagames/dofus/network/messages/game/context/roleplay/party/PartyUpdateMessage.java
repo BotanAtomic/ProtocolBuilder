@@ -17,7 +17,7 @@ public class PartyUpdateMessage extends AbstractPartyEventMessage implements INe
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyEventMessage(param1);
+         super.serializeAs_AbstractPartyMessage(param1);
          param1.writeShort(this.memberInformations.getTypeId());
          this.memberInformations.serialize(param1);
     }

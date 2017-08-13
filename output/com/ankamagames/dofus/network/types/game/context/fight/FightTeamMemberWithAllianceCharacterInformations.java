@@ -14,7 +14,13 @@ public class FightTeamMemberWithAllianceCharacterInformations extends FightTeamM
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_FightTeamMemberCharacterInformations(param1);
+         super.serializeAs_FightTeamMemberInformations(param1);
+         param1.writeUTF(this.name);
+         if(this.level < 0 || this.level > 255)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
          this.allianceInfos.serializeAs_BasicAllianceInformations(param1);
     }
 

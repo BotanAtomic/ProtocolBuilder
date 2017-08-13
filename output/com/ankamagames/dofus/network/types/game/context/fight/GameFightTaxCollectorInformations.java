@@ -17,7 +17,7 @@ public class GameFightTaxCollectorInformations extends GameFightAIInformations i
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameFightAIInformations(param1);
+         super.serializeAs_GameFightFighterInformations(param1);
          if(this.firstNameId < 0)
          {
             throw new Exception("Forbidden value (" + this.firstNameId + ") on element firstNameId.");

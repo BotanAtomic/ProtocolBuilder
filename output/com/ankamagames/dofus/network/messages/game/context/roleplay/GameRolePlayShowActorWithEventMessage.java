@@ -16,7 +16,8 @@ public class GameRolePlayShowActorWithEventMessage extends GameRolePlayShowActor
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayShowActorMessage(param1);
+         param1.writeShort(this.informations.getTypeId());
+         this.informations.serialize(param1);
          if(this.actorEventId < 0)
          {
             throw new Exception("Forbidden value (" + this.actorEventId + ") on element actorEventId.");

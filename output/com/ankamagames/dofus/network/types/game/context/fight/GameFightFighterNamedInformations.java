@@ -17,7 +17,27 @@ public class GameFightFighterNamedInformations extends GameFightFighterInformati
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameFightFighterInformations(param1);
+         super.serializeAs_GameContextActorInformations(param1);
+         param1.writeByte(this.teamId);
+         if(this.wave < 0)
+         {
+            throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
+         }
+         param1.writeByte(this.wave);
+         param1.writeBoolean(this.alive);
+         param1.writeShort(this.stats.getTypeId());
+         this.stats.serialize(param1);
+         param1.writeShort(this.previousPositions.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.previousPositions.length)
+         {
+            if(this.previousPositions[_loc2_] < 0 || this.previousPositions[_loc2_] > 559)
+            {
+               throw new Exception("Forbidden value (" + this.previousPositions[_loc2_] + ") on element 5 (starting at 1) of previousPositions.");
+            }
+            param1.writeVarShort(this.previousPositions[_loc2_]);
+            _loc2_++;
+         }
          param1.writeUTF(this.name);
          this.status.serializeAs_PlayerStatus(param1);
     }

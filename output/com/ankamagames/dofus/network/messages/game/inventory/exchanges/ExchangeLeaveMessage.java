@@ -15,7 +15,7 @@ public class ExchangeLeaveMessage extends LeaveDialogMessage implements INetwork
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_LeaveDialogMessage(param1);
+         param1.writeByte(this.dialogType);
          param1.writeBoolean(this.success);
     }
 

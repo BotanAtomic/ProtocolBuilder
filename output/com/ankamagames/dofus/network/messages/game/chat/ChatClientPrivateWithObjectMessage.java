@@ -16,7 +16,8 @@ public class ChatClientPrivateWithObjectMessage extends ChatClientPrivateMessage
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ChatClientPrivateMessage(param1);
+         super.serializeAs_ChatAbstractClientMessage(param1);
+         param1.writeUTF(this.receiver);
          param1.writeShort(this.objects.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objects.length)

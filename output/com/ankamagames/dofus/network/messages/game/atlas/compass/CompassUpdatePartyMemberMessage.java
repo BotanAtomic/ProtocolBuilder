@@ -17,7 +17,9 @@ public class CompassUpdatePartyMemberMessage extends CompassUpdateMessage implem
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_CompassUpdateMessage(param1);
+         param1.writeByte(this.type);
+         param1.writeShort(this.coords.getTypeId());
+         this.coords.serialize(param1);
          if(this.memberId < 0 || this.memberId > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.memberId + ") on element memberId.");

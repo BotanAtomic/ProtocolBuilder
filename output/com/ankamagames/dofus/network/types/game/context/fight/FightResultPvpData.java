@@ -17,7 +17,6 @@ public class FightResultPvpData extends FightResultAdditionalData implements INe
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_FightResultAdditionalData(param1);
          if(this.grade < 0 || this.grade > 255)
          {
             throw new Exception("Forbidden value (" + this.grade + ") on element grade.");

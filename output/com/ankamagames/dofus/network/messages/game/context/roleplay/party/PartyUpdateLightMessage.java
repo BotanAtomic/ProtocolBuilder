@@ -19,7 +19,7 @@ public class PartyUpdateLightMessage extends AbstractPartyEventMessage implement
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyEventMessage(param1);
+         super.serializeAs_AbstractPartyMessage(param1);
          if(this.id < 0 || this.id > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.id + ") on element id.");

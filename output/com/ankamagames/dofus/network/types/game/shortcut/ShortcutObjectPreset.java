@@ -13,17 +13,7 @@ public class ShortcutObjectPreset extends ShortcutObject implements INetworkType
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.presetId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
-         }
-         param1.writeByte(this.presetId);
-         if(this.presetId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
-         }
-         param1.writeByte(this.presetId);
-         super.serializeAs_ShortcutObject(param1);
+         super.serializeAs_Shortcut(param1);
          if(this.presetId < 0)
          {
             throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");

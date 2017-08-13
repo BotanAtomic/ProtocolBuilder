@@ -13,17 +13,7 @@ public class ShortcutSmiley extends Shortcut implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.smileyId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
-         }
-         param1.writeVarShort(this.smileyId);
-         if(this.smileyId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
-         }
-         param1.writeVarShort(this.smileyId);
-         super.serializeAs_Shortcut(param1);
+         param1.writeByte(this.error);
          if(this.smileyId < 0)
          {
             throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");

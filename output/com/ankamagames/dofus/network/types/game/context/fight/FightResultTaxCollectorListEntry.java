@@ -17,7 +17,13 @@ public class FightResultTaxCollectorListEntry extends FightResultFighterListEntr
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_FightResultFighterListEntry(param1);
+         super.serializeAs_FightResultListEntry(param1);
+         if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeDouble(this.id);
+         param1.writeBoolean(this.alive);
          if(this.level < 1 || this.level > 200)
          {
             throw new Exception("Forbidden value (" + this.level + ") on element level.");

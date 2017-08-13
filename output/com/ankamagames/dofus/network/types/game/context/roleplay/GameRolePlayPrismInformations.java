@@ -17,7 +17,7 @@ public class GameRolePlayPrismInformations extends GameRolePlayActorInformations
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayActorInformations(param1);
+         super.serializeAs_GameContextActorInformations(param1);
          param1.writeShort(this.prism.getTypeId());
          this.prism.serialize(param1);
     }

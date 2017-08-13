@@ -18,7 +18,22 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractGameActionFightTargetedAbilityMessage(param1);
+         super.serializeAs_AbstractGameActionMessage(param1);
+         int _loc2_ = 0;
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.silentCast);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.verboseCast);
+         param1.writeByte(_loc2_);
+         if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
+         if(this.destinationCellId < -1 || this.destinationCellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.destinationCellId + ") on element destinationCellId.");
+         }
+         param1.writeShort(this.destinationCellId);
+         param1.writeByte(this.critical);
          if(this.spellId < 0)
          {
             throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");

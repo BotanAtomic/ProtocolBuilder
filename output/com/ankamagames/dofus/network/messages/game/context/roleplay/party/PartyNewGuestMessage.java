@@ -16,7 +16,7 @@ public class PartyNewGuestMessage extends AbstractPartyEventMessage implements I
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyEventMessage(param1);
+         super.serializeAs_AbstractPartyMessage(param1);
          this.guest.serializeAs_PartyGuestInformations(param1);
     }
 

@@ -16,7 +16,11 @@ public class PartyLocateMembersMessage extends AbstractPartyMessage implements I
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyMessage(param1);
+         if(this.partyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
+         }
+         param1.writeVarInt(this.partyId);
          param1.writeShort(this.geopositions.length);
          int _loc2_ = 0;
          while(_loc2_ < this.geopositions.length)

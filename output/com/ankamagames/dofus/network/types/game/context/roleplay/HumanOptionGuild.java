@@ -14,9 +14,6 @@ public class HumanOptionGuild extends HumanOption implements INetworkType {
 
     public void serialize(ICustomDataOutput param1) {
          this.guildInformations.serializeAs_GuildInformations(param1);
-         this.guildInformations.serializeAs_GuildInformations(param1);
-         super.serializeAs_HumanOption(param1);
-         this.guildInformations.serializeAs_GuildInformations(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {

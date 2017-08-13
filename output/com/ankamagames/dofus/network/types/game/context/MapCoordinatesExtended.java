@@ -13,7 +13,9 @@ public class MapCoordinatesExtended extends MapCoordinatesAndId implements INetw
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_MapCoordinatesAndId(param1);
+         param1.writeInt(this.mapId);
+         super.serializeAs_MapCoordinates(param1);
+         param1.writeInt(this.mapId);
          if(this.subAreaId < 0)
          {
             throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");

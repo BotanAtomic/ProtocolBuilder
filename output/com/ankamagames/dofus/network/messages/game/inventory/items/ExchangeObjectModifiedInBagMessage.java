@@ -17,7 +17,7 @@ public class ExchangeObjectModifiedInBagMessage extends ExchangeObjectMessage im
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeObjectMessage(param1);
+         param1.writeBoolean(this.remote);
          this.object.serializeAs_ObjectItem(param1);
     }
 

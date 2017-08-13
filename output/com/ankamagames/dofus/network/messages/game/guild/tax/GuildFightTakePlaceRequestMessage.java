@@ -14,7 +14,7 @@ public class GuildFightTakePlaceRequestMessage extends GuildFightJoinRequestMess
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GuildFightJoinRequestMessage(param1);
+         param1.writeInt(this.taxCollectorId);
          param1.writeInt(this.replacedCharacterId);
     }
 

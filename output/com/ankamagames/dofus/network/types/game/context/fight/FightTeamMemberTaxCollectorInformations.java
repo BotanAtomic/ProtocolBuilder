@@ -17,7 +17,11 @@ public class FightTeamMemberTaxCollectorInformations extends FightTeamMemberInfo
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_FightTeamMemberInformations(param1);
+         if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeDouble(this.id);
          if(this.firstNameId < 0)
          {
             throw new Exception("Forbidden value (" + this.firstNameId + ") on element firstNameId.");

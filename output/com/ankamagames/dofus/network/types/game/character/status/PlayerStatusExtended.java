@@ -13,9 +13,6 @@ public class PlayerStatusExtended extends PlayerStatus implements INetworkType {
 
     public void serialize(ICustomDataOutput param1) {
          param1.writeUTF(this.message);
-         param1.writeUTF(this.message);
-         super.serializeAs_PlayerStatus(param1);
-         param1.writeUTF(this.message);
     }
 
     public void deserialize(ICustomDataInput param1) {

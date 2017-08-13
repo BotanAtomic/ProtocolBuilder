@@ -12,7 +12,15 @@ public class UpdateMountIntBoost extends UpdateMountBoost implements INetworkTyp
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_UpdateMountBoost(param1);
+         param1.writeVarInt(this.rideId);
+         param1.writeShort(this.boostToUpdateList.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.boostToUpdateList.length)
+         {
+            param1.writeShort((this.boostToUpdateList[_loc2_] as UpdateMountBoost).getTypeId());
+            (this.boostToUpdateList[_loc2_] as UpdateMountBoost).serialize(param1);
+            _loc2_++;
+         }
          param1.writeInt(this.value);
     }
 

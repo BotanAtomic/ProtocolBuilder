@@ -16,7 +16,11 @@ public class CharacterSelectionWithRemodelMessage extends CharacterSelectionMess
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_CharacterSelectionMessage(param1);
+         if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarLong(this.id);
          this.remodel.serializeAs_RemodelingInformation(param1);
     }
 

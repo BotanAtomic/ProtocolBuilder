@@ -16,7 +16,7 @@ public class LockableStateUpdateStorageMessage extends LockableStateUpdateAbstra
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_LockableStateUpdateAbstractMessage(param1);
+         param1.writeBoolean(this.locked);
          param1.writeInt(this.mapId);
          if(this.elementId < 0)
          {

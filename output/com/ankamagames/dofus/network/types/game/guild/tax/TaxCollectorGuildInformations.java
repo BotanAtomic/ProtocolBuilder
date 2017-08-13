@@ -14,7 +14,6 @@ public class TaxCollectorGuildInformations extends TaxCollectorComplementaryInfo
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_TaxCollectorComplementaryInformations(param1);
          this.guild.serializeAs_BasicGuildInformations(param1);
     }
 

@@ -16,7 +16,14 @@ public class ChatServerCopyMessage extends ChatAbstractServerMessage implements 
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ChatAbstractServerMessage(param1);
+         param1.writeByte(this.channel);
+         param1.writeUTF(this.content);
+         if(this.timestamp < 0)
+         {
+            throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
+         }
+         param1.writeInt(this.timestamp);
+         param1.writeUTF(this.fingerprint);
          if(this.receiverId < 0 || this.receiverId > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.receiverId + ") on element receiverId.");

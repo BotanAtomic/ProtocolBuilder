@@ -17,7 +17,7 @@ public class IgnoredOnlineInformations extends IgnoredInformations implements IN
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_IgnoredInformations(param1);
+         super.serializeAs_AbstractContactInformations(param1);
          if(this.playerId < 0 || this.playerId > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");

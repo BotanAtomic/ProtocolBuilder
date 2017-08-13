@@ -14,17 +14,35 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.unsoldDelay < 0)
+         super.serializeAs_Item(param1);
+         if(this.objectGID < 0)
          {
-            throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element unsoldDelay.");
+            throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
          }
-         param1.writeInt(this.unsoldDelay);
-         if(this.unsoldDelay < 0)
+         param1.writeVarShort(this.objectGID);
+         param1.writeShort(this.effects.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.effects.length)
          {
-            throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element unsoldDelay.");
+            param1.writeShort((this.effects[_loc2_] as ObjectEffect).getTypeId());
+            (this.effects[_loc2_] as ObjectEffect).serialize(param1);
+            _loc2_++;
          }
-         param1.writeInt(this.unsoldDelay);
-         super.serializeAs_ObjectItemToSell(param1);
+         if(this.objectUID < 0)
+         {
+            throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
+         }
+         param1.writeVarInt(this.objectUID);
+         if(this.quantity < 0)
+         {
+            throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
+         }
+         param1.writeVarInt(this.quantity);
+         if(this.objectPrice < 0 || this.objectPrice > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.objectPrice + ") on element objectPrice.");
+         }
+         param1.writeVarLong(this.objectPrice);
          if(this.unsoldDelay < 0)
          {
             throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element unsoldDelay.");

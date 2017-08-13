@@ -18,7 +18,17 @@ public class PartyCompanionMemberInformations extends PartyCompanionBaseInformat
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_PartyCompanionBaseInformations(param1);
+         if(this.indexId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.indexId + ") on element indexId.");
+         }
+         param1.writeByte(this.indexId);
+         if(this.companionGenericId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.companionGenericId + ") on element companionGenericId.");
+         }
+         param1.writeByte(this.companionGenericId);
+         this.entityLook.serializeAs_EntityLook(param1);
          if(this.initiative < 0)
          {
             throw new Exception("Forbidden value (" + this.initiative + ") on element initiative.");

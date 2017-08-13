@@ -24,7 +24,7 @@ public class TaxCollectorDialogQuestionExtendedMessage extends TaxCollectorDialo
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_TaxCollectorDialogQuestionBasicMessage(param1);
+         this.guildInfo.serializeAs_BasicGuildInformations(param1);
          if(this.maxPods < 0)
          {
             throw new Exception("Forbidden value (" + this.maxPods + ") on element maxPods.");

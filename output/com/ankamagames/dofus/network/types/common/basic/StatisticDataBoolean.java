@@ -13,9 +13,6 @@ public class StatisticDataBoolean extends StatisticData implements INetworkType 
 
     public void serialize(ICustomDataOutput param1) {
          param1.writeBoolean(this.value);
-         param1.writeBoolean(this.value);
-         super.serializeAs_StatisticData(param1);
-         param1.writeBoolean(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {

@@ -12,7 +12,8 @@ public class FightTemporaryBoostWeaponDamagesEffect extends FightTemporaryBoostE
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_FightTemporaryBoostEffect(param1);
+         super.serializeAs_AbstractFightDispellableEffect(param1);
+         param1.writeShort(this.delta);
          param1.writeShort(this.weaponTypeId);
     }
 

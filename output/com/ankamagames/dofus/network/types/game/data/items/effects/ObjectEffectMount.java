@@ -15,37 +15,11 @@ public class ObjectEffectMount extends ObjectEffect implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.mountId < 0)
+         if(this.actionId < 0)
          {
-            throw new Exception("Forbidden value (" + this.mountId + ") on element mountId.");
+            throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
          }
-         param1.writeInt(this.mountId);
-         if(this.date < -9.007199254740992E15 || this.date > 9.007199254740992E15)
-         {
-            throw new Exception("Forbidden value (" + this.date + ") on element date.");
-         }
-         param1.writeDouble(this.date);
-         if(this.modelId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.modelId + ") on element modelId.");
-         }
-         param1.writeVarShort(this.modelId);
-         if(this.mountId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.mountId + ") on element mountId.");
-         }
-         param1.writeInt(this.mountId);
-         if(this.date < -9.007199254740992E15 || this.date > 9.007199254740992E15)
-         {
-            throw new Exception("Forbidden value (" + this.date + ") on element date.");
-         }
-         param1.writeDouble(this.date);
-         if(this.modelId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.modelId + ") on element modelId.");
-         }
-         param1.writeVarShort(this.modelId);
-         super.serializeAs_ObjectEffect(param1);
+         param1.writeVarShort(this.actionId);
          if(this.mountId < 0)
          {
             throw new Exception("Forbidden value (" + this.mountId + ") on element mountId.");

@@ -15,7 +15,11 @@ public class PartyCancelInvitationMessage extends AbstractPartyMessage implement
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyMessage(param1);
+         if(this.partyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
+         }
+         param1.writeVarInt(this.partyId);
          if(this.guestId < 0 || this.guestId > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.guestId + ") on element guestId.");

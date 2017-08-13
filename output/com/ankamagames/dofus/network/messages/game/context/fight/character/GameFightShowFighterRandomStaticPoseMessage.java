@@ -14,7 +14,8 @@ public class GameFightShowFighterRandomStaticPoseMessage extends GameFightShowFi
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameFightShowFighterMessage(param1);
+         param1.writeShort(this.informations.getTypeId());
+         this.informations.serialize(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {

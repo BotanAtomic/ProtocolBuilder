@@ -14,7 +14,11 @@ public class PartyPledgeLoyaltyRequestMessage extends AbstractPartyMessage imple
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyMessage(param1);
+         if(this.partyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
+         }
+         param1.writeVarInt(this.partyId);
          param1.writeBoolean(this.loyal);
     }
 

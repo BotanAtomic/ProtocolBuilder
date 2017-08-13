@@ -15,7 +15,7 @@ public class ExchangeStartedWithStorageMessage extends ExchangeStartedMessage im
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeStartedMessage(param1);
+         param1.writeByte(this.exchangeType);
          if(this.storageMaxSlot < 0)
          {
             throw new Exception("Forbidden value (" + this.storageMaxSlot + ") on element storageMaxSlot.");

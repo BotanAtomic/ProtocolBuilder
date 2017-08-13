@@ -16,7 +16,18 @@ public class ChatServerWithObjectMessage extends ChatServerMessage implements IN
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ChatServerMessage(param1);
+         super.serializeAs_ChatAbstractServerMessage(param1);
+         if(this.senderId < -9.007199254740992E15 || this.senderId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.senderId + ") on element senderId.");
+         }
+         param1.writeDouble(this.senderId);
+         param1.writeUTF(this.senderName);
+         if(this.senderAccountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.senderAccountId + ") on element senderAccountId.");
+         }
+         param1.writeInt(this.senderAccountId);
          param1.writeShort(this.objects.length);
          int _loc2_ = 0;
          while(_loc2_ < this.objects.length)

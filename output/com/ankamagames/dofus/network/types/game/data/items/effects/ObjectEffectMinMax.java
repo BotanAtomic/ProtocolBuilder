@@ -14,27 +14,11 @@ public class ObjectEffectMinMax extends ObjectEffect implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.min < 0)
+         if(this.actionId < 0)
          {
-            throw new Exception("Forbidden value (" + this.min + ") on element min.");
+            throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
          }
-         param1.writeVarInt(this.min);
-         if(this.max < 0)
-         {
-            throw new Exception("Forbidden value (" + this.max + ") on element max.");
-         }
-         param1.writeVarInt(this.max);
-         if(this.min < 0)
-         {
-            throw new Exception("Forbidden value (" + this.min + ") on element min.");
-         }
-         param1.writeVarInt(this.min);
-         if(this.max < 0)
-         {
-            throw new Exception("Forbidden value (" + this.max + ") on element max.");
-         }
-         param1.writeVarInt(this.max);
-         super.serializeAs_ObjectEffect(param1);
+         param1.writeVarShort(this.actionId);
          if(this.min < 0)
          {
             throw new Exception("Forbidden value (" + this.min + ") on element min.");

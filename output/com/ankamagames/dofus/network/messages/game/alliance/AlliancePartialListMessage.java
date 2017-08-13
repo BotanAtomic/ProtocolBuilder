@@ -14,7 +14,13 @@ public class AlliancePartialListMessage extends AllianceListMessage implements I
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AllianceListMessage(param1);
+         param1.writeShort(this.alliances.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.alliances.length)
+         {
+            (this.alliances[_loc2_] as AllianceFactSheetInformations).serializeAs_AllianceFactSheetInformations(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {

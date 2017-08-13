@@ -25,7 +25,7 @@ public class GameRolePlayGroupMonsterInformations extends GameRolePlayActorInfor
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayActorInformations(param1);
+         super.serializeAs_GameContextActorInformations(param1);
          int _loc2_ = 0;
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.keyRingBonus);
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.hasHardcoreDrop);

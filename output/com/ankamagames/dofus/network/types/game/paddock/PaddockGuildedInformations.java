@@ -15,7 +15,12 @@ public class PaddockGuildedInformations extends PaddockBuyableInformations imple
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_PaddockBuyableInformations(param1);
+         if(this.price < 0 || this.price > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.price + ") on element price.");
+         }
+         param1.writeVarLong(this.price);
+         param1.writeBoolean(this.locked);
          param1.writeBoolean(this.deserted);
          this.guildInfo.serializeAs_GuildInformations(param1);
     }

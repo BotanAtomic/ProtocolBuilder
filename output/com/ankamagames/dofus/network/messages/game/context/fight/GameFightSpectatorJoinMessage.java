@@ -16,7 +16,18 @@ public class GameFightSpectatorJoinMessage extends GameFightJoinMessage implemen
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameFightJoinMessage(param1);
+         int _loc2_ = 0;
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.isTeamPhase);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.canBeCancelled);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,2,this.canSayReady);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,3,this.isFightStarted);
+         param1.writeByte(_loc2_);
+         if(this.timeMaxBeforeFightStart < 0)
+         {
+            throw new Exception("Forbidden value (" + this.timeMaxBeforeFightStart + ") on element timeMaxBeforeFightStart.");
+         }
+         param1.writeShort(this.timeMaxBeforeFightStart);
+         param1.writeByte(this.fightType);
          param1.writeShort(this.namedPartyTeams.length);
          int _loc2_ = 0;
          while(_loc2_ < this.namedPartyTeams.length)

@@ -14,7 +14,14 @@ public class PrismsListUpdateMessage extends PrismsListMessage implements INetwo
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_PrismsListMessage(param1);
+         param1.writeShort(this.prisms.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.prisms.length)
+         {
+            param1.writeShort((this.prisms[_loc2_] as PrismSubareaEmptyInfo).getTypeId());
+            (this.prisms[_loc2_] as PrismSubareaEmptyInfo).serialize(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {

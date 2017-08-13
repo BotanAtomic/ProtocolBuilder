@@ -16,7 +16,7 @@ public class ExchangeCraftResultWithObjectDescMessage extends ExchangeCraftResul
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeCraftResultMessage(param1);
+         param1.writeByte(this.craftResult);
          this.objectInfo.serializeAs_ObjectItemNotInContainer(param1);
     }
 

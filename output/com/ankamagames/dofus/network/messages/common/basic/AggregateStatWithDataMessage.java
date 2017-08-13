@@ -17,7 +17,7 @@ public class AggregateStatWithDataMessage extends AggregateStatMessage implement
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AggregateStatMessage(param1);
+         param1.writeVarShort(this.statId);
          param1.writeShort(this.datas.length);
          int _loc2_ = 0;
          while(_loc2_ < this.datas.length)

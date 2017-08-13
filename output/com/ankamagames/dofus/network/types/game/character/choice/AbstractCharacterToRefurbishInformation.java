@@ -16,7 +16,11 @@ public class AbstractCharacterToRefurbishInformation extends AbstractCharacterIn
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractCharacterInformation(param1);
+         if(this.id < 0 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeVarLong(this.id);
          param1.writeShort(this.colors.length);
          int _loc2_ = 0;
          while(_loc2_ < this.colors.length)

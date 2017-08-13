@@ -20,7 +20,24 @@ public class GameFightResumeWithSlavesMessage extends GameFightResumeMessage imp
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameFightResumeMessage(param1);
+         super.serializeAs_GameFightSpectateMessage(param1);
+         param1.writeShort(this.spellCooldowns.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.spellCooldowns.length)
+         {
+            (this.spellCooldowns[_loc2_] as GameFightSpellCooldown).serializeAs_GameFightSpellCooldown(param1);
+            _loc2_++;
+         }
+         if(this.summonCount < 0)
+         {
+            throw new Exception("Forbidden value (" + this.summonCount + ") on element summonCount.");
+         }
+         param1.writeByte(this.summonCount);
+         if(this.bombCount < 0)
+         {
+            throw new Exception("Forbidden value (" + this.bombCount + ") on element bombCount.");
+         }
+         param1.writeByte(this.bombCount);
          param1.writeShort(this.slavesInfo.length);
          int _loc2_ = 0;
          while(_loc2_ < this.slavesInfo.length)

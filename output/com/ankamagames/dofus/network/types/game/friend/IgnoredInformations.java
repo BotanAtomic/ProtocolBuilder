@@ -11,7 +11,12 @@ public class IgnoredInformations extends AbstractContactInformations implements 
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractContactInformations(param1);
+         if(this.accountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
+         param1.writeUTF(this.accountName);
     }
 
     public void deserialize(ICustomDataInput param1) {

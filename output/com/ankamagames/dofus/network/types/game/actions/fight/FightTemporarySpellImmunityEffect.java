@@ -12,7 +12,33 @@ public class FightTemporarySpellImmunityEffect extends AbstractFightDispellableE
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractFightDispellableEffect(param1);
+         if(this.uid < 0)
+         {
+            throw new Exception("Forbidden value (" + this.uid + ") on element uid.");
+         }
+         param1.writeVarInt(this.uid);
+         if(this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
+         }
+         param1.writeDouble(this.targetId);
+         param1.writeShort(this.turnDuration);
+         param1.writeByte(this.dispelable);
+         if(this.spellId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
+         }
+         param1.writeVarShort(this.spellId);
+         if(this.effectId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.effectId + ") on element effectId.");
+         }
+         param1.writeVarInt(this.effectId);
+         if(this.parentBoostUid < 0)
+         {
+            throw new Exception("Forbidden value (" + this.parentBoostUid + ") on element parentBoostUid.");
+         }
+         param1.writeVarInt(this.parentBoostUid);
          param1.writeInt(this.immuneSpellId);
     }
 

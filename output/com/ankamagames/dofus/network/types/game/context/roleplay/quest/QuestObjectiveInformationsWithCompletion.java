@@ -14,27 +14,19 @@ public class QuestObjectiveInformationsWithCompletion extends QuestObjectiveInfo
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.curCompletion < 0)
+         if(this.objectiveId < 0)
          {
-            throw new Exception("Forbidden value (" + this.curCompletion + ") on element curCompletion.");
+            throw new Exception("Forbidden value (" + this.objectiveId + ") on element objectiveId.");
          }
-         param1.writeVarShort(this.curCompletion);
-         if(this.maxCompletion < 0)
+         param1.writeVarShort(this.objectiveId);
+         param1.writeBoolean(this.objectiveStatus);
+         param1.writeShort(this.dialogParams.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.dialogParams.length)
          {
-            throw new Exception("Forbidden value (" + this.maxCompletion + ") on element maxCompletion.");
+            param1.writeUTF(this.dialogParams[_loc2_]);
+            _loc2_++;
          }
-         param1.writeVarShort(this.maxCompletion);
-         if(this.curCompletion < 0)
-         {
-            throw new Exception("Forbidden value (" + this.curCompletion + ") on element curCompletion.");
-         }
-         param1.writeVarShort(this.curCompletion);
-         if(this.maxCompletion < 0)
-         {
-            throw new Exception("Forbidden value (" + this.maxCompletion + ") on element maxCompletion.");
-         }
-         param1.writeVarShort(this.maxCompletion);
-         super.serializeAs_QuestObjectiveInformations(param1);
          if(this.curCompletion < 0)
          {
             throw new Exception("Forbidden value (" + this.curCompletion + ") on element curCompletion.");

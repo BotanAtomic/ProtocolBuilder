@@ -15,7 +15,16 @@ public class InteractiveUseWithParamRequestMessage extends InteractiveUseRequest
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_InteractiveUseRequestMessage(param1);
+         if(this.elemId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.elemId + ") on element elemId.");
+         }
+         param1.writeVarInt(this.elemId);
+         if(this.skillInstanceUid < 0)
+         {
+            throw new Exception("Forbidden value (" + this.skillInstanceUid + ") on element skillInstanceUid.");
+         }
+         param1.writeVarInt(this.skillInstanceUid);
          param1.writeInt(this.id);
     }
 

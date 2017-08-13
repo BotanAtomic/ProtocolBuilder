@@ -16,7 +16,7 @@ public class GameFightMonsterInformations extends GameFightAIInformations implem
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameFightAIInformations(param1);
+         super.serializeAs_GameFightFighterInformations(param1);
          if(this.creatureGenericId < 0)
          {
             throw new Exception("Forbidden value (" + this.creatureGenericId + ") on element creatureGenericId.");

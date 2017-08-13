@@ -31,7 +31,12 @@ public class GuildMember extends CharacterMinimalInformations implements INetwor
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_CharacterMinimalInformations(param1);
+         super.serializeAs_CharacterBasicMinimalInformations(param1);
+         if(this.level < 1 || this.level > 206)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
          int _loc2_ = 0;
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.sex);
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.havenBagShared);

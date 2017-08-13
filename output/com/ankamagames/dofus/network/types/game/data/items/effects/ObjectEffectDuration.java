@@ -15,37 +15,11 @@ public class ObjectEffectDuration extends ObjectEffect implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.days < 0)
+         if(this.actionId < 0)
          {
-            throw new Exception("Forbidden value (" + this.days + ") on element days.");
+            throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
          }
-         param1.writeVarShort(this.days);
-         if(this.hours < 0)
-         {
-            throw new Exception("Forbidden value (" + this.hours + ") on element hours.");
-         }
-         param1.writeByte(this.hours);
-         if(this.minutes < 0)
-         {
-            throw new Exception("Forbidden value (" + this.minutes + ") on element minutes.");
-         }
-         param1.writeByte(this.minutes);
-         if(this.days < 0)
-         {
-            throw new Exception("Forbidden value (" + this.days + ") on element days.");
-         }
-         param1.writeVarShort(this.days);
-         if(this.hours < 0)
-         {
-            throw new Exception("Forbidden value (" + this.hours + ") on element hours.");
-         }
-         param1.writeByte(this.hours);
-         if(this.minutes < 0)
-         {
-            throw new Exception("Forbidden value (" + this.minutes + ") on element minutes.");
-         }
-         param1.writeByte(this.minutes);
-         super.serializeAs_ObjectEffect(param1);
+         param1.writeVarShort(this.actionId);
          if(this.days < 0)
          {
             throw new Exception("Forbidden value (" + this.days + ") on element days.");

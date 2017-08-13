@@ -16,7 +16,6 @@ public class TaxCollectorLootInformations extends TaxCollectorComplementaryInfor
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_TaxCollectorComplementaryInformations(param1);
          if(this.kamas < 0 || this.kamas > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.kamas + ") on element kamas.");

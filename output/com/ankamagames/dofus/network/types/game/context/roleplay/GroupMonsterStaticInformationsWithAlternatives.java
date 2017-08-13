@@ -13,21 +13,14 @@ public class GroupMonsterStaticInformationsWithAlternatives extends GroupMonster
 
 
     public void serialize(ICustomDataOutput param1) {
-         param1.writeShort(this.alternatives.length);
+         this.mainCreatureLightInfos.serializeAs_MonsterInGroupLightInformations(param1);
+         param1.writeShort(this.underlings.length);
          int _loc2_ = 0;
-         while(_loc2_ < this.alternatives.length)
+         while(_loc2_ < this.underlings.length)
          {
-            (this.alternatives[_loc2_] as AlternativeMonstersInGroupLightInformations).serializeAs_AlternativeMonstersInGroupLightInformations(param1);
+            (this.underlings[_loc2_] as MonsterInGroupInformations).serializeAs_MonsterInGroupInformations(param1);
             _loc2_++;
          }
-         param1.writeShort(this.alternatives.length);
-         int _loc2_ = 0;
-         while(_loc2_ < this.alternatives.length)
-         {
-            (this.alternatives[_loc2_] as AlternativeMonstersInGroupLightInformations).serializeAs_AlternativeMonstersInGroupLightInformations(param1);
-            _loc2_++;
-         }
-         super.serializeAs_GroupMonsterStaticInformations(param1);
          param1.writeShort(this.alternatives.length);
          int _loc2_ = 0;
          while(_loc2_ < this.alternatives.length)

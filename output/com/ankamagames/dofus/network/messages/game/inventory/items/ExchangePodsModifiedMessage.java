@@ -17,7 +17,7 @@ public class ExchangePodsModifiedMessage extends ExchangeObjectMessage implement
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeObjectMessage(param1);
+         param1.writeBoolean(this.remote);
          if(this.currentWeight < 0)
          {
             throw new Exception("Forbidden value (" + this.currentWeight + ") on element currentWeight.");

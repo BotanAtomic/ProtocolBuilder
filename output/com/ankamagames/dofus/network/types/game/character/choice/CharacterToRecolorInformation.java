@@ -11,7 +11,19 @@ public class CharacterToRecolorInformation extends AbstractCharacterToRefurbishI
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractCharacterToRefurbishInformation(param1);
+         super.serializeAs_AbstractCharacterInformation(param1);
+         param1.writeShort(this.colors.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.colors.length)
+         {
+            param1.writeInt(this.colors[_loc2_]);
+            _loc2_++;
+         }
+         if(this.cosmeticId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+         }
+         param1.writeVarInt(this.cosmeticId);
     }
 
     public void deserialize(ICustomDataInput param1) {

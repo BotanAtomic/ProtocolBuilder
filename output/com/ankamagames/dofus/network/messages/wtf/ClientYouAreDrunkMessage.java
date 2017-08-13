@@ -14,7 +14,8 @@ public class ClientYouAreDrunkMessage extends DebugInClientMessage implements IN
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_DebugInClientMessage(param1);
+         param1.writeByte(this.level);
+         param1.writeUTF(this.message);
     }
 
     public void deserialize(ICustomDataInput param1) {

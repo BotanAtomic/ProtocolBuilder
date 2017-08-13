@@ -13,9 +13,6 @@ public class StatisticDataShort extends StatisticData implements INetworkType {
 
     public void serialize(ICustomDataOutput param1) {
          param1.writeShort(this.value);
-         param1.writeShort(this.value);
-         super.serializeAs_StatisticData(param1);
-         param1.writeShort(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {

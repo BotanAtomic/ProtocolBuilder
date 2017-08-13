@@ -19,7 +19,34 @@ public class PartyInvitationDungeonDetailsMessage extends PartyInvitationDetails
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_PartyInvitationDetailsMessage(param1);
+         super.serializeAs_AbstractPartyMessage(param1);
+         param1.writeByte(this.partyType);
+         param1.writeUTF(this.partyName);
+         if(this.fromId < 0 || this.fromId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.fromId + ") on element fromId.");
+         }
+         param1.writeVarLong(this.fromId);
+         param1.writeUTF(this.fromName);
+         if(this.leaderId < 0 || this.leaderId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
+         }
+         param1.writeVarLong(this.leaderId);
+         param1.writeShort(this.members.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.members.length)
+         {
+            (this.members[_loc2_] as PartyInvitationMemberInformations).serializeAs_PartyInvitationMemberInformations(param1);
+            _loc2_++;
+         }
+         param1.writeShort(this.guests.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.guests.length)
+         {
+            (this.guests[_loc3_] as PartyGuestInformations).serializeAs_PartyGuestInformations(param1);
+            _loc3_++;
+         }
          if(this.dungeonId < 0)
          {
             throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");

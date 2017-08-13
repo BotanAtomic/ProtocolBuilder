@@ -20,19 +20,6 @@ public class TreasureHuntStepFollowDirectionToHint extends TreasureHuntStep impl
             throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
          }
          param1.writeVarShort(this.npcId);
-         param1.writeByte(this.direction);
-         if(this.npcId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
-         }
-         param1.writeVarShort(this.npcId);
-         super.serializeAs_TreasureHuntStep(param1);
-         param1.writeByte(this.direction);
-         if(this.npcId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
-         }
-         param1.writeVarShort(this.npcId);
     }
 
     public void deserialize(ICustomDataInput param1) {

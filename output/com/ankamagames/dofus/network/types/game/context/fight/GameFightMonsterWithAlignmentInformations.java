@@ -16,7 +16,17 @@ public class GameFightMonsterWithAlignmentInformations extends GameFightMonsterI
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameFightMonsterInformations(param1);
+         super.serializeAs_GameFightAIInformations(param1);
+         if(this.creatureGenericId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.creatureGenericId + ") on element creatureGenericId.");
+         }
+         param1.writeVarShort(this.creatureGenericId);
+         if(this.creatureGrade < 0)
+         {
+            throw new Exception("Forbidden value (" + this.creatureGrade + ") on element creatureGrade.");
+         }
+         param1.writeByte(this.creatureGrade);
          this.alignmentInfos.serializeAs_ActorAlignmentInformations(param1);
     }
 

@@ -13,7 +13,7 @@ public class AdminQuietCommandMessage extends AdminCommandMessage implements INe
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AdminCommandMessage(param1);
+         param1.writeUTF(this.content);
     }
 
     public void deserialize(ICustomDataInput param1) {

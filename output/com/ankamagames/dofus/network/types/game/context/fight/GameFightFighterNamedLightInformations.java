@@ -12,7 +12,26 @@ public class GameFightFighterNamedLightInformations extends GameFightFighterLigh
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameFightFighterLightInformations(param1);
+         int _loc2_ = 0;
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.sex);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.alive);
+         param1.writeByte(_loc2_);
+         if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeDouble(this.id);
+         if(this.wave < 0)
+         {
+            throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
+         }
+         param1.writeByte(this.wave);
+         if(this.level < 0)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeVarShort(this.level);
+         param1.writeByte(this.breed);
          param1.writeUTF(this.name);
     }
 

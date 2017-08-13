@@ -14,7 +14,11 @@ public class IdolsPresetDeleteMessage extends AbstractPresetDeleteMessage implem
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPresetDeleteMessage(param1);
+         if(this.presetId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
+         }
+         param1.writeByte(this.presetId);
     }
 
     public void deserialize(ICustomDataInput param1) {

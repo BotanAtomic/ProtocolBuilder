@@ -20,7 +20,19 @@ public class FightTeamLightInformations extends AbstractFightTeamInformations im
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractFightTeamInformations(param1);
+         param1.writeByte(this.teamId);
+         if(this.leaderId < -9.007199254740992E15 || this.leaderId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
+         }
+         param1.writeDouble(this.leaderId);
+         param1.writeByte(this.teamSide);
+         param1.writeByte(this.teamTypeId);
+         if(this.nbWaves < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbWaves + ") on element nbWaves.");
+         }
+         param1.writeByte(this.nbWaves);
          int _loc2_ = 0;
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.hasFriend);
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.hasGuildMember);

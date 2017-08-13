@@ -13,17 +13,17 @@ public class ObjectItemGenericQuantityPrice extends ObjectItemGenericQuantity im
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.price < 0 || this.price > 9.007199254740992E15)
+         super.serializeAs_Item(param1);
+         if(this.objectGID < 0)
          {
-            throw new Exception("Forbidden value (" + this.price + ") on element price.");
+            throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
          }
-         param1.writeVarLong(this.price);
-         if(this.price < 0 || this.price > 9.007199254740992E15)
+         param1.writeVarShort(this.objectGID);
+         if(this.quantity < 0)
          {
-            throw new Exception("Forbidden value (" + this.price + ") on element price.");
+            throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
          }
-         param1.writeVarLong(this.price);
-         super.serializeAs_ObjectItemGenericQuantity(param1);
+         param1.writeVarInt(this.quantity);
          if(this.price < 0 || this.price > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.price + ") on element price.");

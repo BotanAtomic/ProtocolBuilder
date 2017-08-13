@@ -25,7 +25,11 @@ public class PartyInvitationDetailsMessage extends AbstractPartyMessage implemen
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyMessage(param1);
+         if(this.partyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
+         }
+         param1.writeVarInt(this.partyId);
          param1.writeByte(this.partyType);
          param1.writeUTF(this.partyName);
          if(this.fromId < 0 || this.fromId > 9.007199254740992E15)

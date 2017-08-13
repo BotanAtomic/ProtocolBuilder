@@ -23,7 +23,11 @@ public class PartyMemberInFightMessage extends AbstractPartyMessage implements I
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyMessage(param1);
+         if(this.partyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
+         }
+         param1.writeVarInt(this.partyId);
          param1.writeByte(this.reason);
          if(this.memberId < 0 || this.memberId > 9.007199254740992E15)
          {

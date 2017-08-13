@@ -18,7 +18,30 @@ public class GameRolePlayGroupMonsterWaveInformations extends GameRolePlayGroupM
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayGroupMonsterInformations(param1);
+         super.serializeAs_GameRolePlayActorInformations(param1);
+         int _loc2_ = 0;
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.keyRingBonus);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.hasHardcoreDrop);
+         _loc2_ = BooleanByteWrapper.setFlag(_loc2_,2,this.hasAVARewardToken);
+         param1.writeByte(_loc2_);
+         param1.writeShort(this.staticInfos.getTypeId());
+         this.staticInfos.serialize(param1);
+         if(this.creationTime < 0 || this.creationTime > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.creationTime + ") on element creationTime.");
+         }
+         param1.writeDouble(this.creationTime);
+         if(this.ageBonusRate < 0)
+         {
+            throw new Exception("Forbidden value (" + this.ageBonusRate + ") on element ageBonusRate.");
+         }
+         param1.writeInt(this.ageBonusRate);
+         if(this.lootShare < -1 || this.lootShare > 8)
+         {
+            throw new Exception("Forbidden value (" + this.lootShare + ") on element lootShare.");
+         }
+         param1.writeByte(this.lootShare);
+         param1.writeByte(this.alignmentSide);
          if(this.nbWaves < 0)
          {
             throw new Exception("Forbidden value (" + this.nbWaves + ") on element nbWaves.");

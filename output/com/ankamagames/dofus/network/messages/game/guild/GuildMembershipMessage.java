@@ -14,7 +14,12 @@ public class GuildMembershipMessage extends GuildJoinedMessage implements INetwo
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GuildJoinedMessage(param1);
+         this.guildInfo.serializeAs_GuildInformations(param1);
+         if(this.memberRights < 0)
+         {
+            throw new Exception("Forbidden value (" + this.memberRights + ") on element memberRights.");
+         }
+         param1.writeVarInt(this.memberRights);
     }
 
     public void deserialize(ICustomDataInput param1) {

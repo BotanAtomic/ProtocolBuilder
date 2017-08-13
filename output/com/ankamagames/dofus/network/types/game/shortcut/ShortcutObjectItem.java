@@ -13,11 +13,7 @@ public class ShortcutObjectItem extends ShortcutObject implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         param1.writeInt(this.itemUID);
-         param1.writeInt(this.itemGID);
-         param1.writeInt(this.itemUID);
-         param1.writeInt(this.itemGID);
-         super.serializeAs_ShortcutObject(param1);
+         super.serializeAs_Shortcut(param1);
          param1.writeInt(this.itemUID);
          param1.writeInt(this.itemGID);
     }

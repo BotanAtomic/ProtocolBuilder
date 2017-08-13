@@ -15,7 +15,8 @@ public class CharacterBaseInformations extends CharacterMinimalPlusLookInformati
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_CharacterMinimalPlusLookInformations(param1);
+         super.serializeAs_CharacterMinimalInformations(param1);
+         this.entityLook.serializeAs_EntityLook(param1);
          param1.writeByte(this.breed);
          param1.writeBoolean(this.sex);
     }

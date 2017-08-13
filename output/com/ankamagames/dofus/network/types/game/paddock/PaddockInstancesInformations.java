@@ -14,7 +14,16 @@ public class PaddockInstancesInformations extends PaddockInformations implements
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_PaddockInformations(param1);
+         if(this.maxOutdoorMount < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxOutdoorMount + ") on element maxOutdoorMount.");
+         }
+         param1.writeVarShort(this.maxOutdoorMount);
+         if(this.maxItems < 0)
+         {
+            throw new Exception("Forbidden value (" + this.maxItems + ") on element maxItems.");
+         }
+         param1.writeVarShort(this.maxItems);
          param1.writeShort(this.paddocks.length);
          int _loc2_ = 0;
          while(_loc2_ < this.paddocks.length)

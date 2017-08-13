@@ -15,7 +15,14 @@ public class TopTaxCollectorListMessage extends AbstractTaxCollectorListMessage 
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractTaxCollectorListMessage(param1);
+         param1.writeShort(this.informations.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.informations.length)
+         {
+            param1.writeShort((this.informations[_loc2_] as TaxCollectorInformations).getTypeId());
+            (this.informations[_loc2_] as TaxCollectorInformations).serialize(param1);
+            _loc2_++;
+         }
          param1.writeBoolean(this.isDungeon);
     }
 

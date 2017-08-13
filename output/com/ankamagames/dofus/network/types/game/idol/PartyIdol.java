@@ -14,7 +14,15 @@ public class PartyIdol extends Idol implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_Idol(param1);
+         param1.writeByte(this.idolSource);
+         param1.writeShort(this.idols.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.idols.length)
+         {
+            param1.writeShort((this.idols[_loc2_] as Idol).getTypeId());
+            (this.idols[_loc2_] as Idol).serialize(param1);
+            _loc2_++;
+         }
          param1.writeShort(this.ownersIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.ownersIds.length)

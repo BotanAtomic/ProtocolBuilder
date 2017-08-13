@@ -14,7 +14,7 @@ public class ChatClientPrivateMessage extends ChatAbstractClientMessage implemen
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ChatAbstractClientMessage(param1);
+         param1.writeUTF(this.content);
          param1.writeUTF(this.receiver);
     }
 

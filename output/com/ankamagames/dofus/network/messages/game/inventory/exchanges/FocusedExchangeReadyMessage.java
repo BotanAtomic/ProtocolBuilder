@@ -15,7 +15,12 @@ public class FocusedExchangeReadyMessage extends ExchangeReadyMessage implements
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeReadyMessage(param1);
+         param1.writeBoolean(this.ready);
+         if(this.step < 0)
+         {
+            throw new Exception("Forbidden value (" + this.step + ") on element step.");
+         }
+         param1.writeVarShort(this.step);
          if(this.focusActionId < 0)
          {
             throw new Exception("Forbidden value (" + this.focusActionId + ") on element focusActionId.");

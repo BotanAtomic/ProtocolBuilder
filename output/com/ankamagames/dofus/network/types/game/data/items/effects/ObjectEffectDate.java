@@ -17,57 +17,11 @@ public class ObjectEffectDate extends ObjectEffect implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.year < 0)
+         if(this.actionId < 0)
          {
-            throw new Exception("Forbidden value (" + this.year + ") on element year.");
+            throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
          }
-         param1.writeVarShort(this.year);
-         if(this.month < 0)
-         {
-            throw new Exception("Forbidden value (" + this.month + ") on element month.");
-         }
-         param1.writeByte(this.month);
-         if(this.day < 0)
-         {
-            throw new Exception("Forbidden value (" + this.day + ") on element day.");
-         }
-         param1.writeByte(this.day);
-         if(this.hour < 0)
-         {
-            throw new Exception("Forbidden value (" + this.hour + ") on element hour.");
-         }
-         param1.writeByte(this.hour);
-         if(this.minute < 0)
-         {
-            throw new Exception("Forbidden value (" + this.minute + ") on element minute.");
-         }
-         param1.writeByte(this.minute);
-         if(this.year < 0)
-         {
-            throw new Exception("Forbidden value (" + this.year + ") on element year.");
-         }
-         param1.writeVarShort(this.year);
-         if(this.month < 0)
-         {
-            throw new Exception("Forbidden value (" + this.month + ") on element month.");
-         }
-         param1.writeByte(this.month);
-         if(this.day < 0)
-         {
-            throw new Exception("Forbidden value (" + this.day + ") on element day.");
-         }
-         param1.writeByte(this.day);
-         if(this.hour < 0)
-         {
-            throw new Exception("Forbidden value (" + this.hour + ") on element hour.");
-         }
-         param1.writeByte(this.hour);
-         if(this.minute < 0)
-         {
-            throw new Exception("Forbidden value (" + this.minute + ") on element minute.");
-         }
-         param1.writeByte(this.minute);
-         super.serializeAs_ObjectEffect(param1);
+         param1.writeVarShort(this.actionId);
          if(this.year < 0)
          {
             throw new Exception("Forbidden value (" + this.year + ") on element year.");

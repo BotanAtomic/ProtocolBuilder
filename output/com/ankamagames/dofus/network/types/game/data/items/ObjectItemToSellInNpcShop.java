@@ -15,7 +15,20 @@ public class ObjectItemToSellInNpcShop extends ObjectItemMinimalInformation impl
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ObjectItemMinimalInformation(param1);
+         super.serializeAs_Item(param1);
+         if(this.objectGID < 0)
+         {
+            throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
+         }
+         param1.writeVarShort(this.objectGID);
+         param1.writeShort(this.effects.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.effects.length)
+         {
+            param1.writeShort((this.effects[_loc2_] as ObjectEffect).getTypeId());
+            (this.effects[_loc2_] as ObjectEffect).serialize(param1);
+            _loc2_++;
+         }
          if(this.objectPrice < 0 || this.objectPrice > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.objectPrice + ") on element objectPrice.");

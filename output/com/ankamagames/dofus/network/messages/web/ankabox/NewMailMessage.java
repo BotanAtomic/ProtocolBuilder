@@ -16,7 +16,16 @@ public class NewMailMessage extends MailStatusMessage implements INetworkMessage
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_MailStatusMessage(param1);
+         if(this.unread < 0)
+         {
+            throw new Exception("Forbidden value (" + this.unread + ") on element unread.");
+         }
+         param1.writeVarShort(this.unread);
+         if(this.total < 0)
+         {
+            throw new Exception("Forbidden value (" + this.total + ") on element total.");
+         }
+         param1.writeVarShort(this.total);
          param1.writeShort(this.sendersAccountId.length);
          int _loc2_ = 0;
          while(_loc2_ < this.sendersAccountId.length)

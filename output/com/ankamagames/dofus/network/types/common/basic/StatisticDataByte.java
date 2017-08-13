@@ -13,9 +13,6 @@ public class StatisticDataByte extends StatisticData implements INetworkType {
 
     public void serialize(ICustomDataOutput param1) {
          param1.writeByte(this.value);
-         param1.writeByte(this.value);
-         super.serializeAs_StatisticData(param1);
-         param1.writeByte(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {

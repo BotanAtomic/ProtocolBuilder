@@ -15,7 +15,16 @@ public class PaddockItem extends ObjectItemInRolePlay implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ObjectItemInRolePlay(param1);
+         if(this.cellId < 0 || this.cellId > 559)
+         {
+            throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
+         }
+         param1.writeVarShort(this.cellId);
+         if(this.objectGID < 0)
+         {
+            throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
+         }
+         param1.writeVarShort(this.objectGID);
          this.durability.serializeAs_ItemDurability(param1);
     }
 

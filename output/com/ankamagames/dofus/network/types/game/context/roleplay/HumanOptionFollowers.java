@@ -21,21 +21,6 @@ public class HumanOptionFollowers extends HumanOption implements INetworkType {
             (this.followingCharactersLook[_loc2_] as IndexedEntityLook).serializeAs_IndexedEntityLook(param1);
             _loc2_++;
          }
-         param1.writeShort(this.followingCharactersLook.length);
-         int _loc2_ = 0;
-         while(_loc2_ < this.followingCharactersLook.length)
-         {
-            (this.followingCharactersLook[_loc2_] as IndexedEntityLook).serializeAs_IndexedEntityLook(param1);
-            _loc2_++;
-         }
-         super.serializeAs_HumanOption(param1);
-         param1.writeShort(this.followingCharactersLook.length);
-         int _loc2_ = 0;
-         while(_loc2_ < this.followingCharactersLook.length)
-         {
-            (this.followingCharactersLook[_loc2_] as IndexedEntityLook).serializeAs_IndexedEntityLook(param1);
-            _loc2_++;
-         }
     }
 
     public void deserialize(ICustomDataInput param1) {

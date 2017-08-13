@@ -17,7 +17,7 @@ public class GameRolePlayNpcInformations extends GameRolePlayActorInformations i
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayActorInformations(param1);
+         super.serializeAs_GameContextActorInformations(param1);
          if(this.npcId < 0)
          {
             throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");

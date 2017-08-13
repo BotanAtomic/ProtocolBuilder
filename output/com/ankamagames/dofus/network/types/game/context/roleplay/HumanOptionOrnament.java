@@ -18,17 +18,6 @@ public class HumanOptionOrnament extends HumanOption implements INetworkType {
             throw new Exception("Forbidden value (" + this.ornamentId + ") on element ornamentId.");
          }
          param1.writeVarShort(this.ornamentId);
-         if(this.ornamentId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.ornamentId + ") on element ornamentId.");
-         }
-         param1.writeVarShort(this.ornamentId);
-         super.serializeAs_HumanOption(param1);
-         if(this.ornamentId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.ornamentId + ") on element ornamentId.");
-         }
-         param1.writeVarShort(this.ornamentId);
     }
 
     public void deserialize(ICustomDataInput param1) {

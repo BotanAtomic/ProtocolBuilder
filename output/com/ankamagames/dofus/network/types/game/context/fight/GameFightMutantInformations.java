@@ -16,7 +16,9 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameFightFighterNamedInformations(param1);
+         super.serializeAs_GameFightFighterInformations(param1);
+         param1.writeUTF(this.name);
+         this.status.serializeAs_PlayerStatus(param1);
          if(this.powerLevel < 0)
          {
             throw new Exception("Forbidden value (" + this.powerLevel + ") on element powerLevel.");

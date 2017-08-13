@@ -15,7 +15,7 @@ public class ExchangeCraftResultWithObjectIdMessage extends ExchangeCraftResultM
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeCraftResultMessage(param1);
+         param1.writeByte(this.craftResult);
          if(this.objectGenericId < 0)
          {
             throw new Exception("Forbidden value (" + this.objectGenericId + ") on element objectGenericId.");

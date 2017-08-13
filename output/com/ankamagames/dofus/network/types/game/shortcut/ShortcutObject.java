@@ -11,7 +11,7 @@ public class ShortcutObject extends Shortcut implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_Shortcut(param1);
+         param1.writeByte(this.error);
     }
 
     public void deserialize(ICustomDataInput param1) {

@@ -16,7 +16,16 @@ public class GameActionFightActivateGlyphTrapMessage extends AbstractGameActionM
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractGameActionMessage(param1);
+         if(this.actionId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
+         }
+         param1.writeVarShort(this.actionId);
+         if(this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
+         }
+         param1.writeDouble(this.sourceId);
          param1.writeShort(this.markId);
          param1.writeBoolean(this.active);
     }

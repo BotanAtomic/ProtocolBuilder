@@ -12,9 +12,16 @@ public class MapCoordinatesAndId extends MapCoordinates implements INetworkType 
 
 
     public void serialize(ICustomDataOutput param1) {
-         param1.writeInt(this.mapId);
-         param1.writeInt(this.mapId);
-         super.serializeAs_MapCoordinates(param1);
+         if(this.worldX < -255 || this.worldX > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
+         }
+         param1.writeShort(this.worldX);
+         if(this.worldY < -255 || this.worldY > 255)
+         {
+            throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
+         }
+         param1.writeShort(this.worldY);
          param1.writeInt(this.mapId);
     }
 

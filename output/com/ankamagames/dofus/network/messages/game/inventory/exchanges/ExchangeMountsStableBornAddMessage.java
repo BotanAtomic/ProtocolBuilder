@@ -14,7 +14,13 @@ public class ExchangeMountsStableBornAddMessage extends ExchangeMountsStableAddM
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeMountsStableAddMessage(param1);
+         param1.writeShort(this.mountDescription.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.mountDescription.length)
+         {
+            (this.mountDescription[_loc2_] as MountClientData).serializeAs_MountClientData(param1);
+            _loc2_++;
+         }
     }
 
     public void deserialize(ICustomDataInput param1) {

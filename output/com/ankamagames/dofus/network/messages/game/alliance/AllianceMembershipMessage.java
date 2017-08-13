@@ -14,7 +14,13 @@ public class AllianceMembershipMessage extends AllianceJoinedMessage implements 
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AllianceJoinedMessage(param1);
+         this.allianceInfo.serializeAs_AllianceInformations(param1);
+         param1.writeBoolean(this.enabled);
+         if(this.leadingGuildId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.leadingGuildId + ") on element leadingGuildId.");
+         }
+         param1.writeVarInt(this.leadingGuildId);
     }
 
     public void deserialize(ICustomDataInput param1) {

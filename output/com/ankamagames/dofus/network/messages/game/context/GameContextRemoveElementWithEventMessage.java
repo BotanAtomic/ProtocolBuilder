@@ -15,7 +15,11 @@ public class GameContextRemoveElementWithEventMessage extends GameContextRemoveE
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameContextRemoveElementMessage(param1);
+         if(this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.id + ") on element id.");
+         }
+         param1.writeDouble(this.id);
          if(this.elementEventId < 0)
          {
             throw new Exception("Forbidden value (" + this.elementEventId + ") on element elementEventId.");

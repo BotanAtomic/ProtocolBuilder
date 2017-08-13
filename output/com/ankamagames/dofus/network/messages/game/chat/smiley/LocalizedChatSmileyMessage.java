@@ -15,7 +15,21 @@ public class LocalizedChatSmileyMessage extends ChatSmileyMessage implements INe
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ChatSmileyMessage(param1);
+         if(this.entityId < -9.007199254740992E15 || this.entityId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.entityId + ") on element entityId.");
+         }
+         param1.writeDouble(this.entityId);
+         if(this.smileyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
+         }
+         param1.writeVarShort(this.smileyId);
+         if(this.accountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
          if(this.cellId < 0 || this.cellId > 559)
          {
             throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");

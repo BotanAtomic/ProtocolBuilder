@@ -14,7 +14,14 @@ public class GameRolePlayActorInformations extends GameContextActorInformations 
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameContextActorInformations(param1);
+         if(this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
+         }
+         param1.writeDouble(this.contextualId);
+         this.look.serializeAs_EntityLook(param1);
+         param1.writeShort(this.disposition.getTypeId());
+         this.disposition.serialize(param1);
     }
 
     public void deserialize(ICustomDataInput param1) {

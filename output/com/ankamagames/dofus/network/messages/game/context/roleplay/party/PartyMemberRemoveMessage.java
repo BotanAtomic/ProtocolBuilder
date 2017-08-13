@@ -15,7 +15,7 @@ public class PartyMemberRemoveMessage extends AbstractPartyEventMessage implemen
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPartyEventMessage(param1);
+         super.serializeAs_AbstractPartyMessage(param1);
          if(this.leavingPlayerId < 0 || this.leavingPlayerId > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.leavingPlayerId + ") on element leavingPlayerId.");

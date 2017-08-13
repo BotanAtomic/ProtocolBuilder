@@ -16,7 +16,17 @@ public class GameContextRemoveMultipleElementsWithEventsMessage extends GameCont
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameContextRemoveMultipleElementsMessage(param1);
+         param1.writeShort(this.elementsIds.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.elementsIds.length)
+         {
+            if(this.elementsIds[_loc2_] < -9.007199254740992E15 || this.elementsIds[_loc2_] > 9.007199254740992E15)
+            {
+               throw new Exception("Forbidden value (" + this.elementsIds[_loc2_] + ") on element 1 (starting at 1) of elementsIds.");
+            }
+            param1.writeDouble(this.elementsIds[_loc2_]);
+            _loc2_++;
+         }
          param1.writeShort(this.elementEventIds.length);
          int _loc2_ = 0;
          while(_loc2_ < this.elementEventIds.length)

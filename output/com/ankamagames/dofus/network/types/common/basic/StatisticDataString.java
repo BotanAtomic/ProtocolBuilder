@@ -13,9 +13,6 @@ public class StatisticDataString extends StatisticData implements INetworkType {
 
     public void serialize(ICustomDataOutput param1) {
          param1.writeUTF(this.value);
-         param1.writeUTF(this.value);
-         super.serializeAs_StatisticData(param1);
-         param1.writeUTF(this.value);
     }
 
     public void deserialize(ICustomDataInput param1) {

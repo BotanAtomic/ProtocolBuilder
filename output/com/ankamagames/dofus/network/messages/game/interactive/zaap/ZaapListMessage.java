@@ -15,7 +15,47 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_TeleportDestinationsListMessage(param1);
+         param1.writeByte(this.teleporterType);
+         param1.writeShort(this.mapIds.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.mapIds.length)
+         {
+            if(this.mapIds[_loc2_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.mapIds[_loc2_] + ") on element 2 (starting at 1) of mapIds.");
+            }
+            param1.writeInt(this.mapIds[_loc2_]);
+            _loc2_++;
+         }
+         param1.writeShort(this.subAreaIds.length);
+         int _loc3_ = 0;
+         while(_loc3_ < this.subAreaIds.length)
+         {
+            if(this.subAreaIds[_loc3_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.subAreaIds[_loc3_] + ") on element 3 (starting at 1) of subAreaIds.");
+            }
+            param1.writeVarShort(this.subAreaIds[_loc3_]);
+            _loc3_++;
+         }
+         param1.writeShort(this.costs.length);
+         int _loc4_ = 0;
+         while(_loc4_ < this.costs.length)
+         {
+            if(this.costs[_loc4_] < 0)
+            {
+               throw new Exception("Forbidden value (" + this.costs[_loc4_] + ") on element 4 (starting at 1) of costs.");
+            }
+            param1.writeVarShort(this.costs[_loc4_]);
+            _loc4_++;
+         }
+         param1.writeShort(this.destTeleporterType.length);
+         int _loc5_ = 0;
+         while(_loc5_ < this.destTeleporterType.length)
+         {
+            param1.writeByte(this.destTeleporterType[_loc5_]);
+            _loc5_++;
+         }
          if(this.spawnMapId < 0)
          {
             throw new Exception("Forbidden value (" + this.spawnMapId + ") on element spawnMapId.");

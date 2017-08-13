@@ -13,17 +13,14 @@ public class ServerSessionConstantLong extends ServerSessionConstant implements 
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.value < -9.007199254740992E15 || this.value > 9.007199254740992E15)
+         param1.writeShort(this.variables.length);
+         int _loc2_ = 0;
+         while(_loc2_ < this.variables.length)
          {
-            throw new Exception("Forbidden value (" + this.value + ") on element value.");
+            param1.writeShort((this.variables[_loc2_] as ServerSessionConstant).getTypeId());
+            (this.variables[_loc2_] as ServerSessionConstant).serialize(param1);
+            _loc2_++;
          }
-         param1.writeDouble(this.value);
-         if(this.value < -9.007199254740992E15 || this.value > 9.007199254740992E15)
-         {
-            throw new Exception("Forbidden value (" + this.value + ") on element value.");
-         }
-         param1.writeDouble(this.value);
-         super.serializeAs_ServerSessionConstant(param1);
          if(this.value < -9.007199254740992E15 || this.value > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.value + ") on element value.");

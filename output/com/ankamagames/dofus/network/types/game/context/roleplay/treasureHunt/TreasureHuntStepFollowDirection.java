@@ -20,19 +20,6 @@ public class TreasureHuntStepFollowDirection extends TreasureHuntStep implements
             throw new Exception("Forbidden value (" + this.mapCount + ") on element mapCount.");
          }
          param1.writeVarShort(this.mapCount);
-         param1.writeByte(this.direction);
-         if(this.mapCount < 0)
-         {
-            throw new Exception("Forbidden value (" + this.mapCount + ") on element mapCount.");
-         }
-         param1.writeVarShort(this.mapCount);
-         super.serializeAs_TreasureHuntStep(param1);
-         param1.writeByte(this.direction);
-         if(this.mapCount < 0)
-         {
-            throw new Exception("Forbidden value (" + this.mapCount + ") on element mapCount.");
-         }
-         param1.writeVarShort(this.mapCount);
     }
 
     public void deserialize(ICustomDataInput param1) {

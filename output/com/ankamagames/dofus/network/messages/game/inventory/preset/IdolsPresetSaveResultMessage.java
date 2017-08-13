@@ -14,7 +14,12 @@ public class IdolsPresetSaveResultMessage extends AbstractPresetSaveResultMessag
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractPresetSaveResultMessage(param1);
+         if(this.presetId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
+         }
+         param1.writeByte(this.presetId);
+         param1.writeByte(this.code);
     }
 
     public void deserialize(ICustomDataInput param1) {

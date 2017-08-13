@@ -27,7 +27,6 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_FightResultAdditionalData(param1);
          int _loc2_ = 0;
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.showExperience);
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.showExperienceLevelFloor);

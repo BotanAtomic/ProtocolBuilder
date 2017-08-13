@@ -13,7 +13,17 @@ public class ObjectEffectLadder extends ObjectEffectCreature implements INetwork
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ObjectEffectCreature(param1);
+         if(this.monsterFamilyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");
+         }
+         param1.writeVarShort(this.monsterFamilyId);
+         super.serializeAs_ObjectEffect(param1);
+         if(this.monsterFamilyId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");
+         }
+         param1.writeVarShort(this.monsterFamilyId);
          if(this.monsterCount < 0)
          {
             throw new Exception("Forbidden value (" + this.monsterCount + ") on element monsterCount.");

@@ -16,7 +16,14 @@ public class GameRolePlayMutantInformations extends GameRolePlayHumanoidInformat
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayHumanoidInformations(param1);
+         super.serializeAs_GameRolePlayNamedActorInformations(param1);
+         param1.writeShort(this.humanoidInfo.getTypeId());
+         this.humanoidInfo.serialize(param1);
+         if(this.accountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
+         }
+         param1.writeInt(this.accountId);
          if(this.monsterId < 0)
          {
             throw new Exception("Forbidden value (" + this.monsterId + ") on element monsterId.");

@@ -13,7 +13,8 @@ public class CharacterMinimalInformations extends CharacterBasicMinimalInformati
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_CharacterBasicMinimalInformations(param1);
+         super.serializeAs_AbstractCharacterInformation(param1);
+         param1.writeUTF(this.name);
          if(this.level < 1 || this.level > 206)
          {
             throw new Exception("Forbidden value (" + this.level + ") on element level.");

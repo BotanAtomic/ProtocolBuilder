@@ -13,7 +13,8 @@ public class WrapperObjectErrorMessage extends SymbioticObjectErrorMessage imple
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_SymbioticObjectErrorMessage(param1);
+         super.serializeAs_ObjectErrorMessage(param1);
+         param1.writeByte(this.errorCode);
     }
 
     public void deserialize(ICustomDataInput param1) {

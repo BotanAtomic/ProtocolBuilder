@@ -16,7 +16,7 @@ public class ExchangeRequestedTradeMessage extends ExchangeRequestedMessage impl
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ExchangeRequestedMessage(param1);
+         param1.writeByte(this.exchangeType);
          if(this.source < 0 || this.source > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.source + ") on element source.");

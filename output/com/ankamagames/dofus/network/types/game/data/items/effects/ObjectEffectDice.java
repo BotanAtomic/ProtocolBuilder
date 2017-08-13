@@ -15,37 +15,11 @@ public class ObjectEffectDice extends ObjectEffect implements INetworkType {
 
 
     public void serialize(ICustomDataOutput param1) {
-         if(this.diceNum < 0)
+         if(this.actionId < 0)
          {
-            throw new Exception("Forbidden value (" + this.diceNum + ") on element diceNum.");
+            throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
          }
-         param1.writeVarShort(this.diceNum);
-         if(this.diceSide < 0)
-         {
-            throw new Exception("Forbidden value (" + this.diceSide + ") on element diceSide.");
-         }
-         param1.writeVarShort(this.diceSide);
-         if(this.diceConst < 0)
-         {
-            throw new Exception("Forbidden value (" + this.diceConst + ") on element diceConst.");
-         }
-         param1.writeVarShort(this.diceConst);
-         if(this.diceNum < 0)
-         {
-            throw new Exception("Forbidden value (" + this.diceNum + ") on element diceNum.");
-         }
-         param1.writeVarShort(this.diceNum);
-         if(this.diceSide < 0)
-         {
-            throw new Exception("Forbidden value (" + this.diceSide + ") on element diceSide.");
-         }
-         param1.writeVarShort(this.diceSide);
-         if(this.diceConst < 0)
-         {
-            throw new Exception("Forbidden value (" + this.diceConst + ") on element diceConst.");
-         }
-         param1.writeVarShort(this.diceConst);
-         super.serializeAs_ObjectEffect(param1);
+         param1.writeVarShort(this.actionId);
          if(this.diceNum < 0)
          {
             throw new Exception("Forbidden value (" + this.diceNum + ") on element diceNum.");

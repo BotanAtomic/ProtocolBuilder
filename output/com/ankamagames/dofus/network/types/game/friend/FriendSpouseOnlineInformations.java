@@ -19,7 +19,27 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations imp
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_FriendSpouseInformations(param1);
+         if(this.spouseAccountId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.spouseAccountId + ") on element spouseAccountId.");
+         }
+         param1.writeInt(this.spouseAccountId);
+         if(this.spouseId < 0 || this.spouseId > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.spouseId + ") on element spouseId.");
+         }
+         param1.writeVarLong(this.spouseId);
+         param1.writeUTF(this.spouseName);
+         if(this.spouseLevel < 1 || this.spouseLevel > 206)
+         {
+            throw new Exception("Forbidden value (" + this.spouseLevel + ") on element spouseLevel.");
+         }
+         param1.writeByte(this.spouseLevel);
+         param1.writeByte(this.breed);
+         param1.writeByte(this.sex);
+         this.spouseEntityLook.serializeAs_EntityLook(param1);
+         this.guildInfo.serializeAs_GuildInformations(param1);
+         param1.writeByte(this.alignmentSide);
          int _loc2_ = 0;
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,0,this.inFight);
          _loc2_ = BooleanByteWrapper.setFlag(_loc2_,1,this.followSpouse);

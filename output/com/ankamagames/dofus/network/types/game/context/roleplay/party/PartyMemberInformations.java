@@ -31,7 +31,9 @@ public class PartyMemberInformations extends CharacterBaseInformations implement
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_CharacterBaseInformations(param1);
+         super.serializeAs_CharacterMinimalPlusLookInformations(param1);
+         param1.writeByte(this.breed);
+         param1.writeBoolean(this.sex);
          if(this.lifePoints < 0)
          {
             throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");

@@ -16,7 +16,18 @@ public class GameRolePlayNpcWithQuestInformations extends GameRolePlayNpcInforma
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameRolePlayNpcInformations(param1);
+         super.serializeAs_GameRolePlayActorInformations(param1);
+         if(this.npcId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
+         }
+         param1.writeVarShort(this.npcId);
+         param1.writeBoolean(this.sex);
+         if(this.specialArtworkId < 0)
+         {
+            throw new Exception("Forbidden value (" + this.specialArtworkId + ") on element specialArtworkId.");
+         }
+         param1.writeVarShort(this.specialArtworkId);
          this.questFlag.serializeAs_GameRolePlayNpcQuestFlag(param1);
     }
 

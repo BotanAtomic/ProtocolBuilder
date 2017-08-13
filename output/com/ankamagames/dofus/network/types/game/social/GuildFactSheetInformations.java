@@ -16,7 +16,42 @@ public class GuildFactSheetInformations extends GuildInformations implements INe
 
 
     public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GuildInformations(param1);
+         param1.writeBoolean(this.abandonnedPaddock);
+         if(this.level < 0 || this.level > 255)
+         {
+            throw new Exception("Forbidden value (" + this.level + ") on element level.");
+         }
+         param1.writeByte(this.level);
+         if(this.expLevelFloor < 0 || this.expLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.expLevelFloor + ") on element expLevelFloor.");
+         }
+         param1.writeVarLong(this.expLevelFloor);
+         if(this.experience < 0 || this.experience > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.experience + ") on element experience.");
+         }
+         param1.writeVarLong(this.experience);
+         if(this.expNextLevelFloor < 0 || this.expNextLevelFloor > 9.007199254740992E15)
+         {
+            throw new Exception("Forbidden value (" + this.expNextLevelFloor + ") on element expNextLevelFloor.");
+         }
+         param1.writeVarLong(this.expNextLevelFloor);
+         if(this.creationDate < 0)
+         {
+            throw new Exception("Forbidden value (" + this.creationDate + ") on element creationDate.");
+         }
+         param1.writeInt(this.creationDate);
+         if(this.nbTotalMembers < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbTotalMembers + ") on element nbTotalMembers.");
+         }
+         param1.writeVarShort(this.nbTotalMembers);
+         if(this.nbConnectedMembers < 0)
+         {
+            throw new Exception("Forbidden value (" + this.nbConnectedMembers + ") on element nbConnectedMembers.");
+         }
+         param1.writeVarShort(this.nbConnectedMembers);
          if(this.leaderId < 0 || this.leaderId > 9.007199254740992E15)
          {
             throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
