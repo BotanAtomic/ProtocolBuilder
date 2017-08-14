@@ -5,47 +5,46 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 
-public class CharacterToRecolorInformation extends AbstractCharacterToRefurbishInformation implements INetworkType {
+public class CharacterToRecolorInformation extends AbstractCharacterToRefurbishInformation
+    implements INetworkType {
 
-    private int protocolId = 212;
+  public static final int protocolId = 212;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    if (this.id < 0 || this.id > 9.007199254740992E15) {
+      throw new Error("Forbidden value (" + this.id + ") on element id.");
+    }
+    param1.writeVarLong(this.id);
 
-    public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_AbstractCharacterInformation(param1);
-         param1.writeShort(this.colors.length);
-         int _loc2_ = 0;
-         while(_loc2_ < this.colors.length)
-         {
-            param1.writeInt(this.colors[_loc2_]);
-            _loc2_++;
-         }
-         if(this.cosmeticId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
-         }
-         param1.writeVarInt(this.cosmeticId);
+    param1.writeShort(this.colors.length);
+    int _loc2_ = 0;
+    while (_loc2_ < this.colors.length) {
+      param1.writeInt(this.colors[_loc2_]);
+      _loc2_++;
+    }
+    if (this.cosmeticId < 0) {
+      throw new Error("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+    }
+    param1.writeVarInt(this.cosmeticId);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         Object _loc4_ = 0;
-         this.id = param1.readVarUhLong();
-         if(this.id < 0 || this.id > 9.007199254740992E15)
-         {
-            throw new Exception("Forbidden value (" + this.id + ") on element of AbstractCharacterInformation.id.");
-         }
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            _loc4_ = param1.readInt();
-            this.colors.push(_loc4_);
-            _loc3_++;
-         }
-         this.cosmeticId = param1.readVarUhInt();
-         if(this.cosmeticId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.cosmeticId + ") on element of AbstractCharacterToRefurbishInformation.cosmeticId.");
-         }
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+  }
 }

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dofus_2_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Dofus_2_main.iml" group="Dofus_2" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dofus_2_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Dofus_2_test.iml" group="Dofus_2" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/protocol - builder.iml" filepath="$PROJECT_DIR$/.idea/modules/protocol - builder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/protocol - builder/protocol_-_builder.iml" filepath="$PROJECT_DIR$/.idea/modules/protocol - builder/protocol_-_builder.iml" group="protocol - builder" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/protocol - builder/protocol_-_builder_main.iml" filepath="$PROJECT_DIR$/.idea/modules/protocol - builder/protocol_-_builder_main.iml" group="protocol - builder" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/protocol - builder/protocol_-_builder_test.iml" filepath="$PROJECT_DIR$/.idea/modules/protocol - builder/protocol_-_builder_test.iml" group="protocol - builder" />
     </modules>

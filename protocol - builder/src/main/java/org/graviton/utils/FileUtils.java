@@ -3,6 +3,8 @@ package org.graviton.utils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -22,10 +24,10 @@ public class FileUtils {
         }
     }
 
-    public static String readFile(URI uri) {
+    public static String readFile(URL url) {
         try {
-            return new String(Files.readAllBytes(Paths.get(uri)));
-        } catch (IOException e) {
+            return new String(Files.readAllBytes(Paths.get(url.toURI())));
+        } catch (IOException | URISyntaxException e) {
             return "";
         }
     }

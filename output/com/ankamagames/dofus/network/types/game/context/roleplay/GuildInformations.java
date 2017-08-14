@@ -6,22 +6,47 @@ import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 
-public class GuildInformations extends Basic {
+public class GuildInformations extends BasicGuildInformations implements INetworkType {
 
-    private int protocolId = 127;
-    private GuildEmblem guildEmblem;
-    private FuncTree _guildEmblemtree;
+  public GuildEmblem guildEmblem;
+  private FuncTree _guildEmblemtree;
+  public static final int protocolId = 127;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
 
-    public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_BasicGuildInformations(param1);
-         this.guildEmblem.serializeAs_GuildEmblem(param1);
+    if (this.guildId < 0) {
+      throw new Error("Forbidden value (" + this.guildId + ") on element guildId.");
+    }
+    param1.writeVarInt(this.guildId);
+    param1.writeUTF(this.guildName);
+    if (this.guildLevel < 0 || this.guildLevel > 200) {
+      throw new Error("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
+    }
+    param1.writeByte(this.guildLevel);
+
+    this.guildEmblem.serializeAs_GuildEmblem(param1);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.quiet = param1.readBoolean();
-         this.guildEmblem = new GuildEmblem();
-         this.guildEmblem.deserialize(param1);
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.guildEmblem = new GuildEmblem();
+    this.guildEmblem.deserialize(param1);
+  }
 }

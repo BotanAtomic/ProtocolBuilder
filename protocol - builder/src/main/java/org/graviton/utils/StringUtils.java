@@ -33,4 +33,18 @@ public class StringUtils {
     public static int countRealCharacter(String line) {
         return line.replace(" ","").length();
     }
+
+    public static String removeLastCharacter(String data) {
+        return data.substring(0, data.length() - 1);
+    }
+
+    public static String getLastCharacter(String data) {
+        return data.substring(data.length() - 1, data.length());
+    }
+
+    public static String remove(String data, String...targets) {
+        for(String replaced : targets)
+            data = data.replace(replaced, "");
+        return data.trim();
+    }
 }

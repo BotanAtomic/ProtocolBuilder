@@ -10,83 +10,93 @@ import com.ankamagames.dofus.network.types.game.interactive.MapObstacle;
 import com.ankamagames.dofus.network.types.game.context.fight.FightCommonInformations;
 import com.ankamagames.dofus.network.types.game.context.fight.FightStartingPositions;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
+import flash.utils.ByteArray;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 
-public class MapComplementaryInformationsDataInHouseMessage extends MapComplementaryInformationsDataMessage implements INetworkMessage {
+public class MapComplementaryInformationsDataInHouseMessage
+    extends MapComplementaryInformationsDataMessage implements INetworkMessage {
 
-    private int protocolId = 6130;
-    private boolean _isInitialized = false;
-    private HouseInformationsInside currentHouse;
-    private FuncTree _currentHousetree;
+  private boolean _isInitialized = false;
+  public HouseInformationsInside currentHouse;
+  private FuncTree _currentHousetree;
+  public static final int protocolId = 6130;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    if (this.subAreaId < 0) {
+      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+    }
+    param1.writeVarShort(this.subAreaId);
+    if (this.mapId < 0) {
+      throw new Error("Forbidden value (" + this.mapId + ") on element mapId.");
+    }
+    param1.writeInt(this.mapId);
+    param1.writeShort(this.houses.length);
+    int _loc2_ = 0;
+    while (_loc2_ < this.houses.length) {
+      param1.writeShort(((HouseInformations) (this.houses[_loc2_])).getTypeId());
+      ((HouseInformations) this.houses[_loc2_]).serialize(param1);
+      _loc2_++;
+    }
+    param1.writeShort(this.actors.length);
+    int _loc3_ = 0;
+    while (_loc3_ < this.actors.length) {
+      param1.writeShort(((GameRolePlayActorInformations) (this.actors[_loc3_])).getTypeId());
+      ((GameRolePlayActorInformations) this.actors[_loc3_]).serialize(param1);
+      _loc3_++;
+    }
+    param1.writeShort(this.interactiveElements.length);
+    int _loc4_ = 0;
+    while (_loc4_ < this.interactiveElements.length) {
+      param1.writeShort(((InteractiveElement) (this.interactiveElements[_loc4_])).getTypeId());
+      ((InteractiveElement) this.interactiveElements[_loc4_]).serialize(param1);
+      _loc4_++;
+    }
+    param1.writeShort(this.statedElements.length);
+    int _loc5_ = 0;
+    while (_loc5_ < this.statedElements.length) {
+      ((StatedElement) this.statedElements[_loc5_]).serializeAs_(param1);
+      _loc5_++;
+    }
+    param1.writeShort(this.obstacles.length);
+    int _loc6_ = 0;
+    while (_loc6_ < this.obstacles.length) {
+      ((MapObstacle) this.obstacles[_loc6_]).serializeAs_(param1);
+      _loc6_++;
+    }
+    param1.writeShort(this.fights.length);
+    int _loc7_ = 0;
+    while (_loc7_ < this.fights.length) {
+      ((FightCommonInformations) this.fights[_loc7_]).serializeAs_(param1);
+      _loc7_++;
+    }
+    param1.writeBoolean(this.hasAggressiveMonsters);
+    this.fightStartPositions.serializeAs_FightStartingPositions(param1);
 
-    public void serialize(ICustomDataOutput param1) {
-         if(this.subAreaId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
-         }
-         param1.writeVarShort(this.subAreaId);
-         if(this.mapId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
-         }
-         param1.writeInt(this.mapId);
-         param1.writeShort(this.houses.length);
-         int _loc2_ = 0;
-         while(_loc2_ < this.houses.length)
-         {
-            param1.writeShort((this.houses[_loc2_] as HouseInformations).getTypeId());
-            (this.houses[_loc2_] as HouseInformations).serialize(param1);
-            _loc2_++;
-         }
-         param1.writeShort(this.actors.length);
-         int _loc3_ = 0;
-         while(_loc3_ < this.actors.length)
-         {
-            param1.writeShort((this.actors[_loc3_] as GameRolePlayActorInformations).getTypeId());
-            (this.actors[_loc3_] as GameRolePlayActorInformations).serialize(param1);
-            _loc3_++;
-         }
-         param1.writeShort(this.interactiveElements.length);
-         int _loc4_ = 0;
-         while(_loc4_ < this.interactiveElements.length)
-         {
-            param1.writeShort((this.interactiveElements[_loc4_] as InteractiveElement).getTypeId());
-            (this.interactiveElements[_loc4_] as InteractiveElement).serialize(param1);
-            _loc4_++;
-         }
-         param1.writeShort(this.statedElements.length);
-         int _loc5_ = 0;
-         while(_loc5_ < this.statedElements.length)
-         {
-            (this.statedElements[_loc5_] as StatedElement).serializeAs_StatedElement(param1);
-            _loc5_++;
-         }
-         param1.writeShort(this.obstacles.length);
-         int _loc6_ = 0;
-         while(_loc6_ < this.obstacles.length)
-         {
-            (this.obstacles[_loc6_] as MapObstacle).serializeAs_MapObstacle(param1);
-            _loc6_++;
-         }
-         param1.writeShort(this.fights.length);
-         int _loc7_ = 0;
-         while(_loc7_ < this.fights.length)
-         {
-            (this.fights[_loc7_] as FightCommonInformations).serializeAs_FightCommonInformations(param1);
-            _loc7_++;
-         }
-         param1.writeBoolean(this.hasAggressiveMonsters);
-         this.fightStartPositions.serializeAs_FightStartingPositions(param1);
-         this.currentHouse.serializeAs_HouseInformationsInside(param1);
+    this.currentHouse.serializeAs_HouseInformationsInside(param1);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.deserializeAs_MapComplementaryInformationsDataMessage(param1);
-         this.currentHouse = new HouseInformationsInside();
-         this.currentHouse.deserialize(param1);
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.currentHouse = new HouseInformationsInside();
+    this.currentHouse.deserialize(param1);
+  }
 }

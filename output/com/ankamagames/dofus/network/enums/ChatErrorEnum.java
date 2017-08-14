@@ -1,30 +1,28 @@
 package com.ankamagames.dofus.network.enums;
 
 public enum ChatErrorEnum {
+  CHAT_ERROR_UNKNOWN(0),
+  CHAT_ERROR_RECEIVER_NOT_FOUND(1),
+  CHAT_ERROR_INTERIOR_MONOLOGUE(2),
+  CHAT_ERROR_NO_GUILD(3),
+  CHAT_ERROR_NO_PARTY(4),
+  CHAT_ERROR_ALLIANCE(5),
+  CHAT_ERROR_INVALID_MAP(6),
+  CHAT_ERROR_NO_PARTY_ARENA(7),
+  CHAT_ERROR_NO_TEAM(8),
+  CHAT_ERROR_MALFORMED_CONTENT(9),
+  CHAT_ERROR_NO_CHANNEL_COMMUNITY(10);
+  private final int value;
 
-    CHAT_ERROR_UNKNOWN(0;),
-    CHAT_ERROR_RECEIVER_NOT_FOUND(1;),
-    CHAT_ERROR_INTERIOR_MONOLOGUE(2;),
-    CHAT_ERROR_NO_GUILD(3;),
-    CHAT_ERROR_NO_PARTY(4;),
-    CHAT_ERROR_ALLIANCE(5;),
-    CHAT_ERROR_INVALID_MAP(6;),
-    CHAT_ERROR_NO_PARTY_ARENA(7;),
-    CHAT_ERROR_NO_TEAM(8;),
-    CHAT_ERROR_MALFORMED_CONTENT(9;),
-    CHAT_ERROR_NO_CHANNEL_COMMUNITY(10;);
+  public ChatErrorEnum(int value) {
+    this.value = value;
+  }
 
-    private final int value;
-    public ChatErrorEnum(int value) {
-        this.value = value;
-    }
+  public int value() {
+    return this.value;
+  }
 
-    public int value() {
-      return this.value;
-    }
-
-    public ChatErrorEnum get(int value) {
-        return Stream.of(values()).filter(current -> current.value == value).findAny().orElse(null);
-    }
-
+  public ChatErrorEnum get(int value) {
+    return Stream.of(values()).filter(current -> current.value == value).findAny().orElse(null);
+  }
 }

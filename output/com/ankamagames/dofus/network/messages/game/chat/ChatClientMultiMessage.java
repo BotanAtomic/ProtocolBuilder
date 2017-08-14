@@ -1,31 +1,48 @@
 package com.ankamagames.dofus.network.messages.game.chat;
 
+import java.lang.Exception;
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
+import flash.utils.ByteArray;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
-import java.lang.Exception;
 
 public class ChatClientMultiMessage extends ChatAbstractClientMessage implements INetworkMessage {
 
-    private int protocolId = 861;
-    private boolean _isInitialized = false;
-    private int channel = 0;
+  private boolean _isInitialized = false;
+  public int channel = 0;
+  public static final int protocolId = 861;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    param1.writeUTF(this.content);
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeUTF(this.content);
-         param1.writeByte(this.channel);
+    param1.writeByte(this.channel);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.content = param1.readUTF();
-         this.channel = param1.readByte();
-         if(this.channel < 0)
-         {
-            throw new Exception("Forbidden value (" + this.channel + ") on element of ChatClientMultiMessage.channel.");
-         }
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.channel = param1.readByte();
+    if (this.channel < 0) {
+      throw new Error(
+          "Forbidden value (" + this.channel + ") on element of ChatMessageReportMessage.channel.");
+    }
+  }
 }

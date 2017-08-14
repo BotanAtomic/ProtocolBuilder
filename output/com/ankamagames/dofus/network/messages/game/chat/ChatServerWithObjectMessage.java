@@ -3,74 +3,72 @@ package com.ankamagames.dofus.network.messages.game.chat;
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.data.items.ObjectItem;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
+import flash.utils.ByteArray;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class ChatServerWithObjectMessage extends ChatServerMessage implements INetworkMessage {
 
-    private int protocolId = 883;
-    private boolean _isInitialized = false;
-    private ObjectItem[] objects;
-    private FuncTree _objectstree;
+  private boolean _isInitialized = false;
+  public Vector<ObjectItem> objects;
+  private FuncTree _objectstree;
+  public static final int protocolId = 883;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    param1.writeByte(this.channel);
+    param1.writeUTF(this.content);
+    if (this.timestamp < 0) {
+      throw new Error("Forbidden value (" + this.timestamp + ") on element timestamp.");
+    }
+    param1.writeInt(this.timestamp);
+    param1.writeUTF(this.fingerprint);
 
-    public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_ChatAbstractServerMessage(param1);
-         if(this.senderId < -9.007199254740992E15 || this.senderId > 9.007199254740992E15)
-         {
-            throw new Exception("Forbidden value (" + this.senderId + ") on element senderId.");
-         }
-         param1.writeDouble(this.senderId);
-         param1.writeUTF(this.senderName);
-         if(this.senderAccountId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.senderAccountId + ") on element senderAccountId.");
-         }
-         param1.writeInt(this.senderAccountId);
-         param1.writeShort(this.objects.length);
-         int _loc2_ = 0;
-         while(_loc2_ < this.objects.length)
-         {
-            (this.objects[_loc2_] as ObjectItem).serializeAs_ObjectItem(param1);
-            _loc2_++;
-         }
+    if (this.senderId < -9.007199254740992E15 || this.senderId > 9.007199254740992E15) {
+      throw new Error("Forbidden value (" + this.senderId + ") on element senderId.");
+    }
+    param1.writeDouble(this.senderId);
+    param1.writeUTF(this.senderName);
+    if (this.senderAccountId < 0) {
+      throw new Error("Forbidden value (" + this.senderAccountId + ") on element senderAccountId.");
+    }
+    param1.writeInt(this.senderAccountId);
+
+    param1.writeShort(this.objects.length);
+    int _loc2_ = 0;
+    while (_loc2_ < this.objects.length) {
+      ((ObjectItem) this.objects[_loc2_]).serializeAs_(param1);
+      _loc2_++;
+    }
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    ObjectItem _loc4_ = null;
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         ObjectItem _loc4_ = null;
-         this.channel = param1.readByte();
-         if(this.channel < 0)
-         {
-            throw new Exception("Forbidden value (" + this.channel + ") on element of ChatAbstractServerMessage.channel.");
-         }
-         this.content = param1.readUTF();
-         this.timestamp = param1.readInt();
-         if(this.timestamp < 0)
-         {
-            throw new Exception("Forbidden value (" + this.timestamp + ") on element of ChatAbstractServerMessage.timestamp.");
-         }
-         this.fingerprint = param1.readUTF();
-         this.senderId = param1.readDouble();
-         if(this.senderId < -9.007199254740992E15 || this.senderId > 9.007199254740992E15)
-         {
-            throw new Exception("Forbidden value (" + this.senderId + ") on element of ChatServerMessage.senderId.");
-         }
-         this.senderName = param1.readUTF();
-         this.senderAccountId = param1.readInt();
-         if(this.senderAccountId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.senderAccountId + ") on element of ChatServerMessage.senderAccountId.");
-         }
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            _loc4_ = new ObjectItem();
-            _loc4_.deserialize(param1);
-            this.objects.push(_loc4_);
-            _loc3_++;
-         }
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    int _loc2_ = param1.readUnsignedShort();
+    int _loc3_ = 0;
+    while (_loc3_ < _loc2_) {
+      _loc4_ = new ObjectItem();
+      _loc4_.deserialize(param1);
+      this.objects.push(_loc4_);
+      _loc3_++;
+    }
+  }
 }

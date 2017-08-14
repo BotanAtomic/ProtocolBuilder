@@ -3,29 +3,35 @@ package com.ankamagames.dofus.network.messages.game.context.roleplay.fight.arena
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
+import flash.utils.ByteArray;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 
-public class GameRolePlayArenaFighterStatusMessage extends NetworkMessage implements INetworkMessage {
+public class GameRolePlayArenaFighterStatusMessage extends NetworkMessage
+    implements INetworkMessage {
 
-    private int protocolId = 6281;
-    private boolean _isInitialized = false;
-    private int fightId = 0;
-    private int playerId = 0;
-    private boolean accepted = false;
+  private boolean _isInitialized = false;
+  public int fightId = 0;
+  public int playerId = 0;
+  public boolean accepted = false;
+  public static final int protocolId = 6281;
 
+  public void serialize(ICustomDataOutput param1) {
+    param1.writeInt(this.fightId);
+    param1.writeInt(this.playerId);
+    param1.writeBoolean(this.accepted);
+  }
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeInt(this.fightId);
-         param1.writeInt(this.playerId);
-         param1.writeBoolean(this.accepted);
+  public void deserialize(ICustomDataInput param1) {
+    this.fightId = param1.readInt();
+
+    this.playerId = param1.readVarUhLong();
+    if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
+      throw new Error(
+          "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.fightId = param1.readInt();
-         this.playerId = param1.readInt();
-         this.accepted = param1.readBoolean();
-    }
-
+    this.accepted = param1.readBoolean();
+  }
 }

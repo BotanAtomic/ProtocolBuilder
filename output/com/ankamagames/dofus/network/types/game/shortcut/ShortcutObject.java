@@ -7,19 +7,32 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class ShortcutObject extends Shortcut implements INetworkType {
 
-    private int protocolId = 367;
+  public static final int protocolId = 367;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    if (this.slot < 0 || this.slot > 99) {
+      throw new Error("Forbidden value (" + this.slot + ") on element slot.");
+    }
+    param1.writeByte(this.slot);
+  }
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeByte(this.error);
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.error = param1.readByte();
-         if(this.error < 0)
-         {
-            throw new Exception("Forbidden value (" + this.error + ") on element of ShortcutBarAddErrorMessage.error.");
-         }
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+  }
 }

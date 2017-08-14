@@ -7,13 +7,9 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class StatisticData extends Object implements INetworkType {
 
-    private int protocolId = 484;
+  public static final int protocolId = 484;
 
+  public void serialize(ICustomDataOutput param1) {}
 
-    public void serialize(ICustomDataOutput param1) {
-    }
-
-    public void deserialize(ICustomDataInput param1) {
-    }
-
+  public void deserialize(ICustomDataInput param1) {}
 }

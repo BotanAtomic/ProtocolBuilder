@@ -24,11 +24,11 @@ package com.ankamagames.dofus.network.messages.authorized
       {
          return super.isInitialized && this._isInitialized;
       }
-      
-      override public function getMessageId() : uint
-      {
-         return 5662;
-      }
+
+       override public function getMessageId() : uint
+       {
+           return 5662;
+       }
       
       public function initAdminQuietCommandMessage(param1:String = "") : AdminQuietCommandMessage
       {

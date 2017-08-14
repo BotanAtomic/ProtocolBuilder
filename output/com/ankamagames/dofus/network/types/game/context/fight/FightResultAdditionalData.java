@@ -7,13 +7,9 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class FightResultAdditionalData extends Object implements INetworkType {
 
-    private int protocolId = 191;
+  public static final int protocolId = 191;
 
+  public void serialize(ICustomDataOutput param1) {}
 
-    public void serialize(ICustomDataOutput param1) {
-    }
-
-    public void deserialize(ICustomDataInput param1) {
-    }
-
+  public void deserialize(ICustomDataInput param1) {}
 }

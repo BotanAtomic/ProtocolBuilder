@@ -7,23 +7,21 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class JobCrafterDirectoryListEntry extends Object implements INetworkType {
 
-    private int protocolId = 196;
-    private JobCrafterDirectoryEntryPlayerInfo playerInfo;
-    private JobCrafterDirectoryEntryJobInfo jobInfo;
-    private FuncTree _playerInfotree;
-    private FuncTree _jobInfotree;
+  public JobCrafterDirectoryEntryPlayerInfo playerInfo;
+  public JobCrafterDirectoryEntryJobInfo jobInfo;
+  private FuncTree _playerInfotree;
+  private FuncTree _jobInfotree;
+  public static final int protocolId = 196;
 
+  public void serialize(ICustomDataOutput param1) {
+    this.playerInfo.serializeAs_JobCrafterDirectoryEntryPlayerInfo(param1);
+    this.jobInfo.serializeAs_JobCrafterDirectoryEntryJobInfo(param1);
+  }
 
-    public void serialize(ICustomDataOutput param1) {
-         this.playerInfo.serializeAs_JobCrafterDirectoryEntryPlayerInfo(param1);
-         this.jobInfo.serializeAs_JobCrafterDirectoryEntryJobInfo(param1);
-    }
-
-    public void deserialize(ICustomDataInput param1) {
-         this.playerInfo = new JobCrafterDirectoryEntryPlayerInfo();
-         this.playerInfo.deserialize(param1);
-         this.jobInfo = new JobCrafterDirectoryEntryJobInfo();
-         this.jobInfo.deserialize(param1);
-    }
-
+  public void deserialize(ICustomDataInput param1) {
+    this.playerInfo = new JobCrafterDirectoryEntryPlayerInfo();
+    this.playerInfo.deserialize(param1);
+    this.jobInfo = new JobCrafterDirectoryEntryJobInfo();
+    this.jobInfo.deserialize(param1);
+  }
 }

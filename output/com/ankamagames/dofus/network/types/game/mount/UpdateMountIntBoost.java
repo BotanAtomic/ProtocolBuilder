@@ -7,38 +7,34 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class UpdateMountIntBoost extends UpdateMountBoost implements INetworkType {
 
-    private int protocolId = 357;
-    private int value = 0;
+  public int value = 0;
+  public static final int protocolId = 357;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    param1.writeByte(this.type);
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeVarInt(this.rideId);
-         param1.writeShort(this.boostToUpdateList.length);
-         int _loc2_ = 0;
-         while(_loc2_ < this.boostToUpdateList.length)
-         {
-            param1.writeShort((this.boostToUpdateList[_loc2_] as UpdateMountBoost).getTypeId());
-            (this.boostToUpdateList[_loc2_] as UpdateMountBoost).serialize(param1);
-            _loc2_++;
-         }
-         param1.writeInt(this.value);
+    param1.writeInt(this.value);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         int _loc4_ = 0;
-         UpdateMountBoost _loc5_ = null;
-         this.rideId = param1.readVarInt();
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            _loc4_ = param1.readUnsignedShort();
-            _loc5_ = ProtocolTypeManager.getInstance(UpdateMountBoost,_loc4_);
-            _loc5_.deserialize(param1);
-            this.boostToUpdateList.push(_loc5_);
-            _loc3_++;
-         }
-         this.value = param1.readInt();
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.value = param1.readInt();
+  }
 }

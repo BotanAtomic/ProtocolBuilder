@@ -3,31 +3,45 @@ package com.ankamagames.dofus.network.messages.game.inventory.exchanges;
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.dofus.network.types.game.data.items.ObjectItemNotInContainer;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
+import flash.utils.ByteArray;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 
-public class ExchangeCraftResultWithObjectDescMessage extends ExchangeCraftResultMessage implements INetworkMessage {
+public class ExchangeCraftResultWithObjectDescMessage extends ExchangeCraftResultMessage
+    implements INetworkMessage {
 
-    private int protocolId = 5999;
-    private boolean _isInitialized = false;
-    private ObjectItemNotInContainer objectInfo;
-    private FuncTree _objectInfotree;
+  private boolean _isInitialized = false;
+  public ObjectItemNotInContainer objectInfo;
+  private FuncTree _objectInfotree;
+  public static final int protocolId = 5999;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    param1.writeByte(this.craftResult);
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeByte(this.craftResult);
-         this.objectInfo.serializeAs_ObjectItemNotInContainer(param1);
+    this.objectInfo.serializeAs_ObjectItemNotInContainer(param1);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.craftResult = param1.readByte();
-         if(this.craftResult < 0)
-         {
-            throw new Exception("Forbidden value (" + this.craftResult + ") on element of ExchangeCraftResultMessage.craftResult.");
-         }
-         this.objectInfo = new ObjectItemNotInContainer();
-         this.objectInfo.deserialize(param1);
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.objectInfo = new ObjectItemNotInContainer();
+    this.objectInfo.deserialize(param1);
+  }
 }

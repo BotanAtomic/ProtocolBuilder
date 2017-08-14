@@ -1,37 +1,51 @@
 package com.ankamagames.dofus.network.types.game.shortcut;
 
+import java.lang.Exception;
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
-import java.lang.Exception;
 
 public class ShortcutObjectIdolsPreset extends ShortcutObject implements INetworkType {
 
-    private int protocolId = 492;
-    private int presetId = 0;
+  public int presetId = 0;
+  public static final int protocolId = 492;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    if (this.slot < 0 || this.slot > 99) {
+      throw new Error("Forbidden value (" + this.slot + ") on element slot.");
+    }
+    param1.writeByte(this.slot);
 
-    public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_Shortcut(param1);
-         if(this.presetId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
-         }
-         param1.writeByte(this.presetId);
+    if (this.presetId < 0) {
+      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+    }
+    param1.writeByte(this.presetId);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.error = param1.readByte();
-         if(this.error < 0)
-         {
-            throw new Exception("Forbidden value (" + this.error + ") on element of ShortcutBarAddErrorMessage.error.");
-         }
-         this.presetId = param1.readByte();
-         if(this.presetId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.presetId + ") on element of ShortcutObjectIdolsPreset.presetId.");
-         }
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.presetId = param1.readByte();
+    if (this.presetId < 0) {
+      throw new Error(
+          "Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
+    }
+  }
 }

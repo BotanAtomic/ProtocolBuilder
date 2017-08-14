@@ -1,38 +1,56 @@
 package com.ankamagames.dofus.network.messages.game.context.roleplay.lockable;
 
+import java.lang.Exception;
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
+import flash.utils.ByteArray;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
-import java.lang.Exception;
 
-public class LockableStateUpdateStorageMessage extends LockableStateUpdateAbstractMessage implements INetworkMessage {
+public class LockableStateUpdateStorageMessage extends LockableStateUpdateAbstractMessage
+    implements INetworkMessage {
 
-    private int protocolId = 5669;
-    private boolean _isInitialized = false;
-    private int mapId = 0;
-    private int elementId = 0;
+  private boolean _isInitialized = false;
+  public int mapId = 0;
+  public int elementId = 0;
+  public static final int protocolId = 5669;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    param1.writeBoolean(this.locked);
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeBoolean(this.locked);
-         param1.writeInt(this.mapId);
-         if(this.elementId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.elementId + ") on element elementId.");
-         }
-         param1.writeVarInt(this.elementId);
+    param1.writeInt(this.mapId);
+    if (this.elementId < 0) {
+      throw new Error("Forbidden value (" + this.elementId + ") on element elementId.");
+    }
+    param1.writeVarInt(this.elementId);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.locked = param1.readBoolean();
-         this.mapId = param1.readInt();
-         this.elementId = param1.readVarUhInt();
-         if(this.elementId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.elementId + ") on element of LockableStateUpdateStorageMessage.elementId.");
-         }
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.mapId = param1.readInt();
+
+    this.elementId = param1.readInt();
+    if (this.elementId < 0) {
+      throw new Error(
+          "Forbidden value (" + this.elementId + ") on element of StatedElement.elementId.");
+    }
+  }
 }

@@ -7,16 +7,33 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class StatisticDataBoolean extends StatisticData implements INetworkType {
 
-    private int protocolId = 482;
-    private boolean value = false;
+  public boolean value = false;
+  public static final int protocolId = 482;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeBoolean(this.value);
+    param1.writeBoolean(this.value);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.value = param1.readBoolean();
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.value = param1.readInt();
+  }
 }

@@ -3,23 +3,22 @@ package com.ankamagames.dofus.network.messages.web.krosmaster;
 import com.ankamagames.jerakine.network.NetworkMessage;
 import com.ankamagames.jerakine.network.INetworkMessage;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
+import flash.utils.ByteArray;
 import com.ankamagames.jerakine.network.CustomDataWrapper;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class KrosmasterAuthTokenMessage extends NetworkMessage implements INetworkMessage {
 
-    private int protocolId = 6351;
-    private boolean _isInitialized = false;
-    private String token = "";
+  private boolean _isInitialized = false;
+  public String token = "";
+  public static final int protocolId = 6351;
 
+  public void serialize(ICustomDataOutput param1) {
+    param1.writeUTF(this.token);
+  }
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeUTF(this.token);
-    }
-
-    public void deserialize(ICustomDataInput param1) {
-         this.token = param1.readUTF();
-    }
-
+  public void deserialize(ICustomDataInput param1) {
+    this.token = param1.readUTF();
+  }
 }

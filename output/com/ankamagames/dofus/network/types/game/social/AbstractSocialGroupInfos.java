@@ -7,13 +7,9 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class AbstractSocialGroupInfos extends Object implements INetworkType {
 
-    private int protocolId = 416;
+  public static final int protocolId = 416;
 
+  public void serialize(ICustomDataOutput param1) {}
 
-    public void serialize(ICustomDataOutput param1) {
-    }
-
-    public void deserialize(ICustomDataInput param1) {
-    }
-
+  public void deserialize(ICustomDataInput param1) {}
 }

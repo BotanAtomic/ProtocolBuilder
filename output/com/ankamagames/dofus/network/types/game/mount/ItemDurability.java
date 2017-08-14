@@ -7,19 +7,18 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class ItemDurability extends Object implements INetworkType {
 
-    private int protocolId = 168;
-    private int durability = 0;
-    private int durabilityMax = 0;
+  public int durability = 0;
+  public int durabilityMax = 0;
+  public static final int protocolId = 168;
 
+  public void serialize(ICustomDataOutput param1) {
+    param1.writeShort(this.durability);
+    param1.writeShort(this.durabilityMax);
+  }
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeShort(this.durability);
-         param1.writeShort(this.durabilityMax);
-    }
+  public void deserialize(ICustomDataInput param1) {
+    this.durability = param1.readShort();
 
-    public void deserialize(ICustomDataInput param1) {
-         this.durability = param1.readShort();
-         this.durabilityMax = param1.readShort();
-    }
-
+    this.durabilityMax = param1.readShort();
+  }
 }

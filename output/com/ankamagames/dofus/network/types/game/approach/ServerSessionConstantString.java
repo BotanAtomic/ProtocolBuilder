@@ -7,36 +7,37 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class ServerSessionConstantString extends ServerSessionConstant implements INetworkType {
 
-    private int protocolId = 436;
-    private String value = "";
+  public String value = "";
+  public static final int protocolId = 436;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    if (this.id < 0) {
+      throw new Error("Forbidden value (" + this.id + ") on element id.");
+    }
+    param1.writeVarShort(this.id);
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeShort(this.variables.length);
-         int _loc2_ = 0;
-         while(_loc2_ < this.variables.length)
-         {
-            param1.writeShort((this.variables[_loc2_] as ServerSessionConstant).getTypeId());
-            (this.variables[_loc2_] as ServerSessionConstant).serialize(param1);
-            _loc2_++;
-         }
-         param1.writeUTF(this.value);
+    param1.writeUTF(this.value);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         int _loc4_ = 0;
-         ServerSessionConstant _loc5_ = null;
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            _loc4_ = param1.readUnsignedShort();
-            _loc5_ = ProtocolTypeManager.getInstance(ServerSessionConstant,_loc4_);
-            _loc5_.deserialize(param1);
-            this.variables.push(_loc5_);
-            _loc3_++;
-         }
-         this.value = param1.readUTF();
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.value = param1.readInt();
+  }
 }

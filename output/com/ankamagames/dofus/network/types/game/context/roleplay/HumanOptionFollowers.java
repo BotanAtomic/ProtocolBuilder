@@ -8,32 +8,47 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class HumanOptionFollowers extends HumanOption implements INetworkType {
 
-    private int protocolId = 410;
-    private IndexedEntityLook[] followingCharactersLook;
-    private FuncTree _followingCharactersLooktree;
+  public Vector<IndexedEntityLook> followingCharactersLook;
+  private FuncTree _followingCharactersLooktree;
+  public static final int protocolId = 410;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
 
-    public void serialize(ICustomDataOutput param1) {
-         param1.writeShort(this.followingCharactersLook.length);
-         int _loc2_ = 0;
-         while(_loc2_ < this.followingCharactersLook.length)
-         {
-            (this.followingCharactersLook[_loc2_] as IndexedEntityLook).serializeAs_IndexedEntityLook(param1);
-            _loc2_++;
-         }
+    param1.writeShort(this.followingCharactersLook.length);
+    int _loc2_ = 0;
+    while (_loc2_ < this.followingCharactersLook.length) {
+      ((IndexedEntityLook) this.followingCharactersLook[_loc2_]).serializeAs_(param1);
+      _loc2_++;
+    }
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    IndexedEntityLook _loc4_ = null;
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         IndexedEntityLook _loc4_ = null;
-         int _loc2_ = param1.readUnsignedShort();
-         int _loc3_ = 0;
-         while(_loc3_ < _loc2_)
-         {
-            _loc4_ = new IndexedEntityLook();
-            _loc4_.deserialize(param1);
-            this.followingCharactersLook.push(_loc4_);
-            _loc3_++;
-         }
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    int _loc2_ = param1.readUnsignedShort();
+    int _loc3_ = 0;
+    while (_loc3_ < _loc2_) {
+      _loc4_ = new IndexedEntityLook();
+      _loc4_.deserialize(param1);
+      this.followingCharactersLook.push(_loc4_);
+      _loc3_++;
+    }
+  }
 }

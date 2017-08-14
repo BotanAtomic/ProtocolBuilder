@@ -1,44 +1,59 @@
 package com.ankamagames.dofus.network.types.game.context.roleplay;
 
+import java.lang.Exception;
 import com.ankamagames.jerakine.network.INetworkType;
 import com.ankamagames.dofus.network.types.game.look.EntityLook;
 import com.ankamagames.dofus.network.types.game.context.EntityDispositionInformations;
 import com.ankamagames.jerakine.network.ICustomDataOutput;
 import com.ankamagames.jerakine.network.ICustomDataInput;
 import com.ankamagames.jerakine.network.utils.FuncTree;
-import java.lang.Exception;
 
-public class GameRolePlayTreasureHintInformations extends GameRolePlayActorInformations implements INetworkType {
+public class GameRolePlayTreasureHintInformations extends GameRolePlayActorInformations
+    implements INetworkType {
 
-    private int protocolId = 471;
-    private int npcId = 0;
+  public int npcId = 0;
+  public static final int protocolId = 471;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {
+    if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
+      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+    }
+    param1.writeDouble(this.contextualId);
+    this.look.serializeAs_EntityLook(param1);
+    param1.writeShort(this.disposition.getTypeId());
+    this.disposition.serialize(param1);
 
-    public void serialize(ICustomDataOutput param1) {
-         super.serializeAs_GameContextActorInformations(param1);
-         if(this.npcId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
-         }
-         param1.writeVarShort(this.npcId);
+    if (this.npcId < 0) {
+      throw new Error("Forbidden value (" + this.npcId + ") on element npcId.");
+    }
+    param1.writeVarShort(this.npcId);
+  }
+
+  @Override
+  public void deserialize(ICustomDataInput param1) {
+    this.uid = param1.readUTF();
+
+    this.figure = param1.readVarUhShort();
+    if (this.figure < 0) {
+      throw new Error(
+          "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
-    public void deserialize(ICustomDataInput param1) {
-         this.contextualId = param1.readDouble();
-         if(this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15)
-         {
-            throw new Exception("Forbidden value (" + this.contextualId + ") on element of GameContextActorInformations.contextualId.");
-         }
-         this.look = new EntityLook();
-         this.look.deserialize(param1);
-         int _loc2_ = param1.readUnsignedShort();
-         this.disposition = ProtocolTypeManager.getInstance(EntityDispositionInformations,_loc2_);
-         this.disposition.deserialize(param1);
-         this.npcId = param1.readVarUhShort();
-         if(this.npcId < 0)
-         {
-            throw new Exception("Forbidden value (" + this.npcId + ") on element of GameRolePlayTreasureHintInformations.npcId.");
-         }
+    this.pedestal = param1.readVarUhShort();
+    if (this.pedestal < 0) {
+      throw new Error(
+          "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
+    this.bound = param1.readBoolean();
+
+    this.npcId = param1.readVarUhShort();
+    if (this.npcId < 0) {
+      throw new Error(
+          "Forbidden value ("
+              + this.npcId
+              + ") on element of TreasureHuntStepFollowDirectionToHint.npcId.");
+    }
+  }
 }

@@ -7,13 +7,11 @@ import com.ankamagames.jerakine.network.utils.FuncTree;
 
 public class TreasureHuntStepDig extends TreasureHuntStep implements INetworkType {
 
-    private int protocolId = 465;
+  public static final int protocolId = 465;
 
+  @Override
+  public void serialize(ICustomDataOutput param1) {}
 
-    public void serialize(ICustomDataOutput param1) {
-    }
-
-    public void deserialize(ICustomDataInput param1) {
-    }
-
+  @Override
+  public void deserialize(ICustomDataInput param1) {}
 }
