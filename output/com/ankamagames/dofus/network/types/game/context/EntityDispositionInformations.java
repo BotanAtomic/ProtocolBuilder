@@ -14,7 +14,7 @@ public class EntityDispositionInformations extends Object implements INetworkTyp
 
   public void serialize(ICustomDataOutput param1) {
     if (this.cellId < -1 || this.cellId > 559) {
-      throw new Error("Forbidden value (" + this.cellId + ") on element cellId.");
+      throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
     }
     param1.writeShort(this.cellId);
     param1.writeByte(this.direction);
@@ -23,7 +23,7 @@ public class EntityDispositionInformations extends Object implements INetworkTyp
   public void deserialize(ICustomDataInput param1) {
     this.cellId = param1.readVarUhShort();
     if (this.cellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.cellId
               + ") on element of HavenBagFurnitureInformation.cellId.");
@@ -31,7 +31,7 @@ public class EntityDispositionInformations extends Object implements INetworkTyp
 
     this.direction = param1.readByte();
     if (this.direction < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.direction
               + ") on element of TreasureHuntStepFollowDirectionToPOI.direction.");

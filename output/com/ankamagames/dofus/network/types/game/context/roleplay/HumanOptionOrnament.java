@@ -15,7 +15,7 @@ public class HumanOptionOrnament extends HumanOption implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
 
     if (this.ornamentId < 0) {
-      throw new Error("Forbidden value (" + this.ornamentId + ") on element ornamentId.");
+      throw new Exception("Forbidden value (" + this.ornamentId + ") on element ornamentId.");
     }
     param1.writeVarShort(this.ornamentId);
   }
@@ -26,13 +26,13 @@ public class HumanOptionOrnament extends HumanOption implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -40,7 +40,7 @@ public class HumanOptionOrnament extends HumanOption implements INetworkType {
 
     this.ornamentId = param1.readVarUhShort();
     if (this.ornamentId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.ornamentId
               + ") on element of HumanOptionOrnament.ornamentId.");

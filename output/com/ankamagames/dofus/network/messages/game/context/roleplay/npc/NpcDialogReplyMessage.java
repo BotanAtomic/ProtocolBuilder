@@ -17,7 +17,7 @@ public class NpcDialogReplyMessage extends NetworkMessage implements INetworkMes
 
   public void serialize(ICustomDataOutput param1) {
     if (this.replyId < 0) {
-      throw new Error("Forbidden value (" + this.replyId + ") on element replyId.");
+      throw new Exception("Forbidden value (" + this.replyId + ") on element replyId.");
     }
     param1.writeVarInt(this.replyId);
   }
@@ -25,7 +25,7 @@ public class NpcDialogReplyMessage extends NetworkMessage implements INetworkMes
   public void deserialize(ICustomDataInput param1) {
     this.replyId = param1.readVarUhInt();
     if (this.replyId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.replyId + ") on element of NpcDialogReplyMessage.replyId.");
     }
   }

@@ -20,7 +20,7 @@ public class JobLevelUpMessage extends NetworkMessage implements INetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.newLevel < 0 || this.newLevel > 255) {
-      throw new Error("Forbidden value (" + this.newLevel + ") on element newLevel.");
+      throw new Exception("Forbidden value (" + this.newLevel + ") on element newLevel.");
     }
     param1.writeByte(this.newLevel);
     this.jobsDescription.serializeAs_JobDescription(param1);
@@ -29,7 +29,7 @@ public class JobLevelUpMessage extends NetworkMessage implements INetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.newLevel = param1.readUnsignedByte();
     if (this.newLevel < 2 || this.newLevel > 200) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.newLevel + ") on element of GuildLevelUpMessage.newLevel.");
     }
 

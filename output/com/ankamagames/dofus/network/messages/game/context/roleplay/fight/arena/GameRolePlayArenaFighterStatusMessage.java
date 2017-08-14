@@ -28,7 +28,7 @@ public class GameRolePlayArenaFighterStatusMessage extends NetworkMessage
 
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
 

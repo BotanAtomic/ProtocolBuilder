@@ -19,7 +19,7 @@ public class DecraftedItemStackInfo extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objectUID < 0) {
-      throw new Error("Forbidden value (" + this.objectUID + ") on element objectUID.");
+      throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
     }
     param1.writeVarInt(this.objectUID);
     param1.writeFloat(this.bonusMin);
@@ -28,7 +28,7 @@ public class DecraftedItemStackInfo extends Object implements INetworkType {
     int _loc2_ = 0;
     while (_loc2_ < this.runesId.length) {
       if (this.runesId[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.runesId[_loc2_]
                 + ") on element 4 (starting at 1) of runesId.");
@@ -40,7 +40,7 @@ public class DecraftedItemStackInfo extends Object implements INetworkType {
     int _loc3_ = 0;
     while (_loc3_ < this.runesQty.length) {
       if (this.runesQty[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.runesQty[_loc3_]
                 + ") on element 5 (starting at 1) of runesQty.");
@@ -55,7 +55,7 @@ public class DecraftedItemStackInfo extends Object implements INetworkType {
     int _loc7_ = 0;
     this.objectUID = param1.readVarUhInt();
     if (this.objectUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectUID
               + ") on element of ObjectItemToSellInHumanVendorShop.objectUID.");
@@ -70,7 +70,7 @@ public class DecraftedItemStackInfo extends Object implements INetworkType {
     while (_loc3_ < _loc2_) {
       _loc6_ = param1.readVarUhShort();
       if (_loc6_ < 0) {
-        throw new Error("Forbidden value (" + _loc6_ + ") on elements of runesId.");
+        throw new Exception("Forbidden value (" + _loc6_ + ") on elements of runesId.");
       }
       this.runesId.push(_loc6_);
       _loc3_++;
@@ -80,7 +80,7 @@ public class DecraftedItemStackInfo extends Object implements INetworkType {
     while (_loc5_ < _loc4_) {
       _loc7_ = param1.readVarUhInt();
       if (_loc7_ < 0) {
-        throw new Error("Forbidden value (" + _loc7_ + ") on elements of runesQty.");
+        throw new Exception("Forbidden value (" + _loc7_ + ") on elements of runesQty.");
       }
       this.runesQty.push(_loc7_);
       _loc5_++;

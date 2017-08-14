@@ -20,13 +20,13 @@ public class GameRolePlayDelayedActionMessage extends NetworkMessage implements 
   public void serialize(ICustomDataOutput param1) {
     if (this.delayedCharacterId < -9.007199254740992E15
         || this.delayedCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.delayedCharacterId + ") on element delayedCharacterId.");
     }
     param1.writeDouble(this.delayedCharacterId);
     param1.writeByte(this.delayTypeId);
     if (this.delayEndTime < 0 || this.delayEndTime > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.delayEndTime + ") on element delayEndTime.");
+      throw new Exception("Forbidden value (" + this.delayEndTime + ") on element delayEndTime.");
     }
     param1.writeDouble(this.delayEndTime);
   }
@@ -35,7 +35,7 @@ public class GameRolePlayDelayedActionMessage extends NetworkMessage implements 
     this.delayedCharacterId = param1.readDouble();
     if (this.delayedCharacterId < -9.007199254740992E15
         || this.delayedCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.delayedCharacterId
               + ") on element of GameRolePlayDelayedActionMessage.delayedCharacterId.");
@@ -43,7 +43,7 @@ public class GameRolePlayDelayedActionMessage extends NetworkMessage implements 
 
     this.delayTypeId = param1.readByte();
     if (this.delayTypeId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.delayTypeId
               + ") on element of HumanOptionObjectUse.delayTypeId.");
@@ -51,7 +51,7 @@ public class GameRolePlayDelayedActionMessage extends NetworkMessage implements 
 
     this.delayEndTime = param1.readDouble();
     if (this.delayEndTime < 0 || this.delayEndTime > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.delayEndTime
               + ") on element of HumanOptionObjectUse.delayEndTime.");

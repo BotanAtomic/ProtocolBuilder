@@ -21,7 +21,7 @@ public class PartyFollowStatusUpdateMessage extends AbstractPartyMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
@@ -30,7 +30,7 @@ public class PartyFollowStatusUpdateMessage extends AbstractPartyMessage
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 1, this.isFollowed);
     param1.writeByte(_loc2_);
     if (this.followedId < 0 || this.followedId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.followedId + ") on element followedId.");
+      throw new Exception("Forbidden value (" + this.followedId + ") on element followedId.");
     }
     param1.writeVarLong(this.followedId);
   }
@@ -41,13 +41,13 @@ public class PartyFollowStatusUpdateMessage extends AbstractPartyMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -62,7 +62,7 @@ public class PartyFollowStatusUpdateMessage extends AbstractPartyMessage
 
     this.followedId = param1.readVarUhLong();
     if (this.followedId < 0 || this.followedId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.followedId
               + ") on element of PartyFollowStatusUpdateMessage.followedId.");

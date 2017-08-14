@@ -17,11 +17,11 @@ public class Preset extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
     if (this.symbolId < 0) {
-      throw new Error("Forbidden value (" + this.symbolId + ") on element symbolId.");
+      throw new Exception("Forbidden value (" + this.symbolId + ") on element symbolId.");
     }
     param1.writeByte(this.symbolId);
     param1.writeBoolean(this.mount);
@@ -37,13 +37,13 @@ public class Preset extends Object implements INetworkType {
     PresetItem _loc4_ = null;
     this.presetId = param1.readByte();
     if (this.presetId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
     }
 
     this.symbolId = param1.readByte();
     if (this.symbolId < 0) {
-      throw new Error("Forbidden value (" + this.symbolId + ") on element of Preset.symbolId.");
+      throw new Exception("Forbidden value (" + this.symbolId + ") on element of Preset.symbolId.");
     }
 
     this.mount = param1.readBoolean();

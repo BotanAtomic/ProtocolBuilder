@@ -17,7 +17,7 @@ public class TreasureHuntStepFollowDirectionToPOI extends TreasureHuntStep imple
 
     param1.writeByte(this.direction);
     if (this.poiLabelId < 0) {
-      throw new Error("Forbidden value (" + this.poiLabelId + ") on element poiLabelId.");
+      throw new Exception("Forbidden value (" + this.poiLabelId + ") on element poiLabelId.");
     }
     param1.writeVarShort(this.poiLabelId);
   }
@@ -28,13 +28,13 @@ public class TreasureHuntStepFollowDirectionToPOI extends TreasureHuntStep imple
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -42,7 +42,7 @@ public class TreasureHuntStepFollowDirectionToPOI extends TreasureHuntStep imple
 
     this.direction = param1.readByte();
     if (this.direction < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.direction
               + ") on element of TreasureHuntStepFollowDirectionToPOI.direction.");
@@ -50,7 +50,7 @@ public class TreasureHuntStepFollowDirectionToPOI extends TreasureHuntStep imple
 
     this.poiLabelId = param1.readVarUhShort();
     if (this.poiLabelId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.poiLabelId
               + ") on element of TreasureHuntStepFollowDirectionToPOI.poiLabelId.");

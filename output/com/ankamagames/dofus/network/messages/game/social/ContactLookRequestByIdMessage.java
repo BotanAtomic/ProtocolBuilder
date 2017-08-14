@@ -18,13 +18,13 @@ public class ContactLookRequestByIdMessage extends ContactLookRequestMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.requestId < 0 || this.requestId > 255) {
-      throw new Error("Forbidden value (" + this.requestId + ") on element requestId.");
+      throw new Exception("Forbidden value (" + this.requestId + ") on element requestId.");
     }
     param1.writeByte(this.requestId);
     param1.writeByte(this.contactType);
 
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
   }
@@ -35,13 +35,13 @@ public class ContactLookRequestByIdMessage extends ContactLookRequestMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -49,7 +49,7 @@ public class ContactLookRequestByIdMessage extends ContactLookRequestMessage
 
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
   }

@@ -19,11 +19,11 @@ public class WrapperObjectDissociateRequestMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.hostUID < 0) {
-      throw new Error("Forbidden value (" + this.hostUID + ") on element hostUID.");
+      throw new Exception("Forbidden value (" + this.hostUID + ") on element hostUID.");
     }
     param1.writeVarInt(this.hostUID);
     if (this.hostPos < 0 || this.hostPos > 255) {
-      throw new Error("Forbidden value (" + this.hostPos + ") on element hostPos.");
+      throw new Exception("Forbidden value (" + this.hostPos + ") on element hostPos.");
     }
     param1.writeByte(this.hostPos);
   }
@@ -31,7 +31,7 @@ public class WrapperObjectDissociateRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.hostUID = param1.readVarUhInt();
     if (this.hostUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.hostUID
               + ") on element of WrapperObjectDissociateRequestMessage.hostUID.");
@@ -39,7 +39,7 @@ public class WrapperObjectDissociateRequestMessage extends NetworkMessage
 
     this.hostPos = param1.readUnsignedByte();
     if (this.hostPos < 0 || this.hostPos > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.hostPos
               + ") on element of WrapperObjectDissociateRequestMessage.hostPos.");

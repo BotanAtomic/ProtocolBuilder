@@ -22,7 +22,7 @@ public class ChatAbstractServerMessage extends NetworkMessage implements INetwor
     param1.writeByte(this.channel);
     param1.writeUTF(this.content);
     if (this.timestamp < 0) {
-      throw new Error("Forbidden value (" + this.timestamp + ") on element timestamp.");
+      throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
     }
     param1.writeInt(this.timestamp);
     param1.writeUTF(this.fingerprint);
@@ -31,7 +31,7 @@ public class ChatAbstractServerMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.channel = param1.readByte();
     if (this.channel < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.channel + ") on element of ChatMessageReportMessage.channel.");
     }
 
@@ -39,7 +39,7 @@ public class ChatAbstractServerMessage extends NetworkMessage implements INetwor
 
     this.timestamp = param1.readDouble();
     if (this.timestamp < -9.007199254740992E15 || this.timestamp > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.timestamp
               + ") on element of SubscriptionUpdateMessage.timestamp.");

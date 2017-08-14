@@ -19,7 +19,7 @@ public class GameContextActorInformations extends Object implements INetworkType
 
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -30,7 +30,7 @@ public class GameContextActorInformations extends Object implements INetworkType
   public void deserialize(ICustomDataInput param1) {
     this.contextualId = param1.readDouble();
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.contextualId
               + ") on element of GameContextActorInformations.contextualId.");

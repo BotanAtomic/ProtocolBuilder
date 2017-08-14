@@ -25,7 +25,7 @@ public class GameActionAcknowledgementMessage extends NetworkMessage implements 
 
     this.actionId = param1.readVarUhShort();
     if (this.actionId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.actionId + ") on element of ObjectEffect.actionId.");
     }
   }

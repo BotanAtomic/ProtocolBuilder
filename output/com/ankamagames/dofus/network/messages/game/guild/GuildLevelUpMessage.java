@@ -17,7 +17,7 @@ public class GuildLevelUpMessage extends NetworkMessage implements INetworkMessa
 
   public void serialize(ICustomDataOutput param1) {
     if (this.newLevel < 2 || this.newLevel > 200) {
-      throw new Error("Forbidden value (" + this.newLevel + ") on element newLevel.");
+      throw new Exception("Forbidden value (" + this.newLevel + ") on element newLevel.");
     }
     param1.writeByte(this.newLevel);
   }
@@ -25,7 +25,7 @@ public class GuildLevelUpMessage extends NetworkMessage implements INetworkMessa
   public void deserialize(ICustomDataInput param1) {
     this.newLevel = param1.readUnsignedByte();
     if (this.newLevel < 2 || this.newLevel > 200) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.newLevel + ") on element of GuildLevelUpMessage.newLevel.");
     }
   }

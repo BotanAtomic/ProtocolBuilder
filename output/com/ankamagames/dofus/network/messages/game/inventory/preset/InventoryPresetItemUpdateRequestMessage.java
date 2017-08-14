@@ -20,12 +20,12 @@ public class InventoryPresetItemUpdateRequestMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
     param1.writeByte(this.position);
     if (this.objUid < 0) {
-      throw new Error("Forbidden value (" + this.objUid + ") on element objUid.");
+      throw new Exception("Forbidden value (" + this.objUid + ") on element objUid.");
     }
     param1.writeVarInt(this.objUid);
   }
@@ -33,18 +33,19 @@ public class InventoryPresetItemUpdateRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.presetId = param1.readByte();
     if (this.presetId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
     }
 
     this.position = param1.readUnsignedByte();
     if (this.position < 0 || this.position > 255) {
-      throw new Error("Forbidden value (" + this.position + ") on element of PresetItem.position.");
+      throw new Exception(
+          "Forbidden value (" + this.position + ") on element of PresetItem.position.");
     }
 
     this.objUid = param1.readVarUhInt();
     if (this.objUid < 0) {
-      throw new Error("Forbidden value (" + this.objUid + ") on element of PresetItem.objUid.");
+      throw new Exception("Forbidden value (" + this.objUid + ") on element of PresetItem.objUid.");
     }
   }
 }

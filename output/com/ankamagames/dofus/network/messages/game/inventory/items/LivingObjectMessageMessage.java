@@ -20,16 +20,17 @@ public class LivingObjectMessageMessage extends NetworkMessage implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.msgId < 0) {
-      throw new Error("Forbidden value (" + this.msgId + ") on element msgId.");
+      throw new Exception("Forbidden value (" + this.msgId + ") on element msgId.");
     }
     param1.writeVarShort(this.msgId);
     if (this.timeStamp < 0) {
-      throw new Error("Forbidden value (" + this.timeStamp + ") on element timeStamp.");
+      throw new Exception("Forbidden value (" + this.timeStamp + ") on element timeStamp.");
     }
     param1.writeInt(this.timeStamp);
     param1.writeUTF(this.owner);
     if (this.objectGenericId < 0) {
-      throw new Error("Forbidden value (" + this.objectGenericId + ") on element objectGenericId.");
+      throw new Exception(
+          "Forbidden value (" + this.objectGenericId + ") on element objectGenericId.");
     }
     param1.writeVarShort(this.objectGenericId);
   }
@@ -37,13 +38,13 @@ public class LivingObjectMessageMessage extends NetworkMessage implements INetwo
   public void deserialize(ICustomDataInput param1) {
     this.msgId = param1.readVarUhShort();
     if (this.msgId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.msgId + ") on element of SystemMessageDisplayMessage.msgId.");
     }
 
     this.timeStamp = param1.readInt();
     if (this.timeStamp < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.timeStamp
               + ") on element of LivingObjectMessageMessage.timeStamp.");
@@ -53,7 +54,7 @@ public class LivingObjectMessageMessage extends NetworkMessage implements INetwo
 
     this.objectGenericId = param1.readVarUhShort();
     if (this.objectGenericId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectGenericId
               + ") on element of LivingObjectMessageMessage.objectGenericId.");

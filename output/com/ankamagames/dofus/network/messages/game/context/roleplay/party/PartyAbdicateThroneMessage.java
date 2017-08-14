@@ -17,12 +17,12 @@ public class PartyAbdicateThroneMessage extends AbstractPartyMessage implements 
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
   }
@@ -33,13 +33,13 @@ public class PartyAbdicateThroneMessage extends AbstractPartyMessage implements 
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -47,7 +47,7 @@ public class PartyAbdicateThroneMessage extends AbstractPartyMessage implements 
 
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
   }

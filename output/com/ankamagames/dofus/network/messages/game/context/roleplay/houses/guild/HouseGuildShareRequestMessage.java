@@ -20,16 +20,16 @@ public class HouseGuildShareRequestMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.houseId < 0) {
-      throw new Error("Forbidden value (" + this.houseId + ") on element houseId.");
+      throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
     }
     param1.writeVarInt(this.houseId);
     if (this.instanceId < 0) {
-      throw new Error("Forbidden value (" + this.instanceId + ") on element instanceId.");
+      throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
     }
     param1.writeInt(this.instanceId);
     param1.writeBoolean(this.enable);
     if (this.rights < 0) {
-      throw new Error("Forbidden value (" + this.rights + ") on element rights.");
+      throw new Exception("Forbidden value (" + this.rights + ") on element rights.");
     }
     param1.writeVarInt(this.rights);
   }
@@ -37,13 +37,13 @@ public class HouseGuildShareRequestMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.houseId = param1.readVarUhInt();
     if (this.houseId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.houseId + ") on element of HouseInformations.houseId.");
     }
 
     this.instanceId = param1.readInt();
     if (this.instanceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.instanceId
               + ") on element of HouseInstanceInformations.instanceId.");
@@ -51,13 +51,14 @@ public class HouseGuildShareRequestMessage extends NetworkMessage implements INe
 
     int _loc2_ = param1.readByte();
     if (_loc2_ < 0) {
-      throw new Error("Forbidden value (" + _loc2_ + ") on elements of enable.");
+      throw new Exception("Forbidden value (" + _loc2_ + ") on elements of enable.");
     }
     this.enable.push(_loc2_);
 
     this.rights = param1.readVarUhInt();
     if (this.rights < 0) {
-      throw new Error("Forbidden value (" + this.rights + ") on element of GuildMember.rights.");
+      throw new Exception(
+          "Forbidden value (" + this.rights + ") on element of GuildMember.rights.");
     }
   }
 }

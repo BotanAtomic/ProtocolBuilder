@@ -29,7 +29,7 @@ public class ExchangeBidHouseInListUpdatedMessage extends ExchangeBidHouseInList
     int _loc3_ = 0;
     while (_loc3_ < this.prices.length) {
       if (this.prices[_loc3_] < 0 || this.prices[_loc3_] > 9.007199254740992E15) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.prices[_loc3_]
                 + ") on element 4 (starting at 1) of prices.");
@@ -45,13 +45,13 @@ public class ExchangeBidHouseInListUpdatedMessage extends ExchangeBidHouseInList
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

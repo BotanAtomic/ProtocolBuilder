@@ -18,20 +18,21 @@ public class EmotePlayMessage extends EmotePlayAbstractMessage implements INetwo
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.emoteId < 0 || this.emoteId > 255) {
-      throw new Error("Forbidden value (" + this.emoteId + ") on element emoteId.");
+      throw new Exception("Forbidden value (" + this.emoteId + ") on element emoteId.");
     }
     param1.writeByte(this.emoteId);
     if (this.emoteStartTime < -9.007199254740992E15 || this.emoteStartTime > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.emoteStartTime + ") on element emoteStartTime.");
+      throw new Exception(
+          "Forbidden value (" + this.emoteStartTime + ") on element emoteStartTime.");
     }
     param1.writeDouble(this.emoteStartTime);
 
     if (this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.actorId + ") on element actorId.");
+      throw new Exception("Forbidden value (" + this.actorId + ") on element actorId.");
     }
     param1.writeDouble(this.actorId);
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
   }
@@ -42,13 +43,13 @@ public class EmotePlayMessage extends EmotePlayAbstractMessage implements INetwo
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -56,7 +57,7 @@ public class EmotePlayMessage extends EmotePlayAbstractMessage implements INetwo
 
     this.actorId = param1.readDouble();
     if (this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.actorId
               + ") on element of SetCharacterRestrictionsMessage.actorId.");
@@ -64,7 +65,7 @@ public class EmotePlayMessage extends EmotePlayAbstractMessage implements INetwo
 
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
   }

@@ -28,17 +28,18 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
     param1.writeByte(this.partyType);
     if (this.partyLeaderId < 0 || this.partyLeaderId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.partyLeaderId + ") on element partyLeaderId.");
+      throw new Exception("Forbidden value (" + this.partyLeaderId + ") on element partyLeaderId.");
     }
     param1.writeVarLong(this.partyLeaderId);
     if (this.maxParticipants < 0) {
-      throw new Error("Forbidden value (" + this.maxParticipants + ") on element maxParticipants.");
+      throw new Exception(
+          "Forbidden value (" + this.maxParticipants + ") on element maxParticipants.");
     }
     param1.writeByte(this.maxParticipants);
     param1.writeShort(this.members.length);
@@ -67,13 +68,13 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -81,13 +82,13 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
 
     this.partyType = param1.readByte();
     if (this.partyType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.partyType + ") on element of PartyJoinMessage.partyType.");
     }
 
     this.partyLeaderId = param1.readVarUhLong();
     if (this.partyLeaderId < 0 || this.partyLeaderId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.partyLeaderId
               + ") on element of PartyLeaderUpdateMessage.partyLeaderId.");
@@ -95,7 +96,7 @@ public class PartyJoinMessage extends AbstractPartyMessage implements INetworkMe
 
     this.maxParticipants = param1.readByte();
     if (this.maxParticipants < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxParticipants
               + ") on element of PartyJoinMessage.maxParticipants.");

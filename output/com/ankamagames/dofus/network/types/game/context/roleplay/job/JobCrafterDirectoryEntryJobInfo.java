@@ -16,16 +16,16 @@ public class JobCrafterDirectoryEntryJobInfo extends Object implements INetworkT
 
   public void serialize(ICustomDataOutput param1) {
     if (this.jobId < 0) {
-      throw new Error("Forbidden value (" + this.jobId + ") on element jobId.");
+      throw new Exception("Forbidden value (" + this.jobId + ") on element jobId.");
     }
     param1.writeByte(this.jobId);
     if (this.jobLevel < 1 || this.jobLevel > 200) {
-      throw new Error("Forbidden value (" + this.jobLevel + ") on element jobLevel.");
+      throw new Exception("Forbidden value (" + this.jobLevel + ") on element jobLevel.");
     }
     param1.writeByte(this.jobLevel);
     param1.writeBoolean(this.free);
     if (this.minLevel < 0 || this.minLevel > 255) {
-      throw new Error("Forbidden value (" + this.minLevel + ") on element minLevel.");
+      throw new Exception("Forbidden value (" + this.minLevel + ") on element minLevel.");
     }
     param1.writeByte(this.minLevel);
   }
@@ -33,12 +33,13 @@ public class JobCrafterDirectoryEntryJobInfo extends Object implements INetworkT
   public void deserialize(ICustomDataInput param1) {
     this.jobId = param1.readByte();
     if (this.jobId < 0) {
-      throw new Error("Forbidden value (" + this.jobId + ") on element of JobExperience.jobId.");
+      throw new Exception(
+          "Forbidden value (" + this.jobId + ") on element of JobExperience.jobId.");
     }
 
     this.jobLevel = param1.readUnsignedByte();
     if (this.jobLevel < 0 || this.jobLevel > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.jobLevel + ") on element of JobExperience.jobLevel.");
     }
 
@@ -46,7 +47,7 @@ public class JobCrafterDirectoryEntryJobInfo extends Object implements INetworkT
 
     this.minLevel = param1.readUnsignedByte();
     if (this.minLevel < 0 || this.minLevel > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.minLevel
               + ") on element of JobCrafterDirectorySettings.minLevel.");

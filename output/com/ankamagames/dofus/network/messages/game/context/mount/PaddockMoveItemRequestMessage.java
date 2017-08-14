@@ -18,11 +18,11 @@ public class PaddockMoveItemRequestMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.oldCellId < 0 || this.oldCellId > 559) {
-      throw new Error("Forbidden value (" + this.oldCellId + ") on element oldCellId.");
+      throw new Exception("Forbidden value (" + this.oldCellId + ") on element oldCellId.");
     }
     param1.writeVarShort(this.oldCellId);
     if (this.newCellId < 0 || this.newCellId > 559) {
-      throw new Error("Forbidden value (" + this.newCellId + ") on element newCellId.");
+      throw new Exception("Forbidden value (" + this.newCellId + ") on element newCellId.");
     }
     param1.writeVarShort(this.newCellId);
   }
@@ -30,7 +30,7 @@ public class PaddockMoveItemRequestMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.oldCellId = param1.readVarUhShort();
     if (this.oldCellId < 0 || this.oldCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.oldCellId
               + ") on element of PaddockMoveItemRequestMessage.oldCellId.");
@@ -38,7 +38,7 @@ public class PaddockMoveItemRequestMessage extends NetworkMessage implements INe
 
     this.newCellId = param1.readVarUhShort();
     if (this.newCellId < 0 || this.newCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.newCellId
               + ") on element of PaddockMoveItemRequestMessage.newCellId.");

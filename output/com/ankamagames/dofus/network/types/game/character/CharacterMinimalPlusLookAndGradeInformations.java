@@ -16,21 +16,21 @@ public class CharacterMinimalPlusLookAndGradeInformations
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarLong(this.id);
 
     param1.writeUTF(this.name);
 
     if (this.level < 1 || this.level > 206) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
 
     this.entityLook.serializeAs_EntityLook(param1);
 
     if (this.grade < 0) {
-      throw new Error("Forbidden value (" + this.grade + ") on element grade.");
+      throw new Exception("Forbidden value (" + this.grade + ") on element grade.");
     }
     param1.writeVarInt(this.grade);
   }
@@ -41,13 +41,13 @@ public class CharacterMinimalPlusLookAndGradeInformations
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -55,7 +55,7 @@ public class CharacterMinimalPlusLookAndGradeInformations
 
     this.grade = param1.readByte();
     if (this.grade < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.grade
               + ") on element of MonsterInGroupLightInformations.grade.");

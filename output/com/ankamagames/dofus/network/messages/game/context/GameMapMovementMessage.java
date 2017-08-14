@@ -23,7 +23,7 @@ public class GameMapMovementMessage extends NetworkMessage implements INetworkMe
     int _loc2_ = 0;
     while (_loc2_ < this.keyMovements.length) {
       if (this.keyMovements[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.keyMovements[_loc2_]
                 + ") on element 1 (starting at 1) of keyMovements.");
@@ -33,7 +33,7 @@ public class GameMapMovementMessage extends NetworkMessage implements INetworkMe
     }
     param1.writeShort(this.forcedDirection);
     if (this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.actorId + ") on element actorId.");
+      throw new Exception("Forbidden value (" + this.actorId + ") on element actorId.");
     }
     param1.writeDouble(this.actorId);
   }
@@ -45,7 +45,7 @@ public class GameMapMovementMessage extends NetworkMessage implements INetworkMe
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readShort();
       if (_loc4_ < 0) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of keyMovements.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of keyMovements.");
       }
       this.keyMovements.push(_loc4_);
       _loc3_++;
@@ -54,7 +54,7 @@ public class GameMapMovementMessage extends NetworkMessage implements INetworkMe
 
     this.actorId = param1.readDouble();
     if (this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.actorId
               + ") on element of SetCharacterRestrictionsMessage.actorId.");

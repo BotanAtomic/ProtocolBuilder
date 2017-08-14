@@ -22,7 +22,7 @@ public class GameContextCreateMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.context = param1.readByte();
     if (this.context < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.context + ") on element of GameContextCreateMessage.context.");
     }
   }

@@ -21,7 +21,7 @@ public class AcquaintanceServerListMessage extends NetworkMessage implements INe
     int _loc2_ = 0;
     while (_loc2_ < this.servers.length) {
       if (this.servers[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.servers[_loc2_]
                 + ") on element 1 (starting at 1) of servers.");
@@ -38,7 +38,7 @@ public class AcquaintanceServerListMessage extends NetworkMessage implements INe
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readVarUhShort();
       if (_loc4_ < 0) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of servers.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of servers.");
       }
       this.servers.push(_loc4_);
       _loc3_++;

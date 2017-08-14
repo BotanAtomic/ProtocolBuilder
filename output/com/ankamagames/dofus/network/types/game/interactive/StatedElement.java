@@ -16,15 +16,15 @@ public class StatedElement extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.elementId < 0) {
-      throw new Error("Forbidden value (" + this.elementId + ") on element elementId.");
+      throw new Exception("Forbidden value (" + this.elementId + ") on element elementId.");
     }
     param1.writeInt(this.elementId);
     if (this.elementCellId < 0 || this.elementCellId > 559) {
-      throw new Error("Forbidden value (" + this.elementCellId + ") on element elementCellId.");
+      throw new Exception("Forbidden value (" + this.elementCellId + ") on element elementCellId.");
     }
     param1.writeVarShort(this.elementCellId);
     if (this.elementState < 0) {
-      throw new Error("Forbidden value (" + this.elementState + ") on element elementState.");
+      throw new Exception("Forbidden value (" + this.elementState + ") on element elementState.");
     }
     param1.writeVarInt(this.elementState);
     param1.writeBoolean(this.onCurrentMap);
@@ -33,13 +33,13 @@ public class StatedElement extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.elementId = param1.readInt();
     if (this.elementId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.elementId + ") on element of StatedElement.elementId.");
     }
 
     this.elementCellId = param1.readVarUhShort();
     if (this.elementCellId < 0 || this.elementCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.elementCellId
               + ") on element of StatedElement.elementCellId.");
@@ -47,7 +47,7 @@ public class StatedElement extends Object implements INetworkType {
 
     this.elementState = param1.readVarUhInt();
     if (this.elementState < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.elementState + ") on element of StatedElement.elementState.");
     }
 

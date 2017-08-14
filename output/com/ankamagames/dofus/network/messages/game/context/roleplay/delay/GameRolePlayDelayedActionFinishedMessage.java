@@ -20,7 +20,7 @@ public class GameRolePlayDelayedActionFinishedMessage extends NetworkMessage
   public void serialize(ICustomDataOutput param1) {
     if (this.delayedCharacterId < -9.007199254740992E15
         || this.delayedCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.delayedCharacterId + ") on element delayedCharacterId.");
     }
     param1.writeDouble(this.delayedCharacterId);
@@ -31,7 +31,7 @@ public class GameRolePlayDelayedActionFinishedMessage extends NetworkMessage
     this.delayedCharacterId = param1.readDouble();
     if (this.delayedCharacterId < -9.007199254740992E15
         || this.delayedCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.delayedCharacterId
               + ") on element of GameRolePlayDelayedActionMessage.delayedCharacterId.");
@@ -39,7 +39,7 @@ public class GameRolePlayDelayedActionFinishedMessage extends NetworkMessage
 
     this.delayTypeId = param1.readByte();
     if (this.delayTypeId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.delayTypeId
               + ") on element of HumanOptionObjectUse.delayTypeId.");

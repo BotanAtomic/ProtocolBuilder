@@ -20,7 +20,7 @@ public class GameServerInformations extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarShort(this.id);
     param1.writeByte(this.type);
@@ -28,15 +28,17 @@ public class GameServerInformations extends Object implements INetworkType {
     param1.writeByte(this.completion);
     param1.writeBoolean(this.isSelectable);
     if (this.charactersCount < 0) {
-      throw new Error("Forbidden value (" + this.charactersCount + ") on element charactersCount.");
+      throw new Exception(
+          "Forbidden value (" + this.charactersCount + ") on element charactersCount.");
     }
     param1.writeByte(this.charactersCount);
     if (this.charactersSlots < 0) {
-      throw new Error("Forbidden value (" + this.charactersSlots + ") on element charactersSlots.");
+      throw new Exception(
+          "Forbidden value (" + this.charactersSlots + ") on element charactersSlots.");
     }
     param1.writeByte(this.charactersSlots);
     if (this.date < -9.007199254740992E15 || this.date > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.date + ") on element date.");
+      throw new Exception("Forbidden value (" + this.date + ") on element date.");
     }
     param1.writeDouble(this.date);
   }
@@ -46,18 +48,19 @@ public class GameServerInformations extends Object implements INetworkType {
 
     this.type = param1.readByte();
     if (this.type < 0) {
-      throw new Error("Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
+      throw new Exception(
+          "Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
     }
 
     this.status = param1.readByte();
     if (this.status < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.status + ") on element of GameServerInformations.status.");
     }
 
     this.completion = param1.readByte();
     if (this.completion < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.completion
               + ") on element of GameServerInformations.completion.");
@@ -67,7 +70,7 @@ public class GameServerInformations extends Object implements INetworkType {
 
     this.charactersCount = param1.readByte();
     if (this.charactersCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.charactersCount
               + ") on element of GameServerInformations.charactersCount.");
@@ -75,7 +78,7 @@ public class GameServerInformations extends Object implements INetworkType {
 
     this.charactersSlots = param1.readByte();
     if (this.charactersSlots < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.charactersSlots
               + ") on element of GameServerInformations.charactersSlots.");
@@ -83,7 +86,7 @@ public class GameServerInformations extends Object implements INetworkType {
 
     this.date = param1.readInt();
     if (this.date < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.date
               + ") on element of AdditionalTaxCollectorInformations.date.");

@@ -39,11 +39,11 @@ public class GameFightSpectateMessage extends NetworkMessage implements INetwork
       _loc3_++;
     }
     if (this.gameTurn < 0) {
-      throw new Error("Forbidden value (" + this.gameTurn + ") on element gameTurn.");
+      throw new Exception("Forbidden value (" + this.gameTurn + ") on element gameTurn.");
     }
     param1.writeVarShort(this.gameTurn);
     if (this.fightStart < 0) {
-      throw new Error("Forbidden value (" + this.fightStart + ") on element fightStart.");
+      throw new Exception("Forbidden value (" + this.fightStart + ") on element fightStart.");
     }
     param1.writeInt(this.fightStart);
     param1.writeShort(this.idols.length);
@@ -76,7 +76,7 @@ public class GameFightSpectateMessage extends NetworkMessage implements INetwork
     }
     this.gameTurn = param1.readVarUhShort();
     if (this.gameTurn < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.gameTurn
               + ") on element of GameFightSpectateMessage.gameTurn.");
@@ -84,7 +84,7 @@ public class GameFightSpectateMessage extends NetworkMessage implements INetwork
 
     this.fightStart = param1.readInt();
     if (this.fightStart < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.fightStart
               + ") on element of FightExternalInformations.fightStart.");

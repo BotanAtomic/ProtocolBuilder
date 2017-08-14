@@ -19,7 +19,7 @@ public class PopupWarningMessage extends NetworkMessage implements INetworkMessa
 
   public void serialize(ICustomDataOutput param1) {
     if (this.lockDuration < 0 || this.lockDuration > 255) {
-      throw new Error("Forbidden value (" + this.lockDuration + ") on element lockDuration.");
+      throw new Exception("Forbidden value (" + this.lockDuration + ") on element lockDuration.");
     }
     param1.writeByte(this.lockDuration);
     param1.writeUTF(this.author);
@@ -29,7 +29,7 @@ public class PopupWarningMessage extends NetworkMessage implements INetworkMessa
   public void deserialize(ICustomDataInput param1) {
     this.lockDuration = param1.readUnsignedByte();
     if (this.lockDuration < 0 || this.lockDuration > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lockDuration
               + ") on element of PopupWarningMessage.lockDuration.");

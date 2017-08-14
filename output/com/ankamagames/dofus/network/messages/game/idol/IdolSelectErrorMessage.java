@@ -26,7 +26,7 @@ public class IdolSelectErrorMessage extends NetworkMessage implements INetworkMe
     param1.writeByte(_loc2_);
     param1.writeByte(this.reason);
     if (this.idolId < 0) {
-      throw new Error("Forbidden value (" + this.idolId + ") on element idolId.");
+      throw new Exception("Forbidden value (" + this.idolId + ") on element idolId.");
     }
     param1.writeVarShort(this.idolId);
   }
@@ -41,7 +41,7 @@ public class IdolSelectErrorMessage extends NetworkMessage implements INetworkMe
 
     this.reason = param1.readByte();
     if (this.reason < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.reason
               + ") on element of KrosmasterInventoryErrorMessage.reason.");
@@ -49,7 +49,7 @@ public class IdolSelectErrorMessage extends NetworkMessage implements INetworkMe
 
     int _loc2_ = param1.readVarUhShort();
     if (_loc2_ < 0) {
-      throw new Error("Forbidden value (" + _loc2_ + ") on elements of idolId.");
+      throw new Exception("Forbidden value (" + _loc2_ + ") on elements of idolId.");
     }
     this.idolId.push(_loc2_);
   }

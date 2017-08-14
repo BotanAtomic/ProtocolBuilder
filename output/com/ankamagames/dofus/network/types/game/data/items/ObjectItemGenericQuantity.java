@@ -16,11 +16,11 @@ public class ObjectItemGenericQuantity extends Item implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
 
     if (this.objectGID < 0) {
-      throw new Error("Forbidden value (" + this.objectGID + ") on element objectGID.");
+      throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
     }
     param1.writeVarShort(this.objectGID);
     if (this.quantity < 0) {
-      throw new Error("Forbidden value (" + this.quantity + ") on element quantity.");
+      throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
     }
     param1.writeVarInt(this.quantity);
   }
@@ -31,13 +31,13 @@ public class ObjectItemGenericQuantity extends Item implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -45,7 +45,7 @@ public class ObjectItemGenericQuantity extends Item implements INetworkType {
 
     this.objectGID = param1.readVarUhShort();
     if (this.objectGID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectGID
               + ") on element of ObjectItemToSellInHumanVendorShop.objectGID.");
@@ -53,7 +53,7 @@ public class ObjectItemGenericQuantity extends Item implements INetworkType {
 
     this.quantity = param1.readVarUhInt();
     if (this.quantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.quantity
               + ") on element of ObjectItemToSellInHumanVendorShop.quantity.");

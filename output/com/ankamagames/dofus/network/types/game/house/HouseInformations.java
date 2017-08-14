@@ -14,11 +14,11 @@ public class HouseInformations extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.houseId < 0) {
-      throw new Error("Forbidden value (" + this.houseId + ") on element houseId.");
+      throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
     }
     param1.writeVarInt(this.houseId);
     if (this.modelId < 0) {
-      throw new Error("Forbidden value (" + this.modelId + ") on element modelId.");
+      throw new Exception("Forbidden value (" + this.modelId + ") on element modelId.");
     }
     param1.writeVarShort(this.modelId);
   }
@@ -26,13 +26,13 @@ public class HouseInformations extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.houseId = param1.readVarUhInt();
     if (this.houseId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.houseId + ") on element of HouseInformations.houseId.");
     }
 
     this.modelId = param1.readVarUhShort();
     if (this.modelId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.modelId
               + ") on element of MountInformationsForPaddock.modelId.");

@@ -21,24 +21,24 @@ public class GameActionFightSlideMessage extends AbstractGameActionMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sourceId + ") on element sourceId.");
+      throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
     }
     param1.writeDouble(this.sourceId);
 
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.targetId + ") on element targetId.");
+      throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
     }
     param1.writeDouble(this.targetId);
     if (this.startCellId < -1 || this.startCellId > 559) {
-      throw new Error("Forbidden value (" + this.startCellId + ") on element startCellId.");
+      throw new Exception("Forbidden value (" + this.startCellId + ") on element startCellId.");
     }
     param1.writeShort(this.startCellId);
     if (this.endCellId < -1 || this.endCellId > 559) {
-      throw new Error("Forbidden value (" + this.endCellId + ") on element endCellId.");
+      throw new Exception("Forbidden value (" + this.endCellId + ") on element endCellId.");
     }
     param1.writeShort(this.endCellId);
   }
@@ -49,13 +49,13 @@ public class GameActionFightSlideMessage extends AbstractGameActionMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -63,7 +63,7 @@ public class GameActionFightSlideMessage extends AbstractGameActionMessage
 
     this.targetId = param1.readDouble();
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.targetId
               + ") on element of AbstractFightDispellableEffect.targetId.");
@@ -71,7 +71,7 @@ public class GameActionFightSlideMessage extends AbstractGameActionMessage
 
     this.startCellId = param1.readShort();
     if (this.startCellId < -1 || this.startCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.startCellId
               + ") on element of GameActionFightSlideMessage.startCellId.");
@@ -79,7 +79,7 @@ public class GameActionFightSlideMessage extends AbstractGameActionMessage
 
     this.endCellId = param1.readShort();
     if (this.endCellId < -1 || this.endCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.endCellId
               + ") on element of GameActionFightSlideMessage.endCellId.");

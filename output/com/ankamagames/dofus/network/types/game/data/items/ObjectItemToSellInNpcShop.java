@@ -18,7 +18,7 @@ public class ObjectItemToSellInNpcShop extends ObjectItemMinimalInformation
   public void serialize(ICustomDataOutput param1) {
 
     if (this.objectGID < 0) {
-      throw new Error("Forbidden value (" + this.objectGID + ") on element objectGID.");
+      throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
     }
     param1.writeVarShort(this.objectGID);
     param1.writeShort(this.effects.length);
@@ -30,7 +30,7 @@ public class ObjectItemToSellInNpcShop extends ObjectItemMinimalInformation
     }
 
     if (this.objectPrice < 0 || this.objectPrice > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.objectPrice + ") on element objectPrice.");
+      throw new Exception("Forbidden value (" + this.objectPrice + ") on element objectPrice.");
     }
     param1.writeVarLong(this.objectPrice);
     param1.writeUTF(this.buyCriterion);
@@ -42,13 +42,13 @@ public class ObjectItemToSellInNpcShop extends ObjectItemMinimalInformation
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -56,7 +56,7 @@ public class ObjectItemToSellInNpcShop extends ObjectItemMinimalInformation
 
     this.objectPrice = param1.readVarUhLong();
     if (this.objectPrice < 0 || this.objectPrice > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectPrice
               + ") on element of ObjectItemToSellInNpcShop.objectPrice.");

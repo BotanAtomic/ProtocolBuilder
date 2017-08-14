@@ -17,14 +17,14 @@ public class PartyMemberArenaInformations extends PartyMemberInformations implem
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarLong(this.id);
 
     param1.writeUTF(this.name);
 
     if (this.level < 1 || this.level > 206) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
 
@@ -34,37 +34,37 @@ public class PartyMemberArenaInformations extends PartyMemberInformations implem
     param1.writeBoolean(this.sex);
 
     if (this.lifePoints < 0) {
-      throw new Error("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+      throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
     }
     param1.writeVarInt(this.lifePoints);
     if (this.maxLifePoints < 0) {
-      throw new Error("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+      throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
     }
     param1.writeVarInt(this.maxLifePoints);
     if (this.prospecting < 0) {
-      throw new Error("Forbidden value (" + this.prospecting + ") on element prospecting.");
+      throw new Exception("Forbidden value (" + this.prospecting + ") on element prospecting.");
     }
     param1.writeVarShort(this.prospecting);
     if (this.regenRate < 0 || this.regenRate > 255) {
-      throw new Error("Forbidden value (" + this.regenRate + ") on element regenRate.");
+      throw new Exception("Forbidden value (" + this.regenRate + ") on element regenRate.");
     }
     param1.writeByte(this.regenRate);
     if (this.initiative < 0) {
-      throw new Error("Forbidden value (" + this.initiative + ") on element initiative.");
+      throw new Exception("Forbidden value (" + this.initiative + ") on element initiative.");
     }
     param1.writeVarShort(this.initiative);
     param1.writeByte(this.alignmentSide);
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error("Forbidden value (" + this.worldX + ") on element worldX.");
+      throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
     }
     param1.writeShort(this.worldX);
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error("Forbidden value (" + this.worldY + ") on element worldY.");
+      throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
     }
     param1.writeShort(this.worldY);
     param1.writeInt(this.mapId);
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     param1.writeShort(this.status.getTypeId());
@@ -77,7 +77,7 @@ public class PartyMemberArenaInformations extends PartyMemberInformations implem
     }
 
     if (this.rank < 0 || this.rank > 20000) {
-      throw new Error("Forbidden value (" + this.rank + ") on element rank.");
+      throw new Exception("Forbidden value (" + this.rank + ") on element rank.");
     }
     param1.writeVarShort(this.rank);
   }
@@ -88,13 +88,13 @@ public class PartyMemberArenaInformations extends PartyMemberInformations implem
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -102,7 +102,7 @@ public class PartyMemberArenaInformations extends PartyMemberInformations implem
 
     this.rank = param1.readVarUhShort();
     if (this.rank < 0) {
-      throw new Error("Forbidden value (" + this.rank + ") on element of GuildMember.rank.");
+      throw new Exception("Forbidden value (" + this.rank + ") on element of GuildMember.rank.");
     }
   }
 }

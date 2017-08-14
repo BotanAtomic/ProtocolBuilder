@@ -18,11 +18,11 @@ public class GameFightTurnStartMessage extends NetworkMessage implements INetwor
 
   public void serialize(ICustomDataOutput param1) {
     if (this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeDouble(this.id);
     if (this.waitTime < 0) {
-      throw new Error("Forbidden value (" + this.waitTime + ") on element waitTime.");
+      throw new Exception("Forbidden value (" + this.waitTime + ") on element waitTime.");
     }
     param1.writeVarInt(this.waitTime);
   }
@@ -32,7 +32,7 @@ public class GameFightTurnStartMessage extends NetworkMessage implements INetwor
 
     this.waitTime = param1.readVarUhInt();
     if (this.waitTime < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.waitTime
               + ") on element of GameFightTurnStartMessage.waitTime.");

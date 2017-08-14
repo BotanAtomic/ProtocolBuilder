@@ -22,7 +22,7 @@ public class GameRolePlayArenaRegisterMessage extends NetworkMessage implements 
   public void deserialize(ICustomDataInput param1) {
     this.battleMode = param1.readInt();
     if (this.battleMode < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.battleMode
               + ") on element of GameRolePlayArenaRegistrationStatusMessage.battleMode.");

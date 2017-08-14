@@ -17,7 +17,7 @@ public class PaddockBuyRequestMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.proposedPrice < 0 || this.proposedPrice > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.proposedPrice + ") on element proposedPrice.");
+      throw new Exception("Forbidden value (" + this.proposedPrice + ") on element proposedPrice.");
     }
     param1.writeVarLong(this.proposedPrice);
   }
@@ -25,7 +25,7 @@ public class PaddockBuyRequestMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.proposedPrice = param1.readVarUhLong();
     if (this.proposedPrice < 0 || this.proposedPrice > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.proposedPrice
               + ") on element of HouseBuyRequestMessage.proposedPrice.");

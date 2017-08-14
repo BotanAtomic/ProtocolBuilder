@@ -18,7 +18,7 @@ public class DungeonKeyRingUpdateMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.dungeonId < 0) {
-      throw new Error("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+      throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
     }
     param1.writeVarShort(this.dungeonId);
     param1.writeBoolean(this.available);
@@ -27,7 +27,7 @@ public class DungeonKeyRingUpdateMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.dungeonId = param1.readVarUhShort();
     if (this.dungeonId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.dungeonId
               + ") on element of TeleportToBuddyOfferMessage.dungeonId.");

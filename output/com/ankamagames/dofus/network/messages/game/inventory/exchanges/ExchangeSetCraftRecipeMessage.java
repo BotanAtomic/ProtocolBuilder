@@ -17,7 +17,7 @@ public class ExchangeSetCraftRecipeMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objectGID < 0) {
-      throw new Error("Forbidden value (" + this.objectGID + ") on element objectGID.");
+      throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
     }
     param1.writeVarShort(this.objectGID);
   }
@@ -25,7 +25,7 @@ public class ExchangeSetCraftRecipeMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.objectGID = param1.readVarUhShort();
     if (this.objectGID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectGID
               + ") on element of ObjectItemToSellInHumanVendorShop.objectGID.");

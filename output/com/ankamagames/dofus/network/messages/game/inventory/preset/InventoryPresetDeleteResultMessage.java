@@ -18,7 +18,7 @@ public class InventoryPresetDeleteResultMessage extends NetworkMessage implement
 
   public void serialize(ICustomDataOutput param1) {
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
     param1.writeByte(this.code);
@@ -27,13 +27,13 @@ public class InventoryPresetDeleteResultMessage extends NetworkMessage implement
   public void deserialize(ICustomDataInput param1) {
     this.presetId = param1.readByte();
     if (this.presetId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
     }
 
     this.code = param1.readByte();
     if (this.code < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.code
               + ") on element of InventoryPresetUseResultMessage.code.");

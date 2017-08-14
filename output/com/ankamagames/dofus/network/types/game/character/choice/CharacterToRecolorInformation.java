@@ -13,7 +13,7 @@ public class CharacterToRecolorInformation extends AbstractCharacterToRefurbishI
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarLong(this.id);
 
@@ -24,7 +24,7 @@ public class CharacterToRecolorInformation extends AbstractCharacterToRefurbishI
       _loc2_++;
     }
     if (this.cosmeticId < 0) {
-      throw new Error("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+      throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
     }
     param1.writeVarInt(this.cosmeticId);
   }
@@ -35,13 +35,13 @@ public class CharacterToRecolorInformation extends AbstractCharacterToRefurbishI
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

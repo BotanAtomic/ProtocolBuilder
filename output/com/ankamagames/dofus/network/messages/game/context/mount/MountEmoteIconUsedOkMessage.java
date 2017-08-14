@@ -19,7 +19,7 @@ public class MountEmoteIconUsedOkMessage extends NetworkMessage implements INetw
   public void serialize(ICustomDataOutput param1) {
     param1.writeVarInt(this.mountId);
     if (this.reactionType < 0) {
-      throw new Error("Forbidden value (" + this.reactionType + ") on element reactionType.");
+      throw new Exception("Forbidden value (" + this.reactionType + ") on element reactionType.");
     }
     param1.writeByte(this.reactionType);
   }
@@ -27,13 +27,13 @@ public class MountEmoteIconUsedOkMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.mountId = param1.readInt();
     if (this.mountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.mountId + ") on element of ObjectEffectMount.mountId.");
     }
 
     this.reactionType = param1.readByte();
     if (this.reactionType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.reactionType
               + ") on element of MountEmoteIconUsedOkMessage.reactionType.");

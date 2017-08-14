@@ -16,7 +16,7 @@ public class MimicryObjectAssociatedMessage extends SymbioticObjectAssociatedMes
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.hostUID < 0) {
-      throw new Error("Forbidden value (" + this.hostUID + ") on element hostUID.");
+      throw new Exception("Forbidden value (" + this.hostUID + ") on element hostUID.");
     }
     param1.writeVarInt(this.hostUID);
   }
@@ -27,13 +27,13 @@ public class MimicryObjectAssociatedMessage extends SymbioticObjectAssociatedMes
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

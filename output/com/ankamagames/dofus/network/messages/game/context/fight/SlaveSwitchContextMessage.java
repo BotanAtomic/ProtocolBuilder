@@ -28,11 +28,11 @@ public class SlaveSwitchContextMessage extends NetworkMessage implements INetwor
 
   public void serialize(ICustomDataOutput param1) {
     if (this.masterId < -9.007199254740992E15 || this.masterId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.masterId + ") on element masterId.");
+      throw new Exception("Forbidden value (" + this.masterId + ") on element masterId.");
     }
     param1.writeDouble(this.masterId);
     if (this.slaveId < -9.007199254740992E15 || this.slaveId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.slaveId + ") on element slaveId.");
+      throw new Exception("Forbidden value (" + this.slaveId + ") on element slaveId.");
     }
     param1.writeDouble(this.slaveId);
     param1.writeShort(this.slaveSpells.length);
@@ -57,7 +57,7 @@ public class SlaveSwitchContextMessage extends NetworkMessage implements INetwor
     Shortcut _loc8_ = null;
     this.masterId = param1.readDouble();
     if (this.masterId < -9.007199254740992E15 || this.masterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.masterId
               + ") on element of GameFightFighterCompanionLightInformations.masterId.");
@@ -65,7 +65,7 @@ public class SlaveSwitchContextMessage extends NetworkMessage implements INetwor
 
     this.slaveId = param1.readDouble();
     if (this.slaveId < -9.007199254740992E15 || this.slaveId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.slaveId + ") on element of GameFightResumeSlaveInfo.slaveId.");
     }
 

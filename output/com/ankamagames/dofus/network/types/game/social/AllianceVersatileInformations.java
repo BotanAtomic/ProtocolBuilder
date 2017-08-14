@@ -16,19 +16,19 @@ public class AllianceVersatileInformations extends Object implements INetworkTyp
 
   public void serialize(ICustomDataOutput param1) {
     if (this.allianceId < 0) {
-      throw new Error("Forbidden value (" + this.allianceId + ") on element allianceId.");
+      throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
     }
     param1.writeVarInt(this.allianceId);
     if (this.nbGuilds < 0) {
-      throw new Error("Forbidden value (" + this.nbGuilds + ") on element nbGuilds.");
+      throw new Exception("Forbidden value (" + this.nbGuilds + ") on element nbGuilds.");
     }
     param1.writeVarShort(this.nbGuilds);
     if (this.nbMembers < 0) {
-      throw new Error("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
+      throw new Exception("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
     }
     param1.writeVarShort(this.nbMembers);
     if (this.nbSubarea < 0) {
-      throw new Error("Forbidden value (" + this.nbSubarea + ") on element nbSubarea.");
+      throw new Exception("Forbidden value (" + this.nbSubarea + ") on element nbSubarea.");
     }
     param1.writeVarShort(this.nbSubarea);
   }
@@ -36,7 +36,7 @@ public class AllianceVersatileInformations extends Object implements INetworkTyp
   public void deserialize(ICustomDataInput param1) {
     this.allianceId = param1.readVarUhInt();
     if (this.allianceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.allianceId
               + ") on element of GuildInAllianceVersatileInformations.allianceId.");
@@ -44,7 +44,7 @@ public class AllianceVersatileInformations extends Object implements INetworkTyp
 
     this.nbGuilds = param1.readVarUhShort();
     if (this.nbGuilds < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbGuilds
               + ") on element of AllianceVersatileInformations.nbGuilds.");
@@ -52,7 +52,7 @@ public class AllianceVersatileInformations extends Object implements INetworkTyp
 
     this.nbMembers = param1.readUnsignedByte();
     if (this.nbMembers < 1 || this.nbMembers > 240) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbMembers
               + ") on element of GuildVersatileInformations.nbMembers.");
@@ -60,7 +60,7 @@ public class AllianceVersatileInformations extends Object implements INetworkTyp
 
     this.nbSubarea = param1.readVarUhShort();
     if (this.nbSubarea < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbSubarea
               + ") on element of AllianceVersatileInformations.nbSubarea.");

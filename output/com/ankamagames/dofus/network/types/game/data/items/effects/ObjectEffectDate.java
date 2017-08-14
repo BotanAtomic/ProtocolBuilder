@@ -18,28 +18,28 @@ public class ObjectEffectDate extends ObjectEffect implements INetworkType {
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
 
     if (this.year < 0) {
-      throw new Error("Forbidden value (" + this.year + ") on element year.");
+      throw new Exception("Forbidden value (" + this.year + ") on element year.");
     }
     param1.writeVarShort(this.year);
     if (this.month < 0) {
-      throw new Error("Forbidden value (" + this.month + ") on element month.");
+      throw new Exception("Forbidden value (" + this.month + ") on element month.");
     }
     param1.writeByte(this.month);
     if (this.day < 0) {
-      throw new Error("Forbidden value (" + this.day + ") on element day.");
+      throw new Exception("Forbidden value (" + this.day + ") on element day.");
     }
     param1.writeByte(this.day);
     if (this.hour < 0) {
-      throw new Error("Forbidden value (" + this.hour + ") on element hour.");
+      throw new Exception("Forbidden value (" + this.hour + ") on element hour.");
     }
     param1.writeByte(this.hour);
     if (this.minute < 0) {
-      throw new Error("Forbidden value (" + this.minute + ") on element minute.");
+      throw new Exception("Forbidden value (" + this.minute + ") on element minute.");
     }
     param1.writeByte(this.minute);
   }
@@ -50,13 +50,13 @@ public class ObjectEffectDate extends ObjectEffect implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -64,27 +64,30 @@ public class ObjectEffectDate extends ObjectEffect implements INetworkType {
 
     this.year = param1.readVarUhShort();
     if (this.year < 0) {
-      throw new Error("Forbidden value (" + this.year + ") on element of ObjectEffectDate.year.");
+      throw new Exception(
+          "Forbidden value (" + this.year + ") on element of ObjectEffectDate.year.");
     }
 
     this.month = param1.readByte();
     if (this.month < 0) {
-      throw new Error("Forbidden value (" + this.month + ") on element of ObjectEffectDate.month.");
+      throw new Exception(
+          "Forbidden value (" + this.month + ") on element of ObjectEffectDate.month.");
     }
 
     this.day = param1.readByte();
     if (this.day < 0) {
-      throw new Error("Forbidden value (" + this.day + ") on element of ObjectEffectDate.day.");
+      throw new Exception("Forbidden value (" + this.day + ") on element of ObjectEffectDate.day.");
     }
 
     this.hour = param1.readByte();
     if (this.hour < 0) {
-      throw new Error("Forbidden value (" + this.hour + ") on element of ObjectEffectDate.hour.");
+      throw new Exception(
+          "Forbidden value (" + this.hour + ") on element of ObjectEffectDate.hour.");
     }
 
     this.minute = param1.readByte();
     if (this.minute < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.minute + ") on element of ObjectEffectDate.minute.");
     }
   }

@@ -19,7 +19,7 @@ public class GameCautiousMapMovementRequestMessage extends GameMapMovementReques
     int _loc2_ = 0;
     while (_loc2_ < this.keyMovements.length) {
       if (this.keyMovements[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.keyMovements[_loc2_]
                 + ") on element 1 (starting at 1) of keyMovements.");
@@ -28,7 +28,7 @@ public class GameCautiousMapMovementRequestMessage extends GameMapMovementReques
       _loc2_++;
     }
     if (this.mapId < 0) {
-      throw new Error("Forbidden value (" + this.mapId + ") on element mapId.");
+      throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
     }
     param1.writeInt(this.mapId);
   }
@@ -39,13 +39,13 @@ public class GameCautiousMapMovementRequestMessage extends GameMapMovementReques
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

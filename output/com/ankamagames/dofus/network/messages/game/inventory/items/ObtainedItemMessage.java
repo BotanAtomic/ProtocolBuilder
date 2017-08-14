@@ -18,11 +18,11 @@ public class ObtainedItemMessage extends NetworkMessage implements INetworkMessa
 
   public void serialize(ICustomDataOutput param1) {
     if (this.genericId < 0) {
-      throw new Error("Forbidden value (" + this.genericId + ") on element genericId.");
+      throw new Exception("Forbidden value (" + this.genericId + ") on element genericId.");
     }
     param1.writeVarShort(this.genericId);
     if (this.baseQuantity < 0) {
-      throw new Error("Forbidden value (" + this.baseQuantity + ") on element baseQuantity.");
+      throw new Exception("Forbidden value (" + this.baseQuantity + ") on element baseQuantity.");
     }
     param1.writeVarInt(this.baseQuantity);
   }
@@ -30,13 +30,13 @@ public class ObtainedItemMessage extends NetworkMessage implements INetworkMessa
   public void deserialize(ICustomDataInput param1) {
     int _loc2_ = param1.readVarUhShort();
     if (_loc2_ < 0) {
-      throw new Error("Forbidden value (" + _loc2_ + ") on elements of genericId.");
+      throw new Exception("Forbidden value (" + _loc2_ + ") on elements of genericId.");
     }
     this.genericId.push(_loc2_);
 
     this.baseQuantity = param1.readVarUhInt();
     if (this.baseQuantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.baseQuantity
               + ") on element of ObtainedItemMessage.baseQuantity.");

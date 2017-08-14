@@ -17,15 +17,15 @@ public class DareReward extends Object implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.type);
     if (this.monsterId < 0) {
-      throw new Error("Forbidden value (" + this.monsterId + ") on element monsterId.");
+      throw new Exception("Forbidden value (" + this.monsterId + ") on element monsterId.");
     }
     param1.writeVarShort(this.monsterId);
     if (this.kamas < 0 || this.kamas > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.kamas + ") on element kamas.");
+      throw new Exception("Forbidden value (" + this.kamas + ") on element kamas.");
     }
     param1.writeVarLong(this.kamas);
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.dareId + ") on element dareId.");
+      throw new Exception("Forbidden value (" + this.dareId + ") on element dareId.");
     }
     param1.writeDouble(this.dareId);
   }
@@ -33,24 +33,25 @@ public class DareReward extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.type = param1.readByte();
     if (this.type < 0) {
-      throw new Error("Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
+      throw new Exception(
+          "Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
     }
 
     this.monsterId = param1.readVarUhShort();
     if (this.monsterId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.monsterId + ") on element of DareReward.monsterId.");
     }
 
     this.kamas = param1.readVarUhLong();
     if (this.kamas < 0 || this.kamas > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.kamas + ") on element of TaxCollectorLootInformations.kamas.");
     }
 
     this.dareId = param1.readDouble();
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.dareId + ") on element of DareVersatileInformations.dareId.");
     }
   }

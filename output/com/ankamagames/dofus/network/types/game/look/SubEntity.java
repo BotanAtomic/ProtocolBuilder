@@ -17,7 +17,7 @@ public class SubEntity extends Object implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.bindingPointCategory);
     if (this.bindingPointIndex < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.bindingPointIndex + ") on element bindingPointIndex.");
     }
     param1.writeByte(this.bindingPointIndex);
@@ -27,7 +27,7 @@ public class SubEntity extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.bindingPointCategory = param1.readByte();
     if (this.bindingPointCategory < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.bindingPointCategory
               + ") on element of SubEntity.bindingPointCategory.");
@@ -35,7 +35,7 @@ public class SubEntity extends Object implements INetworkType {
 
     this.bindingPointIndex = param1.readByte();
     if (this.bindingPointIndex < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.bindingPointIndex
               + ") on element of SubEntity.bindingPointIndex.");

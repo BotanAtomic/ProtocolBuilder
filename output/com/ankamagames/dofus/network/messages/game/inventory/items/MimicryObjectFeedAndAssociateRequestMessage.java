@@ -20,28 +20,28 @@ public class MimicryObjectFeedAndAssociateRequestMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.symbioteUID < 0) {
-      throw new Error("Forbidden value (" + this.symbioteUID + ") on element symbioteUID.");
+      throw new Exception("Forbidden value (" + this.symbioteUID + ") on element symbioteUID.");
     }
     param1.writeVarInt(this.symbioteUID);
     if (this.symbiotePos < 0 || this.symbiotePos > 255) {
-      throw new Error("Forbidden value (" + this.symbiotePos + ") on element symbiotePos.");
+      throw new Exception("Forbidden value (" + this.symbiotePos + ") on element symbiotePos.");
     }
     param1.writeByte(this.symbiotePos);
     if (this.hostUID < 0) {
-      throw new Error("Forbidden value (" + this.hostUID + ") on element hostUID.");
+      throw new Exception("Forbidden value (" + this.hostUID + ") on element hostUID.");
     }
     param1.writeVarInt(this.hostUID);
     if (this.hostPos < 0 || this.hostPos > 255) {
-      throw new Error("Forbidden value (" + this.hostPos + ") on element hostPos.");
+      throw new Exception("Forbidden value (" + this.hostPos + ") on element hostPos.");
     }
     param1.writeByte(this.hostPos);
 
     if (this.foodUID < 0) {
-      throw new Error("Forbidden value (" + this.foodUID + ") on element foodUID.");
+      throw new Exception("Forbidden value (" + this.foodUID + ") on element foodUID.");
     }
     param1.writeVarInt(this.foodUID);
     if (this.foodPos < 0 || this.foodPos > 255) {
-      throw new Error("Forbidden value (" + this.foodPos + ") on element foodPos.");
+      throw new Exception("Forbidden value (" + this.foodPos + ") on element foodPos.");
     }
     param1.writeByte(this.foodPos);
     param1.writeBoolean(this.preview);
@@ -53,13 +53,13 @@ public class MimicryObjectFeedAndAssociateRequestMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -67,13 +67,13 @@ public class MimicryObjectFeedAndAssociateRequestMessage
 
     this.foodUID = param1.readVarUhInt();
     if (this.foodUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.foodUID + ") on element of ObjectFeedMessage.foodUID.");
     }
 
     this.foodPos = param1.readUnsignedByte();
     if (this.foodPos < 0 || this.foodPos > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.foodPos
               + ") on element of MimicryObjectFeedAndAssociateRequestMessage.foodPos.");

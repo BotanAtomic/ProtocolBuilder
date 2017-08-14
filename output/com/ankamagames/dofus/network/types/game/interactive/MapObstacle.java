@@ -14,7 +14,8 @@ public class MapObstacle extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.obstacleCellId < 0 || this.obstacleCellId > 559) {
-      throw new Error("Forbidden value (" + this.obstacleCellId + ") on element obstacleCellId.");
+      throw new Exception(
+          "Forbidden value (" + this.obstacleCellId + ") on element obstacleCellId.");
     }
     param1.writeVarShort(this.obstacleCellId);
     param1.writeByte(this.state);
@@ -23,7 +24,7 @@ public class MapObstacle extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.obstacleCellId = param1.readVarUhShort();
     if (this.obstacleCellId < 0 || this.obstacleCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.obstacleCellId
               + ") on element of MapObstacle.obstacleCellId.");
@@ -31,7 +32,7 @@ public class MapObstacle extends Object implements INetworkType {
 
     this.state = param1.readByte();
     if (this.state < 0) {
-      throw new Error("Forbidden value (" + this.state + ") on element of ContentPart.state.");
+      throw new Exception("Forbidden value (" + this.state + ") on element of ContentPart.state.");
     }
   }
 }

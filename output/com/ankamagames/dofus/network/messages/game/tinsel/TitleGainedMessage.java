@@ -17,7 +17,7 @@ public class TitleGainedMessage extends NetworkMessage implements INetworkMessag
 
   public void serialize(ICustomDataOutput param1) {
     if (this.titleId < 0) {
-      throw new Error("Forbidden value (" + this.titleId + ") on element titleId.");
+      throw new Exception("Forbidden value (" + this.titleId + ") on element titleId.");
     }
     param1.writeVarShort(this.titleId);
   }
@@ -25,7 +25,7 @@ public class TitleGainedMessage extends NetworkMessage implements INetworkMessag
   public void deserialize(ICustomDataInput param1) {
     this.titleId = param1.readVarUhShort();
     if (this.titleId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.titleId + ") on element of HumanOptionTitle.titleId.");
     }
   }

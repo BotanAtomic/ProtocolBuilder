@@ -22,7 +22,7 @@ public class OnConnectionEventMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.eventType = param1.readByte();
     if (this.eventType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.eventType
               + ") on element of OnConnectionEventMessage.eventType.");

@@ -27,7 +27,7 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
     param1.writeUTF(this.playerName);
@@ -36,16 +36,16 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
     param1.writeBoolean(this.sex);
     param1.writeBoolean(this.isInWorkshop);
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error("Forbidden value (" + this.worldX + ") on element worldX.");
+      throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
     }
     param1.writeShort(this.worldX);
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error("Forbidden value (" + this.worldY + ") on element worldY.");
+      throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
     }
     param1.writeShort(this.worldY);
     param1.writeInt(this.mapId);
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     param1.writeShort(this.status.getTypeId());
@@ -55,7 +55,7 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
   public void deserialize(ICustomDataInput param1) {
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
 
@@ -71,7 +71,7 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
 
     this.worldX = param1.readShort();
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldX
               + ") on element of PrismGeolocalizedInformation.worldX.");
@@ -79,7 +79,7 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
 
     this.worldY = param1.readShort();
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldY
               + ") on element of PrismGeolocalizedInformation.worldY.");
@@ -89,7 +89,7 @@ public class JobCrafterDirectoryEntryPlayerInfo extends Object implements INetwo
 
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");

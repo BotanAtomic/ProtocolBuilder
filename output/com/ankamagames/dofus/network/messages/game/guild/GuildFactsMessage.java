@@ -27,11 +27,12 @@ public class GuildFactsMessage extends NetworkMessage implements INetworkMessage
     param1.writeShort(this.infos.getTypeId());
     this.infos.serialize(param1);
     if (this.creationDate < 0) {
-      throw new Error("Forbidden value (" + this.creationDate + ") on element creationDate.");
+      throw new Exception("Forbidden value (" + this.creationDate + ") on element creationDate.");
     }
     param1.writeInt(this.creationDate);
     if (this.nbTaxCollectors < 0) {
-      throw new Error("Forbidden value (" + this.nbTaxCollectors + ") on element nbTaxCollectors.");
+      throw new Exception(
+          "Forbidden value (" + this.nbTaxCollectors + ") on element nbTaxCollectors.");
     }
     param1.writeVarShort(this.nbTaxCollectors);
     param1.writeShort(this.members.length);
@@ -49,7 +50,7 @@ public class GuildFactsMessage extends NetworkMessage implements INetworkMessage
     this.infos.deserialize(param1);
     this.creationDate = param1.readInt();
     if (this.creationDate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.creationDate
               + ") on element of AllianceFactSheetInformations.creationDate.");
@@ -57,7 +58,7 @@ public class GuildFactsMessage extends NetworkMessage implements INetworkMessage
 
     this.nbTaxCollectors = param1.readByte();
     if (this.nbTaxCollectors < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbTaxCollectors
               + ") on element of GuildInsiderFactSheetInformations.nbTaxCollectors.");

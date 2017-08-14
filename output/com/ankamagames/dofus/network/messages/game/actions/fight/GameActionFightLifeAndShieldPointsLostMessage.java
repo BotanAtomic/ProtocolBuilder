@@ -18,30 +18,30 @@ public class GameActionFightLifeAndShieldPointsLostMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sourceId + ") on element sourceId.");
+      throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
     }
     param1.writeDouble(this.sourceId);
 
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.targetId + ") on element targetId.");
+      throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
     }
     param1.writeDouble(this.targetId);
     if (this.loss < 0) {
-      throw new Error("Forbidden value (" + this.loss + ") on element loss.");
+      throw new Exception("Forbidden value (" + this.loss + ") on element loss.");
     }
     param1.writeVarInt(this.loss);
     if (this.permanentDamages < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.permanentDamages + ") on element permanentDamages.");
     }
     param1.writeVarInt(this.permanentDamages);
 
     if (this.shieldLoss < 0) {
-      throw new Error("Forbidden value (" + this.shieldLoss + ") on element shieldLoss.");
+      throw new Exception("Forbidden value (" + this.shieldLoss + ") on element shieldLoss.");
     }
     param1.writeVarShort(this.shieldLoss);
   }
@@ -52,13 +52,13 @@ public class GameActionFightLifeAndShieldPointsLostMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -66,7 +66,7 @@ public class GameActionFightLifeAndShieldPointsLostMessage
 
     this.shieldLoss = param1.readVarUhShort();
     if (this.shieldLoss < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.shieldLoss
               + ") on element of GameActionFightLifeAndShieldPointsLostMessage.shieldLoss.");

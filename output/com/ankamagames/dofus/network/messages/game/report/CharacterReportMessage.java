@@ -18,11 +18,11 @@ public class CharacterReportMessage extends NetworkMessage implements INetworkMe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.reportedId < 0 || this.reportedId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.reportedId + ") on element reportedId.");
+      throw new Exception("Forbidden value (" + this.reportedId + ") on element reportedId.");
     }
     param1.writeVarLong(this.reportedId);
     if (this.reason < 0) {
-      throw new Error("Forbidden value (" + this.reason + ") on element reason.");
+      throw new Exception("Forbidden value (" + this.reason + ") on element reason.");
     }
     param1.writeByte(this.reason);
   }
@@ -30,7 +30,7 @@ public class CharacterReportMessage extends NetworkMessage implements INetworkMe
   public void deserialize(ICustomDataInput param1) {
     this.reportedId = param1.readVarUhLong();
     if (this.reportedId < 0 || this.reportedId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.reportedId
               + ") on element of CharacterReportMessage.reportedId.");
@@ -38,7 +38,7 @@ public class CharacterReportMessage extends NetworkMessage implements INetworkMe
 
     this.reason = param1.readByte();
     if (this.reason < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.reason
               + ") on element of KrosmasterInventoryErrorMessage.reason.");

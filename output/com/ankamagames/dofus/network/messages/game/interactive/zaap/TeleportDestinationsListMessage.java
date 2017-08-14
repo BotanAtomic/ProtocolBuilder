@@ -29,7 +29,7 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
     int _loc2_ = 0;
     while (_loc2_ < this.mapIds.length) {
       if (this.mapIds[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.mapIds[_loc2_]
                 + ") on element 2 (starting at 1) of mapIds.");
@@ -41,7 +41,7 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
     int _loc3_ = 0;
     while (_loc3_ < this.subAreaIds.length) {
       if (this.subAreaIds[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.subAreaIds[_loc3_]
                 + ") on element 3 (starting at 1) of subAreaIds.");
@@ -53,7 +53,7 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
     int _loc4_ = 0;
     while (_loc4_ < this.costs.length) {
       if (this.costs[_loc4_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value (" + this.costs[_loc4_] + ") on element 4 (starting at 1) of costs.");
       }
       param1.writeVarShort(this.costs[_loc4_]);
@@ -74,7 +74,7 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
     int _loc13_ = 0;
     this.teleporterType = param1.readByte();
     if (this.teleporterType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.teleporterType
               + ") on element of TeleportRequestMessage.teleporterType.");
@@ -85,7 +85,7 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
     while (_loc3_ < _loc2_) {
       _loc10_ = param1.readInt();
       if (_loc10_ < 0) {
-        throw new Error("Forbidden value (" + _loc10_ + ") on elements of mapIds.");
+        throw new Exception("Forbidden value (" + _loc10_ + ") on elements of mapIds.");
       }
       this.mapIds.push(_loc10_);
       _loc3_++;
@@ -95,7 +95,7 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
     while (_loc5_ < _loc4_) {
       _loc11_ = param1.readVarUhShort();
       if (_loc11_ < 0) {
-        throw new Error("Forbidden value (" + _loc11_ + ") on elements of subAreaIds.");
+        throw new Exception("Forbidden value (" + _loc11_ + ") on elements of subAreaIds.");
       }
       this.subAreaIds.push(_loc11_);
       _loc5_++;
@@ -105,7 +105,7 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
     while (_loc7_ < _loc6_) {
       _loc12_ = param1.readVarUhShort();
       if (_loc12_ < 0) {
-        throw new Error("Forbidden value (" + _loc12_ + ") on elements of costs.");
+        throw new Exception("Forbidden value (" + _loc12_ + ") on elements of costs.");
       }
       this.costs.push(_loc12_);
       _loc7_++;
@@ -115,7 +115,7 @@ public class TeleportDestinationsListMessage extends NetworkMessage implements I
     while (_loc9_ < _loc8_) {
       _loc13_ = param1.readByte();
       if (_loc13_ < 0) {
-        throw new Error("Forbidden value (" + _loc13_ + ") on elements of destTeleporterType.");
+        throw new Exception("Forbidden value (" + _loc13_ + ") on elements of destTeleporterType.");
       }
       this.destTeleporterType.push(_loc13_);
       _loc9_++;

@@ -27,7 +27,7 @@ public class IdolListMessage extends NetworkMessage implements INetworkMessage {
     int _loc2_ = 0;
     while (_loc2_ < this.chosenIdols.length) {
       if (this.chosenIdols[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.chosenIdols[_loc2_]
                 + ") on element 1 (starting at 1) of chosenIdols.");
@@ -39,7 +39,7 @@ public class IdolListMessage extends NetworkMessage implements INetworkMessage {
     int _loc3_ = 0;
     while (_loc3_ < this.partyChosenIdols.length) {
       if (this.partyChosenIdols[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.partyChosenIdols[_loc3_]
                 + ") on element 2 (starting at 1) of partyChosenIdols.");
@@ -66,7 +66,7 @@ public class IdolListMessage extends NetworkMessage implements INetworkMessage {
     while (_loc3_ < _loc2_) {
       _loc8_ = param1.readVarUhShort();
       if (_loc8_ < 0) {
-        throw new Error("Forbidden value (" + _loc8_ + ") on elements of chosenIdols.");
+        throw new Exception("Forbidden value (" + _loc8_ + ") on elements of chosenIdols.");
       }
       this.chosenIdols.push(_loc8_);
       _loc3_++;
@@ -76,7 +76,7 @@ public class IdolListMessage extends NetworkMessage implements INetworkMessage {
     while (_loc5_ < _loc4_) {
       _loc9_ = param1.readVarUhShort();
       if (_loc9_ < 0) {
-        throw new Error("Forbidden value (" + _loc9_ + ") on elements of partyChosenIdols.");
+        throw new Exception("Forbidden value (" + _loc9_ + ") on elements of partyChosenIdols.");
       }
       this.partyChosenIdols.push(_loc9_);
       _loc5_++;

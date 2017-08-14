@@ -20,7 +20,8 @@ public class ExchangeStartedWithStorageMessage extends ExchangeStartedMessage
     param1.writeByte(this.exchangeType);
 
     if (this.storageMaxSlot < 0) {
-      throw new Error("Forbidden value (" + this.storageMaxSlot + ") on element storageMaxSlot.");
+      throw new Exception(
+          "Forbidden value (" + this.storageMaxSlot + ") on element storageMaxSlot.");
     }
     param1.writeVarInt(this.storageMaxSlot);
   }
@@ -31,13 +32,13 @@ public class ExchangeStartedWithStorageMessage extends ExchangeStartedMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -45,7 +46,7 @@ public class ExchangeStartedWithStorageMessage extends ExchangeStartedMessage
 
     this.storageMaxSlot = param1.readVarUhInt();
     if (this.storageMaxSlot < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.storageMaxSlot
               + ") on element of ExchangeStartedWithStorageMessage.storageMaxSlot.");

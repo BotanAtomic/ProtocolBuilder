@@ -16,11 +16,11 @@ public class PresetItem extends Object implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.position);
     if (this.objGid < 0) {
-      throw new Error("Forbidden value (" + this.objGid + ") on element objGid.");
+      throw new Exception("Forbidden value (" + this.objGid + ") on element objGid.");
     }
     param1.writeVarShort(this.objGid);
     if (this.objUid < 0) {
-      throw new Error("Forbidden value (" + this.objUid + ") on element objUid.");
+      throw new Exception("Forbidden value (" + this.objUid + ") on element objUid.");
     }
     param1.writeVarInt(this.objUid);
   }
@@ -28,17 +28,18 @@ public class PresetItem extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.position = param1.readUnsignedByte();
     if (this.position < 0 || this.position > 255) {
-      throw new Error("Forbidden value (" + this.position + ") on element of PresetItem.position.");
+      throw new Exception(
+          "Forbidden value (" + this.position + ") on element of PresetItem.position.");
     }
 
     this.objGid = param1.readVarUhShort();
     if (this.objGid < 0) {
-      throw new Error("Forbidden value (" + this.objGid + ") on element of PresetItem.objGid.");
+      throw new Exception("Forbidden value (" + this.objGid + ") on element of PresetItem.objGid.");
     }
 
     this.objUid = param1.readVarUhInt();
     if (this.objUid < 0) {
-      throw new Error("Forbidden value (" + this.objUid + ") on element of PresetItem.objUid.");
+      throw new Exception("Forbidden value (" + this.objUid + ") on element of PresetItem.objUid.");
     }
   }
 }

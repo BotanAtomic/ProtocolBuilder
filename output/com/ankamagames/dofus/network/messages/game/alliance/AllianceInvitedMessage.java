@@ -21,7 +21,7 @@ public class AllianceInvitedMessage extends NetworkMessage implements INetworkMe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.recruterId < 0 || this.recruterId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.recruterId + ") on element recruterId.");
+      throw new Exception("Forbidden value (" + this.recruterId + ") on element recruterId.");
     }
     param1.writeVarLong(this.recruterId);
     param1.writeUTF(this.recruterName);
@@ -31,7 +31,7 @@ public class AllianceInvitedMessage extends NetworkMessage implements INetworkMe
   public void deserialize(ICustomDataInput param1) {
     this.recruterId = param1.readVarUhLong();
     if (this.recruterId < 0 || this.recruterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.recruterId
               + ") on element of GuildInvitedMessage.recruterId.");

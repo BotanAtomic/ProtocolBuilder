@@ -21,11 +21,11 @@ public class ExchangeStartOkNpcShopMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.npcSellerId < -9.007199254740992E15 || this.npcSellerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.npcSellerId + ") on element npcSellerId.");
+      throw new Exception("Forbidden value (" + this.npcSellerId + ") on element npcSellerId.");
     }
     param1.writeDouble(this.npcSellerId);
     if (this.tokenId < 0) {
-      throw new Error("Forbidden value (" + this.tokenId + ") on element tokenId.");
+      throw new Exception("Forbidden value (" + this.tokenId + ") on element tokenId.");
     }
     param1.writeVarShort(this.tokenId);
     param1.writeShort(this.objectsInfos.length);
@@ -40,7 +40,7 @@ public class ExchangeStartOkNpcShopMessage extends NetworkMessage implements INe
     ObjectItemToSellInNpcShop _loc4_ = null;
     this.npcSellerId = param1.readDouble();
     if (this.npcSellerId < -9.007199254740992E15 || this.npcSellerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.npcSellerId
               + ") on element of ExchangeStartOkNpcShopMessage.npcSellerId.");
@@ -48,7 +48,7 @@ public class ExchangeStartOkNpcShopMessage extends NetworkMessage implements INe
 
     this.tokenId = param1.readVarUhShort();
     if (this.tokenId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.tokenId
               + ") on element of ExchangeStartOkNpcShopMessage.tokenId.");

@@ -19,15 +19,15 @@ public class ExchangeBidHouseBuyMessage extends NetworkMessage implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.uid < 0) {
-      throw new Error("Forbidden value (" + this.uid + ") on element uid.");
+      throw new Exception("Forbidden value (" + this.uid + ") on element uid.");
     }
     param1.writeVarInt(this.uid);
     if (this.qty < 0) {
-      throw new Error("Forbidden value (" + this.qty + ") on element qty.");
+      throw new Exception("Forbidden value (" + this.qty + ") on element qty.");
     }
     param1.writeVarInt(this.qty);
     if (this.price < 0 || this.price > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.price + ") on element price.");
+      throw new Exception("Forbidden value (" + this.price + ") on element price.");
     }
     param1.writeVarLong(this.price);
   }
@@ -37,13 +37,13 @@ public class ExchangeBidHouseBuyMessage extends NetworkMessage implements INetwo
 
     this.qty = param1.readVarUhInt();
     if (this.qty < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.qty + ") on element of ExchangeBidHouseBuyMessage.qty.");
     }
 
     this.price = param1.readVarUhLong();
     if (this.price < 0 || this.price > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.price + ") on element of PaddockInformationsForSell.price.");
     }
   }

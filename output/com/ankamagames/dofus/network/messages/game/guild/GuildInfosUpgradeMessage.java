@@ -28,55 +28,55 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.maxTaxCollectorsCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.maxTaxCollectorsCount + ") on element maxTaxCollectorsCount.");
     }
     param1.writeByte(this.maxTaxCollectorsCount);
     if (this.taxCollectorsCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.taxCollectorsCount + ") on element taxCollectorsCount.");
     }
     param1.writeByte(this.taxCollectorsCount);
     if (this.taxCollectorLifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.taxCollectorLifePoints
               + ") on element taxCollectorLifePoints.");
     }
     param1.writeVarShort(this.taxCollectorLifePoints);
     if (this.taxCollectorDamagesBonuses < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.taxCollectorDamagesBonuses
               + ") on element taxCollectorDamagesBonuses.");
     }
     param1.writeVarShort(this.taxCollectorDamagesBonuses);
     if (this.taxCollectorPods < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.taxCollectorPods + ") on element taxCollectorPods.");
     }
     param1.writeVarShort(this.taxCollectorPods);
     if (this.taxCollectorProspecting < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.taxCollectorProspecting
               + ") on element taxCollectorProspecting.");
     }
     param1.writeVarShort(this.taxCollectorProspecting);
     if (this.taxCollectorWisdom < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.taxCollectorWisdom + ") on element taxCollectorWisdom.");
     }
     param1.writeVarShort(this.taxCollectorWisdom);
     if (this.boostPoints < 0) {
-      throw new Error("Forbidden value (" + this.boostPoints + ") on element boostPoints.");
+      throw new Exception("Forbidden value (" + this.boostPoints + ") on element boostPoints.");
     }
     param1.writeVarShort(this.boostPoints);
     param1.writeShort(this.spellId.length);
     int _loc2_ = 0;
     while (_loc2_ < this.spellId.length) {
       if (this.spellId[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.spellId[_loc2_]
                 + ") on element 9 (starting at 1) of spellId.");
@@ -97,7 +97,7 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
     Object _loc7_ = 0;
     this.maxTaxCollectorsCount = param1.readByte();
     if (this.maxTaxCollectorsCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxTaxCollectorsCount
               + ") on element of GuildInfosUpgradeMessage.maxTaxCollectorsCount.");
@@ -105,7 +105,7 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
 
     this.taxCollectorsCount = param1.readByte();
     if (this.taxCollectorsCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.taxCollectorsCount
               + ") on element of GuildInfosUpgradeMessage.taxCollectorsCount.");
@@ -113,7 +113,7 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
 
     this.taxCollectorLifePoints = param1.readVarUhShort();
     if (this.taxCollectorLifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.taxCollectorLifePoints
               + ") on element of GuildInfosUpgradeMessage.taxCollectorLifePoints.");
@@ -121,7 +121,7 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
 
     this.taxCollectorDamagesBonuses = param1.readVarUhShort();
     if (this.taxCollectorDamagesBonuses < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.taxCollectorDamagesBonuses
               + ") on element of GuildInfosUpgradeMessage.taxCollectorDamagesBonuses.");
@@ -129,7 +129,7 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
 
     this.taxCollectorPods = param1.readVarUhShort();
     if (this.taxCollectorPods < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.taxCollectorPods
               + ") on element of GuildInfosUpgradeMessage.taxCollectorPods.");
@@ -137,7 +137,7 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
 
     this.taxCollectorProspecting = param1.readVarUhShort();
     if (this.taxCollectorProspecting < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.taxCollectorProspecting
               + ") on element of GuildInfosUpgradeMessage.taxCollectorProspecting.");
@@ -145,7 +145,7 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
 
     this.taxCollectorWisdom = param1.readVarUhShort();
     if (this.taxCollectorWisdom < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.taxCollectorWisdom
               + ") on element of GuildInfosUpgradeMessage.taxCollectorWisdom.");
@@ -153,7 +153,7 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
 
     this.boostPoints = param1.readVarUhShort();
     if (this.boostPoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.boostPoints
               + ") on element of GuildInfosUpgradeMessage.boostPoints.");
@@ -164,7 +164,7 @@ public class GuildInfosUpgradeMessage extends NetworkMessage implements INetwork
     while (_loc3_ < _loc2_) {
       _loc6_ = param1.readVarUhShort();
       if (_loc6_ < 0) {
-        throw new Error("Forbidden value (" + _loc6_ + ") on elements of spellId.");
+        throw new Exception("Forbidden value (" + _loc6_ + ") on elements of spellId.");
       }
       this.spellId.push(_loc6_);
       _loc3_++;

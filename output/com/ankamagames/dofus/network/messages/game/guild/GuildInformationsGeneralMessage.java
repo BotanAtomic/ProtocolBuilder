@@ -25,32 +25,33 @@ public class GuildInformationsGeneralMessage extends NetworkMessage implements I
   public void serialize(ICustomDataOutput param1) {
     param1.writeBoolean(this.abandonnedPaddock);
     if (this.level < 0 || this.level > 255) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
     if (this.expLevelFloor < 0 || this.expLevelFloor > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.expLevelFloor + ") on element expLevelFloor.");
+      throw new Exception("Forbidden value (" + this.expLevelFloor + ") on element expLevelFloor.");
     }
     param1.writeVarLong(this.expLevelFloor);
     if (this.experience < 0 || this.experience > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.experience + ") on element experience.");
+      throw new Exception("Forbidden value (" + this.experience + ") on element experience.");
     }
     param1.writeVarLong(this.experience);
     if (this.expNextLevelFloor < 0 || this.expNextLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.expNextLevelFloor + ") on element expNextLevelFloor.");
     }
     param1.writeVarLong(this.expNextLevelFloor);
     if (this.creationDate < 0) {
-      throw new Error("Forbidden value (" + this.creationDate + ") on element creationDate.");
+      throw new Exception("Forbidden value (" + this.creationDate + ") on element creationDate.");
     }
     param1.writeInt(this.creationDate);
     if (this.nbTotalMembers < 0) {
-      throw new Error("Forbidden value (" + this.nbTotalMembers + ") on element nbTotalMembers.");
+      throw new Exception(
+          "Forbidden value (" + this.nbTotalMembers + ") on element nbTotalMembers.");
     }
     param1.writeVarShort(this.nbTotalMembers);
     if (this.nbConnectedMembers < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.nbConnectedMembers + ") on element nbConnectedMembers.");
     }
     param1.writeVarShort(this.nbConnectedMembers);
@@ -61,12 +62,13 @@ public class GuildInformationsGeneralMessage extends NetworkMessage implements I
 
     this.level = param1.readByte();
     if (this.level < 0) {
-      throw new Error("Forbidden value (" + this.level + ") on element of MountClientData.level.");
+      throw new Exception(
+          "Forbidden value (" + this.level + ") on element of MountClientData.level.");
     }
 
     this.expLevelFloor = param1.readVarUhLong();
     if (this.expLevelFloor < 0 || this.expLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.expLevelFloor
               + ") on element of GuildInformationsGeneralMessage.expLevelFloor.");
@@ -74,13 +76,13 @@ public class GuildInformationsGeneralMessage extends NetworkMessage implements I
 
     this.experience = param1.readVarUhLong();
     if (this.experience < 0 || this.experience > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experience + ") on element of MountClientData.experience.");
     }
 
     this.expNextLevelFloor = param1.readVarUhLong();
     if (this.expNextLevelFloor < 0 || this.expNextLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.expNextLevelFloor
               + ") on element of GuildInformationsGeneralMessage.expNextLevelFloor.");
@@ -88,7 +90,7 @@ public class GuildInformationsGeneralMessage extends NetworkMessage implements I
 
     this.creationDate = param1.readInt();
     if (this.creationDate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.creationDate
               + ") on element of AllianceFactSheetInformations.creationDate.");
@@ -96,7 +98,7 @@ public class GuildInformationsGeneralMessage extends NetworkMessage implements I
 
     this.nbTotalMembers = param1.readVarUhShort();
     if (this.nbTotalMembers < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbTotalMembers
               + ") on element of GuildInformationsGeneralMessage.nbTotalMembers.");
@@ -104,7 +106,7 @@ public class GuildInformationsGeneralMessage extends NetworkMessage implements I
 
     this.nbConnectedMembers = param1.readVarUhShort();
     if (this.nbConnectedMembers < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbConnectedMembers
               + ") on element of GuildInsiderFactSheetInformations.nbConnectedMembers.");

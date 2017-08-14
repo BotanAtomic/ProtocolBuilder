@@ -20,7 +20,7 @@ public class InteractiveElement extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.elementId < 0) {
-      throw new Error("Forbidden value (" + this.elementId + ") on element elementId.");
+      throw new Exception("Forbidden value (" + this.elementId + ") on element elementId.");
     }
     param1.writeInt(this.elementId);
     param1.writeInt(this.elementTypeId);
@@ -48,7 +48,7 @@ public class InteractiveElement extends Object implements INetworkType {
     InteractiveElementSkill _loc9_ = null;
     this.elementId = param1.readInt();
     if (this.elementId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.elementId + ") on element of StatedElement.elementId.");
     }
 

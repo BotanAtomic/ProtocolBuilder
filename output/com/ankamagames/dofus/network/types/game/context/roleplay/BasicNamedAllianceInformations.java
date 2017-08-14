@@ -15,7 +15,7 @@ public class BasicNamedAllianceInformations extends BasicAllianceInformations
   public void serialize(ICustomDataOutput param1) {
 
     if (this.allianceId < 0) {
-      throw new Error("Forbidden value (" + this.allianceId + ") on element allianceId.");
+      throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
     }
     param1.writeVarInt(this.allianceId);
     param1.writeUTF(this.allianceTag);
@@ -29,13 +29,13 @@ public class BasicNamedAllianceInformations extends BasicAllianceInformations
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

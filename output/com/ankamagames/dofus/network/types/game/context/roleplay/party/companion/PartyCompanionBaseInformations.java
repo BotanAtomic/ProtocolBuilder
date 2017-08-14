@@ -17,11 +17,11 @@ public class PartyCompanionBaseInformations extends Object implements INetworkTy
 
   public void serialize(ICustomDataOutput param1) {
     if (this.indexId < 0) {
-      throw new Error("Forbidden value (" + this.indexId + ") on element indexId.");
+      throw new Exception("Forbidden value (" + this.indexId + ") on element indexId.");
     }
     param1.writeByte(this.indexId);
     if (this.companionGenericId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.companionGenericId + ") on element companionGenericId.");
     }
     param1.writeByte(this.companionGenericId);
@@ -31,7 +31,7 @@ public class PartyCompanionBaseInformations extends Object implements INetworkTy
   public void deserialize(ICustomDataInput param1) {
     this.indexId = param1.readByte();
     if (this.indexId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.indexId
               + ") on element of PartyCompanionBaseInformations.indexId.");
@@ -39,7 +39,7 @@ public class PartyCompanionBaseInformations extends Object implements INetworkTy
 
     this.companionGenericId = param1.readByte();
     if (this.companionGenericId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.companionGenericId
               + ") on element of PartyCompanionBaseInformations.companionGenericId.");

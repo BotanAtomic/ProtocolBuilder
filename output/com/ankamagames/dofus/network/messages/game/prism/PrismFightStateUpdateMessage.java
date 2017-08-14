@@ -17,7 +17,7 @@ public class PrismFightStateUpdateMessage extends NetworkMessage implements INet
 
   public void serialize(ICustomDataOutput param1) {
     if (this.state < 0) {
-      throw new Error("Forbidden value (" + this.state + ") on element state.");
+      throw new Exception("Forbidden value (" + this.state + ") on element state.");
     }
     param1.writeByte(this.state);
   }
@@ -25,7 +25,7 @@ public class PrismFightStateUpdateMessage extends NetworkMessage implements INet
   public void deserialize(ICustomDataInput param1) {
     this.state = param1.readByte();
     if (this.state < 0) {
-      throw new Error("Forbidden value (" + this.state + ") on element of ContentPart.state.");
+      throw new Exception("Forbidden value (" + this.state + ") on element of ContentPart.state.");
     }
   }
 }

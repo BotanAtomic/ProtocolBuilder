@@ -18,7 +18,7 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -27,7 +27,7 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
 
     param1.writeByte(this.teamId);
     if (this.wave < 0) {
-      throw new Error("Forbidden value (" + this.wave + ") on element wave.");
+      throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
     }
     param1.writeByte(this.wave);
     param1.writeBoolean(this.alive);
@@ -37,7 +37,7 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
     int _loc2_ = 0;
     while (_loc2_ < this.previousPositions.length) {
       if (this.previousPositions[_loc2_] < 0 || this.previousPositions[_loc2_] > 559) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.previousPositions[_loc2_]
                 + ") on element 5 (starting at 1) of previousPositions.");
@@ -50,7 +50,7 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
     this.status.serializeAs_PlayerStatus(param1);
 
     if (this.powerLevel < 0) {
-      throw new Error("Forbidden value (" + this.powerLevel + ") on element powerLevel.");
+      throw new Exception("Forbidden value (" + this.powerLevel + ") on element powerLevel.");
     }
     param1.writeByte(this.powerLevel);
   }
@@ -61,13 +61,13 @@ public class GameFightMutantInformations extends GameFightFighterNamedInformatio
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

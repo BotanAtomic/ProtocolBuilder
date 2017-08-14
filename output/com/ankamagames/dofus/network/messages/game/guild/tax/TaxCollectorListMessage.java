@@ -30,7 +30,8 @@ public class TaxCollectorListMessage extends AbstractTaxCollectorListMessage
     }
 
     if (this.nbcollectorMax < 0) {
-      throw new Error("Forbidden value (" + this.nbcollectorMax + ") on element nbcollectorMax.");
+      throw new Exception(
+          "Forbidden value (" + this.nbcollectorMax + ") on element nbcollectorMax.");
     }
     param1.writeByte(this.nbcollectorMax);
     param1.writeShort(this.fightersInformations.length);
@@ -48,13 +49,13 @@ public class TaxCollectorListMessage extends AbstractTaxCollectorListMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -62,7 +63,7 @@ public class TaxCollectorListMessage extends AbstractTaxCollectorListMessage
 
     this.nbcollectorMax = param1.readByte();
     if (this.nbcollectorMax < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbcollectorMax
               + ") on element of TaxCollectorListMessage.nbcollectorMax.");

@@ -19,7 +19,7 @@ public class TreasureHuntFlagRequestMessage extends NetworkMessage implements IN
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.questType);
     if (this.index < 0) {
-      throw new Error("Forbidden value (" + this.index + ") on element index.");
+      throw new Exception("Forbidden value (" + this.index + ") on element index.");
     }
     param1.writeByte(this.index);
   }
@@ -27,7 +27,7 @@ public class TreasureHuntFlagRequestMessage extends NetworkMessage implements IN
   public void deserialize(ICustomDataInput param1) {
     this.questType = param1.readByte();
     if (this.questType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.questType
               + ") on element of TreasureHuntRequestMessage.questType.");
@@ -35,7 +35,7 @@ public class TreasureHuntFlagRequestMessage extends NetworkMessage implements IN
 
     this.index = param1.readByte();
     if (this.index < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.index + ") on element of IndexedEntityLook.index.");
     }
   }

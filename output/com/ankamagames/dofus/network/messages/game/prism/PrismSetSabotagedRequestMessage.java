@@ -17,7 +17,7 @@ public class PrismSetSabotagedRequestMessage extends NetworkMessage implements I
 
   public void serialize(ICustomDataOutput param1) {
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
   }
@@ -25,7 +25,7 @@ public class PrismSetSabotagedRequestMessage extends NetworkMessage implements I
   public void deserialize(ICustomDataInput param1) {
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");

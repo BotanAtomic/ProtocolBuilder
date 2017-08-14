@@ -18,7 +18,7 @@ public class SpellVariantActivationRequestMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.spellId < 0) {
-      throw new Error("Forbidden value (" + this.spellId + ") on element spellId.");
+      throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
     }
     param1.writeVarShort(this.spellId);
   }
@@ -26,7 +26,7 @@ public class SpellVariantActivationRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.spellId = param1.readVarUhShort();
     if (this.spellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
     }
   }

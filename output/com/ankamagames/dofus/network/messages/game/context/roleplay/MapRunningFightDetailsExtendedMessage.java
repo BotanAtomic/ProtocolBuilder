@@ -20,7 +20,7 @@ public class MapRunningFightDetailsExtendedMessage extends MapRunningFightDetail
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.fightId < 0) {
-      throw new Error("Forbidden value (" + this.fightId + ") on element fightId.");
+      throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
     }
     param1.writeInt(this.fightId);
     param1.writeShort(this.attackers.length);
@@ -53,13 +53,13 @@ public class MapRunningFightDetailsExtendedMessage extends MapRunningFightDetail
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

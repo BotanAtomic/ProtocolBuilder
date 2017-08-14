@@ -15,11 +15,12 @@ public class PaddockInstancesInformations extends PaddockInformations implements
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.maxOutdoorMount < 0) {
-      throw new Error("Forbidden value (" + this.maxOutdoorMount + ") on element maxOutdoorMount.");
+      throw new Exception(
+          "Forbidden value (" + this.maxOutdoorMount + ") on element maxOutdoorMount.");
     }
     param1.writeVarShort(this.maxOutdoorMount);
     if (this.maxItems < 0) {
-      throw new Error("Forbidden value (" + this.maxItems + ") on element maxItems.");
+      throw new Exception("Forbidden value (" + this.maxItems + ") on element maxItems.");
     }
     param1.writeVarShort(this.maxItems);
 
@@ -40,13 +41,13 @@ public class PaddockInstancesInformations extends PaddockInformations implements
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

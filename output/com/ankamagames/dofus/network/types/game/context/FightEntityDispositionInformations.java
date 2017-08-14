@@ -15,14 +15,14 @@ public class FightEntityDispositionInformations extends EntityDispositionInforma
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.cellId < -1 || this.cellId > 559) {
-      throw new Error("Forbidden value (" + this.cellId + ") on element cellId.");
+      throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
     }
     param1.writeShort(this.cellId);
     param1.writeByte(this.direction);
 
     if (this.carryingCharacterId < -9.007199254740992E15
         || this.carryingCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.carryingCharacterId + ") on element carryingCharacterId.");
     }
     param1.writeDouble(this.carryingCharacterId);
@@ -34,13 +34,13 @@ public class FightEntityDispositionInformations extends EntityDispositionInforma
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -49,7 +49,7 @@ public class FightEntityDispositionInformations extends EntityDispositionInforma
     this.carryingCharacterId = param1.readDouble();
     if (this.carryingCharacterId < -9.007199254740992E15
         || this.carryingCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.carryingCharacterId
               + ") on element of FightEntityDispositionInformations.carryingCharacterId.");

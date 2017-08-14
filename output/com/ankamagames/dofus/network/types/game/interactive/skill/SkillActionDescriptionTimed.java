@@ -14,12 +14,12 @@ public class SkillActionDescriptionTimed extends SkillActionDescription implemen
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarShort(this.skillId);
 
     if (this.time < 0 || this.time > 255) {
-      throw new Error("Forbidden value (" + this.time + ") on element time.");
+      throw new Exception("Forbidden value (" + this.time + ") on element time.");
     }
     param1.writeByte(this.time);
   }
@@ -30,13 +30,13 @@ public class SkillActionDescriptionTimed extends SkillActionDescription implemen
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -44,7 +44,7 @@ public class SkillActionDescriptionTimed extends SkillActionDescription implemen
 
     this.time = param1.readUnsignedByte();
     if (this.time < 0 || this.time > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.time + ") on element of SkillActionDescriptionTimed.time.");
     }
   }

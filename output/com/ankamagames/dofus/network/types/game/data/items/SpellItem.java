@@ -17,7 +17,7 @@ public class SpellItem extends Item implements INetworkType {
 
     param1.writeInt(this.spellId);
     if (this.spellLevel < 1 || this.spellLevel > 200) {
-      throw new Error("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
+      throw new Exception("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
     }
     param1.writeShort(this.spellLevel);
   }
@@ -28,13 +28,13 @@ public class SpellItem extends Item implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -42,13 +42,13 @@ public class SpellItem extends Item implements INetworkType {
 
     this.spellId = param1.readVarUhShort();
     if (this.spellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
     }
 
     this.spellLevel = param1.readShort();
     if (this.spellLevel < 1 || this.spellLevel > 200) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellLevel + ") on element of SpellItem.spellLevel.");
     }
   }

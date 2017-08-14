@@ -19,11 +19,11 @@ public class SpellItemBoostMessage extends NetworkMessage implements INetworkMes
 
   public void serialize(ICustomDataOutput param1) {
     if (this.statId < 0) {
-      throw new Error("Forbidden value (" + this.statId + ") on element statId.");
+      throw new Exception("Forbidden value (" + this.statId + ") on element statId.");
     }
     param1.writeVarInt(this.statId);
     if (this.spellId < 0) {
-      throw new Error("Forbidden value (" + this.spellId + ") on element spellId.");
+      throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
     }
     param1.writeVarShort(this.spellId);
     param1.writeVarShort(this.value);
@@ -32,13 +32,13 @@ public class SpellItemBoostMessage extends NetworkMessage implements INetworkMes
   public void deserialize(ICustomDataInput param1) {
     this.statId = param1.readByte();
     if (this.statId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.statId + ") on element of StatsUpgradeRequestMessage.statId.");
     }
 
     this.spellId = param1.readVarUhShort();
     if (this.spellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
     }
 

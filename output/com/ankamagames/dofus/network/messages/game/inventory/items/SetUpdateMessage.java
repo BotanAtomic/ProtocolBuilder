@@ -23,14 +23,14 @@ public class SetUpdateMessage extends NetworkMessage implements INetworkMessage 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.setId < 0) {
-      throw new Error("Forbidden value (" + this.setId + ") on element setId.");
+      throw new Exception("Forbidden value (" + this.setId + ") on element setId.");
     }
     param1.writeVarShort(this.setId);
     param1.writeShort(this.setObjects.length);
     int _loc2_ = 0;
     while (_loc2_ < this.setObjects.length) {
       if (this.setObjects[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.setObjects[_loc2_]
                 + ") on element 2 (starting at 1) of setObjects.");
@@ -53,7 +53,8 @@ public class SetUpdateMessage extends NetworkMessage implements INetworkMessage 
     ObjectEffect _loc8_ = null;
     this.setId = param1.readVarUhShort();
     if (this.setId < 0) {
-      throw new Error("Forbidden value (" + this.setId + ") on element of SetUpdateMessage.setId.");
+      throw new Exception(
+          "Forbidden value (" + this.setId + ") on element of SetUpdateMessage.setId.");
     }
 
     int _loc2_ = param1.readUnsignedShort();
@@ -61,7 +62,7 @@ public class SetUpdateMessage extends NetworkMessage implements INetworkMessage 
     while (_loc3_ < _loc2_) {
       _loc6_ = param1.readVarUhShort();
       if (_loc6_ < 0) {
-        throw new Error("Forbidden value (" + _loc6_ + ") on elements of setObjects.");
+        throw new Exception("Forbidden value (" + _loc6_ + ") on elements of setObjects.");
       }
       this.setObjects.push(_loc6_);
       _loc3_++;

@@ -20,34 +20,34 @@ public class AllianceInsiderPrismInformation extends PrismInformation implements
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.typeId < 0) {
-      throw new Error("Forbidden value (" + this.typeId + ") on element typeId.");
+      throw new Exception("Forbidden value (" + this.typeId + ") on element typeId.");
     }
     param1.writeByte(this.typeId);
     param1.writeByte(this.state);
     if (this.nextVulnerabilityDate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.nextVulnerabilityDate + ") on element nextVulnerabilityDate.");
     }
     param1.writeInt(this.nextVulnerabilityDate);
     if (this.placementDate < 0) {
-      throw new Error("Forbidden value (" + this.placementDate + ") on element placementDate.");
+      throw new Exception("Forbidden value (" + this.placementDate + ") on element placementDate.");
     }
     param1.writeInt(this.placementDate);
     if (this.rewardTokenCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.rewardTokenCount + ") on element rewardTokenCount.");
     }
     param1.writeVarInt(this.rewardTokenCount);
 
     if (this.lastTimeSlotModificationDate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastTimeSlotModificationDate
               + ") on element lastTimeSlotModificationDate.");
     }
     param1.writeInt(this.lastTimeSlotModificationDate);
     if (this.lastTimeSlotModificationAuthorGuildId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastTimeSlotModificationAuthorGuildId
               + ") on element lastTimeSlotModificationAuthorGuildId.");
@@ -55,7 +55,7 @@ public class AllianceInsiderPrismInformation extends PrismInformation implements
     param1.writeVarInt(this.lastTimeSlotModificationAuthorGuildId);
     if (this.lastTimeSlotModificationAuthorId < 0
         || this.lastTimeSlotModificationAuthorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastTimeSlotModificationAuthorId
               + ") on element lastTimeSlotModificationAuthorId.");
@@ -77,13 +77,13 @@ public class AllianceInsiderPrismInformation extends PrismInformation implements
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -91,7 +91,7 @@ public class AllianceInsiderPrismInformation extends PrismInformation implements
 
     this.lastTimeSlotModificationDate = param1.readInt();
     if (this.lastTimeSlotModificationDate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastTimeSlotModificationDate
               + ") on element of AllianceInsiderPrismInformation.lastTimeSlotModificationDate.");
@@ -99,7 +99,7 @@ public class AllianceInsiderPrismInformation extends PrismInformation implements
 
     this.lastTimeSlotModificationAuthorGuildId = param1.readVarUhInt();
     if (this.lastTimeSlotModificationAuthorGuildId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastTimeSlotModificationAuthorGuildId
               + ") on element of AllianceInsiderPrismInformation.lastTimeSlotModificationAuthorGuildId.");
@@ -108,7 +108,7 @@ public class AllianceInsiderPrismInformation extends PrismInformation implements
     this.lastTimeSlotModificationAuthorId = param1.readVarUhLong();
     if (this.lastTimeSlotModificationAuthorId < 0
         || this.lastTimeSlotModificationAuthorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastTimeSlotModificationAuthorId
               + ") on element of AllianceInsiderPrismInformation.lastTimeSlotModificationAuthorId.");

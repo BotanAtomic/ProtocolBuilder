@@ -21,16 +21,17 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.spouseAccountId < 0) {
-      throw new Error("Forbidden value (" + this.spouseAccountId + ") on element spouseAccountId.");
+      throw new Exception(
+          "Forbidden value (" + this.spouseAccountId + ") on element spouseAccountId.");
     }
     param1.writeInt(this.spouseAccountId);
     if (this.spouseId < 0 || this.spouseId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.spouseId + ") on element spouseId.");
+      throw new Exception("Forbidden value (" + this.spouseId + ") on element spouseId.");
     }
     param1.writeVarLong(this.spouseId);
     param1.writeUTF(this.spouseName);
     if (this.spouseLevel < 1 || this.spouseLevel > 206) {
-      throw new Error("Forbidden value (" + this.spouseLevel + ") on element spouseLevel.");
+      throw new Exception("Forbidden value (" + this.spouseLevel + ") on element spouseLevel.");
     }
     param1.writeByte(this.spouseLevel);
     param1.writeByte(this.breed);
@@ -44,11 +45,11 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 1, this.followSpouse);
     param1.writeByte(_loc2_);
     if (this.mapId < 0) {
-      throw new Error("Forbidden value (" + this.mapId + ") on element mapId.");
+      throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
     }
     param1.writeInt(this.mapId);
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
   }
@@ -59,13 +60,13 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -82,7 +83,7 @@ public class FriendSpouseOnlineInformations extends FriendSpouseInformations
 
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");

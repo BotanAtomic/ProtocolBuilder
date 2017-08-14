@@ -14,11 +14,11 @@ public class InteractiveElementSkill extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarInt(this.skillId);
     if (this.skillInstanceUid < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillInstanceUid + ") on element skillInstanceUid.");
     }
     param1.writeInt(this.skillInstanceUid);
@@ -27,13 +27,13 @@ public class InteractiveElementSkill extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.skillId = param1.readVarUhShort();
     if (this.skillId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillId + ") on element of SkillActionDescription.skillId.");
     }
 
     this.skillInstanceUid = param1.readInt();
     if (this.skillInstanceUid < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.skillInstanceUid
               + ") on element of InteractiveElementSkill.skillInstanceUid.");

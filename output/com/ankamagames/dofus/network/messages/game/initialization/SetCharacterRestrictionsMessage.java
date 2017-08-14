@@ -20,7 +20,7 @@ public class SetCharacterRestrictionsMessage extends NetworkMessage implements I
 
   public void serialize(ICustomDataOutput param1) {
     if (this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.actorId + ") on element actorId.");
+      throw new Exception("Forbidden value (" + this.actorId + ") on element actorId.");
     }
     param1.writeDouble(this.actorId);
     this.restrictions.serializeAs_ActorRestrictionsInformations(param1);
@@ -29,7 +29,7 @@ public class SetCharacterRestrictionsMessage extends NetworkMessage implements I
   public void deserialize(ICustomDataInput param1) {
     this.actorId = param1.readDouble();
     if (this.actorId < -9.007199254740992E15 || this.actorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.actorId
               + ") on element of SetCharacterRestrictionsMessage.actorId.");

@@ -18,11 +18,13 @@ public class ExchangeStartOkRecycleTradeMessage extends NetworkMessage implement
 
   public void serialize(ICustomDataOutput param1) {
     if (this.percentToPrism < 0) {
-      throw new Error("Forbidden value (" + this.percentToPrism + ") on element percentToPrism.");
+      throw new Exception(
+          "Forbidden value (" + this.percentToPrism + ") on element percentToPrism.");
     }
     param1.writeShort(this.percentToPrism);
     if (this.percentToPlayer < 0) {
-      throw new Error("Forbidden value (" + this.percentToPlayer + ") on element percentToPlayer.");
+      throw new Exception(
+          "Forbidden value (" + this.percentToPlayer + ") on element percentToPlayer.");
     }
     param1.writeShort(this.percentToPlayer);
   }
@@ -30,7 +32,7 @@ public class ExchangeStartOkRecycleTradeMessage extends NetworkMessage implement
   public void deserialize(ICustomDataInput param1) {
     this.percentToPrism = param1.readShort();
     if (this.percentToPrism < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.percentToPrism
               + ") on element of ExchangeStartOkRecycleTradeMessage.percentToPrism.");
@@ -38,7 +40,7 @@ public class ExchangeStartOkRecycleTradeMessage extends NetworkMessage implement
 
     this.percentToPlayer = param1.readShort();
     if (this.percentToPlayer < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.percentToPlayer
               + ") on element of ExchangeStartOkRecycleTradeMessage.percentToPlayer.");

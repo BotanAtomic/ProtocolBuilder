@@ -17,12 +17,12 @@ public class ObjectUseOnCellMessage extends ObjectUseMessage implements INetwork
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.objectUID < 0) {
-      throw new Error("Forbidden value (" + this.objectUID + ") on element objectUID.");
+      throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
     }
     param1.writeVarInt(this.objectUID);
 
     if (this.cells < 0 || this.cells > 559) {
-      throw new Error("Forbidden value (" + this.cells + ") on element cells.");
+      throw new Exception("Forbidden value (" + this.cells + ") on element cells.");
     }
     param1.writeVarShort(this.cells);
   }
@@ -33,13 +33,13 @@ public class ObjectUseOnCellMessage extends ObjectUseMessage implements INetwork
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

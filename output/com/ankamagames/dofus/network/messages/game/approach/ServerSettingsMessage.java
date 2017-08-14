@@ -21,12 +21,12 @@ public class ServerSettingsMessage extends NetworkMessage implements INetworkMes
   public void serialize(ICustomDataOutput param1) {
     param1.writeUTF(this.lang);
     if (this.community < 0) {
-      throw new Error("Forbidden value (" + this.community + ") on element community.");
+      throw new Exception("Forbidden value (" + this.community + ") on element community.");
     }
     param1.writeByte(this.community);
     param1.writeByte(this.gameType);
     if (this.arenaLeaveBanTime < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.arenaLeaveBanTime + ") on element arenaLeaveBanTime.");
     }
     param1.writeVarShort(this.arenaLeaveBanTime);
@@ -37,7 +37,7 @@ public class ServerSettingsMessage extends NetworkMessage implements INetworkMes
 
     this.community = param1.readByte();
     if (this.community < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.community
               + ") on element of ServerSettingsMessage.community.");
@@ -47,7 +47,7 @@ public class ServerSettingsMessage extends NetworkMessage implements INetworkMes
 
     this.arenaLeaveBanTime = param1.readVarUhShort();
     if (this.arenaLeaveBanTime < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.arenaLeaveBanTime
               + ") on element of ServerSettingsMessage.arenaLeaveBanTime.");

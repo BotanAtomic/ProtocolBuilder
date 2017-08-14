@@ -18,7 +18,7 @@ public class TreasureHuntRequestMessage extends NetworkMessage implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.questLevel < 1 || this.questLevel > 206) {
-      throw new Error("Forbidden value (" + this.questLevel + ") on element questLevel.");
+      throw new Exception("Forbidden value (" + this.questLevel + ") on element questLevel.");
     }
     param1.writeByte(this.questLevel);
     param1.writeByte(this.questType);
@@ -27,7 +27,7 @@ public class TreasureHuntRequestMessage extends NetworkMessage implements INetwo
   public void deserialize(ICustomDataInput param1) {
     this.questLevel = param1.readUnsignedByte();
     if (this.questLevel < 1 || this.questLevel > 206) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.questLevel
               + ") on element of TreasureHuntRequestMessage.questLevel.");
@@ -35,7 +35,7 @@ public class TreasureHuntRequestMessage extends NetworkMessage implements INetwo
 
     this.questType = param1.readByte();
     if (this.questType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.questType
               + ") on element of TreasureHuntRequestMessage.questType.");

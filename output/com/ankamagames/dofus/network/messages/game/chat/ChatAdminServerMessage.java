@@ -17,18 +17,19 @@ public class ChatAdminServerMessage extends ChatServerMessage implements INetwor
     param1.writeByte(this.channel);
     param1.writeUTF(this.content);
     if (this.timestamp < 0) {
-      throw new Error("Forbidden value (" + this.timestamp + ") on element timestamp.");
+      throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
     }
     param1.writeInt(this.timestamp);
     param1.writeUTF(this.fingerprint);
 
     if (this.senderId < -9.007199254740992E15 || this.senderId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.senderId + ") on element senderId.");
+      throw new Exception("Forbidden value (" + this.senderId + ") on element senderId.");
     }
     param1.writeDouble(this.senderId);
     param1.writeUTF(this.senderName);
     if (this.senderAccountId < 0) {
-      throw new Error("Forbidden value (" + this.senderAccountId + ") on element senderAccountId.");
+      throw new Exception(
+          "Forbidden value (" + this.senderAccountId + ") on element senderAccountId.");
     }
     param1.writeInt(this.senderAccountId);
   }
@@ -39,13 +40,13 @@ public class ChatAdminServerMessage extends ChatServerMessage implements INetwor
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

@@ -18,11 +18,12 @@ public class ExchangeSellMessage extends NetworkMessage implements INetworkMessa
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objectToSellId < 0) {
-      throw new Error("Forbidden value (" + this.objectToSellId + ") on element objectToSellId.");
+      throw new Exception(
+          "Forbidden value (" + this.objectToSellId + ") on element objectToSellId.");
     }
     param1.writeVarInt(this.objectToSellId);
     if (this.quantity < 0) {
-      throw new Error("Forbidden value (" + this.quantity + ") on element quantity.");
+      throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
     }
     param1.writeVarInt(this.quantity);
   }
@@ -30,7 +31,7 @@ public class ExchangeSellMessage extends NetworkMessage implements INetworkMessa
   public void deserialize(ICustomDataInput param1) {
     this.objectToSellId = param1.readVarUhInt();
     if (this.objectToSellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectToSellId
               + ") on element of ExchangeSellMessage.objectToSellId.");
@@ -38,7 +39,7 @@ public class ExchangeSellMessage extends NetworkMessage implements INetworkMessa
 
     this.quantity = param1.readVarUhInt();
     if (this.quantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.quantity
               + ") on element of ObjectItemToSellInHumanVendorShop.quantity.");

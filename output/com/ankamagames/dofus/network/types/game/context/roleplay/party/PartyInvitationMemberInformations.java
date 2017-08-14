@@ -23,14 +23,14 @@ public class PartyInvitationMemberInformations extends CharacterBaseInformations
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarLong(this.id);
 
     param1.writeUTF(this.name);
 
     if (this.level < 1 || this.level > 206) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
 
@@ -40,16 +40,16 @@ public class PartyInvitationMemberInformations extends CharacterBaseInformations
     param1.writeBoolean(this.sex);
 
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error("Forbidden value (" + this.worldX + ") on element worldX.");
+      throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
     }
     param1.writeShort(this.worldX);
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error("Forbidden value (" + this.worldY + ") on element worldY.");
+      throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
     }
     param1.writeShort(this.worldY);
     param1.writeInt(this.mapId);
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     param1.writeShort(this.companions.length);
@@ -67,13 +67,13 @@ public class PartyInvitationMemberInformations extends CharacterBaseInformations
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -81,7 +81,7 @@ public class PartyInvitationMemberInformations extends CharacterBaseInformations
 
     this.worldX = param1.readShort();
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldX
               + ") on element of PrismGeolocalizedInformation.worldX.");
@@ -89,7 +89,7 @@ public class PartyInvitationMemberInformations extends CharacterBaseInformations
 
     this.worldY = param1.readShort();
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldY
               + ") on element of PrismGeolocalizedInformation.worldY.");
@@ -99,7 +99,7 @@ public class PartyInvitationMemberInformations extends CharacterBaseInformations
 
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");

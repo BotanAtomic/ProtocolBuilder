@@ -22,23 +22,25 @@ public class GameFightPlacementSwapPositionsOfferMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.requestId < 0) {
-      throw new Error("Forbidden value (" + this.requestId + ") on element requestId.");
+      throw new Exception("Forbidden value (" + this.requestId + ") on element requestId.");
     }
     param1.writeInt(this.requestId);
     if (this.requesterId < -9.007199254740992E15 || this.requesterId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.requesterId + ") on element requesterId.");
+      throw new Exception("Forbidden value (" + this.requesterId + ") on element requesterId.");
     }
     param1.writeDouble(this.requesterId);
     if (this.requesterCellId < 0 || this.requesterCellId > 559) {
-      throw new Error("Forbidden value (" + this.requesterCellId + ") on element requesterCellId.");
+      throw new Exception(
+          "Forbidden value (" + this.requesterCellId + ") on element requesterCellId.");
     }
     param1.writeVarShort(this.requesterCellId);
     if (this.requestedId < -9.007199254740992E15 || this.requestedId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.requestedId + ") on element requestedId.");
+      throw new Exception("Forbidden value (" + this.requestedId + ") on element requestedId.");
     }
     param1.writeDouble(this.requestedId);
     if (this.requestedCellId < 0 || this.requestedCellId > 559) {
-      throw new Error("Forbidden value (" + this.requestedCellId + ") on element requestedCellId.");
+      throw new Exception(
+          "Forbidden value (" + this.requestedCellId + ") on element requestedCellId.");
     }
     param1.writeVarShort(this.requestedCellId);
   }
@@ -46,7 +48,7 @@ public class GameFightPlacementSwapPositionsOfferMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.requestId = param1.readUnsignedByte();
     if (this.requestId < 0 || this.requestId > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.requestId
               + ") on element of ContactLookRequestMessage.requestId.");
@@ -54,7 +56,7 @@ public class GameFightPlacementSwapPositionsOfferMessage extends NetworkMessage
 
     this.requesterId = param1.readDouble();
     if (this.requesterId < -9.007199254740992E15 || this.requesterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.requesterId
               + ") on element of GameFightPlacementSwapPositionsOfferMessage.requesterId.");
@@ -62,7 +64,7 @@ public class GameFightPlacementSwapPositionsOfferMessage extends NetworkMessage
 
     this.requesterCellId = param1.readVarUhShort();
     if (this.requesterCellId < 0 || this.requesterCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.requesterCellId
               + ") on element of GameFightPlacementSwapPositionsOfferMessage.requesterCellId.");
@@ -70,7 +72,7 @@ public class GameFightPlacementSwapPositionsOfferMessage extends NetworkMessage
 
     this.requestedId = param1.readDouble();
     if (this.requestedId < -9.007199254740992E15 || this.requestedId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.requestedId
               + ") on element of GameFightPlacementSwapPositionsRequestMessage.requestedId.");
@@ -78,7 +80,7 @@ public class GameFightPlacementSwapPositionsOfferMessage extends NetworkMessage
 
     this.requestedCellId = param1.readVarUhShort();
     if (this.requestedCellId < 0 || this.requestedCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.requestedCellId
               + ") on element of GameFightPlacementSwapPositionsOfferMessage.requestedCellId.");

@@ -25,7 +25,7 @@ public class TitlesAndOrnamentsListMessage extends NetworkMessage implements INe
     int _loc2_ = 0;
     while (_loc2_ < this.titles.length) {
       if (this.titles[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.titles[_loc2_]
                 + ") on element 1 (starting at 1) of titles.");
@@ -37,7 +37,7 @@ public class TitlesAndOrnamentsListMessage extends NetworkMessage implements INe
     int _loc3_ = 0;
     while (_loc3_ < this.ornaments.length) {
       if (this.ornaments[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.ornaments[_loc3_]
                 + ") on element 2 (starting at 1) of ornaments.");
@@ -46,11 +46,12 @@ public class TitlesAndOrnamentsListMessage extends NetworkMessage implements INe
       _loc3_++;
     }
     if (this.activeTitle < 0) {
-      throw new Error("Forbidden value (" + this.activeTitle + ") on element activeTitle.");
+      throw new Exception("Forbidden value (" + this.activeTitle + ") on element activeTitle.");
     }
     param1.writeVarShort(this.activeTitle);
     if (this.activeOrnament < 0) {
-      throw new Error("Forbidden value (" + this.activeOrnament + ") on element activeOrnament.");
+      throw new Exception(
+          "Forbidden value (" + this.activeOrnament + ") on element activeOrnament.");
     }
     param1.writeVarShort(this.activeOrnament);
   }
@@ -63,7 +64,7 @@ public class TitlesAndOrnamentsListMessage extends NetworkMessage implements INe
     while (_loc3_ < _loc2_) {
       _loc6_ = param1.readVarUhShort();
       if (_loc6_ < 0) {
-        throw new Error("Forbidden value (" + _loc6_ + ") on elements of titles.");
+        throw new Exception("Forbidden value (" + _loc6_ + ") on elements of titles.");
       }
       this.titles.push(_loc6_);
       _loc3_++;
@@ -73,14 +74,14 @@ public class TitlesAndOrnamentsListMessage extends NetworkMessage implements INe
     while (_loc5_ < _loc4_) {
       _loc7_ = param1.readVarUhShort();
       if (_loc7_ < 0) {
-        throw new Error("Forbidden value (" + _loc7_ + ") on elements of ornaments.");
+        throw new Exception("Forbidden value (" + _loc7_ + ") on elements of ornaments.");
       }
       this.ornaments.push(_loc7_);
       _loc5_++;
     }
     this.activeTitle = param1.readVarUhShort();
     if (this.activeTitle < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.activeTitle
               + ") on element of TitlesAndOrnamentsListMessage.activeTitle.");
@@ -88,7 +89,7 @@ public class TitlesAndOrnamentsListMessage extends NetworkMessage implements INe
 
     this.activeOrnament = param1.readVarUhShort();
     if (this.activeOrnament < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.activeOrnament
               + ") on element of TitlesAndOrnamentsListMessage.activeOrnament.");

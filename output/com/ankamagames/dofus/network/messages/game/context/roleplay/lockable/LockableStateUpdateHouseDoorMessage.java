@@ -22,11 +22,11 @@ public class LockableStateUpdateHouseDoorMessage extends LockableStateUpdateAbst
     param1.writeBoolean(this.locked);
 
     if (this.houseId < 0) {
-      throw new Error("Forbidden value (" + this.houseId + ") on element houseId.");
+      throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
     }
     param1.writeVarInt(this.houseId);
     if (this.instanceId < 0) {
-      throw new Error("Forbidden value (" + this.instanceId + ") on element instanceId.");
+      throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
     }
     param1.writeInt(this.instanceId);
     param1.writeBoolean(this.secondHand);
@@ -38,13 +38,13 @@ public class LockableStateUpdateHouseDoorMessage extends LockableStateUpdateAbst
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -52,13 +52,13 @@ public class LockableStateUpdateHouseDoorMessage extends LockableStateUpdateAbst
 
     this.houseId = param1.readVarUhInt();
     if (this.houseId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.houseId + ") on element of HouseInformations.houseId.");
     }
 
     this.instanceId = param1.readInt();
     if (this.instanceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.instanceId
               + ") on element of HouseInstanceInformations.instanceId.");

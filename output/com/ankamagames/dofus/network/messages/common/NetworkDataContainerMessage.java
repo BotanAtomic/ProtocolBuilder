@@ -19,7 +19,7 @@ public class NetworkDataContainerMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     param1.writeBytes(this.content);
-    throw new Error("Not implemented");
+    throw new Exception("Not implemented");
   }
 
   public void deserialize(ICustomDataInput param1) {

@@ -17,7 +17,7 @@ public class InventoryPresetSaveResultMessage extends AbstractPresetSaveResultMe
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
     param1.writeByte(this.code);
@@ -29,13 +29,13 @@ public class InventoryPresetSaveResultMessage extends AbstractPresetSaveResultMe
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

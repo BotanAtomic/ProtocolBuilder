@@ -19,7 +19,7 @@ public class GameFightNewWaveMessage extends NetworkMessage implements INetworkM
 
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeByte(this.id);
     param1.writeByte(this.teamId);
@@ -31,7 +31,8 @@ public class GameFightNewWaveMessage extends NetworkMessage implements INetworkM
 
     this.teamId = param1.readByte();
     if (this.teamId < 0) {
-      throw new Error("Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
+      throw new Exception(
+          "Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
     }
 
     this.nbTurnBeforeNextWave = param1.readShort();

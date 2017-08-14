@@ -18,11 +18,11 @@ public class ExchangeWeightMessage extends NetworkMessage implements INetworkMes
 
   public void serialize(ICustomDataOutput param1) {
     if (this.currentWeight < 0) {
-      throw new Error("Forbidden value (" + this.currentWeight + ") on element currentWeight.");
+      throw new Exception("Forbidden value (" + this.currentWeight + ") on element currentWeight.");
     }
     param1.writeVarInt(this.currentWeight);
     if (this.maxWeight < 0) {
-      throw new Error("Forbidden value (" + this.maxWeight + ") on element maxWeight.");
+      throw new Exception("Forbidden value (" + this.maxWeight + ") on element maxWeight.");
     }
     param1.writeVarInt(this.maxWeight);
   }
@@ -30,7 +30,7 @@ public class ExchangeWeightMessage extends NetworkMessage implements INetworkMes
   public void deserialize(ICustomDataInput param1) {
     this.currentWeight = param1.readVarUhInt();
     if (this.currentWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.currentWeight
               + ") on element of ExchangePodsModifiedMessage.currentWeight.");
@@ -38,7 +38,7 @@ public class ExchangeWeightMessage extends NetworkMessage implements INetworkMes
 
     this.maxWeight = param1.readVarUhInt();
     if (this.maxWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxWeight
               + ") on element of ExchangePodsModifiedMessage.maxWeight.");

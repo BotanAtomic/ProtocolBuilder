@@ -38,38 +38,38 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 6, this.isIncarnationExperience);
     param1.writeByte(_loc2_);
     if (this.experience < 0 || this.experience > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.experience + ") on element experience.");
+      throw new Exception("Forbidden value (" + this.experience + ") on element experience.");
     }
     param1.writeVarLong(this.experience);
     if (this.experienceLevelFloor < 0 || this.experienceLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experienceLevelFloor + ") on element experienceLevelFloor.");
     }
     param1.writeVarLong(this.experienceLevelFloor);
     if (this.experienceNextLevelFloor < 0 || this.experienceNextLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceNextLevelFloor
               + ") on element experienceNextLevelFloor.");
     }
     param1.writeVarLong(this.experienceNextLevelFloor);
     if (this.experienceFightDelta < 0 || this.experienceFightDelta > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experienceFightDelta + ") on element experienceFightDelta.");
     }
     param1.writeVarLong(this.experienceFightDelta);
     if (this.experienceForGuild < 0 || this.experienceForGuild > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experienceForGuild + ") on element experienceForGuild.");
     }
     param1.writeVarLong(this.experienceForGuild);
     if (this.experienceForMount < 0 || this.experienceForMount > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experienceForMount + ") on element experienceForMount.");
     }
     param1.writeVarLong(this.experienceForMount);
     if (this.rerollExperienceMul < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.rerollExperienceMul + ") on element rerollExperienceMul.");
     }
     param1.writeByte(this.rerollExperienceMul);
@@ -81,13 +81,13 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -102,13 +102,13 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
 
     this.experience = param1.readVarUhLong();
     if (this.experience < 0 || this.experience > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experience + ") on element of MountClientData.experience.");
     }
 
     this.experienceLevelFloor = param1.readVarUhLong();
     if (this.experienceLevelFloor < 0 || this.experienceLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceLevelFloor
               + ") on element of FightResultExperienceData.experienceLevelFloor.");
@@ -116,7 +116,7 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
 
     this.experienceNextLevelFloor = param1.readVarUhLong();
     if (this.experienceNextLevelFloor < 0 || this.experienceNextLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceNextLevelFloor
               + ") on element of FightResultExperienceData.experienceNextLevelFloor.");
@@ -124,7 +124,7 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
 
     this.experienceFightDelta = param1.readVarUhLong();
     if (this.experienceFightDelta < 0 || this.experienceFightDelta > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceFightDelta
               + ") on element of FightResultExperienceData.experienceFightDelta.");
@@ -134,7 +134,7 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
 
     this.experienceForMount = param1.readVarUhLong();
     if (this.experienceForMount < 0 || this.experienceForMount > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceForMount
               + ") on element of FightResultExperienceData.experienceForMount.");
@@ -142,7 +142,7 @@ public class FightResultExperienceData extends FightResultAdditionalData impleme
 
     this.rerollExperienceMul = param1.readByte();
     if (this.rerollExperienceMul < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.rerollExperienceMul
               + ") on element of FightResultExperienceData.rerollExperienceMul.");

@@ -40,7 +40,7 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
     int _loc3_ = 0;
     while (_loc3_ < this.allianceNbMembers.length) {
       if (this.allianceNbMembers[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.allianceNbMembers[_loc3_]
                 + ") on element 2 (starting at 1) of allianceNbMembers.");
@@ -52,7 +52,7 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
     int _loc4_ = 0;
     while (_loc4_ < this.allianceRoundWeigth.length) {
       if (this.allianceRoundWeigth[_loc4_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.allianceRoundWeigth[_loc4_]
                 + ") on element 3 (starting at 1) of allianceRoundWeigth.");
@@ -64,7 +64,7 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
     int _loc5_ = 0;
     while (_loc5_ < this.allianceMatchScore.length) {
       if (this.allianceMatchScore[_loc5_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.allianceMatchScore[_loc5_]
                 + ") on element 4 (starting at 1) of allianceMatchScore.");
@@ -74,21 +74,21 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
     }
     this.allianceMapWinner.serializeAs_BasicAllianceInformations(param1);
     if (this.allianceMapWinnerScore < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.allianceMapWinnerScore
               + ") on element allianceMapWinnerScore.");
     }
     param1.writeVarInt(this.allianceMapWinnerScore);
     if (this.allianceMapMyAllianceScore < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.allianceMapMyAllianceScore
               + ") on element allianceMapMyAllianceScore.");
     }
     param1.writeVarInt(this.allianceMapMyAllianceScore);
     if (this.nextTickTime < 0 || this.nextTickTime > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.nextTickTime + ") on element nextTickTime.");
+      throw new Exception("Forbidden value (" + this.nextTickTime + ") on element nextTickTime.");
     }
     param1.writeDouble(this.nextTickTime);
   }
@@ -111,7 +111,7 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
     while (_loc5_ < _loc4_) {
       _loc11_ = param1.readVarUhShort();
       if (_loc11_ < 0) {
-        throw new Error("Forbidden value (" + _loc11_ + ") on elements of allianceNbMembers.");
+        throw new Exception("Forbidden value (" + _loc11_ + ") on elements of allianceNbMembers.");
       }
       this.allianceNbMembers.push(_loc11_);
       _loc5_++;
@@ -121,7 +121,8 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
     while (_loc7_ < _loc6_) {
       _loc12_ = param1.readVarUhInt();
       if (_loc12_ < 0) {
-        throw new Error("Forbidden value (" + _loc12_ + ") on elements of allianceRoundWeigth.");
+        throw new Exception(
+            "Forbidden value (" + _loc12_ + ") on elements of allianceRoundWeigth.");
       }
       this.allianceRoundWeigth.push(_loc12_);
       _loc7_++;
@@ -131,7 +132,7 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
     while (_loc9_ < _loc8_) {
       _loc13_ = param1.readByte();
       if (_loc13_ < 0) {
-        throw new Error("Forbidden value (" + _loc13_ + ") on elements of allianceMatchScore.");
+        throw new Exception("Forbidden value (" + _loc13_ + ") on elements of allianceMatchScore.");
       }
       this.allianceMatchScore.push(_loc13_);
       _loc9_++;
@@ -140,7 +141,7 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
     this.allianceMapWinner.deserialize(param1);
     this.allianceMapWinnerScore = param1.readVarUhInt();
     if (this.allianceMapWinnerScore < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.allianceMapWinnerScore
               + ") on element of KohUpdateMessage.allianceMapWinnerScore.");
@@ -148,7 +149,7 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
 
     this.allianceMapMyAllianceScore = param1.readVarUhInt();
     if (this.allianceMapMyAllianceScore < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.allianceMapMyAllianceScore
               + ") on element of KohUpdateMessage.allianceMapMyAllianceScore.");
@@ -156,7 +157,7 @@ public class KohUpdateMessage extends NetworkMessage implements INetworkMessage 
 
     this.nextTickTime = param1.readDouble();
     if (this.nextTickTime < 0 || this.nextTickTime > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nextTickTime
               + ") on element of KohUpdateMessage.nextTickTime.");

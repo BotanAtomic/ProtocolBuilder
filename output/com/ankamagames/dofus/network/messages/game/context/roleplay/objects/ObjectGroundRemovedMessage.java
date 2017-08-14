@@ -17,7 +17,7 @@ public class ObjectGroundRemovedMessage extends NetworkMessage implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.cell < 0 || this.cell > 559) {
-      throw new Error("Forbidden value (" + this.cell + ") on element cell.");
+      throw new Exception("Forbidden value (" + this.cell + ") on element cell.");
     }
     param1.writeVarShort(this.cell);
   }
@@ -25,7 +25,7 @@ public class ObjectGroundRemovedMessage extends NetworkMessage implements INetwo
   public void deserialize(ICustomDataInput param1) {
     this.cell = param1.readVarUhShort();
     if (this.cell < 0 || this.cell > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.cell + ") on element of ObjectGroundRemovedMessage.cell.");
     }
   }

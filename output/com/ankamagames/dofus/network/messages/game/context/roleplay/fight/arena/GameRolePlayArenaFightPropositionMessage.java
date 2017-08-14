@@ -21,7 +21,7 @@ public class GameRolePlayArenaFightPropositionMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.fightId < 0) {
-      throw new Error("Forbidden value (" + this.fightId + ") on element fightId.");
+      throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
     }
     param1.writeInt(this.fightId);
     param1.writeShort(this.alliesId.length);
@@ -29,7 +29,7 @@ public class GameRolePlayArenaFightPropositionMessage extends NetworkMessage
     while (_loc2_ < this.alliesId.length) {
       if (this.alliesId[_loc2_] < -9.007199254740992E15
           || this.alliesId[_loc2_] > 9.007199254740992E15) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.alliesId[_loc2_]
                 + ") on element 2 (starting at 1) of alliesId.");
@@ -38,7 +38,7 @@ public class GameRolePlayArenaFightPropositionMessage extends NetworkMessage
       _loc2_++;
     }
     if (this.duration < 0) {
-      throw new Error("Forbidden value (" + this.duration + ") on element duration.");
+      throw new Exception("Forbidden value (" + this.duration + ") on element duration.");
     }
     param1.writeVarShort(this.duration);
   }
@@ -52,14 +52,14 @@ public class GameRolePlayArenaFightPropositionMessage extends NetworkMessage
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readDouble();
       if (_loc4_ < -9.007199254740992E15 || _loc4_ > 9.007199254740992E15) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of alliesId.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of alliesId.");
       }
       this.alliesId.push(_loc4_);
       _loc3_++;
     }
     this.duration = param1.readVarUhShort();
     if (this.duration < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.duration + ") on element of InteractiveUsedMessage.duration.");
     }
   }

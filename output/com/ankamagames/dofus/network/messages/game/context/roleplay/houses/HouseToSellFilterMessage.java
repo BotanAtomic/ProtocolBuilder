@@ -22,19 +22,21 @@ public class HouseToSellFilterMessage extends NetworkMessage implements INetwork
   public void serialize(ICustomDataOutput param1) {
     param1.writeInt(this.areaId);
     if (this.atLeastNbRoom < 0) {
-      throw new Error("Forbidden value (" + this.atLeastNbRoom + ") on element atLeastNbRoom.");
+      throw new Exception("Forbidden value (" + this.atLeastNbRoom + ") on element atLeastNbRoom.");
     }
     param1.writeByte(this.atLeastNbRoom);
     if (this.atLeastNbChest < 0) {
-      throw new Error("Forbidden value (" + this.atLeastNbChest + ") on element atLeastNbChest.");
+      throw new Exception(
+          "Forbidden value (" + this.atLeastNbChest + ") on element atLeastNbChest.");
     }
     param1.writeByte(this.atLeastNbChest);
     if (this.skillRequested < 0) {
-      throw new Error("Forbidden value (" + this.skillRequested + ") on element skillRequested.");
+      throw new Exception(
+          "Forbidden value (" + this.skillRequested + ") on element skillRequested.");
     }
     param1.writeVarShort(this.skillRequested);
     if (this.maxPrice < 0 || this.maxPrice > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.maxPrice + ") on element maxPrice.");
+      throw new Exception("Forbidden value (" + this.maxPrice + ") on element maxPrice.");
     }
     param1.writeVarLong(this.maxPrice);
   }
@@ -44,7 +46,7 @@ public class HouseToSellFilterMessage extends NetworkMessage implements INetwork
 
     this.atLeastNbRoom = param1.readByte();
     if (this.atLeastNbRoom < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.atLeastNbRoom
               + ") on element of HouseToSellFilterMessage.atLeastNbRoom.");
@@ -52,7 +54,7 @@ public class HouseToSellFilterMessage extends NetworkMessage implements INetwork
 
     this.atLeastNbChest = param1.readByte();
     if (this.atLeastNbChest < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.atLeastNbChest
               + ") on element of HouseToSellFilterMessage.atLeastNbChest.");
@@ -60,7 +62,7 @@ public class HouseToSellFilterMessage extends NetworkMessage implements INetwork
 
     this.skillRequested = param1.readVarUhShort();
     if (this.skillRequested < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.skillRequested
               + ") on element of HouseToSellFilterMessage.skillRequested.");
@@ -68,7 +70,7 @@ public class HouseToSellFilterMessage extends NetworkMessage implements INetwork
 
     this.maxPrice = param1.readVarUhLong();
     if (this.maxPrice < 0 || this.maxPrice > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxPrice
               + ") on element of PaddockToSellFilterMessage.maxPrice.");

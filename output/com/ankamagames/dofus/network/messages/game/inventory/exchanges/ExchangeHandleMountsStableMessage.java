@@ -23,7 +23,7 @@ public class ExchangeHandleMountsStableMessage extends NetworkMessage implements
     int _loc2_ = 0;
     while (_loc2_ < this.ridesId.length) {
       if (this.ridesId[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.ridesId[_loc2_]
                 + ") on element 2 (starting at 1) of ridesId.");
@@ -42,7 +42,7 @@ public class ExchangeHandleMountsStableMessage extends NetworkMessage implements
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readVarUhInt();
       if (_loc4_ < 0) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of ridesId.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of ridesId.");
       }
       this.ridesId.push(_loc4_);
       _loc3_++;

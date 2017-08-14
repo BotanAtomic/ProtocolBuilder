@@ -16,7 +16,7 @@ public class CharacterToRemodelInformations extends CharacterRemodelingInformati
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarLong(this.id);
 
@@ -24,7 +24,7 @@ public class CharacterToRemodelInformations extends CharacterRemodelingInformati
     param1.writeByte(this.breed);
     param1.writeBoolean(this.sex);
     if (this.cosmeticId < 0) {
-      throw new Error("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+      throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
     }
     param1.writeVarShort(this.cosmeticId);
     param1.writeShort(this.colors.length);
@@ -35,12 +35,12 @@ public class CharacterToRemodelInformations extends CharacterRemodelingInformati
     }
 
     if (this.possibleChangeMask < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.possibleChangeMask + ") on element possibleChangeMask.");
     }
     param1.writeByte(this.possibleChangeMask);
     if (this.mandatoryChangeMask < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.mandatoryChangeMask + ") on element mandatoryChangeMask.");
     }
     param1.writeByte(this.mandatoryChangeMask);
@@ -52,13 +52,13 @@ public class CharacterToRemodelInformations extends CharacterRemodelingInformati
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -66,7 +66,7 @@ public class CharacterToRemodelInformations extends CharacterRemodelingInformati
 
     this.possibleChangeMask = param1.readByte();
     if (this.possibleChangeMask < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.possibleChangeMask
               + ") on element of CharacterToRemodelInformations.possibleChangeMask.");
@@ -74,7 +74,7 @@ public class CharacterToRemodelInformations extends CharacterRemodelingInformati
 
     this.mandatoryChangeMask = param1.readByte();
     if (this.mandatoryChangeMask < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.mandatoryChangeMask
               + ") on element of CharacterToRemodelInformations.mandatoryChangeMask.");

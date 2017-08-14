@@ -17,7 +17,7 @@ public class LifePointsRegenBeginMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.regenRate < 0 || this.regenRate > 255) {
-      throw new Error("Forbidden value (" + this.regenRate + ") on element regenRate.");
+      throw new Exception("Forbidden value (" + this.regenRate + ") on element regenRate.");
     }
     param1.writeByte(this.regenRate);
   }
@@ -25,7 +25,7 @@ public class LifePointsRegenBeginMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.regenRate = param1.readUnsignedByte();
     if (this.regenRate < 0 || this.regenRate > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.regenRate
               + ") on element of PartyMemberInformations.regenRate.");

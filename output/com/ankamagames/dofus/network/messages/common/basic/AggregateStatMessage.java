@@ -22,7 +22,7 @@ public class AggregateStatMessage extends NetworkMessage implements INetworkMess
   public void deserialize(ICustomDataInput param1) {
     this.statId = param1.readByte();
     if (this.statId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.statId + ") on element of StatsUpgradeRequestMessage.statId.");
     }
   }

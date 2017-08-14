@@ -17,7 +17,7 @@ public class ChangeHavenBagRoomRequestMessage extends NetworkMessage implements 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.roomId < 0) {
-      throw new Error("Forbidden value (" + this.roomId + ") on element roomId.");
+      throw new Exception("Forbidden value (" + this.roomId + ") on element roomId.");
     }
     param1.writeByte(this.roomId);
   }
@@ -25,7 +25,7 @@ public class ChangeHavenBagRoomRequestMessage extends NetworkMessage implements 
   public void deserialize(ICustomDataInput param1) {
     this.roomId = param1.readByte();
     if (this.roomId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.roomId
               + ") on element of MapComplementaryInformationsDataInHavenBagMessage.roomId.");

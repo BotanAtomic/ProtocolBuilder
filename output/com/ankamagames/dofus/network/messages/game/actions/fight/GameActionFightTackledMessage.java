@@ -20,11 +20,11 @@ public class GameActionFightTackledMessage extends AbstractGameActionMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sourceId + ") on element sourceId.");
+      throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
     }
     param1.writeDouble(this.sourceId);
 
@@ -33,7 +33,7 @@ public class GameActionFightTackledMessage extends AbstractGameActionMessage
     while (_loc2_ < this.tacklersIds.length) {
       if (this.tacklersIds[_loc2_] < -9.007199254740992E15
           || this.tacklersIds[_loc2_] > 9.007199254740992E15) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.tacklersIds[_loc2_]
                 + ") on element 1 (starting at 1) of tacklersIds.");
@@ -50,13 +50,13 @@ public class GameActionFightTackledMessage extends AbstractGameActionMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -67,7 +67,7 @@ public class GameActionFightTackledMessage extends AbstractGameActionMessage
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readDouble();
       if (_loc4_ < -9.007199254740992E15 || _loc4_ > 9.007199254740992E15) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of tacklersIds.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of tacklersIds.");
       }
       this.tacklersIds.push(_loc4_);
       _loc3_++;

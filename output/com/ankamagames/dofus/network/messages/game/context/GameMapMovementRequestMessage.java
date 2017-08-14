@@ -22,7 +22,7 @@ public class GameMapMovementRequestMessage extends NetworkMessage implements INe
     int _loc2_ = 0;
     while (_loc2_ < this.keyMovements.length) {
       if (this.keyMovements[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.keyMovements[_loc2_]
                 + ") on element 1 (starting at 1) of keyMovements.");
@@ -31,7 +31,7 @@ public class GameMapMovementRequestMessage extends NetworkMessage implements INe
       _loc2_++;
     }
     if (this.mapId < 0) {
-      throw new Error("Forbidden value (" + this.mapId + ") on element mapId.");
+      throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
     }
     param1.writeInt(this.mapId);
   }
@@ -43,7 +43,7 @@ public class GameMapMovementRequestMessage extends NetworkMessage implements INe
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readShort();
       if (_loc4_ < 0) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of keyMovements.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of keyMovements.");
       }
       this.keyMovements.push(_loc4_);
       _loc3_++;

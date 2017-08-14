@@ -14,7 +14,7 @@ public class InteractiveElementWithAgeBonus extends InteractiveElement implement
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.elementId < 0) {
-      throw new Error("Forbidden value (" + this.elementId + ") on element elementId.");
+      throw new Exception("Forbidden value (" + this.elementId + ") on element elementId.");
     }
     param1.writeInt(this.elementId);
     param1.writeInt(this.elementTypeId);
@@ -35,7 +35,7 @@ public class InteractiveElementWithAgeBonus extends InteractiveElement implement
     param1.writeBoolean(this.onCurrentMap);
 
     if (this.ageBonus < -1 || this.ageBonus > 1000) {
-      throw new Error("Forbidden value (" + this.ageBonus + ") on element ageBonus.");
+      throw new Exception("Forbidden value (" + this.ageBonus + ") on element ageBonus.");
     }
     param1.writeShort(this.ageBonus);
   }
@@ -46,13 +46,13 @@ public class InteractiveElementWithAgeBonus extends InteractiveElement implement
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -60,7 +60,7 @@ public class InteractiveElementWithAgeBonus extends InteractiveElement implement
 
     this.ageBonus = param1.readShort();
     if (this.ageBonus < -1 || this.ageBonus > 1000) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.ageBonus
               + ") on element of InteractiveElementWithAgeBonus.ageBonus.");

@@ -21,7 +21,7 @@ public class LockableUseCodeMessage extends NetworkMessage implements INetworkMe
   public void deserialize(ICustomDataInput param1) {
     this.code = param1.readByte();
     if (this.code < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.code
               + ") on element of InventoryPresetUseResultMessage.code.");

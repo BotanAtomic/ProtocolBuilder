@@ -23,13 +23,13 @@ public class FightTeamLightInformations extends AbstractFightTeamInformations
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.teamId);
     if (this.leaderId < -9.007199254740992E15 || this.leaderId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.leaderId + ") on element leaderId.");
+      throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
     }
     param1.writeDouble(this.leaderId);
     param1.writeByte(this.teamSide);
     param1.writeByte(this.teamTypeId);
     if (this.nbWaves < 0) {
-      throw new Error("Forbidden value (" + this.nbWaves + ") on element nbWaves.");
+      throw new Exception("Forbidden value (" + this.nbWaves + ") on element nbWaves.");
     }
     param1.writeByte(this.nbWaves);
 
@@ -41,12 +41,12 @@ public class FightTeamLightInformations extends AbstractFightTeamInformations
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 4, this.hasMyTaxCollector);
     param1.writeByte(_loc2_);
     if (this.teamMembersCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.teamMembersCount + ") on element teamMembersCount.");
     }
     param1.writeByte(this.teamMembersCount);
     if (this.meanLevel < 0) {
-      throw new Error("Forbidden value (" + this.meanLevel + ") on element meanLevel.");
+      throw new Exception("Forbidden value (" + this.meanLevel + ") on element meanLevel.");
     }
     param1.writeVarInt(this.meanLevel);
   }
@@ -57,13 +57,13 @@ public class FightTeamLightInformations extends AbstractFightTeamInformations
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -78,7 +78,7 @@ public class FightTeamLightInformations extends AbstractFightTeamInformations
 
     this.teamMembersCount = param1.readByte();
     if (this.teamMembersCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.teamMembersCount
               + ") on element of FightTeamLightInformations.teamMembersCount.");
@@ -86,7 +86,7 @@ public class FightTeamLightInformations extends AbstractFightTeamInformations
 
     this.meanLevel = param1.readVarUhInt();
     if (this.meanLevel < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.meanLevel
               + ") on element of FightTeamLightInformations.meanLevel.");

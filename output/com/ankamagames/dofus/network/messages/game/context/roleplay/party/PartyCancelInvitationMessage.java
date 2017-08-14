@@ -17,12 +17,12 @@ public class PartyCancelInvitationMessage extends AbstractPartyMessage implement
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
     if (this.guestId < 0 || this.guestId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.guestId + ") on element guestId.");
+      throw new Exception("Forbidden value (" + this.guestId + ") on element guestId.");
     }
     param1.writeVarLong(this.guestId);
   }
@@ -33,13 +33,13 @@ public class PartyCancelInvitationMessage extends AbstractPartyMessage implement
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -47,7 +47,7 @@ public class PartyCancelInvitationMessage extends AbstractPartyMessage implement
 
     this.guestId = param1.readVarUhLong();
     if (this.guestId < 0 || this.guestId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.guestId + ") on element of PartyGuestInformations.guestId.");
     }
   }

@@ -26,26 +26,26 @@ public class HouseInformationsForSell extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.instanceId < 0) {
-      throw new Error("Forbidden value (" + this.instanceId + ") on element instanceId.");
+      throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
     }
     param1.writeInt(this.instanceId);
     param1.writeBoolean(this.secondHand);
     if (this.modelId < 0) {
-      throw new Error("Forbidden value (" + this.modelId + ") on element modelId.");
+      throw new Exception("Forbidden value (" + this.modelId + ") on element modelId.");
     }
     param1.writeVarInt(this.modelId);
     param1.writeUTF(this.ownerName);
     param1.writeBoolean(this.ownerConnected);
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error("Forbidden value (" + this.worldX + ") on element worldX.");
+      throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
     }
     param1.writeShort(this.worldX);
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error("Forbidden value (" + this.worldY + ") on element worldY.");
+      throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
     }
     param1.writeShort(this.worldY);
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     param1.writeByte(this.nbRoom);
@@ -58,7 +58,7 @@ public class HouseInformationsForSell extends Object implements INetworkType {
     }
     param1.writeBoolean(this.isLocked);
     if (this.price < 0 || this.price > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.price + ") on element price.");
+      throw new Exception("Forbidden value (" + this.price + ") on element price.");
     }
     param1.writeVarLong(this.price);
   }
@@ -67,7 +67,7 @@ public class HouseInformationsForSell extends Object implements INetworkType {
     Object _loc4_ = 0;
     this.instanceId = param1.readInt();
     if (this.instanceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.instanceId
               + ") on element of HouseInstanceInformations.instanceId.");
@@ -77,7 +77,7 @@ public class HouseInformationsForSell extends Object implements INetworkType {
 
     this.modelId = param1.readVarUhShort();
     if (this.modelId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.modelId
               + ") on element of MountInformationsForPaddock.modelId.");
@@ -89,7 +89,7 @@ public class HouseInformationsForSell extends Object implements INetworkType {
 
     this.worldX = param1.readShort();
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldX
               + ") on element of PrismGeolocalizedInformation.worldX.");
@@ -97,7 +97,7 @@ public class HouseInformationsForSell extends Object implements INetworkType {
 
     this.worldY = param1.readShort();
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldY
               + ") on element of PrismGeolocalizedInformation.worldY.");
@@ -105,7 +105,7 @@ public class HouseInformationsForSell extends Object implements INetworkType {
 
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");
@@ -126,7 +126,7 @@ public class HouseInformationsForSell extends Object implements INetworkType {
 
     this.price = param1.readVarUhLong();
     if (this.price < 0 || this.price > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.price + ") on element of PaddockInformationsForSell.price.");
     }
   }

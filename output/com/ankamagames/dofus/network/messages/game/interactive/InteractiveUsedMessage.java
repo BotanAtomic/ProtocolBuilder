@@ -21,19 +21,19 @@ public class InteractiveUsedMessage extends NetworkMessage implements INetworkMe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.entityId < 0 || this.entityId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.entityId + ") on element entityId.");
+      throw new Exception("Forbidden value (" + this.entityId + ") on element entityId.");
     }
     param1.writeVarLong(this.entityId);
     if (this.elemId < 0) {
-      throw new Error("Forbidden value (" + this.elemId + ") on element elemId.");
+      throw new Exception("Forbidden value (" + this.elemId + ") on element elemId.");
     }
     param1.writeVarInt(this.elemId);
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarShort(this.skillId);
     if (this.duration < 0) {
-      throw new Error("Forbidden value (" + this.duration + ") on element duration.");
+      throw new Exception("Forbidden value (" + this.duration + ") on element duration.");
     }
     param1.writeVarShort(this.duration);
     param1.writeBoolean(this.canMove);
@@ -42,13 +42,13 @@ public class InteractiveUsedMessage extends NetworkMessage implements INetworkMe
   public void deserialize(ICustomDataInput param1) {
     this.entityId = param1.readVarUhLong();
     if (this.entityId < 0 || this.entityId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.entityId + ") on element of InteractiveUsedMessage.entityId.");
     }
 
     this.elemId = param1.readVarUhInt();
     if (this.elemId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.elemId
               + ") on element of InteractiveUseRequestMessage.elemId.");
@@ -56,13 +56,13 @@ public class InteractiveUsedMessage extends NetworkMessage implements INetworkMe
 
     this.skillId = param1.readVarUhShort();
     if (this.skillId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillId + ") on element of SkillActionDescription.skillId.");
     }
 
     this.duration = param1.readVarUhShort();
     if (this.duration < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.duration + ") on element of InteractiveUsedMessage.duration.");
     }
 

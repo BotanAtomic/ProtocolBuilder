@@ -19,33 +19,33 @@ public class PartyCompanionUpdateLightMessage extends PartyUpdateLightMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
     if (this.id < 0 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarLong(this.id);
     if (this.lifePoints < 0) {
-      throw new Error("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+      throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
     }
     param1.writeVarInt(this.lifePoints);
     if (this.maxLifePoints < 0) {
-      throw new Error("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+      throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
     }
     param1.writeVarInt(this.maxLifePoints);
     if (this.prospecting < 0) {
-      throw new Error("Forbidden value (" + this.prospecting + ") on element prospecting.");
+      throw new Exception("Forbidden value (" + this.prospecting + ") on element prospecting.");
     }
     param1.writeVarShort(this.prospecting);
     if (this.regenRate < 0 || this.regenRate > 255) {
-      throw new Error("Forbidden value (" + this.regenRate + ") on element regenRate.");
+      throw new Exception("Forbidden value (" + this.regenRate + ") on element regenRate.");
     }
     param1.writeByte(this.regenRate);
 
     if (this.indexId < 0) {
-      throw new Error("Forbidden value (" + this.indexId + ") on element indexId.");
+      throw new Exception("Forbidden value (" + this.indexId + ") on element indexId.");
     }
     param1.writeByte(this.indexId);
   }
@@ -56,13 +56,13 @@ public class PartyCompanionUpdateLightMessage extends PartyUpdateLightMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -70,7 +70,7 @@ public class PartyCompanionUpdateLightMessage extends PartyUpdateLightMessage
 
     this.indexId = param1.readByte();
     if (this.indexId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.indexId
               + ") on element of PartyCompanionBaseInformations.indexId.");

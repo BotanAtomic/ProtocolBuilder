@@ -36,7 +36,7 @@ public class ExchangeBidHouseInListAddedMessage extends NetworkMessage implement
     int _loc3_ = 0;
     while (_loc3_ < this.prices.length) {
       if (this.prices[_loc3_] < 0 || this.prices[_loc3_] > 9.007199254740992E15) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.prices[_loc3_]
                 + ") on element 4 (starting at 1) of prices.");
@@ -68,7 +68,7 @@ public class ExchangeBidHouseInListAddedMessage extends NetworkMessage implement
     while (_loc5_ < _loc4_) {
       _loc8_ = param1.readVarUhLong();
       if (_loc8_ < 0 || _loc8_ > 9.007199254740992E15) {
-        throw new Error("Forbidden value (" + _loc8_ + ") on elements of prices.");
+        throw new Exception("Forbidden value (" + _loc8_ + ") on elements of prices.");
       }
       this.prices.push(_loc8_);
       _loc5_++;

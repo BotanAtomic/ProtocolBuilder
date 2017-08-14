@@ -17,7 +17,7 @@ public class URLOpenMessage extends NetworkMessage implements INetworkMessage {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.urlId < 0) {
-      throw new Error("Forbidden value (" + this.urlId + ") on element urlId.");
+      throw new Exception("Forbidden value (" + this.urlId + ") on element urlId.");
     }
     param1.writeByte(this.urlId);
   }
@@ -25,7 +25,8 @@ public class URLOpenMessage extends NetworkMessage implements INetworkMessage {
   public void deserialize(ICustomDataInput param1) {
     this.urlId = param1.readByte();
     if (this.urlId < 0) {
-      throw new Error("Forbidden value (" + this.urlId + ") on element of URLOpenMessage.urlId.");
+      throw new Exception(
+          "Forbidden value (" + this.urlId + ") on element of URLOpenMessage.urlId.");
     }
   }
 }

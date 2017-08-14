@@ -20,7 +20,7 @@ public class IdolsPresetUseResultMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
     param1.writeByte(this.code);
@@ -28,7 +28,7 @@ public class IdolsPresetUseResultMessage extends NetworkMessage implements INetw
     int _loc2_ = 0;
     while (_loc2_ < this.missingIdols.length) {
       if (this.missingIdols[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.missingIdols[_loc2_]
                 + ") on element 3 (starting at 1) of missingIdols.");
@@ -42,13 +42,13 @@ public class IdolsPresetUseResultMessage extends NetworkMessage implements INetw
     int _loc4_ = 0;
     this.presetId = param1.readByte();
     if (this.presetId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
     }
 
     this.code = param1.readByte();
     if (this.code < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.code
               + ") on element of InventoryPresetUseResultMessage.code.");
@@ -59,7 +59,7 @@ public class IdolsPresetUseResultMessage extends NetworkMessage implements INetw
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readVarUhShort();
       if (_loc4_ < 0) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of missingIdols.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of missingIdols.");
       }
       this.missingIdols.push(_loc4_);
       _loc3_++;

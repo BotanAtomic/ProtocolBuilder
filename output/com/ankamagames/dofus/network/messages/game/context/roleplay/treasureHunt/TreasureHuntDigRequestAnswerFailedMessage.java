@@ -21,7 +21,8 @@ public class TreasureHuntDigRequestAnswerFailedMessage extends TreasureHuntDigRe
     param1.writeByte(this.result);
 
     if (this.wrongFlagCount < 0) {
-      throw new Error("Forbidden value (" + this.wrongFlagCount + ") on element wrongFlagCount.");
+      throw new Exception(
+          "Forbidden value (" + this.wrongFlagCount + ") on element wrongFlagCount.");
     }
     param1.writeByte(this.wrongFlagCount);
   }
@@ -32,13 +33,13 @@ public class TreasureHuntDigRequestAnswerFailedMessage extends TreasureHuntDigRe
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -46,7 +47,7 @@ public class TreasureHuntDigRequestAnswerFailedMessage extends TreasureHuntDigRe
 
     this.wrongFlagCount = param1.readByte();
     if (this.wrongFlagCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.wrongFlagCount
               + ") on element of TreasureHuntDigRequestAnswerFailedMessage.wrongFlagCount.");

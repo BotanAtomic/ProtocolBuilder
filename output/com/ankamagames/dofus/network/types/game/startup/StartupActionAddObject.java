@@ -20,7 +20,7 @@ public class StartupActionAddObject extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.uid < 0) {
-      throw new Error("Forbidden value (" + this.uid + ") on element uid.");
+      throw new Exception("Forbidden value (" + this.uid + ") on element uid.");
     }
     param1.writeInt(this.uid);
     param1.writeUTF(this.title);

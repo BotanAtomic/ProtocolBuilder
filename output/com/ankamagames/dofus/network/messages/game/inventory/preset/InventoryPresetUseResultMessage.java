@@ -20,7 +20,7 @@ public class InventoryPresetUseResultMessage extends NetworkMessage implements I
 
   public void serialize(ICustomDataOutput param1) {
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
     param1.writeByte(this.code);
@@ -36,13 +36,13 @@ public class InventoryPresetUseResultMessage extends NetworkMessage implements I
     int _loc4_ = 0;
     this.presetId = param1.readByte();
     if (this.presetId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
     }
 
     this.code = param1.readByte();
     if (this.code < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.code
               + ") on element of InventoryPresetUseResultMessage.code.");
@@ -53,7 +53,7 @@ public class InventoryPresetUseResultMessage extends NetworkMessage implements I
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readUnsignedByte();
       if (_loc4_ < 0 || _loc4_ > 255) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of unlinkedPosition.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of unlinkedPosition.");
       }
       this.unlinkedPosition.push(_loc4_);
       _loc3_++;

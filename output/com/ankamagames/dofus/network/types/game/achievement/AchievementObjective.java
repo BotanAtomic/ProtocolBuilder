@@ -14,11 +14,11 @@ public class AchievementObjective extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarInt(this.id);
     if (this.maxValue < 0) {
-      throw new Error("Forbidden value (" + this.maxValue + ") on element maxValue.");
+      throw new Exception("Forbidden value (" + this.maxValue + ") on element maxValue.");
     }
     param1.writeVarShort(this.maxValue);
   }
@@ -28,7 +28,7 @@ public class AchievementObjective extends Object implements INetworkType {
 
     this.maxValue = param1.readVarUhShort();
     if (this.maxValue < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.maxValue + ") on element of AchievementObjective.maxValue.");
     }
   }

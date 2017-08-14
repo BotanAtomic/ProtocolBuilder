@@ -18,11 +18,11 @@ public class FightDispellableEffectExtendedInformations extends Object implement
 
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sourceId + ") on element sourceId.");
+      throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
     }
     param1.writeDouble(this.sourceId);
     param1.writeShort(this.effect.getTypeId());
@@ -32,13 +32,13 @@ public class FightDispellableEffectExtendedInformations extends Object implement
   public void deserialize(ICustomDataInput param1) {
     this.actionId = param1.readVarUhShort();
     if (this.actionId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.actionId + ") on element of ObjectEffect.actionId.");
     }
 
     this.sourceId = param1.readDouble();
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.sourceId
               + ") on element of FightDispellableEffectExtendedInformations.sourceId.");

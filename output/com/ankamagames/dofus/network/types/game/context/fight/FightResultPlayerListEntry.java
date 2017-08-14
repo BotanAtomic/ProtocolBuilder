@@ -19,19 +19,19 @@ public class FightResultPlayerListEntry extends FightResultFighterListEntry
   public void serialize(ICustomDataOutput param1) {
     param1.writeVarShort(this.outcome);
     if (this.wave < 0) {
-      throw new Error("Forbidden value (" + this.wave + ") on element wave.");
+      throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
     }
     param1.writeByte(this.wave);
     this.rewards.serializeAs_FightLoot(param1);
 
     if (this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeDouble(this.id);
     param1.writeBoolean(this.alive);
 
     if (this.level < 1 || this.level > 206) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
     param1.writeShort(this.additional.length);
@@ -51,13 +51,13 @@ public class FightResultPlayerListEntry extends FightResultFighterListEntry
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -65,7 +65,8 @@ public class FightResultPlayerListEntry extends FightResultFighterListEntry
 
     this.level = param1.readByte();
     if (this.level < 0) {
-      throw new Error("Forbidden value (" + this.level + ") on element of MountClientData.level.");
+      throw new Exception(
+          "Forbidden value (" + this.level + ") on element of MountClientData.level.");
     }
 
     int _loc2_ = param1.readUnsignedShort();

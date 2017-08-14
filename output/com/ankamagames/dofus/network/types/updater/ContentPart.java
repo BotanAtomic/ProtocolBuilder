@@ -22,7 +22,7 @@ public class ContentPart extends Object implements INetworkType {
 
     this.state = param1.readByte();
     if (this.state < 0) {
-      throw new Error("Forbidden value (" + this.state + ") on element of ContentPart.state.");
+      throw new Exception("Forbidden value (" + this.state + ") on element of ContentPart.state.");
     }
   }
 }

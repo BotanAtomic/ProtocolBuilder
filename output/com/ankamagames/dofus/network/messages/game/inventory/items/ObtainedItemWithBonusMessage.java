@@ -17,16 +17,16 @@ public class ObtainedItemWithBonusMessage extends ObtainedItemMessage implements
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.genericId < 0) {
-      throw new Error("Forbidden value (" + this.genericId + ") on element genericId.");
+      throw new Exception("Forbidden value (" + this.genericId + ") on element genericId.");
     }
     param1.writeVarShort(this.genericId);
     if (this.baseQuantity < 0) {
-      throw new Error("Forbidden value (" + this.baseQuantity + ") on element baseQuantity.");
+      throw new Exception("Forbidden value (" + this.baseQuantity + ") on element baseQuantity.");
     }
     param1.writeVarInt(this.baseQuantity);
 
     if (this.bonusQuantity < 0) {
-      throw new Error("Forbidden value (" + this.bonusQuantity + ") on element bonusQuantity.");
+      throw new Exception("Forbidden value (" + this.bonusQuantity + ") on element bonusQuantity.");
     }
     param1.writeVarInt(this.bonusQuantity);
   }
@@ -37,13 +37,13 @@ public class ObtainedItemWithBonusMessage extends ObtainedItemMessage implements
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -51,7 +51,7 @@ public class ObtainedItemWithBonusMessage extends ObtainedItemMessage implements
 
     this.bonusQuantity = param1.readVarUhInt();
     if (this.bonusQuantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.bonusQuantity
               + ") on element of ObtainedItemWithBonusMessage.bonusQuantity.");

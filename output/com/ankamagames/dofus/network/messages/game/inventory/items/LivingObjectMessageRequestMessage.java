@@ -20,7 +20,7 @@ public class LivingObjectMessageRequestMessage extends NetworkMessage implements
 
   public void serialize(ICustomDataOutput param1) {
     if (this.msgId < 0) {
-      throw new Error("Forbidden value (" + this.msgId + ") on element msgId.");
+      throw new Exception("Forbidden value (" + this.msgId + ") on element msgId.");
     }
     param1.writeVarShort(this.msgId);
     param1.writeShort(this.parameters.length);
@@ -30,7 +30,7 @@ public class LivingObjectMessageRequestMessage extends NetworkMessage implements
       _loc2_++;
     }
     if (this.livingObject < 0) {
-      throw new Error("Forbidden value (" + this.livingObject + ") on element livingObject.");
+      throw new Exception("Forbidden value (" + this.livingObject + ") on element livingObject.");
     }
     param1.writeVarInt(this.livingObject);
   }
@@ -39,7 +39,7 @@ public class LivingObjectMessageRequestMessage extends NetworkMessage implements
     String _loc4_ = null;
     this.msgId = param1.readVarUhShort();
     if (this.msgId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.msgId + ") on element of SystemMessageDisplayMessage.msgId.");
     }
 
@@ -52,7 +52,7 @@ public class LivingObjectMessageRequestMessage extends NetworkMessage implements
     }
     this.livingObject = param1.readVarUhInt();
     if (this.livingObject < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.livingObject
               + ") on element of LivingObjectMessageRequestMessage.livingObject.");

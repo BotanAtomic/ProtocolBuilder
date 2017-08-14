@@ -14,7 +14,7 @@ public class AbstractContactInformations extends Object implements INetworkType 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
     param1.writeUTF(this.accountName);
@@ -23,7 +23,7 @@ public class AbstractContactInformations extends Object implements INetworkType 
   public void deserialize(ICustomDataInput param1) {
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
 

@@ -18,11 +18,12 @@ public class ExchangeOnHumanVendorRequestMessage extends NetworkMessage implemen
 
   public void serialize(ICustomDataOutput param1) {
     if (this.humanVendorId < 0 || this.humanVendorId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.humanVendorId + ") on element humanVendorId.");
+      throw new Exception("Forbidden value (" + this.humanVendorId + ") on element humanVendorId.");
     }
     param1.writeVarLong(this.humanVendorId);
     if (this.humanVendorCell < 0 || this.humanVendorCell > 559) {
-      throw new Error("Forbidden value (" + this.humanVendorCell + ") on element humanVendorCell.");
+      throw new Exception(
+          "Forbidden value (" + this.humanVendorCell + ") on element humanVendorCell.");
     }
     param1.writeVarShort(this.humanVendorCell);
   }
@@ -30,7 +31,7 @@ public class ExchangeOnHumanVendorRequestMessage extends NetworkMessage implemen
   public void deserialize(ICustomDataInput param1) {
     this.humanVendorId = param1.readVarUhLong();
     if (this.humanVendorId < 0 || this.humanVendorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.humanVendorId
               + ") on element of ExchangeOnHumanVendorRequestMessage.humanVendorId.");
@@ -38,7 +39,7 @@ public class ExchangeOnHumanVendorRequestMessage extends NetworkMessage implemen
 
     this.humanVendorCell = param1.readVarUhShort();
     if (this.humanVendorCell < 0 || this.humanVendorCell > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.humanVendorCell
               + ") on element of ExchangeOnHumanVendorRequestMessage.humanVendorCell.");

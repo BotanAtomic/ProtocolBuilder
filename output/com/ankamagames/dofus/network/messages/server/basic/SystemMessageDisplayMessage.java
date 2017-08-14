@@ -21,7 +21,7 @@ public class SystemMessageDisplayMessage extends NetworkMessage implements INetw
   public void serialize(ICustomDataOutput param1) {
     param1.writeBoolean(this.hangUp);
     if (this.msgId < 0) {
-      throw new Error("Forbidden value (" + this.msgId + ") on element msgId.");
+      throw new Exception("Forbidden value (" + this.msgId + ") on element msgId.");
     }
     param1.writeVarShort(this.msgId);
     param1.writeShort(this.parameters.length);
@@ -38,7 +38,7 @@ public class SystemMessageDisplayMessage extends NetworkMessage implements INetw
 
     this.msgId = param1.readVarUhShort();
     if (this.msgId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.msgId + ") on element of SystemMessageDisplayMessage.msgId.");
     }
 

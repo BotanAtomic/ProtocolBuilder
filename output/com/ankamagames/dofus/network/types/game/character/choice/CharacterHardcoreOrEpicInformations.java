@@ -18,14 +18,14 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarLong(this.id);
 
     param1.writeUTF(this.name);
 
     if (this.level < 1 || this.level > 206) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
 
@@ -36,11 +36,11 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
 
     param1.writeByte(this.deathState);
     if (this.deathCount < 0) {
-      throw new Error("Forbidden value (" + this.deathCount + ") on element deathCount.");
+      throw new Exception("Forbidden value (" + this.deathCount + ") on element deathCount.");
     }
     param1.writeVarShort(this.deathCount);
     if (this.deathMaxLevel < 1 || this.deathMaxLevel > 206) {
-      throw new Error("Forbidden value (" + this.deathMaxLevel + ") on element deathMaxLevel.");
+      throw new Exception("Forbidden value (" + this.deathMaxLevel + ") on element deathMaxLevel.");
     }
     param1.writeByte(this.deathMaxLevel);
   }
@@ -51,13 +51,13 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -65,7 +65,7 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
 
     this.deathState = param1.readByte();
     if (this.deathState < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.deathState
               + ") on element of CharacterHardcoreOrEpicInformations.deathState.");
@@ -73,7 +73,7 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
 
     this.deathCount = param1.readVarUhShort();
     if (this.deathCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.deathCount
               + ") on element of CharacterHardcoreOrEpicInformations.deathCount.");
@@ -81,7 +81,7 @@ public class CharacterHardcoreOrEpicInformations extends CharacterBaseInformatio
 
     this.deathMaxLevel = param1.readUnsignedByte();
     if (this.deathMaxLevel < 1 || this.deathMaxLevel > 206) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.deathMaxLevel
               + ") on element of CharacterHardcoreOrEpicInformations.deathMaxLevel.");

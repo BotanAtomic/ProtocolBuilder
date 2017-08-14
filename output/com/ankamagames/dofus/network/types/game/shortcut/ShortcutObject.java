@@ -12,7 +12,7 @@ public class ShortcutObject extends Shortcut implements INetworkType {
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.slot < 0 || this.slot > 99) {
-      throw new Error("Forbidden value (" + this.slot + ") on element slot.");
+      throw new Exception("Forbidden value (" + this.slot + ") on element slot.");
     }
     param1.writeByte(this.slot);
   }
@@ -23,13 +23,13 @@ public class ShortcutObject extends Shortcut implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

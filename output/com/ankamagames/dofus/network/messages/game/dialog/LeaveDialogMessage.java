@@ -22,7 +22,7 @@ public class LeaveDialogMessage extends NetworkMessage implements INetworkMessag
   public void deserialize(ICustomDataInput param1) {
     this.dialogType = param1.readByte();
     if (this.dialogType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.dialogType + ") on element of PauseDialogMessage.dialogType.");
     }
   }

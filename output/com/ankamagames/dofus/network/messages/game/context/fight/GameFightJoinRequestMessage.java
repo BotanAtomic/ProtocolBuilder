@@ -18,7 +18,7 @@ public class GameFightJoinRequestMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.fighterId < -9.007199254740992E15 || this.fighterId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.fighterId + ") on element fighterId.");
+      throw new Exception("Forbidden value (" + this.fighterId + ") on element fighterId.");
     }
     param1.writeDouble(this.fighterId);
     param1.writeInt(this.fightId);
@@ -27,7 +27,7 @@ public class GameFightJoinRequestMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.fighterId = param1.readDouble();
     if (this.fighterId < -9.007199254740992E15 || this.fighterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.fighterId
               + ") on element of RefreshCharacterStatsMessage.fighterId.");

@@ -20,12 +20,12 @@ public class HouseGuildedInformations extends HouseInstanceInformations implemen
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 2, this.isSaleLocked);
     param1.writeByte(_loc2_);
     if (this.instanceId < 0) {
-      throw new Error("Forbidden value (" + this.instanceId + ") on element instanceId.");
+      throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
     }
     param1.writeInt(this.instanceId);
     param1.writeUTF(this.ownerName);
     if (this.price < -9.007199254740992E15 || this.price > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.price + ") on element price.");
+      throw new Exception("Forbidden value (" + this.price + ") on element price.");
     }
     param1.writeVarLong(this.price);
 
@@ -38,13 +38,13 @@ public class HouseGuildedInformations extends HouseInstanceInformations implemen
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

@@ -21,7 +21,7 @@ public class ExchangeBidHouseItemRemoveOkMessage extends NetworkMessage implemen
   public void deserialize(ICustomDataInput param1) {
     this.sellerId = param1.readDouble();
     if (this.sellerId < -9.007199254740992E15 || this.sellerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.sellerId
               + ") on element of ExchangeStartOkHumanVendorMessage.sellerId.");

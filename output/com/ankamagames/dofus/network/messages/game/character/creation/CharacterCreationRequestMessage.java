@@ -32,7 +32,7 @@ public class CharacterCreationRequestMessage extends NetworkMessage implements I
       _loc2_++;
     }
     if (this.cosmeticId < 0) {
-      throw new Error("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+      throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
     }
     param1.writeVarShort(this.cosmeticId);
   }
@@ -51,7 +51,7 @@ public class CharacterCreationRequestMessage extends NetworkMessage implements I
     }
     this.cosmeticId = param1.readVarUhShort();
     if (this.cosmeticId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.cosmeticId
               + ") on element of RemodelingInformation.cosmeticId.");

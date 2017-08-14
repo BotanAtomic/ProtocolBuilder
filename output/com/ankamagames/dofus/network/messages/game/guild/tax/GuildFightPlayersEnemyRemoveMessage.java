@@ -18,11 +18,11 @@ public class GuildFightPlayersEnemyRemoveMessage extends NetworkMessage implemen
 
   public void serialize(ICustomDataOutput param1) {
     if (this.fightId < 0) {
-      throw new Error("Forbidden value (" + this.fightId + ") on element fightId.");
+      throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
     }
     param1.writeInt(this.fightId);
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
   }
@@ -32,7 +32,7 @@ public class GuildFightPlayersEnemyRemoveMessage extends NetworkMessage implemen
 
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
   }

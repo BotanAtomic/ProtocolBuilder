@@ -19,11 +19,11 @@ public class ExchangeOkMultiCraftMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.initiatorId < 0 || this.initiatorId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.initiatorId + ") on element initiatorId.");
+      throw new Exception("Forbidden value (" + this.initiatorId + ") on element initiatorId.");
     }
     param1.writeVarLong(this.initiatorId);
     if (this.otherId < 0 || this.otherId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.otherId + ") on element otherId.");
+      throw new Exception("Forbidden value (" + this.otherId + ") on element otherId.");
     }
     param1.writeVarLong(this.otherId);
     param1.writeByte(this.role);
@@ -32,7 +32,7 @@ public class ExchangeOkMultiCraftMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.initiatorId = param1.readVarUhLong();
     if (this.initiatorId < 0 || this.initiatorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.initiatorId
               + ") on element of ExchangeOkMultiCraftMessage.initiatorId.");
@@ -40,7 +40,7 @@ public class ExchangeOkMultiCraftMessage extends NetworkMessage implements INetw
 
     this.otherId = param1.readVarUhLong();
     if (this.otherId < 0 || this.otherId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.otherId
               + ") on element of ExchangeOkMultiCraftMessage.otherId.");

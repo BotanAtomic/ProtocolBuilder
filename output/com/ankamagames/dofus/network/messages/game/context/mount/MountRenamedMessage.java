@@ -23,7 +23,7 @@ public class MountRenamedMessage extends NetworkMessage implements INetworkMessa
   public void deserialize(ICustomDataInput param1) {
     this.mountId = param1.readInt();
     if (this.mountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.mountId + ") on element of ObjectEffectMount.mountId.");
     }
 

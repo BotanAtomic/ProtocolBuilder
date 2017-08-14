@@ -17,7 +17,7 @@ public class CinematicMessage extends NetworkMessage implements INetworkMessage 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.cinematicId < 0) {
-      throw new Error("Forbidden value (" + this.cinematicId + ") on element cinematicId.");
+      throw new Exception("Forbidden value (" + this.cinematicId + ") on element cinematicId.");
     }
     param1.writeVarShort(this.cinematicId);
   }
@@ -25,7 +25,7 @@ public class CinematicMessage extends NetworkMessage implements INetworkMessage 
   public void deserialize(ICustomDataInput param1) {
     this.cinematicId = param1.readVarUhShort();
     if (this.cinematicId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.cinematicId + ") on element of CinematicMessage.cinematicId.");
     }
   }

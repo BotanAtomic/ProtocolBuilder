@@ -22,7 +22,7 @@ public class ExchangeShopStockMultiMovementRemovedMessage extends NetworkMessage
     int _loc2_ = 0;
     while (_loc2_ < this.objectIdList.length) {
       if (this.objectIdList[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.objectIdList[_loc2_]
                 + ") on element 1 (starting at 1) of objectIdList.");
@@ -39,7 +39,7 @@ public class ExchangeShopStockMultiMovementRemovedMessage extends NetworkMessage
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readVarUhInt();
       if (_loc4_ < 0) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of objectIdList.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of objectIdList.");
       }
       this.objectIdList.push(_loc4_);
       _loc3_++;

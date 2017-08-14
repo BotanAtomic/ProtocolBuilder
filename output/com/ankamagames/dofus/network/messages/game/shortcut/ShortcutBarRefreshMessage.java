@@ -28,7 +28,7 @@ public class ShortcutBarRefreshMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.barType = param1.readByte();
     if (this.barType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.barType
               + ") on element of ShortcutBarSwapRequestMessage.barType.");

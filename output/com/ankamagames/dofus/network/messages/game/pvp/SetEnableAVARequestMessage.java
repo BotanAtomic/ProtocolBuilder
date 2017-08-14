@@ -21,7 +21,7 @@ public class SetEnableAVARequestMessage extends NetworkMessage implements INetwo
   public void deserialize(ICustomDataInput param1) {
     int _loc2_ = param1.readByte();
     if (_loc2_ < 0) {
-      throw new Error("Forbidden value (" + _loc2_ + ") on elements of enable.");
+      throw new Exception("Forbidden value (" + _loc2_ + ") on elements of enable.");
     }
     this.enable.push(_loc2_);
   }

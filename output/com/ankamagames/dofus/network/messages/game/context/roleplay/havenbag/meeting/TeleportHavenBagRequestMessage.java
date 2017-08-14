@@ -17,7 +17,7 @@ public class TeleportHavenBagRequestMessage extends NetworkMessage implements IN
 
   public void serialize(ICustomDataOutput param1) {
     if (this.guestId < 0 || this.guestId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.guestId + ") on element guestId.");
+      throw new Exception("Forbidden value (" + this.guestId + ") on element guestId.");
     }
     param1.writeVarLong(this.guestId);
   }
@@ -25,7 +25,7 @@ public class TeleportHavenBagRequestMessage extends NetworkMessage implements IN
   public void deserialize(ICustomDataInput param1) {
     this.guestId = param1.readVarUhLong();
     if (this.guestId < 0 || this.guestId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.guestId + ") on element of PartyGuestInformations.guestId.");
     }
   }

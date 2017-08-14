@@ -17,7 +17,7 @@ public class DareCanceledMessage extends NetworkMessage implements INetworkMessa
 
   public void serialize(ICustomDataOutput param1) {
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.dareId + ") on element dareId.");
+      throw new Exception("Forbidden value (" + this.dareId + ") on element dareId.");
     }
     param1.writeDouble(this.dareId);
   }
@@ -25,7 +25,7 @@ public class DareCanceledMessage extends NetworkMessage implements INetworkMessa
   public void deserialize(ICustomDataInput param1) {
     this.dareId = param1.readDouble();
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.dareId + ") on element of DareVersatileInformations.dareId.");
     }
   }

@@ -19,7 +19,7 @@ public class TeleportRequestMessage extends NetworkMessage implements INetworkMe
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.teleporterType);
     if (this.mapId < 0) {
-      throw new Error("Forbidden value (" + this.mapId + ") on element mapId.");
+      throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
     }
     param1.writeInt(this.mapId);
   }
@@ -27,7 +27,7 @@ public class TeleportRequestMessage extends NetworkMessage implements INetworkMe
   public void deserialize(ICustomDataInput param1) {
     this.teleporterType = param1.readByte();
     if (this.teleporterType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.teleporterType
               + ") on element of TeleportRequestMessage.teleporterType.");

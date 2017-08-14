@@ -18,12 +18,12 @@ public class QuestActiveDetailedInformations extends QuestActiveInformations
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.questId < 0) {
-      throw new Error("Forbidden value (" + this.questId + ") on element questId.");
+      throw new Exception("Forbidden value (" + this.questId + ") on element questId.");
     }
     param1.writeVarShort(this.questId);
 
     if (this.stepId < 0) {
-      throw new Error("Forbidden value (" + this.stepId + ") on element stepId.");
+      throw new Exception("Forbidden value (" + this.stepId + ") on element stepId.");
     }
     param1.writeVarShort(this.stepId);
     param1.writeShort(this.objectives.length);
@@ -43,13 +43,13 @@ public class QuestActiveDetailedInformations extends QuestActiveInformations
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -57,7 +57,7 @@ public class QuestActiveDetailedInformations extends QuestActiveInformations
 
     this.stepId = param1.readVarUhShort();
     if (this.stepId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.stepId
               + ") on element of QuestActiveDetailedInformations.stepId.");

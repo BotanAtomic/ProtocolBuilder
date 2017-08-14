@@ -19,20 +19,20 @@ public class PrismGeolocalizedInformation extends PrismSubareaEmptyInfo implemen
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     if (this.allianceId < 0) {
-      throw new Error("Forbidden value (" + this.allianceId + ") on element allianceId.");
+      throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
     }
     param1.writeVarInt(this.allianceId);
 
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error("Forbidden value (" + this.worldX + ") on element worldX.");
+      throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
     }
     param1.writeShort(this.worldX);
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error("Forbidden value (" + this.worldY + ") on element worldY.");
+      throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
     }
     param1.writeShort(this.worldY);
     param1.writeInt(this.mapId);
@@ -46,13 +46,13 @@ public class PrismGeolocalizedInformation extends PrismSubareaEmptyInfo implemen
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -60,7 +60,7 @@ public class PrismGeolocalizedInformation extends PrismSubareaEmptyInfo implemen
 
     this.worldX = param1.readShort();
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldX
               + ") on element of PrismGeolocalizedInformation.worldX.");
@@ -68,7 +68,7 @@ public class PrismGeolocalizedInformation extends PrismSubareaEmptyInfo implemen
 
     this.worldY = param1.readShort();
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldY
               + ") on element of PrismGeolocalizedInformation.worldY.");

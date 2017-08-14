@@ -26,11 +26,11 @@ public class MapComplementaryInformationsWithCoordsMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     if (this.mapId < 0) {
-      throw new Error("Forbidden value (" + this.mapId + ") on element mapId.");
+      throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
     }
     param1.writeInt(this.mapId);
     param1.writeShort(this.houses.length);
@@ -76,11 +76,11 @@ public class MapComplementaryInformationsWithCoordsMessage
     this.fightStartPositions.serializeAs_FightStartingPositions(param1);
 
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error("Forbidden value (" + this.worldX + ") on element worldX.");
+      throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
     }
     param1.writeShort(this.worldX);
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error("Forbidden value (" + this.worldY + ") on element worldY.");
+      throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
     }
     param1.writeShort(this.worldY);
   }
@@ -91,13 +91,13 @@ public class MapComplementaryInformationsWithCoordsMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -105,7 +105,7 @@ public class MapComplementaryInformationsWithCoordsMessage
 
     this.worldX = param1.readShort();
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldX
               + ") on element of PrismGeolocalizedInformation.worldX.");
@@ -113,7 +113,7 @@ public class MapComplementaryInformationsWithCoordsMessage
 
     this.worldY = param1.readShort();
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldY
               + ") on element of PrismGeolocalizedInformation.worldY.");

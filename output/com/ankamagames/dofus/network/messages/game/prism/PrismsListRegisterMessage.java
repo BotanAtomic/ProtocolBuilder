@@ -22,7 +22,7 @@ public class PrismsListRegisterMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.listen = param1.readByte();
     if (this.listen < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.listen + ") on element of PrismsListRegisterMessage.listen.");
     }
   }

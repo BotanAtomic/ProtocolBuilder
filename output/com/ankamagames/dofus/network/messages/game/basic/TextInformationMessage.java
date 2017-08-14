@@ -21,7 +21,7 @@ public class TextInformationMessage extends NetworkMessage implements INetworkMe
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.msgType);
     if (this.msgId < 0) {
-      throw new Error("Forbidden value (" + this.msgId + ") on element msgId.");
+      throw new Exception("Forbidden value (" + this.msgId + ") on element msgId.");
     }
     param1.writeVarShort(this.msgId);
     param1.writeShort(this.parameters.length);
@@ -36,13 +36,13 @@ public class TextInformationMessage extends NetworkMessage implements INetworkMe
     String _loc4_ = null;
     this.msgType = param1.readByte();
     if (this.msgType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.msgType + ") on element of TextInformationMessage.msgType.");
     }
 
     this.msgId = param1.readVarUhShort();
     if (this.msgId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.msgId + ") on element of SystemMessageDisplayMessage.msgId.");
     }
 

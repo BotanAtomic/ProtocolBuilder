@@ -15,21 +15,21 @@ public class AlliancePrismInformation extends PrismInformation implements INetwo
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.typeId < 0) {
-      throw new Error("Forbidden value (" + this.typeId + ") on element typeId.");
+      throw new Exception("Forbidden value (" + this.typeId + ") on element typeId.");
     }
     param1.writeByte(this.typeId);
     param1.writeByte(this.state);
     if (this.nextVulnerabilityDate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.nextVulnerabilityDate + ") on element nextVulnerabilityDate.");
     }
     param1.writeInt(this.nextVulnerabilityDate);
     if (this.placementDate < 0) {
-      throw new Error("Forbidden value (" + this.placementDate + ") on element placementDate.");
+      throw new Exception("Forbidden value (" + this.placementDate + ") on element placementDate.");
     }
     param1.writeInt(this.placementDate);
     if (this.rewardTokenCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.rewardTokenCount + ") on element rewardTokenCount.");
     }
     param1.writeVarInt(this.rewardTokenCount);
@@ -43,13 +43,13 @@ public class AlliancePrismInformation extends PrismInformation implements INetwo
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

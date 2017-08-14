@@ -20,7 +20,7 @@ public class GameFightOptionStateUpdateMessage extends NetworkMessage implements
 
   public void serialize(ICustomDataOutput param1) {
     if (this.fightId < 0) {
-      throw new Error("Forbidden value (" + this.fightId + ") on element fightId.");
+      throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
     }
     param1.writeShort(this.fightId);
     param1.writeByte(this.teamId);
@@ -33,12 +33,13 @@ public class GameFightOptionStateUpdateMessage extends NetworkMessage implements
 
     this.teamId = param1.readByte();
     if (this.teamId < 0) {
-      throw new Error("Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
+      throw new Exception(
+          "Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
     }
 
     this.option = param1.readByte();
     if (this.option < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.option
               + ") on element of GameFightOptionToggleMessage.option.");
@@ -46,7 +47,7 @@ public class GameFightOptionStateUpdateMessage extends NetworkMessage implements
 
     this.state = param1.readByte();
     if (this.state < 0) {
-      throw new Error("Forbidden value (" + this.state + ") on element of ContentPart.state.");
+      throw new Exception("Forbidden value (" + this.state + ") on element of ContentPart.state.");
     }
   }
 }

@@ -14,11 +14,12 @@ public class PaddockInformations extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.maxOutdoorMount < 0) {
-      throw new Error("Forbidden value (" + this.maxOutdoorMount + ") on element maxOutdoorMount.");
+      throw new Exception(
+          "Forbidden value (" + this.maxOutdoorMount + ") on element maxOutdoorMount.");
     }
     param1.writeVarShort(this.maxOutdoorMount);
     if (this.maxItems < 0) {
-      throw new Error("Forbidden value (" + this.maxItems + ") on element maxItems.");
+      throw new Exception("Forbidden value (" + this.maxItems + ") on element maxItems.");
     }
     param1.writeVarShort(this.maxItems);
   }
@@ -26,7 +27,7 @@ public class PaddockInformations extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.maxOutdoorMount = param1.readVarUhShort();
     if (this.maxOutdoorMount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxOutdoorMount
               + ") on element of PaddockInformations.maxOutdoorMount.");
@@ -34,7 +35,7 @@ public class PaddockInformations extends Object implements INetworkType {
 
     this.maxItems = param1.readVarUhShort();
     if (this.maxItems < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.maxItems + ") on element of PaddockInformations.maxItems.");
     }
   }

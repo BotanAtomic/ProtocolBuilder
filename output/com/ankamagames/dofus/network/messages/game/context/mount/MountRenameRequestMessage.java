@@ -25,7 +25,7 @@ public class MountRenameRequestMessage extends NetworkMessage implements INetwor
 
     this.mountId = param1.readInt();
     if (this.mountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.mountId + ") on element of ObjectEffectMount.mountId.");
     }
   }

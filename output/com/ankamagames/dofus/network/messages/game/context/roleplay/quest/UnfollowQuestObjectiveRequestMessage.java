@@ -19,7 +19,7 @@ public class UnfollowQuestObjectiveRequestMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.questId < 0) {
-      throw new Error("Forbidden value (" + this.questId + ") on element questId.");
+      throw new Exception("Forbidden value (" + this.questId + ") on element questId.");
     }
     param1.writeVarShort(this.questId);
     param1.writeShort(this.objectiveId);
@@ -28,13 +28,13 @@ public class UnfollowQuestObjectiveRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.questId = param1.readVarUhShort();
     if (this.questId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.questId + ") on element of QuestActiveInformations.questId.");
     }
 
     this.objectiveId = param1.readVarUhShort();
     if (this.objectiveId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectiveId
               + ") on element of QuestObjectiveInformations.objectiveId.");

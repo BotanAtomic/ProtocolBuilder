@@ -35,11 +35,11 @@ public class GameFightResumeWithSlavesMessage extends GameFightResumeMessage
       _loc3_++;
     }
     if (this.gameTurn < 0) {
-      throw new Error("Forbidden value (" + this.gameTurn + ") on element gameTurn.");
+      throw new Exception("Forbidden value (" + this.gameTurn + ") on element gameTurn.");
     }
     param1.writeVarShort(this.gameTurn);
     if (this.fightStart < 0) {
-      throw new Error("Forbidden value (" + this.fightStart + ") on element fightStart.");
+      throw new Exception("Forbidden value (" + this.fightStart + ") on element fightStart.");
     }
     param1.writeInt(this.fightStart);
     param1.writeShort(this.idols.length);
@@ -56,11 +56,11 @@ public class GameFightResumeWithSlavesMessage extends GameFightResumeMessage
       _loc2_++;
     }
     if (this.summonCount < 0) {
-      throw new Error("Forbidden value (" + this.summonCount + ") on element summonCount.");
+      throw new Exception("Forbidden value (" + this.summonCount + ") on element summonCount.");
     }
     param1.writeByte(this.summonCount);
     if (this.bombCount < 0) {
-      throw new Error("Forbidden value (" + this.bombCount + ") on element bombCount.");
+      throw new Exception("Forbidden value (" + this.bombCount + ") on element bombCount.");
     }
     param1.writeByte(this.bombCount);
 
@@ -79,13 +79,13 @@ public class GameFightResumeWithSlavesMessage extends GameFightResumeMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

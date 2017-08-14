@@ -21,7 +21,7 @@ public class StatsUpgradeRequestMessage extends NetworkMessage implements INetwo
     param1.writeBoolean(this.useAdditionnal);
     param1.writeByte(this.statId);
     if (this.boostPoint < 0) {
-      throw new Error("Forbidden value (" + this.boostPoint + ") on element boostPoint.");
+      throw new Exception("Forbidden value (" + this.boostPoint + ") on element boostPoint.");
     }
     param1.writeVarShort(this.boostPoint);
   }
@@ -31,13 +31,13 @@ public class StatsUpgradeRequestMessage extends NetworkMessage implements INetwo
 
     this.statId = param1.readByte();
     if (this.statId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.statId + ") on element of StatsUpgradeRequestMessage.statId.");
     }
 
     this.boostPoint = param1.readVarUhShort();
     if (this.boostPoint < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.boostPoint
               + ") on element of StatsUpgradeRequestMessage.boostPoint.");

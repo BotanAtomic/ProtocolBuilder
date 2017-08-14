@@ -18,11 +18,11 @@ public class ExchangeBidHouseSearchMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.type < 0) {
-      throw new Error("Forbidden value (" + this.type + ") on element type.");
+      throw new Exception("Forbidden value (" + this.type + ") on element type.");
     }
     param1.writeVarInt(this.type);
     if (this.genId < 0) {
-      throw new Error("Forbidden value (" + this.genId + ") on element genId.");
+      throw new Exception("Forbidden value (" + this.genId + ") on element genId.");
     }
     param1.writeVarShort(this.genId);
   }
@@ -30,12 +30,13 @@ public class ExchangeBidHouseSearchMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.type = param1.readByte();
     if (this.type < 0) {
-      throw new Error("Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
+      throw new Exception(
+          "Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
     }
 
     this.genId = param1.readVarUhShort();
     if (this.genId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.genId
               + ") on element of ExchangeBidHouseSearchMessage.genId.");

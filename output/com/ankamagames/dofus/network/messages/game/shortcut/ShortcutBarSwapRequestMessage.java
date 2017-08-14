@@ -20,11 +20,11 @@ public class ShortcutBarSwapRequestMessage extends NetworkMessage implements INe
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.barType);
     if (this.firstSlot < 0 || this.firstSlot > 99) {
-      throw new Error("Forbidden value (" + this.firstSlot + ") on element firstSlot.");
+      throw new Exception("Forbidden value (" + this.firstSlot + ") on element firstSlot.");
     }
     param1.writeByte(this.firstSlot);
     if (this.secondSlot < 0 || this.secondSlot > 99) {
-      throw new Error("Forbidden value (" + this.secondSlot + ") on element secondSlot.");
+      throw new Exception("Forbidden value (" + this.secondSlot + ") on element secondSlot.");
     }
     param1.writeByte(this.secondSlot);
   }
@@ -32,7 +32,7 @@ public class ShortcutBarSwapRequestMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.barType = param1.readByte();
     if (this.barType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.barType
               + ") on element of ShortcutBarSwapRequestMessage.barType.");
@@ -40,7 +40,7 @@ public class ShortcutBarSwapRequestMessage extends NetworkMessage implements INe
 
     this.firstSlot = param1.readByte();
     if (this.firstSlot < 0 || this.firstSlot > 99) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.firstSlot
               + ") on element of ShortcutBarSwapRequestMessage.firstSlot.");
@@ -48,7 +48,7 @@ public class ShortcutBarSwapRequestMessage extends NetworkMessage implements INe
 
     this.secondSlot = param1.readByte();
     if (this.secondSlot < 0 || this.secondSlot > 99) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.secondSlot
               + ") on element of ShortcutBarSwapRequestMessage.secondSlot.");

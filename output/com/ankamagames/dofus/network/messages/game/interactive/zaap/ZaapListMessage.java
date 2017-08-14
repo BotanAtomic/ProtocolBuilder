@@ -21,7 +21,7 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
     int _loc2_ = 0;
     while (_loc2_ < this.mapIds.length) {
       if (this.mapIds[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.mapIds[_loc2_]
                 + ") on element 2 (starting at 1) of mapIds.");
@@ -33,7 +33,7 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
     int _loc3_ = 0;
     while (_loc3_ < this.subAreaIds.length) {
       if (this.subAreaIds[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.subAreaIds[_loc3_]
                 + ") on element 3 (starting at 1) of subAreaIds.");
@@ -45,7 +45,7 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
     int _loc4_ = 0;
     while (_loc4_ < this.costs.length) {
       if (this.costs[_loc4_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value (" + this.costs[_loc4_] + ") on element 4 (starting at 1) of costs.");
       }
       param1.writeVarShort(this.costs[_loc4_]);
@@ -59,7 +59,7 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
     }
 
     if (this.spawnMapId < 0) {
-      throw new Error("Forbidden value (" + this.spawnMapId + ") on element spawnMapId.");
+      throw new Exception("Forbidden value (" + this.spawnMapId + ") on element spawnMapId.");
     }
     param1.writeInt(this.spawnMapId);
   }
@@ -70,13 +70,13 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -84,7 +84,7 @@ public class ZaapListMessage extends TeleportDestinationsListMessage implements 
 
     this.spawnMapId = param1.readInt();
     if (this.spawnMapId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spawnMapId + ") on element of ZaapListMessage.spawnMapId.");
     }
   }

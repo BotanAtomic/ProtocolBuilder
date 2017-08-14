@@ -24,7 +24,7 @@ public class AchievementListMessage extends NetworkMessage implements INetworkMe
     int _loc2_ = 0;
     while (_loc2_ < this.finishedAchievementsIds.length) {
       if (this.finishedAchievementsIds[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.finishedAchievementsIds[_loc2_]
                 + ") on element 1 (starting at 1) of finishedAchievementsIds.");
@@ -48,7 +48,8 @@ public class AchievementListMessage extends NetworkMessage implements INetworkMe
     while (_loc3_ < _loc2_) {
       _loc6_ = param1.readVarUhShort();
       if (_loc6_ < 0) {
-        throw new Error("Forbidden value (" + _loc6_ + ") on elements of finishedAchievementsIds.");
+        throw new Exception(
+            "Forbidden value (" + _loc6_ + ") on elements of finishedAchievementsIds.");
       }
       this.finishedAchievementsIds.push(_loc6_);
       _loc3_++;

@@ -15,13 +15,13 @@ public class FightAllianceTeamInformations extends FightTeamInformations impleme
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.teamId);
     if (this.leaderId < -9.007199254740992E15 || this.leaderId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.leaderId + ") on element leaderId.");
+      throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
     }
     param1.writeDouble(this.leaderId);
     param1.writeByte(this.teamSide);
     param1.writeByte(this.teamTypeId);
     if (this.nbWaves < 0) {
-      throw new Error("Forbidden value (" + this.nbWaves + ") on element nbWaves.");
+      throw new Exception("Forbidden value (" + this.nbWaves + ") on element nbWaves.");
     }
     param1.writeByte(this.nbWaves);
 
@@ -42,13 +42,13 @@ public class FightAllianceTeamInformations extends FightTeamInformations impleme
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -56,7 +56,7 @@ public class FightAllianceTeamInformations extends FightTeamInformations impleme
 
     this.relation = param1.readByte();
     if (this.relation < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.relation
               + ") on element of FightAllianceTeamInformations.relation.");

@@ -29,7 +29,7 @@ public class GameFightJoinMessage extends NetworkMessage implements INetworkMess
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 3, this.isFightStarted);
     param1.writeByte(_loc2_);
     if (this.timeMaxBeforeFightStart < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.timeMaxBeforeFightStart
               + ") on element timeMaxBeforeFightStart.");
@@ -48,7 +48,7 @@ public class GameFightJoinMessage extends NetworkMessage implements INetworkMess
 
     this.timeMaxBeforeFightStart = param1.readShort();
     if (this.timeMaxBeforeFightStart < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.timeMaxBeforeFightStart
               + ") on element of GameFightJoinMessage.timeMaxBeforeFightStart.");
@@ -56,7 +56,7 @@ public class GameFightJoinMessage extends NetworkMessage implements INetworkMess
 
     this.fightType = param1.readByte();
     if (this.fightType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.fightType
               + ") on element of FightExternalInformations.fightType.");

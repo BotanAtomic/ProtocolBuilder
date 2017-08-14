@@ -30,11 +30,11 @@ public class MapComplementaryInformationsDataInHavenBagMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     if (this.mapId < 0) {
-      throw new Error("Forbidden value (" + this.mapId + ") on element mapId.");
+      throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
     }
     param1.writeInt(this.mapId);
     param1.writeShort(this.houses.length);
@@ -82,11 +82,11 @@ public class MapComplementaryInformationsDataInHavenBagMessage
     this.ownerInformations.serializeAs_CharacterMinimalInformations(param1);
     param1.writeByte(this.theme);
     if (this.roomId < 0) {
-      throw new Error("Forbidden value (" + this.roomId + ") on element roomId.");
+      throw new Exception("Forbidden value (" + this.roomId + ") on element roomId.");
     }
     param1.writeByte(this.roomId);
     if (this.maxRoomId < 0) {
-      throw new Error("Forbidden value (" + this.maxRoomId + ") on element maxRoomId.");
+      throw new Exception("Forbidden value (" + this.maxRoomId + ") on element maxRoomId.");
     }
     param1.writeByte(this.maxRoomId);
   }
@@ -97,13 +97,13 @@ public class MapComplementaryInformationsDataInHavenBagMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -115,7 +115,7 @@ public class MapComplementaryInformationsDataInHavenBagMessage
 
     this.roomId = param1.readByte();
     if (this.roomId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.roomId
               + ") on element of MapComplementaryInformationsDataInHavenBagMessage.roomId.");
@@ -123,7 +123,7 @@ public class MapComplementaryInformationsDataInHavenBagMessage
 
     this.maxRoomId = param1.readByte();
     if (this.maxRoomId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxRoomId
               + ") on element of MapComplementaryInformationsDataInHavenBagMessage.maxRoomId.");

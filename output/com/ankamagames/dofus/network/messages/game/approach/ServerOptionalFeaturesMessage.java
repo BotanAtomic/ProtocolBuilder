@@ -21,7 +21,7 @@ public class ServerOptionalFeaturesMessage extends NetworkMessage implements INe
     int _loc2_ = 0;
     while (_loc2_ < this.features.length) {
       if (this.features[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.features[_loc2_]
                 + ") on element 1 (starting at 1) of features.");
@@ -38,7 +38,7 @@ public class ServerOptionalFeaturesMessage extends NetworkMessage implements INe
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readByte();
       if (_loc4_ < 0) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of features.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of features.");
       }
       this.features.push(_loc4_);
       _loc3_++;

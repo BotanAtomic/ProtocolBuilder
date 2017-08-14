@@ -16,11 +16,11 @@ public class HouseSellFromInsideRequestMessage extends HouseSellRequestMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.instanceId < 0) {
-      throw new Error("Forbidden value (" + this.instanceId + ") on element instanceId.");
+      throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
     }
     param1.writeInt(this.instanceId);
     if (this.amount < 0 || this.amount > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.amount + ") on element amount.");
+      throw new Exception("Forbidden value (" + this.amount + ") on element amount.");
     }
     param1.writeVarLong(this.amount);
     param1.writeBoolean(this.forSale);
@@ -32,13 +32,13 @@ public class HouseSellFromInsideRequestMessage extends HouseSellRequestMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

@@ -55,27 +55,27 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.lifePoints < 0) {
-      throw new Error("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+      throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
     }
     param1.writeVarInt(this.lifePoints);
     if (this.maxLifePoints < 0) {
-      throw new Error("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+      throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
     }
     param1.writeVarInt(this.maxLifePoints);
     if (this.baseMaxLifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.baseMaxLifePoints + ") on element baseMaxLifePoints.");
     }
     param1.writeVarInt(this.baseMaxLifePoints);
     if (this.permanentDamagePercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.permanentDamagePercent
               + ") on element permanentDamagePercent.");
     }
     param1.writeVarInt(this.permanentDamagePercent);
     if (this.shieldPoints < 0) {
-      throw new Error("Forbidden value (" + this.shieldPoints + ") on element shieldPoints.");
+      throw new Exception("Forbidden value (" + this.shieldPoints + ") on element shieldPoints.");
     }
     param1.writeVarInt(this.shieldPoints);
     param1.writeVarShort(this.actionPoints);
@@ -83,7 +83,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
     param1.writeVarShort(this.movementPoints);
     param1.writeVarShort(this.maxMovementPoints);
     if (this.summoner < -9.007199254740992E15 || this.summoner > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.summoner + ") on element summoner.");
+      throw new Exception("Forbidden value (" + this.summoner + ") on element summoner.");
     }
     param1.writeDouble(this.summoner);
     param1.writeBoolean(this.summoned);
@@ -110,14 +110,14 @@ public class GameFightMinimalStats extends Object implements INetworkType {
     param1.writeVarShort(this.pvpAirElementReduction);
     param1.writeVarShort(this.pvpFireElementReduction);
     if (this.dodgePALostProbability < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.dodgePALostProbability
               + ") on element dodgePALostProbability.");
     }
     param1.writeVarShort(this.dodgePALostProbability);
     if (this.dodgePMLostProbability < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.dodgePMLostProbability
               + ") on element dodgePMLostProbability.");
@@ -128,28 +128,28 @@ public class GameFightMinimalStats extends Object implements INetworkType {
     param1.writeVarShort(this.fixedDamageReflection);
     param1.writeByte(this.invisibilityState);
     if (this.meleeDamageReceivedPercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.meleeDamageReceivedPercent
               + ") on element meleeDamageReceivedPercent.");
     }
     param1.writeVarShort(this.meleeDamageReceivedPercent);
     if (this.rangedDamageReceivedPercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.rangedDamageReceivedPercent
               + ") on element rangedDamageReceivedPercent.");
     }
     param1.writeVarShort(this.rangedDamageReceivedPercent);
     if (this.weaponDamageReceivedPercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.weaponDamageReceivedPercent
               + ") on element weaponDamageReceivedPercent.");
     }
     param1.writeVarShort(this.weaponDamageReceivedPercent);
     if (this.spellDamageReceivedPercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.spellDamageReceivedPercent
               + ") on element spellDamageReceivedPercent.");
@@ -160,7 +160,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.lifePoints = param1.readVarUhInt();
     if (this.lifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lifePoints
               + ") on element of PartyMemberInformations.lifePoints.");
@@ -168,7 +168,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.maxLifePoints = param1.readVarUhInt();
     if (this.maxLifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxLifePoints
               + ") on element of PartyMemberInformations.maxLifePoints.");
@@ -176,7 +176,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.baseMaxLifePoints = param1.readVarUhInt();
     if (this.baseMaxLifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.baseMaxLifePoints
               + ") on element of GameFightMinimalStats.baseMaxLifePoints.");
@@ -184,7 +184,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.permanentDamagePercent = param1.readVarUhInt();
     if (this.permanentDamagePercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.permanentDamagePercent
               + ") on element of GameFightMinimalStats.permanentDamagePercent.");
@@ -192,7 +192,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.shieldPoints = param1.readVarUhInt();
     if (this.shieldPoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.shieldPoints
               + ") on element of GameFightMinimalStats.shieldPoints.");
@@ -208,7 +208,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.summoner = param1.readDouble();
     if (this.summoner < -9.007199254740992E15 || this.summoner > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.summoner + ") on element of GameFightMinimalStats.summoner.");
     }
 
@@ -260,7 +260,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.dodgePALostProbability = param1.readVarUhShort();
     if (this.dodgePALostProbability < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.dodgePALostProbability
               + ") on element of GameFightMinimalStats.dodgePALostProbability.");
@@ -268,7 +268,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.dodgePMLostProbability = param1.readVarUhShort();
     if (this.dodgePMLostProbability < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.dodgePMLostProbability
               + ") on element of GameFightMinimalStats.dodgePMLostProbability.");
@@ -282,7 +282,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.invisibilityState = param1.readByte();
     if (this.invisibilityState < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.invisibilityState
               + ") on element of GameFightMinimalStats.invisibilityState.");
@@ -290,7 +290,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.meleeDamageReceivedPercent = param1.readVarUhShort();
     if (this.meleeDamageReceivedPercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.meleeDamageReceivedPercent
               + ") on element of GameFightMinimalStats.meleeDamageReceivedPercent.");
@@ -298,7 +298,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.rangedDamageReceivedPercent = param1.readVarUhShort();
     if (this.rangedDamageReceivedPercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.rangedDamageReceivedPercent
               + ") on element of GameFightMinimalStats.rangedDamageReceivedPercent.");
@@ -306,7 +306,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.weaponDamageReceivedPercent = param1.readVarUhShort();
     if (this.weaponDamageReceivedPercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.weaponDamageReceivedPercent
               + ") on element of GameFightMinimalStats.weaponDamageReceivedPercent.");
@@ -314,7 +314,7 @@ public class GameFightMinimalStats extends Object implements INetworkType {
 
     this.spellDamageReceivedPercent = param1.readVarUhShort();
     if (this.spellDamageReceivedPercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.spellDamageReceivedPercent
               + ") on element of GameFightMinimalStats.spellDamageReceivedPercent.");

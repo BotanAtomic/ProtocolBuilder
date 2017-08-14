@@ -25,16 +25,17 @@ public class FriendSpouseInformations extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.spouseAccountId < 0) {
-      throw new Error("Forbidden value (" + this.spouseAccountId + ") on element spouseAccountId.");
+      throw new Exception(
+          "Forbidden value (" + this.spouseAccountId + ") on element spouseAccountId.");
     }
     param1.writeInt(this.spouseAccountId);
     if (this.spouseId < 0 || this.spouseId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.spouseId + ") on element spouseId.");
+      throw new Exception("Forbidden value (" + this.spouseId + ") on element spouseId.");
     }
     param1.writeVarLong(this.spouseId);
     param1.writeUTF(this.spouseName);
     if (this.spouseLevel < 1 || this.spouseLevel > 206) {
-      throw new Error("Forbidden value (" + this.spouseLevel + ") on element spouseLevel.");
+      throw new Exception("Forbidden value (" + this.spouseLevel + ") on element spouseLevel.");
     }
     param1.writeByte(this.spouseLevel);
     param1.writeByte(this.breed);
@@ -47,7 +48,7 @@ public class FriendSpouseInformations extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.spouseAccountId = param1.readInt();
     if (this.spouseAccountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.spouseAccountId
               + ") on element of FriendSpouseInformations.spouseAccountId.");
@@ -55,7 +56,7 @@ public class FriendSpouseInformations extends Object implements INetworkType {
 
     this.spouseId = param1.readVarUhLong();
     if (this.spouseId < 0 || this.spouseId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.spouseId
               + ") on element of FriendSpouseInformations.spouseId.");
@@ -65,7 +66,7 @@ public class FriendSpouseInformations extends Object implements INetworkType {
 
     this.spouseLevel = param1.readUnsignedByte();
     if (this.spouseLevel < 1 || this.spouseLevel > 206) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.spouseLevel
               + ") on element of FriendSpouseInformations.spouseLevel.");

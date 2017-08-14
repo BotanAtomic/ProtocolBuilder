@@ -18,7 +18,7 @@ public class AlignmentRankUpdateMessage extends NetworkMessage implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.alignmentRank < 0) {
-      throw new Error("Forbidden value (" + this.alignmentRank + ") on element alignmentRank.");
+      throw new Exception("Forbidden value (" + this.alignmentRank + ") on element alignmentRank.");
     }
     param1.writeByte(this.alignmentRank);
     param1.writeBoolean(this.verbose);
@@ -27,7 +27,7 @@ public class AlignmentRankUpdateMessage extends NetworkMessage implements INetwo
   public void deserialize(ICustomDataInput param1) {
     this.alignmentRank = param1.readByte();
     if (this.alignmentRank < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.alignmentRank
               + ") on element of AlignmentRankUpdateMessage.alignmentRank.");

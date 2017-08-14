@@ -17,7 +17,7 @@ public class ExchangeObjectMoveKamaMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.quantity < -9.007199254740992E15 || this.quantity > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.quantity + ") on element quantity.");
+      throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
     }
     param1.writeVarLong(this.quantity);
   }
@@ -25,7 +25,7 @@ public class ExchangeObjectMoveKamaMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.quantity = param1.readVarUhInt();
     if (this.quantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.quantity
               + ") on element of ObjectItemToSellInHumanVendorShop.quantity.");

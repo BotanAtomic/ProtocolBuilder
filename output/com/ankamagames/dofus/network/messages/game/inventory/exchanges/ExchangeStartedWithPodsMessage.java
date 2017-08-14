@@ -26,19 +26,19 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage
 
     if (this.firstCharacterId < -9.007199254740992E15
         || this.firstCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.firstCharacterId + ") on element firstCharacterId.");
     }
     param1.writeDouble(this.firstCharacterId);
     if (this.firstCharacterCurrentWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.firstCharacterCurrentWeight
               + ") on element firstCharacterCurrentWeight.");
     }
     param1.writeVarInt(this.firstCharacterCurrentWeight);
     if (this.firstCharacterMaxWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.firstCharacterMaxWeight
               + ") on element firstCharacterMaxWeight.");
@@ -46,19 +46,19 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage
     param1.writeVarInt(this.firstCharacterMaxWeight);
     if (this.secondCharacterId < -9.007199254740992E15
         || this.secondCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.secondCharacterId + ") on element secondCharacterId.");
     }
     param1.writeDouble(this.secondCharacterId);
     if (this.secondCharacterCurrentWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.secondCharacterCurrentWeight
               + ") on element secondCharacterCurrentWeight.");
     }
     param1.writeVarInt(this.secondCharacterCurrentWeight);
     if (this.secondCharacterMaxWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.secondCharacterMaxWeight
               + ") on element secondCharacterMaxWeight.");
@@ -72,13 +72,13 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -87,7 +87,7 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage
     this.firstCharacterId = param1.readDouble();
     if (this.firstCharacterId < -9.007199254740992E15
         || this.firstCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.firstCharacterId
               + ") on element of ExchangeStartedWithPodsMessage.firstCharacterId.");
@@ -95,7 +95,7 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage
 
     this.firstCharacterCurrentWeight = param1.readVarUhInt();
     if (this.firstCharacterCurrentWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.firstCharacterCurrentWeight
               + ") on element of ExchangeStartedWithPodsMessage.firstCharacterCurrentWeight.");
@@ -103,7 +103,7 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage
 
     this.firstCharacterMaxWeight = param1.readVarUhInt();
     if (this.firstCharacterMaxWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.firstCharacterMaxWeight
               + ") on element of ExchangeStartedWithPodsMessage.firstCharacterMaxWeight.");
@@ -112,7 +112,7 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage
     this.secondCharacterId = param1.readDouble();
     if (this.secondCharacterId < -9.007199254740992E15
         || this.secondCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.secondCharacterId
               + ") on element of ExchangeStartedWithPodsMessage.secondCharacterId.");
@@ -120,7 +120,7 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage
 
     this.secondCharacterCurrentWeight = param1.readVarUhInt();
     if (this.secondCharacterCurrentWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.secondCharacterCurrentWeight
               + ") on element of ExchangeStartedWithPodsMessage.secondCharacterCurrentWeight.");
@@ -128,7 +128,7 @@ public class ExchangeStartedWithPodsMessage extends ExchangeStartedMessage
 
     this.secondCharacterMaxWeight = param1.readVarUhInt();
     if (this.secondCharacterMaxWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.secondCharacterMaxWeight
               + ") on element of ExchangeStartedWithPodsMessage.secondCharacterMaxWeight.");

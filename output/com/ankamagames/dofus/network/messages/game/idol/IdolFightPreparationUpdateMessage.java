@@ -35,7 +35,7 @@ public class IdolFightPreparationUpdateMessage extends NetworkMessage implements
     Idol _loc5_ = null;
     this.idolSource = param1.readByte();
     if (this.idolSource < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.idolSource
               + ") on element of IdolFightPreparationUpdateMessage.idolSource.");

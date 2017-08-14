@@ -22,37 +22,37 @@ public class AllianceTaxCollectorDialogQuestionExtendedMessage
     this.guildInfo.serializeAs_BasicGuildInformations(param1);
 
     if (this.maxPods < 0) {
-      throw new Error("Forbidden value (" + this.maxPods + ") on element maxPods.");
+      throw new Exception("Forbidden value (" + this.maxPods + ") on element maxPods.");
     }
     param1.writeVarShort(this.maxPods);
     if (this.prospecting < 0) {
-      throw new Error("Forbidden value (" + this.prospecting + ") on element prospecting.");
+      throw new Exception("Forbidden value (" + this.prospecting + ") on element prospecting.");
     }
     param1.writeVarShort(this.prospecting);
     if (this.wisdom < 0) {
-      throw new Error("Forbidden value (" + this.wisdom + ") on element wisdom.");
+      throw new Exception("Forbidden value (" + this.wisdom + ") on element wisdom.");
     }
     param1.writeVarShort(this.wisdom);
     if (this.taxCollectorsCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.taxCollectorsCount + ") on element taxCollectorsCount.");
     }
     param1.writeByte(this.taxCollectorsCount);
     param1.writeInt(this.taxCollectorAttack);
     if (this.kamas < 0 || this.kamas > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.kamas + ") on element kamas.");
+      throw new Exception("Forbidden value (" + this.kamas + ") on element kamas.");
     }
     param1.writeVarLong(this.kamas);
     if (this.experience < 0 || this.experience > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.experience + ") on element experience.");
+      throw new Exception("Forbidden value (" + this.experience + ") on element experience.");
     }
     param1.writeVarLong(this.experience);
     if (this.pods < 0) {
-      throw new Error("Forbidden value (" + this.pods + ") on element pods.");
+      throw new Exception("Forbidden value (" + this.pods + ") on element pods.");
     }
     param1.writeVarInt(this.pods);
     if (this.itemsValue < 0 || this.itemsValue > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.itemsValue + ") on element itemsValue.");
+      throw new Exception("Forbidden value (" + this.itemsValue + ") on element itemsValue.");
     }
     param1.writeVarLong(this.itemsValue);
 
@@ -65,13 +65,13 @@ public class AllianceTaxCollectorDialogQuestionExtendedMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

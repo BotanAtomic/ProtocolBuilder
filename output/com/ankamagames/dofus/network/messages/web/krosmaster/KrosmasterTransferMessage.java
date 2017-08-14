@@ -26,7 +26,7 @@ public class KrosmasterTransferMessage extends NetworkMessage implements INetwor
 
     this.failure = param1.readByte();
     if (this.failure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.failure
               + ") on element of KrosmasterTransferMessage.failure.");

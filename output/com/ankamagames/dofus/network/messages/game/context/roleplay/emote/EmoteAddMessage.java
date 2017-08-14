@@ -17,7 +17,7 @@ public class EmoteAddMessage extends NetworkMessage implements INetworkMessage {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.emoteId < 0 || this.emoteId > 255) {
-      throw new Error("Forbidden value (" + this.emoteId + ") on element emoteId.");
+      throw new Exception("Forbidden value (" + this.emoteId + ") on element emoteId.");
     }
     param1.writeByte(this.emoteId);
   }
@@ -25,7 +25,7 @@ public class EmoteAddMessage extends NetworkMessage implements INetworkMessage {
   public void deserialize(ICustomDataInput param1) {
     this.emoteId = param1.readUnsignedByte();
     if (this.emoteId < 0 || this.emoteId > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.emoteId + ") on element of ShortcutEmote.emoteId.");
     }
   }

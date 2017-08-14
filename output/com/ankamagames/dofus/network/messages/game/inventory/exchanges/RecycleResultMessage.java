@@ -18,11 +18,12 @@ public class RecycleResultMessage extends NetworkMessage implements INetworkMess
 
   public void serialize(ICustomDataOutput param1) {
     if (this.nuggetsForPrism < 0) {
-      throw new Error("Forbidden value (" + this.nuggetsForPrism + ") on element nuggetsForPrism.");
+      throw new Exception(
+          "Forbidden value (" + this.nuggetsForPrism + ") on element nuggetsForPrism.");
     }
     param1.writeVarInt(this.nuggetsForPrism);
     if (this.nuggetsForPlayer < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.nuggetsForPlayer + ") on element nuggetsForPlayer.");
     }
     param1.writeVarInt(this.nuggetsForPlayer);
@@ -31,7 +32,7 @@ public class RecycleResultMessage extends NetworkMessage implements INetworkMess
   public void deserialize(ICustomDataInput param1) {
     this.nuggetsForPrism = param1.readVarUhInt();
     if (this.nuggetsForPrism < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nuggetsForPrism
               + ") on element of RecycleResultMessage.nuggetsForPrism.");
@@ -39,7 +40,7 @@ public class RecycleResultMessage extends NetworkMessage implements INetworkMess
 
     this.nuggetsForPlayer = param1.readVarUhInt();
     if (this.nuggetsForPlayer < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nuggetsForPlayer
               + ") on element of RecycleResultMessage.nuggetsForPlayer.");

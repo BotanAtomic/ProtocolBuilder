@@ -14,7 +14,7 @@ public class FinishMoveInformations extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.finishMoveId < 0) {
-      throw new Error("Forbidden value (" + this.finishMoveId + ") on element finishMoveId.");
+      throw new Exception("Forbidden value (" + this.finishMoveId + ") on element finishMoveId.");
     }
     param1.writeInt(this.finishMoveId);
     param1.writeBoolean(this.finishMoveState);
@@ -23,7 +23,7 @@ public class FinishMoveInformations extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.finishMoveId = param1.readInt();
     if (this.finishMoveId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.finishMoveId
               + ") on element of FinishMoveInformations.finishMoveId.");

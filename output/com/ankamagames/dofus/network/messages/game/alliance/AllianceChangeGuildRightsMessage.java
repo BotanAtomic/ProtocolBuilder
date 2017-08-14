@@ -18,11 +18,11 @@ public class AllianceChangeGuildRightsMessage extends NetworkMessage implements 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.guildId < 0) {
-      throw new Error("Forbidden value (" + this.guildId + ") on element guildId.");
+      throw new Exception("Forbidden value (" + this.guildId + ") on element guildId.");
     }
     param1.writeVarInt(this.guildId);
     if (this.rights < 0) {
-      throw new Error("Forbidden value (" + this.rights + ") on element rights.");
+      throw new Exception("Forbidden value (" + this.rights + ") on element rights.");
     }
     param1.writeByte(this.rights);
   }
@@ -30,7 +30,7 @@ public class AllianceChangeGuildRightsMessage extends NetworkMessage implements 
   public void deserialize(ICustomDataInput param1) {
     this.guildId = param1.readVarUhInt();
     if (this.guildId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.guildId
               + ") on element of GuildVersatileInformations.guildId.");
@@ -38,7 +38,8 @@ public class AllianceChangeGuildRightsMessage extends NetworkMessage implements 
 
     this.rights = param1.readVarUhInt();
     if (this.rights < 0) {
-      throw new Error("Forbidden value (" + this.rights + ") on element of GuildMember.rights.");
+      throw new Exception(
+          "Forbidden value (" + this.rights + ") on element of GuildMember.rights.");
     }
   }
 }

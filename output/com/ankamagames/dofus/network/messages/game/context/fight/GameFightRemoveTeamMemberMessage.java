@@ -19,12 +19,12 @@ public class GameFightRemoveTeamMemberMessage extends NetworkMessage implements 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.fightId < 0) {
-      throw new Error("Forbidden value (" + this.fightId + ") on element fightId.");
+      throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
     }
     param1.writeShort(this.fightId);
     param1.writeByte(this.teamId);
     if (this.charId < -9.007199254740992E15 || this.charId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.charId + ") on element charId.");
+      throw new Exception("Forbidden value (" + this.charId + ") on element charId.");
     }
     param1.writeDouble(this.charId);
   }
@@ -34,12 +34,13 @@ public class GameFightRemoveTeamMemberMessage extends NetworkMessage implements 
 
     this.teamId = param1.readByte();
     if (this.teamId < 0) {
-      throw new Error("Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
+      throw new Exception(
+          "Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
     }
 
     this.charId = param1.readDouble();
     if (this.charId < -9.007199254740992E15 || this.charId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.charId
               + ") on element of GameFightRemoveTeamMemberMessage.charId.");

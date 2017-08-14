@@ -20,7 +20,7 @@ public class NpcGenericActionRequestMessage extends NetworkMessage implements IN
   public void serialize(ICustomDataOutput param1) {
     param1.writeInt(this.npcId);
     if (this.npcActionId < 0) {
-      throw new Error("Forbidden value (" + this.npcActionId + ") on element npcActionId.");
+      throw new Exception("Forbidden value (" + this.npcActionId + ") on element npcActionId.");
     }
     param1.writeByte(this.npcActionId);
     param1.writeInt(this.npcMapId);
@@ -29,7 +29,7 @@ public class NpcGenericActionRequestMessage extends NetworkMessage implements IN
   public void deserialize(ICustomDataInput param1) {
     this.npcId = param1.readVarUhShort();
     if (this.npcId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.npcId
               + ") on element of TreasureHuntStepFollowDirectionToHint.npcId.");
@@ -37,7 +37,7 @@ public class NpcGenericActionRequestMessage extends NetworkMessage implements IN
 
     this.npcActionId = param1.readByte();
     if (this.npcActionId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.npcActionId
               + ") on element of NpcGenericActionRequestMessage.npcActionId.");

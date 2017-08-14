@@ -14,12 +14,12 @@ public class ShortcutObjectPreset extends ShortcutObject implements INetworkType
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.slot < 0 || this.slot > 99) {
-      throw new Error("Forbidden value (" + this.slot + ") on element slot.");
+      throw new Exception("Forbidden value (" + this.slot + ") on element slot.");
     }
     param1.writeByte(this.slot);
 
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
   }
@@ -30,13 +30,13 @@ public class ShortcutObjectPreset extends ShortcutObject implements INetworkType
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -44,7 +44,7 @@ public class ShortcutObjectPreset extends ShortcutObject implements INetworkType
 
     this.presetId = param1.readByte();
     if (this.presetId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
     }
   }

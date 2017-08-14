@@ -16,7 +16,7 @@ public class IndexedEntityLook extends Object implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
     this.look.serializeAs_EntityLook(param1);
     if (this.index < 0) {
-      throw new Error("Forbidden value (" + this.index + ") on element index.");
+      throw new Exception("Forbidden value (" + this.index + ") on element index.");
     }
     param1.writeByte(this.index);
   }
@@ -26,7 +26,7 @@ public class IndexedEntityLook extends Object implements INetworkType {
     this.look.deserialize(param1);
     this.index = param1.readByte();
     if (this.index < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.index + ") on element of IndexedEntityLook.index.");
     }
   }

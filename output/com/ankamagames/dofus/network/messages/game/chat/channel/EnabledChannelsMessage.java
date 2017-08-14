@@ -41,7 +41,7 @@ public class EnabledChannelsMessage extends NetworkMessage implements INetworkMe
     while (_loc3_ < _loc2_) {
       _loc6_ = param1.readByte();
       if (_loc6_ < 0) {
-        throw new Error("Forbidden value (" + _loc6_ + ") on elements of channels.");
+        throw new Exception("Forbidden value (" + _loc6_ + ") on elements of channels.");
       }
       this.channels.push(_loc6_);
       _loc3_++;
@@ -51,7 +51,7 @@ public class EnabledChannelsMessage extends NetworkMessage implements INetworkMe
     while (_loc5_ < _loc4_) {
       _loc7_ = param1.readByte();
       if (_loc7_ < 0) {
-        throw new Error("Forbidden value (" + _loc7_ + ") on elements of disallowed.");
+        throw new Exception("Forbidden value (" + _loc7_ + ") on elements of disallowed.");
       }
       this.disallowed.push(_loc7_);
       _loc5_++;

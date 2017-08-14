@@ -19,7 +19,7 @@ public class GameFightTaxCollectorInformations extends GameFightAIInformations
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -28,7 +28,7 @@ public class GameFightTaxCollectorInformations extends GameFightAIInformations
 
     param1.writeByte(this.teamId);
     if (this.wave < 0) {
-      throw new Error("Forbidden value (" + this.wave + ") on element wave.");
+      throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
     }
     param1.writeByte(this.wave);
     param1.writeBoolean(this.alive);
@@ -38,7 +38,7 @@ public class GameFightTaxCollectorInformations extends GameFightAIInformations
     int _loc2_ = 0;
     while (_loc2_ < this.previousPositions.length) {
       if (this.previousPositions[_loc2_] < 0 || this.previousPositions[_loc2_] > 559) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.previousPositions[_loc2_]
                 + ") on element 5 (starting at 1) of previousPositions.");
@@ -48,15 +48,15 @@ public class GameFightTaxCollectorInformations extends GameFightAIInformations
     }
 
     if (this.firstNameId < 0) {
-      throw new Error("Forbidden value (" + this.firstNameId + ") on element firstNameId.");
+      throw new Exception("Forbidden value (" + this.firstNameId + ") on element firstNameId.");
     }
     param1.writeVarShort(this.firstNameId);
     if (this.lastNameId < 0) {
-      throw new Error("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
+      throw new Exception("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
     }
     param1.writeVarShort(this.lastNameId);
     if (this.level < 0 || this.level > 255) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
   }
@@ -67,13 +67,13 @@ public class GameFightTaxCollectorInformations extends GameFightAIInformations
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -81,7 +81,7 @@ public class GameFightTaxCollectorInformations extends GameFightAIInformations
 
     this.firstNameId = param1.readVarUhShort();
     if (this.firstNameId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.firstNameId
               + ") on element of TaxCollectorBasicInformations.firstNameId.");
@@ -89,7 +89,7 @@ public class GameFightTaxCollectorInformations extends GameFightAIInformations
 
     this.lastNameId = param1.readVarUhShort();
     if (this.lastNameId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastNameId
               + ") on element of TaxCollectorInformations.lastNameId.");
@@ -97,7 +97,8 @@ public class GameFightTaxCollectorInformations extends GameFightAIInformations
 
     this.level = param1.readByte();
     if (this.level < 0) {
-      throw new Error("Forbidden value (" + this.level + ") on element of MountClientData.level.");
+      throw new Exception(
+          "Forbidden value (" + this.level + ") on element of MountClientData.level.");
     }
   }
 }

@@ -17,7 +17,7 @@ public class CharacterSpellModification extends Object implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.modificationType);
     if (this.spellId < 0) {
-      throw new Error("Forbidden value (" + this.spellId + ") on element spellId.");
+      throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
     }
     param1.writeVarShort(this.spellId);
     this.value.serializeAs_CharacterBaseCharacteristic(param1);
@@ -26,7 +26,7 @@ public class CharacterSpellModification extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.modificationType = param1.readByte();
     if (this.modificationType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.modificationType
               + ") on element of CharacterSpellModification.modificationType.");
@@ -34,7 +34,7 @@ public class CharacterSpellModification extends Object implements INetworkType {
 
     this.spellId = param1.readVarUhShort();
     if (this.spellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
     }
 

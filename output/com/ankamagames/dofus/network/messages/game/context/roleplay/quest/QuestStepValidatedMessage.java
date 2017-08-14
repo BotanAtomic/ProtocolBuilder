@@ -18,11 +18,11 @@ public class QuestStepValidatedMessage extends NetworkMessage implements INetwor
 
   public void serialize(ICustomDataOutput param1) {
     if (this.questId < 0) {
-      throw new Error("Forbidden value (" + this.questId + ") on element questId.");
+      throw new Exception("Forbidden value (" + this.questId + ") on element questId.");
     }
     param1.writeVarShort(this.questId);
     if (this.stepId < 0) {
-      throw new Error("Forbidden value (" + this.stepId + ") on element stepId.");
+      throw new Exception("Forbidden value (" + this.stepId + ") on element stepId.");
     }
     param1.writeVarShort(this.stepId);
   }
@@ -30,13 +30,13 @@ public class QuestStepValidatedMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.questId = param1.readVarUhShort();
     if (this.questId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.questId + ") on element of QuestActiveInformations.questId.");
     }
 
     this.stepId = param1.readVarUhShort();
     if (this.stepId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.stepId
               + ") on element of QuestActiveDetailedInformations.stepId.");

@@ -17,7 +17,7 @@ public class PartyNameSetErrorMessage extends AbstractPartyMessage implements IN
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
@@ -30,13 +30,13 @@ public class PartyNameSetErrorMessage extends AbstractPartyMessage implements IN
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -44,7 +44,7 @@ public class PartyNameSetErrorMessage extends AbstractPartyMessage implements IN
 
     this.result = param1.readByte();
     if (this.result < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.result + ") on element of GuildCreationResultMessage.result.");
     }
   }

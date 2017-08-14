@@ -14,11 +14,11 @@ public class AchievementRewardable extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarShort(this.id);
     if (this.finishedlevel < 0 || this.finishedlevel > 206) {
-      throw new Error("Forbidden value (" + this.finishedlevel + ") on element finishedlevel.");
+      throw new Exception("Forbidden value (" + this.finishedlevel + ") on element finishedlevel.");
     }
     param1.writeByte(this.finishedlevel);
   }
@@ -28,7 +28,7 @@ public class AchievementRewardable extends Object implements INetworkType {
 
     this.finishedlevel = param1.readUnsignedByte();
     if (this.finishedlevel < 0 || this.finishedlevel > 206) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.finishedlevel
               + ") on element of AchievementRewardable.finishedlevel.");

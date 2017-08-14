@@ -20,12 +20,12 @@ public class SpellVariantActivationMessage extends NetworkMessage implements INe
   public void serialize(ICustomDataOutput param1) {
     param1.writeBoolean(this.result);
     if (this.activatedSpellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.activatedSpellId + ") on element activatedSpellId.");
     }
     param1.writeVarShort(this.activatedSpellId);
     if (this.deactivatedSpellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.deactivatedSpellId + ") on element deactivatedSpellId.");
     }
     param1.writeVarShort(this.deactivatedSpellId);
@@ -34,13 +34,13 @@ public class SpellVariantActivationMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.result = param1.readByte();
     if (this.result < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.result + ") on element of GuildCreationResultMessage.result.");
     }
 
     this.activatedSpellId = param1.readVarUhShort();
     if (this.activatedSpellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.activatedSpellId
               + ") on element of SpellVariantActivationMessage.activatedSpellId.");
@@ -48,7 +48,7 @@ public class SpellVariantActivationMessage extends NetworkMessage implements INe
 
     this.deactivatedSpellId = param1.readVarUhShort();
     if (this.deactivatedSpellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.deactivatedSpellId
               + ") on element of SpellVariantActivationMessage.deactivatedSpellId.");

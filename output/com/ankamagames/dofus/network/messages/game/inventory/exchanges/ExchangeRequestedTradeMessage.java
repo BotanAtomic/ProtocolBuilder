@@ -21,11 +21,11 @@ public class ExchangeRequestedTradeMessage extends ExchangeRequestedMessage
     param1.writeByte(this.exchangeType);
 
     if (this.source < 0 || this.source > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.source + ") on element source.");
+      throw new Exception("Forbidden value (" + this.source + ") on element source.");
     }
     param1.writeVarLong(this.source);
     if (this.target < 0 || this.target > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.target + ") on element target.");
+      throw new Exception("Forbidden value (" + this.target + ") on element target.");
     }
     param1.writeVarLong(this.target);
   }
@@ -36,13 +36,13 @@ public class ExchangeRequestedTradeMessage extends ExchangeRequestedMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -50,7 +50,7 @@ public class ExchangeRequestedTradeMessage extends ExchangeRequestedMessage
 
     this.source = param1.readVarUhLong();
     if (this.source < 0 || this.source > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.source
               + ") on element of ExchangeRequestedTradeMessage.source.");
@@ -58,7 +58,7 @@ public class ExchangeRequestedTradeMessage extends ExchangeRequestedMessage
 
     this.target = param1.readVarUhLong();
     if (this.target < 0 || this.target > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.target
               + ") on element of ExchangeRequestedTradeMessage.target.");

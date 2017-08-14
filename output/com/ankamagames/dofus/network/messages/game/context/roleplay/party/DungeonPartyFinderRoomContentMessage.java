@@ -21,7 +21,7 @@ public class DungeonPartyFinderRoomContentMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.dungeonId < 0) {
-      throw new Error("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+      throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
     }
     param1.writeVarShort(this.dungeonId);
     param1.writeShort(this.players.length);
@@ -36,7 +36,7 @@ public class DungeonPartyFinderRoomContentMessage extends NetworkMessage
     DungeonPartyFinderPlayer _loc4_ = null;
     this.dungeonId = param1.readVarUhShort();
     if (this.dungeonId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.dungeonId
               + ") on element of TeleportToBuddyOfferMessage.dungeonId.");

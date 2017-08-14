@@ -26,33 +26,35 @@ public class DareInformations extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.dareId + ") on element dareId.");
+      throw new Exception("Forbidden value (" + this.dareId + ") on element dareId.");
     }
     param1.writeDouble(this.dareId);
     this.creator.serializeAs_CharacterBasicMinimalInformations(param1);
     if (this.subscriptionFee < 0 || this.subscriptionFee > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.subscriptionFee + ") on element subscriptionFee.");
+      throw new Exception(
+          "Forbidden value (" + this.subscriptionFee + ") on element subscriptionFee.");
     }
     param1.writeVarLong(this.subscriptionFee);
     if (this.jackpot < 0 || this.jackpot > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.jackpot + ") on element jackpot.");
+      throw new Exception("Forbidden value (" + this.jackpot + ") on element jackpot.");
     }
     param1.writeVarLong(this.jackpot);
     if (this.maxCountWinners < 0 || this.maxCountWinners > 65535) {
-      throw new Error("Forbidden value (" + this.maxCountWinners + ") on element maxCountWinners.");
+      throw new Exception(
+          "Forbidden value (" + this.maxCountWinners + ") on element maxCountWinners.");
     }
     param1.writeShort(this.maxCountWinners);
     if (this.endDate < 0 || this.endDate > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.endDate + ") on element endDate.");
+      throw new Exception("Forbidden value (" + this.endDate + ") on element endDate.");
     }
     param1.writeDouble(this.endDate);
     param1.writeBoolean(this.isPrivate);
     if (this.guildId < 0) {
-      throw new Error("Forbidden value (" + this.guildId + ") on element guildId.");
+      throw new Exception("Forbidden value (" + this.guildId + ") on element guildId.");
     }
     param1.writeVarInt(this.guildId);
     if (this.allianceId < 0) {
-      throw new Error("Forbidden value (" + this.allianceId + ") on element allianceId.");
+      throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
     }
     param1.writeVarInt(this.allianceId);
     param1.writeShort(this.criterions.length);
@@ -62,7 +64,7 @@ public class DareInformations extends Object implements INetworkType {
       _loc2_++;
     }
     if (this.startDate < 0 || this.startDate > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.startDate + ") on element startDate.");
+      throw new Exception("Forbidden value (" + this.startDate + ") on element startDate.");
     }
     param1.writeDouble(this.startDate);
   }
@@ -71,7 +73,7 @@ public class DareInformations extends Object implements INetworkType {
     DareCriteria _loc4_ = null;
     this.dareId = param1.readDouble();
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.dareId + ") on element of DareVersatileInformations.dareId.");
     }
 
@@ -79,7 +81,7 @@ public class DareInformations extends Object implements INetworkType {
     this.creator.deserialize(param1);
     this.subscriptionFee = param1.readVarUhLong();
     if (this.subscriptionFee < 0 || this.subscriptionFee > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subscriptionFee
               + ") on element of DareInformations.subscriptionFee.");
@@ -87,13 +89,13 @@ public class DareInformations extends Object implements INetworkType {
 
     this.jackpot = param1.readVarUhLong();
     if (this.jackpot < 0 || this.jackpot > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.jackpot + ") on element of DareInformations.jackpot.");
     }
 
     this.maxCountWinners = param1.readUnsignedShort();
     if (this.maxCountWinners < 0 || this.maxCountWinners > 65535) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxCountWinners
               + ") on element of DareInformations.maxCountWinners.");
@@ -101,7 +103,7 @@ public class DareInformations extends Object implements INetworkType {
 
     this.endDate = param1.readDouble();
     if (this.endDate < 0 || this.endDate > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.endDate + ") on element of DareInformations.endDate.");
     }
 
@@ -109,7 +111,7 @@ public class DareInformations extends Object implements INetworkType {
 
     this.guildId = param1.readVarUhInt();
     if (this.guildId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.guildId
               + ") on element of GuildVersatileInformations.guildId.");
@@ -117,7 +119,7 @@ public class DareInformations extends Object implements INetworkType {
 
     this.allianceId = param1.readVarUhInt();
     if (this.allianceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.allianceId
               + ") on element of GuildInAllianceVersatileInformations.allianceId.");
@@ -133,7 +135,7 @@ public class DareInformations extends Object implements INetworkType {
     }
     this.startDate = param1.readDouble();
     if (this.startDate < 0 || this.startDate > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.startDate + ") on element of DareInformations.startDate.");
     }
   }

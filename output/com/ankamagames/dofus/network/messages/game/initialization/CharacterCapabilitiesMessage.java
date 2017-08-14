@@ -17,7 +17,7 @@ public class CharacterCapabilitiesMessage extends NetworkMessage implements INet
 
   public void serialize(ICustomDataOutput param1) {
     if (this.guildEmblemSymbolCategories < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.guildEmblemSymbolCategories
               + ") on element guildEmblemSymbolCategories.");
@@ -28,7 +28,7 @@ public class CharacterCapabilitiesMessage extends NetworkMessage implements INet
   public void deserialize(ICustomDataInput param1) {
     this.guildEmblemSymbolCategories = param1.readVarUhInt();
     if (this.guildEmblemSymbolCategories < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.guildEmblemSymbolCategories
               + ") on element of CharacterCapabilitiesMessage.guildEmblemSymbolCategories.");

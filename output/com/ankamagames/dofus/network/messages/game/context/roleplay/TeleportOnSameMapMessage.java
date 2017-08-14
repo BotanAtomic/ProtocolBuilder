@@ -18,11 +18,11 @@ public class TeleportOnSameMapMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.targetId + ") on element targetId.");
+      throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
     }
     param1.writeDouble(this.targetId);
     if (this.cellId < 0 || this.cellId > 559) {
-      throw new Error("Forbidden value (" + this.cellId + ") on element cellId.");
+      throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
     }
     param1.writeVarShort(this.cellId);
   }
@@ -30,7 +30,7 @@ public class TeleportOnSameMapMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.targetId = param1.readDouble();
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.targetId
               + ") on element of AbstractFightDispellableEffect.targetId.");
@@ -38,7 +38,7 @@ public class TeleportOnSameMapMessage extends NetworkMessage implements INetwork
 
     this.cellId = param1.readVarUhShort();
     if (this.cellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.cellId
               + ") on element of HavenBagFurnitureInformation.cellId.");

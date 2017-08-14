@@ -18,11 +18,12 @@ public class GuildFightLeaveRequestMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.taxCollectorId < 0) {
-      throw new Error("Forbidden value (" + this.taxCollectorId + ") on element taxCollectorId.");
+      throw new Exception(
+          "Forbidden value (" + this.taxCollectorId + ") on element taxCollectorId.");
     }
     param1.writeInt(this.taxCollectorId);
     if (this.characterId < 0 || this.characterId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.characterId + ") on element characterId.");
+      throw new Exception("Forbidden value (" + this.characterId + ") on element characterId.");
     }
     param1.writeVarLong(this.characterId);
   }
@@ -32,7 +33,7 @@ public class GuildFightLeaveRequestMessage extends NetworkMessage implements INe
 
     this.characterId = param1.readVarUhLong();
     if (this.characterId < 0 || this.characterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.characterId
               + ") on element of StartupActionsObjetAttributionMessage.characterId.");

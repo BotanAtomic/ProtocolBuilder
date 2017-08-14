@@ -18,7 +18,7 @@ public class BasicStatMessage extends NetworkMessage implements INetworkMessage 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.timeSpent < 0 || this.timeSpent > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.timeSpent + ") on element timeSpent.");
+      throw new Exception("Forbidden value (" + this.timeSpent + ") on element timeSpent.");
     }
     param1.writeDouble(this.timeSpent);
     param1.writeVarShort(this.statId);
@@ -27,13 +27,13 @@ public class BasicStatMessage extends NetworkMessage implements INetworkMessage 
   public void deserialize(ICustomDataInput param1) {
     this.timeSpent = param1.readDouble();
     if (this.timeSpent < 0 || this.timeSpent > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.timeSpent + ") on element of BasicStatMessage.timeSpent.");
     }
 
     this.statId = param1.readByte();
     if (this.statId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.statId + ") on element of StatsUpgradeRequestMessage.statId.");
     }
   }

@@ -167,58 +167,59 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
   public void serialize(ICustomDataOutput param1) {
     if (this.experience < 0 || this.experience > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.experience + ") on element experience.");
+      throw new Exception("Forbidden value (" + this.experience + ") on element experience.");
     }
     param1.writeVarLong(this.experience);
     if (this.experienceLevelFloor < 0 || this.experienceLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experienceLevelFloor + ") on element experienceLevelFloor.");
     }
     param1.writeVarLong(this.experienceLevelFloor);
     if (this.experienceNextLevelFloor < 0 || this.experienceNextLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceNextLevelFloor
               + ") on element experienceNextLevelFloor.");
     }
     param1.writeVarLong(this.experienceNextLevelFloor);
     if (this.experienceBonusLimit < 0 || this.experienceBonusLimit > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experienceBonusLimit + ") on element experienceBonusLimit.");
     }
     param1.writeVarLong(this.experienceBonusLimit);
     if (this.kamas < 0 || this.kamas > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.kamas + ") on element kamas.");
+      throw new Exception("Forbidden value (" + this.kamas + ") on element kamas.");
     }
     param1.writeVarLong(this.kamas);
     if (this.statsPoints < 0) {
-      throw new Error("Forbidden value (" + this.statsPoints + ") on element statsPoints.");
+      throw new Exception("Forbidden value (" + this.statsPoints + ") on element statsPoints.");
     }
     param1.writeVarShort(this.statsPoints);
     if (this.additionnalPoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.additionnalPoints + ") on element additionnalPoints.");
     }
     param1.writeVarShort(this.additionnalPoints);
     if (this.spellsPoints < 0) {
-      throw new Error("Forbidden value (" + this.spellsPoints + ") on element spellsPoints.");
+      throw new Exception("Forbidden value (" + this.spellsPoints + ") on element spellsPoints.");
     }
     param1.writeVarShort(this.spellsPoints);
     this.alignmentInfos.serializeAs_ActorExtendedAlignmentInformations(param1);
     if (this.lifePoints < 0) {
-      throw new Error("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+      throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
     }
     param1.writeVarInt(this.lifePoints);
     if (this.maxLifePoints < 0) {
-      throw new Error("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+      throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
     }
     param1.writeVarInt(this.maxLifePoints);
     if (this.energyPoints < 0) {
-      throw new Error("Forbidden value (" + this.energyPoints + ") on element energyPoints.");
+      throw new Exception("Forbidden value (" + this.energyPoints + ") on element energyPoints.");
     }
     param1.writeVarShort(this.energyPoints);
     if (this.maxEnergyPoints < 0) {
-      throw new Error("Forbidden value (" + this.maxEnergyPoints + ") on element maxEnergyPoints.");
+      throw new Exception(
+          "Forbidden value (" + this.maxEnergyPoints + ") on element maxEnergyPoints.");
     }
     param1.writeVarShort(this.maxEnergyPoints);
     param1.writeVarShort(this.actionPointsCurrent);
@@ -238,7 +239,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     this.reflect.serializeAs_CharacterBaseCharacteristic(param1);
     this.criticalHit.serializeAs_CharacterBaseCharacteristic(param1);
     if (this.criticalHitWeapon < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.criticalHitWeapon + ") on element criticalHitWeapon.");
     }
     param1.writeVarShort(this.criticalHitWeapon);
@@ -302,7 +303,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
       _loc2_++;
     }
     if (this.probationTime < 0) {
-      throw new Error("Forbidden value (" + this.probationTime + ") on element probationTime.");
+      throw new Exception("Forbidden value (" + this.probationTime + ") on element probationTime.");
     }
     param1.writeInt(this.probationTime);
   }
@@ -311,13 +312,13 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     CharacterSpellModification _loc4_ = null;
     this.experience = param1.readVarUhLong();
     if (this.experience < 0 || this.experience > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experience + ") on element of MountClientData.experience.");
     }
 
     this.experienceLevelFloor = param1.readVarUhLong();
     if (this.experienceLevelFloor < 0 || this.experienceLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceLevelFloor
               + ") on element of FightResultExperienceData.experienceLevelFloor.");
@@ -325,7 +326,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
     this.experienceNextLevelFloor = param1.readVarUhLong();
     if (this.experienceNextLevelFloor < 0 || this.experienceNextLevelFloor > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceNextLevelFloor
               + ") on element of FightResultExperienceData.experienceNextLevelFloor.");
@@ -333,7 +334,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
     this.experienceBonusLimit = param1.readVarUhLong();
     if (this.experienceBonusLimit < 0 || this.experienceBonusLimit > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceBonusLimit
               + ") on element of CharacterCharacteristicsInformations.experienceBonusLimit.");
@@ -341,13 +342,13 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
     this.kamas = param1.readVarUhLong();
     if (this.kamas < 0 || this.kamas > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.kamas + ") on element of TaxCollectorLootInformations.kamas.");
     }
 
     this.statsPoints = param1.readVarUhShort();
     if (this.statsPoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.statsPoints
               + ") on element of CharacterCharacteristicsInformations.statsPoints.");
@@ -355,7 +356,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
     this.additionnalPoints = param1.readVarUhShort();
     if (this.additionnalPoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.additionnalPoints
               + ") on element of CharacterCharacteristicsInformations.additionnalPoints.");
@@ -363,7 +364,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
     this.spellsPoints = param1.readVarUhShort();
     if (this.spellsPoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.spellsPoints
               + ") on element of CharacterCharacteristicsInformations.spellsPoints.");
@@ -373,7 +374,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     this.alignmentInfos.deserialize(param1);
     this.lifePoints = param1.readVarUhInt();
     if (this.lifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lifePoints
               + ") on element of PartyMemberInformations.lifePoints.");
@@ -381,7 +382,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
     this.maxLifePoints = param1.readVarUhInt();
     if (this.maxLifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxLifePoints
               + ") on element of PartyMemberInformations.maxLifePoints.");
@@ -389,7 +390,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
     this.energyPoints = param1.readVarUhShort();
     if (this.energyPoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.energyPoints
               + ") on element of CharacterCharacteristicsInformations.energyPoints.");
@@ -397,7 +398,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
 
     this.maxEnergyPoints = param1.readVarUhShort();
     if (this.maxEnergyPoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxEnergyPoints
               + ") on element of CharacterCharacteristicsInformations.maxEnergyPoints.");
@@ -437,7 +438,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     this.criticalHit.deserialize(param1);
     this.criticalHitWeapon = param1.readVarUhShort();
     if (this.criticalHitWeapon < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.criticalHitWeapon
               + ") on element of CharacterCharacteristicsInformations.criticalHitWeapon.");
@@ -559,7 +560,7 @@ public class CharacterCharacteristicsInformations extends Object implements INet
     }
     this.probationTime = param1.readInt();
     if (this.probationTime < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.probationTime
               + ") on element of CharacterCharacteristicsInformations.probationTime.");

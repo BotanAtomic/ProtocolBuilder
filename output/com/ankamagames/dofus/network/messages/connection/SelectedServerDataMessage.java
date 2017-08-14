@@ -22,12 +22,12 @@ public class SelectedServerDataMessage extends NetworkMessage implements INetwor
 
   public void serialize(ICustomDataOutput param1) {
     if (this.serverId < 0) {
-      throw new Error("Forbidden value (" + this.serverId + ") on element serverId.");
+      throw new Exception("Forbidden value (" + this.serverId + ") on element serverId.");
     }
     param1.writeVarShort(this.serverId);
     param1.writeUTF(this.address);
     if (this.port < 0 || this.port > 65535) {
-      throw new Error("Forbidden value (" + this.port + ") on element port.");
+      throw new Exception("Forbidden value (" + this.port + ") on element port.");
     }
     param1.writeShort(this.port);
     param1.writeBoolean(this.canCreateNewCharacter);
@@ -47,7 +47,7 @@ public class SelectedServerDataMessage extends NetworkMessage implements INetwor
 
     this.port = param1.readUnsignedShort();
     if (this.port < 0 || this.port > 65535) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.port + ") on element of SelectedServerDataMessage.port.");
     }
 

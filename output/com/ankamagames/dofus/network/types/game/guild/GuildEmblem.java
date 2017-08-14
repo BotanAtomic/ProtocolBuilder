@@ -16,12 +16,13 @@ public class GuildEmblem extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.symbolShape < 0) {
-      throw new Error("Forbidden value (" + this.symbolShape + ") on element symbolShape.");
+      throw new Exception("Forbidden value (" + this.symbolShape + ") on element symbolShape.");
     }
     param1.writeVarShort(this.symbolShape);
     param1.writeInt(this.symbolColor);
     if (this.backgroundShape < 0) {
-      throw new Error("Forbidden value (" + this.backgroundShape + ") on element backgroundShape.");
+      throw new Exception(
+          "Forbidden value (" + this.backgroundShape + ") on element backgroundShape.");
     }
     param1.writeByte(this.backgroundShape);
     param1.writeInt(this.backgroundColor);
@@ -30,7 +31,7 @@ public class GuildEmblem extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.symbolShape = param1.readVarUhShort();
     if (this.symbolShape < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.symbolShape + ") on element of GuildEmblem.symbolShape.");
     }
 
@@ -38,7 +39,7 @@ public class GuildEmblem extends Object implements INetworkType {
 
     this.backgroundShape = param1.readByte();
     if (this.backgroundShape < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.backgroundShape
               + ") on element of GuildEmblem.backgroundShape.");

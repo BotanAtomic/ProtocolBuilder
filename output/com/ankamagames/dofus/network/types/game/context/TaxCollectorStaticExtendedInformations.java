@@ -17,11 +17,11 @@ public class TaxCollectorStaticExtendedInformations extends TaxCollectorStaticIn
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.firstNameId < 0) {
-      throw new Error("Forbidden value (" + this.firstNameId + ") on element firstNameId.");
+      throw new Exception("Forbidden value (" + this.firstNameId + ") on element firstNameId.");
     }
     param1.writeVarShort(this.firstNameId);
     if (this.lastNameId < 0) {
-      throw new Error("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
+      throw new Exception("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
     }
     param1.writeVarShort(this.lastNameId);
     this.guildIdentity.serializeAs_GuildInformations(param1);
@@ -35,13 +35,13 @@ public class TaxCollectorStaticExtendedInformations extends TaxCollectorStaticIn
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

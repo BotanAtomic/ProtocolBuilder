@@ -22,12 +22,12 @@ public class ContactLookMessage extends NetworkMessage implements INetworkMessag
 
   public void serialize(ICustomDataOutput param1) {
     if (this.requestId < 0) {
-      throw new Error("Forbidden value (" + this.requestId + ") on element requestId.");
+      throw new Exception("Forbidden value (" + this.requestId + ") on element requestId.");
     }
     param1.writeVarInt(this.requestId);
     param1.writeUTF(this.playerName);
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
     this.look.serializeAs_EntityLook(param1);
@@ -36,7 +36,7 @@ public class ContactLookMessage extends NetworkMessage implements INetworkMessag
   public void deserialize(ICustomDataInput param1) {
     this.requestId = param1.readUnsignedByte();
     if (this.requestId < 0 || this.requestId > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.requestId
               + ") on element of ContactLookRequestMessage.requestId.");
@@ -46,7 +46,7 @@ public class ContactLookMessage extends NetworkMessage implements INetworkMessag
 
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
 

@@ -20,11 +20,11 @@ public class ExchangeBidPriceForSellerMessage extends ExchangeBidPriceMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.genericId < 0) {
-      throw new Error("Forbidden value (" + this.genericId + ") on element genericId.");
+      throw new Exception("Forbidden value (" + this.genericId + ") on element genericId.");
     }
     param1.writeVarShort(this.genericId);
     if (this.averagePrice < -9.007199254740992E15 || this.averagePrice > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.averagePrice + ") on element averagePrice.");
+      throw new Exception("Forbidden value (" + this.averagePrice + ") on element averagePrice.");
     }
     param1.writeVarLong(this.averagePrice);
 
@@ -33,7 +33,7 @@ public class ExchangeBidPriceForSellerMessage extends ExchangeBidPriceMessage
     int _loc2_ = 0;
     while (_loc2_ < this.minimalPrices.length) {
       if (this.minimalPrices[_loc2_] < 0 || this.minimalPrices[_loc2_] > 9.007199254740992E15) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.minimalPrices[_loc2_]
                 + ") on element 2 (starting at 1) of minimalPrices.");
@@ -50,13 +50,13 @@ public class ExchangeBidPriceForSellerMessage extends ExchangeBidPriceMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -69,7 +69,7 @@ public class ExchangeBidPriceForSellerMessage extends ExchangeBidPriceMessage
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readVarUhLong();
       if (_loc4_ < 0 || _loc4_ > 9.007199254740992E15) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of minimalPrices.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of minimalPrices.");
       }
       this.minimalPrices.push(_loc4_);
       _loc3_++;

@@ -25,17 +25,18 @@ public class PartyMemberInFightMessage extends AbstractPartyMessage implements I
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
     param1.writeByte(this.reason);
     if (this.memberId < 0 || this.memberId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.memberId + ") on element memberId.");
+      throw new Exception("Forbidden value (" + this.memberId + ") on element memberId.");
     }
     param1.writeVarLong(this.memberId);
     if (this.memberAccountId < 0) {
-      throw new Error("Forbidden value (" + this.memberAccountId + ") on element memberAccountId.");
+      throw new Exception(
+          "Forbidden value (" + this.memberAccountId + ") on element memberAccountId.");
     }
     param1.writeInt(this.memberAccountId);
     param1.writeUTF(this.memberName);
@@ -50,13 +51,13 @@ public class PartyMemberInFightMessage extends AbstractPartyMessage implements I
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -64,7 +65,7 @@ public class PartyMemberInFightMessage extends AbstractPartyMessage implements I
 
     this.reason = param1.readByte();
     if (this.reason < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.reason
               + ") on element of KrosmasterInventoryErrorMessage.reason.");
@@ -72,13 +73,13 @@ public class PartyMemberInFightMessage extends AbstractPartyMessage implements I
 
     this.memberId = param1.readInt();
     if (this.memberId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.memberId + ") on element of PartyMemberGeoPosition.memberId.");
     }
 
     this.memberAccountId = param1.readInt();
     if (this.memberAccountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.memberAccountId
               + ") on element of PartyMemberInFightMessage.memberAccountId.");

@@ -14,12 +14,12 @@ public class SkillActionDescriptionCraft extends SkillActionDescription implemen
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarShort(this.skillId);
 
     if (this.probability < 0) {
-      throw new Error("Forbidden value (" + this.probability + ") on element probability.");
+      throw new Exception("Forbidden value (" + this.probability + ") on element probability.");
     }
     param1.writeByte(this.probability);
   }
@@ -30,13 +30,13 @@ public class SkillActionDescriptionCraft extends SkillActionDescription implemen
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -44,7 +44,7 @@ public class SkillActionDescriptionCraft extends SkillActionDescription implemen
 
     this.probability = param1.readByte();
     if (this.probability < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.probability
               + ") on element of SkillActionDescriptionCraft.probability.");

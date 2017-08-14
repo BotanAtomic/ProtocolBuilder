@@ -18,7 +18,7 @@ public class ChallengeResultMessage extends NetworkMessage implements INetworkMe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.challengeId < 0) {
-      throw new Error("Forbidden value (" + this.challengeId + ") on element challengeId.");
+      throw new Exception("Forbidden value (" + this.challengeId + ") on element challengeId.");
     }
     param1.writeVarShort(this.challengeId);
     param1.writeBoolean(this.success);
@@ -27,7 +27,7 @@ public class ChallengeResultMessage extends NetworkMessage implements INetworkMe
   public void deserialize(ICustomDataInput param1) {
     this.challengeId = param1.readVarUhShort();
     if (this.challengeId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.challengeId
               + ") on element of ChallengeTargetUpdateMessage.challengeId.");

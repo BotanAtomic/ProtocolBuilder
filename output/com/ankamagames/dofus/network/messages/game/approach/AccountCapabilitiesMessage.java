@@ -27,15 +27,16 @@ public class AccountCapabilitiesMessage extends NetworkMessage implements INetwo
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 1, this.canCreateNewCharacter);
     param1.writeByte(_loc2_);
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
     if (this.breedsVisible < 0) {
-      throw new Error("Forbidden value (" + this.breedsVisible + ") on element breedsVisible.");
+      throw new Exception("Forbidden value (" + this.breedsVisible + ") on element breedsVisible.");
     }
     param1.writeVarInt(this.breedsVisible);
     if (this.breedsAvailable < 0) {
-      throw new Error("Forbidden value (" + this.breedsAvailable + ") on element breedsAvailable.");
+      throw new Exception(
+          "Forbidden value (" + this.breedsAvailable + ") on element breedsAvailable.");
     }
     param1.writeVarInt(this.breedsAvailable);
     param1.writeByte(this.status);
@@ -51,13 +52,13 @@ public class AccountCapabilitiesMessage extends NetworkMessage implements INetwo
 
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
 
     this.breedsVisible = param1.readVarUhInt();
     if (this.breedsVisible < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.breedsVisible
               + ") on element of AccountCapabilitiesMessage.breedsVisible.");
@@ -65,7 +66,7 @@ public class AccountCapabilitiesMessage extends NetworkMessage implements INetwo
 
     this.breedsAvailable = param1.readVarUhInt();
     if (this.breedsAvailable < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.breedsAvailable
               + ") on element of AccountCapabilitiesMessage.breedsAvailable.");
@@ -73,7 +74,7 @@ public class AccountCapabilitiesMessage extends NetworkMessage implements INetwo
 
     this.status = param1.readByte();
     if (this.status < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.status + ") on element of GameServerInformations.status.");
     }
   }

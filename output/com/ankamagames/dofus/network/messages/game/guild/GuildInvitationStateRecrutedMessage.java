@@ -22,7 +22,7 @@ public class GuildInvitationStateRecrutedMessage extends NetworkMessage implemen
   public void deserialize(ICustomDataInput param1) {
     this.invitationState = param1.readByte();
     if (this.invitationState < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.invitationState
               + ") on element of GuildInvitationStateRecruterMessage.invitationState.");

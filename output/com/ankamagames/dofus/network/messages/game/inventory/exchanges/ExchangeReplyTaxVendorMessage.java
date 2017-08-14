@@ -18,11 +18,11 @@ public class ExchangeReplyTaxVendorMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objectValue < 0 || this.objectValue > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.objectValue + ") on element objectValue.");
+      throw new Exception("Forbidden value (" + this.objectValue + ") on element objectValue.");
     }
     param1.writeVarLong(this.objectValue);
     if (this.totalTaxValue < 0 || this.totalTaxValue > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.totalTaxValue + ") on element totalTaxValue.");
+      throw new Exception("Forbidden value (" + this.totalTaxValue + ") on element totalTaxValue.");
     }
     param1.writeVarLong(this.totalTaxValue);
   }
@@ -30,7 +30,7 @@ public class ExchangeReplyTaxVendorMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.objectValue = param1.readVarUhLong();
     if (this.objectValue < 0 || this.objectValue > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectValue
               + ") on element of ExchangeReplyTaxVendorMessage.objectValue.");
@@ -38,7 +38,7 @@ public class ExchangeReplyTaxVendorMessage extends NetworkMessage implements INe
 
     this.totalTaxValue = param1.readVarUhLong();
     if (this.totalTaxValue < 0 || this.totalTaxValue > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.totalTaxValue
               + ") on element of ExchangeReplyTaxVendorMessage.totalTaxValue.");

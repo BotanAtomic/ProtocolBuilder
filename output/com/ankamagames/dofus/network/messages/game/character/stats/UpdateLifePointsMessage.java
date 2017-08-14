@@ -18,11 +18,11 @@ public class UpdateLifePointsMessage extends NetworkMessage implements INetworkM
 
   public void serialize(ICustomDataOutput param1) {
     if (this.lifePoints < 0) {
-      throw new Error("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+      throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
     }
     param1.writeVarInt(this.lifePoints);
     if (this.maxLifePoints < 0) {
-      throw new Error("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+      throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
     }
     param1.writeVarInt(this.maxLifePoints);
   }
@@ -30,7 +30,7 @@ public class UpdateLifePointsMessage extends NetworkMessage implements INetworkM
   public void deserialize(ICustomDataInput param1) {
     this.lifePoints = param1.readVarUhInt();
     if (this.lifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lifePoints
               + ") on element of PartyMemberInformations.lifePoints.");
@@ -38,7 +38,7 @@ public class UpdateLifePointsMessage extends NetworkMessage implements INetworkM
 
     this.maxLifePoints = param1.readVarUhInt();
     if (this.maxLifePoints < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxLifePoints
               + ") on element of PartyMemberInformations.maxLifePoints.");

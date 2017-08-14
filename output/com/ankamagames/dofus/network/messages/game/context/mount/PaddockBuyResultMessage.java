@@ -21,7 +21,7 @@ public class PaddockBuyResultMessage extends NetworkMessage implements INetworkM
     param1.writeInt(this.paddockId);
     param1.writeBoolean(this.bought);
     if (this.realPrice < 0 || this.realPrice > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.realPrice + ") on element realPrice.");
+      throw new Exception("Forbidden value (" + this.realPrice + ") on element realPrice.");
     }
     param1.writeVarLong(this.realPrice);
   }
@@ -33,7 +33,7 @@ public class PaddockBuyResultMessage extends NetworkMessage implements INetworkM
 
     this.realPrice = param1.readVarUhLong();
     if (this.realPrice < 0 || this.realPrice > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.realPrice
               + ") on element of HouseSellingUpdateMessage.realPrice.");

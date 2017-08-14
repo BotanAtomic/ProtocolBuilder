@@ -16,18 +16,18 @@ public class IdolsPreset extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
     if (this.symbolId < 0) {
-      throw new Error("Forbidden value (" + this.symbolId + ") on element symbolId.");
+      throw new Exception("Forbidden value (" + this.symbolId + ") on element symbolId.");
     }
     param1.writeByte(this.symbolId);
     param1.writeShort(this.idolId.length);
     int _loc2_ = 0;
     while (_loc2_ < this.idolId.length) {
       if (this.idolId[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.idolId[_loc2_]
                 + ") on element 3 (starting at 1) of idolId.");
@@ -41,13 +41,13 @@ public class IdolsPreset extends Object implements INetworkType {
     int _loc4_ = 0;
     this.presetId = param1.readByte();
     if (this.presetId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
     }
 
     this.symbolId = param1.readByte();
     if (this.symbolId < 0) {
-      throw new Error("Forbidden value (" + this.symbolId + ") on element of Preset.symbolId.");
+      throw new Exception("Forbidden value (" + this.symbolId + ") on element of Preset.symbolId.");
     }
 
     int _loc2_ = param1.readUnsignedShort();
@@ -55,7 +55,7 @@ public class IdolsPreset extends Object implements INetworkType {
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readVarUhShort();
       if (_loc4_ < 0) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of idolId.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of idolId.");
       }
       this.idolId.push(_loc4_);
       _loc3_++;

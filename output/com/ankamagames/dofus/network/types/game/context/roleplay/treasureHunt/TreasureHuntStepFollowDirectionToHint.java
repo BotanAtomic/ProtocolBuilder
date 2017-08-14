@@ -18,7 +18,7 @@ public class TreasureHuntStepFollowDirectionToHint extends TreasureHuntStep
 
     param1.writeByte(this.direction);
     if (this.npcId < 0) {
-      throw new Error("Forbidden value (" + this.npcId + ") on element npcId.");
+      throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
     }
     param1.writeVarShort(this.npcId);
   }
@@ -29,13 +29,13 @@ public class TreasureHuntStepFollowDirectionToHint extends TreasureHuntStep
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -43,7 +43,7 @@ public class TreasureHuntStepFollowDirectionToHint extends TreasureHuntStep
 
     this.direction = param1.readByte();
     if (this.direction < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.direction
               + ") on element of TreasureHuntStepFollowDirectionToPOI.direction.");
@@ -51,7 +51,7 @@ public class TreasureHuntStepFollowDirectionToHint extends TreasureHuntStep
 
     this.npcId = param1.readVarUhShort();
     if (this.npcId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.npcId
               + ") on element of TreasureHuntStepFollowDirectionToHint.npcId.");

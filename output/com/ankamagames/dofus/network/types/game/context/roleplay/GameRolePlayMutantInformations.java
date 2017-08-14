@@ -18,7 +18,7 @@ public class GameRolePlayMutantInformations extends GameRolePlayHumanoidInformat
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -30,12 +30,12 @@ public class GameRolePlayMutantInformations extends GameRolePlayHumanoidInformat
     param1.writeShort(this.humanoidInfo.getTypeId());
     this.humanoidInfo.serialize(param1);
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
 
     if (this.monsterId < 0) {
-      throw new Error("Forbidden value (" + this.monsterId + ") on element monsterId.");
+      throw new Exception("Forbidden value (" + this.monsterId + ") on element monsterId.");
     }
     param1.writeVarShort(this.monsterId);
     param1.writeByte(this.powerLevel);
@@ -47,13 +47,13 @@ public class GameRolePlayMutantInformations extends GameRolePlayHumanoidInformat
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -61,7 +61,7 @@ public class GameRolePlayMutantInformations extends GameRolePlayHumanoidInformat
 
     this.monsterId = param1.readVarUhShort();
     if (this.monsterId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.monsterId + ") on element of DareReward.monsterId.");
     }
 

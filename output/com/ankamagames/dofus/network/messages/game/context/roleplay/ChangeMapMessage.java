@@ -17,7 +17,7 @@ public class ChangeMapMessage extends NetworkMessage implements INetworkMessage 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.mapId < 0) {
-      throw new Error("Forbidden value (" + this.mapId + ") on element mapId.");
+      throw new Exception("Forbidden value (" + this.mapId + ") on element mapId.");
     }
     param1.writeInt(this.mapId);
   }

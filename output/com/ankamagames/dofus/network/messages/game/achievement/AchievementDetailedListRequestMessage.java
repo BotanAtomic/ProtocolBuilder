@@ -18,7 +18,7 @@ public class AchievementDetailedListRequestMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.categoryId < 0) {
-      throw new Error("Forbidden value (" + this.categoryId + ") on element categoryId.");
+      throw new Exception("Forbidden value (" + this.categoryId + ") on element categoryId.");
     }
     param1.writeVarShort(this.categoryId);
   }
@@ -26,7 +26,7 @@ public class AchievementDetailedListRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.categoryId = param1.readVarUhShort();
     if (this.categoryId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.categoryId
               + ") on element of AchievementDetailedListRequestMessage.categoryId.");

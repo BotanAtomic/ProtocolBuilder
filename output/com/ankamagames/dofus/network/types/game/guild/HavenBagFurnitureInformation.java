@@ -15,12 +15,12 @@ public class HavenBagFurnitureInformation extends Object implements INetworkType
 
   public void serialize(ICustomDataOutput param1) {
     if (this.cellId < 0) {
-      throw new Error("Forbidden value (" + this.cellId + ") on element cellId.");
+      throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
     }
     param1.writeVarShort(this.cellId);
     param1.writeInt(this.funitureId);
     if (this.orientation < 0) {
-      throw new Error("Forbidden value (" + this.orientation + ") on element orientation.");
+      throw new Exception("Forbidden value (" + this.orientation + ") on element orientation.");
     }
     param1.writeByte(this.orientation);
   }
@@ -28,7 +28,7 @@ public class HavenBagFurnitureInformation extends Object implements INetworkType
   public void deserialize(ICustomDataInput param1) {
     this.cellId = param1.readVarUhShort();
     if (this.cellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.cellId
               + ") on element of HavenBagFurnitureInformation.cellId.");
@@ -38,7 +38,7 @@ public class HavenBagFurnitureInformation extends Object implements INetworkType
 
     this.orientation = param1.readByte();
     if (this.orientation < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.orientation
               + ") on element of HavenBagFurnitureInformation.orientation.");

@@ -22,7 +22,7 @@ public class GuildCharacsUpgradeRequestMessage extends NetworkMessage implements
   public void deserialize(ICustomDataInput param1) {
     this.charaTypeTarget = param1.readByte();
     if (this.charaTypeTarget < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.charaTypeTarget
               + ") on element of GuildCharacsUpgradeRequestMessage.charaTypeTarget.");

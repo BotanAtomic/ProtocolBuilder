@@ -17,7 +17,7 @@ public class ExchangeCraftPaymentModifiedMessage extends NetworkMessage implemen
 
   public void serialize(ICustomDataOutput param1) {
     if (this.goldSum < 0 || this.goldSum > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.goldSum + ") on element goldSum.");
+      throw new Exception("Forbidden value (" + this.goldSum + ") on element goldSum.");
     }
     param1.writeVarLong(this.goldSum);
   }
@@ -25,7 +25,7 @@ public class ExchangeCraftPaymentModifiedMessage extends NetworkMessage implemen
   public void deserialize(ICustomDataInput param1) {
     this.goldSum = param1.readVarUhLong();
     if (this.goldSum < 0 || this.goldSum > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.goldSum
               + ") on element of ExchangeCraftPaymentModifiedMessage.goldSum.");

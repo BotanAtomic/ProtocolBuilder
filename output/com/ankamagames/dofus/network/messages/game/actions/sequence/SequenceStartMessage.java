@@ -19,7 +19,7 @@ public class SequenceStartMessage extends NetworkMessage implements INetworkMess
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.sequenceType);
     if (this.authorId < -9.007199254740992E15 || this.authorId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.authorId + ") on element authorId.");
+      throw new Exception("Forbidden value (" + this.authorId + ") on element authorId.");
     }
     param1.writeDouble(this.authorId);
   }
@@ -29,7 +29,7 @@ public class SequenceStartMessage extends NetworkMessage implements INetworkMess
 
     this.authorId = param1.readDouble();
     if (this.authorId < -9.007199254740992E15 || this.authorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.authorId + ") on element of SequenceStartMessage.authorId.");
     }
   }

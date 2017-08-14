@@ -21,19 +21,19 @@ public class SymbioticObjectAssociateRequestMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.symbioteUID < 0) {
-      throw new Error("Forbidden value (" + this.symbioteUID + ") on element symbioteUID.");
+      throw new Exception("Forbidden value (" + this.symbioteUID + ") on element symbioteUID.");
     }
     param1.writeVarInt(this.symbioteUID);
     if (this.symbiotePos < 0 || this.symbiotePos > 255) {
-      throw new Error("Forbidden value (" + this.symbiotePos + ") on element symbiotePos.");
+      throw new Exception("Forbidden value (" + this.symbiotePos + ") on element symbiotePos.");
     }
     param1.writeByte(this.symbiotePos);
     if (this.hostUID < 0) {
-      throw new Error("Forbidden value (" + this.hostUID + ") on element hostUID.");
+      throw new Exception("Forbidden value (" + this.hostUID + ") on element hostUID.");
     }
     param1.writeVarInt(this.hostUID);
     if (this.hostPos < 0 || this.hostPos > 255) {
-      throw new Error("Forbidden value (" + this.hostPos + ") on element hostPos.");
+      throw new Exception("Forbidden value (" + this.hostPos + ") on element hostPos.");
     }
     param1.writeByte(this.hostPos);
   }
@@ -41,7 +41,7 @@ public class SymbioticObjectAssociateRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.symbioteUID = param1.readVarUhInt();
     if (this.symbioteUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.symbioteUID
               + ") on element of SymbioticObjectAssociateRequestMessage.symbioteUID.");
@@ -49,7 +49,7 @@ public class SymbioticObjectAssociateRequestMessage extends NetworkMessage
 
     this.symbiotePos = param1.readUnsignedByte();
     if (this.symbiotePos < 0 || this.symbiotePos > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.symbiotePos
               + ") on element of SymbioticObjectAssociateRequestMessage.symbiotePos.");
@@ -57,7 +57,7 @@ public class SymbioticObjectAssociateRequestMessage extends NetworkMessage
 
     this.hostUID = param1.readVarUhInt();
     if (this.hostUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.hostUID
               + ") on element of WrapperObjectDissociateRequestMessage.hostUID.");
@@ -65,7 +65,7 @@ public class SymbioticObjectAssociateRequestMessage extends NetworkMessage
 
     this.hostPos = param1.readUnsignedByte();
     if (this.hostPos < 0 || this.hostPos > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.hostPos
               + ") on element of WrapperObjectDissociateRequestMessage.hostPos.");

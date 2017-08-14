@@ -17,7 +17,7 @@ public class AllianceFactsErrorMessage extends NetworkMessage implements INetwor
 
   public void serialize(ICustomDataOutput param1) {
     if (this.allianceId < 0) {
-      throw new Error("Forbidden value (" + this.allianceId + ") on element allianceId.");
+      throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
     }
     param1.writeVarInt(this.allianceId);
   }
@@ -25,7 +25,7 @@ public class AllianceFactsErrorMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.allianceId = param1.readVarUhInt();
     if (this.allianceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.allianceId
               + ") on element of GuildInAllianceVersatileInformations.allianceId.");

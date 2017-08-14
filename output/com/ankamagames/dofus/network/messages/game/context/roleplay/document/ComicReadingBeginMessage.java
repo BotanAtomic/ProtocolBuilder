@@ -17,7 +17,7 @@ public class ComicReadingBeginMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.comicId < 0) {
-      throw new Error("Forbidden value (" + this.comicId + ") on element comicId.");
+      throw new Exception("Forbidden value (" + this.comicId + ") on element comicId.");
     }
     param1.writeVarShort(this.comicId);
   }
@@ -25,7 +25,7 @@ public class ComicReadingBeginMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.comicId = param1.readVarUhShort();
     if (this.comicId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.comicId + ") on element of ComicReadingBeginMessage.comicId.");
     }
   }

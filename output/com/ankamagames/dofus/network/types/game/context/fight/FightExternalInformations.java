@@ -24,7 +24,7 @@ public class FightExternalInformations extends Object implements INetworkType {
     param1.writeInt(this.fightId);
     param1.writeByte(this.fightType);
     if (this.fightStart < 0) {
-      throw new Error("Forbidden value (" + this.fightStart + ") on element fightStart.");
+      throw new Exception("Forbidden value (" + this.fightStart + ") on element fightStart.");
     }
     param1.writeInt(this.fightStart);
     param1.writeBoolean(this.fightSpectatorLocked);
@@ -45,7 +45,7 @@ public class FightExternalInformations extends Object implements INetworkType {
 
     this.fightType = param1.readByte();
     if (this.fightType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.fightType
               + ") on element of FightExternalInformations.fightType.");
@@ -53,7 +53,7 @@ public class FightExternalInformations extends Object implements INetworkType {
 
     this.fightStart = param1.readInt();
     if (this.fightStart < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.fightStart
               + ") on element of FightExternalInformations.fightStart.");

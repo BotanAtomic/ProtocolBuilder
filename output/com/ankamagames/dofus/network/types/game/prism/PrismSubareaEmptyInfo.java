@@ -14,11 +14,11 @@ public class PrismSubareaEmptyInfo extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     if (this.allianceId < 0) {
-      throw new Error("Forbidden value (" + this.allianceId + ") on element allianceId.");
+      throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
     }
     param1.writeVarInt(this.allianceId);
   }
@@ -26,7 +26,7 @@ public class PrismSubareaEmptyInfo extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");
@@ -34,7 +34,7 @@ public class PrismSubareaEmptyInfo extends Object implements INetworkType {
 
     this.allianceId = param1.readVarUhInt();
     if (this.allianceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.allianceId
               + ") on element of GuildInAllianceVersatileInformations.allianceId.");

@@ -22,7 +22,7 @@ public class CurrentServerStatusUpdateMessage extends NetworkMessage implements 
   public void deserialize(ICustomDataInput param1) {
     this.status = param1.readByte();
     if (this.status < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.status + ") on element of GameServerInformations.status.");
     }
   }

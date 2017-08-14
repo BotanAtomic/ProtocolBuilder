@@ -15,24 +15,24 @@ public class GuildInAllianceVersatileInformations extends GuildVersatileInformat
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.guildId < 0) {
-      throw new Error("Forbidden value (" + this.guildId + ") on element guildId.");
+      throw new Exception("Forbidden value (" + this.guildId + ") on element guildId.");
     }
     param1.writeVarInt(this.guildId);
     if (this.leaderId < 0 || this.leaderId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.leaderId + ") on element leaderId.");
+      throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
     }
     param1.writeVarLong(this.leaderId);
     if (this.guildLevel < 1 || this.guildLevel > 200) {
-      throw new Error("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
+      throw new Exception("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
     }
     param1.writeByte(this.guildLevel);
     if (this.nbMembers < 1 || this.nbMembers > 240) {
-      throw new Error("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
+      throw new Exception("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
     }
     param1.writeByte(this.nbMembers);
 
     if (this.allianceId < 0) {
-      throw new Error("Forbidden value (" + this.allianceId + ") on element allianceId.");
+      throw new Exception("Forbidden value (" + this.allianceId + ") on element allianceId.");
     }
     param1.writeVarInt(this.allianceId);
   }
@@ -43,13 +43,13 @@ public class GuildInAllianceVersatileInformations extends GuildVersatileInformat
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -57,7 +57,7 @@ public class GuildInAllianceVersatileInformations extends GuildVersatileInformat
 
     this.allianceId = param1.readVarUhInt();
     if (this.allianceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.allianceId
               + ") on element of GuildInAllianceVersatileInformations.allianceId.");

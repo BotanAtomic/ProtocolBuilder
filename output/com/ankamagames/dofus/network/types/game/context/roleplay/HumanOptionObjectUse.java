@@ -18,11 +18,11 @@ public class HumanOptionObjectUse extends HumanOption implements INetworkType {
 
     param1.writeByte(this.delayTypeId);
     if (this.delayEndTime < 0 || this.delayEndTime > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.delayEndTime + ") on element delayEndTime.");
+      throw new Exception("Forbidden value (" + this.delayEndTime + ") on element delayEndTime.");
     }
     param1.writeDouble(this.delayEndTime);
     if (this.objectGID < 0) {
-      throw new Error("Forbidden value (" + this.objectGID + ") on element objectGID.");
+      throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
     }
     param1.writeVarShort(this.objectGID);
   }
@@ -33,13 +33,13 @@ public class HumanOptionObjectUse extends HumanOption implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -47,7 +47,7 @@ public class HumanOptionObjectUse extends HumanOption implements INetworkType {
 
     this.delayTypeId = param1.readByte();
     if (this.delayTypeId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.delayTypeId
               + ") on element of HumanOptionObjectUse.delayTypeId.");
@@ -55,7 +55,7 @@ public class HumanOptionObjectUse extends HumanOption implements INetworkType {
 
     this.delayEndTime = param1.readDouble();
     if (this.delayEndTime < 0 || this.delayEndTime > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.delayEndTime
               + ") on element of HumanOptionObjectUse.delayEndTime.");
@@ -63,7 +63,7 @@ public class HumanOptionObjectUse extends HumanOption implements INetworkType {
 
     this.objectGID = param1.readVarUhShort();
     if (this.objectGID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectGID
               + ") on element of ObjectItemToSellInHumanVendorShop.objectGID.");

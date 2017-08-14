@@ -18,11 +18,11 @@ public class PrismSettingsRequestMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     if (this.startDefenseTime < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.startDefenseTime + ") on element startDefenseTime.");
     }
     param1.writeByte(this.startDefenseTime);
@@ -31,7 +31,7 @@ public class PrismSettingsRequestMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");
@@ -39,7 +39,7 @@ public class PrismSettingsRequestMessage extends NetworkMessage implements INetw
 
     this.startDefenseTime = param1.readByte();
     if (this.startDefenseTime < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.startDefenseTime
               + ") on element of PrismSettingsRequestMessage.startDefenseTime.");

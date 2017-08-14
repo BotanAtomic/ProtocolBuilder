@@ -20,7 +20,8 @@ public class NamedPartyTeam extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.teamId = param1.readByte();
     if (this.teamId < 0) {
-      throw new Error("Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
+      throw new Exception(
+          "Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
     }
 
     this.partyName = param1.readUTF();

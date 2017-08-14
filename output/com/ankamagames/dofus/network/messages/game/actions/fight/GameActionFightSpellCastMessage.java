@@ -21,11 +21,11 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sourceId + ") on element sourceId.");
+      throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
     }
     param1.writeDouble(this.sourceId);
 
@@ -34,22 +34,22 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 1, this.verboseCast);
     param1.writeByte(_loc2_);
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.targetId + ") on element targetId.");
+      throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
     }
     param1.writeDouble(this.targetId);
     if (this.destinationCellId < -1 || this.destinationCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.destinationCellId + ") on element destinationCellId.");
     }
     param1.writeShort(this.destinationCellId);
     param1.writeByte(this.critical);
 
     if (this.spellId < 0) {
-      throw new Error("Forbidden value (" + this.spellId + ") on element spellId.");
+      throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
     }
     param1.writeVarShort(this.spellId);
     if (this.spellLevel < 1 || this.spellLevel > 200) {
-      throw new Error("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
+      throw new Exception("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
     }
     param1.writeShort(this.spellLevel);
     param1.writeShort(this.portalsIds.length);
@@ -67,13 +67,13 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -81,13 +81,13 @@ public class GameActionFightSpellCastMessage extends AbstractGameActionFightTarg
 
     this.spellId = param1.readVarUhShort();
     if (this.spellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
     }
 
     this.spellLevel = param1.readShort();
     if (this.spellLevel < 1 || this.spellLevel > 200) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellLevel + ") on element of SpellItem.spellLevel.");
     }
 

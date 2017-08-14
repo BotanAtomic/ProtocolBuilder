@@ -18,11 +18,11 @@ public class NumericWhoIsMessage extends NetworkMessage implements INetworkMessa
 
   public void serialize(ICustomDataOutput param1) {
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
   }
@@ -30,13 +30,13 @@ public class NumericWhoIsMessage extends NetworkMessage implements INetworkMessa
   public void deserialize(ICustomDataInput param1) {
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
 
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
   }

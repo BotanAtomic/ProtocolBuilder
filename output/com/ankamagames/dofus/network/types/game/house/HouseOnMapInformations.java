@@ -17,11 +17,11 @@ public class HouseOnMapInformations extends HouseInformations implements INetwor
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.houseId < 0) {
-      throw new Error("Forbidden value (" + this.houseId + ") on element houseId.");
+      throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
     }
     param1.writeVarInt(this.houseId);
     if (this.modelId < 0) {
-      throw new Error("Forbidden value (" + this.modelId + ") on element modelId.");
+      throw new Exception("Forbidden value (" + this.modelId + ") on element modelId.");
     }
     param1.writeVarShort(this.modelId);
 
@@ -29,7 +29,7 @@ public class HouseOnMapInformations extends HouseInformations implements INetwor
     int _loc2_ = 0;
     while (_loc2_ < this.doorsOnMap.length) {
       if (this.doorsOnMap[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.doorsOnMap[_loc2_]
                 + ") on element 1 (starting at 1) of doorsOnMap.");
@@ -53,13 +53,13 @@ public class HouseOnMapInformations extends HouseInformations implements INetwor
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -70,7 +70,7 @@ public class HouseOnMapInformations extends HouseInformations implements INetwor
     while (_loc3_ < _loc2_) {
       _loc6_ = param1.readInt();
       if (_loc6_ < 0) {
-        throw new Error("Forbidden value (" + _loc6_ + ") on elements of doorsOnMap.");
+        throw new Exception("Forbidden value (" + _loc6_ + ") on elements of doorsOnMap.");
       }
       this.doorsOnMap.push(_loc6_);
       _loc3_++;

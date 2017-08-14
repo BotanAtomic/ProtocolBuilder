@@ -17,11 +17,11 @@ public class AllianceMotdMessage extends SocialNoticeMessage implements INetwork
   public void serialize(ICustomDataOutput param1) {
     param1.writeUTF(this.content);
     if (this.timestamp < 0) {
-      throw new Error("Forbidden value (" + this.timestamp + ") on element timestamp.");
+      throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
     }
     param1.writeInt(this.timestamp);
     if (this.memberId < 0 || this.memberId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.memberId + ") on element memberId.");
+      throw new Exception("Forbidden value (" + this.memberId + ") on element memberId.");
     }
     param1.writeVarLong(this.memberId);
     param1.writeUTF(this.memberName);
@@ -33,13 +33,13 @@ public class AllianceMotdMessage extends SocialNoticeMessage implements INetwork
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

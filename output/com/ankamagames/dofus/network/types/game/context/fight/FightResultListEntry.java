@@ -17,7 +17,7 @@ public class FightResultListEntry extends Object implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
     param1.writeVarShort(this.outcome);
     if (this.wave < 0) {
-      throw new Error("Forbidden value (" + this.wave + ") on element wave.");
+      throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
     }
     param1.writeByte(this.wave);
     this.rewards.serializeAs_FightLoot(param1);
@@ -26,7 +26,7 @@ public class FightResultListEntry extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.outcome = param1.readVarUhShort();
     if (this.outcome < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.outcome
               + ") on element of NamedPartyTeamWithOutcome.outcome.");
@@ -34,7 +34,7 @@ public class FightResultListEntry extends Object implements INetworkType {
 
     this.wave = param1.readByte();
     if (this.wave < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.wave
               + ") on element of GameFightFighterLightInformations.wave.");

@@ -18,11 +18,11 @@ public class InteractiveUseWithParamRequestMessage extends InteractiveUseRequest
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.elemId < 0) {
-      throw new Error("Forbidden value (" + this.elemId + ") on element elemId.");
+      throw new Exception("Forbidden value (" + this.elemId + ") on element elemId.");
     }
     param1.writeVarInt(this.elemId);
     if (this.skillInstanceUid < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillInstanceUid + ") on element skillInstanceUid.");
     }
     param1.writeVarInt(this.skillInstanceUid);
@@ -36,13 +36,13 @@ public class InteractiveUseWithParamRequestMessage extends InteractiveUseRequest
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

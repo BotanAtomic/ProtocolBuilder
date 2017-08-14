@@ -23,14 +23,14 @@ public class HousePropertiesMessage extends NetworkMessage implements INetworkMe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.houseId < 0) {
-      throw new Error("Forbidden value (" + this.houseId + ") on element houseId.");
+      throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
     }
     param1.writeVarInt(this.houseId);
     param1.writeShort(this.doorsOnMap.length);
     int _loc2_ = 0;
     while (_loc2_ < this.doorsOnMap.length) {
       if (this.doorsOnMap[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.doorsOnMap[_loc2_]
                 + ") on element 2 (starting at 1) of doorsOnMap.");
@@ -46,7 +46,7 @@ public class HousePropertiesMessage extends NetworkMessage implements INetworkMe
     int _loc5_ = 0;
     this.houseId = param1.readVarUhInt();
     if (this.houseId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.houseId + ") on element of HouseInformations.houseId.");
     }
 
@@ -55,7 +55,7 @@ public class HousePropertiesMessage extends NetworkMessage implements INetworkMe
     while (_loc3_ < _loc2_) {
       _loc5_ = param1.readInt();
       if (_loc5_ < 0) {
-        throw new Error("Forbidden value (" + _loc5_ + ") on elements of doorsOnMap.");
+        throw new Exception("Forbidden value (" + _loc5_ + ") on elements of doorsOnMap.");
       }
       this.doorsOnMap.push(_loc5_);
       _loc3_++;

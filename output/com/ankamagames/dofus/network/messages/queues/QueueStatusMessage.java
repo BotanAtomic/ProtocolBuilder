@@ -18,11 +18,11 @@ public class QueueStatusMessage extends NetworkMessage implements INetworkMessag
 
   public void serialize(ICustomDataOutput param1) {
     if (this.position < 0 || this.position > 65535) {
-      throw new Error("Forbidden value (" + this.position + ") on element position.");
+      throw new Exception("Forbidden value (" + this.position + ") on element position.");
     }
     param1.writeShort(this.position);
     if (this.total < 0 || this.total > 65535) {
-      throw new Error("Forbidden value (" + this.total + ") on element total.");
+      throw new Exception("Forbidden value (" + this.total + ") on element total.");
     }
     param1.writeShort(this.total);
   }
@@ -30,12 +30,13 @@ public class QueueStatusMessage extends NetworkMessage implements INetworkMessag
   public void deserialize(ICustomDataInput param1) {
     this.position = param1.readUnsignedByte();
     if (this.position < 0 || this.position > 255) {
-      throw new Error("Forbidden value (" + this.position + ") on element of PresetItem.position.");
+      throw new Exception(
+          "Forbidden value (" + this.position + ") on element of PresetItem.position.");
     }
 
     this.total = param1.readVarUhShort();
     if (this.total < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.total + ") on element of MailStatusMessage.total.");
     }
   }

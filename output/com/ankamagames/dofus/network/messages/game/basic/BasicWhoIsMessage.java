@@ -38,12 +38,12 @@ public class BasicWhoIsMessage extends NetworkMessage implements INetworkMessage
     param1.writeByte(this.position);
     param1.writeUTF(this.accountNickname);
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
     param1.writeUTF(this.playerName);
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
     param1.writeShort(this.areaId);
@@ -71,14 +71,15 @@ public class BasicWhoIsMessage extends NetworkMessage implements INetworkMessage
 
     this.position = param1.readUnsignedByte();
     if (this.position < 0 || this.position > 255) {
-      throw new Error("Forbidden value (" + this.position + ") on element of PresetItem.position.");
+      throw new Exception(
+          "Forbidden value (" + this.position + ") on element of PresetItem.position.");
     }
 
     this.accountNickname = param1.readUTF();
 
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
 
@@ -86,7 +87,7 @@ public class BasicWhoIsMessage extends NetworkMessage implements INetworkMessage
 
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
 
@@ -107,7 +108,7 @@ public class BasicWhoIsMessage extends NetworkMessage implements INetworkMessage
     }
     this.playerState = param1.readByte();
     if (this.playerState < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.playerState
               + ") on element of FriendInformations.playerState.");

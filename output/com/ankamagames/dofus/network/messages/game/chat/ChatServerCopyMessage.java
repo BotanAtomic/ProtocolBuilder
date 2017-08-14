@@ -20,13 +20,13 @@ public class ChatServerCopyMessage extends ChatAbstractServerMessage implements 
     param1.writeByte(this.channel);
     param1.writeUTF(this.content);
     if (this.timestamp < 0) {
-      throw new Error("Forbidden value (" + this.timestamp + ") on element timestamp.");
+      throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
     }
     param1.writeInt(this.timestamp);
     param1.writeUTF(this.fingerprint);
 
     if (this.receiverId < 0 || this.receiverId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.receiverId + ") on element receiverId.");
+      throw new Exception("Forbidden value (" + this.receiverId + ") on element receiverId.");
     }
     param1.writeVarLong(this.receiverId);
     param1.writeUTF(this.receiverName);
@@ -38,13 +38,13 @@ public class ChatServerCopyMessage extends ChatAbstractServerMessage implements 
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -52,7 +52,7 @@ public class ChatServerCopyMessage extends ChatAbstractServerMessage implements 
 
     this.receiverId = param1.readVarUhLong();
     if (this.receiverId < 0 || this.receiverId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.receiverId
               + ") on element of ChatServerCopyMessage.receiverId.");

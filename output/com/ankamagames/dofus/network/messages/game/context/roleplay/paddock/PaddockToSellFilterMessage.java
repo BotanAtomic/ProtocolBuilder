@@ -23,7 +23,7 @@ public class PaddockToSellFilterMessage extends NetworkMessage implements INetwo
     param1.writeByte(this.atLeastNbMount);
     param1.writeByte(this.atLeastNbMachine);
     if (this.maxPrice < 0 || this.maxPrice > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.maxPrice + ") on element maxPrice.");
+      throw new Exception("Forbidden value (" + this.maxPrice + ") on element maxPrice.");
     }
     param1.writeVarLong(this.maxPrice);
   }
@@ -37,7 +37,7 @@ public class PaddockToSellFilterMessage extends NetworkMessage implements INetwo
 
     this.maxPrice = param1.readVarUhLong();
     if (this.maxPrice < 0 || this.maxPrice > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxPrice
               + ") on element of PaddockToSellFilterMessage.maxPrice.");

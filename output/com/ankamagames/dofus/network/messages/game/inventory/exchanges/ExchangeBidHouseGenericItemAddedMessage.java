@@ -18,7 +18,7 @@ public class ExchangeBidHouseGenericItemAddedMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objGenericId < 0) {
-      throw new Error("Forbidden value (" + this.objGenericId + ") on element objGenericId.");
+      throw new Exception("Forbidden value (" + this.objGenericId + ") on element objGenericId.");
     }
     param1.writeVarShort(this.objGenericId);
   }

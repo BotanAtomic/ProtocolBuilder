@@ -38,7 +38,7 @@ public class AllianceFactsMessage extends NetworkMessage implements INetworkMess
     int _loc3_ = 0;
     while (_loc3_ < this.controlledSubareaIds.length) {
       if (this.controlledSubareaIds[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.controlledSubareaIds[_loc3_]
                 + ") on element 3 (starting at 1) of controlledSubareaIds.");
@@ -47,7 +47,7 @@ public class AllianceFactsMessage extends NetworkMessage implements INetworkMess
       _loc3_++;
     }
     if (this.leaderCharacterId < 0 || this.leaderCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.leaderCharacterId + ") on element leaderCharacterId.");
     }
     param1.writeVarLong(this.leaderCharacterId);
@@ -73,14 +73,15 @@ public class AllianceFactsMessage extends NetworkMessage implements INetworkMess
     while (_loc6_ < _loc5_) {
       _loc8_ = param1.readVarUhShort();
       if (_loc8_ < 0) {
-        throw new Error("Forbidden value (" + _loc8_ + ") on elements of controlledSubareaIds.");
+        throw new Exception(
+            "Forbidden value (" + _loc8_ + ") on elements of controlledSubareaIds.");
       }
       this.controlledSubareaIds.push(_loc8_);
       _loc6_++;
     }
     this.leaderCharacterId = param1.readVarUhLong();
     if (this.leaderCharacterId < 0 || this.leaderCharacterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.leaderCharacterId
               + ") on element of AllianceFactsMessage.leaderCharacterId.");

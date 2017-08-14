@@ -22,11 +22,12 @@ public class GuildInAllianceFactsMessage extends GuildFactsMessage implements IN
     param1.writeShort(this.infos.getTypeId());
     this.infos.serialize(param1);
     if (this.creationDate < 0) {
-      throw new Error("Forbidden value (" + this.creationDate + ") on element creationDate.");
+      throw new Exception("Forbidden value (" + this.creationDate + ") on element creationDate.");
     }
     param1.writeInt(this.creationDate);
     if (this.nbTaxCollectors < 0) {
-      throw new Error("Forbidden value (" + this.nbTaxCollectors + ") on element nbTaxCollectors.");
+      throw new Exception(
+          "Forbidden value (" + this.nbTaxCollectors + ") on element nbTaxCollectors.");
     }
     param1.writeVarShort(this.nbTaxCollectors);
     param1.writeShort(this.members.length);
@@ -45,13 +46,13 @@ public class GuildInAllianceFactsMessage extends GuildFactsMessage implements IN
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

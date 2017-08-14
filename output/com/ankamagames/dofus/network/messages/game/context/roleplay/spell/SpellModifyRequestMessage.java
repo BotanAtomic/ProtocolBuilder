@@ -18,11 +18,11 @@ public class SpellModifyRequestMessage extends NetworkMessage implements INetwor
 
   public void serialize(ICustomDataOutput param1) {
     if (this.spellId < 0) {
-      throw new Error("Forbidden value (" + this.spellId + ") on element spellId.");
+      throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
     }
     param1.writeVarShort(this.spellId);
     if (this.spellLevel < 1 || this.spellLevel > 200) {
-      throw new Error("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
+      throw new Exception("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
     }
     param1.writeShort(this.spellLevel);
   }
@@ -30,13 +30,13 @@ public class SpellModifyRequestMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.spellId = param1.readVarUhShort();
     if (this.spellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
     }
 
     this.spellLevel = param1.readShort();
     if (this.spellLevel < 1 || this.spellLevel > 200) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellLevel + ") on element of SpellItem.spellLevel.");
     }
   }

@@ -18,11 +18,11 @@ public class BasicAckMessage extends NetworkMessage implements INetworkMessage {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.seq < 0) {
-      throw new Error("Forbidden value (" + this.seq + ") on element seq.");
+      throw new Exception("Forbidden value (" + this.seq + ") on element seq.");
     }
     param1.writeVarInt(this.seq);
     if (this.lastPacketId < 0) {
-      throw new Error("Forbidden value (" + this.lastPacketId + ") on element lastPacketId.");
+      throw new Exception("Forbidden value (" + this.lastPacketId + ") on element lastPacketId.");
     }
     param1.writeVarShort(this.lastPacketId);
   }
@@ -30,12 +30,12 @@ public class BasicAckMessage extends NetworkMessage implements INetworkMessage {
   public void deserialize(ICustomDataInput param1) {
     this.seq = param1.readVarUhInt();
     if (this.seq < 0) {
-      throw new Error("Forbidden value (" + this.seq + ") on element of BasicAckMessage.seq.");
+      throw new Exception("Forbidden value (" + this.seq + ") on element of BasicAckMessage.seq.");
     }
 
     this.lastPacketId = param1.readVarUhShort();
     if (this.lastPacketId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastPacketId
               + ") on element of BasicAckMessage.lastPacketId.");

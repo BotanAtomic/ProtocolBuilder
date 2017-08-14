@@ -17,7 +17,7 @@ public class ServerExperienceModificatorMessage extends NetworkMessage implement
 
   public void serialize(ICustomDataOutput param1) {
     if (this.experiencePercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.experiencePercent + ") on element experiencePercent.");
     }
     param1.writeVarShort(this.experiencePercent);
@@ -26,7 +26,7 @@ public class ServerExperienceModificatorMessage extends NetworkMessage implement
   public void deserialize(ICustomDataInput param1) {
     this.experiencePercent = param1.readVarUhShort();
     if (this.experiencePercent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experiencePercent
               + ") on element of ServerExperienceModificatorMessage.experiencePercent.");

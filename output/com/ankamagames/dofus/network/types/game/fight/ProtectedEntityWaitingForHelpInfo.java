@@ -17,7 +17,7 @@ public class ProtectedEntityWaitingForHelpInfo extends Object implements INetwor
     param1.writeInt(this.timeLeftBeforeFight);
     param1.writeInt(this.waitTimeForPlacement);
     if (this.nbPositionForDefensors < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbPositionForDefensors
               + ") on element nbPositionForDefensors.");
@@ -32,7 +32,7 @@ public class ProtectedEntityWaitingForHelpInfo extends Object implements INetwor
 
     this.nbPositionForDefensors = param1.readByte();
     if (this.nbPositionForDefensors < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbPositionForDefensors
               + ") on element of ProtectedEntityWaitingForHelpInfo.nbPositionForDefensors.");

@@ -28,24 +28,24 @@ public class TaxCollectorInformations extends Object implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
     param1.writeInt(this.uniqueId);
     if (this.firtNameId < 0) {
-      throw new Error("Forbidden value (" + this.firtNameId + ") on element firtNameId.");
+      throw new Exception("Forbidden value (" + this.firtNameId + ") on element firtNameId.");
     }
     param1.writeVarShort(this.firtNameId);
     if (this.lastNameId < 0) {
-      throw new Error("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
+      throw new Exception("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
     }
     param1.writeVarShort(this.lastNameId);
     this.additionalInfos.serializeAs_AdditionalTaxCollectorInformations(param1);
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error("Forbidden value (" + this.worldX + ") on element worldX.");
+      throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
     }
     param1.writeShort(this.worldX);
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error("Forbidden value (" + this.worldY + ") on element worldY.");
+      throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
     }
     param1.writeShort(this.worldY);
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     param1.writeByte(this.state);
@@ -67,7 +67,7 @@ public class TaxCollectorInformations extends Object implements INetworkType {
 
     this.firtNameId = param1.readVarUhShort();
     if (this.firtNameId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.firtNameId
               + ") on element of TaxCollectorInformations.firtNameId.");
@@ -75,7 +75,7 @@ public class TaxCollectorInformations extends Object implements INetworkType {
 
     this.lastNameId = param1.readVarUhShort();
     if (this.lastNameId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastNameId
               + ") on element of TaxCollectorInformations.lastNameId.");
@@ -85,7 +85,7 @@ public class TaxCollectorInformations extends Object implements INetworkType {
     this.additionalInfos.deserialize(param1);
     this.worldX = param1.readShort();
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldX
               + ") on element of PrismGeolocalizedInformation.worldX.");
@@ -93,7 +93,7 @@ public class TaxCollectorInformations extends Object implements INetworkType {
 
     this.worldY = param1.readShort();
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldY
               + ") on element of PrismGeolocalizedInformation.worldY.");
@@ -101,7 +101,7 @@ public class TaxCollectorInformations extends Object implements INetworkType {
 
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");
@@ -109,7 +109,7 @@ public class TaxCollectorInformations extends Object implements INetworkType {
 
     this.state = param1.readByte();
     if (this.state < 0) {
-      throw new Error("Forbidden value (" + this.state + ") on element of ContentPart.state.");
+      throw new Exception("Forbidden value (" + this.state + ") on element of ContentPart.state.");
     }
 
     this.look = new EntityLook();

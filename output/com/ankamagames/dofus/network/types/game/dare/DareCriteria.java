@@ -27,7 +27,8 @@ public class DareCriteria extends Object implements INetworkType {
     Object _loc4_ = 0;
     this.type = param1.readByte();
     if (this.type < 0) {
-      throw new Error("Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
+      throw new Exception(
+          "Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
     }
 
     int _loc2_ = param1.readUnsignedShort();

@@ -22,7 +22,7 @@ public class GuildGetInformationsMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.infoType = param1.readByte();
     if (this.infoType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.infoType
               + ") on element of GuildGetInformationsMessage.infoType.");

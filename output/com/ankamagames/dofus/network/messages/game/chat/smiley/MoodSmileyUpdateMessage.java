@@ -19,15 +19,15 @@ public class MoodSmileyUpdateMessage extends NetworkMessage implements INetworkM
 
   public void serialize(ICustomDataOutput param1) {
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
     if (this.smileyId < 0) {
-      throw new Error("Forbidden value (" + this.smileyId + ") on element smileyId.");
+      throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
     }
     param1.writeVarShort(this.smileyId);
   }
@@ -35,19 +35,19 @@ public class MoodSmileyUpdateMessage extends NetworkMessage implements INetworkM
   public void deserialize(ICustomDataInput param1) {
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
 
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
 
     this.smileyId = param1.readVarUhShort();
     if (this.smileyId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.smileyId + ") on element of ShortcutSmiley.smileyId.");
     }
   }

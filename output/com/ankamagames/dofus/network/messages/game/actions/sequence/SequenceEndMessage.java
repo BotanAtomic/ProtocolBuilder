@@ -19,11 +19,11 @@ public class SequenceEndMessage extends NetworkMessage implements INetworkMessag
 
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
     if (this.authorId < -9.007199254740992E15 || this.authorId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.authorId + ") on element authorId.");
+      throw new Exception("Forbidden value (" + this.authorId + ") on element authorId.");
     }
     param1.writeDouble(this.authorId);
     param1.writeByte(this.sequenceType);
@@ -32,13 +32,13 @@ public class SequenceEndMessage extends NetworkMessage implements INetworkMessag
   public void deserialize(ICustomDataInput param1) {
     this.actionId = param1.readVarUhShort();
     if (this.actionId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.actionId + ") on element of ObjectEffect.actionId.");
     }
 
     this.authorId = param1.readDouble();
     if (this.authorId < -9.007199254740992E15 || this.authorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.authorId + ") on element of SequenceStartMessage.authorId.");
     }
 

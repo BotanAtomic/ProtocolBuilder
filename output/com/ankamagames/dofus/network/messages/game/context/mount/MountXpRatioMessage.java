@@ -17,7 +17,7 @@ public class MountXpRatioMessage extends NetworkMessage implements INetworkMessa
 
   public void serialize(ICustomDataOutput param1) {
     if (this.ratio < 0) {
-      throw new Error("Forbidden value (" + this.ratio + ") on element ratio.");
+      throw new Exception("Forbidden value (" + this.ratio + ") on element ratio.");
     }
     param1.writeByte(this.ratio);
   }
@@ -25,7 +25,7 @@ public class MountXpRatioMessage extends NetworkMessage implements INetworkMessa
   public void deserialize(ICustomDataInput param1) {
     this.ratio = param1.readByte();
     if (this.ratio < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.ratio + ") on element of MountXpRatioMessage.ratio.");
     }
   }

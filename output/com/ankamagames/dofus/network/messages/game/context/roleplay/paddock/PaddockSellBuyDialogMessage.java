@@ -20,11 +20,11 @@ public class PaddockSellBuyDialogMessage extends NetworkMessage implements INetw
   public void serialize(ICustomDataOutput param1) {
     param1.writeBoolean(this.bsell);
     if (this.ownerId < 0) {
-      throw new Error("Forbidden value (" + this.ownerId + ") on element ownerId.");
+      throw new Exception("Forbidden value (" + this.ownerId + ") on element ownerId.");
     }
     param1.writeVarInt(this.ownerId);
     if (this.price < 0 || this.price > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.price + ") on element price.");
+      throw new Exception("Forbidden value (" + this.price + ") on element price.");
     }
     param1.writeVarLong(this.price);
   }
@@ -34,13 +34,13 @@ public class PaddockSellBuyDialogMessage extends NetworkMessage implements INetw
 
     this.ownerId = param1.readInt();
     if (this.ownerId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.ownerId + ") on element of MountClientData.ownerId.");
     }
 
     this.price = param1.readVarUhLong();
     if (this.price < 0 || this.price > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.price + ") on element of PaddockInformationsForSell.price.");
     }
   }

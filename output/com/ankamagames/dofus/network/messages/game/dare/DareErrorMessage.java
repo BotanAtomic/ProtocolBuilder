@@ -22,7 +22,7 @@ public class DareErrorMessage extends NetworkMessage implements INetworkMessage 
   public void deserialize(ICustomDataInput param1) {
     this.error = param1.readByte();
     if (this.error < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.error + ") on element of ShortcutBarSwapErrorMessage.error.");
     }
   }

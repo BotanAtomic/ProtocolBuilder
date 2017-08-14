@@ -16,20 +16,20 @@ public class ObjectEffectMount extends ObjectEffect implements INetworkType {
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
 
     if (this.mountId < 0) {
-      throw new Error("Forbidden value (" + this.mountId + ") on element mountId.");
+      throw new Exception("Forbidden value (" + this.mountId + ") on element mountId.");
     }
     param1.writeInt(this.mountId);
     if (this.date < -9.007199254740992E15 || this.date > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.date + ") on element date.");
+      throw new Exception("Forbidden value (" + this.date + ") on element date.");
     }
     param1.writeDouble(this.date);
     if (this.modelId < 0) {
-      throw new Error("Forbidden value (" + this.modelId + ") on element modelId.");
+      throw new Exception("Forbidden value (" + this.modelId + ") on element modelId.");
     }
     param1.writeVarShort(this.modelId);
   }
@@ -40,13 +40,13 @@ public class ObjectEffectMount extends ObjectEffect implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -54,13 +54,13 @@ public class ObjectEffectMount extends ObjectEffect implements INetworkType {
 
     this.mountId = param1.readInt();
     if (this.mountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.mountId + ") on element of ObjectEffectMount.mountId.");
     }
 
     this.date = param1.readInt();
     if (this.date < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.date
               + ") on element of AdditionalTaxCollectorInformations.date.");
@@ -68,7 +68,7 @@ public class ObjectEffectMount extends ObjectEffect implements INetworkType {
 
     this.modelId = param1.readVarUhShort();
     if (this.modelId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.modelId
               + ") on element of MountInformationsForPaddock.modelId.");

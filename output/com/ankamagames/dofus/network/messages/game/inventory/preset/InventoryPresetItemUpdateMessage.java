@@ -20,7 +20,7 @@ public class InventoryPresetItemUpdateMessage extends NetworkMessage implements 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
     this.presetItem.serializeAs_PresetItem(param1);
@@ -29,7 +29,7 @@ public class InventoryPresetItemUpdateMessage extends NetworkMessage implements 
   public void deserialize(ICustomDataInput param1) {
     this.presetId = param1.readByte();
     if (this.presetId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.presetId + ") on element of ShortcutObjectPreset.presetId.");
     }
 

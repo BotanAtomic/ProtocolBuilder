@@ -16,7 +16,7 @@ public class PaddockGuildedInformations extends PaddockBuyableInformations imple
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.price < 0 || this.price > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.price + ") on element price.");
+      throw new Exception("Forbidden value (" + this.price + ") on element price.");
     }
     param1.writeVarLong(this.price);
     param1.writeBoolean(this.locked);
@@ -31,13 +31,13 @@ public class PaddockGuildedInformations extends PaddockBuyableInformations imple
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

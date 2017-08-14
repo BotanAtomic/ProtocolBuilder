@@ -21,11 +21,11 @@ public class HouseToSellListMessage extends NetworkMessage implements INetworkMe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.pageIndex < 0) {
-      throw new Error("Forbidden value (" + this.pageIndex + ") on element pageIndex.");
+      throw new Exception("Forbidden value (" + this.pageIndex + ") on element pageIndex.");
     }
     param1.writeVarShort(this.pageIndex);
     if (this.totalPage < 0) {
-      throw new Error("Forbidden value (" + this.totalPage + ") on element totalPage.");
+      throw new Exception("Forbidden value (" + this.totalPage + ") on element totalPage.");
     }
     param1.writeVarShort(this.totalPage);
     param1.writeShort(this.houseList.length);
@@ -40,7 +40,7 @@ public class HouseToSellListMessage extends NetworkMessage implements INetworkMe
     HouseInformationsForSell _loc4_ = null;
     this.pageIndex = param1.readVarUhShort();
     if (this.pageIndex < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.pageIndex
               + ") on element of PaddockToSellListRequestMessage.pageIndex.");
@@ -48,7 +48,7 @@ public class HouseToSellListMessage extends NetworkMessage implements INetworkMe
 
     this.totalPage = param1.readVarUhShort();
     if (this.totalPage < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.totalPage
               + ") on element of PaddockToSellListMessage.totalPage.");

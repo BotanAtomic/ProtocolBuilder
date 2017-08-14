@@ -20,7 +20,7 @@ public class GameRolePlayHumanoidInformations extends GameRolePlayNamedActorInfo
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -32,7 +32,7 @@ public class GameRolePlayHumanoidInformations extends GameRolePlayNamedActorInfo
     param1.writeShort(this.humanoidInfo.getTypeId());
     this.humanoidInfo.serialize(param1);
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
   }
@@ -43,13 +43,13 @@ public class GameRolePlayHumanoidInformations extends GameRolePlayNamedActorInfo
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -60,7 +60,7 @@ public class GameRolePlayHumanoidInformations extends GameRolePlayNamedActorInfo
     this.humanoidInfo.deserialize(param1);
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
   }

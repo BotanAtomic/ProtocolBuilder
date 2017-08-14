@@ -19,11 +19,11 @@ public class StartupActionsObjetAttributionMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeInt(this.actionId);
     if (this.characterId < 0 || this.characterId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.characterId + ") on element characterId.");
+      throw new Exception("Forbidden value (" + this.characterId + ") on element characterId.");
     }
     param1.writeVarLong(this.characterId);
   }
@@ -31,13 +31,13 @@ public class StartupActionsObjetAttributionMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.actionId = param1.readVarUhShort();
     if (this.actionId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.actionId + ") on element of ObjectEffect.actionId.");
     }
 
     this.characterId = param1.readVarUhLong();
     if (this.characterId < 0 || this.characterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.characterId
               + ") on element of StartupActionsObjetAttributionMessage.characterId.");

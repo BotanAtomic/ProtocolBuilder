@@ -24,7 +24,7 @@ public class GameFightSpectatorJoinMessage extends GameFightJoinMessage implemen
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 3, this.isFightStarted);
     param1.writeByte(_loc2_);
     if (this.timeMaxBeforeFightStart < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.timeMaxBeforeFightStart
               + ") on element timeMaxBeforeFightStart.");
@@ -47,13 +47,13 @@ public class GameFightSpectatorJoinMessage extends GameFightJoinMessage implemen
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

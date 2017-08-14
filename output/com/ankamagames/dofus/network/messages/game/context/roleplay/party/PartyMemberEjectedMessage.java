@@ -17,17 +17,18 @@ public class PartyMemberEjectedMessage extends PartyMemberRemoveMessage implemen
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
     if (this.leavingPlayerId < 0 || this.leavingPlayerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.leavingPlayerId + ") on element leavingPlayerId.");
+      throw new Exception(
+          "Forbidden value (" + this.leavingPlayerId + ") on element leavingPlayerId.");
     }
     param1.writeVarLong(this.leavingPlayerId);
 
     if (this.kickerId < 0 || this.kickerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.kickerId + ") on element kickerId.");
+      throw new Exception("Forbidden value (" + this.kickerId + ") on element kickerId.");
     }
     param1.writeVarLong(this.kickerId);
   }
@@ -38,13 +39,13 @@ public class PartyMemberEjectedMessage extends PartyMemberRemoveMessage implemen
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -52,7 +53,7 @@ public class PartyMemberEjectedMessage extends PartyMemberRemoveMessage implemen
 
     this.kickerId = param1.readVarUhLong();
     if (this.kickerId < 0 || this.kickerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.kickerId
               + ") on element of PartyMemberEjectedMessage.kickerId.");

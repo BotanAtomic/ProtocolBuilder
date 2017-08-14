@@ -20,19 +20,19 @@ public class GameRolePlaySpellAnimMessage extends NetworkMessage implements INet
 
   public void serialize(ICustomDataOutput param1) {
     if (this.casterId < 0 || this.casterId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.casterId + ") on element casterId.");
+      throw new Exception("Forbidden value (" + this.casterId + ") on element casterId.");
     }
     param1.writeVarLong(this.casterId);
     if (this.targetCellId < 0 || this.targetCellId > 559) {
-      throw new Error("Forbidden value (" + this.targetCellId + ") on element targetCellId.");
+      throw new Exception("Forbidden value (" + this.targetCellId + ") on element targetCellId.");
     }
     param1.writeVarShort(this.targetCellId);
     if (this.spellId < 0) {
-      throw new Error("Forbidden value (" + this.spellId + ") on element spellId.");
+      throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
     }
     param1.writeVarShort(this.spellId);
     if (this.spellLevel < 1 || this.spellLevel > 200) {
-      throw new Error("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
+      throw new Exception("Forbidden value (" + this.spellLevel + ") on element spellLevel.");
     }
     param1.writeShort(this.spellLevel);
   }
@@ -40,7 +40,7 @@ public class GameRolePlaySpellAnimMessage extends NetworkMessage implements INet
   public void deserialize(ICustomDataInput param1) {
     this.casterId = param1.readVarUhLong();
     if (this.casterId < 0 || this.casterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.casterId
               + ") on element of GameRolePlaySpellAnimMessage.casterId.");
@@ -48,7 +48,7 @@ public class GameRolePlaySpellAnimMessage extends NetworkMessage implements INet
 
     this.targetCellId = param1.readVarUhShort();
     if (this.targetCellId < 0 || this.targetCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.targetCellId
               + ") on element of GameRolePlaySpellAnimMessage.targetCellId.");
@@ -56,13 +56,13 @@ public class GameRolePlaySpellAnimMessage extends NetworkMessage implements INet
 
     this.spellId = param1.readVarUhShort();
     if (this.spellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
     }
 
     this.spellLevel = param1.readShort();
     if (this.spellLevel < 1 || this.spellLevel > 200) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellLevel + ") on element of SpellItem.spellLevel.");
     }
   }

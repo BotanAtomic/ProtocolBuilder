@@ -18,11 +18,11 @@ public class ShowCellMessage extends NetworkMessage implements INetworkMessage {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sourceId + ") on element sourceId.");
+      throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
     }
     param1.writeDouble(this.sourceId);
     if (this.cellId < 0 || this.cellId > 559) {
-      throw new Error("Forbidden value (" + this.cellId + ") on element cellId.");
+      throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
     }
     param1.writeVarShort(this.cellId);
   }
@@ -30,7 +30,7 @@ public class ShowCellMessage extends NetworkMessage implements INetworkMessage {
   public void deserialize(ICustomDataInput param1) {
     this.sourceId = param1.readDouble();
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.sourceId
               + ") on element of FightDispellableEffectExtendedInformations.sourceId.");
@@ -38,7 +38,7 @@ public class ShowCellMessage extends NetworkMessage implements INetworkMessage {
 
     this.cellId = param1.readVarUhShort();
     if (this.cellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.cellId
               + ") on element of HavenBagFurnitureInformation.cellId.");

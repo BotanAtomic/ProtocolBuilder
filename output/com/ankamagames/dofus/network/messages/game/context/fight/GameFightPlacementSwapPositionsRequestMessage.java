@@ -18,12 +18,12 @@ public class GameFightPlacementSwapPositionsRequestMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.cellId < 0 || this.cellId > 559) {
-      throw new Error("Forbidden value (" + this.cellId + ") on element cellId.");
+      throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
     }
     param1.writeVarShort(this.cellId);
 
     if (this.requestedId < -9.007199254740992E15 || this.requestedId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.requestedId + ") on element requestedId.");
+      throw new Exception("Forbidden value (" + this.requestedId + ") on element requestedId.");
     }
     param1.writeDouble(this.requestedId);
   }
@@ -34,13 +34,13 @@ public class GameFightPlacementSwapPositionsRequestMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -48,7 +48,7 @@ public class GameFightPlacementSwapPositionsRequestMessage
 
     this.requestedId = param1.readDouble();
     if (this.requestedId < -9.007199254740992E15 || this.requestedId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.requestedId
               + ") on element of GameFightPlacementSwapPositionsRequestMessage.requestedId.");

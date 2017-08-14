@@ -18,11 +18,11 @@ public class ChallengeTargetUpdateMessage extends NetworkMessage implements INet
 
   public void serialize(ICustomDataOutput param1) {
     if (this.challengeId < 0) {
-      throw new Error("Forbidden value (" + this.challengeId + ") on element challengeId.");
+      throw new Exception("Forbidden value (" + this.challengeId + ") on element challengeId.");
     }
     param1.writeVarShort(this.challengeId);
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.targetId + ") on element targetId.");
+      throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
     }
     param1.writeDouble(this.targetId);
   }
@@ -30,7 +30,7 @@ public class ChallengeTargetUpdateMessage extends NetworkMessage implements INet
   public void deserialize(ICustomDataInput param1) {
     this.challengeId = param1.readVarUhShort();
     if (this.challengeId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.challengeId
               + ") on element of ChallengeTargetUpdateMessage.challengeId.");
@@ -38,7 +38,7 @@ public class ChallengeTargetUpdateMessage extends NetworkMessage implements INet
 
     this.targetId = param1.readDouble();
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.targetId
               + ") on element of AbstractFightDispellableEffect.targetId.");

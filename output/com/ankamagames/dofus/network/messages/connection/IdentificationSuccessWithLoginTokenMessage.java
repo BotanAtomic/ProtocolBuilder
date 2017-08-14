@@ -23,33 +23,34 @@ public class IdentificationSuccessWithLoginTokenMessage extends IdentificationSu
     param1.writeUTF(this.login);
     param1.writeUTF(this.nickname);
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
     if (this.communityId < 0) {
-      throw new Error("Forbidden value (" + this.communityId + ") on element communityId.");
+      throw new Exception("Forbidden value (" + this.communityId + ") on element communityId.");
     }
     param1.writeByte(this.communityId);
     param1.writeUTF(this.secretQuestion);
     if (this.accountCreation < 0 || this.accountCreation > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.accountCreation + ") on element accountCreation.");
+      throw new Exception(
+          "Forbidden value (" + this.accountCreation + ") on element accountCreation.");
     }
     param1.writeDouble(this.accountCreation);
     if (this.subscriptionElapsedDuration < 0
         || this.subscriptionElapsedDuration > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subscriptionElapsedDuration
               + ") on element subscriptionElapsedDuration.");
     }
     param1.writeDouble(this.subscriptionElapsedDuration);
     if (this.subscriptionEndDate < 0 || this.subscriptionEndDate > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.subscriptionEndDate + ") on element subscriptionEndDate.");
     }
     param1.writeDouble(this.subscriptionEndDate);
     if (this.havenbagAvailableRoom < 0 || this.havenbagAvailableRoom > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.havenbagAvailableRoom + ") on element havenbagAvailableRoom.");
     }
     param1.writeByte(this.havenbagAvailableRoom);
@@ -63,13 +64,13 @@ public class IdentificationSuccessWithLoginTokenMessage extends IdentificationSu
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

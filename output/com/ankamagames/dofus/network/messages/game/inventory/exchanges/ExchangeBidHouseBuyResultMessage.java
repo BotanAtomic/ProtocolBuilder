@@ -18,7 +18,7 @@ public class ExchangeBidHouseBuyResultMessage extends NetworkMessage implements 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.uid < 0) {
-      throw new Error("Forbidden value (" + this.uid + ") on element uid.");
+      throw new Exception("Forbidden value (" + this.uid + ") on element uid.");
     }
     param1.writeVarInt(this.uid);
     param1.writeBoolean(this.bought);

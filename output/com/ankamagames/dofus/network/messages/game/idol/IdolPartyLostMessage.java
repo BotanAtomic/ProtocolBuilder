@@ -17,7 +17,7 @@ public class IdolPartyLostMessage extends NetworkMessage implements INetworkMess
 
   public void serialize(ICustomDataOutput param1) {
     if (this.idolId < 0) {
-      throw new Error("Forbidden value (" + this.idolId + ") on element idolId.");
+      throw new Exception("Forbidden value (" + this.idolId + ") on element idolId.");
     }
     param1.writeVarShort(this.idolId);
   }
@@ -25,7 +25,7 @@ public class IdolPartyLostMessage extends NetworkMessage implements INetworkMess
   public void deserialize(ICustomDataInput param1) {
     int _loc2_ = param1.readVarUhShort();
     if (_loc2_ < 0) {
-      throw new Error("Forbidden value (" + _loc2_ + ") on elements of idolId.");
+      throw new Exception("Forbidden value (" + _loc2_ + ") on elements of idolId.");
     }
     this.idolId.push(_loc2_);
   }

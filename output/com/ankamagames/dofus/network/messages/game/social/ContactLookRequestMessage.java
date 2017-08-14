@@ -18,7 +18,7 @@ public class ContactLookRequestMessage extends NetworkMessage implements INetwor
 
   public void serialize(ICustomDataOutput param1) {
     if (this.requestId < 0 || this.requestId > 255) {
-      throw new Error("Forbidden value (" + this.requestId + ") on element requestId.");
+      throw new Exception("Forbidden value (" + this.requestId + ") on element requestId.");
     }
     param1.writeByte(this.requestId);
     param1.writeByte(this.contactType);
@@ -27,7 +27,7 @@ public class ContactLookRequestMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.requestId = param1.readUnsignedByte();
     if (this.requestId < 0 || this.requestId > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.requestId
               + ") on element of ContactLookRequestMessage.requestId.");
@@ -35,7 +35,7 @@ public class ContactLookRequestMessage extends NetworkMessage implements INetwor
 
     this.contactType = param1.readByte();
     if (this.contactType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.contactType
               + ") on element of ContactLookRequestMessage.contactType.");

@@ -25,7 +25,7 @@ public class GameFightFighterInformations extends GameContextActorInformations
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -34,7 +34,7 @@ public class GameFightFighterInformations extends GameContextActorInformations
 
     param1.writeByte(this.teamId);
     if (this.wave < 0) {
-      throw new Error("Forbidden value (" + this.wave + ") on element wave.");
+      throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
     }
     param1.writeByte(this.wave);
     param1.writeBoolean(this.alive);
@@ -44,7 +44,7 @@ public class GameFightFighterInformations extends GameContextActorInformations
     int _loc2_ = 0;
     while (_loc2_ < this.previousPositions.length) {
       if (this.previousPositions[_loc2_] < 0 || this.previousPositions[_loc2_] > 559) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.previousPositions[_loc2_]
                 + ") on element 5 (starting at 1) of previousPositions.");
@@ -61,13 +61,13 @@ public class GameFightFighterInformations extends GameContextActorInformations
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -75,12 +75,13 @@ public class GameFightFighterInformations extends GameContextActorInformations
 
     this.teamId = param1.readByte();
     if (this.teamId < 0) {
-      throw new Error("Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
+      throw new Exception(
+          "Forbidden value (" + this.teamId + ") on element of NamedPartyTeam.teamId.");
     }
 
     this.wave = param1.readByte();
     if (this.wave < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.wave
               + ") on element of GameFightFighterLightInformations.wave.");
@@ -96,7 +97,7 @@ public class GameFightFighterInformations extends GameContextActorInformations
     while (_loc4_ < _loc3_) {
       _loc5_ = param1.readVarUhShort();
       if (_loc5_ < 0 || _loc5_ > 559) {
-        throw new Error("Forbidden value (" + _loc5_ + ") on elements of previousPositions.");
+        throw new Exception("Forbidden value (" + _loc5_ + ") on elements of previousPositions.");
       }
       this.previousPositions.push(_loc5_);
       _loc4_++;

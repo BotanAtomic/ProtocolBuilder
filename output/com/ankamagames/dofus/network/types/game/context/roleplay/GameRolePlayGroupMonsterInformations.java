@@ -27,7 +27,7 @@ public class GameRolePlayGroupMonsterInformations extends GameRolePlayActorInfor
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -42,15 +42,15 @@ public class GameRolePlayGroupMonsterInformations extends GameRolePlayActorInfor
     param1.writeShort(this.staticInfos.getTypeId());
     this.staticInfos.serialize(param1);
     if (this.creationTime < 0 || this.creationTime > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.creationTime + ") on element creationTime.");
+      throw new Exception("Forbidden value (" + this.creationTime + ") on element creationTime.");
     }
     param1.writeDouble(this.creationTime);
     if (this.ageBonusRate < 0) {
-      throw new Error("Forbidden value (" + this.ageBonusRate + ") on element ageBonusRate.");
+      throw new Exception("Forbidden value (" + this.ageBonusRate + ") on element ageBonusRate.");
     }
     param1.writeInt(this.ageBonusRate);
     if (this.lootShare < -1 || this.lootShare > 8) {
-      throw new Error("Forbidden value (" + this.lootShare + ") on element lootShare.");
+      throw new Exception("Forbidden value (" + this.lootShare + ") on element lootShare.");
     }
     param1.writeByte(this.lootShare);
     param1.writeByte(this.alignmentSide);
@@ -62,13 +62,13 @@ public class GameRolePlayGroupMonsterInformations extends GameRolePlayActorInfor
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -86,7 +86,7 @@ public class GameRolePlayGroupMonsterInformations extends GameRolePlayActorInfor
     this.staticInfos.deserialize(param1);
     this.creationTime = param1.readDouble();
     if (this.creationTime < 0 || this.creationTime > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.creationTime
               + ") on element of GameRolePlayGroupMonsterInformations.creationTime.");
@@ -94,7 +94,7 @@ public class GameRolePlayGroupMonsterInformations extends GameRolePlayActorInfor
 
     this.ageBonusRate = param1.readInt();
     if (this.ageBonusRate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.ageBonusRate
               + ") on element of GameRolePlayGroupMonsterInformations.ageBonusRate.");
@@ -102,7 +102,7 @@ public class GameRolePlayGroupMonsterInformations extends GameRolePlayActorInfor
 
     this.lootShare = param1.readByte();
     if (this.lootShare < -1 || this.lootShare > 8) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lootShare
               + ") on element of GameRolePlayGroupMonsterInformations.lootShare.");

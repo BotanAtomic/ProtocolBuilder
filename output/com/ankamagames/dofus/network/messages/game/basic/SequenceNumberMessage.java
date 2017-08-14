@@ -17,7 +17,7 @@ public class SequenceNumberMessage extends NetworkMessage implements INetworkMes
 
   public void serialize(ICustomDataOutput param1) {
     if (this.number < 0 || this.number > 65535) {
-      throw new Error("Forbidden value (" + this.number + ") on element number.");
+      throw new Exception("Forbidden value (" + this.number + ") on element number.");
     }
     param1.writeShort(this.number);
   }
@@ -25,7 +25,7 @@ public class SequenceNumberMessage extends NetworkMessage implements INetworkMes
   public void deserialize(ICustomDataInput param1) {
     this.number = param1.readUnsignedShort();
     if (this.number < 0 || this.number > 65535) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.number + ") on element of SequenceNumberMessage.number.");
     }
   }

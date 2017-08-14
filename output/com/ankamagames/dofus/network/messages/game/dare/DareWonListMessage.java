@@ -21,7 +21,7 @@ public class DareWonListMessage extends NetworkMessage implements INetworkMessag
     int _loc2_ = 0;
     while (_loc2_ < this.dareId.length) {
       if (this.dareId[_loc2_] < 0 || this.dareId[_loc2_] > 9.007199254740992E15) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.dareId[_loc2_]
                 + ") on element 1 (starting at 1) of dareId.");
@@ -38,7 +38,7 @@ public class DareWonListMessage extends NetworkMessage implements INetworkMessag
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readDouble();
       if (_loc4_ < 0 || _loc4_ > 9.007199254740992E15) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of dareId.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of dareId.");
       }
       this.dareId.push(_loc4_);
       _loc3_++;

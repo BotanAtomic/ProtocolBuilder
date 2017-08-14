@@ -30,14 +30,15 @@ public class FriendOnlineInformations extends FriendInformations implements INet
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
     param1.writeUTF(this.accountName);
 
     param1.writeByte(this.playerState);
     if (this.lastConnection < 0) {
-      throw new Error("Forbidden value (" + this.lastConnection + ") on element lastConnection.");
+      throw new Exception(
+          "Forbidden value (" + this.lastConnection + ") on element lastConnection.");
     }
     param1.writeVarShort(this.lastConnection);
     param1.writeInt(this.achievementPoints);
@@ -47,19 +48,19 @@ public class FriendOnlineInformations extends FriendInformations implements INet
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 1, this.havenBagShared);
     param1.writeByte(_loc2_);
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
     param1.writeUTF(this.playerName);
     if (this.level < 0 || this.level > 206) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
     param1.writeByte(this.alignmentSide);
     param1.writeByte(this.breed);
     this.guildInfo.serializeAs_GuildInformations(param1);
     if (this.moodSmileyId < 0) {
-      throw new Error("Forbidden value (" + this.moodSmileyId + ") on element moodSmileyId.");
+      throw new Exception("Forbidden value (" + this.moodSmileyId + ") on element moodSmileyId.");
     }
     param1.writeVarShort(this.moodSmileyId);
     param1.writeShort(this.status.getTypeId());
@@ -72,13 +73,13 @@ public class FriendOnlineInformations extends FriendInformations implements INet
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -93,7 +94,7 @@ public class FriendOnlineInformations extends FriendInformations implements INet
 
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
 
@@ -101,7 +102,8 @@ public class FriendOnlineInformations extends FriendInformations implements INet
 
     this.level = param1.readByte();
     if (this.level < 0) {
-      throw new Error("Forbidden value (" + this.level + ") on element of MountClientData.level.");
+      throw new Exception(
+          "Forbidden value (" + this.level + ") on element of MountClientData.level.");
     }
 
     this.alignmentSide = param1.readByte();
@@ -112,7 +114,7 @@ public class FriendOnlineInformations extends FriendInformations implements INet
     this.guildInfo.deserialize(param1);
     this.moodSmileyId = param1.readVarUhShort();
     if (this.moodSmileyId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.moodSmileyId + ") on element of GuildMember.moodSmileyId.");
     }
 

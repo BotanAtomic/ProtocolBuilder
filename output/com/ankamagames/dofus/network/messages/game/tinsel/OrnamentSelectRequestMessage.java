@@ -17,7 +17,7 @@ public class OrnamentSelectRequestMessage extends NetworkMessage implements INet
 
   public void serialize(ICustomDataOutput param1) {
     if (this.ornamentId < 0) {
-      throw new Error("Forbidden value (" + this.ornamentId + ") on element ornamentId.");
+      throw new Exception("Forbidden value (" + this.ornamentId + ") on element ornamentId.");
     }
     param1.writeVarShort(this.ornamentId);
   }
@@ -25,7 +25,7 @@ public class OrnamentSelectRequestMessage extends NetworkMessage implements INet
   public void deserialize(ICustomDataInput param1) {
     this.ornamentId = param1.readVarUhShort();
     if (this.ornamentId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.ornamentId
               + ") on element of HumanOptionOrnament.ornamentId.");

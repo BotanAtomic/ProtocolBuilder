@@ -22,7 +22,7 @@ public class GameFightOptionToggleMessage extends NetworkMessage implements INet
   public void deserialize(ICustomDataInput param1) {
     this.option = param1.readByte();
     if (this.option < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.option
               + ") on element of GameFightOptionToggleMessage.option.");

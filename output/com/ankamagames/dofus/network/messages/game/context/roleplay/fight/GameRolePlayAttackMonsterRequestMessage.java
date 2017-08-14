@@ -18,7 +18,8 @@ public class GameRolePlayAttackMonsterRequestMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.monsterGroupId < -9.007199254740992E15 || this.monsterGroupId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.monsterGroupId + ") on element monsterGroupId.");
+      throw new Exception(
+          "Forbidden value (" + this.monsterGroupId + ") on element monsterGroupId.");
     }
     param1.writeDouble(this.monsterGroupId);
   }
@@ -26,7 +27,7 @@ public class GameRolePlayAttackMonsterRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.monsterGroupId = param1.readDouble();
     if (this.monsterGroupId < -9.007199254740992E15 || this.monsterGroupId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.monsterGroupId
               + ") on element of GameRolePlayAttackMonsterRequestMessage.monsterGroupId.");

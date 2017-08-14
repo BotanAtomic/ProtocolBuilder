@@ -18,11 +18,11 @@ public class GameActionFightCastRequestMessage extends NetworkMessage implements
 
   public void serialize(ICustomDataOutput param1) {
     if (this.spellId < 0) {
-      throw new Error("Forbidden value (" + this.spellId + ") on element spellId.");
+      throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
     }
     param1.writeVarShort(this.spellId);
     if (this.cellId < -1 || this.cellId > 559) {
-      throw new Error("Forbidden value (" + this.cellId + ") on element cellId.");
+      throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
     }
     param1.writeShort(this.cellId);
   }
@@ -30,13 +30,13 @@ public class GameActionFightCastRequestMessage extends NetworkMessage implements
   public void deserialize(ICustomDataInput param1) {
     this.spellId = param1.readVarUhShort();
     if (this.spellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
     }
 
     this.cellId = param1.readVarUhShort();
     if (this.cellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.cellId
               + ") on element of HavenBagFurnitureInformation.cellId.");

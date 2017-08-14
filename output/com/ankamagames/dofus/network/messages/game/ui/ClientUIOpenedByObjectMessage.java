@@ -20,7 +20,7 @@ public class ClientUIOpenedByObjectMessage extends ClientUIOpenedMessage
     param1.writeByte(this.type);
 
     if (this.uid < 0) {
-      throw new Error("Forbidden value (" + this.uid + ") on element uid.");
+      throw new Exception("Forbidden value (" + this.uid + ") on element uid.");
     }
     param1.writeVarInt(this.uid);
   }
@@ -31,13 +31,13 @@ public class ClientUIOpenedByObjectMessage extends ClientUIOpenedMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

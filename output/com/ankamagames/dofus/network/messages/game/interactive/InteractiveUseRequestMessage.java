@@ -18,11 +18,11 @@ public class InteractiveUseRequestMessage extends NetworkMessage implements INet
 
   public void serialize(ICustomDataOutput param1) {
     if (this.elemId < 0) {
-      throw new Error("Forbidden value (" + this.elemId + ") on element elemId.");
+      throw new Exception("Forbidden value (" + this.elemId + ") on element elemId.");
     }
     param1.writeVarInt(this.elemId);
     if (this.skillInstanceUid < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillInstanceUid + ") on element skillInstanceUid.");
     }
     param1.writeVarInt(this.skillInstanceUid);
@@ -31,7 +31,7 @@ public class InteractiveUseRequestMessage extends NetworkMessage implements INet
   public void deserialize(ICustomDataInput param1) {
     this.elemId = param1.readVarUhInt();
     if (this.elemId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.elemId
               + ") on element of InteractiveUseRequestMessage.elemId.");
@@ -39,7 +39,7 @@ public class InteractiveUseRequestMessage extends NetworkMessage implements INet
 
     this.skillInstanceUid = param1.readInt();
     if (this.skillInstanceUid < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.skillInstanceUid
               + ") on element of InteractiveElementSkill.skillInstanceUid.");

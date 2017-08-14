@@ -18,11 +18,11 @@ public class MailStatusMessage extends NetworkMessage implements INetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.unread < 0) {
-      throw new Error("Forbidden value (" + this.unread + ") on element unread.");
+      throw new Exception("Forbidden value (" + this.unread + ") on element unread.");
     }
     param1.writeVarShort(this.unread);
     if (this.total < 0) {
-      throw new Error("Forbidden value (" + this.total + ") on element total.");
+      throw new Exception("Forbidden value (" + this.total + ") on element total.");
     }
     param1.writeVarShort(this.total);
   }
@@ -30,13 +30,13 @@ public class MailStatusMessage extends NetworkMessage implements INetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.unread = param1.readVarUhShort();
     if (this.unread < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.unread + ") on element of MailStatusMessage.unread.");
     }
 
     this.total = param1.readVarUhShort();
     if (this.total < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.total + ") on element of MailStatusMessage.total.");
     }
   }

@@ -17,12 +17,12 @@ public class ObjectUseOnCharacterMessage extends ObjectUseMessage implements INe
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.objectUID < 0) {
-      throw new Error("Forbidden value (" + this.objectUID + ") on element objectUID.");
+      throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
     }
     param1.writeVarInt(this.objectUID);
 
     if (this.characterId < 0 || this.characterId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.characterId + ") on element characterId.");
+      throw new Exception("Forbidden value (" + this.characterId + ") on element characterId.");
     }
     param1.writeVarLong(this.characterId);
   }
@@ -33,13 +33,13 @@ public class ObjectUseOnCharacterMessage extends ObjectUseMessage implements INe
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -47,7 +47,7 @@ public class ObjectUseOnCharacterMessage extends ObjectUseMessage implements INe
 
     this.characterId = param1.readVarUhLong();
     if (this.characterId < 0 || this.characterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.characterId
               + ") on element of StartupActionsObjetAttributionMessage.characterId.");

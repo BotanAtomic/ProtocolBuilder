@@ -13,7 +13,7 @@ public class ObjectEffect extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
   }
@@ -21,7 +21,7 @@ public class ObjectEffect extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.actionId = param1.readVarUhShort();
     if (this.actionId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.actionId + ") on element of ObjectEffect.actionId.");
     }
   }

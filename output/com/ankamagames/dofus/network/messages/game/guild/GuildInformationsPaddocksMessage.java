@@ -20,7 +20,7 @@ public class GuildInformationsPaddocksMessage extends NetworkMessage implements 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.nbPaddockMax < 0) {
-      throw new Error("Forbidden value (" + this.nbPaddockMax + ") on element nbPaddockMax.");
+      throw new Exception("Forbidden value (" + this.nbPaddockMax + ") on element nbPaddockMax.");
     }
     param1.writeByte(this.nbPaddockMax);
     param1.writeShort(this.paddocksInformations.length);
@@ -35,7 +35,7 @@ public class GuildInformationsPaddocksMessage extends NetworkMessage implements 
     PaddockContentInformations _loc4_ = null;
     this.nbPaddockMax = param1.readByte();
     if (this.nbPaddockMax < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbPaddockMax
               + ") on element of GuildInformationsPaddocksMessage.nbPaddockMax.");

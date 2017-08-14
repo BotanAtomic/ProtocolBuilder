@@ -22,7 +22,7 @@ public class TreasureHuntFlagRequestAnswerMessage extends NetworkMessage
     param1.writeByte(this.questType);
     param1.writeByte(this.result);
     if (this.index < 0) {
-      throw new Error("Forbidden value (" + this.index + ") on element index.");
+      throw new Exception("Forbidden value (" + this.index + ") on element index.");
     }
     param1.writeByte(this.index);
   }
@@ -30,7 +30,7 @@ public class TreasureHuntFlagRequestAnswerMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.questType = param1.readByte();
     if (this.questType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.questType
               + ") on element of TreasureHuntRequestMessage.questType.");
@@ -38,13 +38,13 @@ public class TreasureHuntFlagRequestAnswerMessage extends NetworkMessage
 
     this.result = param1.readByte();
     if (this.result < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.result + ") on element of GuildCreationResultMessage.result.");
     }
 
     this.index = param1.readByte();
     if (this.index < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.index + ") on element of IndexedEntityLook.index.");
     }
   }

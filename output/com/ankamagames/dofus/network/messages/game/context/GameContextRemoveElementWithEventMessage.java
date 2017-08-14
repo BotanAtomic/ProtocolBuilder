@@ -18,12 +18,13 @@ public class GameContextRemoveElementWithEventMessage extends GameContextRemoveE
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeDouble(this.id);
 
     if (this.elementEventId < 0) {
-      throw new Error("Forbidden value (" + this.elementEventId + ") on element elementEventId.");
+      throw new Exception(
+          "Forbidden value (" + this.elementEventId + ") on element elementEventId.");
     }
     param1.writeByte(this.elementEventId);
   }
@@ -34,13 +35,13 @@ public class GameContextRemoveElementWithEventMessage extends GameContextRemoveE
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -48,7 +49,7 @@ public class GameContextRemoveElementWithEventMessage extends GameContextRemoveE
 
     this.elementEventId = param1.readByte();
     if (this.elementEventId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.elementEventId
               + ") on element of GameContextRemoveElementWithEventMessage.elementEventId.");

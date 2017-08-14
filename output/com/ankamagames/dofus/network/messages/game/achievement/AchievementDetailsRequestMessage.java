@@ -17,7 +17,7 @@ public class AchievementDetailsRequestMessage extends NetworkMessage implements 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.achievementId < 0) {
-      throw new Error("Forbidden value (" + this.achievementId + ") on element achievementId.");
+      throw new Exception("Forbidden value (" + this.achievementId + ") on element achievementId.");
     }
     param1.writeVarShort(this.achievementId);
   }

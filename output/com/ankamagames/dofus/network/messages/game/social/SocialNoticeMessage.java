@@ -21,11 +21,11 @@ public class SocialNoticeMessage extends NetworkMessage implements INetworkMessa
   public void serialize(ICustomDataOutput param1) {
     param1.writeUTF(this.content);
     if (this.timestamp < 0) {
-      throw new Error("Forbidden value (" + this.timestamp + ") on element timestamp.");
+      throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
     }
     param1.writeInt(this.timestamp);
     if (this.memberId < 0 || this.memberId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.memberId + ") on element memberId.");
+      throw new Exception("Forbidden value (" + this.memberId + ") on element memberId.");
     }
     param1.writeVarLong(this.memberId);
     param1.writeUTF(this.memberName);
@@ -36,7 +36,7 @@ public class SocialNoticeMessage extends NetworkMessage implements INetworkMessa
 
     this.timestamp = param1.readDouble();
     if (this.timestamp < -9.007199254740992E15 || this.timestamp > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.timestamp
               + ") on element of SubscriptionUpdateMessage.timestamp.");
@@ -44,7 +44,7 @@ public class SocialNoticeMessage extends NetworkMessage implements INetworkMessa
 
     this.memberId = param1.readInt();
     if (this.memberId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.memberId + ") on element of PartyMemberGeoPosition.memberId.");
     }
 

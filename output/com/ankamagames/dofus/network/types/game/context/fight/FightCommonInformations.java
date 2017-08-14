@@ -33,7 +33,7 @@ public class FightCommonInformations extends Object implements INetworkType {
     int _loc3_ = 0;
     while (_loc3_ < this.fightTeamsPositions.length) {
       if (this.fightTeamsPositions[_loc3_] < 0 || this.fightTeamsPositions[_loc3_] > 559) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.fightTeamsPositions[_loc3_]
                 + ") on element 4 (starting at 1) of fightTeamsPositions.");
@@ -58,7 +58,7 @@ public class FightCommonInformations extends Object implements INetworkType {
 
     this.fightType = param1.readByte();
     if (this.fightType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.fightType
               + ") on element of FightExternalInformations.fightType.");
@@ -78,7 +78,8 @@ public class FightCommonInformations extends Object implements INetworkType {
     while (_loc5_ < _loc4_) {
       _loc10_ = param1.readVarUhShort();
       if (_loc10_ < 0 || _loc10_ > 559) {
-        throw new Error("Forbidden value (" + _loc10_ + ") on elements of fightTeamsPositions.");
+        throw new Exception(
+            "Forbidden value (" + _loc10_ + ") on elements of fightTeamsPositions.");
       }
       this.fightTeamsPositions.push(_loc10_);
       _loc5_++;

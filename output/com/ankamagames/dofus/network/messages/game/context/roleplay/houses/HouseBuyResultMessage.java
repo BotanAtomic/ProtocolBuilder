@@ -26,15 +26,15 @@ public class HouseBuyResultMessage extends NetworkMessage implements INetworkMes
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 1, this.bought);
     param1.writeByte(_loc2_);
     if (this.houseId < 0) {
-      throw new Error("Forbidden value (" + this.houseId + ") on element houseId.");
+      throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
     }
     param1.writeVarInt(this.houseId);
     if (this.instanceId < 0) {
-      throw new Error("Forbidden value (" + this.instanceId + ") on element instanceId.");
+      throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
     }
     param1.writeInt(this.instanceId);
     if (this.realPrice < 0 || this.realPrice > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.realPrice + ") on element realPrice.");
+      throw new Exception("Forbidden value (" + this.realPrice + ") on element realPrice.");
     }
     param1.writeVarLong(this.realPrice);
   }
@@ -49,13 +49,13 @@ public class HouseBuyResultMessage extends NetworkMessage implements INetworkMes
 
     this.houseId = param1.readVarUhInt();
     if (this.houseId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.houseId + ") on element of HouseInformations.houseId.");
     }
 
     this.instanceId = param1.readInt();
     if (this.instanceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.instanceId
               + ") on element of HouseInstanceInformations.instanceId.");
@@ -63,7 +63,7 @@ public class HouseBuyResultMessage extends NetworkMessage implements INetworkMes
 
     this.realPrice = param1.readVarUhLong();
     if (this.realPrice < 0 || this.realPrice > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.realPrice
               + ") on element of HouseSellingUpdateMessage.realPrice.");

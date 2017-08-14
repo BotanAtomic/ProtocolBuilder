@@ -17,7 +17,7 @@ public class ObjectDeletedMessage extends NetworkMessage implements INetworkMess
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objectUID < 0) {
-      throw new Error("Forbidden value (" + this.objectUID + ") on element objectUID.");
+      throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
     }
     param1.writeVarInt(this.objectUID);
   }
@@ -25,7 +25,7 @@ public class ObjectDeletedMessage extends NetworkMessage implements INetworkMess
   public void deserialize(ICustomDataInput param1) {
     this.objectUID = param1.readVarUhInt();
     if (this.objectUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectUID
               + ") on element of ObjectItemToSellInHumanVendorShop.objectUID.");

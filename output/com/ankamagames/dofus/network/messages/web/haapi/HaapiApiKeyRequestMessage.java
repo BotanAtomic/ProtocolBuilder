@@ -22,7 +22,7 @@ public class HaapiApiKeyRequestMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.keyType = param1.readByte();
     if (this.keyType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.keyType
               + ") on element of HaapiApiKeyRequestMessage.keyType.");

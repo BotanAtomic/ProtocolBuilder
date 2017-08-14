@@ -17,7 +17,7 @@ public class DocumentReadingBeginMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.documentId < 0) {
-      throw new Error("Forbidden value (" + this.documentId + ") on element documentId.");
+      throw new Exception("Forbidden value (" + this.documentId + ") on element documentId.");
     }
     param1.writeVarShort(this.documentId);
   }
@@ -25,7 +25,7 @@ public class DocumentReadingBeginMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.documentId = param1.readVarUhShort();
     if (this.documentId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.documentId
               + ") on element of DocumentReadingBeginMessage.documentId.");

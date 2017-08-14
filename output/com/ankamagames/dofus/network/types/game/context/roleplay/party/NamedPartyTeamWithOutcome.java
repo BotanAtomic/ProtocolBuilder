@@ -23,7 +23,7 @@ public class NamedPartyTeamWithOutcome extends Object implements INetworkType {
     this.team.deserialize(param1);
     this.outcome = param1.readVarUhShort();
     if (this.outcome < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.outcome
               + ") on element of NamedPartyTeamWithOutcome.outcome.");

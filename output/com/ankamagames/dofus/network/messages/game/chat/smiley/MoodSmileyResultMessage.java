@@ -19,7 +19,7 @@ public class MoodSmileyResultMessage extends NetworkMessage implements INetworkM
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.resultCode);
     if (this.smileyId < 0) {
-      throw new Error("Forbidden value (" + this.smileyId + ") on element smileyId.");
+      throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
     }
     param1.writeVarShort(this.smileyId);
   }
@@ -27,7 +27,7 @@ public class MoodSmileyResultMessage extends NetworkMessage implements INetworkM
   public void deserialize(ICustomDataInput param1) {
     this.resultCode = param1.readByte();
     if (this.resultCode < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.resultCode
               + ") on element of MoodSmileyResultMessage.resultCode.");
@@ -35,7 +35,7 @@ public class MoodSmileyResultMessage extends NetworkMessage implements INetworkM
 
     this.smileyId = param1.readVarUhShort();
     if (this.smileyId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.smileyId + ") on element of ShortcutSmiley.smileyId.");
     }
   }

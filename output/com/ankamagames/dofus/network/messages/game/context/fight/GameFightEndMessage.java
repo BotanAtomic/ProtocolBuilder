@@ -26,7 +26,7 @@ public class GameFightEndMessage extends NetworkMessage implements INetworkMessa
 
   public void serialize(ICustomDataOutput param1) {
     if (this.duration < 0) {
-      throw new Error("Forbidden value (" + this.duration + ") on element duration.");
+      throw new Exception("Forbidden value (" + this.duration + ") on element duration.");
     }
     param1.writeInt(this.duration);
     param1.writeShort(this.ageBonus);
@@ -52,13 +52,13 @@ public class GameFightEndMessage extends NetworkMessage implements INetworkMessa
     NamedPartyTeamWithOutcome _loc8_ = null;
     this.duration = param1.readVarUhShort();
     if (this.duration < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.duration + ") on element of InteractiveUsedMessage.duration.");
     }
 
     this.ageBonus = param1.readShort();
     if (this.ageBonus < -1 || this.ageBonus > 1000) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.ageBonus
               + ") on element of InteractiveElementWithAgeBonus.ageBonus.");

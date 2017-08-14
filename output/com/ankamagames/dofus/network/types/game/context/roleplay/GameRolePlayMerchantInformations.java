@@ -20,7 +20,7 @@ public class GameRolePlayMerchantInformations extends GameRolePlayNamedActorInfo
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -30,7 +30,7 @@ public class GameRolePlayMerchantInformations extends GameRolePlayNamedActorInfo
     param1.writeUTF(this.name);
 
     if (this.sellType < 0) {
-      throw new Error("Forbidden value (" + this.sellType + ") on element sellType.");
+      throw new Exception("Forbidden value (" + this.sellType + ") on element sellType.");
     }
     param1.writeByte(this.sellType);
     param1.writeShort(this.options.length);
@@ -50,13 +50,13 @@ public class GameRolePlayMerchantInformations extends GameRolePlayNamedActorInfo
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -64,7 +64,7 @@ public class GameRolePlayMerchantInformations extends GameRolePlayNamedActorInfo
 
     this.sellType = param1.readByte();
     if (this.sellType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.sellType
               + ") on element of GameRolePlayMerchantInformations.sellType.");

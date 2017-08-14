@@ -16,7 +16,7 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
   public void serialize(ICustomDataOutput param1) {
 
     if (this.objectGID < 0) {
-      throw new Error("Forbidden value (" + this.objectGID + ") on element objectGID.");
+      throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
     }
     param1.writeVarShort(this.objectGID);
     param1.writeShort(this.effects.length);
@@ -27,20 +27,20 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
       _loc2_++;
     }
     if (this.objectUID < 0) {
-      throw new Error("Forbidden value (" + this.objectUID + ") on element objectUID.");
+      throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
     }
     param1.writeVarInt(this.objectUID);
     if (this.quantity < 0) {
-      throw new Error("Forbidden value (" + this.quantity + ") on element quantity.");
+      throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
     }
     param1.writeVarInt(this.quantity);
     if (this.objectPrice < 0 || this.objectPrice > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.objectPrice + ") on element objectPrice.");
+      throw new Exception("Forbidden value (" + this.objectPrice + ") on element objectPrice.");
     }
     param1.writeVarLong(this.objectPrice);
 
     if (this.unsoldDelay < 0) {
-      throw new Error("Forbidden value (" + this.unsoldDelay + ") on element unsoldDelay.");
+      throw new Exception("Forbidden value (" + this.unsoldDelay + ") on element unsoldDelay.");
     }
     param1.writeInt(this.unsoldDelay);
   }
@@ -51,13 +51,13 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -65,7 +65,7 @@ public class ObjectItemToSellInBid extends ObjectItemToSell implements INetworkT
 
     this.unsoldDelay = param1.readVarUhShort();
     if (this.unsoldDelay < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.unsoldDelay
               + ") on element of SellerBuyerDescriptor.unsoldDelay.");

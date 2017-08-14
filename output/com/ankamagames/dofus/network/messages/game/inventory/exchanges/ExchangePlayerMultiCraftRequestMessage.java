@@ -21,11 +21,11 @@ public class ExchangePlayerMultiCraftRequestMessage extends ExchangeRequestMessa
     param1.writeByte(this.exchangeType);
 
     if (this.target < 0 || this.target > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.target + ") on element target.");
+      throw new Exception("Forbidden value (" + this.target + ") on element target.");
     }
     param1.writeVarLong(this.target);
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarInt(this.skillId);
   }
@@ -36,13 +36,13 @@ public class ExchangePlayerMultiCraftRequestMessage extends ExchangeRequestMessa
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -50,7 +50,7 @@ public class ExchangePlayerMultiCraftRequestMessage extends ExchangeRequestMessa
 
     this.target = param1.readVarUhLong();
     if (this.target < 0 || this.target > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.target
               + ") on element of ExchangeRequestedTradeMessage.target.");
@@ -58,7 +58,7 @@ public class ExchangePlayerMultiCraftRequestMessage extends ExchangeRequestMessa
 
     this.skillId = param1.readVarUhShort();
     if (this.skillId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillId + ") on element of SkillActionDescription.skillId.");
     }
   }

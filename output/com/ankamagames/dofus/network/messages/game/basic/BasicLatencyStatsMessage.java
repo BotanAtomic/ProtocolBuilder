@@ -19,15 +19,15 @@ public class BasicLatencyStatsMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.latency < 0 || this.latency > 65535) {
-      throw new Error("Forbidden value (" + this.latency + ") on element latency.");
+      throw new Exception("Forbidden value (" + this.latency + ") on element latency.");
     }
     param1.writeShort(this.latency);
     if (this.sampleCount < 0) {
-      throw new Error("Forbidden value (" + this.sampleCount + ") on element sampleCount.");
+      throw new Exception("Forbidden value (" + this.sampleCount + ") on element sampleCount.");
     }
     param1.writeVarShort(this.sampleCount);
     if (this.max < 0) {
-      throw new Error("Forbidden value (" + this.max + ") on element max.");
+      throw new Exception("Forbidden value (" + this.max + ") on element max.");
     }
     param1.writeVarShort(this.max);
   }
@@ -35,13 +35,13 @@ public class BasicLatencyStatsMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.latency = param1.readUnsignedShort();
     if (this.latency < 0 || this.latency > 65535) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.latency + ") on element of BasicLatencyStatsMessage.latency.");
     }
 
     this.sampleCount = param1.readVarUhShort();
     if (this.sampleCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.sampleCount
               + ") on element of BasicLatencyStatsMessage.sampleCount.");
@@ -49,7 +49,7 @@ public class BasicLatencyStatsMessage extends NetworkMessage implements INetwork
 
     this.max = param1.readVarUhShort();
     if (this.max < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.max + ") on element of SkillActionDescriptionCollect.max.");
     }
   }

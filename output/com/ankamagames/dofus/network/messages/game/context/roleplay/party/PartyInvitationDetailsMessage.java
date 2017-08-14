@@ -27,19 +27,19 @@ public class PartyInvitationDetailsMessage extends AbstractPartyMessage implemen
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
     param1.writeByte(this.partyType);
     param1.writeUTF(this.partyName);
     if (this.fromId < 0 || this.fromId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.fromId + ") on element fromId.");
+      throw new Exception("Forbidden value (" + this.fromId + ") on element fromId.");
     }
     param1.writeVarLong(this.fromId);
     param1.writeUTF(this.fromName);
     if (this.leaderId < 0 || this.leaderId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.leaderId + ") on element leaderId.");
+      throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
     }
     param1.writeVarLong(this.leaderId);
     param1.writeShort(this.members.length);
@@ -64,13 +64,13 @@ public class PartyInvitationDetailsMessage extends AbstractPartyMessage implemen
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -78,7 +78,7 @@ public class PartyInvitationDetailsMessage extends AbstractPartyMessage implemen
 
     this.partyType = param1.readByte();
     if (this.partyType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.partyType + ") on element of PartyJoinMessage.partyType.");
     }
 
@@ -86,7 +86,7 @@ public class PartyInvitationDetailsMessage extends AbstractPartyMessage implemen
 
     this.fromId = param1.readVarUhLong();
     if (this.fromId < 0 || this.fromId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.fromId + ") on element of PartyInvitationMessage.fromId.");
     }
 
@@ -94,7 +94,7 @@ public class PartyInvitationDetailsMessage extends AbstractPartyMessage implemen
 
     this.leaderId = param1.readVarUhLong();
     if (this.leaderId < 0 || this.leaderId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.leaderId
               + ") on element of GuildVersatileInformations.leaderId.");

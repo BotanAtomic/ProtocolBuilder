@@ -24,7 +24,8 @@ public class DebugInClientMessage extends NetworkMessage implements INetworkMess
   public void deserialize(ICustomDataInput param1) {
     this.level = param1.readByte();
     if (this.level < 0) {
-      throw new Error("Forbidden value (" + this.level + ") on element of MountClientData.level.");
+      throw new Exception(
+          "Forbidden value (" + this.level + ") on element of MountClientData.level.");
     }
 
     this.message = param1.readUTF();

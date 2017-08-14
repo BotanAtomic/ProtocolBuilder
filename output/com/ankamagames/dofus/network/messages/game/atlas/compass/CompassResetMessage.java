@@ -22,7 +22,8 @@ public class CompassResetMessage extends NetworkMessage implements INetworkMessa
   public void deserialize(ICustomDataInput param1) {
     this.type = param1.readByte();
     if (this.type < 0) {
-      throw new Error("Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
+      throw new Exception(
+          "Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
     }
   }
 }

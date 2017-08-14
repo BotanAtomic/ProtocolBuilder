@@ -17,7 +17,7 @@ public class DownloadSetSpeedRequestMessage extends NetworkMessage implements IN
 
   public void serialize(ICustomDataOutput param1) {
     if (this.downloadSpeed < 1 || this.downloadSpeed > 10) {
-      throw new Error("Forbidden value (" + this.downloadSpeed + ") on element downloadSpeed.");
+      throw new Exception("Forbidden value (" + this.downloadSpeed + ") on element downloadSpeed.");
     }
     param1.writeByte(this.downloadSpeed);
   }
@@ -25,7 +25,7 @@ public class DownloadSetSpeedRequestMessage extends NetworkMessage implements IN
   public void deserialize(ICustomDataInput param1) {
     this.downloadSpeed = param1.readByte();
     if (this.downloadSpeed < 1 || this.downloadSpeed > 10) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.downloadSpeed
               + ") on element of DownloadSetSpeedRequestMessage.downloadSpeed.");

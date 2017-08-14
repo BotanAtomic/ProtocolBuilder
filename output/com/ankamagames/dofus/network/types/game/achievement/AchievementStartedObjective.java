@@ -14,16 +14,16 @@ public class AchievementStartedObjective extends AchievementObjective implements
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarInt(this.id);
     if (this.maxValue < 0) {
-      throw new Error("Forbidden value (" + this.maxValue + ") on element maxValue.");
+      throw new Exception("Forbidden value (" + this.maxValue + ") on element maxValue.");
     }
     param1.writeVarShort(this.maxValue);
 
     if (this.value < 0) {
-      throw new Error("Forbidden value (" + this.value + ") on element value.");
+      throw new Exception("Forbidden value (" + this.value + ") on element value.");
     }
     param1.writeVarShort(this.value);
   }
@@ -34,13 +34,13 @@ public class AchievementStartedObjective extends AchievementObjective implements
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

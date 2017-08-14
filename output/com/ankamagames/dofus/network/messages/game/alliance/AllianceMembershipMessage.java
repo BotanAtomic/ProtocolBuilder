@@ -18,7 +18,8 @@ public class AllianceMembershipMessage extends AllianceJoinedMessage implements 
     this.allianceInfo.serializeAs_AllianceInformations(param1);
     param1.writeBoolean(this.enabled);
     if (this.leadingGuildId < 0) {
-      throw new Error("Forbidden value (" + this.leadingGuildId + ") on element leadingGuildId.");
+      throw new Exception(
+          "Forbidden value (" + this.leadingGuildId + ") on element leadingGuildId.");
     }
     param1.writeVarInt(this.leadingGuildId);
   }
@@ -29,13 +30,13 @@ public class AllianceMembershipMessage extends AllianceJoinedMessage implements 
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

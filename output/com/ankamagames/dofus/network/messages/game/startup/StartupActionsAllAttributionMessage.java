@@ -17,7 +17,7 @@ public class StartupActionsAllAttributionMessage extends NetworkMessage implemen
 
   public void serialize(ICustomDataOutput param1) {
     if (this.characterId < 0 || this.characterId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.characterId + ") on element characterId.");
+      throw new Exception("Forbidden value (" + this.characterId + ") on element characterId.");
     }
     param1.writeVarLong(this.characterId);
   }
@@ -25,7 +25,7 @@ public class StartupActionsAllAttributionMessage extends NetworkMessage implemen
   public void deserialize(ICustomDataInput param1) {
     this.characterId = param1.readVarUhLong();
     if (this.characterId < 0 || this.characterId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.characterId
               + ") on element of StartupActionsObjetAttributionMessage.characterId.");

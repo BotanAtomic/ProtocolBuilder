@@ -17,7 +17,7 @@ public class AbstractPartyMessage extends NetworkMessage implements INetworkMess
 
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
   }
@@ -25,7 +25,7 @@ public class AbstractPartyMessage extends NetworkMessage implements INetworkMess
   public void deserialize(ICustomDataInput param1) {
     this.partyId = param1.readVarUhInt();
     if (this.partyId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.partyId + ") on element of AbstractPartyMessage.partyId.");
     }
   }

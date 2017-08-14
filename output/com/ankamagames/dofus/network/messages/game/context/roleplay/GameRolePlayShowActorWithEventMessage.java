@@ -22,7 +22,7 @@ public class GameRolePlayShowActorWithEventMessage extends GameRolePlayShowActor
     this.informations.serialize(param1);
 
     if (this.actorEventId < 0) {
-      throw new Error("Forbidden value (" + this.actorEventId + ") on element actorEventId.");
+      throw new Exception("Forbidden value (" + this.actorEventId + ") on element actorEventId.");
     }
     param1.writeByte(this.actorEventId);
   }
@@ -33,13 +33,13 @@ public class GameRolePlayShowActorWithEventMessage extends GameRolePlayShowActor
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -47,7 +47,7 @@ public class GameRolePlayShowActorWithEventMessage extends GameRolePlayShowActor
 
     this.actorEventId = param1.readByte();
     if (this.actorEventId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.actorEventId
               + ") on element of GameRolePlayShowActorWithEventMessage.actorEventId.");

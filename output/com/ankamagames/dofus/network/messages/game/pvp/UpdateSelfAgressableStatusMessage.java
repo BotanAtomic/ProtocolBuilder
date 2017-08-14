@@ -19,7 +19,7 @@ public class UpdateSelfAgressableStatusMessage extends NetworkMessage implements
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.status);
     if (this.probationTime < 0) {
-      throw new Error("Forbidden value (" + this.probationTime + ") on element probationTime.");
+      throw new Exception("Forbidden value (" + this.probationTime + ") on element probationTime.");
     }
     param1.writeInt(this.probationTime);
   }
@@ -27,13 +27,13 @@ public class UpdateSelfAgressableStatusMessage extends NetworkMessage implements
   public void deserialize(ICustomDataInput param1) {
     this.status = param1.readByte();
     if (this.status < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.status + ") on element of GameServerInformations.status.");
     }
 
     this.probationTime = param1.readInt();
     if (this.probationTime < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.probationTime
               + ") on element of CharacterCharacteristicsInformations.probationTime.");

@@ -19,11 +19,11 @@ public class HouseGuildNoneMessage extends NetworkMessage implements INetworkMes
 
   public void serialize(ICustomDataOutput param1) {
     if (this.houseId < 0) {
-      throw new Error("Forbidden value (" + this.houseId + ") on element houseId.");
+      throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
     }
     param1.writeVarInt(this.houseId);
     if (this.instanceId < 0) {
-      throw new Error("Forbidden value (" + this.instanceId + ") on element instanceId.");
+      throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
     }
     param1.writeInt(this.instanceId);
     param1.writeBoolean(this.secondHand);
@@ -32,13 +32,13 @@ public class HouseGuildNoneMessage extends NetworkMessage implements INetworkMes
   public void deserialize(ICustomDataInput param1) {
     this.houseId = param1.readVarUhInt();
     if (this.houseId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.houseId + ") on element of HouseInformations.houseId.");
     }
 
     this.instanceId = param1.readInt();
     if (this.instanceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.instanceId
               + ") on element of HouseInstanceInformations.instanceId.");

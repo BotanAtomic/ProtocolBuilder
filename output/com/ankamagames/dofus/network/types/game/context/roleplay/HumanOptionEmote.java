@@ -16,11 +16,12 @@ public class HumanOptionEmote extends HumanOption implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
 
     if (this.emoteId < 0 || this.emoteId > 255) {
-      throw new Error("Forbidden value (" + this.emoteId + ") on element emoteId.");
+      throw new Exception("Forbidden value (" + this.emoteId + ") on element emoteId.");
     }
     param1.writeByte(this.emoteId);
     if (this.emoteStartTime < -9.007199254740992E15 || this.emoteStartTime > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.emoteStartTime + ") on element emoteStartTime.");
+      throw new Exception(
+          "Forbidden value (" + this.emoteStartTime + ") on element emoteStartTime.");
     }
     param1.writeDouble(this.emoteStartTime);
   }
@@ -31,13 +32,13 @@ public class HumanOptionEmote extends HumanOption implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -45,13 +46,13 @@ public class HumanOptionEmote extends HumanOption implements INetworkType {
 
     this.emoteId = param1.readUnsignedByte();
     if (this.emoteId < 0 || this.emoteId > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.emoteId + ") on element of ShortcutEmote.emoteId.");
     }
 
     this.emoteStartTime = param1.readDouble();
     if (this.emoteStartTime < -9.007199254740992E15 || this.emoteStartTime > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.emoteStartTime
               + ") on element of HumanOptionEmote.emoteStartTime.");

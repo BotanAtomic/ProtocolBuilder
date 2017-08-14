@@ -20,7 +20,7 @@ public class GameContextRefreshEntityLookMessage extends NetworkMessage implemen
 
   public void serialize(ICustomDataOutput param1) {
     if (this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeDouble(this.id);
     this.look.serializeAs_EntityLook(param1);

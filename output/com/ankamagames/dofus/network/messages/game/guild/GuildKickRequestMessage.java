@@ -17,7 +17,7 @@ public class GuildKickRequestMessage extends NetworkMessage implements INetworkM
 
   public void serialize(ICustomDataOutput param1) {
     if (this.kickedId < 0 || this.kickedId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.kickedId + ") on element kickedId.");
+      throw new Exception("Forbidden value (" + this.kickedId + ") on element kickedId.");
     }
     param1.writeVarLong(this.kickedId);
   }
@@ -25,7 +25,7 @@ public class GuildKickRequestMessage extends NetworkMessage implements INetworkM
   public void deserialize(ICustomDataInput param1) {
     this.kickedId = param1.readVarUhLong();
     if (this.kickedId < 0 || this.kickedId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.kickedId
               + ") on element of GuildKickRequestMessage.kickedId.");

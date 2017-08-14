@@ -17,7 +17,8 @@ public class ExchangeCrafterJobLevelupMessage extends NetworkMessage implements 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.crafterJobLevel < 0 || this.crafterJobLevel > 255) {
-      throw new Error("Forbidden value (" + this.crafterJobLevel + ") on element crafterJobLevel.");
+      throw new Exception(
+          "Forbidden value (" + this.crafterJobLevel + ") on element crafterJobLevel.");
     }
     param1.writeByte(this.crafterJobLevel);
   }
@@ -25,7 +26,7 @@ public class ExchangeCrafterJobLevelupMessage extends NetworkMessage implements 
   public void deserialize(ICustomDataInput param1) {
     this.crafterJobLevel = param1.readUnsignedByte();
     if (this.crafterJobLevel < 0 || this.crafterJobLevel > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.crafterJobLevel
               + ") on element of ExchangeStartOkMulticraftCustomerMessage.crafterJobLevel.");

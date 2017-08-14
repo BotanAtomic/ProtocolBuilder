@@ -19,7 +19,7 @@ public class StatsUpgradeResultMessage extends NetworkMessage implements INetwor
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.result);
     if (this.nbCharacBoost < 0) {
-      throw new Error("Forbidden value (" + this.nbCharacBoost + ") on element nbCharacBoost.");
+      throw new Exception("Forbidden value (" + this.nbCharacBoost + ") on element nbCharacBoost.");
     }
     param1.writeVarShort(this.nbCharacBoost);
   }
@@ -27,13 +27,13 @@ public class StatsUpgradeResultMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.result = param1.readByte();
     if (this.result < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.result + ") on element of GuildCreationResultMessage.result.");
     }
 
     this.nbCharacBoost = param1.readVarUhShort();
     if (this.nbCharacBoost < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbCharacBoost
               + ") on element of StatsUpgradeResultMessage.nbCharacBoost.");

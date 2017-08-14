@@ -19,7 +19,7 @@ public class GameRolePlayPlayerLifeStatusMessage extends NetworkMessage implemen
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.state);
     if (this.phenixMapId < 0) {
-      throw new Error("Forbidden value (" + this.phenixMapId + ") on element phenixMapId.");
+      throw new Exception("Forbidden value (" + this.phenixMapId + ") on element phenixMapId.");
     }
     param1.writeInt(this.phenixMapId);
   }
@@ -27,12 +27,12 @@ public class GameRolePlayPlayerLifeStatusMessage extends NetworkMessage implemen
   public void deserialize(ICustomDataInput param1) {
     this.state = param1.readByte();
     if (this.state < 0) {
-      throw new Error("Forbidden value (" + this.state + ") on element of ContentPart.state.");
+      throw new Exception("Forbidden value (" + this.state + ") on element of ContentPart.state.");
     }
 
     this.phenixMapId = param1.readInt();
     if (this.phenixMapId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.phenixMapId
               + ") on element of GameRolePlayPlayerLifeStatusMessage.phenixMapId.");

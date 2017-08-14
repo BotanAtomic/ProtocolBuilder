@@ -18,23 +18,23 @@ public class Version extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.major < 0) {
-      throw new Error("Forbidden value (" + this.major + ") on element major.");
+      throw new Exception("Forbidden value (" + this.major + ") on element major.");
     }
     param1.writeByte(this.major);
     if (this.minor < 0) {
-      throw new Error("Forbidden value (" + this.minor + ") on element minor.");
+      throw new Exception("Forbidden value (" + this.minor + ") on element minor.");
     }
     param1.writeByte(this.minor);
     if (this.release < 0) {
-      throw new Error("Forbidden value (" + this.release + ") on element release.");
+      throw new Exception("Forbidden value (" + this.release + ") on element release.");
     }
     param1.writeByte(this.release);
     if (this.revision < 0) {
-      throw new Error("Forbidden value (" + this.revision + ") on element revision.");
+      throw new Exception("Forbidden value (" + this.revision + ") on element revision.");
     }
     param1.writeInt(this.revision);
     if (this.patch < 0) {
-      throw new Error("Forbidden value (" + this.patch + ") on element patch.");
+      throw new Exception("Forbidden value (" + this.patch + ") on element patch.");
     }
     param1.writeByte(this.patch);
     param1.writeByte(this.buildType);
@@ -43,32 +43,34 @@ public class Version extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.major = param1.readByte();
     if (this.major < 0) {
-      throw new Error("Forbidden value (" + this.major + ") on element of Version.major.");
+      throw new Exception("Forbidden value (" + this.major + ") on element of Version.major.");
     }
 
     this.minor = param1.readByte();
     if (this.minor < 0) {
-      throw new Error("Forbidden value (" + this.minor + ") on element of Version.minor.");
+      throw new Exception("Forbidden value (" + this.minor + ") on element of Version.minor.");
     }
 
     this.release = param1.readByte();
     if (this.release < 0) {
-      throw new Error("Forbidden value (" + this.release + ") on element of Version.release.");
+      throw new Exception("Forbidden value (" + this.release + ") on element of Version.release.");
     }
 
     this.revision = param1.readInt();
     if (this.revision < 0) {
-      throw new Error("Forbidden value (" + this.revision + ") on element of Version.revision.");
+      throw new Exception(
+          "Forbidden value (" + this.revision + ") on element of Version.revision.");
     }
 
     this.patch = param1.readByte();
     if (this.patch < 0) {
-      throw new Error("Forbidden value (" + this.patch + ") on element of Version.patch.");
+      throw new Exception("Forbidden value (" + this.patch + ") on element of Version.patch.");
     }
 
     this.buildType = param1.readByte();
     if (this.buildType < 0) {
-      throw new Error("Forbidden value (" + this.buildType + ") on element of Version.buildType.");
+      throw new Exception(
+          "Forbidden value (" + this.buildType + ") on element of Version.buildType.");
     }
   }
 }

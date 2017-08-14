@@ -17,7 +17,7 @@ public class GameActionFightNoSpellCastMessage extends NetworkMessage implements
 
   public void serialize(ICustomDataOutput param1) {
     if (this.spellLevelId < 0) {
-      throw new Error("Forbidden value (" + this.spellLevelId + ") on element spellLevelId.");
+      throw new Exception("Forbidden value (" + this.spellLevelId + ") on element spellLevelId.");
     }
     param1.writeVarInt(this.spellLevelId);
   }
@@ -25,7 +25,7 @@ public class GameActionFightNoSpellCastMessage extends NetworkMessage implements
   public void deserialize(ICustomDataInput param1) {
     this.spellLevelId = param1.readVarUhInt();
     if (this.spellLevelId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.spellLevelId
               + ") on element of GameActionFightNoSpellCastMessage.spellLevelId.");

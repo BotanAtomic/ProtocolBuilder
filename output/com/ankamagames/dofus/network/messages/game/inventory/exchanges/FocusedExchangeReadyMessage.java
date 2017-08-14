@@ -18,12 +18,12 @@ public class FocusedExchangeReadyMessage extends ExchangeReadyMessage implements
   public void serialize(ICustomDataOutput param1) {
     param1.writeBoolean(this.ready);
     if (this.step < 0) {
-      throw new Error("Forbidden value (" + this.step + ") on element step.");
+      throw new Exception("Forbidden value (" + this.step + ") on element step.");
     }
     param1.writeVarShort(this.step);
 
     if (this.focusActionId < 0) {
-      throw new Error("Forbidden value (" + this.focusActionId + ") on element focusActionId.");
+      throw new Exception("Forbidden value (" + this.focusActionId + ") on element focusActionId.");
     }
     param1.writeVarInt(this.focusActionId);
   }
@@ -34,13 +34,13 @@ public class FocusedExchangeReadyMessage extends ExchangeReadyMessage implements
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -48,7 +48,7 @@ public class FocusedExchangeReadyMessage extends ExchangeReadyMessage implements
 
     this.focusActionId = param1.readVarUhInt();
     if (this.focusActionId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.focusActionId
               + ") on element of FocusedExchangeReadyMessage.focusActionId.");

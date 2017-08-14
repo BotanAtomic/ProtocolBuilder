@@ -17,12 +17,12 @@ public class ObjectUseMultipleMessage extends ObjectUseMessage implements INetwo
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.objectUID < 0) {
-      throw new Error("Forbidden value (" + this.objectUID + ") on element objectUID.");
+      throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
     }
     param1.writeVarInt(this.objectUID);
 
     if (this.quantity < 0) {
-      throw new Error("Forbidden value (" + this.quantity + ") on element quantity.");
+      throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
     }
     param1.writeVarInt(this.quantity);
   }
@@ -33,13 +33,13 @@ public class ObjectUseMultipleMessage extends ObjectUseMessage implements INetwo
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -47,7 +47,7 @@ public class ObjectUseMultipleMessage extends ObjectUseMessage implements INetwo
 
     this.quantity = param1.readVarUhInt();
     if (this.quantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.quantity
               + ") on element of ObjectItemToSellInHumanVendorShop.quantity.");

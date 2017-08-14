@@ -24,7 +24,7 @@ public class StorageInventoryContentMessage extends InventoryContentMessage
       _loc2_++;
     }
     if (this.kamas < 0 || this.kamas > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.kamas + ") on element kamas.");
+      throw new Exception("Forbidden value (" + this.kamas + ") on element kamas.");
     }
     param1.writeVarLong(this.kamas);
   }
@@ -35,13 +35,13 @@ public class StorageInventoryContentMessage extends InventoryContentMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

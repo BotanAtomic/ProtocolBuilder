@@ -14,12 +14,12 @@ public class ServerSessionConstantLong extends ServerSessionConstant implements 
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarShort(this.id);
 
     if (this.value < -9.007199254740992E15 || this.value > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.value + ") on element value.");
+      throw new Exception("Forbidden value (" + this.value + ") on element value.");
     }
     param1.writeDouble(this.value);
   }
@@ -30,13 +30,13 @@ public class ServerSessionConstantLong extends ServerSessionConstant implements 
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

@@ -19,15 +19,15 @@ public class BasicDateMessage extends NetworkMessage implements INetworkMessage 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.day < 0) {
-      throw new Error("Forbidden value (" + this.day + ") on element day.");
+      throw new Exception("Forbidden value (" + this.day + ") on element day.");
     }
     param1.writeByte(this.day);
     if (this.month < 0) {
-      throw new Error("Forbidden value (" + this.month + ") on element month.");
+      throw new Exception("Forbidden value (" + this.month + ") on element month.");
     }
     param1.writeByte(this.month);
     if (this.year < 0) {
-      throw new Error("Forbidden value (" + this.year + ") on element year.");
+      throw new Exception("Forbidden value (" + this.year + ") on element year.");
     }
     param1.writeShort(this.year);
   }
@@ -35,17 +35,19 @@ public class BasicDateMessage extends NetworkMessage implements INetworkMessage 
   public void deserialize(ICustomDataInput param1) {
     this.day = param1.readByte();
     if (this.day < 0) {
-      throw new Error("Forbidden value (" + this.day + ") on element of ObjectEffectDate.day.");
+      throw new Exception("Forbidden value (" + this.day + ") on element of ObjectEffectDate.day.");
     }
 
     this.month = param1.readByte();
     if (this.month < 0) {
-      throw new Error("Forbidden value (" + this.month + ") on element of ObjectEffectDate.month.");
+      throw new Exception(
+          "Forbidden value (" + this.month + ") on element of ObjectEffectDate.month.");
     }
 
     this.year = param1.readVarUhShort();
     if (this.year < 0) {
-      throw new Error("Forbidden value (" + this.year + ") on element of ObjectEffectDate.year.");
+      throw new Exception(
+          "Forbidden value (" + this.year + ") on element of ObjectEffectDate.year.");
     }
   }
 }

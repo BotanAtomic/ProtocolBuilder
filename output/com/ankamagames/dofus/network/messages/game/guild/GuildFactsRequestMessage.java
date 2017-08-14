@@ -17,7 +17,7 @@ public class GuildFactsRequestMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.guildId < 0) {
-      throw new Error("Forbidden value (" + this.guildId + ") on element guildId.");
+      throw new Exception("Forbidden value (" + this.guildId + ") on element guildId.");
     }
     param1.writeVarInt(this.guildId);
   }
@@ -25,7 +25,7 @@ public class GuildFactsRequestMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.guildId = param1.readVarUhInt();
     if (this.guildId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.guildId
               + ") on element of GuildVersatileInformations.guildId.");

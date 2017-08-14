@@ -16,20 +16,20 @@ public class ObjectEffectDice extends ObjectEffect implements INetworkType {
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
 
     if (this.diceNum < 0) {
-      throw new Error("Forbidden value (" + this.diceNum + ") on element diceNum.");
+      throw new Exception("Forbidden value (" + this.diceNum + ") on element diceNum.");
     }
     param1.writeVarShort(this.diceNum);
     if (this.diceSide < 0) {
-      throw new Error("Forbidden value (" + this.diceSide + ") on element diceSide.");
+      throw new Exception("Forbidden value (" + this.diceSide + ") on element diceSide.");
     }
     param1.writeVarShort(this.diceSide);
     if (this.diceConst < 0) {
-      throw new Error("Forbidden value (" + this.diceConst + ") on element diceConst.");
+      throw new Exception("Forbidden value (" + this.diceConst + ") on element diceConst.");
     }
     param1.writeVarShort(this.diceConst);
   }
@@ -40,13 +40,13 @@ public class ObjectEffectDice extends ObjectEffect implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -54,19 +54,19 @@ public class ObjectEffectDice extends ObjectEffect implements INetworkType {
 
     this.diceNum = param1.readVarUhShort();
     if (this.diceNum < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.diceNum + ") on element of ObjectEffectDice.diceNum.");
     }
 
     this.diceSide = param1.readVarUhShort();
     if (this.diceSide < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.diceSide + ") on element of ObjectEffectDice.diceSide.");
     }
 
     this.diceConst = param1.readVarUhShort();
     if (this.diceConst < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.diceConst + ") on element of ObjectEffectDice.diceConst.");
     }
   }

@@ -17,7 +17,7 @@ public class EnterHavenBagRequestMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.havenBagOwner < 0 || this.havenBagOwner > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.havenBagOwner + ") on element havenBagOwner.");
+      throw new Exception("Forbidden value (" + this.havenBagOwner + ") on element havenBagOwner.");
     }
     param1.writeVarLong(this.havenBagOwner);
   }
@@ -25,7 +25,7 @@ public class EnterHavenBagRequestMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.havenBagOwner = param1.readVarUhLong();
     if (this.havenBagOwner < 0 || this.havenBagOwner > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.havenBagOwner
               + ") on element of EnterHavenBagRequestMessage.havenBagOwner.");

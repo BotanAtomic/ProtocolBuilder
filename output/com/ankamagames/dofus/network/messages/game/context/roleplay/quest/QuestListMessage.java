@@ -29,7 +29,7 @@ public class QuestListMessage extends NetworkMessage implements INetworkMessage 
     int _loc2_ = 0;
     while (_loc2_ < this.finishedQuestsIds.length) {
       if (this.finishedQuestsIds[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.finishedQuestsIds[_loc2_]
                 + ") on element 1 (starting at 1) of finishedQuestsIds.");
@@ -41,7 +41,7 @@ public class QuestListMessage extends NetworkMessage implements INetworkMessage 
     int _loc3_ = 0;
     while (_loc3_ < this.finishedQuestsCounts.length) {
       if (this.finishedQuestsCounts[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.finishedQuestsCounts[_loc3_]
                 + ") on element 2 (starting at 1) of finishedQuestsCounts.");
@@ -60,7 +60,7 @@ public class QuestListMessage extends NetworkMessage implements INetworkMessage 
     int _loc5_ = 0;
     while (_loc5_ < this.reinitDoneQuestsIds.length) {
       if (this.reinitDoneQuestsIds[_loc5_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.reinitDoneQuestsIds[_loc5_]
                 + ") on element 4 (starting at 1) of reinitDoneQuestsIds.");
@@ -81,7 +81,7 @@ public class QuestListMessage extends NetworkMessage implements INetworkMessage 
     while (_loc3_ < _loc2_) {
       _loc10_ = param1.readVarUhShort();
       if (_loc10_ < 0) {
-        throw new Error("Forbidden value (" + _loc10_ + ") on elements of finishedQuestsIds.");
+        throw new Exception("Forbidden value (" + _loc10_ + ") on elements of finishedQuestsIds.");
       }
       this.finishedQuestsIds.push(_loc10_);
       _loc3_++;
@@ -91,7 +91,8 @@ public class QuestListMessage extends NetworkMessage implements INetworkMessage 
     while (_loc5_ < _loc4_) {
       _loc11_ = param1.readVarUhShort();
       if (_loc11_ < 0) {
-        throw new Error("Forbidden value (" + _loc11_ + ") on elements of finishedQuestsCounts.");
+        throw new Exception(
+            "Forbidden value (" + _loc11_ + ") on elements of finishedQuestsCounts.");
       }
       this.finishedQuestsCounts.push(_loc11_);
       _loc5_++;
@@ -110,7 +111,8 @@ public class QuestListMessage extends NetworkMessage implements INetworkMessage 
     while (_loc9_ < _loc8_) {
       _loc14_ = param1.readVarUhShort();
       if (_loc14_ < 0) {
-        throw new Error("Forbidden value (" + _loc14_ + ") on elements of reinitDoneQuestsIds.");
+        throw new Exception(
+            "Forbidden value (" + _loc14_ + ") on elements of reinitDoneQuestsIds.");
       }
       this.reinitDoneQuestsIds.push(_loc14_);
       _loc9_++;

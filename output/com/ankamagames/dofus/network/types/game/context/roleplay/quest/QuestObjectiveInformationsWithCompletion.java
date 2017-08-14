@@ -16,7 +16,7 @@ public class QuestObjectiveInformationsWithCompletion extends QuestObjectiveInfo
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.objectiveId < 0) {
-      throw new Error("Forbidden value (" + this.objectiveId + ") on element objectiveId.");
+      throw new Exception("Forbidden value (" + this.objectiveId + ") on element objectiveId.");
     }
     param1.writeVarShort(this.objectiveId);
     param1.writeBoolean(this.objectiveStatus);
@@ -28,11 +28,11 @@ public class QuestObjectiveInformationsWithCompletion extends QuestObjectiveInfo
     }
 
     if (this.curCompletion < 0) {
-      throw new Error("Forbidden value (" + this.curCompletion + ") on element curCompletion.");
+      throw new Exception("Forbidden value (" + this.curCompletion + ") on element curCompletion.");
     }
     param1.writeVarShort(this.curCompletion);
     if (this.maxCompletion < 0) {
-      throw new Error("Forbidden value (" + this.maxCompletion + ") on element maxCompletion.");
+      throw new Exception("Forbidden value (" + this.maxCompletion + ") on element maxCompletion.");
     }
     param1.writeVarShort(this.maxCompletion);
   }
@@ -43,13 +43,13 @@ public class QuestObjectiveInformationsWithCompletion extends QuestObjectiveInfo
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -57,7 +57,7 @@ public class QuestObjectiveInformationsWithCompletion extends QuestObjectiveInfo
 
     this.curCompletion = param1.readVarUhShort();
     if (this.curCompletion < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.curCompletion
               + ") on element of QuestObjectiveInformationsWithCompletion.curCompletion.");
@@ -65,7 +65,7 @@ public class QuestObjectiveInformationsWithCompletion extends QuestObjectiveInfo
 
     this.maxCompletion = param1.readVarUhShort();
     if (this.maxCompletion < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxCompletion
               + ") on element of QuestObjectiveInformationsWithCompletion.maxCompletion.");

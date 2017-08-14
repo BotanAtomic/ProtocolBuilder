@@ -17,7 +17,7 @@ public class GameFightResumeSlaveInfo extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.slaveId < -9.007199254740992E15 || this.slaveId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.slaveId + ") on element slaveId.");
+      throw new Exception("Forbidden value (" + this.slaveId + ") on element slaveId.");
     }
     param1.writeDouble(this.slaveId);
     param1.writeShort(this.spellCooldowns.length);
@@ -27,11 +27,11 @@ public class GameFightResumeSlaveInfo extends Object implements INetworkType {
       _loc2_++;
     }
     if (this.summonCount < 0) {
-      throw new Error("Forbidden value (" + this.summonCount + ") on element summonCount.");
+      throw new Exception("Forbidden value (" + this.summonCount + ") on element summonCount.");
     }
     param1.writeByte(this.summonCount);
     if (this.bombCount < 0) {
-      throw new Error("Forbidden value (" + this.bombCount + ") on element bombCount.");
+      throw new Exception("Forbidden value (" + this.bombCount + ") on element bombCount.");
     }
     param1.writeByte(this.bombCount);
   }
@@ -40,7 +40,7 @@ public class GameFightResumeSlaveInfo extends Object implements INetworkType {
     GameFightSpellCooldown _loc4_ = null;
     this.slaveId = param1.readDouble();
     if (this.slaveId < -9.007199254740992E15 || this.slaveId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.slaveId + ") on element of GameFightResumeSlaveInfo.slaveId.");
     }
 
@@ -54,7 +54,7 @@ public class GameFightResumeSlaveInfo extends Object implements INetworkType {
     }
     this.summonCount = param1.readByte();
     if (this.summonCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.summonCount
               + ") on element of GameFightResumeSlaveInfo.summonCount.");
@@ -62,7 +62,7 @@ public class GameFightResumeSlaveInfo extends Object implements INetworkType {
 
     this.bombCount = param1.readByte();
     if (this.bombCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.bombCount
               + ") on element of GameFightResumeSlaveInfo.bombCount.");

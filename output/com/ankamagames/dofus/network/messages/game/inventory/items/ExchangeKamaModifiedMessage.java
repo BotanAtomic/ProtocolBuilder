@@ -20,7 +20,7 @@ public class ExchangeKamaModifiedMessage extends ExchangeObjectMessage implement
     param1.writeBoolean(this.remote);
 
     if (this.quantity < 0 || this.quantity > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.quantity + ") on element quantity.");
+      throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
     }
     param1.writeVarLong(this.quantity);
   }
@@ -31,13 +31,13 @@ public class ExchangeKamaModifiedMessage extends ExchangeObjectMessage implement
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -45,7 +45,7 @@ public class ExchangeKamaModifiedMessage extends ExchangeObjectMessage implement
 
     this.quantity = param1.readVarUhInt();
     if (this.quantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.quantity
               + ") on element of ObjectItemToSellInHumanVendorShop.quantity.");

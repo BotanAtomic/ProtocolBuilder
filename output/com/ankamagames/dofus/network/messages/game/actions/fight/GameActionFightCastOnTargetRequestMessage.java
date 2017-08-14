@@ -19,11 +19,11 @@ public class GameActionFightCastOnTargetRequestMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.spellId < 0) {
-      throw new Error("Forbidden value (" + this.spellId + ") on element spellId.");
+      throw new Exception("Forbidden value (" + this.spellId + ") on element spellId.");
     }
     param1.writeVarShort(this.spellId);
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.targetId + ") on element targetId.");
+      throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
     }
     param1.writeDouble(this.targetId);
   }
@@ -31,13 +31,13 @@ public class GameActionFightCastOnTargetRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.spellId = param1.readVarUhShort();
     if (this.spellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.spellId + ") on element of ShortcutSpell.spellId.");
     }
 
     this.targetId = param1.readDouble();
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.targetId
               + ") on element of AbstractFightDispellableEffect.targetId.");

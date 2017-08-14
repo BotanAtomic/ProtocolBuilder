@@ -20,7 +20,8 @@ public class ExchangeCraftResultWithObjectIdMessage extends ExchangeCraftResultM
     param1.writeByte(this.craftResult);
 
     if (this.objectGenericId < 0) {
-      throw new Error("Forbidden value (" + this.objectGenericId + ") on element objectGenericId.");
+      throw new Exception(
+          "Forbidden value (" + this.objectGenericId + ") on element objectGenericId.");
     }
     param1.writeVarShort(this.objectGenericId);
   }
@@ -31,13 +32,13 @@ public class ExchangeCraftResultWithObjectIdMessage extends ExchangeCraftResultM
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -45,7 +46,7 @@ public class ExchangeCraftResultWithObjectIdMessage extends ExchangeCraftResultM
 
     this.objectGenericId = param1.readVarUhShort();
     if (this.objectGenericId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectGenericId
               + ") on element of LivingObjectMessageMessage.objectGenericId.");

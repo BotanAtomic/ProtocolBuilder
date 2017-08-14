@@ -18,11 +18,11 @@ public class MountInformationRequestMessage extends NetworkMessage implements IN
 
   public void serialize(ICustomDataOutput param1) {
     if (this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeDouble(this.id);
     if (this.time < -9.007199254740992E15 || this.time > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.time + ") on element time.");
+      throw new Exception("Forbidden value (" + this.time + ") on element time.");
     }
     param1.writeDouble(this.time);
   }
@@ -32,7 +32,7 @@ public class MountInformationRequestMessage extends NetworkMessage implements IN
 
     this.time = param1.readUnsignedByte();
     if (this.time < 0 || this.time > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.time + ") on element of SkillActionDescriptionTimed.time.");
     }
   }

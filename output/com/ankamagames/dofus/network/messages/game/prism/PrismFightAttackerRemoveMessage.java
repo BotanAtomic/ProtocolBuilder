@@ -19,15 +19,15 @@ public class PrismFightAttackerRemoveMessage extends NetworkMessage implements I
 
   public void serialize(ICustomDataOutput param1) {
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     if (this.fightId < 0) {
-      throw new Error("Forbidden value (" + this.fightId + ") on element fightId.");
+      throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
     }
     param1.writeVarShort(this.fightId);
     if (this.fighterToRemoveId < 0 || this.fighterToRemoveId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.fighterToRemoveId + ") on element fighterToRemoveId.");
     }
     param1.writeVarLong(this.fighterToRemoveId);
@@ -36,7 +36,7 @@ public class PrismFightAttackerRemoveMessage extends NetworkMessage implements I
   public void deserialize(ICustomDataInput param1) {
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");
@@ -46,7 +46,7 @@ public class PrismFightAttackerRemoveMessage extends NetworkMessage implements I
 
     this.fighterToRemoveId = param1.readVarUhLong();
     if (this.fighterToRemoveId < 0 || this.fighterToRemoveId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.fighterToRemoveId
               + ") on element of PrismFightDefenderLeaveMessage.fighterToRemoveId.");

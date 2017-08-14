@@ -18,7 +18,7 @@ public class DareSubscribeRequestMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.dareId + ") on element dareId.");
+      throw new Exception("Forbidden value (" + this.dareId + ") on element dareId.");
     }
     param1.writeDouble(this.dareId);
     param1.writeBoolean(this.subscribe);
@@ -27,7 +27,7 @@ public class DareSubscribeRequestMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.dareId = param1.readDouble();
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.dareId + ") on element of DareVersatileInformations.dareId.");
     }
 

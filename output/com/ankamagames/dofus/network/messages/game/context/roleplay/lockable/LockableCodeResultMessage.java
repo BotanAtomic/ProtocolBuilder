@@ -22,7 +22,7 @@ public class LockableCodeResultMessage extends NetworkMessage implements INetwor
   public void deserialize(ICustomDataInput param1) {
     this.result = param1.readByte();
     if (this.result < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.result + ") on element of GuildCreationResultMessage.result.");
     }
   }

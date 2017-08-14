@@ -15,11 +15,11 @@ public class JobCrafterDirectorySettings extends Object implements INetworkType 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.jobId < 0) {
-      throw new Error("Forbidden value (" + this.jobId + ") on element jobId.");
+      throw new Exception("Forbidden value (" + this.jobId + ") on element jobId.");
     }
     param1.writeByte(this.jobId);
     if (this.minLevel < 0 || this.minLevel > 255) {
-      throw new Error("Forbidden value (" + this.minLevel + ") on element minLevel.");
+      throw new Exception("Forbidden value (" + this.minLevel + ") on element minLevel.");
     }
     param1.writeByte(this.minLevel);
     param1.writeBoolean(this.free);
@@ -28,12 +28,13 @@ public class JobCrafterDirectorySettings extends Object implements INetworkType 
   public void deserialize(ICustomDataInput param1) {
     this.jobId = param1.readByte();
     if (this.jobId < 0) {
-      throw new Error("Forbidden value (" + this.jobId + ") on element of JobExperience.jobId.");
+      throw new Exception(
+          "Forbidden value (" + this.jobId + ") on element of JobExperience.jobId.");
     }
 
     this.minLevel = param1.readUnsignedByte();
     if (this.minLevel < 0 || this.minLevel > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.minLevel
               + ") on element of JobCrafterDirectorySettings.minLevel.");

@@ -17,7 +17,7 @@ public class HouseToSellListRequestMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.pageIndex < 0) {
-      throw new Error("Forbidden value (" + this.pageIndex + ") on element pageIndex.");
+      throw new Exception("Forbidden value (" + this.pageIndex + ") on element pageIndex.");
     }
     param1.writeVarShort(this.pageIndex);
   }
@@ -25,7 +25,7 @@ public class HouseToSellListRequestMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.pageIndex = param1.readVarUhShort();
     if (this.pageIndex < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.pageIndex
               + ") on element of PaddockToSellListRequestMessage.pageIndex.");

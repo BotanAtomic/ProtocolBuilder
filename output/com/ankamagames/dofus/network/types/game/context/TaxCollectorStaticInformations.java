@@ -17,11 +17,11 @@ public class TaxCollectorStaticInformations extends Object implements INetworkTy
 
   public void serialize(ICustomDataOutput param1) {
     if (this.firstNameId < 0) {
-      throw new Error("Forbidden value (" + this.firstNameId + ") on element firstNameId.");
+      throw new Exception("Forbidden value (" + this.firstNameId + ") on element firstNameId.");
     }
     param1.writeVarShort(this.firstNameId);
     if (this.lastNameId < 0) {
-      throw new Error("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
+      throw new Exception("Forbidden value (" + this.lastNameId + ") on element lastNameId.");
     }
     param1.writeVarShort(this.lastNameId);
     this.guildIdentity.serializeAs_GuildInformations(param1);
@@ -30,7 +30,7 @@ public class TaxCollectorStaticInformations extends Object implements INetworkTy
   public void deserialize(ICustomDataInput param1) {
     this.firstNameId = param1.readVarUhShort();
     if (this.firstNameId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.firstNameId
               + ") on element of TaxCollectorBasicInformations.firstNameId.");
@@ -38,7 +38,7 @@ public class TaxCollectorStaticInformations extends Object implements INetworkTy
 
     this.lastNameId = param1.readVarUhShort();
     if (this.lastNameId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastNameId
               + ") on element of TaxCollectorInformations.lastNameId.");

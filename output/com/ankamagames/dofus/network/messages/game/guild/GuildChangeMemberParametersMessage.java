@@ -20,22 +20,22 @@ public class GuildChangeMemberParametersMessage extends NetworkMessage implement
 
   public void serialize(ICustomDataOutput param1) {
     if (this.memberId < 0 || this.memberId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.memberId + ") on element memberId.");
+      throw new Exception("Forbidden value (" + this.memberId + ") on element memberId.");
     }
     param1.writeVarLong(this.memberId);
     if (this.rank < 0) {
-      throw new Error("Forbidden value (" + this.rank + ") on element rank.");
+      throw new Exception("Forbidden value (" + this.rank + ") on element rank.");
     }
     param1.writeVarShort(this.rank);
     if (this.experienceGivenPercent < 0 || this.experienceGivenPercent > 100) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceGivenPercent
               + ") on element experienceGivenPercent.");
     }
     param1.writeByte(this.experienceGivenPercent);
     if (this.rights < 0) {
-      throw new Error("Forbidden value (" + this.rights + ") on element rights.");
+      throw new Exception("Forbidden value (" + this.rights + ") on element rights.");
     }
     param1.writeVarInt(this.rights);
   }
@@ -43,18 +43,18 @@ public class GuildChangeMemberParametersMessage extends NetworkMessage implement
   public void deserialize(ICustomDataInput param1) {
     this.memberId = param1.readInt();
     if (this.memberId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.memberId + ") on element of PartyMemberGeoPosition.memberId.");
     }
 
     this.rank = param1.readVarUhShort();
     if (this.rank < 0) {
-      throw new Error("Forbidden value (" + this.rank + ") on element of GuildMember.rank.");
+      throw new Exception("Forbidden value (" + this.rank + ") on element of GuildMember.rank.");
     }
 
     this.experienceGivenPercent = param1.readByte();
     if (this.experienceGivenPercent < 0 || this.experienceGivenPercent > 100) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceGivenPercent
               + ") on element of GuildMember.experienceGivenPercent.");
@@ -62,7 +62,8 @@ public class GuildChangeMemberParametersMessage extends NetworkMessage implement
 
     this.rights = param1.readVarUhInt();
     if (this.rights < 0) {
-      throw new Error("Forbidden value (" + this.rights + ") on element of GuildMember.rights.");
+      throw new Exception(
+          "Forbidden value (" + this.rights + ") on element of GuildMember.rights.");
     }
   }
 }

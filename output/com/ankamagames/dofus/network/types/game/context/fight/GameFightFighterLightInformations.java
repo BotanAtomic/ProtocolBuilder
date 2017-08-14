@@ -23,15 +23,15 @@ public class GameFightFighterLightInformations extends Object implements INetwor
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 1, this.alive);
     param1.writeByte(_loc2_);
     if (this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeDouble(this.id);
     if (this.wave < 0) {
-      throw new Error("Forbidden value (" + this.wave + ") on element wave.");
+      throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
     }
     param1.writeByte(this.wave);
     if (this.level < 0) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeVarShort(this.level);
     param1.writeByte(this.breed);
@@ -49,7 +49,7 @@ public class GameFightFighterLightInformations extends Object implements INetwor
 
     this.wave = param1.readByte();
     if (this.wave < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.wave
               + ") on element of GameFightFighterLightInformations.wave.");
@@ -57,7 +57,8 @@ public class GameFightFighterLightInformations extends Object implements INetwor
 
     this.level = param1.readByte();
     if (this.level < 0) {
-      throw new Error("Forbidden value (" + this.level + ") on element of MountClientData.level.");
+      throw new Exception(
+          "Forbidden value (" + this.level + ") on element of MountClientData.level.");
     }
 
     this.breed = param1.readByte();

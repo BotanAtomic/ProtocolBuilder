@@ -18,7 +18,7 @@ public class HouseKickIndoorMerchantRequestMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.cellId < 0 || this.cellId > 559) {
-      throw new Error("Forbidden value (" + this.cellId + ") on element cellId.");
+      throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
     }
     param1.writeVarShort(this.cellId);
   }
@@ -26,7 +26,7 @@ public class HouseKickIndoorMerchantRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.cellId = param1.readVarUhShort();
     if (this.cellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.cellId
               + ") on element of HavenBagFurnitureInformation.cellId.");

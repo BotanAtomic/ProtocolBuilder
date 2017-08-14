@@ -14,12 +14,13 @@ public class ObjectEffectCreature extends ObjectEffect implements INetworkType {
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
 
     if (this.monsterFamilyId < 0) {
-      throw new Error("Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");
+      throw new Exception(
+          "Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");
     }
     param1.writeVarShort(this.monsterFamilyId);
   }
@@ -30,13 +31,13 @@ public class ObjectEffectCreature extends ObjectEffect implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -44,7 +45,7 @@ public class ObjectEffectCreature extends ObjectEffect implements INetworkType {
 
     this.monsterFamilyId = param1.readVarUhShort();
     if (this.monsterFamilyId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.monsterFamilyId
               + ") on element of ObjectEffectCreature.monsterFamilyId.");

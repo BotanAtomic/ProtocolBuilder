@@ -22,7 +22,7 @@ public class IdentificationFailedMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.reason = param1.readByte();
     if (this.reason < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.reason
               + ") on element of KrosmasterInventoryErrorMessage.reason.");

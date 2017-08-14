@@ -17,11 +17,11 @@ public class KrosmasterFigure extends Object implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
     param1.writeUTF(this.uid);
     if (this.figure < 0) {
-      throw new Error("Forbidden value (" + this.figure + ") on element figure.");
+      throw new Exception("Forbidden value (" + this.figure + ") on element figure.");
     }
     param1.writeVarShort(this.figure);
     if (this.pedestal < 0) {
-      throw new Error("Forbidden value (" + this.pedestal + ") on element pedestal.");
+      throw new Exception("Forbidden value (" + this.pedestal + ") on element pedestal.");
     }
     param1.writeVarShort(this.pedestal);
     param1.writeBoolean(this.bound);
@@ -32,13 +32,13 @@ public class KrosmasterFigure extends Object implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

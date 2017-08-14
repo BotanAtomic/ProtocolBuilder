@@ -28,7 +28,8 @@ public class CheckFileMessage extends NetworkMessage implements INetworkMessage 
 
     this.type = param1.readByte();
     if (this.type < 0) {
-      throw new Error("Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
+      throw new Exception(
+          "Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
     }
 
     this.value = param1.readInt();

@@ -26,7 +26,7 @@ public class DownloadErrorMessage extends NetworkMessage implements INetworkMess
   public void deserialize(ICustomDataInput param1) {
     this.errorId = param1.readByte();
     if (this.errorId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.errorId + ") on element of DownloadErrorMessage.errorId.");
     }
 

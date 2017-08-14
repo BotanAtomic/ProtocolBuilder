@@ -18,16 +18,16 @@ public class GameFightTurnResumeMessage extends GameFightTurnStartMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeDouble(this.id);
     if (this.waitTime < 0) {
-      throw new Error("Forbidden value (" + this.waitTime + ") on element waitTime.");
+      throw new Exception("Forbidden value (" + this.waitTime + ") on element waitTime.");
     }
     param1.writeVarInt(this.waitTime);
 
     if (this.remainingTime < 0) {
-      throw new Error("Forbidden value (" + this.remainingTime + ") on element remainingTime.");
+      throw new Exception("Forbidden value (" + this.remainingTime + ") on element remainingTime.");
     }
     param1.writeVarInt(this.remainingTime);
   }
@@ -38,13 +38,13 @@ public class GameFightTurnResumeMessage extends GameFightTurnStartMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -52,7 +52,7 @@ public class GameFightTurnResumeMessage extends GameFightTurnStartMessage
 
     this.remainingTime = param1.readVarUhInt();
     if (this.remainingTime < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.remainingTime
               + ") on element of GameFightTurnResumeMessage.remainingTime.");

@@ -23,7 +23,7 @@ public class GameMapChangeOrientationRequestMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.direction = param1.readByte();
     if (this.direction < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.direction
               + ") on element of TreasureHuntStepFollowDirectionToPOI.direction.");

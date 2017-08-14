@@ -17,7 +17,7 @@ public class MoodSmileyRequestMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.smileyId < 0) {
-      throw new Error("Forbidden value (" + this.smileyId + ") on element smileyId.");
+      throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
     }
     param1.writeVarShort(this.smileyId);
   }
@@ -25,7 +25,7 @@ public class MoodSmileyRequestMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.smileyId = param1.readVarUhShort();
     if (this.smileyId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.smileyId + ") on element of ShortcutSmiley.smileyId.");
     }
   }

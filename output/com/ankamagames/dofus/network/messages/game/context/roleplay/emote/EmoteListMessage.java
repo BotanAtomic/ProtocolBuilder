@@ -21,7 +21,7 @@ public class EmoteListMessage extends NetworkMessage implements INetworkMessage 
     int _loc2_ = 0;
     while (_loc2_ < this.emoteIds.length) {
       if (this.emoteIds[_loc2_] < 0 || this.emoteIds[_loc2_] > 255) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.emoteIds[_loc2_]
                 + ") on element 1 (starting at 1) of emoteIds.");
@@ -38,7 +38,7 @@ public class EmoteListMessage extends NetworkMessage implements INetworkMessage 
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readUnsignedByte();
       if (_loc4_ < 0 || _loc4_ > 255) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of emoteIds.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of emoteIds.");
       }
       this.emoteIds.push(_loc4_);
       _loc3_++;

@@ -21,7 +21,7 @@ public class NpcDialogQuestionMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.messageId < 0) {
-      throw new Error("Forbidden value (" + this.messageId + ") on element messageId.");
+      throw new Exception("Forbidden value (" + this.messageId + ") on element messageId.");
     }
     param1.writeVarInt(this.messageId);
     param1.writeShort(this.dialogParams.length);
@@ -34,7 +34,7 @@ public class NpcDialogQuestionMessage extends NetworkMessage implements INetwork
     int _loc3_ = 0;
     while (_loc3_ < this.visibleReplies.length) {
       if (this.visibleReplies[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.visibleReplies[_loc3_]
                 + ") on element 3 (starting at 1) of visibleReplies.");
@@ -49,7 +49,7 @@ public class NpcDialogQuestionMessage extends NetworkMessage implements INetwork
     int _loc7_ = 0;
     this.messageId = param1.readVarUhInt();
     if (this.messageId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.messageId
               + ") on element of NpcDialogQuestionMessage.messageId.");
@@ -67,7 +67,7 @@ public class NpcDialogQuestionMessage extends NetworkMessage implements INetwork
     while (_loc5_ < _loc4_) {
       _loc7_ = param1.readVarUhInt();
       if (_loc7_ < 0) {
-        throw new Error("Forbidden value (" + _loc7_ + ") on elements of visibleReplies.");
+        throw new Exception("Forbidden value (" + _loc7_ + ") on elements of visibleReplies.");
       }
       this.visibleReplies.push(_loc7_);
       _loc5_++;

@@ -29,13 +29,13 @@ public class GameRolePlayArenaRegistrationStatusMessage extends NetworkMessage
 
     this.step = param1.readVarUhShort();
     if (this.step < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.step + ") on element of ExchangeReadyMessage.step.");
     }
 
     this.battleMode = param1.readInt();
     if (this.battleMode < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.battleMode
               + ") on element of GameRolePlayArenaRegistrationStatusMessage.battleMode.");

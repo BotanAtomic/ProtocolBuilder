@@ -18,7 +18,7 @@ public class ExchangeShopStockMovementRemovedMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objectId < 0) {
-      throw new Error("Forbidden value (" + this.objectId + ") on element objectId.");
+      throw new Exception("Forbidden value (" + this.objectId + ") on element objectId.");
     }
     param1.writeVarInt(this.objectId);
   }
@@ -26,7 +26,7 @@ public class ExchangeShopStockMovementRemovedMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.objectId = param1.readVarUhInt();
     if (this.objectId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectId
               + ") on element of ExchangeShopStockMovementRemovedMessage.objectId.");

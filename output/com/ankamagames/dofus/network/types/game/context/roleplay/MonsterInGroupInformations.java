@@ -17,7 +17,7 @@ public class MonsterInGroupInformations extends MonsterInGroupLightInformations
   public void serialize(ICustomDataOutput param1) {
     param1.writeInt(this.creatureGenericId);
     if (this.grade < 0) {
-      throw new Error("Forbidden value (" + this.grade + ") on element grade.");
+      throw new Exception("Forbidden value (" + this.grade + ") on element grade.");
     }
     param1.writeByte(this.grade);
 
@@ -30,13 +30,13 @@ public class MonsterInGroupInformations extends MonsterInGroupLightInformations
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

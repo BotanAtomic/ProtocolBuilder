@@ -18,23 +18,23 @@ public class GuildFactSheetInformations extends GuildInformations implements INe
   public void serialize(ICustomDataOutput param1) {
 
     if (this.guildId < 0) {
-      throw new Error("Forbidden value (" + this.guildId + ") on element guildId.");
+      throw new Exception("Forbidden value (" + this.guildId + ") on element guildId.");
     }
     param1.writeVarInt(this.guildId);
     param1.writeUTF(this.guildName);
     if (this.guildLevel < 0 || this.guildLevel > 200) {
-      throw new Error("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
+      throw new Exception("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
     }
     param1.writeByte(this.guildLevel);
 
     this.guildEmblem.serializeAs_GuildEmblem(param1);
 
     if (this.leaderId < 0 || this.leaderId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.leaderId + ") on element leaderId.");
+      throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
     }
     param1.writeVarLong(this.leaderId);
     if (this.nbMembers < 0) {
-      throw new Error("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
+      throw new Exception("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
     }
     param1.writeVarShort(this.nbMembers);
   }
@@ -45,13 +45,13 @@ public class GuildFactSheetInformations extends GuildInformations implements INe
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -59,7 +59,7 @@ public class GuildFactSheetInformations extends GuildInformations implements INe
 
     this.leaderId = param1.readVarUhLong();
     if (this.leaderId < 0 || this.leaderId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.leaderId
               + ") on element of GuildVersatileInformations.leaderId.");
@@ -67,7 +67,7 @@ public class GuildFactSheetInformations extends GuildInformations implements INe
 
     this.nbMembers = param1.readUnsignedByte();
     if (this.nbMembers < 1 || this.nbMembers > 240) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbMembers
               + ") on element of GuildVersatileInformations.nbMembers.");

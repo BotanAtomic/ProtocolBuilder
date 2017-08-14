@@ -17,15 +17,15 @@ public class HumanOptionSkillUse extends HumanOption implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
 
     if (this.elementId < 0) {
-      throw new Error("Forbidden value (" + this.elementId + ") on element elementId.");
+      throw new Exception("Forbidden value (" + this.elementId + ") on element elementId.");
     }
     param1.writeVarInt(this.elementId);
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarShort(this.skillId);
     if (this.skillEndTime < -9.007199254740992E15 || this.skillEndTime > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.skillEndTime + ") on element skillEndTime.");
+      throw new Exception("Forbidden value (" + this.skillEndTime + ") on element skillEndTime.");
     }
     param1.writeDouble(this.skillEndTime);
   }
@@ -36,13 +36,13 @@ public class HumanOptionSkillUse extends HumanOption implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -50,19 +50,19 @@ public class HumanOptionSkillUse extends HumanOption implements INetworkType {
 
     this.elementId = param1.readInt();
     if (this.elementId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.elementId + ") on element of StatedElement.elementId.");
     }
 
     this.skillId = param1.readVarUhShort();
     if (this.skillId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillId + ") on element of SkillActionDescription.skillId.");
     }
 
     this.skillEndTime = param1.readDouble();
     if (this.skillEndTime < -9.007199254740992E15 || this.skillEndTime > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.skillEndTime
               + ") on element of HumanOptionSkillUse.skillEndTime.");

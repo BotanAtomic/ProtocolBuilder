@@ -19,12 +19,12 @@ public class ObjectSetPositionMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objectUID < 0) {
-      throw new Error("Forbidden value (" + this.objectUID + ") on element objectUID.");
+      throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
     }
     param1.writeVarInt(this.objectUID);
     param1.writeByte(this.position);
     if (this.quantity < 0) {
-      throw new Error("Forbidden value (" + this.quantity + ") on element quantity.");
+      throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
     }
     param1.writeVarInt(this.quantity);
   }
@@ -32,7 +32,7 @@ public class ObjectSetPositionMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.objectUID = param1.readVarUhInt();
     if (this.objectUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectUID
               + ") on element of ObjectItemToSellInHumanVendorShop.objectUID.");
@@ -40,12 +40,13 @@ public class ObjectSetPositionMessage extends NetworkMessage implements INetwork
 
     this.position = param1.readUnsignedByte();
     if (this.position < 0 || this.position > 255) {
-      throw new Error("Forbidden value (" + this.position + ") on element of PresetItem.position.");
+      throw new Exception(
+          "Forbidden value (" + this.position + ") on element of PresetItem.position.");
     }
 
     this.quantity = param1.readVarUhInt();
     if (this.quantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.quantity
               + ") on element of ObjectItemToSellInHumanVendorShop.quantity.");

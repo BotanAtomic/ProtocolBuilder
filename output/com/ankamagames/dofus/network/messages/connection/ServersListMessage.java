@@ -27,7 +27,7 @@ public class ServersListMessage extends NetworkMessage implements INetworkMessag
       _loc2_++;
     }
     if (this.alreadyConnectedToServerId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.alreadyConnectedToServerId
               + ") on element alreadyConnectedToServerId.");
@@ -48,7 +48,7 @@ public class ServersListMessage extends NetworkMessage implements INetworkMessag
     }
     this.alreadyConnectedToServerId = param1.readVarUhShort();
     if (this.alreadyConnectedToServerId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.alreadyConnectedToServerId
               + ") on element of ServersListMessage.alreadyConnectedToServerId.");

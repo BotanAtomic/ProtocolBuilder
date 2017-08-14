@@ -18,7 +18,7 @@ public class PlayerStatus extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.statusId = param1.readByte();
     if (this.statusId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.statusId + ") on element of PlayerStatus.statusId.");
     }
   }

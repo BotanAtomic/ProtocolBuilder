@@ -19,12 +19,12 @@ public class SelectedServerDataExtendedMessage extends SelectedServerDataMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.serverId < 0) {
-      throw new Error("Forbidden value (" + this.serverId + ") on element serverId.");
+      throw new Exception("Forbidden value (" + this.serverId + ") on element serverId.");
     }
     param1.writeVarShort(this.serverId);
     param1.writeUTF(this.address);
     if (this.port < 0 || this.port > 65535) {
-      throw new Error("Forbidden value (" + this.port + ") on element port.");
+      throw new Exception("Forbidden value (" + this.port + ") on element port.");
     }
     param1.writeShort(this.port);
     param1.writeBoolean(this.canCreateNewCharacter);
@@ -50,13 +50,13 @@ public class SelectedServerDataExtendedMessage extends SelectedServerDataMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

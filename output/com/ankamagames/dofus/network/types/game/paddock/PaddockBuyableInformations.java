@@ -14,7 +14,7 @@ public class PaddockBuyableInformations extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.price < 0 || this.price > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.price + ") on element price.");
+      throw new Exception("Forbidden value (" + this.price + ") on element price.");
     }
     param1.writeVarLong(this.price);
     param1.writeBoolean(this.locked);
@@ -23,7 +23,7 @@ public class PaddockBuyableInformations extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.price = param1.readVarUhLong();
     if (this.price < 0 || this.price > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.price + ") on element of PaddockInformationsForSell.price.");
     }
 

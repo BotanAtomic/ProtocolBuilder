@@ -18,28 +18,29 @@ public class PartyInvitationDungeonMessage extends PartyInvitationMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
     param1.writeByte(this.partyType);
     param1.writeUTF(this.partyName);
     if (this.maxParticipants < 0) {
-      throw new Error("Forbidden value (" + this.maxParticipants + ") on element maxParticipants.");
+      throw new Exception(
+          "Forbidden value (" + this.maxParticipants + ") on element maxParticipants.");
     }
     param1.writeByte(this.maxParticipants);
     if (this.fromId < 0 || this.fromId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.fromId + ") on element fromId.");
+      throw new Exception("Forbidden value (" + this.fromId + ") on element fromId.");
     }
     param1.writeVarLong(this.fromId);
     param1.writeUTF(this.fromName);
     if (this.toId < 0 || this.toId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.toId + ") on element toId.");
+      throw new Exception("Forbidden value (" + this.toId + ") on element toId.");
     }
     param1.writeVarLong(this.toId);
 
     if (this.dungeonId < 0) {
-      throw new Error("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+      throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
     }
     param1.writeVarShort(this.dungeonId);
   }
@@ -50,13 +51,13 @@ public class PartyInvitationDungeonMessage extends PartyInvitationMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -64,7 +65,7 @@ public class PartyInvitationDungeonMessage extends PartyInvitationMessage
 
     this.dungeonId = param1.readVarUhShort();
     if (this.dungeonId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.dungeonId
               + ") on element of TeleportToBuddyOfferMessage.dungeonId.");

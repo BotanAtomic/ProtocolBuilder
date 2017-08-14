@@ -18,11 +18,11 @@ public class ObjectGroundAddedMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.cellId < 0 || this.cellId > 559) {
-      throw new Error("Forbidden value (" + this.cellId + ") on element cellId.");
+      throw new Exception("Forbidden value (" + this.cellId + ") on element cellId.");
     }
     param1.writeVarShort(this.cellId);
     if (this.objectGID < 0) {
-      throw new Error("Forbidden value (" + this.objectGID + ") on element objectGID.");
+      throw new Exception("Forbidden value (" + this.objectGID + ") on element objectGID.");
     }
     param1.writeVarShort(this.objectGID);
   }
@@ -30,7 +30,7 @@ public class ObjectGroundAddedMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.cellId = param1.readVarUhShort();
     if (this.cellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.cellId
               + ") on element of HavenBagFurnitureInformation.cellId.");
@@ -38,7 +38,7 @@ public class ObjectGroundAddedMessage extends NetworkMessage implements INetwork
 
     this.objectGID = param1.readVarUhShort();
     if (this.objectGID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectGID
               + ") on element of ObjectItemToSellInHumanVendorShop.objectGID.");

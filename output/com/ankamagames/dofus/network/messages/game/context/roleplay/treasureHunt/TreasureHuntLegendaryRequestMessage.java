@@ -17,7 +17,7 @@ public class TreasureHuntLegendaryRequestMessage extends NetworkMessage implemen
 
   public void serialize(ICustomDataOutput param1) {
     if (this.legendaryId < 0) {
-      throw new Error("Forbidden value (" + this.legendaryId + ") on element legendaryId.");
+      throw new Exception("Forbidden value (" + this.legendaryId + ") on element legendaryId.");
     }
     param1.writeVarShort(this.legendaryId);
   }
@@ -25,7 +25,7 @@ public class TreasureHuntLegendaryRequestMessage extends NetworkMessage implemen
   public void deserialize(ICustomDataInput param1) {
     this.legendaryId = param1.readVarUhShort();
     if (this.legendaryId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.legendaryId
               + ") on element of TreasureHuntLegendaryRequestMessage.legendaryId.");

@@ -17,15 +17,18 @@ public class ActorAlignmentInformations extends Object implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.alignmentSide);
     if (this.alignmentValue < 0) {
-      throw new Error("Forbidden value (" + this.alignmentValue + ") on element alignmentValue.");
+      throw new Exception(
+          "Forbidden value (" + this.alignmentValue + ") on element alignmentValue.");
     }
     param1.writeByte(this.alignmentValue);
     if (this.alignmentGrade < 0) {
-      throw new Error("Forbidden value (" + this.alignmentGrade + ") on element alignmentGrade.");
+      throw new Exception(
+          "Forbidden value (" + this.alignmentGrade + ") on element alignmentGrade.");
     }
     param1.writeByte(this.alignmentGrade);
     if (this.characterPower < -9.007199254740992E15 || this.characterPower > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.characterPower + ") on element characterPower.");
+      throw new Exception(
+          "Forbidden value (" + this.characterPower + ") on element characterPower.");
     }
     param1.writeDouble(this.characterPower);
   }
@@ -35,7 +38,7 @@ public class ActorAlignmentInformations extends Object implements INetworkType {
 
     this.alignmentValue = param1.readByte();
     if (this.alignmentValue < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.alignmentValue
               + ") on element of ActorAlignmentInformations.alignmentValue.");
@@ -43,7 +46,7 @@ public class ActorAlignmentInformations extends Object implements INetworkType {
 
     this.alignmentGrade = param1.readByte();
     if (this.alignmentGrade < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.alignmentGrade
               + ") on element of ActorAlignmentInformations.alignmentGrade.");
@@ -51,7 +54,7 @@ public class ActorAlignmentInformations extends Object implements INetworkType {
 
     this.characterPower = param1.readDouble();
     if (this.characterPower < -9.007199254740992E15 || this.characterPower > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.characterPower
               + ") on element of ActorAlignmentInformations.characterPower.");

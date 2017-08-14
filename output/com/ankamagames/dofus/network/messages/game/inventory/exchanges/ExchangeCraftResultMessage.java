@@ -22,7 +22,7 @@ public class ExchangeCraftResultMessage extends NetworkMessage implements INetwo
   public void deserialize(ICustomDataInput param1) {
     this.craftResult = param1.readByte();
     if (this.craftResult < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.craftResult
               + ") on element of ExchangeCraftResultMessage.craftResult.");

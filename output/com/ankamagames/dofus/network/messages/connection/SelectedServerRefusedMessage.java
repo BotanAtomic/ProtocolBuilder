@@ -19,7 +19,7 @@ public class SelectedServerRefusedMessage extends NetworkMessage implements INet
 
   public void serialize(ICustomDataOutput param1) {
     if (this.serverId < 0) {
-      throw new Error("Forbidden value (" + this.serverId + ") on element serverId.");
+      throw new Exception("Forbidden value (" + this.serverId + ") on element serverId.");
     }
     param1.writeVarShort(this.serverId);
     param1.writeByte(this.error);
@@ -31,13 +31,13 @@ public class SelectedServerRefusedMessage extends NetworkMessage implements INet
 
     this.error = param1.readByte();
     if (this.error < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.error + ") on element of ShortcutBarSwapErrorMessage.error.");
     }
 
     this.serverStatus = param1.readByte();
     if (this.serverStatus < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.serverStatus
               + ") on element of SelectedServerRefusedMessage.serverStatus.");

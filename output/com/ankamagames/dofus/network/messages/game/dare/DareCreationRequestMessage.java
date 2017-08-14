@@ -35,24 +35,26 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 3, this.needNotifications);
     param1.writeByte(_loc2_);
     if (this.subscriptionFee < 0 || this.subscriptionFee > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.subscriptionFee + ") on element subscriptionFee.");
+      throw new Exception(
+          "Forbidden value (" + this.subscriptionFee + ") on element subscriptionFee.");
     }
     param1.writeVarLong(this.subscriptionFee);
     if (this.jackpot < 0 || this.jackpot > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.jackpot + ") on element jackpot.");
+      throw new Exception("Forbidden value (" + this.jackpot + ") on element jackpot.");
     }
     param1.writeVarLong(this.jackpot);
     if (this.maxCountWinners < 0 || this.maxCountWinners > 65535) {
-      throw new Error("Forbidden value (" + this.maxCountWinners + ") on element maxCountWinners.");
+      throw new Exception(
+          "Forbidden value (" + this.maxCountWinners + ") on element maxCountWinners.");
     }
     param1.writeShort(this.maxCountWinners);
     if (this.delayBeforeStart < 0 || this.delayBeforeStart > 4.294967295E9) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.delayBeforeStart + ") on element delayBeforeStart.");
     }
     param1.writeUnsignedInt(this.delayBeforeStart);
     if (this.duration < 0 || this.duration > 4.294967295E9) {
-      throw new Error("Forbidden value (" + this.duration + ") on element duration.");
+      throw new Exception("Forbidden value (" + this.duration + ") on element duration.");
     }
     param1.writeUnsignedInt(this.duration);
     param1.writeShort(this.criterions.length);
@@ -74,7 +76,7 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
 
     this.subscriptionFee = param1.readVarUhLong();
     if (this.subscriptionFee < 0 || this.subscriptionFee > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subscriptionFee
               + ") on element of DareInformations.subscriptionFee.");
@@ -82,13 +84,13 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
 
     this.jackpot = param1.readVarUhLong();
     if (this.jackpot < 0 || this.jackpot > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.jackpot + ") on element of DareInformations.jackpot.");
     }
 
     this.maxCountWinners = param1.readUnsignedShort();
     if (this.maxCountWinners < 0 || this.maxCountWinners > 65535) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxCountWinners
               + ") on element of DareInformations.maxCountWinners.");
@@ -96,7 +98,7 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
 
     this.delayBeforeStart = param1.readUnsignedInt();
     if (this.delayBeforeStart < 0 || this.delayBeforeStart > 4.294967295E9) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.delayBeforeStart
               + ") on element of DareCreationRequestMessage.delayBeforeStart.");
@@ -104,7 +106,7 @@ public class DareCreationRequestMessage extends NetworkMessage implements INetwo
 
     this.duration = param1.readVarUhShort();
     if (this.duration < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.duration + ") on element of InteractiveUsedMessage.duration.");
     }
 

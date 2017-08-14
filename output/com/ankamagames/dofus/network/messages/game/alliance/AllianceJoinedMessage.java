@@ -23,7 +23,8 @@ public class AllianceJoinedMessage extends NetworkMessage implements INetworkMes
     this.allianceInfo.serializeAs_AllianceInformations(param1);
     param1.writeBoolean(this.enabled);
     if (this.leadingGuildId < 0) {
-      throw new Error("Forbidden value (" + this.leadingGuildId + ") on element leadingGuildId.");
+      throw new Exception(
+          "Forbidden value (" + this.leadingGuildId + ") on element leadingGuildId.");
     }
     param1.writeVarInt(this.leadingGuildId);
   }
@@ -35,7 +36,7 @@ public class AllianceJoinedMessage extends NetworkMessage implements INetworkMes
 
     this.leadingGuildId = param1.readVarUhInt();
     if (this.leadingGuildId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.leadingGuildId
               + ") on element of AllianceJoinedMessage.leadingGuildId.");

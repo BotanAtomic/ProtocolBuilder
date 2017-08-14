@@ -21,7 +21,7 @@ public class AlmanachCalendarDateMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.date = param1.readInt();
     if (this.date < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.date
               + ") on element of AdditionalTaxCollectorInformations.date.");

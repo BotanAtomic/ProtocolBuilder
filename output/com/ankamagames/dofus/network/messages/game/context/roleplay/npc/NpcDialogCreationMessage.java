@@ -25,7 +25,7 @@ public class NpcDialogCreationMessage extends NetworkMessage implements INetwork
 
     this.npcId = param1.readVarUhShort();
     if (this.npcId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.npcId
               + ") on element of TreasureHuntStepFollowDirectionToHint.npcId.");

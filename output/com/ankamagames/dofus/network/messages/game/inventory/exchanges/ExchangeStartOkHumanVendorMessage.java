@@ -20,7 +20,7 @@ public class ExchangeStartOkHumanVendorMessage extends NetworkMessage implements
 
   public void serialize(ICustomDataOutput param1) {
     if (this.sellerId < -9.007199254740992E15 || this.sellerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sellerId + ") on element sellerId.");
+      throw new Exception("Forbidden value (" + this.sellerId + ") on element sellerId.");
     }
     param1.writeDouble(this.sellerId);
     param1.writeShort(this.objectsInfos.length);
@@ -35,7 +35,7 @@ public class ExchangeStartOkHumanVendorMessage extends NetworkMessage implements
     ObjectItemToSellInHumanVendorShop _loc4_ = null;
     this.sellerId = param1.readDouble();
     if (this.sellerId < -9.007199254740992E15 || this.sellerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.sellerId
               + ") on element of ExchangeStartOkHumanVendorMessage.sellerId.");

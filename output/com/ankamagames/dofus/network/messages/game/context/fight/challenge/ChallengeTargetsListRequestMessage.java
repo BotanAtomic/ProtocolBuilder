@@ -17,7 +17,7 @@ public class ChallengeTargetsListRequestMessage extends NetworkMessage implement
 
   public void serialize(ICustomDataOutput param1) {
     if (this.challengeId < 0) {
-      throw new Error("Forbidden value (" + this.challengeId + ") on element challengeId.");
+      throw new Exception("Forbidden value (" + this.challengeId + ") on element challengeId.");
     }
     param1.writeVarShort(this.challengeId);
   }
@@ -25,7 +25,7 @@ public class ChallengeTargetsListRequestMessage extends NetworkMessage implement
   public void deserialize(ICustomDataInput param1) {
     this.challengeId = param1.readVarUhShort();
     if (this.challengeId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.challengeId
               + ") on element of ChallengeTargetUpdateMessage.challengeId.");

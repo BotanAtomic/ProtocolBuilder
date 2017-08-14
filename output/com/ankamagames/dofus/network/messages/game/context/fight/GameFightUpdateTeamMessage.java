@@ -20,7 +20,7 @@ public class GameFightUpdateTeamMessage extends NetworkMessage implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.fightId < 0) {
-      throw new Error("Forbidden value (" + this.fightId + ") on element fightId.");
+      throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
     }
     param1.writeShort(this.fightId);
     this.team.serializeAs_FightTeamInformations(param1);

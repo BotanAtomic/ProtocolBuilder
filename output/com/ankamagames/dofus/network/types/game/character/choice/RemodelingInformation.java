@@ -21,7 +21,7 @@ public class RemodelingInformation extends Object implements INetworkType {
     param1.writeByte(this.breed);
     param1.writeBoolean(this.sex);
     if (this.cosmeticId < 0) {
-      throw new Error("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
+      throw new Exception("Forbidden value (" + this.cosmeticId + ") on element cosmeticId.");
     }
     param1.writeVarShort(this.cosmeticId);
     param1.writeShort(this.colors.length);
@@ -42,7 +42,7 @@ public class RemodelingInformation extends Object implements INetworkType {
 
     this.cosmeticId = param1.readVarUhShort();
     if (this.cosmeticId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.cosmeticId
               + ") on element of RemodelingInformation.cosmeticId.");

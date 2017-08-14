@@ -16,7 +16,7 @@ public class QuestObjectiveInformations extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objectiveId < 0) {
-      throw new Error("Forbidden value (" + this.objectiveId + ") on element objectiveId.");
+      throw new Exception("Forbidden value (" + this.objectiveId + ") on element objectiveId.");
     }
     param1.writeVarShort(this.objectiveId);
     param1.writeBoolean(this.objectiveStatus);
@@ -32,7 +32,7 @@ public class QuestObjectiveInformations extends Object implements INetworkType {
     String _loc4_ = null;
     this.objectiveId = param1.readVarUhShort();
     if (this.objectiveId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectiveId
               + ") on element of QuestObjectiveInformations.objectiveId.");

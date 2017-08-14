@@ -26,7 +26,7 @@ public class InventoryContentMessage extends NetworkMessage implements INetworkM
       _loc2_++;
     }
     if (this.kamas < 0 || this.kamas > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.kamas + ") on element kamas.");
+      throw new Exception("Forbidden value (" + this.kamas + ") on element kamas.");
     }
     param1.writeVarLong(this.kamas);
   }
@@ -43,7 +43,7 @@ public class InventoryContentMessage extends NetworkMessage implements INetworkM
     }
     this.kamas = param1.readVarUhLong();
     if (this.kamas < 0 || this.kamas > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.kamas + ") on element of TaxCollectorLootInformations.kamas.");
     }
   }

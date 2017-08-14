@@ -22,22 +22,24 @@ public class GameActionMark extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.markAuthorId < -9.007199254740992E15 || this.markAuthorId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.markAuthorId + ") on element markAuthorId.");
+      throw new Exception("Forbidden value (" + this.markAuthorId + ") on element markAuthorId.");
     }
     param1.writeDouble(this.markAuthorId);
     param1.writeByte(this.markTeamId);
     if (this.markSpellId < 0) {
-      throw new Error("Forbidden value (" + this.markSpellId + ") on element markSpellId.");
+      throw new Exception("Forbidden value (" + this.markSpellId + ") on element markSpellId.");
     }
     param1.writeInt(this.markSpellId);
     if (this.markSpellLevel < 1 || this.markSpellLevel > 200) {
-      throw new Error("Forbidden value (" + this.markSpellLevel + ") on element markSpellLevel.");
+      throw new Exception(
+          "Forbidden value (" + this.markSpellLevel + ") on element markSpellLevel.");
     }
     param1.writeShort(this.markSpellLevel);
     param1.writeShort(this.markId);
     param1.writeByte(this.markType);
     if (this.markimpactCell < -1 || this.markimpactCell > 559) {
-      throw new Error("Forbidden value (" + this.markimpactCell + ") on element markimpactCell.");
+      throw new Exception(
+          "Forbidden value (" + this.markimpactCell + ") on element markimpactCell.");
     }
     param1.writeShort(this.markimpactCell);
     param1.writeShort(this.cells.length);
@@ -53,25 +55,25 @@ public class GameActionMark extends Object implements INetworkType {
     GameActionMarkedCell _loc4_ = null;
     this.markAuthorId = param1.readDouble();
     if (this.markAuthorId < -9.007199254740992E15 || this.markAuthorId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.markAuthorId + ") on element of GameActionMark.markAuthorId.");
     }
 
     this.markTeamId = param1.readByte();
     if (this.markTeamId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.markTeamId + ") on element of GameActionMark.markTeamId.");
     }
 
     this.markSpellId = param1.readInt();
     if (this.markSpellId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.markSpellId + ") on element of GameActionMark.markSpellId.");
     }
 
     this.markSpellLevel = param1.readShort();
     if (this.markSpellLevel < 1 || this.markSpellLevel > 200) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.markSpellLevel
               + ") on element of GameActionMark.markSpellLevel.");
@@ -83,7 +85,7 @@ public class GameActionMark extends Object implements INetworkType {
 
     this.markimpactCell = param1.readShort();
     if (this.markimpactCell < -1 || this.markimpactCell > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.markimpactCell
               + ") on element of GameActionMark.markimpactCell.");

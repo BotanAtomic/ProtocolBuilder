@@ -20,38 +20,39 @@ public class GuildInsiderFactSheetInformations extends GuildFactSheetInformation
   public void serialize(ICustomDataOutput param1) {
 
     if (this.guildId < 0) {
-      throw new Error("Forbidden value (" + this.guildId + ") on element guildId.");
+      throw new Exception("Forbidden value (" + this.guildId + ") on element guildId.");
     }
     param1.writeVarInt(this.guildId);
     param1.writeUTF(this.guildName);
     if (this.guildLevel < 0 || this.guildLevel > 200) {
-      throw new Error("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
+      throw new Exception("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
     }
     param1.writeByte(this.guildLevel);
 
     this.guildEmblem.serializeAs_GuildEmblem(param1);
 
     if (this.leaderId < 0 || this.leaderId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.leaderId + ") on element leaderId.");
+      throw new Exception("Forbidden value (" + this.leaderId + ") on element leaderId.");
     }
     param1.writeVarLong(this.leaderId);
     if (this.nbMembers < 0) {
-      throw new Error("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
+      throw new Exception("Forbidden value (" + this.nbMembers + ") on element nbMembers.");
     }
     param1.writeVarShort(this.nbMembers);
 
     param1.writeUTF(this.leaderName);
     if (this.nbConnectedMembers < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.nbConnectedMembers + ") on element nbConnectedMembers.");
     }
     param1.writeVarShort(this.nbConnectedMembers);
     if (this.nbTaxCollectors < 0) {
-      throw new Error("Forbidden value (" + this.nbTaxCollectors + ") on element nbTaxCollectors.");
+      throw new Exception(
+          "Forbidden value (" + this.nbTaxCollectors + ") on element nbTaxCollectors.");
     }
     param1.writeByte(this.nbTaxCollectors);
     if (this.lastActivity < 0) {
-      throw new Error("Forbidden value (" + this.lastActivity + ") on element lastActivity.");
+      throw new Exception("Forbidden value (" + this.lastActivity + ") on element lastActivity.");
     }
     param1.writeInt(this.lastActivity);
   }
@@ -62,13 +63,13 @@ public class GuildInsiderFactSheetInformations extends GuildFactSheetInformation
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -78,7 +79,7 @@ public class GuildInsiderFactSheetInformations extends GuildFactSheetInformation
 
     this.nbConnectedMembers = param1.readVarUhShort();
     if (this.nbConnectedMembers < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbConnectedMembers
               + ") on element of GuildInsiderFactSheetInformations.nbConnectedMembers.");
@@ -86,7 +87,7 @@ public class GuildInsiderFactSheetInformations extends GuildFactSheetInformation
 
     this.nbTaxCollectors = param1.readByte();
     if (this.nbTaxCollectors < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nbTaxCollectors
               + ") on element of GuildInsiderFactSheetInformations.nbTaxCollectors.");
@@ -94,7 +95,7 @@ public class GuildInsiderFactSheetInformations extends GuildFactSheetInformation
 
     this.lastActivity = param1.readInt();
     if (this.lastActivity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastActivity
               + ") on element of GuildInsiderFactSheetInformations.lastActivity.");

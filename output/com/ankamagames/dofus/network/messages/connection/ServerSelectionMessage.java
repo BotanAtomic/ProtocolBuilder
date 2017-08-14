@@ -17,7 +17,7 @@ public class ServerSelectionMessage extends NetworkMessage implements INetworkMe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.serverId < 0) {
-      throw new Error("Forbidden value (" + this.serverId + ") on element serverId.");
+      throw new Exception("Forbidden value (" + this.serverId + ") on element serverId.");
     }
     param1.writeVarShort(this.serverId);
   }

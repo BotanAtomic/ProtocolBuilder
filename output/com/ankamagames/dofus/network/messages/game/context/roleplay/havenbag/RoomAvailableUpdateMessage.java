@@ -17,7 +17,7 @@ public class RoomAvailableUpdateMessage extends NetworkMessage implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.nbRoom < 0 || this.nbRoom > 255) {
-      throw new Error("Forbidden value (" + this.nbRoom + ") on element nbRoom.");
+      throw new Exception("Forbidden value (" + this.nbRoom + ") on element nbRoom.");
     }
     param1.writeByte(this.nbRoom);
   }

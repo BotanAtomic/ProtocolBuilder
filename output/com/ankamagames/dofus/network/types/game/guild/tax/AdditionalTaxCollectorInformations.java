@@ -15,7 +15,7 @@ public class AdditionalTaxCollectorInformations extends Object implements INetwo
   public void serialize(ICustomDataOutput param1) {
     param1.writeUTF(this.collectorCallerName);
     if (this.date < 0) {
-      throw new Error("Forbidden value (" + this.date + ") on element date.");
+      throw new Exception("Forbidden value (" + this.date + ") on element date.");
     }
     param1.writeInt(this.date);
   }
@@ -25,7 +25,7 @@ public class AdditionalTaxCollectorInformations extends Object implements INetwo
 
     this.date = param1.readInt();
     if (this.date < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.date
               + ") on element of AdditionalTaxCollectorInformations.date.");

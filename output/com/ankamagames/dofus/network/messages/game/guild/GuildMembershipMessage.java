@@ -17,7 +17,7 @@ public class GuildMembershipMessage extends GuildJoinedMessage implements INetwo
   public void serialize(ICustomDataOutput param1) {
     this.guildInfo.serializeAs_GuildInformations(param1);
     if (this.memberRights < 0) {
-      throw new Error("Forbidden value (" + this.memberRights + ") on element memberRights.");
+      throw new Exception("Forbidden value (" + this.memberRights + ") on element memberRights.");
     }
     param1.writeVarInt(this.memberRights);
   }
@@ -28,13 +28,13 @@ public class GuildMembershipMessage extends GuildJoinedMessage implements INetwo
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 

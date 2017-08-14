@@ -18,11 +18,12 @@ public class LivingObjectDissociateMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.livingUID < 0) {
-      throw new Error("Forbidden value (" + this.livingUID + ") on element livingUID.");
+      throw new Exception("Forbidden value (" + this.livingUID + ") on element livingUID.");
     }
     param1.writeVarInt(this.livingUID);
     if (this.livingPosition < 0 || this.livingPosition > 255) {
-      throw new Error("Forbidden value (" + this.livingPosition + ") on element livingPosition.");
+      throw new Exception(
+          "Forbidden value (" + this.livingPosition + ") on element livingPosition.");
     }
     param1.writeByte(this.livingPosition);
   }
@@ -30,7 +31,7 @@ public class LivingObjectDissociateMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.livingUID = param1.readVarUhInt();
     if (this.livingUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.livingUID
               + ") on element of LivingObjectDissociateMessage.livingUID.");
@@ -38,7 +39,7 @@ public class LivingObjectDissociateMessage extends NetworkMessage implements INe
 
     this.livingPosition = param1.readUnsignedByte();
     if (this.livingPosition < 0 || this.livingPosition > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.livingPosition
               + ") on element of LivingObjectDissociateMessage.livingPosition.");

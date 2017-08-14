@@ -15,7 +15,7 @@ public class GoldItem extends Item implements INetworkType {
   public void serialize(ICustomDataOutput param1) {
 
     if (this.sum < 0 || this.sum > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sum + ") on element sum.");
+      throw new Exception("Forbidden value (" + this.sum + ") on element sum.");
     }
     param1.writeVarLong(this.sum);
   }
@@ -26,13 +26,13 @@ public class GoldItem extends Item implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -40,7 +40,7 @@ public class GoldItem extends Item implements INetworkType {
 
     this.sum = param1.readVarUhLong();
     if (this.sum < 0 || this.sum > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sum + ") on element of GoldItem.sum.");
+      throw new Exception("Forbidden value (" + this.sum + ") on element of GoldItem.sum.");
     }
   }
 }

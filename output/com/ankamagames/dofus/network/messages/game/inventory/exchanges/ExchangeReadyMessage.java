@@ -19,7 +19,7 @@ public class ExchangeReadyMessage extends NetworkMessage implements INetworkMess
   public void serialize(ICustomDataOutput param1) {
     param1.writeBoolean(this.ready);
     if (this.step < 0) {
-      throw new Error("Forbidden value (" + this.step + ") on element step.");
+      throw new Exception("Forbidden value (" + this.step + ") on element step.");
     }
     param1.writeVarShort(this.step);
   }
@@ -29,7 +29,7 @@ public class ExchangeReadyMessage extends NetworkMessage implements INetworkMess
 
     this.step = param1.readVarUhShort();
     if (this.step < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.step + ") on element of ExchangeReadyMessage.step.");
     }
   }

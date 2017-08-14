@@ -20,16 +20,16 @@ public class MountFeedRequestMessage extends NetworkMessage implements INetworkM
 
   public void serialize(ICustomDataOutput param1) {
     if (this.mountUid < 0) {
-      throw new Error("Forbidden value (" + this.mountUid + ") on element mountUid.");
+      throw new Exception("Forbidden value (" + this.mountUid + ") on element mountUid.");
     }
     param1.writeVarInt(this.mountUid);
     param1.writeByte(this.mountLocation);
     if (this.mountFoodUid < 0) {
-      throw new Error("Forbidden value (" + this.mountFoodUid + ") on element mountFoodUid.");
+      throw new Exception("Forbidden value (" + this.mountFoodUid + ") on element mountFoodUid.");
     }
     param1.writeVarInt(this.mountFoodUid);
     if (this.quantity < 0) {
-      throw new Error("Forbidden value (" + this.quantity + ") on element quantity.");
+      throw new Exception("Forbidden value (" + this.quantity + ") on element quantity.");
     }
     param1.writeVarInt(this.quantity);
   }
@@ -37,7 +37,7 @@ public class MountFeedRequestMessage extends NetworkMessage implements INetworkM
   public void deserialize(ICustomDataInput param1) {
     this.mountUid = param1.readVarUhInt();
     if (this.mountUid < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.mountUid
               + ") on element of MountFeedRequestMessage.mountUid.");
@@ -47,7 +47,7 @@ public class MountFeedRequestMessage extends NetworkMessage implements INetworkM
 
     this.mountFoodUid = param1.readVarUhInt();
     if (this.mountFoodUid < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.mountFoodUid
               + ") on element of MountFeedRequestMessage.mountFoodUid.");
@@ -55,7 +55,7 @@ public class MountFeedRequestMessage extends NetworkMessage implements INetworkM
 
     this.quantity = param1.readVarUhInt();
     if (this.quantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.quantity
               + ") on element of ObjectItemToSellInHumanVendorShop.quantity.");

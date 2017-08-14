@@ -21,7 +21,7 @@ public class GameRolePlayTaxCollectorInformations extends GameRolePlayActorInfor
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -31,7 +31,7 @@ public class GameRolePlayTaxCollectorInformations extends GameRolePlayActorInfor
     param1.writeShort(this.identification.getTypeId());
     this.identification.serialize(param1);
     if (this.guildLevel < 0 || this.guildLevel > 255) {
-      throw new Error("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
+      throw new Exception("Forbidden value (" + this.guildLevel + ") on element guildLevel.");
     }
     param1.writeByte(this.guildLevel);
     param1.writeInt(this.taxCollectorAttack);
@@ -43,13 +43,13 @@ public class GameRolePlayTaxCollectorInformations extends GameRolePlayActorInfor
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -60,7 +60,7 @@ public class GameRolePlayTaxCollectorInformations extends GameRolePlayActorInfor
     this.identification.deserialize(param1);
     this.guildLevel = param1.readUnsignedByte();
     if (this.guildLevel < 1 || this.guildLevel > 200) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.guildLevel
               + ") on element of GuildVersatileInformations.guildLevel.");

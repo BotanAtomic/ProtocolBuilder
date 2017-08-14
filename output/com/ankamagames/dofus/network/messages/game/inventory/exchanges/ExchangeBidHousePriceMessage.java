@@ -17,7 +17,7 @@ public class ExchangeBidHousePriceMessage extends NetworkMessage implements INet
 
   public void serialize(ICustomDataOutput param1) {
     if (this.genId < 0) {
-      throw new Error("Forbidden value (" + this.genId + ") on element genId.");
+      throw new Exception("Forbidden value (" + this.genId + ") on element genId.");
     }
     param1.writeVarShort(this.genId);
   }
@@ -25,7 +25,7 @@ public class ExchangeBidHousePriceMessage extends NetworkMessage implements INet
   public void deserialize(ICustomDataInput param1) {
     this.genId = param1.readVarUhShort();
     if (this.genId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.genId
               + ") on element of ExchangeBidHouseSearchMessage.genId.");

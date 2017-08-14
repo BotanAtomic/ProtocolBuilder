@@ -18,7 +18,7 @@ public class HouseTeleportRequestMessage extends NetworkMessage implements INetw
 
   public void serialize(ICustomDataOutput param1) {
     if (this.houseId < 0) {
-      throw new Error("Forbidden value (" + this.houseId + ") on element houseId.");
+      throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
     }
     param1.writeVarInt(this.houseId);
     param1.writeInt(this.houseInstanceId);
@@ -27,7 +27,7 @@ public class HouseTeleportRequestMessage extends NetworkMessage implements INetw
   public void deserialize(ICustomDataInput param1) {
     this.houseId = param1.readVarUhInt();
     if (this.houseId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.houseId + ") on element of HouseInformations.houseId.");
     }
 

@@ -20,11 +20,11 @@ public class GameFightStartingMessage extends NetworkMessage implements INetwork
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.fightType);
     if (this.attackerId < -9.007199254740992E15 || this.attackerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.attackerId + ") on element attackerId.");
+      throw new Exception("Forbidden value (" + this.attackerId + ") on element attackerId.");
     }
     param1.writeDouble(this.attackerId);
     if (this.defenderId < -9.007199254740992E15 || this.defenderId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.defenderId + ") on element defenderId.");
+      throw new Exception("Forbidden value (" + this.defenderId + ") on element defenderId.");
     }
     param1.writeDouble(this.defenderId);
   }
@@ -32,7 +32,7 @@ public class GameFightStartingMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.fightType = param1.readByte();
     if (this.fightType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.fightType
               + ") on element of FightExternalInformations.fightType.");
@@ -40,7 +40,7 @@ public class GameFightStartingMessage extends NetworkMessage implements INetwork
 
     this.attackerId = param1.readVarUhLong();
     if (this.attackerId < 0 || this.attackerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.attackerId
               + ") on element of GameRolePlayAggressionMessage.attackerId.");
@@ -48,7 +48,7 @@ public class GameFightStartingMessage extends NetworkMessage implements INetwork
 
     this.defenderId = param1.readVarUhLong();
     if (this.defenderId < 0 || this.defenderId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.defenderId
               + ") on element of GameRolePlayAggressionMessage.defenderId.");

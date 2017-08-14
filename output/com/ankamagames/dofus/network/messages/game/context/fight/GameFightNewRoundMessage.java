@@ -17,7 +17,7 @@ public class GameFightNewRoundMessage extends NetworkMessage implements INetwork
 
   public void serialize(ICustomDataOutput param1) {
     if (this.roundNumber < 0) {
-      throw new Error("Forbidden value (" + this.roundNumber + ") on element roundNumber.");
+      throw new Exception("Forbidden value (" + this.roundNumber + ") on element roundNumber.");
     }
     param1.writeVarInt(this.roundNumber);
   }
@@ -25,7 +25,7 @@ public class GameFightNewRoundMessage extends NetworkMessage implements INetwork
   public void deserialize(ICustomDataInput param1) {
     this.roundNumber = param1.readVarUhInt();
     if (this.roundNumber < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.roundNumber
               + ") on element of GameFightNewRoundMessage.roundNumber.");

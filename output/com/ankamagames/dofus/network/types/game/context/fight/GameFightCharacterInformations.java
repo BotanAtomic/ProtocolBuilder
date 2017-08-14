@@ -23,7 +23,7 @@ public class GameFightCharacterInformations extends GameFightFighterNamedInforma
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.contextualId < -9.007199254740992E15 || this.contextualId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.contextualId + ") on element contextualId.");
+      throw new Exception("Forbidden value (" + this.contextualId + ") on element contextualId.");
     }
     param1.writeDouble(this.contextualId);
     this.look.serializeAs_EntityLook(param1);
@@ -32,7 +32,7 @@ public class GameFightCharacterInformations extends GameFightFighterNamedInforma
 
     param1.writeByte(this.teamId);
     if (this.wave < 0) {
-      throw new Error("Forbidden value (" + this.wave + ") on element wave.");
+      throw new Exception("Forbidden value (" + this.wave + ") on element wave.");
     }
     param1.writeByte(this.wave);
     param1.writeBoolean(this.alive);
@@ -42,7 +42,7 @@ public class GameFightCharacterInformations extends GameFightFighterNamedInforma
     int _loc2_ = 0;
     while (_loc2_ < this.previousPositions.length) {
       if (this.previousPositions[_loc2_] < 0 || this.previousPositions[_loc2_] > 559) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.previousPositions[_loc2_]
                 + ") on element 5 (starting at 1) of previousPositions.");
@@ -55,7 +55,7 @@ public class GameFightCharacterInformations extends GameFightFighterNamedInforma
     this.status.serializeAs_PlayerStatus(param1);
 
     if (this.level < 0 || this.level > 255) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
     this.alignmentInfos.serializeAs_ActorAlignmentInformations(param1);
@@ -69,13 +69,13 @@ public class GameFightCharacterInformations extends GameFightFighterNamedInforma
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -83,7 +83,8 @@ public class GameFightCharacterInformations extends GameFightFighterNamedInforma
 
     this.level = param1.readByte();
     if (this.level < 0) {
-      throw new Error("Forbidden value (" + this.level + ") on element of MountClientData.level.");
+      throw new Exception(
+          "Forbidden value (" + this.level + ") on element of MountClientData.level.");
     }
 
     this.alignmentInfos = new ActorAlignmentInformations();

@@ -18,11 +18,11 @@ public class QuestObjectiveValidatedMessage extends NetworkMessage implements IN
 
   public void serialize(ICustomDataOutput param1) {
     if (this.questId < 0) {
-      throw new Error("Forbidden value (" + this.questId + ") on element questId.");
+      throw new Exception("Forbidden value (" + this.questId + ") on element questId.");
     }
     param1.writeVarShort(this.questId);
     if (this.objectiveId < 0) {
-      throw new Error("Forbidden value (" + this.objectiveId + ") on element objectiveId.");
+      throw new Exception("Forbidden value (" + this.objectiveId + ") on element objectiveId.");
     }
     param1.writeVarShort(this.objectiveId);
   }
@@ -30,13 +30,13 @@ public class QuestObjectiveValidatedMessage extends NetworkMessage implements IN
   public void deserialize(ICustomDataInput param1) {
     this.questId = param1.readVarUhShort();
     if (this.questId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.questId + ") on element of QuestActiveInformations.questId.");
     }
 
     this.objectiveId = param1.readVarUhShort();
     if (this.objectiveId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectiveId
               + ") on element of QuestObjectiveInformations.objectiveId.");

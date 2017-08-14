@@ -19,7 +19,7 @@ public class ExchangeStartOkCraftWithInformationMessage extends ExchangeStartOkC
   public void serialize(ICustomDataOutput param1) {
 
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarInt(this.skillId);
   }
@@ -30,13 +30,13 @@ public class ExchangeStartOkCraftWithInformationMessage extends ExchangeStartOkC
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -44,7 +44,7 @@ public class ExchangeStartOkCraftWithInformationMessage extends ExchangeStartOkC
 
     this.skillId = param1.readVarUhShort();
     if (this.skillId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillId + ") on element of SkillActionDescription.skillId.");
     }
   }

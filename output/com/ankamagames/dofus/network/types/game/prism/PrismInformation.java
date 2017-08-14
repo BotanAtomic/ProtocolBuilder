@@ -17,21 +17,21 @@ public class PrismInformation extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.typeId < 0) {
-      throw new Error("Forbidden value (" + this.typeId + ") on element typeId.");
+      throw new Exception("Forbidden value (" + this.typeId + ") on element typeId.");
     }
     param1.writeByte(this.typeId);
     param1.writeByte(this.state);
     if (this.nextVulnerabilityDate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.nextVulnerabilityDate + ") on element nextVulnerabilityDate.");
     }
     param1.writeInt(this.nextVulnerabilityDate);
     if (this.placementDate < 0) {
-      throw new Error("Forbidden value (" + this.placementDate + ") on element placementDate.");
+      throw new Exception("Forbidden value (" + this.placementDate + ") on element placementDate.");
     }
     param1.writeInt(this.placementDate);
     if (this.rewardTokenCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.rewardTokenCount + ") on element rewardTokenCount.");
     }
     param1.writeVarInt(this.rewardTokenCount);
@@ -40,18 +40,18 @@ public class PrismInformation extends Object implements INetworkType {
   public void deserialize(ICustomDataInput param1) {
     this.typeId = param1.readByte();
     if (this.typeId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.typeId + ") on element of PrismInformation.typeId.");
     }
 
     this.state = param1.readByte();
     if (this.state < 0) {
-      throw new Error("Forbidden value (" + this.state + ") on element of ContentPart.state.");
+      throw new Exception("Forbidden value (" + this.state + ") on element of ContentPart.state.");
     }
 
     this.nextVulnerabilityDate = param1.readInt();
     if (this.nextVulnerabilityDate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.nextVulnerabilityDate
               + ") on element of PrismInformation.nextVulnerabilityDate.");
@@ -59,7 +59,7 @@ public class PrismInformation extends Object implements INetworkType {
 
     this.placementDate = param1.readInt();
     if (this.placementDate < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.placementDate
               + ") on element of PrismInformation.placementDate.");
@@ -67,7 +67,7 @@ public class PrismInformation extends Object implements INetworkType {
 
     this.rewardTokenCount = param1.readVarUhInt();
     if (this.rewardTokenCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.rewardTokenCount
               + ") on element of PrismInformation.rewardTokenCount.");

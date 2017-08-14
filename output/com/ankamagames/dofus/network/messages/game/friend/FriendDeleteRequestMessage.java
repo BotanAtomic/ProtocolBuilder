@@ -17,7 +17,7 @@ public class FriendDeleteRequestMessage extends NetworkMessage implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
   }
@@ -25,7 +25,7 @@ public class FriendDeleteRequestMessage extends NetworkMessage implements INetwo
   public void deserialize(ICustomDataInput param1) {
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
   }

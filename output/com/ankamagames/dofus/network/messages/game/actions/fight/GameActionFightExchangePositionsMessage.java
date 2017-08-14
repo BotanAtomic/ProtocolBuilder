@@ -21,24 +21,24 @@ public class GameActionFightExchangePositionsMessage extends AbstractGameActionM
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sourceId + ") on element sourceId.");
+      throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
     }
     param1.writeDouble(this.sourceId);
 
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.targetId + ") on element targetId.");
+      throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
     }
     param1.writeDouble(this.targetId);
     if (this.casterCellId < -1 || this.casterCellId > 559) {
-      throw new Error("Forbidden value (" + this.casterCellId + ") on element casterCellId.");
+      throw new Exception("Forbidden value (" + this.casterCellId + ") on element casterCellId.");
     }
     param1.writeShort(this.casterCellId);
     if (this.targetCellId < -1 || this.targetCellId > 559) {
-      throw new Error("Forbidden value (" + this.targetCellId + ") on element targetCellId.");
+      throw new Exception("Forbidden value (" + this.targetCellId + ") on element targetCellId.");
     }
     param1.writeShort(this.targetCellId);
   }
@@ -49,13 +49,13 @@ public class GameActionFightExchangePositionsMessage extends AbstractGameActionM
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -63,7 +63,7 @@ public class GameActionFightExchangePositionsMessage extends AbstractGameActionM
 
     this.targetId = param1.readDouble();
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.targetId
               + ") on element of AbstractFightDispellableEffect.targetId.");
@@ -71,7 +71,7 @@ public class GameActionFightExchangePositionsMessage extends AbstractGameActionM
 
     this.casterCellId = param1.readShort();
     if (this.casterCellId < -1 || this.casterCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.casterCellId
               + ") on element of GameActionFightExchangePositionsMessage.casterCellId.");
@@ -79,7 +79,7 @@ public class GameActionFightExchangePositionsMessage extends AbstractGameActionM
 
     this.targetCellId = param1.readVarUhShort();
     if (this.targetCellId < 0 || this.targetCellId > 559) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.targetCellId
               + ") on element of GameRolePlaySpellAnimMessage.targetCellId.");

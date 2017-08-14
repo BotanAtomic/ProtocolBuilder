@@ -22,7 +22,7 @@ public class LockableStateUpdateStorageMessage extends LockableStateUpdateAbstra
 
     param1.writeInt(this.mapId);
     if (this.elementId < 0) {
-      throw new Error("Forbidden value (" + this.elementId + ") on element elementId.");
+      throw new Exception("Forbidden value (" + this.elementId + ") on element elementId.");
     }
     param1.writeVarInt(this.elementId);
   }
@@ -33,13 +33,13 @@ public class LockableStateUpdateStorageMessage extends LockableStateUpdateAbstra
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -49,7 +49,7 @@ public class LockableStateUpdateStorageMessage extends LockableStateUpdateAbstra
 
     this.elementId = param1.readInt();
     if (this.elementId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.elementId + ") on element of StatedElement.elementId.");
     }
   }

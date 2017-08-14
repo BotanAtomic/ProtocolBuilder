@@ -19,11 +19,11 @@ public class HouseSellRequestMessage extends NetworkMessage implements INetworkM
 
   public void serialize(ICustomDataOutput param1) {
     if (this.instanceId < 0) {
-      throw new Error("Forbidden value (" + this.instanceId + ") on element instanceId.");
+      throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
     }
     param1.writeInt(this.instanceId);
     if (this.amount < 0 || this.amount > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.amount + ") on element amount.");
+      throw new Exception("Forbidden value (" + this.amount + ") on element amount.");
     }
     param1.writeVarLong(this.amount);
     param1.writeBoolean(this.forSale);
@@ -32,7 +32,7 @@ public class HouseSellRequestMessage extends NetworkMessage implements INetworkM
   public void deserialize(ICustomDataInput param1) {
     this.instanceId = param1.readInt();
     if (this.instanceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.instanceId
               + ") on element of HouseInstanceInformations.instanceId.");
@@ -40,7 +40,7 @@ public class HouseSellRequestMessage extends NetworkMessage implements INetworkM
 
     this.amount = param1.readVarUhLong();
     if (this.amount < 0 || this.amount > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.amount + ") on element of HouseSellRequestMessage.amount.");
     }
 

@@ -14,7 +14,7 @@ public class ActorOrientation extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.id < -9.007199254740992E15 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeDouble(this.id);
     param1.writeByte(this.direction);
@@ -25,7 +25,7 @@ public class ActorOrientation extends Object implements INetworkType {
 
     this.direction = param1.readByte();
     if (this.direction < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.direction
               + ") on element of TreasureHuntStepFollowDirectionToPOI.direction.");

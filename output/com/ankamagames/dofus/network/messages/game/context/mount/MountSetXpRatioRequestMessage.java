@@ -17,7 +17,7 @@ public class MountSetXpRatioRequestMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.xpRatio < 0) {
-      throw new Error("Forbidden value (" + this.xpRatio + ") on element xpRatio.");
+      throw new Exception("Forbidden value (" + this.xpRatio + ") on element xpRatio.");
     }
     param1.writeByte(this.xpRatio);
   }
@@ -25,7 +25,7 @@ public class MountSetXpRatioRequestMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.xpRatio = param1.readByte();
     if (this.xpRatio < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.xpRatio
               + ") on element of MountSetXpRatioRequestMessage.xpRatio.");

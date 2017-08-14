@@ -22,23 +22,24 @@ public class PartyInvitationMessage extends AbstractPartyMessage implements INet
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.partyId < 0) {
-      throw new Error("Forbidden value (" + this.partyId + ") on element partyId.");
+      throw new Exception("Forbidden value (" + this.partyId + ") on element partyId.");
     }
     param1.writeVarInt(this.partyId);
 
     param1.writeByte(this.partyType);
     param1.writeUTF(this.partyName);
     if (this.maxParticipants < 0) {
-      throw new Error("Forbidden value (" + this.maxParticipants + ") on element maxParticipants.");
+      throw new Exception(
+          "Forbidden value (" + this.maxParticipants + ") on element maxParticipants.");
     }
     param1.writeByte(this.maxParticipants);
     if (this.fromId < 0 || this.fromId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.fromId + ") on element fromId.");
+      throw new Exception("Forbidden value (" + this.fromId + ") on element fromId.");
     }
     param1.writeVarLong(this.fromId);
     param1.writeUTF(this.fromName);
     if (this.toId < 0 || this.toId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.toId + ") on element toId.");
+      throw new Exception("Forbidden value (" + this.toId + ") on element toId.");
     }
     param1.writeVarLong(this.toId);
   }
@@ -49,13 +50,13 @@ public class PartyInvitationMessage extends AbstractPartyMessage implements INet
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -63,7 +64,7 @@ public class PartyInvitationMessage extends AbstractPartyMessage implements INet
 
     this.partyType = param1.readByte();
     if (this.partyType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.partyType + ") on element of PartyJoinMessage.partyType.");
     }
 
@@ -71,7 +72,7 @@ public class PartyInvitationMessage extends AbstractPartyMessage implements INet
 
     this.maxParticipants = param1.readByte();
     if (this.maxParticipants < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxParticipants
               + ") on element of PartyJoinMessage.maxParticipants.");
@@ -79,7 +80,7 @@ public class PartyInvitationMessage extends AbstractPartyMessage implements INet
 
     this.fromId = param1.readVarUhLong();
     if (this.fromId < 0 || this.fromId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.fromId + ") on element of PartyInvitationMessage.fromId.");
     }
 
@@ -87,7 +88,7 @@ public class PartyInvitationMessage extends AbstractPartyMessage implements INet
 
     this.toId = param1.readVarUhLong();
     if (this.toId < 0 || this.toId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.toId + ") on element of PartyInvitationMessage.toId.");
     }
   }

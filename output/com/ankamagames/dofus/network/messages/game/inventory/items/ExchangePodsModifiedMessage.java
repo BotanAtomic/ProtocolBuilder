@@ -21,11 +21,11 @@ public class ExchangePodsModifiedMessage extends ExchangeObjectMessage implement
     param1.writeBoolean(this.remote);
 
     if (this.currentWeight < 0) {
-      throw new Error("Forbidden value (" + this.currentWeight + ") on element currentWeight.");
+      throw new Exception("Forbidden value (" + this.currentWeight + ") on element currentWeight.");
     }
     param1.writeVarInt(this.currentWeight);
     if (this.maxWeight < 0) {
-      throw new Error("Forbidden value (" + this.maxWeight + ") on element maxWeight.");
+      throw new Exception("Forbidden value (" + this.maxWeight + ") on element maxWeight.");
     }
     param1.writeVarInt(this.maxWeight);
   }
@@ -36,13 +36,13 @@ public class ExchangePodsModifiedMessage extends ExchangeObjectMessage implement
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -50,7 +50,7 @@ public class ExchangePodsModifiedMessage extends ExchangeObjectMessage implement
 
     this.currentWeight = param1.readVarUhInt();
     if (this.currentWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.currentWeight
               + ") on element of ExchangePodsModifiedMessage.currentWeight.");
@@ -58,7 +58,7 @@ public class ExchangePodsModifiedMessage extends ExchangeObjectMessage implement
 
     this.maxWeight = param1.readVarUhInt();
     if (this.maxWeight < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxWeight
               + ") on element of ExchangePodsModifiedMessage.maxWeight.");

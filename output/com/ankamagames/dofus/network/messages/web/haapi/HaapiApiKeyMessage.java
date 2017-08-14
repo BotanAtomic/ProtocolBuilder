@@ -26,13 +26,13 @@ public class HaapiApiKeyMessage extends NetworkMessage implements INetworkMessag
   public void deserialize(ICustomDataInput param1) {
     this.returnType = param1.readByte();
     if (this.returnType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.returnType + ") on element of HaapiApiKeyMessage.returnType.");
     }
 
     this.keyType = param1.readByte();
     if (this.keyType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.keyType
               + ") on element of HaapiApiKeyRequestMessage.keyType.");

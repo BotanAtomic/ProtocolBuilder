@@ -21,7 +21,7 @@ public class JobExperienceOtherPlayerUpdateMessage extends JobExperienceUpdateMe
     this.experiencesUpdate.serializeAs_JobExperience(param1);
 
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.playerId + ") on element playerId.");
+      throw new Exception("Forbidden value (" + this.playerId + ") on element playerId.");
     }
     param1.writeVarLong(this.playerId);
   }
@@ -32,13 +32,13 @@ public class JobExperienceOtherPlayerUpdateMessage extends JobExperienceUpdateMe
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -46,7 +46,7 @@ public class JobExperienceOtherPlayerUpdateMessage extends JobExperienceUpdateMe
 
     this.playerId = param1.readVarUhLong();
     if (this.playerId < 0 || this.playerId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.playerId + ") on element of TaxCollectorMovement.playerId.");
     }
   }

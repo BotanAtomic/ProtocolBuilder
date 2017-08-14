@@ -17,16 +17,16 @@ public class LifePointsRegenEndMessage extends UpdateLifePointsMessage implement
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.lifePoints < 0) {
-      throw new Error("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
+      throw new Exception("Forbidden value (" + this.lifePoints + ") on element lifePoints.");
     }
     param1.writeVarInt(this.lifePoints);
     if (this.maxLifePoints < 0) {
-      throw new Error("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
+      throw new Exception("Forbidden value (" + this.maxLifePoints + ") on element maxLifePoints.");
     }
     param1.writeVarInt(this.maxLifePoints);
 
     if (this.lifePointsGained < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.lifePointsGained + ") on element lifePointsGained.");
     }
     param1.writeVarInt(this.lifePointsGained);
@@ -38,13 +38,13 @@ public class LifePointsRegenEndMessage extends UpdateLifePointsMessage implement
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -52,7 +52,7 @@ public class LifePointsRegenEndMessage extends UpdateLifePointsMessage implement
 
     this.lifePointsGained = param1.readVarUhInt();
     if (this.lifePointsGained < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lifePointsGained
               + ") on element of LifePointsRegenEndMessage.lifePointsGained.");

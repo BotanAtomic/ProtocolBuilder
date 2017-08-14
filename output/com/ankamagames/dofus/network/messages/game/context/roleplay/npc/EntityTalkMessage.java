@@ -20,11 +20,11 @@ public class EntityTalkMessage extends NetworkMessage implements INetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.entityId < -9.007199254740992E15 || this.entityId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.entityId + ") on element entityId.");
+      throw new Exception("Forbidden value (" + this.entityId + ") on element entityId.");
     }
     param1.writeDouble(this.entityId);
     if (this.textId < 0) {
-      throw new Error("Forbidden value (" + this.textId + ") on element textId.");
+      throw new Exception("Forbidden value (" + this.textId + ") on element textId.");
     }
     param1.writeVarShort(this.textId);
     param1.writeShort(this.parameters.length);
@@ -39,13 +39,13 @@ public class EntityTalkMessage extends NetworkMessage implements INetworkMessage
     String _loc4_ = null;
     this.entityId = param1.readVarUhLong();
     if (this.entityId < 0 || this.entityId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.entityId + ") on element of InteractiveUsedMessage.entityId.");
     }
 
     this.textId = param1.readVarUhShort();
     if (this.textId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.textId + ") on element of EntityTalkMessage.textId.");
     }
 

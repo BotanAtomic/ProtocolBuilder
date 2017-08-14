@@ -23,7 +23,7 @@ public class DungeonPartyFinderRoomContentUpdateMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.dungeonId < 0) {
-      throw new Error("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+      throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
     }
     param1.writeVarShort(this.dungeonId);
     param1.writeShort(this.addedPlayers.length);
@@ -37,7 +37,7 @@ public class DungeonPartyFinderRoomContentUpdateMessage extends NetworkMessage
     while (_loc3_ < this.removedPlayersIds.length) {
       if (this.removedPlayersIds[_loc3_] < 0
           || this.removedPlayersIds[_loc3_] > 9.007199254740992E15) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.removedPlayersIds[_loc3_]
                 + ") on element 3 (starting at 1) of removedPlayersIds.");
@@ -52,7 +52,7 @@ public class DungeonPartyFinderRoomContentUpdateMessage extends NetworkMessage
     Object _loc7_ = NaN;
     this.dungeonId = param1.readVarUhShort();
     if (this.dungeonId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.dungeonId
               + ") on element of TeleportToBuddyOfferMessage.dungeonId.");
@@ -71,7 +71,7 @@ public class DungeonPartyFinderRoomContentUpdateMessage extends NetworkMessage
     while (_loc5_ < _loc4_) {
       _loc7_ = param1.readVarUhLong();
       if (_loc7_ < 0 || _loc7_ > 9.007199254740992E15) {
-        throw new Error("Forbidden value (" + _loc7_ + ") on elements of removedPlayersIds.");
+        throw new Exception("Forbidden value (" + _loc7_ + ") on elements of removedPlayersIds.");
       }
       this.removedPlayersIds.push(_loc7_);
       _loc5_++;

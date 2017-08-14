@@ -18,11 +18,11 @@ public class InteractiveUseEndedMessage extends NetworkMessage implements INetwo
 
   public void serialize(ICustomDataOutput param1) {
     if (this.elemId < 0) {
-      throw new Error("Forbidden value (" + this.elemId + ") on element elemId.");
+      throw new Exception("Forbidden value (" + this.elemId + ") on element elemId.");
     }
     param1.writeVarInt(this.elemId);
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarShort(this.skillId);
   }
@@ -30,7 +30,7 @@ public class InteractiveUseEndedMessage extends NetworkMessage implements INetwo
   public void deserialize(ICustomDataInput param1) {
     this.elemId = param1.readVarUhInt();
     if (this.elemId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.elemId
               + ") on element of InteractiveUseRequestMessage.elemId.");
@@ -38,7 +38,7 @@ public class InteractiveUseEndedMessage extends NetworkMessage implements INetwo
 
     this.skillId = param1.readVarUhShort();
     if (this.skillId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillId + ") on element of SkillActionDescription.skillId.");
     }
   }

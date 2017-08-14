@@ -38,16 +38,18 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
       _loc2_++;
     }
     if (this.totalStepCount < 0) {
-      throw new Error("Forbidden value (" + this.totalStepCount + ") on element totalStepCount.");
+      throw new Exception(
+          "Forbidden value (" + this.totalStepCount + ") on element totalStepCount.");
     }
     param1.writeByte(this.totalStepCount);
     if (this.checkPointCurrent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.checkPointCurrent + ") on element checkPointCurrent.");
     }
     param1.writeVarInt(this.checkPointCurrent);
     if (this.checkPointTotal < 0) {
-      throw new Error("Forbidden value (" + this.checkPointTotal + ") on element checkPointTotal.");
+      throw new Exception(
+          "Forbidden value (" + this.checkPointTotal + ") on element checkPointTotal.");
     }
     param1.writeVarInt(this.checkPointTotal);
     param1.writeInt(this.availableRetryCount);
@@ -65,7 +67,7 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
     TreasureHuntFlag _loc8_ = null;
     this.questType = param1.readByte();
     if (this.questType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.questType
               + ") on element of TreasureHuntRequestMessage.questType.");
@@ -84,7 +86,7 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
     }
     this.totalStepCount = param1.readByte();
     if (this.totalStepCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.totalStepCount
               + ") on element of TreasureHuntMessage.totalStepCount.");
@@ -92,7 +94,7 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
 
     this.checkPointCurrent = param1.readVarUhInt();
     if (this.checkPointCurrent < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.checkPointCurrent
               + ") on element of TreasureHuntMessage.checkPointCurrent.");
@@ -100,7 +102,7 @@ public class TreasureHuntMessage extends NetworkMessage implements INetworkMessa
 
     this.checkPointTotal = param1.readVarUhInt();
     if (this.checkPointTotal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.checkPointTotal
               + ") on element of TreasureHuntMessage.checkPointTotal.");

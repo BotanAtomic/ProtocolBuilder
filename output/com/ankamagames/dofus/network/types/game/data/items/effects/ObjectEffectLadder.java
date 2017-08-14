@@ -14,17 +14,18 @@ public class ObjectEffectLadder extends ObjectEffectCreature implements INetwork
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeVarShort(this.actionId);
 
     if (this.monsterFamilyId < 0) {
-      throw new Error("Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");
+      throw new Exception(
+          "Forbidden value (" + this.monsterFamilyId + ") on element monsterFamilyId.");
     }
     param1.writeVarShort(this.monsterFamilyId);
 
     if (this.monsterCount < 0) {
-      throw new Error("Forbidden value (" + this.monsterCount + ") on element monsterCount.");
+      throw new Exception("Forbidden value (" + this.monsterCount + ") on element monsterCount.");
     }
     param1.writeVarInt(this.monsterCount);
   }
@@ -35,13 +36,13 @@ public class ObjectEffectLadder extends ObjectEffectCreature implements INetwork
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -49,7 +50,7 @@ public class ObjectEffectLadder extends ObjectEffectCreature implements INetwork
 
     this.monsterCount = param1.readVarUhInt();
     if (this.monsterCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.monsterCount
               + ") on element of ObjectEffectLadder.monsterCount.");

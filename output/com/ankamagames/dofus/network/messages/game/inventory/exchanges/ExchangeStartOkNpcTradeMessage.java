@@ -17,7 +17,7 @@ public class ExchangeStartOkNpcTradeMessage extends NetworkMessage implements IN
 
   public void serialize(ICustomDataOutput param1) {
     if (this.npcId < -9.007199254740992E15 || this.npcId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.npcId + ") on element npcId.");
+      throw new Exception("Forbidden value (" + this.npcId + ") on element npcId.");
     }
     param1.writeDouble(this.npcId);
   }
@@ -25,7 +25,7 @@ public class ExchangeStartOkNpcTradeMessage extends NetworkMessage implements IN
   public void deserialize(ICustomDataInput param1) {
     this.npcId = param1.readVarUhShort();
     if (this.npcId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.npcId
               + ") on element of TreasureHuntStepFollowDirectionToHint.npcId.");

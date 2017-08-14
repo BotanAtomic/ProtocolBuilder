@@ -25,7 +25,7 @@ public class ExchangeObjectsRemovedMessage extends ExchangeObjectMessage
     int _loc2_ = 0;
     while (_loc2_ < this.objectUID.length) {
       if (this.objectUID[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.objectUID[_loc2_]
                 + ") on element 1 (starting at 1) of objectUID.");
@@ -42,13 +42,13 @@ public class ExchangeObjectsRemovedMessage extends ExchangeObjectMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -59,7 +59,7 @@ public class ExchangeObjectsRemovedMessage extends ExchangeObjectMessage
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readVarUhInt();
       if (_loc4_ < 0) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of objectUID.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of objectUID.");
       }
       this.objectUID.push(_loc4_);
       _loc3_++;

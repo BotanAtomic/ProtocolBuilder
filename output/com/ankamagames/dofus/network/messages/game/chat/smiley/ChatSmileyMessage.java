@@ -19,15 +19,15 @@ public class ChatSmileyMessage extends NetworkMessage implements INetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.entityId < -9.007199254740992E15 || this.entityId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.entityId + ") on element entityId.");
+      throw new Exception("Forbidden value (" + this.entityId + ") on element entityId.");
     }
     param1.writeDouble(this.entityId);
     if (this.smileyId < 0) {
-      throw new Error("Forbidden value (" + this.smileyId + ") on element smileyId.");
+      throw new Exception("Forbidden value (" + this.smileyId + ") on element smileyId.");
     }
     param1.writeVarShort(this.smileyId);
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
   }
@@ -35,19 +35,19 @@ public class ChatSmileyMessage extends NetworkMessage implements INetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.entityId = param1.readVarUhLong();
     if (this.entityId < 0 || this.entityId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.entityId + ") on element of InteractiveUsedMessage.entityId.");
     }
 
     this.smileyId = param1.readVarUhShort();
     if (this.smileyId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.smileyId + ") on element of ShortcutSmiley.smileyId.");
     }
 
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
   }

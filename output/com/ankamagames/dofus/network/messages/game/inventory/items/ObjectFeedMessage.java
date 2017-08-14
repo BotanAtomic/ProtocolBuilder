@@ -19,15 +19,15 @@ public class ObjectFeedMessage extends NetworkMessage implements INetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.objectUID < 0) {
-      throw new Error("Forbidden value (" + this.objectUID + ") on element objectUID.");
+      throw new Exception("Forbidden value (" + this.objectUID + ") on element objectUID.");
     }
     param1.writeVarInt(this.objectUID);
     if (this.foodUID < 0) {
-      throw new Error("Forbidden value (" + this.foodUID + ") on element foodUID.");
+      throw new Exception("Forbidden value (" + this.foodUID + ") on element foodUID.");
     }
     param1.writeVarInt(this.foodUID);
     if (this.foodQuantity < 0) {
-      throw new Error("Forbidden value (" + this.foodQuantity + ") on element foodQuantity.");
+      throw new Exception("Forbidden value (" + this.foodQuantity + ") on element foodQuantity.");
     }
     param1.writeVarInt(this.foodQuantity);
   }
@@ -35,7 +35,7 @@ public class ObjectFeedMessage extends NetworkMessage implements INetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.objectUID = param1.readVarUhInt();
     if (this.objectUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.objectUID
               + ") on element of ObjectItemToSellInHumanVendorShop.objectUID.");
@@ -43,13 +43,13 @@ public class ObjectFeedMessage extends NetworkMessage implements INetworkMessage
 
     this.foodUID = param1.readVarUhInt();
     if (this.foodUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.foodUID + ") on element of ObjectFeedMessage.foodUID.");
     }
 
     this.foodQuantity = param1.readVarUhInt();
     if (this.foodQuantity < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.foodQuantity
               + ") on element of ObjectFeedMessage.foodQuantity.");

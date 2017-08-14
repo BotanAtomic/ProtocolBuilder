@@ -20,7 +20,7 @@ public class PartyInvitationDungeonRequestMessage extends PartyInvitationRequest
     param1.writeUTF(this.name);
 
     if (this.dungeonId < 0) {
-      throw new Error("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
+      throw new Exception("Forbidden value (" + this.dungeonId + ") on element dungeonId.");
     }
     param1.writeVarShort(this.dungeonId);
   }
@@ -31,13 +31,13 @@ public class PartyInvitationDungeonRequestMessage extends PartyInvitationRequest
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -45,7 +45,7 @@ public class PartyInvitationDungeonRequestMessage extends PartyInvitationRequest
 
     this.dungeonId = param1.readVarUhShort();
     if (this.dungeonId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.dungeonId
               + ") on element of TeleportToBuddyOfferMessage.dungeonId.");

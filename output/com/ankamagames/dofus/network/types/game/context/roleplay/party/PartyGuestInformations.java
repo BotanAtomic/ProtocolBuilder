@@ -27,11 +27,11 @@ public class PartyGuestInformations extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.guestId < 0 || this.guestId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.guestId + ") on element guestId.");
+      throw new Exception("Forbidden value (" + this.guestId + ") on element guestId.");
     }
     param1.writeVarLong(this.guestId);
     if (this.hostId < 0 || this.hostId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.hostId + ") on element hostId.");
+      throw new Exception("Forbidden value (" + this.hostId + ") on element hostId.");
     }
     param1.writeVarLong(this.hostId);
     param1.writeUTF(this.name);
@@ -52,13 +52,13 @@ public class PartyGuestInformations extends Object implements INetworkType {
     PartyCompanionBaseInformations _loc5_ = null;
     this.guestId = param1.readVarUhLong();
     if (this.guestId < 0 || this.guestId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.guestId + ") on element of PartyGuestInformations.guestId.");
     }
 
     this.hostId = param1.readVarUhLong();
     if (this.hostId < 0 || this.hostId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.hostId + ") on element of PartyGuestInformations.hostId.");
     }
 

@@ -21,26 +21,27 @@ public class PaddockContentInformations extends PaddockInformations implements I
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.maxOutdoorMount < 0) {
-      throw new Error("Forbidden value (" + this.maxOutdoorMount + ") on element maxOutdoorMount.");
+      throw new Exception(
+          "Forbidden value (" + this.maxOutdoorMount + ") on element maxOutdoorMount.");
     }
     param1.writeVarShort(this.maxOutdoorMount);
     if (this.maxItems < 0) {
-      throw new Error("Forbidden value (" + this.maxItems + ") on element maxItems.");
+      throw new Exception("Forbidden value (" + this.maxItems + ") on element maxItems.");
     }
     param1.writeVarShort(this.maxItems);
 
     param1.writeInt(this.paddockId);
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error("Forbidden value (" + this.worldX + ") on element worldX.");
+      throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
     }
     param1.writeShort(this.worldX);
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error("Forbidden value (" + this.worldY + ") on element worldY.");
+      throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
     }
     param1.writeShort(this.worldY);
     param1.writeInt(this.mapId);
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     param1.writeBoolean(this.abandonned);
@@ -59,13 +60,13 @@ public class PaddockContentInformations extends PaddockInformations implements I
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -75,7 +76,7 @@ public class PaddockContentInformations extends PaddockInformations implements I
 
     this.worldX = param1.readShort();
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldX
               + ") on element of PrismGeolocalizedInformation.worldX.");
@@ -83,7 +84,7 @@ public class PaddockContentInformations extends PaddockInformations implements I
 
     this.worldY = param1.readShort();
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldY
               + ") on element of PrismGeolocalizedInformation.worldY.");
@@ -93,7 +94,7 @@ public class PaddockContentInformations extends PaddockInformations implements I
 
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");

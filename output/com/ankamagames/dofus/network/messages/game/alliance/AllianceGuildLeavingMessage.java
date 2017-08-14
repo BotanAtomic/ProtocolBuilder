@@ -19,7 +19,7 @@ public class AllianceGuildLeavingMessage extends NetworkMessage implements INetw
   public void serialize(ICustomDataOutput param1) {
     param1.writeBoolean(this.kicked);
     if (this.guildId < 0) {
-      throw new Error("Forbidden value (" + this.guildId + ") on element guildId.");
+      throw new Exception("Forbidden value (" + this.guildId + ") on element guildId.");
     }
     param1.writeVarInt(this.guildId);
   }
@@ -29,7 +29,7 @@ public class AllianceGuildLeavingMessage extends NetworkMessage implements INetw
 
     this.guildId = param1.readVarUhInt();
     if (this.guildId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.guildId
               + ") on element of GuildVersatileInformations.guildId.");

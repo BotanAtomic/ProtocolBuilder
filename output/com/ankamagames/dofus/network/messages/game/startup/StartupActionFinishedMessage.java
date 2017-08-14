@@ -24,7 +24,7 @@ public class StartupActionFinishedMessage extends NetworkMessage implements INet
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 1, this.automaticAction);
     param1.writeByte(_loc2_);
     if (this.actionId < 0) {
-      throw new Error("Forbidden value (" + this.actionId + ") on element actionId.");
+      throw new Exception("Forbidden value (" + this.actionId + ") on element actionId.");
     }
     param1.writeInt(this.actionId);
   }
@@ -39,7 +39,7 @@ public class StartupActionFinishedMessage extends NetworkMessage implements INet
 
     this.actionId = param1.readVarUhShort();
     if (this.actionId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.actionId + ") on element of ObjectEffect.actionId.");
     }
   }

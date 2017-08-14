@@ -45,7 +45,7 @@ public class IdentificationMessage extends NetworkMessage implements INetworkMes
     param1.writeShort(this.serverId);
     if (this.sessionOptionalSalt < -9.007199254740992E15
         || this.sessionOptionalSalt > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.sessionOptionalSalt + ") on element sessionOptionalSalt.");
     }
     param1.writeVarLong(this.sessionOptionalSalt);
@@ -53,7 +53,7 @@ public class IdentificationMessage extends NetworkMessage implements INetworkMes
     int _loc4_ = 0;
     while (_loc4_ < this.failedAttempts.length) {
       if (this.failedAttempts[_loc4_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.failedAttempts[_loc4_]
                 + ") on element 9 (starting at 1) of failedAttempts.");
@@ -89,7 +89,7 @@ public class IdentificationMessage extends NetworkMessage implements INetworkMes
     this.sessionOptionalSalt = param1.readVarLong();
     if (this.sessionOptionalSalt < -9.007199254740992E15
         || this.sessionOptionalSalt > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.sessionOptionalSalt
               + ") on element of IdentificationMessage.sessionOptionalSalt.");
@@ -100,7 +100,7 @@ public class IdentificationMessage extends NetworkMessage implements INetworkMes
     while (_loc5_ < _loc4_) {
       _loc7_ = param1.readVarUhShort();
       if (_loc7_ < 0) {
-        throw new Error("Forbidden value (" + _loc7_ + ") on elements of failedAttempts.");
+        throw new Exception("Forbidden value (" + _loc7_ + ") on elements of failedAttempts.");
       }
       this.failedAttempts.push(_loc7_);
       _loc5_++;

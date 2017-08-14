@@ -27,6 +27,11 @@ public class ASClass {
     private List<Function> functions = new LinkedList<>();
 
     public ASClass(String content) {
+        if (content.contains("new Error")) { //dirty brute change
+            content = content.replaceAll("new Error", "new Exception");
+            imports.add("java.lang.Exception");
+        }
+
         this.resolveClassInfo(content);
         this.resolveVariable(content);
         this.resolveFunction(content);
@@ -97,11 +102,6 @@ public class ASClass {
 
         Matcher matcher = Pattern.compile("import [\\w|.]+;").matcher(content);
 
-        if(content.contains("new Error")) {
-            content = content.replace("new Error", "new Exception");
-            imports.add("java.lang.Exception");
-        }
-
         while (matcher.find())
             imports.add(StringUtils.removeLastCharacter(matcher.group().split(" ")[1]));
 
@@ -157,7 +157,7 @@ public class ASClass {
                     if (line.startsWith("this.") || line.startsWith("super.")) {
                         if (line.contains("(") && line.contains(")") && !line.contains("=")) {
                             Function function = allFunctions.get(line.split("\\.")[1].split("\\(")[0]);
-                            if(function == null) {
+                            if (function == null) {
                                 return;
                             }
                             if (!function.getBody().isEmpty()) {

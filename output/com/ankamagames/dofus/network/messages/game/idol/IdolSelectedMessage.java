@@ -24,7 +24,7 @@ public class IdolSelectedMessage extends NetworkMessage implements INetworkMessa
     _loc2_ = BooleanByteWrapper.setFlag(_loc2_, 1, this.party);
     param1.writeByte(_loc2_);
     if (this.idolId < 0) {
-      throw new Error("Forbidden value (" + this.idolId + ") on element idolId.");
+      throw new Exception("Forbidden value (" + this.idolId + ") on element idolId.");
     }
     param1.writeVarShort(this.idolId);
   }
@@ -39,7 +39,7 @@ public class IdolSelectedMessage extends NetworkMessage implements INetworkMessa
 
     int _loc2_ = param1.readVarUhShort();
     if (_loc2_ < 0) {
-      throw new Error("Forbidden value (" + _loc2_ + ") on elements of idolId.");
+      throw new Exception("Forbidden value (" + _loc2_ + ") on elements of idolId.");
     }
     this.idolId.push(_loc2_);
   }

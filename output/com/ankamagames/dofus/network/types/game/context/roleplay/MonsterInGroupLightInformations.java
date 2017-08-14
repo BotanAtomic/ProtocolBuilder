@@ -15,7 +15,7 @@ public class MonsterInGroupLightInformations extends Object implements INetworkT
   public void serialize(ICustomDataOutput param1) {
     param1.writeInt(this.creatureGenericId);
     if (this.grade < 0) {
-      throw new Error("Forbidden value (" + this.grade + ") on element grade.");
+      throw new Exception("Forbidden value (" + this.grade + ") on element grade.");
     }
     param1.writeByte(this.grade);
   }
@@ -25,7 +25,7 @@ public class MonsterInGroupLightInformations extends Object implements INetworkT
 
     this.grade = param1.readByte();
     if (this.grade < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.grade
               + ") on element of MonsterInGroupLightInformations.grade.");

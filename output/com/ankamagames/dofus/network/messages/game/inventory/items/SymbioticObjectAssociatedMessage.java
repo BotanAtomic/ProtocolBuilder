@@ -17,7 +17,7 @@ public class SymbioticObjectAssociatedMessage extends NetworkMessage implements 
 
   public void serialize(ICustomDataOutput param1) {
     if (this.hostUID < 0) {
-      throw new Error("Forbidden value (" + this.hostUID + ") on element hostUID.");
+      throw new Exception("Forbidden value (" + this.hostUID + ") on element hostUID.");
     }
     param1.writeVarInt(this.hostUID);
   }
@@ -25,7 +25,7 @@ public class SymbioticObjectAssociatedMessage extends NetworkMessage implements 
   public void deserialize(ICustomDataInput param1) {
     this.hostUID = param1.readVarUhInt();
     if (this.hostUID < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.hostUID
               + ") on element of WrapperObjectDissociateRequestMessage.hostUID.");

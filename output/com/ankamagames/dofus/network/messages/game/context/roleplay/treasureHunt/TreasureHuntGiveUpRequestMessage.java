@@ -22,7 +22,7 @@ public class TreasureHuntGiveUpRequestMessage extends NetworkMessage implements 
   public void deserialize(ICustomDataInput param1) {
     this.questType = param1.readByte();
     if (this.questType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.questType
               + ") on element of TreasureHuntRequestMessage.questType.");

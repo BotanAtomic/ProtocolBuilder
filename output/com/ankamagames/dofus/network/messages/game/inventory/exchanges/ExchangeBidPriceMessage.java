@@ -18,11 +18,11 @@ public class ExchangeBidPriceMessage extends NetworkMessage implements INetworkM
 
   public void serialize(ICustomDataOutput param1) {
     if (this.genericId < 0) {
-      throw new Error("Forbidden value (" + this.genericId + ") on element genericId.");
+      throw new Exception("Forbidden value (" + this.genericId + ") on element genericId.");
     }
     param1.writeVarShort(this.genericId);
     if (this.averagePrice < -9.007199254740992E15 || this.averagePrice > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.averagePrice + ") on element averagePrice.");
+      throw new Exception("Forbidden value (" + this.averagePrice + ") on element averagePrice.");
     }
     param1.writeVarLong(this.averagePrice);
   }
@@ -30,13 +30,13 @@ public class ExchangeBidPriceMessage extends NetworkMessage implements INetworkM
   public void deserialize(ICustomDataInput param1) {
     int _loc2_ = param1.readVarUhShort();
     if (_loc2_ < 0) {
-      throw new Error("Forbidden value (" + _loc2_ + ") on elements of genericId.");
+      throw new Exception("Forbidden value (" + _loc2_ + ") on elements of genericId.");
     }
     this.genericId.push(_loc2_);
 
     this.averagePrice = param1.readVarLong();
     if (this.averagePrice < -9.007199254740992E15 || this.averagePrice > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.averagePrice
               + ") on element of ExchangeBidPriceMessage.averagePrice.");

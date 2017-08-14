@@ -22,11 +22,11 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.presetId < 0) {
-      throw new Error("Forbidden value (" + this.presetId + ") on element presetId.");
+      throw new Exception("Forbidden value (" + this.presetId + ") on element presetId.");
     }
     param1.writeByte(this.presetId);
     if (this.symbolId < 0) {
-      throw new Error("Forbidden value (" + this.symbolId + ") on element symbolId.");
+      throw new Exception("Forbidden value (" + this.symbolId + ") on element symbolId.");
     }
     param1.writeByte(this.symbolId);
 
@@ -40,7 +40,7 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage
     int _loc3_ = 0;
     while (_loc3_ < this.itemsUids.length) {
       if (this.itemsUids[_loc3_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.itemsUids[_loc3_]
                 + ") on element 2 (starting at 1) of itemsUids.");
@@ -58,13 +58,13 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -75,7 +75,7 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage
     while (_loc3_ < _loc2_) {
       _loc6_ = param1.readUnsignedByte();
       if (_loc6_ < 0 || _loc6_ > 255) {
-        throw new Error("Forbidden value (" + _loc6_ + ") on elements of itemsPositions.");
+        throw new Exception("Forbidden value (" + _loc6_ + ") on elements of itemsPositions.");
       }
       this.itemsPositions.push(_loc6_);
       _loc3_++;
@@ -85,7 +85,7 @@ public class InventoryPresetSaveCustomMessage extends AbstractPresetSaveMessage
     while (_loc5_ < _loc4_) {
       _loc7_ = param1.readVarUhInt();
       if (_loc7_ < 0) {
-        throw new Error("Forbidden value (" + _loc7_ + ") on elements of itemsUids.");
+        throw new Exception("Forbidden value (" + _loc7_ + ") on elements of itemsUids.");
       }
       this.itemsUids.push(_loc7_);
       _loc5_++;

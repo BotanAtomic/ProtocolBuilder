@@ -19,21 +19,21 @@ public class FightResultPvpData extends FightResultAdditionalData implements INe
   public void serialize(ICustomDataOutput param1) {
 
     if (this.grade < 0 || this.grade > 255) {
-      throw new Error("Forbidden value (" + this.grade + ") on element grade.");
+      throw new Exception("Forbidden value (" + this.grade + ") on element grade.");
     }
     param1.writeByte(this.grade);
     if (this.minHonorForGrade < 0 || this.minHonorForGrade > 20000) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.minHonorForGrade + ") on element minHonorForGrade.");
     }
     param1.writeVarShort(this.minHonorForGrade);
     if (this.maxHonorForGrade < 0 || this.maxHonorForGrade > 20000) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.maxHonorForGrade + ") on element maxHonorForGrade.");
     }
     param1.writeVarShort(this.maxHonorForGrade);
     if (this.honor < 0 || this.honor > 20000) {
-      throw new Error("Forbidden value (" + this.honor + ") on element honor.");
+      throw new Exception("Forbidden value (" + this.honor + ") on element honor.");
     }
     param1.writeVarShort(this.honor);
     param1.writeVarShort(this.honorDelta);
@@ -45,13 +45,13 @@ public class FightResultPvpData extends FightResultAdditionalData implements INe
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -59,7 +59,7 @@ public class FightResultPvpData extends FightResultAdditionalData implements INe
 
     this.grade = param1.readByte();
     if (this.grade < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.grade
               + ") on element of MonsterInGroupLightInformations.grade.");
@@ -67,7 +67,7 @@ public class FightResultPvpData extends FightResultAdditionalData implements INe
 
     this.minHonorForGrade = param1.readVarUhShort();
     if (this.minHonorForGrade < 0 || this.minHonorForGrade > 20000) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.minHonorForGrade
               + ") on element of FightResultPvpData.minHonorForGrade.");
@@ -75,7 +75,7 @@ public class FightResultPvpData extends FightResultAdditionalData implements INe
 
     this.maxHonorForGrade = param1.readVarUhShort();
     if (this.maxHonorForGrade < 0 || this.maxHonorForGrade > 20000) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.maxHonorForGrade
               + ") on element of FightResultPvpData.maxHonorForGrade.");
@@ -83,7 +83,7 @@ public class FightResultPvpData extends FightResultAdditionalData implements INe
 
     this.honor = param1.readVarUhShort();
     if (this.honor < 0 || this.honor > 20000) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.honor + ") on element of FightResultPvpData.honor.");
     }
 

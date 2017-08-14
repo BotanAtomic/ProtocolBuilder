@@ -24,13 +24,13 @@ public class HavenBagDailyLoteryMessage extends NetworkMessage implements INetwo
   public void deserialize(ICustomDataInput param1) {
     this.returnType = param1.readByte();
     if (this.returnType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.returnType + ") on element of HaapiApiKeyMessage.returnType.");
     }
 
     this.tokenId = param1.readVarUhShort();
     if (this.tokenId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.tokenId
               + ") on element of ExchangeStartOkNpcShopMessage.tokenId.");

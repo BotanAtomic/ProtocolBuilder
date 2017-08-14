@@ -16,21 +16,21 @@ public class SkillActionDescriptionCollect extends SkillActionDescriptionTimed
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarShort(this.skillId);
 
     if (this.time < 0 || this.time > 255) {
-      throw new Error("Forbidden value (" + this.time + ") on element time.");
+      throw new Exception("Forbidden value (" + this.time + ") on element time.");
     }
     param1.writeByte(this.time);
 
     if (this.min < 0) {
-      throw new Error("Forbidden value (" + this.min + ") on element min.");
+      throw new Exception("Forbidden value (" + this.min + ") on element min.");
     }
     param1.writeVarShort(this.min);
     if (this.max < 0) {
-      throw new Error("Forbidden value (" + this.max + ") on element max.");
+      throw new Exception("Forbidden value (" + this.max + ") on element max.");
     }
     param1.writeVarShort(this.max);
   }
@@ -41,13 +41,13 @@ public class SkillActionDescriptionCollect extends SkillActionDescriptionTimed
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -55,13 +55,13 @@ public class SkillActionDescriptionCollect extends SkillActionDescriptionTimed
 
     this.min = param1.readVarUhShort();
     if (this.min < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.min + ") on element of SkillActionDescriptionCollect.min.");
     }
 
     this.max = param1.readVarUhShort();
     if (this.max < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.max + ") on element of SkillActionDescriptionCollect.max.");
     }
   }

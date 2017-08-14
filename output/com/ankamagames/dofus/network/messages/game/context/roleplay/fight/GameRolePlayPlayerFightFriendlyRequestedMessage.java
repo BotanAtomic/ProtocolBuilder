@@ -20,15 +20,15 @@ public class GameRolePlayPlayerFightFriendlyRequestedMessage extends NetworkMess
 
   public void serialize(ICustomDataOutput param1) {
     if (this.fightId < 0) {
-      throw new Error("Forbidden value (" + this.fightId + ") on element fightId.");
+      throw new Exception("Forbidden value (" + this.fightId + ") on element fightId.");
     }
     param1.writeInt(this.fightId);
     if (this.sourceId < 0 || this.sourceId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.sourceId + ") on element sourceId.");
+      throw new Exception("Forbidden value (" + this.sourceId + ") on element sourceId.");
     }
     param1.writeVarLong(this.sourceId);
     if (this.targetId < 0 || this.targetId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.targetId + ") on element targetId.");
+      throw new Exception("Forbidden value (" + this.targetId + ") on element targetId.");
     }
     param1.writeVarLong(this.targetId);
   }
@@ -38,7 +38,7 @@ public class GameRolePlayPlayerFightFriendlyRequestedMessage extends NetworkMess
 
     this.sourceId = param1.readDouble();
     if (this.sourceId < -9.007199254740992E15 || this.sourceId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.sourceId
               + ") on element of FightDispellableEffectExtendedInformations.sourceId.");
@@ -46,7 +46,7 @@ public class GameRolePlayPlayerFightFriendlyRequestedMessage extends NetworkMess
 
     this.targetId = param1.readDouble();
     if (this.targetId < -9.007199254740992E15 || this.targetId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.targetId
               + ") on element of AbstractFightDispellableEffect.targetId.");

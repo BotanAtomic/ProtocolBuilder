@@ -23,31 +23,31 @@ public class HouseInformationsForGuild extends HouseInformations implements INet
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.houseId < 0) {
-      throw new Error("Forbidden value (" + this.houseId + ") on element houseId.");
+      throw new Exception("Forbidden value (" + this.houseId + ") on element houseId.");
     }
     param1.writeVarInt(this.houseId);
     if (this.modelId < 0) {
-      throw new Error("Forbidden value (" + this.modelId + ") on element modelId.");
+      throw new Exception("Forbidden value (" + this.modelId + ") on element modelId.");
     }
     param1.writeVarShort(this.modelId);
 
     if (this.instanceId < 0) {
-      throw new Error("Forbidden value (" + this.instanceId + ") on element instanceId.");
+      throw new Exception("Forbidden value (" + this.instanceId + ") on element instanceId.");
     }
     param1.writeInt(this.instanceId);
     param1.writeBoolean(this.secondHand);
     param1.writeUTF(this.ownerName);
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error("Forbidden value (" + this.worldX + ") on element worldX.");
+      throw new Exception("Forbidden value (" + this.worldX + ") on element worldX.");
     }
     param1.writeShort(this.worldX);
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error("Forbidden value (" + this.worldY + ") on element worldY.");
+      throw new Exception("Forbidden value (" + this.worldY + ") on element worldY.");
     }
     param1.writeShort(this.worldY);
     param1.writeInt(this.mapId);
     if (this.subAreaId < 0) {
-      throw new Error("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
+      throw new Exception("Forbidden value (" + this.subAreaId + ") on element subAreaId.");
     }
     param1.writeVarShort(this.subAreaId);
     param1.writeShort(this.skillListIds.length);
@@ -57,7 +57,7 @@ public class HouseInformationsForGuild extends HouseInformations implements INet
       _loc2_++;
     }
     if (this.guildshareParams < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.guildshareParams + ") on element guildshareParams.");
     }
     param1.writeVarInt(this.guildshareParams);
@@ -70,13 +70,13 @@ public class HouseInformationsForGuild extends HouseInformations implements INet
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -84,7 +84,7 @@ public class HouseInformationsForGuild extends HouseInformations implements INet
 
     this.instanceId = param1.readInt();
     if (this.instanceId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.instanceId
               + ") on element of HouseInstanceInformations.instanceId.");
@@ -96,7 +96,7 @@ public class HouseInformationsForGuild extends HouseInformations implements INet
 
     this.worldX = param1.readShort();
     if (this.worldX < -255 || this.worldX > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldX
               + ") on element of PrismGeolocalizedInformation.worldX.");
@@ -104,7 +104,7 @@ public class HouseInformationsForGuild extends HouseInformations implements INet
 
     this.worldY = param1.readShort();
     if (this.worldY < -255 || this.worldY > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.worldY
               + ") on element of PrismGeolocalizedInformation.worldY.");
@@ -114,7 +114,7 @@ public class HouseInformationsForGuild extends HouseInformations implements INet
 
     this.subAreaId = param1.readVarUhShort();
     if (this.subAreaId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.subAreaId
               + ") on element of PrismSubareaEmptyInfo.subAreaId.");
@@ -129,7 +129,7 @@ public class HouseInformationsForGuild extends HouseInformations implements INet
     }
     this.guildshareParams = param1.readVarUhInt();
     if (this.guildshareParams < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.guildshareParams
               + ") on element of HouseInformationsForGuild.guildshareParams.");

@@ -17,7 +17,7 @@ public class CharacterSelectedForceMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 1 || this.id > 2147483647) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeInt(this.id);
   }

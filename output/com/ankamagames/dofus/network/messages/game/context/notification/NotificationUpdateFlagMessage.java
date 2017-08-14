@@ -17,7 +17,7 @@ public class NotificationUpdateFlagMessage extends NetworkMessage implements INe
 
   public void serialize(ICustomDataOutput param1) {
     if (this.index < 0) {
-      throw new Error("Forbidden value (" + this.index + ") on element index.");
+      throw new Exception("Forbidden value (" + this.index + ") on element index.");
     }
     param1.writeVarShort(this.index);
   }
@@ -25,7 +25,7 @@ public class NotificationUpdateFlagMessage extends NetworkMessage implements INe
   public void deserialize(ICustomDataInput param1) {
     this.index = param1.readByte();
     if (this.index < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.index + ") on element of IndexedEntityLook.index.");
     }
   }

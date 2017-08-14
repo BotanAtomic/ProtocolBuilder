@@ -17,7 +17,7 @@ public class PortalUseRequestMessage extends NetworkMessage implements INetworkM
 
   public void serialize(ICustomDataOutput param1) {
     if (this.portalId < 0) {
-      throw new Error("Forbidden value (" + this.portalId + ") on element portalId.");
+      throw new Exception("Forbidden value (" + this.portalId + ") on element portalId.");
     }
     param1.writeVarInt(this.portalId);
   }

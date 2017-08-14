@@ -24,13 +24,13 @@ public class ChatMessageReportMessage extends NetworkMessage implements INetwork
     param1.writeUTF(this.senderName);
     param1.writeUTF(this.content);
     if (this.timestamp < 0) {
-      throw new Error("Forbidden value (" + this.timestamp + ") on element timestamp.");
+      throw new Exception("Forbidden value (" + this.timestamp + ") on element timestamp.");
     }
     param1.writeInt(this.timestamp);
     param1.writeByte(this.channel);
     param1.writeUTF(this.fingerprint);
     if (this.reason < 0) {
-      throw new Error("Forbidden value (" + this.reason + ") on element reason.");
+      throw new Exception("Forbidden value (" + this.reason + ") on element reason.");
     }
     param1.writeByte(this.reason);
   }
@@ -42,7 +42,7 @@ public class ChatMessageReportMessage extends NetworkMessage implements INetwork
 
     this.timestamp = param1.readDouble();
     if (this.timestamp < -9.007199254740992E15 || this.timestamp > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.timestamp
               + ") on element of SubscriptionUpdateMessage.timestamp.");
@@ -50,7 +50,7 @@ public class ChatMessageReportMessage extends NetworkMessage implements INetwork
 
     this.channel = param1.readByte();
     if (this.channel < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.channel + ") on element of ChatMessageReportMessage.channel.");
     }
 
@@ -58,7 +58,7 @@ public class ChatMessageReportMessage extends NetworkMessage implements INetwork
 
     this.reason = param1.readByte();
     if (this.reason < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.reason
               + ") on element of KrosmasterInventoryErrorMessage.reason.");

@@ -18,7 +18,7 @@ public class DareRewardConsumeValidationMessage extends NetworkMessage implement
 
   public void serialize(ICustomDataOutput param1) {
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.dareId + ") on element dareId.");
+      throw new Exception("Forbidden value (" + this.dareId + ") on element dareId.");
     }
     param1.writeDouble(this.dareId);
     param1.writeByte(this.type);
@@ -27,13 +27,14 @@ public class DareRewardConsumeValidationMessage extends NetworkMessage implement
   public void deserialize(ICustomDataInput param1) {
     this.dareId = param1.readDouble();
     if (this.dareId < 0 || this.dareId > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.dareId + ") on element of DareVersatileInformations.dareId.");
     }
 
     this.type = param1.readByte();
     if (this.type < 0) {
-      throw new Error("Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
+      throw new Exception(
+          "Forbidden value (" + this.type + ") on element of UpdateMountBoost.type.");
     }
   }
 }

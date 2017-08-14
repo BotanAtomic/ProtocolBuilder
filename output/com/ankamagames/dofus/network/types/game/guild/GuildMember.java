@@ -32,14 +32,14 @@ public class GuildMember extends CharacterMinimalInformations implements INetwor
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.id < 0 || this.id > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.id + ") on element id.");
+      throw new Exception("Forbidden value (" + this.id + ") on element id.");
     }
     param1.writeVarLong(this.id);
 
     param1.writeUTF(this.name);
 
     if (this.level < 1 || this.level > 206) {
-      throw new Error("Forbidden value (" + this.level + ") on element level.");
+      throw new Exception("Forbidden value (" + this.level + ") on element level.");
     }
     param1.writeByte(this.level);
 
@@ -49,39 +49,40 @@ public class GuildMember extends CharacterMinimalInformations implements INetwor
     param1.writeByte(_loc2_);
     param1.writeByte(this.breed);
     if (this.rank < 0) {
-      throw new Error("Forbidden value (" + this.rank + ") on element rank.");
+      throw new Exception("Forbidden value (" + this.rank + ") on element rank.");
     }
     param1.writeVarShort(this.rank);
     if (this.givenExperience < 0 || this.givenExperience > 9.007199254740992E15) {
-      throw new Error("Forbidden value (" + this.givenExperience + ") on element givenExperience.");
+      throw new Exception(
+          "Forbidden value (" + this.givenExperience + ") on element givenExperience.");
     }
     param1.writeVarLong(this.givenExperience);
     if (this.experienceGivenPercent < 0 || this.experienceGivenPercent > 100) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceGivenPercent
               + ") on element experienceGivenPercent.");
     }
     param1.writeByte(this.experienceGivenPercent);
     if (this.rights < 0) {
-      throw new Error("Forbidden value (" + this.rights + ") on element rights.");
+      throw new Exception("Forbidden value (" + this.rights + ") on element rights.");
     }
     param1.writeVarInt(this.rights);
     param1.writeByte(this.connected);
     param1.writeByte(this.alignmentSide);
     if (this.hoursSinceLastConnection < 0 || this.hoursSinceLastConnection > 65535) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.hoursSinceLastConnection
               + ") on element hoursSinceLastConnection.");
     }
     param1.writeShort(this.hoursSinceLastConnection);
     if (this.moodSmileyId < 0) {
-      throw new Error("Forbidden value (" + this.moodSmileyId + ") on element moodSmileyId.");
+      throw new Exception("Forbidden value (" + this.moodSmileyId + ") on element moodSmileyId.");
     }
     param1.writeVarShort(this.moodSmileyId);
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
     param1.writeInt(this.achievementPoints);
@@ -95,13 +96,13 @@ public class GuildMember extends CharacterMinimalInformations implements INetwor
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -118,12 +119,12 @@ public class GuildMember extends CharacterMinimalInformations implements INetwor
 
     this.rank = param1.readVarUhShort();
     if (this.rank < 0) {
-      throw new Error("Forbidden value (" + this.rank + ") on element of GuildMember.rank.");
+      throw new Exception("Forbidden value (" + this.rank + ") on element of GuildMember.rank.");
     }
 
     this.givenExperience = param1.readVarUhLong();
     if (this.givenExperience < 0 || this.givenExperience > 9.007199254740992E15) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.givenExperience
               + ") on element of GuildMember.givenExperience.");
@@ -131,7 +132,7 @@ public class GuildMember extends CharacterMinimalInformations implements INetwor
 
     this.experienceGivenPercent = param1.readByte();
     if (this.experienceGivenPercent < 0 || this.experienceGivenPercent > 100) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.experienceGivenPercent
               + ") on element of GuildMember.experienceGivenPercent.");
@@ -139,12 +140,13 @@ public class GuildMember extends CharacterMinimalInformations implements INetwor
 
     this.rights = param1.readVarUhInt();
     if (this.rights < 0) {
-      throw new Error("Forbidden value (" + this.rights + ") on element of GuildMember.rights.");
+      throw new Exception(
+          "Forbidden value (" + this.rights + ") on element of GuildMember.rights.");
     }
 
     this.connected = param1.readByte();
     if (this.connected < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.connected + ") on element of GuildMember.connected.");
     }
 
@@ -152,7 +154,7 @@ public class GuildMember extends CharacterMinimalInformations implements INetwor
 
     this.hoursSinceLastConnection = param1.readUnsignedShort();
     if (this.hoursSinceLastConnection < 0 || this.hoursSinceLastConnection > 65535) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.hoursSinceLastConnection
               + ") on element of GuildMember.hoursSinceLastConnection.");
@@ -160,13 +162,13 @@ public class GuildMember extends CharacterMinimalInformations implements INetwor
 
     this.moodSmileyId = param1.readVarUhShort();
     if (this.moodSmileyId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.moodSmileyId + ") on element of GuildMember.moodSmileyId.");
     }
 
     this.accountId = param1.readInt();
     if (this.accountId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.accountId + ") on element of GuildMember.accountId.");
     }
 

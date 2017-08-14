@@ -17,7 +17,7 @@ public class MapFightCountMessage extends NetworkMessage implements INetworkMess
 
   public void serialize(ICustomDataOutput param1) {
     if (this.fightCount < 0) {
-      throw new Error("Forbidden value (" + this.fightCount + ") on element fightCount.");
+      throw new Exception("Forbidden value (" + this.fightCount + ") on element fightCount.");
     }
     param1.writeVarShort(this.fightCount);
   }
@@ -25,7 +25,7 @@ public class MapFightCountMessage extends NetworkMessage implements INetworkMess
   public void deserialize(ICustomDataInput param1) {
     this.fightCount = param1.readVarUhShort();
     if (this.fightCount < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.fightCount
               + ") on element of MapFightCountMessage.fightCount.");

@@ -26,7 +26,7 @@ public class GameRolePlayArenaSwitchToFightServerMessage extends NetworkMessage
     int _loc2_ = 0;
     while (_loc2_ < this.ports.length) {
       if (this.ports[_loc2_] < 0 || this.ports[_loc2_] > 65535) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value (" + this.ports[_loc2_] + ") on element 2 (starting at 1) of ports.");
       }
       param1.writeShort(this.ports[_loc2_]);
@@ -50,7 +50,7 @@ public class GameRolePlayArenaSwitchToFightServerMessage extends NetworkMessage
     while (_loc3_ < _loc2_) {
       _loc6_ = param1.readUnsignedShort();
       if (_loc6_ < 0 || _loc6_ > 65535) {
-        throw new Error("Forbidden value (" + _loc6_ + ") on elements of ports.");
+        throw new Exception("Forbidden value (" + _loc6_ + ") on elements of ports.");
       }
       this.ports.push(_loc6_);
       _loc3_++;

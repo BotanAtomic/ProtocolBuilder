@@ -19,7 +19,7 @@ public class ShortcutBarRemoveRequestMessage extends NetworkMessage implements I
   public void serialize(ICustomDataOutput param1) {
     param1.writeByte(this.barType);
     if (this.slot < 0 || this.slot > 99) {
-      throw new Error("Forbidden value (" + this.slot + ") on element slot.");
+      throw new Exception("Forbidden value (" + this.slot + ") on element slot.");
     }
     param1.writeByte(this.slot);
   }
@@ -27,7 +27,7 @@ public class ShortcutBarRemoveRequestMessage extends NetworkMessage implements I
   public void deserialize(ICustomDataInput param1) {
     this.barType = param1.readByte();
     if (this.barType < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.barType
               + ") on element of ShortcutBarSwapRequestMessage.barType.");
@@ -35,7 +35,7 @@ public class ShortcutBarRemoveRequestMessage extends NetworkMessage implements I
 
     this.slot = param1.readByte();
     if (this.slot < 0 || this.slot > 99) {
-      throw new Error("Forbidden value (" + this.slot + ") on element of Shortcut.slot.");
+      throw new Exception("Forbidden value (" + this.slot + ") on element of Shortcut.slot.");
     }
   }
 }

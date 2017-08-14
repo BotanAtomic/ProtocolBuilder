@@ -15,23 +15,23 @@ public class VersionExtended extends Version implements INetworkType {
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.major < 0) {
-      throw new Error("Forbidden value (" + this.major + ") on element major.");
+      throw new Exception("Forbidden value (" + this.major + ") on element major.");
     }
     param1.writeByte(this.major);
     if (this.minor < 0) {
-      throw new Error("Forbidden value (" + this.minor + ") on element minor.");
+      throw new Exception("Forbidden value (" + this.minor + ") on element minor.");
     }
     param1.writeByte(this.minor);
     if (this.release < 0) {
-      throw new Error("Forbidden value (" + this.release + ") on element release.");
+      throw new Exception("Forbidden value (" + this.release + ") on element release.");
     }
     param1.writeByte(this.release);
     if (this.revision < 0) {
-      throw new Error("Forbidden value (" + this.revision + ") on element revision.");
+      throw new Exception("Forbidden value (" + this.revision + ") on element revision.");
     }
     param1.writeInt(this.revision);
     if (this.patch < 0) {
-      throw new Error("Forbidden value (" + this.patch + ") on element patch.");
+      throw new Exception("Forbidden value (" + this.patch + ") on element patch.");
     }
     param1.writeByte(this.patch);
     param1.writeByte(this.buildType);
@@ -46,13 +46,13 @@ public class VersionExtended extends Version implements INetworkType {
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -60,13 +60,13 @@ public class VersionExtended extends Version implements INetworkType {
 
     this.install = param1.readByte();
     if (this.install < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.install + ") on element of VersionExtended.install.");
     }
 
     this.technology = param1.readByte();
     if (this.technology < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.technology + ") on element of VersionExtended.technology.");
     }
   }

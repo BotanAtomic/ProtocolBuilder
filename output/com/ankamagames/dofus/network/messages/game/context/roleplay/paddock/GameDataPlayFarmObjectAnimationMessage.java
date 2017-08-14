@@ -22,7 +22,7 @@ public class GameDataPlayFarmObjectAnimationMessage extends NetworkMessage
     int _loc2_ = 0;
     while (_loc2_ < this.cellId.length) {
       if (this.cellId[_loc2_] < 0 || this.cellId[_loc2_] > 559) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value ("
                 + this.cellId[_loc2_]
                 + ") on element 1 (starting at 1) of cellId.");
@@ -39,7 +39,7 @@ public class GameDataPlayFarmObjectAnimationMessage extends NetworkMessage
     while (_loc3_ < _loc2_) {
       _loc4_ = param1.readVarUhShort();
       if (_loc4_ < 0 || _loc4_ > 559) {
-        throw new Error("Forbidden value (" + _loc4_ + ") on elements of cellId.");
+        throw new Exception("Forbidden value (" + _loc4_ + ") on elements of cellId.");
       }
       this.cellId.push(_loc4_);
       _loc3_++;

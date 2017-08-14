@@ -19,11 +19,12 @@ public class ExchangeStartOkMulticraftCustomerMessage extends NetworkMessage
 
   public void serialize(ICustomDataOutput param1) {
     if (this.skillId < 0) {
-      throw new Error("Forbidden value (" + this.skillId + ") on element skillId.");
+      throw new Exception("Forbidden value (" + this.skillId + ") on element skillId.");
     }
     param1.writeVarInt(this.skillId);
     if (this.crafterJobLevel < 0 || this.crafterJobLevel > 255) {
-      throw new Error("Forbidden value (" + this.crafterJobLevel + ") on element crafterJobLevel.");
+      throw new Exception(
+          "Forbidden value (" + this.crafterJobLevel + ") on element crafterJobLevel.");
     }
     param1.writeByte(this.crafterJobLevel);
   }
@@ -31,13 +32,13 @@ public class ExchangeStartOkMulticraftCustomerMessage extends NetworkMessage
   public void deserialize(ICustomDataInput param1) {
     this.skillId = param1.readVarUhShort();
     if (this.skillId < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.skillId + ") on element of SkillActionDescription.skillId.");
     }
 
     this.crafterJobLevel = param1.readUnsignedByte();
     if (this.crafterJobLevel < 0 || this.crafterJobLevel > 255) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.crafterJobLevel
               + ") on element of ExchangeStartOkMulticraftCustomerMessage.crafterJobLevel.");

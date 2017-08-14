@@ -16,14 +16,15 @@ public class FriendInformations extends AbstractContactInformations implements I
   @Override
   public void serialize(ICustomDataOutput param1) {
     if (this.accountId < 0) {
-      throw new Error("Forbidden value (" + this.accountId + ") on element accountId.");
+      throw new Exception("Forbidden value (" + this.accountId + ") on element accountId.");
     }
     param1.writeInt(this.accountId);
     param1.writeUTF(this.accountName);
 
     param1.writeByte(this.playerState);
     if (this.lastConnection < 0) {
-      throw new Error("Forbidden value (" + this.lastConnection + ") on element lastConnection.");
+      throw new Exception(
+          "Forbidden value (" + this.lastConnection + ") on element lastConnection.");
     }
     param1.writeVarShort(this.lastConnection);
     param1.writeInt(this.achievementPoints);
@@ -35,13 +36,13 @@ public class FriendInformations extends AbstractContactInformations implements I
 
     this.figure = param1.readVarUhShort();
     if (this.figure < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.figure + ") on element of KrosmasterFigure.figure.");
     }
 
     this.pedestal = param1.readVarUhShort();
     if (this.pedestal < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value (" + this.pedestal + ") on element of KrosmasterFigure.pedestal.");
     }
 
@@ -49,7 +50,7 @@ public class FriendInformations extends AbstractContactInformations implements I
 
     this.playerState = param1.readByte();
     if (this.playerState < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.playerState
               + ") on element of FriendInformations.playerState.");
@@ -57,7 +58,7 @@ public class FriendInformations extends AbstractContactInformations implements I
 
     this.lastConnection = param1.readVarUhShort();
     if (this.lastConnection < 0) {
-      throw new Error(
+      throw new Exception(
           "Forbidden value ("
               + this.lastConnection
               + ") on element of FriendInformations.lastConnection.");

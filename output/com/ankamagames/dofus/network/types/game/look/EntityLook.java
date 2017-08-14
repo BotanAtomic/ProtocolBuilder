@@ -21,14 +21,14 @@ public class EntityLook extends Object implements INetworkType {
 
   public void serialize(ICustomDataOutput param1) {
     if (this.bonesId < 0) {
-      throw new Error("Forbidden value (" + this.bonesId + ") on element bonesId.");
+      throw new Exception("Forbidden value (" + this.bonesId + ") on element bonesId.");
     }
     param1.writeVarShort(this.bonesId);
     param1.writeShort(this.skins.length);
     int _loc2_ = 0;
     while (_loc2_ < this.skins.length) {
       if (this.skins[_loc2_] < 0) {
-        throw new Error(
+        throw new Exception(
             "Forbidden value (" + this.skins[_loc2_] + ") on element 2 (starting at 1) of skins.");
       }
       param1.writeVarShort(this.skins[_loc2_]);
@@ -61,7 +61,8 @@ public class EntityLook extends Object implements INetworkType {
     SubEntity _loc13_ = null;
     this.bonesId = param1.readVarUhShort();
     if (this.bonesId < 0) {
-      throw new Error("Forbidden value (" + this.bonesId + ") on element of EntityLook.bonesId.");
+      throw new Exception(
+          "Forbidden value (" + this.bonesId + ") on element of EntityLook.bonesId.");
     }
 
     int _loc2_ = param1.readUnsignedShort();
@@ -69,7 +70,7 @@ public class EntityLook extends Object implements INetworkType {
     while (_loc3_ < _loc2_) {
       _loc10_ = param1.readVarUhShort();
       if (_loc10_ < 0) {
-        throw new Error("Forbidden value (" + _loc10_ + ") on elements of skins.");
+        throw new Exception("Forbidden value (" + _loc10_ + ") on elements of skins.");
       }
       this.skins.push(_loc10_);
       _loc3_++;
